@@ -99,7 +99,7 @@ public class VideoGenSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	
 	/**
 	 * Constraint:
-	 *     (videoid=ID? location=STRING (duration=INT? probability=INT? description=STRING?)?)
+	 *     (videoid=ID? location=STRING (duration=INT? probability=INT? size=INT? description=STRING?)?)
 	 */
 	protected void sequence_VideoDescription(EObject context, VideoDescription semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -108,7 +108,7 @@ public class VideoGenSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	
 	/**
 	 * Constraint:
-	 *     (authorName=STRING? version=STRING? creationDate=STRING?)
+	 *     (authorName=STRING version=STRING? creationDate=STRING?)
 	 */
 	protected void sequence_VideoGenInformation(EObject context, VideoGenInformation semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -117,7 +117,7 @@ public class VideoGenSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	
 	/**
 	 * Constraint:
-	 *     (information=VideoGenInformation videoseqs+=VideoSeq+)
+	 *     (information=VideoGenInformation? videoseqs+=VideoSeq+)
 	 */
 	protected void sequence_VideoGeneratorModel(EObject context, VideoGeneratorModel semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

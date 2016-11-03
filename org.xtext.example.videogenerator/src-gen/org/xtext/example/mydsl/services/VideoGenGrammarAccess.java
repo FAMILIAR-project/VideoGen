@@ -31,16 +31,16 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRIGHT_BRACKETTerminalRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
 		
 		//VideoGeneratorModel:
-		//	{VideoGeneratorModel} information=VideoGenInformation "VideoGen" LEFT_BRACKET videoseqs+=VideoSeq+ RIGHT_BRACKET;
+		//	{VideoGeneratorModel} information=VideoGenInformation? "VideoGen" LEFT_BRACKET videoseqs+=VideoSeq+ RIGHT_BRACKET;
 		@Override public ParserRule getRule() { return rule; }
 
-		//{VideoGeneratorModel} information=VideoGenInformation "VideoGen" LEFT_BRACKET videoseqs+=VideoSeq+ RIGHT_BRACKET
+		//{VideoGeneratorModel} information=VideoGenInformation? "VideoGen" LEFT_BRACKET videoseqs+=VideoSeq+ RIGHT_BRACKET
 		public Group getGroup() { return cGroup; }
 
 		//{VideoGeneratorModel}
 		public Action getVideoGeneratorModelAction_0() { return cVideoGeneratorModelAction_0; }
 
-		//information=VideoGenInformation
+		//information=VideoGenInformation?
 		public Assignment getInformationAssignment_1() { return cInformationAssignment_1; }
 
 		//VideoGenInformation
@@ -80,16 +80,16 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cCreationDateSTRINGTerminalRuleCall_3_1_0 = (RuleCall)cCreationDateAssignment_3_1.eContents().get(0);
 		
 		//VideoGenInformation:
-		//	{VideoGenInformation} ("@author" authorName=STRING)? ("@version" version=STRING)? ("@creation" creationDate=STRING)?;
+		//	{VideoGenInformation} ("@author" authorName=STRING) ("@version" version=STRING)? ("@creation" creationDate=STRING)?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//{VideoGenInformation} ("@author" authorName=STRING)? ("@version" version=STRING)? ("@creation" creationDate=STRING)?
+		//{VideoGenInformation} ("@author" authorName=STRING) ("@version" version=STRING)? ("@creation" creationDate=STRING)?
 		public Group getGroup() { return cGroup; }
 
 		//{VideoGenInformation}
 		public Action getVideoGenInformationAction_0() { return cVideoGenInformationAction_0; }
 
-		//("@author" authorName=STRING)?
+		//"@author" authorName=STRING
 		public Group getGroup_1() { return cGroup_1; }
 
 		//"@author"
@@ -257,18 +257,22 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cProbabilityAssignment_3_2_1 = (Assignment)cGroup_3_2.eContents().get(1);
 		private final RuleCall cProbabilityINTTerminalRuleCall_3_2_1_0 = (RuleCall)cProbabilityAssignment_3_2_1.eContents().get(0);
 		private final Group cGroup_3_3 = (Group)cGroup_3.eContents().get(3);
-		private final Keyword cDescriptionKeyword_3_3_0 = (Keyword)cGroup_3_3.eContents().get(0);
-		private final Assignment cDescriptionAssignment_3_3_1 = (Assignment)cGroup_3_3.eContents().get(1);
-		private final RuleCall cDescriptionSTRINGTerminalRuleCall_3_3_1_0 = (RuleCall)cDescriptionAssignment_3_3_1.eContents().get(0);
-		private final RuleCall cRIGHT_BRACKETTerminalRuleCall_3_4 = (RuleCall)cGroup_3.eContents().get(4);
+		private final Keyword cSizeKeyword_3_3_0 = (Keyword)cGroup_3_3.eContents().get(0);
+		private final Assignment cSizeAssignment_3_3_1 = (Assignment)cGroup_3_3.eContents().get(1);
+		private final RuleCall cSizeINTTerminalRuleCall_3_3_1_0 = (RuleCall)cSizeAssignment_3_3_1.eContents().get(0);
+		private final Group cGroup_3_4 = (Group)cGroup_3.eContents().get(4);
+		private final Keyword cDescriptionKeyword_3_4_0 = (Keyword)cGroup_3_4.eContents().get(0);
+		private final Assignment cDescriptionAssignment_3_4_1 = (Assignment)cGroup_3_4.eContents().get(1);
+		private final RuleCall cDescriptionSTRINGTerminalRuleCall_3_4_1_0 = (RuleCall)cDescriptionAssignment_3_4_1.eContents().get(0);
+		private final RuleCall cRIGHT_BRACKETTerminalRuleCall_3_5 = (RuleCall)cGroup_3.eContents().get(5);
 		
 		//VideoDescription:
 		//	"videoseq" videoid=ID? location=STRING (LEFT_BRACKET ("duration" duration=INT)? ("probability" probability=INT)?
-		//	("description" description=STRING)? RIGHT_BRACKET)?;
+		//	("size" size=INT)? ("description" description=STRING)? RIGHT_BRACKET)?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//"videoseq" videoid=ID? location=STRING (LEFT_BRACKET ("duration" duration=INT)? ("probability" probability=INT)?
-		//("description" description=STRING)? RIGHT_BRACKET)?
+		//"videoseq" videoid=ID? location=STRING (LEFT_BRACKET ("duration" duration=INT)? ("probability" probability=INT)? ("size"
+		//size=INT)? ("description" description=STRING)? RIGHT_BRACKET)?
 		public Group getGroup() { return cGroup; }
 
 		//"videoseq"
@@ -286,8 +290,8 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 		//STRING
 		public RuleCall getLocationSTRINGTerminalRuleCall_2_0() { return cLocationSTRINGTerminalRuleCall_2_0; }
 
-		//(LEFT_BRACKET ("duration" duration=INT)? ("probability" probability=INT)? ("description" description=STRING)?
-		//RIGHT_BRACKET)?
+		//(LEFT_BRACKET ("duration" duration=INT)? ("probability" probability=INT)? ("size" size=INT)? ("description"
+		//description=STRING)? RIGHT_BRACKET)?
 		public Group getGroup_3() { return cGroup_3; }
 
 		//LEFT_BRACKET
@@ -317,20 +321,32 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 		//INT
 		public RuleCall getProbabilityINTTerminalRuleCall_3_2_1_0() { return cProbabilityINTTerminalRuleCall_3_2_1_0; }
 
-		//("description" description=STRING)?
+		//("size" size=INT)?
 		public Group getGroup_3_3() { return cGroup_3_3; }
 
+		//"size"
+		public Keyword getSizeKeyword_3_3_0() { return cSizeKeyword_3_3_0; }
+
+		//size=INT
+		public Assignment getSizeAssignment_3_3_1() { return cSizeAssignment_3_3_1; }
+
+		//INT
+		public RuleCall getSizeINTTerminalRuleCall_3_3_1_0() { return cSizeINTTerminalRuleCall_3_3_1_0; }
+
+		//("description" description=STRING)?
+		public Group getGroup_3_4() { return cGroup_3_4; }
+
 		//"description"
-		public Keyword getDescriptionKeyword_3_3_0() { return cDescriptionKeyword_3_3_0; }
+		public Keyword getDescriptionKeyword_3_4_0() { return cDescriptionKeyword_3_4_0; }
 
 		//description=STRING
-		public Assignment getDescriptionAssignment_3_3_1() { return cDescriptionAssignment_3_3_1; }
+		public Assignment getDescriptionAssignment_3_4_1() { return cDescriptionAssignment_3_4_1; }
 
 		//STRING
-		public RuleCall getDescriptionSTRINGTerminalRuleCall_3_3_1_0() { return cDescriptionSTRINGTerminalRuleCall_3_3_1_0; }
+		public RuleCall getDescriptionSTRINGTerminalRuleCall_3_4_1_0() { return cDescriptionSTRINGTerminalRuleCall_3_4_1_0; }
 
 		//RIGHT_BRACKET
-		public RuleCall getRIGHT_BRACKETTerminalRuleCall_3_4() { return cRIGHT_BRACKETTerminalRuleCall_3_4; }
+		public RuleCall getRIGHT_BRACKETTerminalRuleCall_3_5() { return cRIGHT_BRACKETTerminalRuleCall_3_5; }
 	}
 	
 	
@@ -392,7 +408,7 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//VideoGeneratorModel:
-	//	{VideoGeneratorModel} information=VideoGenInformation "VideoGen" LEFT_BRACKET videoseqs+=VideoSeq+ RIGHT_BRACKET;
+	//	{VideoGeneratorModel} information=VideoGenInformation? "VideoGen" LEFT_BRACKET videoseqs+=VideoSeq+ RIGHT_BRACKET;
 	public VideoGeneratorModelElements getVideoGeneratorModelAccess() {
 		return pVideoGeneratorModel;
 	}
@@ -402,7 +418,7 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//VideoGenInformation:
-	//	{VideoGenInformation} ("@author" authorName=STRING)? ("@version" version=STRING)? ("@creation" creationDate=STRING)?;
+	//	{VideoGenInformation} ("@author" authorName=STRING) ("@version" version=STRING)? ("@creation" creationDate=STRING)?;
 	public VideoGenInformationElements getVideoGenInformationAccess() {
 		return pVideoGenInformation;
 	}
@@ -453,7 +469,7 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 
 	//VideoDescription:
 	//	"videoseq" videoid=ID? location=STRING (LEFT_BRACKET ("duration" duration=INT)? ("probability" probability=INT)?
-	//	("description" description=STRING)? RIGHT_BRACKET)?;
+	//	("size" size=INT)? ("description" description=STRING)? RIGHT_BRACKET)?;
 	public VideoDescriptionElements getVideoDescriptionAccess() {
 		return pVideoDescription;
 	}

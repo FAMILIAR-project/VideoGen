@@ -298,13 +298,22 @@ public interface VideoGenPackage extends EPackage
   int VIDEO_DESCRIPTION__PROBABILITY = 3;
 
   /**
+   * The feature id for the '<em><b>Size</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VIDEO_DESCRIPTION__SIZE = 4;
+
+  /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int VIDEO_DESCRIPTION__DESCRIPTION = 4;
+  int VIDEO_DESCRIPTION__DESCRIPTION = 5;
 
   /**
    * The number of structural features of the '<em>Video Description</em>' class.
@@ -313,7 +322,7 @@ public interface VideoGenPackage extends EPackage
    * @generated
    * @ordered
    */
-  int VIDEO_DESCRIPTION_FEATURE_COUNT = 5;
+  int VIDEO_DESCRIPTION_FEATURE_COUNT = 6;
 
 
   /**
@@ -530,6 +539,17 @@ public interface VideoGenPackage extends EPackage
   EAttribute getVideoDescription_Probability();
 
   /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.videoGen.VideoDescription#getSize <em>Size</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Size</em>'.
+   * @see org.xtext.example.mydsl.videoGen.VideoDescription#getSize()
+   * @see #getVideoDescription()
+   * @generated
+   */
+  EAttribute getVideoDescription_Size();
+
+  /**
    * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.videoGen.VideoDescription#getDescription <em>Description</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -736,6 +756,14 @@ public interface VideoGenPackage extends EPackage
      * @generated
      */
     EAttribute VIDEO_DESCRIPTION__PROBABILITY = eINSTANCE.getVideoDescription_Probability();
+
+    /**
+     * The meta object literal for the '<em><b>Size</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute VIDEO_DESCRIPTION__SIZE = eINSTANCE.getVideoDescription_Size();
 
     /**
      * The meta object literal for the '<em><b>Description</b></em>' attribute feature.

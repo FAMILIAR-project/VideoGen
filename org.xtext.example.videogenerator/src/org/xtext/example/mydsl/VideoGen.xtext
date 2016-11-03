@@ -2,15 +2,15 @@ grammar org.xtext.example.mydsl.VideoGen with org.eclipse.xtext.common.Terminals
 
 generate videoGen "http://www.xtext.org/example/mydsl/VideoGen"
 
-VideoGeneratorModel:{VideoGeneratorModel}
-	information=VideoGenInformation
+VideoGeneratorModel: {VideoGeneratorModel}
+	(information=VideoGenInformation)?
 	'VideoGen' LEFT_BRACKET
 	videoseqs+=VideoSeq+
 	RIGHT_BRACKET
 	;
 
-VideoGenInformation:{VideoGenInformation}
-('@author' authorName=STRING)?
+VideoGenInformation: {VideoGenInformation}
+('@author' authorName=STRING)
 ('@version' version=STRING)?
 ('@creation' creationDate=STRING)?	
 ;
@@ -25,6 +25,7 @@ VideoDescription : 'videoseq' (videoid=ID)? location=STRING
 	(LEFT_BRACKET
 	 ('duration' duration=INT)?
 	 ('probability' probability=INT)?
+	 ('size' size=INT)?
 	 ('description' description=STRING)? 
 	RIGHT_BRACKET)?
 	

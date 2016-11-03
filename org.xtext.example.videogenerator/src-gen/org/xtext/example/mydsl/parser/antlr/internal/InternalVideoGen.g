@@ -101,7 +101,7 @@ ruleVideoGeneratorModel returns [EObject current=null]
 	    }
 
 )
-)	otherlv_2='VideoGen' 
+)?	otherlv_2='VideoGen' 
     {
     	newLeafNode(otherlv_2, grammarAccess.getVideoGeneratorModelAccess().getVideoGenKeyword_2());
     }
@@ -180,7 +180,7 @@ ruleVideoGenInformation returns [EObject current=null]
 	    }
 
 )
-))?(	otherlv_3='@version' 
+))(	otherlv_3='@version' 
     {
     	newLeafNode(otherlv_3, grammarAccess.getVideoGenInformationAccess().getVersionKeyword_2_0());
     }
@@ -538,15 +538,37 @@ ruleVideoDescription returns [EObject current=null]
 	    }
 
 )
-))?(	otherlv_8='description' 
+))?(	otherlv_8='size' 
     {
-    	newLeafNode(otherlv_8, grammarAccess.getVideoDescriptionAccess().getDescriptionKeyword_3_3_0());
+    	newLeafNode(otherlv_8, grammarAccess.getVideoDescriptionAccess().getSizeKeyword_3_3_0());
     }
 (
 (
-		lv_description_9_0=RULE_STRING
+		lv_size_9_0=RULE_INT
 		{
-			newLeafNode(lv_description_9_0, grammarAccess.getVideoDescriptionAccess().getDescriptionSTRINGTerminalRuleCall_3_3_1_0()); 
+			newLeafNode(lv_size_9_0, grammarAccess.getVideoDescriptionAccess().getSizeINTTerminalRuleCall_3_3_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getVideoDescriptionRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"size",
+        		lv_size_9_0, 
+        		"INT");
+	    }
+
+)
+))?(	otherlv_10='description' 
+    {
+    	newLeafNode(otherlv_10, grammarAccess.getVideoDescriptionAccess().getDescriptionKeyword_3_4_0());
+    }
+(
+(
+		lv_description_11_0=RULE_STRING
+		{
+			newLeafNode(lv_description_11_0, grammarAccess.getVideoDescriptionAccess().getDescriptionSTRINGTerminalRuleCall_3_4_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -555,14 +577,14 @@ ruleVideoDescription returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"description",
-        		lv_description_9_0, 
+        		lv_description_11_0, 
         		"STRING");
 	    }
 
 )
-))?this_RIGHT_BRACKET_10=RULE_RIGHT_BRACKET
+))?this_RIGHT_BRACKET_12=RULE_RIGHT_BRACKET
     { 
-    newLeafNode(this_RIGHT_BRACKET_10, grammarAccess.getVideoDescriptionAccess().getRIGHT_BRACKETTerminalRuleCall_3_4()); 
+    newLeafNode(this_RIGHT_BRACKET_12, grammarAccess.getVideoDescriptionAccess().getRIGHT_BRACKETTerminalRuleCall_3_5()); 
     }
 )?)
 ;
