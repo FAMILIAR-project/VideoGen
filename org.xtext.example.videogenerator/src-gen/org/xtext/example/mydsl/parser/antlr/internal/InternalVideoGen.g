@@ -96,7 +96,7 @@ ruleVideoGeneratorModel returns [EObject current=null]
        			$current, 
        			"information",
         		lv_information_1_0, 
-        		"VideoGenInformation");
+        		"org.xtext.example.mydsl.VideoGen.VideoGenInformation");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -122,7 +122,7 @@ this_LEFT_BRACKET_3=RULE_LEFT_BRACKET
        			$current, 
        			"videoseqs",
         		lv_videoseqs_4_0, 
-        		"VideoSeq");
+        		"org.xtext.example.mydsl.VideoGen.VideoSeq");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -176,7 +176,7 @@ ruleVideoGenInformation returns [EObject current=null]
        			$current, 
        			"authorName",
         		lv_authorName_2_0, 
-        		"STRING");
+        		"org.eclipse.xtext.common.Terminals.STRING");
 	    }
 
 )
@@ -198,7 +198,7 @@ ruleVideoGenInformation returns [EObject current=null]
        			$current, 
        			"version",
         		lv_version_4_0, 
-        		"STRING");
+        		"org.eclipse.xtext.common.Terminals.STRING");
 	    }
 
 )
@@ -220,7 +220,7 @@ ruleVideoGenInformation returns [EObject current=null]
        			$current, 
        			"creationDate",
         		lv_creationDate_6_0, 
-        		"STRING");
+        		"org.eclipse.xtext.common.Terminals.STRING");
 	    }
 
 )
@@ -312,7 +312,7 @@ ruleMandatoryVideoSeq returns [EObject current=null]
        			$current, 
        			"description",
         		lv_description_1_0, 
-        		"VideoDescription");
+        		"org.xtext.example.mydsl.VideoGen.VideoDescription");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -355,7 +355,7 @@ ruleOptionalVideoSeq returns [EObject current=null]
        			$current, 
        			"description",
         		lv_description_1_0, 
-        		"VideoDescription");
+        		"org.xtext.example.mydsl.VideoGen.VideoDescription");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -399,7 +399,7 @@ ruleAlternativeVideoSeq returns [EObject current=null]
        			$current, 
        			"videoid",
         		lv_videoid_1_0, 
-        		"ID");
+        		"org.eclipse.xtext.common.Terminals.ID");
 	    }
 
 )
@@ -420,7 +420,7 @@ ruleAlternativeVideoSeq returns [EObject current=null]
        			$current, 
        			"videodescs",
         		lv_videodescs_3_0, 
-        		"VideoDescription");
+        		"org.xtext.example.mydsl.VideoGen.VideoDescription");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -468,7 +468,7 @@ ruleVideoDescription returns [EObject current=null]
        			$current, 
        			"videoid",
         		lv_videoid_1_0, 
-        		"ID");
+        		"org.eclipse.xtext.common.Terminals.ID");
 	    }
 
 )
@@ -486,7 +486,7 @@ ruleVideoDescription returns [EObject current=null]
        			$current, 
        			"location",
         		lv_location_2_0, 
-        		"STRING");
+        		"org.eclipse.xtext.common.Terminals.STRING");
 	    }
 
 )
@@ -512,7 +512,7 @@ ruleVideoDescription returns [EObject current=null]
        			$current, 
        			"duration",
         		lv_duration_5_0, 
-        		"INT");
+        		"org.eclipse.xtext.common.Terminals.INT");
 	    }
 
 )
@@ -534,7 +534,7 @@ ruleVideoDescription returns [EObject current=null]
        			$current, 
        			"probability",
         		lv_probability_7_0, 
-        		"INT");
+        		"org.eclipse.xtext.common.Terminals.INT");
 	    }
 
 )
@@ -556,7 +556,7 @@ ruleVideoDescription returns [EObject current=null]
        			$current, 
        			"size",
         		lv_size_9_0, 
-        		"INT");
+        		"org.eclipse.xtext.common.Terminals.INT");
 	    }
 
 )
@@ -578,7 +578,7 @@ ruleVideoDescription returns [EObject current=null]
        			$current, 
        			"description",
         		lv_description_11_0, 
-        		"STRING");
+        		"org.eclipse.xtext.common.Terminals.STRING");
 	    }
 
 )
