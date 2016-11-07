@@ -51,6 +51,7 @@ public class VideoGenParser extends AbstractContentAssistParser {
 					put(grammarAccess.getVideoDescriptionAccess().getGroup_3_1(), "rule__VideoDescription__Group_3_1__0");
 					put(grammarAccess.getVideoDescriptionAccess().getGroup_3_2(), "rule__VideoDescription__Group_3_2__0");
 					put(grammarAccess.getVideoDescriptionAccess().getGroup_3_3(), "rule__VideoDescription__Group_3_3__0");
+					put(grammarAccess.getVideoDescriptionAccess().getGroup_3_4(), "rule__VideoDescription__Group_3_4__0");
 					put(grammarAccess.getVideoGeneratorModelAccess().getInformationAssignment_1(), "rule__VideoGeneratorModel__InformationAssignment_1");
 					put(grammarAccess.getVideoGeneratorModelAccess().getVideoseqsAssignment_4(), "rule__VideoGeneratorModel__VideoseqsAssignment_4");
 					put(grammarAccess.getVideoGenInformationAccess().getAuthorNameAssignment_1_1(), "rule__VideoGenInformation__AuthorNameAssignment_1_1");
@@ -64,7 +65,8 @@ public class VideoGenParser extends AbstractContentAssistParser {
 					put(grammarAccess.getVideoDescriptionAccess().getLocationAssignment_2(), "rule__VideoDescription__LocationAssignment_2");
 					put(grammarAccess.getVideoDescriptionAccess().getDurationAssignment_3_1_1(), "rule__VideoDescription__DurationAssignment_3_1_1");
 					put(grammarAccess.getVideoDescriptionAccess().getProbabilityAssignment_3_2_1(), "rule__VideoDescription__ProbabilityAssignment_3_2_1");
-					put(grammarAccess.getVideoDescriptionAccess().getDescriptionAssignment_3_3_1(), "rule__VideoDescription__DescriptionAssignment_3_3_1");
+					put(grammarAccess.getVideoDescriptionAccess().getSizeAssignment_3_3_1(), "rule__VideoDescription__SizeAssignment_3_3_1");
+					put(grammarAccess.getVideoDescriptionAccess().getDescriptionAssignment_3_4_1(), "rule__VideoDescription__DescriptionAssignment_3_4_1");
 				}
 			};
 		}

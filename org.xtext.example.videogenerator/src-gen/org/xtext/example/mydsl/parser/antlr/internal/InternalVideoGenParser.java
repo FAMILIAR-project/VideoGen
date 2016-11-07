@@ -60,7 +60,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
         
 
     public String[] getTokenNames() { return InternalVideoGenParser.tokenNames; }
-    public String getGrammarFileName() { return "../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g"; }
+    public String getGrammarFileName() { return "InternalVideoGen.g"; }
 
 
 
@@ -85,7 +85,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleVideoGeneratorModel"
-    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:67:1: entryRuleVideoGeneratorModel returns [EObject current=null] : iv_ruleVideoGeneratorModel= ruleVideoGeneratorModel EOF ;
+    // InternalVideoGen.g:67:1: entryRuleVideoGeneratorModel returns [EObject current=null] : iv_ruleVideoGeneratorModel= ruleVideoGeneratorModel EOF ;
     public final EObject entryRuleVideoGeneratorModel() throws RecognitionException {
         EObject current = null;
 
@@ -93,17 +93,17 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:68:2: (iv_ruleVideoGeneratorModel= ruleVideoGeneratorModel EOF )
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:69:2: iv_ruleVideoGeneratorModel= ruleVideoGeneratorModel EOF
+            // InternalVideoGen.g:68:2: (iv_ruleVideoGeneratorModel= ruleVideoGeneratorModel EOF )
+            // InternalVideoGen.g:69:2: iv_ruleVideoGeneratorModel= ruleVideoGeneratorModel EOF
             {
              newCompositeNode(grammarAccess.getVideoGeneratorModelRule()); 
-            pushFollow(FOLLOW_ruleVideoGeneratorModel_in_entryRuleVideoGeneratorModel75);
+            pushFollow(FOLLOW_1);
             iv_ruleVideoGeneratorModel=ruleVideoGeneratorModel();
 
             state._fsp--;
 
              current =iv_ruleVideoGeneratorModel; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleVideoGeneratorModel85); 
+            match(input,EOF,FOLLOW_2); 
 
             }
 
@@ -121,7 +121,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleVideoGeneratorModel"
-    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:76:1: ruleVideoGeneratorModel returns [EObject current=null] : ( () ( (lv_information_1_0= ruleVideoGenInformation ) )? otherlv_2= 'VideoGen' this_LEFT_BRACKET_3= RULE_LEFT_BRACKET ( (lv_videoseqs_4_0= ruleVideoSeq ) )+ this_RIGHT_BRACKET_5= RULE_RIGHT_BRACKET ) ;
+    // InternalVideoGen.g:76:1: ruleVideoGeneratorModel returns [EObject current=null] : ( () ( (lv_information_1_0= ruleVideoGenInformation ) )? otherlv_2= 'VideoGen' this_LEFT_BRACKET_3= RULE_LEFT_BRACKET ( (lv_videoseqs_4_0= ruleVideoSeq ) )+ this_RIGHT_BRACKET_5= RULE_RIGHT_BRACKET ) ;
     public final EObject ruleVideoGeneratorModel() throws RecognitionException {
         EObject current = null;
 
@@ -136,14 +136,14 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:79:28: ( ( () ( (lv_information_1_0= ruleVideoGenInformation ) )? otherlv_2= 'VideoGen' this_LEFT_BRACKET_3= RULE_LEFT_BRACKET ( (lv_videoseqs_4_0= ruleVideoSeq ) )+ this_RIGHT_BRACKET_5= RULE_RIGHT_BRACKET ) )
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:80:1: ( () ( (lv_information_1_0= ruleVideoGenInformation ) )? otherlv_2= 'VideoGen' this_LEFT_BRACKET_3= RULE_LEFT_BRACKET ( (lv_videoseqs_4_0= ruleVideoSeq ) )+ this_RIGHT_BRACKET_5= RULE_RIGHT_BRACKET )
+            // InternalVideoGen.g:79:28: ( ( () ( (lv_information_1_0= ruleVideoGenInformation ) )? otherlv_2= 'VideoGen' this_LEFT_BRACKET_3= RULE_LEFT_BRACKET ( (lv_videoseqs_4_0= ruleVideoSeq ) )+ this_RIGHT_BRACKET_5= RULE_RIGHT_BRACKET ) )
+            // InternalVideoGen.g:80:1: ( () ( (lv_information_1_0= ruleVideoGenInformation ) )? otherlv_2= 'VideoGen' this_LEFT_BRACKET_3= RULE_LEFT_BRACKET ( (lv_videoseqs_4_0= ruleVideoSeq ) )+ this_RIGHT_BRACKET_5= RULE_RIGHT_BRACKET )
             {
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:80:1: ( () ( (lv_information_1_0= ruleVideoGenInformation ) )? otherlv_2= 'VideoGen' this_LEFT_BRACKET_3= RULE_LEFT_BRACKET ( (lv_videoseqs_4_0= ruleVideoSeq ) )+ this_RIGHT_BRACKET_5= RULE_RIGHT_BRACKET )
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:80:2: () ( (lv_information_1_0= ruleVideoGenInformation ) )? otherlv_2= 'VideoGen' this_LEFT_BRACKET_3= RULE_LEFT_BRACKET ( (lv_videoseqs_4_0= ruleVideoSeq ) )+ this_RIGHT_BRACKET_5= RULE_RIGHT_BRACKET
+            // InternalVideoGen.g:80:1: ( () ( (lv_information_1_0= ruleVideoGenInformation ) )? otherlv_2= 'VideoGen' this_LEFT_BRACKET_3= RULE_LEFT_BRACKET ( (lv_videoseqs_4_0= ruleVideoSeq ) )+ this_RIGHT_BRACKET_5= RULE_RIGHT_BRACKET )
+            // InternalVideoGen.g:80:2: () ( (lv_information_1_0= ruleVideoGenInformation ) )? otherlv_2= 'VideoGen' this_LEFT_BRACKET_3= RULE_LEFT_BRACKET ( (lv_videoseqs_4_0= ruleVideoSeq ) )+ this_RIGHT_BRACKET_5= RULE_RIGHT_BRACKET
             {
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:80:2: ()
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:81:5: 
+            // InternalVideoGen.g:80:2: ()
+            // InternalVideoGen.g:81:5: 
             {
 
                     current = forceCreateModelElement(
@@ -153,7 +153,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:86:2: ( (lv_information_1_0= ruleVideoGenInformation ) )?
+            // InternalVideoGen.g:86:2: ( (lv_information_1_0= ruleVideoGenInformation ) )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -162,15 +162,15 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
             }
             switch (alt1) {
                 case 1 :
-                    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:87:1: (lv_information_1_0= ruleVideoGenInformation )
+                    // InternalVideoGen.g:87:1: (lv_information_1_0= ruleVideoGenInformation )
                     {
-                    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:87:1: (lv_information_1_0= ruleVideoGenInformation )
-                    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:88:3: lv_information_1_0= ruleVideoGenInformation
+                    // InternalVideoGen.g:87:1: (lv_information_1_0= ruleVideoGenInformation )
+                    // InternalVideoGen.g:88:3: lv_information_1_0= ruleVideoGenInformation
                     {
                      
                     	        newCompositeNode(grammarAccess.getVideoGeneratorModelAccess().getInformationVideoGenInformationParserRuleCall_1_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleVideoGenInformation_in_ruleVideoGeneratorModel140);
+                    pushFollow(FOLLOW_3);
                     lv_information_1_0=ruleVideoGenInformation();
 
                     state._fsp--;
@@ -183,7 +183,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
                            			current, 
                            			"information",
                             		lv_information_1_0, 
-                            		"VideoGenInformation");
+                            		"org.xtext.example.mydsl.VideoGen.VideoGenInformation");
                     	        afterParserOrEnumRuleCall();
                     	    
 
@@ -195,15 +195,15 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,13,FOLLOW_13_in_ruleVideoGeneratorModel153); 
+            otherlv_2=(Token)match(input,13,FOLLOW_4); 
 
                 	newLeafNode(otherlv_2, grammarAccess.getVideoGeneratorModelAccess().getVideoGenKeyword_2());
                 
-            this_LEFT_BRACKET_3=(Token)match(input,RULE_LEFT_BRACKET,FOLLOW_RULE_LEFT_BRACKET_in_ruleVideoGeneratorModel164); 
+            this_LEFT_BRACKET_3=(Token)match(input,RULE_LEFT_BRACKET,FOLLOW_5); 
              
                 newLeafNode(this_LEFT_BRACKET_3, grammarAccess.getVideoGeneratorModelAccess().getLEFT_BRACKETTerminalRuleCall_3()); 
                 
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:112:1: ( (lv_videoseqs_4_0= ruleVideoSeq ) )+
+            // InternalVideoGen.g:112:1: ( (lv_videoseqs_4_0= ruleVideoSeq ) )+
             int cnt2=0;
             loop2:
             do {
@@ -217,15 +217,15 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
                 switch (alt2) {
             	case 1 :
-            	    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:113:1: (lv_videoseqs_4_0= ruleVideoSeq )
+            	    // InternalVideoGen.g:113:1: (lv_videoseqs_4_0= ruleVideoSeq )
             	    {
-            	    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:113:1: (lv_videoseqs_4_0= ruleVideoSeq )
-            	    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:114:3: lv_videoseqs_4_0= ruleVideoSeq
+            	    // InternalVideoGen.g:113:1: (lv_videoseqs_4_0= ruleVideoSeq )
+            	    // InternalVideoGen.g:114:3: lv_videoseqs_4_0= ruleVideoSeq
             	    {
             	     
             	    	        newCompositeNode(grammarAccess.getVideoGeneratorModelAccess().getVideoseqsVideoSeqParserRuleCall_4_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleVideoSeq_in_ruleVideoGeneratorModel184);
+            	    pushFollow(FOLLOW_6);
             	    lv_videoseqs_4_0=ruleVideoSeq();
 
             	    state._fsp--;
@@ -238,7 +238,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
             	           			current, 
             	           			"videoseqs",
             	            		lv_videoseqs_4_0, 
-            	            		"VideoSeq");
+            	            		"org.xtext.example.mydsl.VideoGen.VideoSeq");
             	    	        afterParserOrEnumRuleCall();
             	    	    
 
@@ -257,7 +257,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
                 cnt2++;
             } while (true);
 
-            this_RIGHT_BRACKET_5=(Token)match(input,RULE_RIGHT_BRACKET,FOLLOW_RULE_RIGHT_BRACKET_in_ruleVideoGeneratorModel196); 
+            this_RIGHT_BRACKET_5=(Token)match(input,RULE_RIGHT_BRACKET,FOLLOW_2); 
              
                 newLeafNode(this_RIGHT_BRACKET_5, grammarAccess.getVideoGeneratorModelAccess().getRIGHT_BRACKETTerminalRuleCall_5()); 
                 
@@ -282,7 +282,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleVideoGenInformation"
-    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:142:1: entryRuleVideoGenInformation returns [EObject current=null] : iv_ruleVideoGenInformation= ruleVideoGenInformation EOF ;
+    // InternalVideoGen.g:142:1: entryRuleVideoGenInformation returns [EObject current=null] : iv_ruleVideoGenInformation= ruleVideoGenInformation EOF ;
     public final EObject entryRuleVideoGenInformation() throws RecognitionException {
         EObject current = null;
 
@@ -290,17 +290,17 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:143:2: (iv_ruleVideoGenInformation= ruleVideoGenInformation EOF )
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:144:2: iv_ruleVideoGenInformation= ruleVideoGenInformation EOF
+            // InternalVideoGen.g:143:2: (iv_ruleVideoGenInformation= ruleVideoGenInformation EOF )
+            // InternalVideoGen.g:144:2: iv_ruleVideoGenInformation= ruleVideoGenInformation EOF
             {
              newCompositeNode(grammarAccess.getVideoGenInformationRule()); 
-            pushFollow(FOLLOW_ruleVideoGenInformation_in_entryRuleVideoGenInformation231);
+            pushFollow(FOLLOW_1);
             iv_ruleVideoGenInformation=ruleVideoGenInformation();
 
             state._fsp--;
 
              current =iv_ruleVideoGenInformation; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleVideoGenInformation241); 
+            match(input,EOF,FOLLOW_2); 
 
             }
 
@@ -318,7 +318,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleVideoGenInformation"
-    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:151:1: ruleVideoGenInformation returns [EObject current=null] : ( () (otherlv_1= '@author' ( (lv_authorName_2_0= RULE_STRING ) ) ) (otherlv_3= '@version' ( (lv_version_4_0= RULE_STRING ) ) )? (otherlv_5= '@creation' ( (lv_creationDate_6_0= RULE_STRING ) ) )? ) ;
+    // InternalVideoGen.g:151:1: ruleVideoGenInformation returns [EObject current=null] : ( () (otherlv_1= '@author' ( (lv_authorName_2_0= RULE_STRING ) ) ) (otherlv_3= '@version' ( (lv_version_4_0= RULE_STRING ) ) )? (otherlv_5= '@creation' ( (lv_creationDate_6_0= RULE_STRING ) ) )? ) ;
     public final EObject ruleVideoGenInformation() throws RecognitionException {
         EObject current = null;
 
@@ -332,14 +332,14 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:154:28: ( ( () (otherlv_1= '@author' ( (lv_authorName_2_0= RULE_STRING ) ) ) (otherlv_3= '@version' ( (lv_version_4_0= RULE_STRING ) ) )? (otherlv_5= '@creation' ( (lv_creationDate_6_0= RULE_STRING ) ) )? ) )
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:155:1: ( () (otherlv_1= '@author' ( (lv_authorName_2_0= RULE_STRING ) ) ) (otherlv_3= '@version' ( (lv_version_4_0= RULE_STRING ) ) )? (otherlv_5= '@creation' ( (lv_creationDate_6_0= RULE_STRING ) ) )? )
+            // InternalVideoGen.g:154:28: ( ( () (otherlv_1= '@author' ( (lv_authorName_2_0= RULE_STRING ) ) ) (otherlv_3= '@version' ( (lv_version_4_0= RULE_STRING ) ) )? (otherlv_5= '@creation' ( (lv_creationDate_6_0= RULE_STRING ) ) )? ) )
+            // InternalVideoGen.g:155:1: ( () (otherlv_1= '@author' ( (lv_authorName_2_0= RULE_STRING ) ) ) (otherlv_3= '@version' ( (lv_version_4_0= RULE_STRING ) ) )? (otherlv_5= '@creation' ( (lv_creationDate_6_0= RULE_STRING ) ) )? )
             {
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:155:1: ( () (otherlv_1= '@author' ( (lv_authorName_2_0= RULE_STRING ) ) ) (otherlv_3= '@version' ( (lv_version_4_0= RULE_STRING ) ) )? (otherlv_5= '@creation' ( (lv_creationDate_6_0= RULE_STRING ) ) )? )
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:155:2: () (otherlv_1= '@author' ( (lv_authorName_2_0= RULE_STRING ) ) ) (otherlv_3= '@version' ( (lv_version_4_0= RULE_STRING ) ) )? (otherlv_5= '@creation' ( (lv_creationDate_6_0= RULE_STRING ) ) )?
+            // InternalVideoGen.g:155:1: ( () (otherlv_1= '@author' ( (lv_authorName_2_0= RULE_STRING ) ) ) (otherlv_3= '@version' ( (lv_version_4_0= RULE_STRING ) ) )? (otherlv_5= '@creation' ( (lv_creationDate_6_0= RULE_STRING ) ) )? )
+            // InternalVideoGen.g:155:2: () (otherlv_1= '@author' ( (lv_authorName_2_0= RULE_STRING ) ) ) (otherlv_3= '@version' ( (lv_version_4_0= RULE_STRING ) ) )? (otherlv_5= '@creation' ( (lv_creationDate_6_0= RULE_STRING ) ) )?
             {
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:155:2: ()
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:156:5: 
+            // InternalVideoGen.g:155:2: ()
+            // InternalVideoGen.g:156:5: 
             {
 
                     current = forceCreateModelElement(
@@ -349,20 +349,20 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:161:2: (otherlv_1= '@author' ( (lv_authorName_2_0= RULE_STRING ) ) )
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:161:4: otherlv_1= '@author' ( (lv_authorName_2_0= RULE_STRING ) )
+            // InternalVideoGen.g:161:2: (otherlv_1= '@author' ( (lv_authorName_2_0= RULE_STRING ) ) )
+            // InternalVideoGen.g:161:4: otherlv_1= '@author' ( (lv_authorName_2_0= RULE_STRING ) )
             {
-            otherlv_1=(Token)match(input,14,FOLLOW_14_in_ruleVideoGenInformation288); 
+            otherlv_1=(Token)match(input,14,FOLLOW_7); 
 
                 	newLeafNode(otherlv_1, grammarAccess.getVideoGenInformationAccess().getAuthorKeyword_1_0());
                 
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:165:1: ( (lv_authorName_2_0= RULE_STRING ) )
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:166:1: (lv_authorName_2_0= RULE_STRING )
+            // InternalVideoGen.g:165:1: ( (lv_authorName_2_0= RULE_STRING ) )
+            // InternalVideoGen.g:166:1: (lv_authorName_2_0= RULE_STRING )
             {
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:166:1: (lv_authorName_2_0= RULE_STRING )
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:167:3: lv_authorName_2_0= RULE_STRING
+            // InternalVideoGen.g:166:1: (lv_authorName_2_0= RULE_STRING )
+            // InternalVideoGen.g:167:3: lv_authorName_2_0= RULE_STRING
             {
-            lv_authorName_2_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleVideoGenInformation305); 
+            lv_authorName_2_0=(Token)match(input,RULE_STRING,FOLLOW_8); 
 
             			newLeafNode(lv_authorName_2_0, grammarAccess.getVideoGenInformationAccess().getAuthorNameSTRINGTerminalRuleCall_1_1_0()); 
             		
@@ -374,7 +374,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
                    			current, 
                    			"authorName",
                     		lv_authorName_2_0, 
-                    		"STRING");
+                    		"org.eclipse.xtext.common.Terminals.STRING");
             	    
 
             }
@@ -385,7 +385,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:183:3: (otherlv_3= '@version' ( (lv_version_4_0= RULE_STRING ) ) )?
+            // InternalVideoGen.g:183:3: (otherlv_3= '@version' ( (lv_version_4_0= RULE_STRING ) ) )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -394,19 +394,19 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
             }
             switch (alt3) {
                 case 1 :
-                    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:183:5: otherlv_3= '@version' ( (lv_version_4_0= RULE_STRING ) )
+                    // InternalVideoGen.g:183:5: otherlv_3= '@version' ( (lv_version_4_0= RULE_STRING ) )
                     {
-                    otherlv_3=(Token)match(input,15,FOLLOW_15_in_ruleVideoGenInformation324); 
+                    otherlv_3=(Token)match(input,15,FOLLOW_7); 
 
                         	newLeafNode(otherlv_3, grammarAccess.getVideoGenInformationAccess().getVersionKeyword_2_0());
                         
-                    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:187:1: ( (lv_version_4_0= RULE_STRING ) )
-                    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:188:1: (lv_version_4_0= RULE_STRING )
+                    // InternalVideoGen.g:187:1: ( (lv_version_4_0= RULE_STRING ) )
+                    // InternalVideoGen.g:188:1: (lv_version_4_0= RULE_STRING )
                     {
-                    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:188:1: (lv_version_4_0= RULE_STRING )
-                    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:189:3: lv_version_4_0= RULE_STRING
+                    // InternalVideoGen.g:188:1: (lv_version_4_0= RULE_STRING )
+                    // InternalVideoGen.g:189:3: lv_version_4_0= RULE_STRING
                     {
-                    lv_version_4_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleVideoGenInformation341); 
+                    lv_version_4_0=(Token)match(input,RULE_STRING,FOLLOW_9); 
 
                     			newLeafNode(lv_version_4_0, grammarAccess.getVideoGenInformationAccess().getVersionSTRINGTerminalRuleCall_2_1_0()); 
                     		
@@ -418,7 +418,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
                            			current, 
                            			"version",
                             		lv_version_4_0, 
-                            		"STRING");
+                            		"org.eclipse.xtext.common.Terminals.STRING");
                     	    
 
                     }
@@ -432,7 +432,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:205:4: (otherlv_5= '@creation' ( (lv_creationDate_6_0= RULE_STRING ) ) )?
+            // InternalVideoGen.g:205:4: (otherlv_5= '@creation' ( (lv_creationDate_6_0= RULE_STRING ) ) )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -441,19 +441,19 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
             }
             switch (alt4) {
                 case 1 :
-                    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:205:6: otherlv_5= '@creation' ( (lv_creationDate_6_0= RULE_STRING ) )
+                    // InternalVideoGen.g:205:6: otherlv_5= '@creation' ( (lv_creationDate_6_0= RULE_STRING ) )
                     {
-                    otherlv_5=(Token)match(input,16,FOLLOW_16_in_ruleVideoGenInformation361); 
+                    otherlv_5=(Token)match(input,16,FOLLOW_7); 
 
                         	newLeafNode(otherlv_5, grammarAccess.getVideoGenInformationAccess().getCreationKeyword_3_0());
                         
-                    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:209:1: ( (lv_creationDate_6_0= RULE_STRING ) )
-                    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:210:1: (lv_creationDate_6_0= RULE_STRING )
+                    // InternalVideoGen.g:209:1: ( (lv_creationDate_6_0= RULE_STRING ) )
+                    // InternalVideoGen.g:210:1: (lv_creationDate_6_0= RULE_STRING )
                     {
-                    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:210:1: (lv_creationDate_6_0= RULE_STRING )
-                    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:211:3: lv_creationDate_6_0= RULE_STRING
+                    // InternalVideoGen.g:210:1: (lv_creationDate_6_0= RULE_STRING )
+                    // InternalVideoGen.g:211:3: lv_creationDate_6_0= RULE_STRING
                     {
-                    lv_creationDate_6_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleVideoGenInformation378); 
+                    lv_creationDate_6_0=(Token)match(input,RULE_STRING,FOLLOW_2); 
 
                     			newLeafNode(lv_creationDate_6_0, grammarAccess.getVideoGenInformationAccess().getCreationDateSTRINGTerminalRuleCall_3_1_0()); 
                     		
@@ -465,7 +465,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
                            			current, 
                            			"creationDate",
                             		lv_creationDate_6_0, 
-                            		"STRING");
+                            		"org.eclipse.xtext.common.Terminals.STRING");
                     	    
 
                     }
@@ -500,7 +500,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleVideoSeq"
-    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:235:1: entryRuleVideoSeq returns [EObject current=null] : iv_ruleVideoSeq= ruleVideoSeq EOF ;
+    // InternalVideoGen.g:235:1: entryRuleVideoSeq returns [EObject current=null] : iv_ruleVideoSeq= ruleVideoSeq EOF ;
     public final EObject entryRuleVideoSeq() throws RecognitionException {
         EObject current = null;
 
@@ -508,17 +508,17 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:236:2: (iv_ruleVideoSeq= ruleVideoSeq EOF )
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:237:2: iv_ruleVideoSeq= ruleVideoSeq EOF
+            // InternalVideoGen.g:236:2: (iv_ruleVideoSeq= ruleVideoSeq EOF )
+            // InternalVideoGen.g:237:2: iv_ruleVideoSeq= ruleVideoSeq EOF
             {
              newCompositeNode(grammarAccess.getVideoSeqRule()); 
-            pushFollow(FOLLOW_ruleVideoSeq_in_entryRuleVideoSeq421);
+            pushFollow(FOLLOW_1);
             iv_ruleVideoSeq=ruleVideoSeq();
 
             state._fsp--;
 
              current =iv_ruleVideoSeq; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleVideoSeq431); 
+            match(input,EOF,FOLLOW_2); 
 
             }
 
@@ -536,7 +536,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleVideoSeq"
-    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:244:1: ruleVideoSeq returns [EObject current=null] : (this_MandatoryVideoSeq_0= ruleMandatoryVideoSeq | this_OptionalVideoSeq_1= ruleOptionalVideoSeq | this_AlternativeVideoSeq_2= ruleAlternativeVideoSeq ) ;
+    // InternalVideoGen.g:244:1: ruleVideoSeq returns [EObject current=null] : (this_MandatoryVideoSeq_0= ruleMandatoryVideoSeq | this_OptionalVideoSeq_1= ruleOptionalVideoSeq | this_AlternativeVideoSeq_2= ruleAlternativeVideoSeq ) ;
     public final EObject ruleVideoSeq() throws RecognitionException {
         EObject current = null;
 
@@ -550,10 +550,10 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:247:28: ( (this_MandatoryVideoSeq_0= ruleMandatoryVideoSeq | this_OptionalVideoSeq_1= ruleOptionalVideoSeq | this_AlternativeVideoSeq_2= ruleAlternativeVideoSeq ) )
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:248:1: (this_MandatoryVideoSeq_0= ruleMandatoryVideoSeq | this_OptionalVideoSeq_1= ruleOptionalVideoSeq | this_AlternativeVideoSeq_2= ruleAlternativeVideoSeq )
+            // InternalVideoGen.g:247:28: ( (this_MandatoryVideoSeq_0= ruleMandatoryVideoSeq | this_OptionalVideoSeq_1= ruleOptionalVideoSeq | this_AlternativeVideoSeq_2= ruleAlternativeVideoSeq ) )
+            // InternalVideoGen.g:248:1: (this_MandatoryVideoSeq_0= ruleMandatoryVideoSeq | this_OptionalVideoSeq_1= ruleOptionalVideoSeq | this_AlternativeVideoSeq_2= ruleAlternativeVideoSeq )
             {
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:248:1: (this_MandatoryVideoSeq_0= ruleMandatoryVideoSeq | this_OptionalVideoSeq_1= ruleOptionalVideoSeq | this_AlternativeVideoSeq_2= ruleAlternativeVideoSeq )
+            // InternalVideoGen.g:248:1: (this_MandatoryVideoSeq_0= ruleMandatoryVideoSeq | this_OptionalVideoSeq_1= ruleOptionalVideoSeq | this_AlternativeVideoSeq_2= ruleAlternativeVideoSeq )
             int alt5=3;
             switch ( input.LA(1) ) {
             case 17:
@@ -580,12 +580,12 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
             switch (alt5) {
                 case 1 :
-                    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:249:5: this_MandatoryVideoSeq_0= ruleMandatoryVideoSeq
+                    // InternalVideoGen.g:249:5: this_MandatoryVideoSeq_0= ruleMandatoryVideoSeq
                     {
                      
                             newCompositeNode(grammarAccess.getVideoSeqAccess().getMandatoryVideoSeqParserRuleCall_0()); 
                         
-                    pushFollow(FOLLOW_ruleMandatoryVideoSeq_in_ruleVideoSeq478);
+                    pushFollow(FOLLOW_2);
                     this_MandatoryVideoSeq_0=ruleMandatoryVideoSeq();
 
                     state._fsp--;
@@ -598,12 +598,12 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:259:5: this_OptionalVideoSeq_1= ruleOptionalVideoSeq
+                    // InternalVideoGen.g:259:5: this_OptionalVideoSeq_1= ruleOptionalVideoSeq
                     {
                      
                             newCompositeNode(grammarAccess.getVideoSeqAccess().getOptionalVideoSeqParserRuleCall_1()); 
                         
-                    pushFollow(FOLLOW_ruleOptionalVideoSeq_in_ruleVideoSeq505);
+                    pushFollow(FOLLOW_2);
                     this_OptionalVideoSeq_1=ruleOptionalVideoSeq();
 
                     state._fsp--;
@@ -616,12 +616,12 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:269:5: this_AlternativeVideoSeq_2= ruleAlternativeVideoSeq
+                    // InternalVideoGen.g:269:5: this_AlternativeVideoSeq_2= ruleAlternativeVideoSeq
                     {
                      
                             newCompositeNode(grammarAccess.getVideoSeqAccess().getAlternativeVideoSeqParserRuleCall_2()); 
                         
-                    pushFollow(FOLLOW_ruleAlternativeVideoSeq_in_ruleVideoSeq532);
+                    pushFollow(FOLLOW_2);
                     this_AlternativeVideoSeq_2=ruleAlternativeVideoSeq();
 
                     state._fsp--;
@@ -654,7 +654,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleMandatoryVideoSeq"
-    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:285:1: entryRuleMandatoryVideoSeq returns [EObject current=null] : iv_ruleMandatoryVideoSeq= ruleMandatoryVideoSeq EOF ;
+    // InternalVideoGen.g:285:1: entryRuleMandatoryVideoSeq returns [EObject current=null] : iv_ruleMandatoryVideoSeq= ruleMandatoryVideoSeq EOF ;
     public final EObject entryRuleMandatoryVideoSeq() throws RecognitionException {
         EObject current = null;
 
@@ -662,17 +662,17 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:286:2: (iv_ruleMandatoryVideoSeq= ruleMandatoryVideoSeq EOF )
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:287:2: iv_ruleMandatoryVideoSeq= ruleMandatoryVideoSeq EOF
+            // InternalVideoGen.g:286:2: (iv_ruleMandatoryVideoSeq= ruleMandatoryVideoSeq EOF )
+            // InternalVideoGen.g:287:2: iv_ruleMandatoryVideoSeq= ruleMandatoryVideoSeq EOF
             {
              newCompositeNode(grammarAccess.getMandatoryVideoSeqRule()); 
-            pushFollow(FOLLOW_ruleMandatoryVideoSeq_in_entryRuleMandatoryVideoSeq567);
+            pushFollow(FOLLOW_1);
             iv_ruleMandatoryVideoSeq=ruleMandatoryVideoSeq();
 
             state._fsp--;
 
              current =iv_ruleMandatoryVideoSeq; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleMandatoryVideoSeq577); 
+            match(input,EOF,FOLLOW_2); 
 
             }
 
@@ -690,7 +690,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMandatoryVideoSeq"
-    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:294:1: ruleMandatoryVideoSeq returns [EObject current=null] : (otherlv_0= 'mandatory' ( (lv_description_1_0= ruleVideoDescription ) ) ) ;
+    // InternalVideoGen.g:294:1: ruleMandatoryVideoSeq returns [EObject current=null] : (otherlv_0= 'mandatory' ( (lv_description_1_0= ruleVideoDescription ) ) ) ;
     public final EObject ruleMandatoryVideoSeq() throws RecognitionException {
         EObject current = null;
 
@@ -701,26 +701,26 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:297:28: ( (otherlv_0= 'mandatory' ( (lv_description_1_0= ruleVideoDescription ) ) ) )
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:298:1: (otherlv_0= 'mandatory' ( (lv_description_1_0= ruleVideoDescription ) ) )
+            // InternalVideoGen.g:297:28: ( (otherlv_0= 'mandatory' ( (lv_description_1_0= ruleVideoDescription ) ) ) )
+            // InternalVideoGen.g:298:1: (otherlv_0= 'mandatory' ( (lv_description_1_0= ruleVideoDescription ) ) )
             {
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:298:1: (otherlv_0= 'mandatory' ( (lv_description_1_0= ruleVideoDescription ) ) )
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:298:3: otherlv_0= 'mandatory' ( (lv_description_1_0= ruleVideoDescription ) )
+            // InternalVideoGen.g:298:1: (otherlv_0= 'mandatory' ( (lv_description_1_0= ruleVideoDescription ) ) )
+            // InternalVideoGen.g:298:3: otherlv_0= 'mandatory' ( (lv_description_1_0= ruleVideoDescription ) )
             {
-            otherlv_0=(Token)match(input,17,FOLLOW_17_in_ruleMandatoryVideoSeq614); 
+            otherlv_0=(Token)match(input,17,FOLLOW_10); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getMandatoryVideoSeqAccess().getMandatoryKeyword_0());
                 
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:302:1: ( (lv_description_1_0= ruleVideoDescription ) )
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:303:1: (lv_description_1_0= ruleVideoDescription )
+            // InternalVideoGen.g:302:1: ( (lv_description_1_0= ruleVideoDescription ) )
+            // InternalVideoGen.g:303:1: (lv_description_1_0= ruleVideoDescription )
             {
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:303:1: (lv_description_1_0= ruleVideoDescription )
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:304:3: lv_description_1_0= ruleVideoDescription
+            // InternalVideoGen.g:303:1: (lv_description_1_0= ruleVideoDescription )
+            // InternalVideoGen.g:304:3: lv_description_1_0= ruleVideoDescription
             {
              
             	        newCompositeNode(grammarAccess.getMandatoryVideoSeqAccess().getDescriptionVideoDescriptionParserRuleCall_1_0()); 
             	    
-            pushFollow(FOLLOW_ruleVideoDescription_in_ruleMandatoryVideoSeq635);
+            pushFollow(FOLLOW_2);
             lv_description_1_0=ruleVideoDescription();
 
             state._fsp--;
@@ -733,7 +733,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
                    			current, 
                    			"description",
                     		lv_description_1_0, 
-                    		"VideoDescription");
+                    		"org.xtext.example.mydsl.VideoGen.VideoDescription");
             	        afterParserOrEnumRuleCall();
             	    
 
@@ -763,7 +763,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleOptionalVideoSeq"
-    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:328:1: entryRuleOptionalVideoSeq returns [EObject current=null] : iv_ruleOptionalVideoSeq= ruleOptionalVideoSeq EOF ;
+    // InternalVideoGen.g:328:1: entryRuleOptionalVideoSeq returns [EObject current=null] : iv_ruleOptionalVideoSeq= ruleOptionalVideoSeq EOF ;
     public final EObject entryRuleOptionalVideoSeq() throws RecognitionException {
         EObject current = null;
 
@@ -771,17 +771,17 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:329:2: (iv_ruleOptionalVideoSeq= ruleOptionalVideoSeq EOF )
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:330:2: iv_ruleOptionalVideoSeq= ruleOptionalVideoSeq EOF
+            // InternalVideoGen.g:329:2: (iv_ruleOptionalVideoSeq= ruleOptionalVideoSeq EOF )
+            // InternalVideoGen.g:330:2: iv_ruleOptionalVideoSeq= ruleOptionalVideoSeq EOF
             {
              newCompositeNode(grammarAccess.getOptionalVideoSeqRule()); 
-            pushFollow(FOLLOW_ruleOptionalVideoSeq_in_entryRuleOptionalVideoSeq671);
+            pushFollow(FOLLOW_1);
             iv_ruleOptionalVideoSeq=ruleOptionalVideoSeq();
 
             state._fsp--;
 
              current =iv_ruleOptionalVideoSeq; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleOptionalVideoSeq681); 
+            match(input,EOF,FOLLOW_2); 
 
             }
 
@@ -799,7 +799,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleOptionalVideoSeq"
-    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:337:1: ruleOptionalVideoSeq returns [EObject current=null] : (otherlv_0= 'optional' ( (lv_description_1_0= ruleVideoDescription ) ) ) ;
+    // InternalVideoGen.g:337:1: ruleOptionalVideoSeq returns [EObject current=null] : (otherlv_0= 'optional' ( (lv_description_1_0= ruleVideoDescription ) ) ) ;
     public final EObject ruleOptionalVideoSeq() throws RecognitionException {
         EObject current = null;
 
@@ -810,26 +810,26 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:340:28: ( (otherlv_0= 'optional' ( (lv_description_1_0= ruleVideoDescription ) ) ) )
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:341:1: (otherlv_0= 'optional' ( (lv_description_1_0= ruleVideoDescription ) ) )
+            // InternalVideoGen.g:340:28: ( (otherlv_0= 'optional' ( (lv_description_1_0= ruleVideoDescription ) ) ) )
+            // InternalVideoGen.g:341:1: (otherlv_0= 'optional' ( (lv_description_1_0= ruleVideoDescription ) ) )
             {
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:341:1: (otherlv_0= 'optional' ( (lv_description_1_0= ruleVideoDescription ) ) )
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:341:3: otherlv_0= 'optional' ( (lv_description_1_0= ruleVideoDescription ) )
+            // InternalVideoGen.g:341:1: (otherlv_0= 'optional' ( (lv_description_1_0= ruleVideoDescription ) ) )
+            // InternalVideoGen.g:341:3: otherlv_0= 'optional' ( (lv_description_1_0= ruleVideoDescription ) )
             {
-            otherlv_0=(Token)match(input,18,FOLLOW_18_in_ruleOptionalVideoSeq718); 
+            otherlv_0=(Token)match(input,18,FOLLOW_10); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getOptionalVideoSeqAccess().getOptionalKeyword_0());
                 
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:345:1: ( (lv_description_1_0= ruleVideoDescription ) )
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:346:1: (lv_description_1_0= ruleVideoDescription )
+            // InternalVideoGen.g:345:1: ( (lv_description_1_0= ruleVideoDescription ) )
+            // InternalVideoGen.g:346:1: (lv_description_1_0= ruleVideoDescription )
             {
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:346:1: (lv_description_1_0= ruleVideoDescription )
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:347:3: lv_description_1_0= ruleVideoDescription
+            // InternalVideoGen.g:346:1: (lv_description_1_0= ruleVideoDescription )
+            // InternalVideoGen.g:347:3: lv_description_1_0= ruleVideoDescription
             {
              
             	        newCompositeNode(grammarAccess.getOptionalVideoSeqAccess().getDescriptionVideoDescriptionParserRuleCall_1_0()); 
             	    
-            pushFollow(FOLLOW_ruleVideoDescription_in_ruleOptionalVideoSeq739);
+            pushFollow(FOLLOW_2);
             lv_description_1_0=ruleVideoDescription();
 
             state._fsp--;
@@ -842,7 +842,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
                    			current, 
                    			"description",
                     		lv_description_1_0, 
-                    		"VideoDescription");
+                    		"org.xtext.example.mydsl.VideoGen.VideoDescription");
             	        afterParserOrEnumRuleCall();
             	    
 
@@ -872,7 +872,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleAlternativeVideoSeq"
-    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:371:1: entryRuleAlternativeVideoSeq returns [EObject current=null] : iv_ruleAlternativeVideoSeq= ruleAlternativeVideoSeq EOF ;
+    // InternalVideoGen.g:371:1: entryRuleAlternativeVideoSeq returns [EObject current=null] : iv_ruleAlternativeVideoSeq= ruleAlternativeVideoSeq EOF ;
     public final EObject entryRuleAlternativeVideoSeq() throws RecognitionException {
         EObject current = null;
 
@@ -880,17 +880,17 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:372:2: (iv_ruleAlternativeVideoSeq= ruleAlternativeVideoSeq EOF )
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:373:2: iv_ruleAlternativeVideoSeq= ruleAlternativeVideoSeq EOF
+            // InternalVideoGen.g:372:2: (iv_ruleAlternativeVideoSeq= ruleAlternativeVideoSeq EOF )
+            // InternalVideoGen.g:373:2: iv_ruleAlternativeVideoSeq= ruleAlternativeVideoSeq EOF
             {
              newCompositeNode(grammarAccess.getAlternativeVideoSeqRule()); 
-            pushFollow(FOLLOW_ruleAlternativeVideoSeq_in_entryRuleAlternativeVideoSeq775);
+            pushFollow(FOLLOW_1);
             iv_ruleAlternativeVideoSeq=ruleAlternativeVideoSeq();
 
             state._fsp--;
 
              current =iv_ruleAlternativeVideoSeq; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleAlternativeVideoSeq785); 
+            match(input,EOF,FOLLOW_2); 
 
             }
 
@@ -908,7 +908,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAlternativeVideoSeq"
-    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:380:1: ruleAlternativeVideoSeq returns [EObject current=null] : (otherlv_0= 'alternatives' ( (lv_videoid_1_0= RULE_ID ) )? this_LEFT_BRACKET_2= RULE_LEFT_BRACKET ( (lv_videodescs_3_0= ruleVideoDescription ) )+ this_RIGHT_BRACKET_4= RULE_RIGHT_BRACKET ) ;
+    // InternalVideoGen.g:380:1: ruleAlternativeVideoSeq returns [EObject current=null] : (otherlv_0= 'alternatives' ( (lv_videoid_1_0= RULE_ID ) )? this_LEFT_BRACKET_2= RULE_LEFT_BRACKET ( (lv_videodescs_3_0= ruleVideoDescription ) )+ this_RIGHT_BRACKET_4= RULE_RIGHT_BRACKET ) ;
     public final EObject ruleAlternativeVideoSeq() throws RecognitionException {
         EObject current = null;
 
@@ -922,17 +922,17 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:383:28: ( (otherlv_0= 'alternatives' ( (lv_videoid_1_0= RULE_ID ) )? this_LEFT_BRACKET_2= RULE_LEFT_BRACKET ( (lv_videodescs_3_0= ruleVideoDescription ) )+ this_RIGHT_BRACKET_4= RULE_RIGHT_BRACKET ) )
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:384:1: (otherlv_0= 'alternatives' ( (lv_videoid_1_0= RULE_ID ) )? this_LEFT_BRACKET_2= RULE_LEFT_BRACKET ( (lv_videodescs_3_0= ruleVideoDescription ) )+ this_RIGHT_BRACKET_4= RULE_RIGHT_BRACKET )
+            // InternalVideoGen.g:383:28: ( (otherlv_0= 'alternatives' ( (lv_videoid_1_0= RULE_ID ) )? this_LEFT_BRACKET_2= RULE_LEFT_BRACKET ( (lv_videodescs_3_0= ruleVideoDescription ) )+ this_RIGHT_BRACKET_4= RULE_RIGHT_BRACKET ) )
+            // InternalVideoGen.g:384:1: (otherlv_0= 'alternatives' ( (lv_videoid_1_0= RULE_ID ) )? this_LEFT_BRACKET_2= RULE_LEFT_BRACKET ( (lv_videodescs_3_0= ruleVideoDescription ) )+ this_RIGHT_BRACKET_4= RULE_RIGHT_BRACKET )
             {
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:384:1: (otherlv_0= 'alternatives' ( (lv_videoid_1_0= RULE_ID ) )? this_LEFT_BRACKET_2= RULE_LEFT_BRACKET ( (lv_videodescs_3_0= ruleVideoDescription ) )+ this_RIGHT_BRACKET_4= RULE_RIGHT_BRACKET )
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:384:3: otherlv_0= 'alternatives' ( (lv_videoid_1_0= RULE_ID ) )? this_LEFT_BRACKET_2= RULE_LEFT_BRACKET ( (lv_videodescs_3_0= ruleVideoDescription ) )+ this_RIGHT_BRACKET_4= RULE_RIGHT_BRACKET
+            // InternalVideoGen.g:384:1: (otherlv_0= 'alternatives' ( (lv_videoid_1_0= RULE_ID ) )? this_LEFT_BRACKET_2= RULE_LEFT_BRACKET ( (lv_videodescs_3_0= ruleVideoDescription ) )+ this_RIGHT_BRACKET_4= RULE_RIGHT_BRACKET )
+            // InternalVideoGen.g:384:3: otherlv_0= 'alternatives' ( (lv_videoid_1_0= RULE_ID ) )? this_LEFT_BRACKET_2= RULE_LEFT_BRACKET ( (lv_videodescs_3_0= ruleVideoDescription ) )+ this_RIGHT_BRACKET_4= RULE_RIGHT_BRACKET
             {
-            otherlv_0=(Token)match(input,19,FOLLOW_19_in_ruleAlternativeVideoSeq822); 
+            otherlv_0=(Token)match(input,19,FOLLOW_11); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getAlternativeVideoSeqAccess().getAlternativesKeyword_0());
                 
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:388:1: ( (lv_videoid_1_0= RULE_ID ) )?
+            // InternalVideoGen.g:388:1: ( (lv_videoid_1_0= RULE_ID ) )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -941,12 +941,12 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
             }
             switch (alt6) {
                 case 1 :
-                    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:389:1: (lv_videoid_1_0= RULE_ID )
+                    // InternalVideoGen.g:389:1: (lv_videoid_1_0= RULE_ID )
                     {
-                    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:389:1: (lv_videoid_1_0= RULE_ID )
-                    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:390:3: lv_videoid_1_0= RULE_ID
+                    // InternalVideoGen.g:389:1: (lv_videoid_1_0= RULE_ID )
+                    // InternalVideoGen.g:390:3: lv_videoid_1_0= RULE_ID
                     {
-                    lv_videoid_1_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleAlternativeVideoSeq839); 
+                    lv_videoid_1_0=(Token)match(input,RULE_ID,FOLLOW_4); 
 
                     			newLeafNode(lv_videoid_1_0, grammarAccess.getAlternativeVideoSeqAccess().getVideoidIDTerminalRuleCall_1_0()); 
                     		
@@ -958,7 +958,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
                            			current, 
                            			"videoid",
                             		lv_videoid_1_0, 
-                            		"ID");
+                            		"org.eclipse.xtext.common.Terminals.ID");
                     	    
 
                     }
@@ -969,11 +969,11 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
             }
 
-            this_LEFT_BRACKET_2=(Token)match(input,RULE_LEFT_BRACKET,FOLLOW_RULE_LEFT_BRACKET_in_ruleAlternativeVideoSeq856); 
+            this_LEFT_BRACKET_2=(Token)match(input,RULE_LEFT_BRACKET,FOLLOW_10); 
              
                 newLeafNode(this_LEFT_BRACKET_2, grammarAccess.getAlternativeVideoSeqAccess().getLEFT_BRACKETTerminalRuleCall_2()); 
                 
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:410:1: ( (lv_videodescs_3_0= ruleVideoDescription ) )+
+            // InternalVideoGen.g:410:1: ( (lv_videodescs_3_0= ruleVideoDescription ) )+
             int cnt7=0;
             loop7:
             do {
@@ -987,15 +987,15 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
                 switch (alt7) {
             	case 1 :
-            	    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:411:1: (lv_videodescs_3_0= ruleVideoDescription )
+            	    // InternalVideoGen.g:411:1: (lv_videodescs_3_0= ruleVideoDescription )
             	    {
-            	    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:411:1: (lv_videodescs_3_0= ruleVideoDescription )
-            	    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:412:3: lv_videodescs_3_0= ruleVideoDescription
+            	    // InternalVideoGen.g:411:1: (lv_videodescs_3_0= ruleVideoDescription )
+            	    // InternalVideoGen.g:412:3: lv_videodescs_3_0= ruleVideoDescription
             	    {
             	     
             	    	        newCompositeNode(grammarAccess.getAlternativeVideoSeqAccess().getVideodescsVideoDescriptionParserRuleCall_3_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleVideoDescription_in_ruleAlternativeVideoSeq876);
+            	    pushFollow(FOLLOW_12);
             	    lv_videodescs_3_0=ruleVideoDescription();
 
             	    state._fsp--;
@@ -1008,7 +1008,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
             	           			current, 
             	           			"videodescs",
             	            		lv_videodescs_3_0, 
-            	            		"VideoDescription");
+            	            		"org.xtext.example.mydsl.VideoGen.VideoDescription");
             	    	        afterParserOrEnumRuleCall();
             	    	    
 
@@ -1027,7 +1027,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
                 cnt7++;
             } while (true);
 
-            this_RIGHT_BRACKET_4=(Token)match(input,RULE_RIGHT_BRACKET,FOLLOW_RULE_RIGHT_BRACKET_in_ruleAlternativeVideoSeq888); 
+            this_RIGHT_BRACKET_4=(Token)match(input,RULE_RIGHT_BRACKET,FOLLOW_2); 
              
                 newLeafNode(this_RIGHT_BRACKET_4, grammarAccess.getAlternativeVideoSeqAccess().getRIGHT_BRACKETTerminalRuleCall_4()); 
                 
@@ -1052,7 +1052,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleVideoDescription"
-    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:440:1: entryRuleVideoDescription returns [EObject current=null] : iv_ruleVideoDescription= ruleVideoDescription EOF ;
+    // InternalVideoGen.g:440:1: entryRuleVideoDescription returns [EObject current=null] : iv_ruleVideoDescription= ruleVideoDescription EOF ;
     public final EObject entryRuleVideoDescription() throws RecognitionException {
         EObject current = null;
 
@@ -1060,17 +1060,17 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:441:2: (iv_ruleVideoDescription= ruleVideoDescription EOF )
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:442:2: iv_ruleVideoDescription= ruleVideoDescription EOF
+            // InternalVideoGen.g:441:2: (iv_ruleVideoDescription= ruleVideoDescription EOF )
+            // InternalVideoGen.g:442:2: iv_ruleVideoDescription= ruleVideoDescription EOF
             {
              newCompositeNode(grammarAccess.getVideoDescriptionRule()); 
-            pushFollow(FOLLOW_ruleVideoDescription_in_entryRuleVideoDescription923);
+            pushFollow(FOLLOW_1);
             iv_ruleVideoDescription=ruleVideoDescription();
 
             state._fsp--;
 
              current =iv_ruleVideoDescription; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleVideoDescription933); 
+            match(input,EOF,FOLLOW_2); 
 
             }
 
@@ -1088,7 +1088,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleVideoDescription"
-    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:449:1: ruleVideoDescription returns [EObject current=null] : (otherlv_0= 'videoseq' ( (lv_videoid_1_0= RULE_ID ) )? ( (lv_location_2_0= RULE_STRING ) ) (this_LEFT_BRACKET_3= RULE_LEFT_BRACKET (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? (otherlv_6= 'probability' ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )? this_RIGHT_BRACKET_12= RULE_RIGHT_BRACKET )? ) ;
+    // InternalVideoGen.g:449:1: ruleVideoDescription returns [EObject current=null] : (otherlv_0= 'videoseq' ( (lv_videoid_1_0= RULE_ID ) )? ( (lv_location_2_0= RULE_STRING ) ) (this_LEFT_BRACKET_3= RULE_LEFT_BRACKET (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? (otherlv_6= 'probability' ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )? this_RIGHT_BRACKET_12= RULE_RIGHT_BRACKET )? ) ;
     public final EObject ruleVideoDescription() throws RecognitionException {
         EObject current = null;
 
@@ -1109,17 +1109,17 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:452:28: ( (otherlv_0= 'videoseq' ( (lv_videoid_1_0= RULE_ID ) )? ( (lv_location_2_0= RULE_STRING ) ) (this_LEFT_BRACKET_3= RULE_LEFT_BRACKET (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? (otherlv_6= 'probability' ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )? this_RIGHT_BRACKET_12= RULE_RIGHT_BRACKET )? ) )
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:453:1: (otherlv_0= 'videoseq' ( (lv_videoid_1_0= RULE_ID ) )? ( (lv_location_2_0= RULE_STRING ) ) (this_LEFT_BRACKET_3= RULE_LEFT_BRACKET (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? (otherlv_6= 'probability' ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )? this_RIGHT_BRACKET_12= RULE_RIGHT_BRACKET )? )
+            // InternalVideoGen.g:452:28: ( (otherlv_0= 'videoseq' ( (lv_videoid_1_0= RULE_ID ) )? ( (lv_location_2_0= RULE_STRING ) ) (this_LEFT_BRACKET_3= RULE_LEFT_BRACKET (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? (otherlv_6= 'probability' ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )? this_RIGHT_BRACKET_12= RULE_RIGHT_BRACKET )? ) )
+            // InternalVideoGen.g:453:1: (otherlv_0= 'videoseq' ( (lv_videoid_1_0= RULE_ID ) )? ( (lv_location_2_0= RULE_STRING ) ) (this_LEFT_BRACKET_3= RULE_LEFT_BRACKET (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? (otherlv_6= 'probability' ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )? this_RIGHT_BRACKET_12= RULE_RIGHT_BRACKET )? )
             {
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:453:1: (otherlv_0= 'videoseq' ( (lv_videoid_1_0= RULE_ID ) )? ( (lv_location_2_0= RULE_STRING ) ) (this_LEFT_BRACKET_3= RULE_LEFT_BRACKET (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? (otherlv_6= 'probability' ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )? this_RIGHT_BRACKET_12= RULE_RIGHT_BRACKET )? )
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:453:3: otherlv_0= 'videoseq' ( (lv_videoid_1_0= RULE_ID ) )? ( (lv_location_2_0= RULE_STRING ) ) (this_LEFT_BRACKET_3= RULE_LEFT_BRACKET (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? (otherlv_6= 'probability' ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )? this_RIGHT_BRACKET_12= RULE_RIGHT_BRACKET )?
+            // InternalVideoGen.g:453:1: (otherlv_0= 'videoseq' ( (lv_videoid_1_0= RULE_ID ) )? ( (lv_location_2_0= RULE_STRING ) ) (this_LEFT_BRACKET_3= RULE_LEFT_BRACKET (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? (otherlv_6= 'probability' ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )? this_RIGHT_BRACKET_12= RULE_RIGHT_BRACKET )? )
+            // InternalVideoGen.g:453:3: otherlv_0= 'videoseq' ( (lv_videoid_1_0= RULE_ID ) )? ( (lv_location_2_0= RULE_STRING ) ) (this_LEFT_BRACKET_3= RULE_LEFT_BRACKET (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? (otherlv_6= 'probability' ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )? this_RIGHT_BRACKET_12= RULE_RIGHT_BRACKET )?
             {
-            otherlv_0=(Token)match(input,20,FOLLOW_20_in_ruleVideoDescription970); 
+            otherlv_0=(Token)match(input,20,FOLLOW_13); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getVideoDescriptionAccess().getVideoseqKeyword_0());
                 
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:457:1: ( (lv_videoid_1_0= RULE_ID ) )?
+            // InternalVideoGen.g:457:1: ( (lv_videoid_1_0= RULE_ID ) )?
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -1128,12 +1128,12 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
             }
             switch (alt8) {
                 case 1 :
-                    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:458:1: (lv_videoid_1_0= RULE_ID )
+                    // InternalVideoGen.g:458:1: (lv_videoid_1_0= RULE_ID )
                     {
-                    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:458:1: (lv_videoid_1_0= RULE_ID )
-                    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:459:3: lv_videoid_1_0= RULE_ID
+                    // InternalVideoGen.g:458:1: (lv_videoid_1_0= RULE_ID )
+                    // InternalVideoGen.g:459:3: lv_videoid_1_0= RULE_ID
                     {
-                    lv_videoid_1_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleVideoDescription987); 
+                    lv_videoid_1_0=(Token)match(input,RULE_ID,FOLLOW_7); 
 
                     			newLeafNode(lv_videoid_1_0, grammarAccess.getVideoDescriptionAccess().getVideoidIDTerminalRuleCall_1_0()); 
                     		
@@ -1145,7 +1145,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
                            			current, 
                            			"videoid",
                             		lv_videoid_1_0, 
-                            		"ID");
+                            		"org.eclipse.xtext.common.Terminals.ID");
                     	    
 
                     }
@@ -1156,13 +1156,13 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:475:3: ( (lv_location_2_0= RULE_STRING ) )
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:476:1: (lv_location_2_0= RULE_STRING )
+            // InternalVideoGen.g:475:3: ( (lv_location_2_0= RULE_STRING ) )
+            // InternalVideoGen.g:476:1: (lv_location_2_0= RULE_STRING )
             {
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:476:1: (lv_location_2_0= RULE_STRING )
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:477:3: lv_location_2_0= RULE_STRING
+            // InternalVideoGen.g:476:1: (lv_location_2_0= RULE_STRING )
+            // InternalVideoGen.g:477:3: lv_location_2_0= RULE_STRING
             {
-            lv_location_2_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleVideoDescription1010); 
+            lv_location_2_0=(Token)match(input,RULE_STRING,FOLLOW_14); 
 
             			newLeafNode(lv_location_2_0, grammarAccess.getVideoDescriptionAccess().getLocationSTRINGTerminalRuleCall_2_0()); 
             		
@@ -1174,7 +1174,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
                    			current, 
                    			"location",
                     		lv_location_2_0, 
-                    		"STRING");
+                    		"org.eclipse.xtext.common.Terminals.STRING");
             	    
 
             }
@@ -1182,7 +1182,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:493:2: (this_LEFT_BRACKET_3= RULE_LEFT_BRACKET (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? (otherlv_6= 'probability' ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )? this_RIGHT_BRACKET_12= RULE_RIGHT_BRACKET )?
+            // InternalVideoGen.g:493:2: (this_LEFT_BRACKET_3= RULE_LEFT_BRACKET (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? (otherlv_6= 'probability' ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )? this_RIGHT_BRACKET_12= RULE_RIGHT_BRACKET )?
             int alt13=2;
             int LA13_0 = input.LA(1);
 
@@ -1191,13 +1191,13 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
             }
             switch (alt13) {
                 case 1 :
-                    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:493:3: this_LEFT_BRACKET_3= RULE_LEFT_BRACKET (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? (otherlv_6= 'probability' ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )? this_RIGHT_BRACKET_12= RULE_RIGHT_BRACKET
+                    // InternalVideoGen.g:493:3: this_LEFT_BRACKET_3= RULE_LEFT_BRACKET (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? (otherlv_6= 'probability' ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )? this_RIGHT_BRACKET_12= RULE_RIGHT_BRACKET
                     {
-                    this_LEFT_BRACKET_3=(Token)match(input,RULE_LEFT_BRACKET,FOLLOW_RULE_LEFT_BRACKET_in_ruleVideoDescription1027); 
+                    this_LEFT_BRACKET_3=(Token)match(input,RULE_LEFT_BRACKET,FOLLOW_15); 
                      
                         newLeafNode(this_LEFT_BRACKET_3, grammarAccess.getVideoDescriptionAccess().getLEFT_BRACKETTerminalRuleCall_3_0()); 
                         
-                    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:497:1: (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )?
+                    // InternalVideoGen.g:497:1: (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -1206,19 +1206,19 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
                     }
                     switch (alt9) {
                         case 1 :
-                            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:497:3: otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) )
+                            // InternalVideoGen.g:497:3: otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) )
                             {
-                            otherlv_4=(Token)match(input,21,FOLLOW_21_in_ruleVideoDescription1039); 
+                            otherlv_4=(Token)match(input,21,FOLLOW_16); 
 
                                 	newLeafNode(otherlv_4, grammarAccess.getVideoDescriptionAccess().getDurationKeyword_3_1_0());
                                 
-                            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:501:1: ( (lv_duration_5_0= RULE_INT ) )
-                            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:502:1: (lv_duration_5_0= RULE_INT )
+                            // InternalVideoGen.g:501:1: ( (lv_duration_5_0= RULE_INT ) )
+                            // InternalVideoGen.g:502:1: (lv_duration_5_0= RULE_INT )
                             {
-                            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:502:1: (lv_duration_5_0= RULE_INT )
-                            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:503:3: lv_duration_5_0= RULE_INT
+                            // InternalVideoGen.g:502:1: (lv_duration_5_0= RULE_INT )
+                            // InternalVideoGen.g:503:3: lv_duration_5_0= RULE_INT
                             {
-                            lv_duration_5_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleVideoDescription1056); 
+                            lv_duration_5_0=(Token)match(input,RULE_INT,FOLLOW_17); 
 
                             			newLeafNode(lv_duration_5_0, grammarAccess.getVideoDescriptionAccess().getDurationINTTerminalRuleCall_3_1_1_0()); 
                             		
@@ -1230,7 +1230,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
                                    			current, 
                                    			"duration",
                                     		lv_duration_5_0, 
-                                    		"INT");
+                                    		"org.eclipse.xtext.common.Terminals.INT");
                             	    
 
                             }
@@ -1244,7 +1244,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:519:4: (otherlv_6= 'probability' ( (lv_probability_7_0= RULE_INT ) ) )?
+                    // InternalVideoGen.g:519:4: (otherlv_6= 'probability' ( (lv_probability_7_0= RULE_INT ) ) )?
                     int alt10=2;
                     int LA10_0 = input.LA(1);
 
@@ -1253,19 +1253,19 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
                     }
                     switch (alt10) {
                         case 1 :
-                            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:519:6: otherlv_6= 'probability' ( (lv_probability_7_0= RULE_INT ) )
+                            // InternalVideoGen.g:519:6: otherlv_6= 'probability' ( (lv_probability_7_0= RULE_INT ) )
                             {
-                            otherlv_6=(Token)match(input,22,FOLLOW_22_in_ruleVideoDescription1076); 
+                            otherlv_6=(Token)match(input,22,FOLLOW_16); 
 
                                 	newLeafNode(otherlv_6, grammarAccess.getVideoDescriptionAccess().getProbabilityKeyword_3_2_0());
                                 
-                            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:523:1: ( (lv_probability_7_0= RULE_INT ) )
-                            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:524:1: (lv_probability_7_0= RULE_INT )
+                            // InternalVideoGen.g:523:1: ( (lv_probability_7_0= RULE_INT ) )
+                            // InternalVideoGen.g:524:1: (lv_probability_7_0= RULE_INT )
                             {
-                            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:524:1: (lv_probability_7_0= RULE_INT )
-                            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:525:3: lv_probability_7_0= RULE_INT
+                            // InternalVideoGen.g:524:1: (lv_probability_7_0= RULE_INT )
+                            // InternalVideoGen.g:525:3: lv_probability_7_0= RULE_INT
                             {
-                            lv_probability_7_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleVideoDescription1093); 
+                            lv_probability_7_0=(Token)match(input,RULE_INT,FOLLOW_18); 
 
                             			newLeafNode(lv_probability_7_0, grammarAccess.getVideoDescriptionAccess().getProbabilityINTTerminalRuleCall_3_2_1_0()); 
                             		
@@ -1277,7 +1277,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
                                    			current, 
                                    			"probability",
                                     		lv_probability_7_0, 
-                                    		"INT");
+                                    		"org.eclipse.xtext.common.Terminals.INT");
                             	    
 
                             }
@@ -1291,7 +1291,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:541:4: (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )?
+                    // InternalVideoGen.g:541:4: (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )?
                     int alt11=2;
                     int LA11_0 = input.LA(1);
 
@@ -1300,19 +1300,19 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
                     }
                     switch (alt11) {
                         case 1 :
-                            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:541:6: otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) )
+                            // InternalVideoGen.g:541:6: otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) )
                             {
-                            otherlv_8=(Token)match(input,23,FOLLOW_23_in_ruleVideoDescription1113); 
+                            otherlv_8=(Token)match(input,23,FOLLOW_16); 
 
                                 	newLeafNode(otherlv_8, grammarAccess.getVideoDescriptionAccess().getSizeKeyword_3_3_0());
                                 
-                            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:545:1: ( (lv_size_9_0= RULE_INT ) )
-                            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:546:1: (lv_size_9_0= RULE_INT )
+                            // InternalVideoGen.g:545:1: ( (lv_size_9_0= RULE_INT ) )
+                            // InternalVideoGen.g:546:1: (lv_size_9_0= RULE_INT )
                             {
-                            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:546:1: (lv_size_9_0= RULE_INT )
-                            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:547:3: lv_size_9_0= RULE_INT
+                            // InternalVideoGen.g:546:1: (lv_size_9_0= RULE_INT )
+                            // InternalVideoGen.g:547:3: lv_size_9_0= RULE_INT
                             {
-                            lv_size_9_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleVideoDescription1130); 
+                            lv_size_9_0=(Token)match(input,RULE_INT,FOLLOW_19); 
 
                             			newLeafNode(lv_size_9_0, grammarAccess.getVideoDescriptionAccess().getSizeINTTerminalRuleCall_3_3_1_0()); 
                             		
@@ -1324,7 +1324,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
                                    			current, 
                                    			"size",
                                     		lv_size_9_0, 
-                                    		"INT");
+                                    		"org.eclipse.xtext.common.Terminals.INT");
                             	    
 
                             }
@@ -1338,7 +1338,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:563:4: (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )?
+                    // InternalVideoGen.g:563:4: (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )?
                     int alt12=2;
                     int LA12_0 = input.LA(1);
 
@@ -1347,19 +1347,19 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
                     }
                     switch (alt12) {
                         case 1 :
-                            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:563:6: otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) )
+                            // InternalVideoGen.g:563:6: otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) )
                             {
-                            otherlv_10=(Token)match(input,24,FOLLOW_24_in_ruleVideoDescription1150); 
+                            otherlv_10=(Token)match(input,24,FOLLOW_7); 
 
                                 	newLeafNode(otherlv_10, grammarAccess.getVideoDescriptionAccess().getDescriptionKeyword_3_4_0());
                                 
-                            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:567:1: ( (lv_description_11_0= RULE_STRING ) )
-                            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:568:1: (lv_description_11_0= RULE_STRING )
+                            // InternalVideoGen.g:567:1: ( (lv_description_11_0= RULE_STRING ) )
+                            // InternalVideoGen.g:568:1: (lv_description_11_0= RULE_STRING )
                             {
-                            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:568:1: (lv_description_11_0= RULE_STRING )
-                            // ../org.xtext.example.videogenerator/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalVideoGen.g:569:3: lv_description_11_0= RULE_STRING
+                            // InternalVideoGen.g:568:1: (lv_description_11_0= RULE_STRING )
+                            // InternalVideoGen.g:569:3: lv_description_11_0= RULE_STRING
                             {
-                            lv_description_11_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleVideoDescription1167); 
+                            lv_description_11_0=(Token)match(input,RULE_STRING,FOLLOW_20); 
 
                             			newLeafNode(lv_description_11_0, grammarAccess.getVideoDescriptionAccess().getDescriptionSTRINGTerminalRuleCall_3_4_1_0()); 
                             		
@@ -1371,7 +1371,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
                                    			current, 
                                    			"description",
                                     		lv_description_11_0, 
-                                    		"STRING");
+                                    		"org.eclipse.xtext.common.Terminals.STRING");
                             	    
 
                             }
@@ -1385,7 +1385,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    this_RIGHT_BRACKET_12=(Token)match(input,RULE_RIGHT_BRACKET,FOLLOW_RULE_RIGHT_BRACKET_in_ruleVideoDescription1185); 
+                    this_RIGHT_BRACKET_12=(Token)match(input,RULE_RIGHT_BRACKET,FOLLOW_2); 
                      
                         newLeafNode(this_RIGHT_BRACKET_12, grammarAccess.getVideoDescriptionAccess().getRIGHT_BRACKETTerminalRuleCall_3_5()); 
                         
@@ -1419,55 +1419,25 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
  
 
-    public static final BitSet FOLLOW_ruleVideoGeneratorModel_in_entryRuleVideoGeneratorModel75 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleVideoGeneratorModel85 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVideoGenInformation_in_ruleVideoGeneratorModel140 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_ruleVideoGeneratorModel153 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_LEFT_BRACKET_in_ruleVideoGeneratorModel164 = new BitSet(new long[]{0x00000000000E0000L});
-    public static final BitSet FOLLOW_ruleVideoSeq_in_ruleVideoGeneratorModel184 = new BitSet(new long[]{0x00000000000E0020L});
-    public static final BitSet FOLLOW_RULE_RIGHT_BRACKET_in_ruleVideoGeneratorModel196 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVideoGenInformation_in_entryRuleVideoGenInformation231 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleVideoGenInformation241 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_14_in_ruleVideoGenInformation288 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleVideoGenInformation305 = new BitSet(new long[]{0x0000000000018002L});
-    public static final BitSet FOLLOW_15_in_ruleVideoGenInformation324 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleVideoGenInformation341 = new BitSet(new long[]{0x0000000000010002L});
-    public static final BitSet FOLLOW_16_in_ruleVideoGenInformation361 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleVideoGenInformation378 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVideoSeq_in_entryRuleVideoSeq421 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleVideoSeq431 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMandatoryVideoSeq_in_ruleVideoSeq478 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOptionalVideoSeq_in_ruleVideoSeq505 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAlternativeVideoSeq_in_ruleVideoSeq532 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMandatoryVideoSeq_in_entryRuleMandatoryVideoSeq567 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleMandatoryVideoSeq577 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_17_in_ruleMandatoryVideoSeq614 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_ruleVideoDescription_in_ruleMandatoryVideoSeq635 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOptionalVideoSeq_in_entryRuleOptionalVideoSeq671 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleOptionalVideoSeq681 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_18_in_ruleOptionalVideoSeq718 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_ruleVideoDescription_in_ruleOptionalVideoSeq739 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAlternativeVideoSeq_in_entryRuleAlternativeVideoSeq775 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleAlternativeVideoSeq785 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_19_in_ruleAlternativeVideoSeq822 = new BitSet(new long[]{0x0000000000000090L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleAlternativeVideoSeq839 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_LEFT_BRACKET_in_ruleAlternativeVideoSeq856 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_ruleVideoDescription_in_ruleAlternativeVideoSeq876 = new BitSet(new long[]{0x0000000000100020L});
-    public static final BitSet FOLLOW_RULE_RIGHT_BRACKET_in_ruleAlternativeVideoSeq888 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVideoDescription_in_entryRuleVideoDescription923 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleVideoDescription933 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_20_in_ruleVideoDescription970 = new BitSet(new long[]{0x00000000000000C0L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleVideoDescription987 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleVideoDescription1010 = new BitSet(new long[]{0x0000000000000012L});
-    public static final BitSet FOLLOW_RULE_LEFT_BRACKET_in_ruleVideoDescription1027 = new BitSet(new long[]{0x0000000001E00020L});
-    public static final BitSet FOLLOW_21_in_ruleVideoDescription1039 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleVideoDescription1056 = new BitSet(new long[]{0x0000000001C00020L});
-    public static final BitSet FOLLOW_22_in_ruleVideoDescription1076 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleVideoDescription1093 = new BitSet(new long[]{0x0000000001800020L});
-    public static final BitSet FOLLOW_23_in_ruleVideoDescription1113 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleVideoDescription1130 = new BitSet(new long[]{0x0000000001000020L});
-    public static final BitSet FOLLOW_24_in_ruleVideoDescription1150 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleVideoDescription1167 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_RIGHT_BRACKET_in_ruleVideoDescription1185 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_1 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_2 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x00000000000E0000L});
+    public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x00000000000E0020L});
+    public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000000000018002L});
+    public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000000000010002L});
+    public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000000000000090L});
+    public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000000000100020L});
+    public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x00000000000000C0L});
+    public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000000000000012L});
+    public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000001E00020L});
+    public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000000001C00020L});
+    public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0000000001800020L});
+    public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0000000001000020L});
+    public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x0000000000000020L});
 
 }
