@@ -21,5 +21,6 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.xtext.example.mydsl.ui.quickfix,
  org.xtext.example.mydsl.ui.contentassist,
  org.xtext.example.mydsl.ui.internal,
- org.xtext.example.mydsl.ui.contentassist.antlr
+ org.xtext.example.mydsl.ui.contentassist.antlr,
+ org.xtext.example.mydsl.ui.contentassist.antlr.internal
 Bundle-Activator: org.xtext.example.mydsl.ui.internal.VideoGenActivator
