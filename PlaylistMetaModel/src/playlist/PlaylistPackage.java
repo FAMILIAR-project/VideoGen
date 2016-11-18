@@ -132,13 +132,22 @@ public interface PlaylistPackage extends EPackage {
 	int COMMENT = 2;
 
 	/**
+	 * The feature id for the '<em><b>Content</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMENT__CONTENT = ENTRY_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Comment</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMMENT_FEATURE_COUNT = ENTRY_FEATURE_COUNT + 0;
+	int COMMENT_FEATURE_COUNT = ENTRY_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Comment</em>' class.
@@ -284,6 +293,17 @@ public interface PlaylistPackage extends EPackage {
 	EClass getComment();
 
 	/**
+	 * Returns the meta object for the attribute '{@link playlist.Comment#getContent <em>Content</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Content</em>'.
+	 * @see playlist.Comment#getContent()
+	 * @see #getComment()
+	 * @generated
+	 */
+	EAttribute getComment_Content();
+
+	/**
 	 * Returns the meta object for class '{@link playlist.File <em>File</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -407,6 +427,14 @@ public interface PlaylistPackage extends EPackage {
 		 * @generated
 		 */
 		EClass COMMENT = eINSTANCE.getComment();
+
+		/**
+		 * The meta object literal for the '<em><b>Content</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMMENT__CONTENT = eINSTANCE.getComment_Content();
 
 		/**
 		 * The meta object literal for the '{@link playlist.impl.FileImpl <em>File</em>}' class.

@@ -17,6 +17,7 @@ import java.util.Random
 import playlist.Playlist
 import playlist.impl.PlaylistImpl
 import playlist.impl.PlaylistFactoryImpl
+import playlist.Comment
 
 class VideoDemonstrator {
 	
@@ -114,6 +115,38 @@ class VideoDemonstrator {
 		videoGen.videoseqs.forEach[videoseq | 
 			if (videoseq instanceof MandatoryVideoSeq) {
 				file.println("file '"+(videoseq as MandatoryVideoSeq).description.location+"'")				
+			}
+			else if (videoseq instanceof OptionalVideoSeq) {
+				val desc = (videoseq as OptionalVideoSeq).description
+				if((new Random()).nextDouble()<(desc.probability/100 as double))file.println("file '"+desc.location+"'")
+			}
+			else {
+				val altvid = (videoseq as AlternativeVideoSeq)
+				var res = ""
+				var tmp = 0 as double
+				var min = 0 as double
+				for (vdesc : altvid.videodescs) {
+					tmp = (new Random()).nextDouble()
+					if(tmp>min){
+						min = tmp
+						res = ("file '"+vdesc.location+"'")
+					}
+				}
+				file.println(res)
+			}
+		]
+	// serializing
+	file.close()
+	}
+	
+	
+	@Test
+	def playlistToM3U(Playlist playlist) {
+		assertNotNull(playlist)	
+		val file = new 	PrintWriter("out.m3u", "UTF-8")
+		playlist.content.forEach[entry | 
+			if (entry instanceof Comment) {
+				file.println("#"+(entry as Comment).content)				
 			}
 			else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description

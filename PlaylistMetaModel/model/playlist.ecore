@@ -6,7 +6,9 @@
         eType="#//Entry" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Entry"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Comment" eSuperTypes="#//Entry"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Comment" eSuperTypes="#//Entry">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="content" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="File" eSuperTypes="#//Entry">
     <eStructuralFeatures xsi:type="ecore:EReference" name="metadata" eType="#//MetaData"
         containment="true"/>

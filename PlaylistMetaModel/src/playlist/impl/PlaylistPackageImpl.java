@@ -161,6 +161,15 @@ public class PlaylistPackageImpl extends EPackageImpl implements PlaylistPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getComment_Content() {
+		return (EAttribute)commentEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getFile() {
 		return fileEClass;
 	}
@@ -244,6 +253,7 @@ public class PlaylistPackageImpl extends EPackageImpl implements PlaylistPackage
 		entryEClass = createEClass(ENTRY);
 
 		commentEClass = createEClass(COMMENT);
+		createEAttribute(commentEClass, COMMENT__CONTENT);
 
 		fileEClass = createEClass(FILE);
 		createEReference(fileEClass, FILE__METADATA);
@@ -292,6 +302,7 @@ public class PlaylistPackageImpl extends EPackageImpl implements PlaylistPackage
 		initEClass(entryEClass, Entry.class, "Entry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(commentEClass, Comment.class, "Comment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getComment_Content(), ecorePackage.getEString(), "content", null, 0, 1, Comment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(fileEClass, File.class, "File", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFile_Metadata(), this.getMetaData(), null, "metadata", null, 0, 1, File.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
