@@ -14,8 +14,13 @@ import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 
 import static org.junit.Assert.*
 import java.util.Random
+import playlist.Playlist
+import playlist.impl.PlaylistImpl
+import playlist.impl.PlaylistFactoryImpl
 
 class VideoDemonstrator {
+	
+	
 	
 	def loadVideoGenerator(URI uri) {
 		new VideoGenStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()
@@ -63,6 +68,42 @@ class VideoDemonstrator {
 	}
 	
 	@Test
+	def toPlaylist() {
+		val fact = null
+		// loading
+		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
+		assertNotNull(videoGen)
+		assertEquals(7, videoGen.videoseqs.size)			
+		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
+		val file = new 	PrintWriter("out.ffmpeg", "UTF-8")
+		videoGen.videoseqs.forEach[videoseq | 
+			if (videoseq instanceof MandatoryVideoSeq) {
+				file.println("file '"+(videoseq as MandatoryVideoSeq).description.location+"'")				
+			}
+			else if (videoseq instanceof OptionalVideoSeq) {
+				val desc = (videoseq as OptionalVideoSeq).description
+				if((new Random()).nextDouble()<(desc.probability/100 as double))file.println("file '"+desc.location+"'")
+			}
+			else {
+				val altvid = (videoseq as AlternativeVideoSeq)
+				var res = ""
+				var tmp = 0 as double
+				var min = 0 as double
+				for (vdesc : altvid.videodescs) {
+					tmp = (new Random()).nextDouble()
+					if(tmp>min){
+						min = tmp
+						res = ("file '"+vdesc.location+"'")
+					}
+				}
+				file.println(res)
+			}
+		]
+	// serializing
+	file.close()
+	}
+	
+	@Test
 	def ffmpeg() {
 		// loading
 		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
@@ -95,9 +136,6 @@ class VideoDemonstrator {
 		]
 	// serializing
 	file.close()
-		
-		 
-			
 	}
 	
 	def void printToHTML(VideoGeneratorModel videoGen) {
