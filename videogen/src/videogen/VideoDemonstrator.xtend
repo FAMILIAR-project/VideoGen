@@ -18,6 +18,7 @@ import playlist.Playlist
 import playlist.impl.PlaylistImpl
 import playlist.impl.PlaylistFactoryImpl
 import playlist.Comment
+import playlist.File
 
 class VideoDemonstrator {
 	
@@ -148,23 +149,8 @@ class VideoDemonstrator {
 			if (entry instanceof Comment) {
 				file.println("#"+(entry as Comment).content)				
 			}
-			else if (videoseq instanceof OptionalVideoSeq) {
-				val desc = (videoseq as OptionalVideoSeq).description
-				if((new Random()).nextDouble()<(desc.probability/100 as double))file.println("file '"+desc.location+"'")
-			}
-			else {
-				val altvid = (videoseq as AlternativeVideoSeq)
-				var res = ""
-				var tmp = 0 as double
-				var min = 0 as double
-				for (vdesc : altvid.videodescs) {
-					tmp = (new Random()).nextDouble()
-					if(tmp>min){
-						min = tmp
-						res = ("file '"+vdesc.location+"'")
-					}
-				}
-				file.println(res)
+			else if (entry instanceof File) {
+				file.println((entry as File).path)
 			}
 		]
 	// serializing
