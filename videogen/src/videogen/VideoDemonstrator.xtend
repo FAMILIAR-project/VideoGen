@@ -12,6 +12,10 @@ import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 
 import static org.junit.Assert.*
+import java.util.LinkedList
+import org.xtext.example.mydsl.videoGen.VideoDescription
+import java.util.List
+import java.util.Random
 
 class VideoDemonstrator {
 	
@@ -55,9 +59,76 @@ class VideoDemonstrator {
 	saveVideoGenerator(URI.createURI("foo2bis.xmi"), videoGen)
 	saveVideoGenerator(URI.createURI("foo2bis.videogen"), videoGen)
 		
-	printToHTML(videoGen)
-		 
+	//printToHTML(videoGen)
+	val videoGen1 = loadVideoGenerator(URI.createURI("foo2bis.videogen"))
+	printVideoList(videoGen1);
 			
+	}
+	
+	def void printVideoList(VideoGeneratorModel videoGen){
+		videoGen.videoseqs.forEach[videoseq | 
+			val rand = new Random()
+			if (videoseq instanceof MandatoryVideoSeq) {
+				val desc = (videoseq as MandatoryVideoSeq).description
+				if(!desc.location.isNullOrEmpty)  
+					println ("file '" + desc.location+"'")  				
+			}
+			else if (videoseq instanceof OptionalVideoSeq) {
+				val desc = (videoseq as OptionalVideoSeq).description
+				val p = desc.probability
+				val res = rand.nextInt(100)
+				if(p > 0){
+					if(!desc.location.isNullOrEmpty && res <= p)
+						println ("file '" + desc.location+"'") 
+				}
+				else
+				if(!desc.location.isNullOrEmpty && res <= 50) 
+					println ("file '" + desc.location+"'") 
+			}
+			else {
+				val altvid = (videoseq as AlternativeVideoSeq)	
+				val l = altvid.getVideodescs()
+				val r = l.length
+				
+				var boolean found = false
+				var pr = 0
+				for(vdesc: altvid.videodescs){
+					if(vdesc.probability>0)
+						pr = vdesc.probability
+				}
+				var i = 0
+				if(pr==0){
+					do{
+						i = 0
+						for (vdesc : altvid.videodescs) {					
+							if(!vdesc.location.isNullOrEmpty) {
+								val p = rand.nextInt(r)%r							
+								if(p==i && ! found){
+									println ("file '" + vdesc.location + "'")
+									found = true
+								}	
+							i++
+							}
+						}
+					}while(! found)
+				}
+				else{
+					do{
+						i = 0
+						for (vdesc : altvid.videodescs) {					
+							if(!vdesc.location.isNullOrEmpty) {
+								val p = rand.nextInt(100)							
+								if(p<=pr && ! found){
+									println ("file '" + vdesc.location + "'")
+									found = true
+								}	
+							i++
+							}
+						}
+					}while(! found)
+				}
+			}
+		]
 	}
 	
 	def void printToHTML(VideoGeneratorModel videoGen) {
