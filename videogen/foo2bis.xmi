@@ -9,7 +9,7 @@
   <videoseqs xsi:type="videoGen:AlternativeVideoSeq" videoid="vid3">
     <videodescs videoid="v2" location="v3/seq1.mp4"/>
     <videodescs videoid="vid31" location="v3/seq2.mp4"/>
-    <videodescs videoid="vid32" location="v3/seq3.mp4" probability="50"/>
+    <videodescs videoid="vid32" location="v3/seq3.mp4"/>
   </videoseqs>
   <videoseqs xsi:type="videoGen:AlternativeVideoSeq" videoid="vid4">
     <videodescs videoid="vid41" location="v4/seq1.mp4"/>

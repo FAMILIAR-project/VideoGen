@@ -8,7 +8,7 @@ VideoGen {
 		videoseq v2
 "v3/seq1.mp4" 
 		videoseq vid31 "v3/seq2.mp4"
-		videoseq vid32 "v3/seq3.mp4" {probability 50}
+		videoseq vid32 "v3/seq3.mp4" 
 	}
 	
 	alternatives vid4 {

@@ -16,6 +16,8 @@ import java.util.LinkedList
 import org.xtext.example.mydsl.videoGen.VideoDescription
 import java.util.List
 import java.util.Random
+import org.tritcorp.com.Playlist.Playlist.*
+import org.tritcorp.com.Playlist.Playlist.impl.PlaylistFactoryImpl
 
 class VideoDemonstrator {
 	
@@ -29,6 +31,87 @@ class VideoDemonstrator {
 		var Resource rs = new ResourceSetImpl().createResource(uri); 
 		rs.getContents.add(pollS); 
 		rs.save(new HashMap());
+	}
+	
+	 
+	def Playlist testM2M() {
+		
+		// load model (videogen)
+		// loading
+		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
+		assertNotNull(videoGen)		
+		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
+		// model2model
+		val plf = PlaylistFactoryImpl.init()
+		val pl = plf.createPlaylist()
+		//Instancier modele PLaylist
+		// iterate over videogen model
+		
+		videoGen.videoseqs.forEach[videoseq | 
+			val rand = new Random()
+			if (videoseq instanceof MandatoryVideoSeq) {
+				val desc = (videoseq as MandatoryVideoSeq).description
+				if(!desc.location.isNullOrEmpty)  
+					pl.getFiles.add(desc.location)  				
+			}
+			else if (videoseq instanceof OptionalVideoSeq) {
+				val desc = (videoseq as OptionalVideoSeq).description
+				val p = desc.probability
+				val res = rand.nextInt(100)
+				if(p > 0){
+					if(!desc.location.isNullOrEmpty && res <= p)
+						pl.getFiles.add(desc.location) 
+				}
+				else
+				if(!desc.location.isNullOrEmpty && res <= 50) 
+					pl.getFiles.add(desc.location)
+			}
+			else {
+				val altvid = (videoseq as AlternativeVideoSeq)	
+				val l = altvid.getVideodescs()
+				val r = l.length
+				
+				var boolean found = false
+				var pr = 0
+				for(vdesc: altvid.videodescs){
+					if(vdesc.probability>0)
+						pr = vdesc.probability
+				}
+				var i = 0
+				if(pr==0){
+					do{
+						i = 0
+						for (vdesc : altvid.videodescs) {					
+							if(!vdesc.location.isNullOrEmpty) {
+								val p = rand.nextInt(r)%r							
+								if(p==i && ! found){
+									pl.getFiles.add(vdesc.location)
+									found = true
+								}	
+							i++
+							}
+						}
+					}while(! found)
+				}
+				else{
+					do{
+						i = 0
+						for (vdesc : altvid.videodescs) {					
+							if(!vdesc.location.isNullOrEmpty) {
+								val p = rand.nextInt(100)							
+								if(p<=pr && ! found){
+									pl.getFiles.add(vdesc.location)
+									found = true
+								}	
+							i++
+							}
+						}
+					}while(! found)
+				}
+			}
+		]
+		
+		return pl
 	}
 	
 	@Test
@@ -61,9 +144,17 @@ class VideoDemonstrator {
 		
 	//printToHTML(videoGen)
 	val videoGen1 = loadVideoGenerator(URI.createURI("foo2bis.videogen"))
-	printVideoList(videoGen1);
-			
+	printVideoList(videoGen1)
+	val playlist=testM2M()
+		playlist.getFiles().forEach[file |
+			println(file)
+		]
 	}
+	
+	
+	
+	
+	
 	
 	def void printVideoList(VideoGeneratorModel videoGen){
 		videoGen.videoseqs.forEach[videoseq | 
