@@ -31,10 +31,7 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRIGHT_BRACKETTerminalRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
 		
 		//VideoGeneratorModel:
-		//	{VideoGeneratorModel} information=VideoGenInformation?
-		//	'VideoGen' LEFT_BRACKET
-		//	videoseqs+=VideoSeq+
-		//	RIGHT_BRACKET;
+		//	{VideoGeneratorModel} information=VideoGenInformation? 'VideoGen' LEFT_BRACKET videoseqs+=VideoSeq+ RIGHT_BRACKET;
 		@Override public ParserRule getRule() { return rule; }
 
 		//{VideoGeneratorModel} information=VideoGenInformation? 'VideoGen' LEFT_BRACKET videoseqs+=VideoSeq+ RIGHT_BRACKET
@@ -271,8 +268,7 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//VideoDescription:
 		//	'videoseq' videoid=ID? location=STRING (LEFT_BRACKET ('duration' duration=INT)? ('probability' probability=INT)?
-		//	('size' size=INT)? ('description' description=STRING)?
-		//	RIGHT_BRACKET)?;
+		//	('size' size=INT)? ('description' description=STRING)? RIGHT_BRACKET)?;
 		@Override public ParserRule getRule() { return rule; }
 
 		//'videoseq' videoid=ID? location=STRING (LEFT_BRACKET ('duration' duration=INT)? ('probability' probability=INT)? ('size'
@@ -412,10 +408,7 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//VideoGeneratorModel:
-	//	{VideoGeneratorModel} information=VideoGenInformation?
-	//	'VideoGen' LEFT_BRACKET
-	//	videoseqs+=VideoSeq+
-	//	RIGHT_BRACKET;
+	//	{VideoGeneratorModel} information=VideoGenInformation? 'VideoGen' LEFT_BRACKET videoseqs+=VideoSeq+ RIGHT_BRACKET;
 	public VideoGeneratorModelElements getVideoGeneratorModelAccess() {
 		return pVideoGeneratorModel;
 	}
@@ -476,8 +469,7 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 
 	//VideoDescription:
 	//	'videoseq' videoid=ID? location=STRING (LEFT_BRACKET ('duration' duration=INT)? ('probability' probability=INT)?
-	//	('size' size=INT)? ('description' description=STRING)?
-	//	RIGHT_BRACKET)?;
+	//	('size' size=INT)? ('description' description=STRING)? RIGHT_BRACKET)?;
 	public VideoDescriptionElements getVideoDescriptionAccess() {
 		return pVideoDescription;
 	}
@@ -511,8 +503,7 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//terminal STRING:
-	//	'"' ('\\' . | !('\\' | '"'))* '"' |
-	//	"'" ('\\' . | !('\\' | "'"))* "'";
+	//	'"' ('\\' . | !('\\' | '"'))* '"' | "'" ('\\' . | !('\\' | "'"))* "'";
 	public TerminalRule getSTRINGRule() {
 		return gaTerminals.getSTRINGRule();
 	} 
