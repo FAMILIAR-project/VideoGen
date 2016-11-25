@@ -33,6 +33,17 @@ class VideoDemonstrator {
 		rs.save(new HashMap());
 	}
 	
+	def  playlistToM3U(Playlist playlist){
+		playlist.getFiles().forEach[file |
+			println(file)
+		]
+	}
+	
+	def  playlistToFFMPEG(Playlist playlist){
+		playlist.getFiles().forEach[file |
+			println("File '"+file+"'")
+		]
+	}
 	 
 	def Playlist testM2M() {
 		
@@ -144,17 +155,17 @@ class VideoDemonstrator {
 		
 	//printToHTML(videoGen)
 	val videoGen1 = loadVideoGenerator(URI.createURI("foo2bis.videogen"))
-	printVideoList(videoGen1)
+	//printVideoList(videoGen1)
 	val playlist=testM2M()
-		playlist.getFiles().forEach[file |
-			println(file)
-		]
+	
+	println("M3U")
+	playlistToM3U(playlist)
+	println("\nFFMPEG")
+	playlistToFFMPEG(playlist)
 	}
 	
 	
-	
-	
-	
+
 	
 	def void printVideoList(VideoGeneratorModel videoGen){
 		videoGen.videoseqs.forEach[videoseq | 
