@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
 <videoGen:VideoGeneratorModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:videoGen="http://www.xtext.org/example/mydsl/VideoGen">
   <videoseqs xsi:type="videoGen:MandatoryVideoSeq">
+<<<<<<< ad9be0a8f8b2ee54a1567ea371eba1bbdbd121a4
     <description videoid="v3" location="tmp-Great-Teacher-Onizuka-Episode-1-1484840171639.mp4" duration="2904" probability="100" text="kapow"/>
   </videoseqs>
   <videoseqs xsi:type="videoGen:OptionalVideoSeq">
@@ -9,5 +10,15 @@
   <videoseqs xsi:type="videoGen:AlternativeVideoSeq" videoid="vid3">
     <videodescs videoid="v5" location="data/videos/SampleVideo.mp4" duration="5" probability="50" text="kapow"/>
     <videodescs videoid="vid31" location="tmp-Great-Teacher-Onizuka-Episode-33-1484840171796.mp4" duration="1448" probability="50" text="kapow"/>
+=======
+    <description videoid="v0" location="data/videos/Great-Teacher-Onizuka-Episode-1.mp4" duration="2904" probability="100"/>
+  </videoseqs>
+  <videoseqs xsi:type="videoGen:OptionalVideoSeq">
+    <description videoid="v1" location="data/videos/Great-Teacher-Onizuka-Episode-32.mp4" duration="1450" probability="101"/>
+  </videoseqs>
+  <videoseqs xsi:type="videoGen:AlternativeVideoSeq" videoid="vid3">
+    <videodescs videoid="v2" location="data/videos/Great-Teacher-Onizuka-Episode-33.mp4" duration="1448" probability="50"/>
+    <videodescs videoid="vid31" location="data/videos/Great-Teacher-Onizuka-Episode-33.mp4" duration="1448" probability="50"/>
+>>>>>>> q11
   </videoseqs>
 </videoGen:VideoGeneratorModel>
