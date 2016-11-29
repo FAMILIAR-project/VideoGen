@@ -24,6 +24,7 @@ import java.io.Writer
 import playlist.VideoFile
 import java.io.BufferedReader
 import java.io.InputStreamReader
+import java.io.File
 
 class VideoDemonstrator {
 	static Writer writer
@@ -95,6 +96,7 @@ class VideoDemonstrator {
 				val vf = PlaylistFactory.eINSTANCE.createVideoFile		
 				vf.path = fileLocation
 				vf.duration = getDuration(fileLocation)
+				setThumbnail(fileLocation, "1")
 				pl.files.add(vf)
 			}
 			else if (vseq instanceof OptionalVideoSeq) {
@@ -104,6 +106,7 @@ class VideoDemonstrator {
 					val vf = PlaylistFactory.eINSTANCE.createVideoFile		
 					vf.path = fileLocation
 					vf.duration = getDuration(fileLocation)
+					setThumbnail(fileLocation, "2"+i)
 					pl.files.add(vf)		
 				} else {
 					// no
@@ -119,12 +122,59 @@ class VideoDemonstrator {
 					val vf = PlaylistFactory.eINSTANCE.createVideoFile		
 					vf.path = fileLocation
 					vf.duration = getDuration(fileLocation)
+					setThumbnail(fileLocation, "3"+i)
 					pl.files.add(vf)										
 				}
 			}
 		}
 		generateM3U(pl)
 		generateM3UEXT(pl)
+	}
+	
+	@Test
+	def testGenerateThrumbnails() {
+		// loading
+		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
+		assertNotNull(videoGen)
+		
+		val seqs =videoGen.videoseqs
+		
+		var html = "<ul>"
+				
+		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
+		for (VideoSeq vseq : seqs) {
+			if (vseq instanceof MandatoryVideoSeq) {
+				val desc = vseq.description
+				if(desc.videoid.isNullOrEmpty)  desc.videoid = genID()  			
+				val fileLocation = desc.location
+				val path = setThumbnail(fileLocation, desc.videoid)
+				html += "<li><img src=\"" + path + "\"/></li>"
+			}
+			else if (vseq instanceof OptionalVideoSeq) {
+				val desc = vseq.description
+				if(desc.videoid.isNullOrEmpty)  desc.videoid = genID() 
+				val fileLocation = desc.location;
+				val path = setThumbnail(fileLocation, desc.videoid)
+				html += "<li><img src=\"" + path + "\"/></li>"
+				
+			}
+			else { // alternative
+				val alt = (vseq as AlternativeVideoSeq)
+				html += "<ul>"
+				for (vdesc : alt.videodescs) {
+					if(vdesc.videoid.isNullOrEmpty)  vdesc.videoid = genID()  			
+					val fileLocation = vdesc.location
+					val path = setThumbnail(fileLocation, vdesc.videoid)
+					html += "<li><img src=\"" + path + "\"/></li>"
+					
+				}
+				html += "</ul>"
+				
+			}
+		}
+		html += "</ul>"
+		createFile("video.html",html)		
+		
 	}
 		
 
@@ -209,6 +259,17 @@ class VideoDemonstrator {
 		}
   	}
   	
+	def static String setThumbnail(String path, String filename) {
+		createFile("thumbnail/" + filename + ".png", "")		
+		
+		var Process process = Runtime.getRuntime().exec("ffmpeg -y -i "+ path +" -r 1 -t 00:00:01 -ss 00:00:02 -f image2 thumbnail/" + filename + ".png"
+);
+		System.out.println("ffmpeg -y -i "+ path +" -r 1 -t 00:00:01 -ss 00:00:02 -f image2 thumbnail/" + filename + ".png")
+		process.waitFor();
+		
+		return "thumbnail/" + filename + ".png"
+	}
+	
 	def static int getDuration(String path) {
 		var Process process = Runtime.getRuntime().exec("ffprobe -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 \"" + path + "\"");
 		//System.out.println("ffprobe -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 \"" + path + "\"")
