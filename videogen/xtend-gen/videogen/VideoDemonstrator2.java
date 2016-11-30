@@ -1,15 +1,8 @@
 package videogen;
 
-import com.google.common.base.Objects;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.HashMap;
-import java.util.Random;
-import java.util.Set;
 import java.util.function.Consumer;
-import java.util.stream.IntStream;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -17,7 +10,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.InputOutput;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.junit.Assert;
 import org.junit.Test;
@@ -28,9 +20,6 @@ import org.xtext.example.mydsl.videoGen.OptionalVideoSeq;
 import org.xtext.example.mydsl.videoGen.VideoDescription;
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 import org.xtext.example.mydsl.videoGen.VideoSeq;
-import videoGenQ2.MediaFile;
-import videoGenQ2.Playlist;
-import videoGenQ2.impl.VideoGenQ2FactoryImpl;
 
 @SuppressWarnings("all")
 public class VideoDemonstrator2 {
@@ -63,84 +52,24 @@ public class VideoDemonstrator2 {
   
   @Test
   public void tp3_q2() {
-    URI _createURI = URI.createURI("main.videogen");
-    VideoGeneratorModel videoGen = this.loadVideoGenerator(_createURI);
-    VideoGenQ2FactoryImpl fact = new VideoGenQ2FactoryImpl();
-    Playlist playlist = fact.createPlaylist();
-    Assert.assertNotNull(videoGen);
-    EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
-    Set<VideoSeq> _set = IterableExtensions.<VideoSeq>toSet(_videoseqs);
-    for (final VideoSeq videoseq : _set) {
-      if ((videoseq instanceof MandatoryVideoSeq)) {
-        InputOutput.<String>println("Mandatory");
-        VideoDescription _description = ((MandatoryVideoSeq) videoseq).getDescription();
-        final String fileLocation = _description.getLocation();
-        MediaFile mediafile = fact.createMediaFile();
-        mediafile.setLocation(fileLocation);
-        EList<MediaFile> _mediafile = playlist.getMediafile();
-        _mediafile.add(mediafile);
-      } else {
-        if ((videoseq instanceof OptionalVideoSeq)) {
-          InputOutput.<String>println("Optional");
-          Random _random = new Random();
-          IntStream _ints = _random.ints(1);
-          boolean _equals = Objects.equal(_ints, Integer.valueOf(1));
-          if (_equals) {
-            VideoDescription _description_1 = ((OptionalVideoSeq) videoseq).getDescription();
-            final String fileLocation_1 = _description_1.getLocation();
-            MediaFile mediafile_1 = fact.createMediaFile();
-            mediafile_1.setLocation(fileLocation_1);
-            EList<MediaFile> _mediafile_1 = playlist.getMediafile();
-            _mediafile_1.add(mediafile_1);
-          }
-        } else {
-          InputOutput.<String>println("else");
-          EList<VideoDescription> _videodescs = ((AlternativeVideoSeq) videoseq).getVideodescs();
-          final int size = _videodescs.size();
-          EList<VideoDescription> _videodescs_1 = ((AlternativeVideoSeq) videoseq).getVideodescs();
-          Random _random_1 = new Random();
-          int _nextInt = _random_1.nextInt(size);
-          VideoDescription _get = _videodescs_1.get(_nextInt);
-          String fileLocation_2 = _get.getLocation();
-          MediaFile mediafile_2 = fact.createMediaFile();
-          mediafile_2.setLocation(fileLocation_2);
-          EList<MediaFile> _mediafile_2 = playlist.getMediafile();
-          _mediafile_2.add(mediafile_2);
-        }
-      }
-    }
-    try {
-      final File pl = new File("/home/dania/Documents/IDM/playlist.m3u");
-      boolean _exists = pl.exists();
-      boolean _not = (!_exists);
-      if (_not) {
-        pl.createNewFile();
-      }
-      File _absoluteFile = pl.getAbsoluteFile();
-      final FileWriter fw = new FileWriter(_absoluteFile);
-      final BufferedWriter bw = new BufferedWriter(fw);
-      String _lineSeparator = System.lineSeparator();
-      String _plus = ("#EXTM3U" + _lineSeparator);
-      bw.write(_plus);
-      EList<MediaFile> _mediafile_3 = playlist.getMediafile();
-      for (final MediaFile mediafile_3 : _mediafile_3) {
-        String _lineSeparator_1 = System.lineSeparator();
-        String _plus_1 = ("#EXTINF:-1 ,Example Artist - Example title " + _lineSeparator_1);
-        String _location = mediafile_3.getLocation();
-        String _plus_2 = (_plus_1 + _location);
-        String _lineSeparator_2 = System.lineSeparator();
-        String _plus_3 = (_plus_2 + _lineSeparator_2);
-        bw.write(_plus_3);
-      }
-      bw.close();
-    } catch (final Throwable _t) {
-      if (_t instanceof IOException) {
-        final IOException e = (IOException)_t;
-        e.printStackTrace();
-      } else {
-        throw Exceptions.sneakyThrow(_t);
-      }
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nMediaFile cannot be resolved to a type."
+      + "\nVideoGenQ2FactoryImpl cannot be resolved."
+      + "\ncreatePlaylist cannot be resolved"
+      + "\ncreateMediaFile cannot be resolved"
+      + "\nlocation cannot be resolved"
+      + "\nmediafile cannot be resolved"
+      + "\nadd cannot be resolved"
+      + "\ncreateMediaFile cannot be resolved"
+      + "\nlocation cannot be resolved"
+      + "\nmediafile cannot be resolved"
+      + "\nadd cannot be resolved"
+      + "\ncreateMediaFile cannot be resolved"
+      + "\nlocation cannot be resolved"
+      + "\nmediafile cannot be resolved"
+      + "\nadd cannot be resolved"
+      + "\nmediafile cannot be resolved"
+      + "\nlocation cannot be resolved");
   }
   
   @Test
