@@ -22,7 +22,7 @@ import videoGenQ2.VideoGenQ2Factory
 import videoGenQ2.impl.VideoGenQ2FactoryImpl
 import videoGenQ2.MediaFile
 
-class VideoDemonstrator {
+class VideoDemonstrator2 {
 	
 	def loadVideoGenerator(URI uri) {
 		new VideoGenStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()
@@ -37,48 +37,59 @@ class VideoDemonstrator {
 	}
 	
 	@Test
-	def tp3_q1() {
+	def tp3_q2() {
 		var videoGen = loadVideoGenerator(URI.createURI("main.videogen")) 
-		
-		var strPlaylist = ""
-		
+		var fact = new VideoGenQ2FactoryImpl()
+		var playlist= fact.createPlaylist()		
+		assertNotNull(videoGen)
+				
 		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
 		for(videoseq : videoGen.videoseqs.toSet) {
 			if (videoseq instanceof MandatoryVideoSeq) {
 				
 				println("Mandatory")
 				val fileLocation = (videoseq as MandatoryVideoSeq).description.location;
-				strPlaylist += 'file \'' + fileLocation + '\'' + System.lineSeparator();
-								
+		
+				var mediafile = fact.createMediaFile()
+				mediafile.location = fileLocation 
+				playlist.mediafile.add(mediafile)
+				
 				
 			} else if (videoseq instanceof OptionalVideoSeq) {
 				println("Optional")
 				// Random between 0-1
 				if (new Random().ints(1) == 1) {
 					val fileLocation = (videoseq as OptionalVideoSeq).description.location;
-					strPlaylist += 'file \'' + fileLocation + '\'' + System.lineSeparator();
+					
+					var mediafile = fact.createMediaFile()
+					mediafile.location = fileLocation 
+					playlist.mediafile.add(mediafile)
 				} 
 			}
 			else {
 				println("else")
-				val size = (videoseq as AlternativeVideoSeq).videodescs.size;
-				
+				val size = (videoseq as AlternativeVideoSeq).videodescs.size;		
 				var fileLocation = (videoseq as AlternativeVideoSeq).videodescs.get(new Random().nextInt(size)).location;
-				strPlaylist += 'file \'' + fileLocation + '\'' + System.lineSeparator();
+
+				var mediafile = fact.createMediaFile()
+				mediafile.location = fileLocation 
+				playlist.mediafile.add(mediafile)
 			}
 		}
-		
-		println("Playlist : " + strPlaylist)
-		
+				
 		// New file 
 		try {
-			val ffmpeg = new File("/home/dania/Documents/IDM/ffmpeg.txt");
-			if (!ffmpeg.exists()) {
-				ffmpeg.createNewFile();
+			val pl = new File("/home/dania/Documents/IDM/playlist.m3u");
+			if (!pl.exists()) {
+				pl.createNewFile();
 			}
-			val fw = new FileWriter(ffmpeg.getAbsoluteFile());
+			val fw = new FileWriter(pl.getAbsoluteFile());
 			val bw = new BufferedWriter(fw);
-			bw.write(strPlaylist);
+			bw.write("#EXTM3U" +System.lineSeparator) 	
+			for( MediaFile mediafile : playlist.mediafile){
+				bw.write("#EXTINF:-1 ,Example Artist - Example title " + System.lineSeparator + mediafile.location + System.lineSeparator);
+			}
+			
 			bw.close();
 			
 		} catch (IOException e) {
@@ -86,7 +97,6 @@ class VideoDemonstrator {
 		}
 		
 	}
-
 	
 	@Test
 	def test1() {

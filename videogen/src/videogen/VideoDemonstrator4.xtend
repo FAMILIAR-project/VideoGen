@@ -1,6 +1,14 @@
 package videogen
 
+import java.io.BufferedReader
+import java.io.BufferedWriter
+import java.io.File
+import java.io.FileWriter
+import java.io.IOException
+import java.io.InputStreamReader
 import java.util.HashMap
+import java.util.Random
+import java.util.Scanner
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
@@ -12,17 +20,12 @@ import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 
 import static org.junit.Assert.*
-import java.util.Random
-import java.io.File
-import java.io.FileWriter
-import java.io.BufferedWriter
-import java.io.IOException
-import videoGenQ2.Playlist
-import videoGenQ2.VideoGenQ2Factory
 import videoGenQ2.impl.VideoGenQ2FactoryImpl
 import videoGenQ2.MediaFile
 
-class VideoDemonstrator {
+class VideoDemonstrator4 {
+	
+	Scanner s
 	
 	def loadVideoGenerator(URI uri) {
 		new VideoGenStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()
@@ -36,91 +39,84 @@ class VideoDemonstrator {
 		rs.save(new HashMap());
 	}
 	
+	def static double getDuration(String videoLocation){
+		var Process process = Runtime.getRuntime().exec("ffprobe -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 " + videoLocation );
+		
+		process.waitFor();
+
+		var BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+		var String line = "";
+		var String outputJson = "";
+	    while ((line = reader.readLine()) != null) {
+	        outputJson = outputJson + line;
+	    }
+		return Math.round(Double.parseDouble(outputJson))-1;
+	}
+	
+		def static String createVignette(String path, String filename) {
+		var String cmdVignette= "ffmpeg -y -i "+ path +" -r 1 -t 00:00:01 -ss 00:00:02 -f image2 /home/dania/Documents/IDM/Vignettes/" + filename + ".png"
+		
+		var Process process = Runtime.getRuntime().exec(cmdVignette);
+		process.waitFor();
+		
+		return "/home/dania/Documents/IDM/Vignettes/" + filename + ".png"
+}
+	
+	
 	@Test
-	def tp3_q1() {
+	def tp3_q9() {
 		var videoGen = loadVideoGenerator(URI.createURI("main.videogen")) 
-		
-		var strPlaylist = ""
-		
+		var fact = new VideoGenQ2FactoryImpl()
+		var playlist= fact.createPlaylist()		
+		assertNotNull(videoGen)
+				
 		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
 		for(videoseq : videoGen.videoseqs.toSet) {
 			if (videoseq instanceof MandatoryVideoSeq) {
 				
 				println("Mandatory")
 				val fileLocation = (videoseq as MandatoryVideoSeq).description.location;
-				strPlaylist += 'file \'' + fileLocation + '\'' + System.lineSeparator();
-								
+				var fileId = (videoseq as MandatoryVideoSeq).description.videoid;
+				if(fileId.isNullOrEmpty)  fileId = genID()  
+				
+				var mediafile = fact.createMediaFile()
+				mediafile.location = fileLocation 
+				mediafile.duration =  getDuration(fileLocation)
+				
+				createVignette(fileLocation,fileId)
+				
+				playlist.mediafile.add(mediafile)
+				
 				
 			} else if (videoseq instanceof OptionalVideoSeq) {
 				println("Optional")
 				// Random between 0-1
 				if (new Random().ints(1) == 1) {
 					val fileLocation = (videoseq as OptionalVideoSeq).description.location;
-					strPlaylist += 'file \'' + fileLocation + '\'' + System.lineSeparator();
+					var fileId = (videoseq as MandatoryVideoSeq).description.videoid;
+					if(fileId.isNullOrEmpty)  fileId = genID()  
+					
+					var mediafile = fact.createMediaFile()
+					mediafile.location = fileLocation
+					mediafile.duration =  getDuration(fileLocation)
+					createVignette(fileLocation,fileId)
+					
+					playlist.mediafile.add(mediafile)
 				} 
 			}
 			else {
 				println("else")
-				val size = (videoseq as AlternativeVideoSeq).videodescs.size;
-				
+				val size = (videoseq as AlternativeVideoSeq).videodescs.size;		
 				var fileLocation = (videoseq as AlternativeVideoSeq).videodescs.get(new Random().nextInt(size)).location;
-				strPlaylist += 'file \'' + fileLocation + '\'' + System.lineSeparator();
-			}
-		}
-		
-		println("Playlist : " + strPlaylist)
-		
-		// New file 
-		try {
-			val ffmpeg = new File("/home/dania/Documents/IDM/ffmpeg.txt");
-			if (!ffmpeg.exists()) {
-				ffmpeg.createNewFile();
-			}
-			val fw = new FileWriter(ffmpeg.getAbsoluteFile());
-			val bw = new BufferedWriter(fw);
-			bw.write(strPlaylist);
-			bw.close();
 			
-		} catch (IOException e) {
-			e.printStackTrace
+				var mediafile = fact.createMediaFile()
+				mediafile.location = fileLocation 
+				mediafile.duration =  getDuration(fileLocation)
+				playlist.mediafile.add(mediafile)
+			}
 		}
-		
 	}
 
-	
-	@Test
-	def test1() {
-		// loading
-		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
-		assertNotNull(videoGen)
-		assertEquals(7, videoGen.videoseqs.size)			
-		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
-		videoGen.videoseqs.forEach[videoseq | 
-			if (videoseq instanceof MandatoryVideoSeq) {
-				val desc = (videoseq as MandatoryVideoSeq).description
-				if(desc.videoid.isNullOrEmpty)  desc.videoid = genID()  				
-			}
-			else if (videoseq instanceof OptionalVideoSeq) {
-				val desc = (videoseq as OptionalVideoSeq).description
-				if(desc.videoid.isNullOrEmpty) desc.videoid = genID() 
-			}
-			else {
-				val altvid = (videoseq as AlternativeVideoSeq)
-				if(altvid.videoid.isNullOrEmpty) altvid.videoid = genID()
-				for (vdesc : altvid.videodescs) {
-					if(vdesc.videoid.isNullOrEmpty) vdesc.videoid = genID()
-				}
-			}
-		]
-	// serializing
-	saveVideoGenerator(URI.createURI("foo2bis.xmi"), videoGen)
-	saveVideoGenerator(URI.createURI("foo2bis.videogen"), videoGen)
-		
-	printToHTML(videoGen)
-		 
-			
-	}
-	
 	def void printToHTML(VideoGeneratorModel videoGen) {
 		//var numSeq = 1
 		println("<ul>")
