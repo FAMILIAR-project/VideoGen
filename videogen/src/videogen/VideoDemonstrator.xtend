@@ -33,6 +33,11 @@ class VideoDemonstrator {
 		rs.getContents.add(pollS);
 		rs.save(new HashMap());
 	}
+	
+	@Test
+	def videoGenToPlaylistToM3U() {
+		this.playlistToM3U(this.toPlaylist())
+	}
 
 	@Test
 	def test1() {
@@ -63,7 +68,6 @@ class VideoDemonstrator {
 	// printToHTML(videoGen)
 	}
 
-	@Test
 	def Playlist toPlaylist() {
 		// loading
 		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen"))
@@ -141,8 +145,7 @@ class VideoDemonstrator {
 		file.close()
 	}
 
-	@Test
-	def playlistToM3U(Playlist playlist) {
+	def void playlistToM3U(Playlist playlist) {
 		assertNotNull(playlist)	
 		val file = new 	PrintWriter("out.m3u", "UTF-8")
 		playlist.content.forEach[entry | 
