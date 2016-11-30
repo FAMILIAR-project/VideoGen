@@ -2,15 +2,15 @@ package videogen;
 
 import com.google.common.base.Objects;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Random;
-import java.util.Scanner;
 import java.util.Set;
-import java.util.function.Consumer;
-import java.util.stream.IntStream;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -35,8 +35,6 @@ import videoGenQ2.impl.VideoGenQ2FactoryImpl;
 
 @SuppressWarnings("all")
 public class VideoDemonstrator4 {
-  private Scanner s;
-  
   public VideoGeneratorModel loadVideoGenerator(final URI uri) {
     VideoGeneratorModel _xblockexpression = null;
     {
@@ -67,7 +65,8 @@ public class VideoDemonstrator4 {
   public static double getDuration(final String videoLocation) {
     try {
       Runtime _runtime = Runtime.getRuntime();
-      Process process = _runtime.exec(("ffprobe -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 " + videoLocation));
+      Process process = _runtime.exec(
+        ("ffprobe -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 " + videoLocation));
       process.waitFor();
       InputStream _inputStream = process.getInputStream();
       InputStreamReader _inputStreamReader = new InputStreamReader(_inputStream);
@@ -87,7 +86,8 @@ public class VideoDemonstrator4 {
   
   public static String createVignette(final String path, final String filename) {
     try {
-      String cmdVignette = (((("ffmpeg -y -i " + path) + " -r 1 -t 00:00:01 -ss 00:00:02 -f image2 /home/dania/Documents/IDM/Vignettes/") + filename) + ".png");
+      String cmdVignette = (((("ffmpeg -y -i " + path) + 
+        " -r 1 -t 00:00:01 -ss 00:00:02 -f image2 /home/dania/Documents/IDM/Vignettes/") + filename) + ".png");
       Runtime _runtime = Runtime.getRuntime();
       Process process = _runtime.exec(cmdVignette);
       process.waitFor();
@@ -122,19 +122,22 @@ public class VideoDemonstrator4 {
         mediafile.setLocation(fileLocation);
         double _duration = VideoDemonstrator4.getDuration(fileLocation);
         mediafile.setDuration(_duration);
-        VideoDemonstrator4.createVignette(fileLocation, fileId);
+        String _vignette = this.vignette;
+        String _createVignette = VideoDemonstrator4.createVignette(fileLocation, fileId);
+        String _plus = ("<img src = " + _createVignette);
+        String _plus_1 = (_plus + " width=\'130px\' height=auto/><br/>");
+        this.vignette = (_vignette + _plus_1);
         EList<MediaFile> _mediafile = playlist.getMediafile();
         _mediafile.add(mediafile);
       } else {
         if ((videoseq instanceof OptionalVideoSeq)) {
           InputOutput.<String>println("Optional");
           Random _random = new Random();
-          IntStream _ints = _random.ints(1);
-          boolean _equals = Objects.equal(_ints, Integer.valueOf(1));
-          if (_equals) {
+          final int rand = _random.nextInt(2);
+          if ((rand == 0)) {
             VideoDescription _description_2 = ((OptionalVideoSeq) videoseq).getDescription();
             final String fileLocation_1 = _description_2.getLocation();
-            VideoDescription _description_3 = ((MandatoryVideoSeq) videoseq).getDescription();
+            VideoDescription _description_3 = ((OptionalVideoSeq) videoseq).getDescription();
             String fileId_1 = _description_3.getVideoid();
             boolean _isNullOrEmpty_1 = StringExtensions.isNullOrEmpty(fileId_1);
             if (_isNullOrEmpty_1) {
@@ -145,12 +148,16 @@ public class VideoDemonstrator4 {
             mediafile_1.setLocation(fileLocation_1);
             double _duration_1 = VideoDemonstrator4.getDuration(fileLocation_1);
             mediafile_1.setDuration(_duration_1);
-            VideoDemonstrator4.createVignette(fileLocation_1, fileId_1);
+            String _vignette_1 = this.vignette;
+            String _createVignette_1 = VideoDemonstrator4.createVignette(fileLocation_1, fileId_1);
+            String _plus_2 = ("<img src=" + _createVignette_1);
+            String _plus_3 = (_plus_2 + " width=\'130px\' height=auto/><br/>");
+            this.vignette = (_vignette_1 + _plus_3);
             EList<MediaFile> _mediafile_1 = playlist.getMediafile();
             _mediafile_1.add(mediafile_1);
           }
         } else {
-          InputOutput.<String>println("else");
+          InputOutput.<String>println("else alternative");
           EList<VideoDescription> _videodescs = ((AlternativeVideoSeq) videoseq).getVideodescs();
           final int size = _videodescs.size();
           EList<VideoDescription> _videodescs_1 = ((AlternativeVideoSeq) videoseq).getVideodescs();
@@ -162,85 +169,43 @@ public class VideoDemonstrator4 {
           mediafile_2.setLocation(fileLocation_2);
           double _duration_2 = VideoDemonstrator4.getDuration(fileLocation_2);
           mediafile_2.setDuration(_duration_2);
+          String _vignette_2 = this.vignette;
+          String _createVignette_2 = VideoDemonstrator4.createVignette(fileLocation_2, "alternative");
+          String _plus_4 = ("<img src=" + _createVignette_2);
+          String _plus_5 = (_plus_4 + " width=\'130px\' height=auto/><br/>");
+          this.vignette = (_vignette_2 + _plus_5);
           EList<MediaFile> _mediafile_2 = playlist.getMediafile();
           _mediafile_2.add(mediafile_2);
         }
       }
     }
-  }
-  
-  public void printToHTML(final VideoGeneratorModel videoGen) {
-    InputOutput.<String>println("<ul>");
-    EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
-    final Consumer<VideoSeq> _function = (VideoSeq videoseq) -> {
-      if ((videoseq instanceof MandatoryVideoSeq)) {
-        final VideoDescription desc = ((MandatoryVideoSeq) videoseq).getDescription();
-        String _videoid = desc.getVideoid();
-        boolean _isNullOrEmpty = StringExtensions.isNullOrEmpty(_videoid);
-        boolean _not = (!_isNullOrEmpty);
-        if (_not) {
-          String _videoid_1 = desc.getVideoid();
-          String _plus = ("<li>" + _videoid_1);
-          String _plus_1 = (_plus + "</li>");
-          InputOutput.<String>println(_plus_1);
-        }
-      } else {
-        if ((videoseq instanceof OptionalVideoSeq)) {
-          final VideoDescription desc_1 = ((OptionalVideoSeq) videoseq).getDescription();
-          String _videoid_2 = desc_1.getVideoid();
-          boolean _isNullOrEmpty_1 = StringExtensions.isNullOrEmpty(_videoid_2);
-          boolean _not_1 = (!_isNullOrEmpty_1);
-          if (_not_1) {
-            String _videoid_3 = desc_1.getVideoid();
-            String _plus_2 = ("<li>" + _videoid_3);
-            String _plus_3 = (_plus_2 + "</li>");
-            InputOutput.<String>println(_plus_3);
-          }
-        } else {
-          final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
-          String _videoid_4 = altvid.getVideoid();
-          boolean _isNullOrEmpty_2 = StringExtensions.isNullOrEmpty(_videoid_4);
-          boolean _not_2 = (!_isNullOrEmpty_2);
-          if (_not_2) {
-            String _videoid_5 = altvid.getVideoid();
-            String _plus_4 = ("<li>" + _videoid_5);
-            String _plus_5 = (_plus_4 + "</li>");
-            InputOutput.<String>println(_plus_5);
-          }
-          EList<VideoDescription> _videodescs = altvid.getVideodescs();
-          int _size = _videodescs.size();
-          boolean _greaterThan = (_size > 0);
-          if (_greaterThan) {
-            InputOutput.<String>println("<ul>");
-          }
-          EList<VideoDescription> _videodescs_1 = altvid.getVideodescs();
-          for (final VideoDescription vdesc : _videodescs_1) {
-            String _videoid_6 = vdesc.getVideoid();
-            boolean _isNullOrEmpty_3 = StringExtensions.isNullOrEmpty(_videoid_6);
-            boolean _not_3 = (!_isNullOrEmpty_3);
-            if (_not_3) {
-              String _videoid_7 = vdesc.getVideoid();
-              String _plus_6 = ("<li>" + _videoid_7);
-              String _plus_7 = (_plus_6 + "</li>");
-              InputOutput.<String>println(_plus_7);
-            }
-          }
-          EList<VideoDescription> _videodescs_2 = altvid.getVideodescs();
-          int _size_1 = _videodescs_2.size();
-          boolean _greaterThan_1 = (_size_1 > 0);
-          if (_greaterThan_1) {
-            InputOutput.<String>println("</ul>");
-          }
-        }
+    try {
+      final File ffmpeg = new File("/home/dania/Documents/IDM/vignettes.html");
+      boolean _exists = ffmpeg.exists();
+      boolean _not = (!_exists);
+      if (_not) {
+        ffmpeg.createNewFile();
       }
-    };
-    _videoseqs.forEach(_function);
-    InputOutput.<String>println("</ul>");
+      File _absoluteFile = ffmpeg.getAbsoluteFile();
+      final FileWriter fw = new FileWriter(_absoluteFile);
+      final BufferedWriter bw = new BufferedWriter(fw);
+      bw.write("<!DOCTYPE html><html><body>");
+      bw.write(this.vignette);
+      bw.write("</html></body>");
+      bw.close();
+    } catch (final Throwable _t) {
+      if (_t instanceof IOException) {
+        final IOException e = (IOException)_t;
+        e.printStackTrace();
+      } else {
+        throw Exceptions.sneakyThrow(_t);
+      }
+    }
   }
   
   private static int i = 0;
   
-  private File ffmpeg;
+  private String vignette = "";
   
   public String genID() {
     int _plusPlus = VideoDemonstrator4.i++;

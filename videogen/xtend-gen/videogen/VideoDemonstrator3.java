@@ -13,7 +13,6 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.function.Consumer;
-import java.util.stream.IntStream;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -112,9 +111,8 @@ public class VideoDemonstrator3 {
         if ((videoseq instanceof OptionalVideoSeq)) {
           InputOutput.<String>println("Optional");
           Random _random = new Random();
-          IntStream _ints = _random.ints(1);
-          boolean _equals = Objects.equal(_ints, Integer.valueOf(1));
-          if (_equals) {
+          final int rand = _random.nextInt(2);
+          if ((rand == 0)) {
             VideoDescription _description_1 = ((OptionalVideoSeq) videoseq).getDescription();
             final String fileLocation_1 = _description_1.getLocation();
             MediaFile mediafile_1 = fact.createMediaFile();
