@@ -72,7 +72,6 @@ public class ConcatenateVideoSeq {
             final int randomInt = Double.valueOf(random_1).intValue();
             EList<VideoDescription> _videodescs_1 = videoseqAlt.getVideodescs();
             final VideoDescription alt = _videodescs_1.get(randomInt);
-            final String desc_3 = alt.getDescription();
             final String path_3 = alt.getLocation();
             writer.write((("file \'" + path_3) + "\'\n"));
           }

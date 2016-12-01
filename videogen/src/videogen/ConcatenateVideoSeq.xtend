@@ -9,9 +9,6 @@ import static org.junit.Assert.*
 import org.junit.Test
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
-import java.util.HashMap
-import java.io.File
 import java.io.PrintWriter
 
 public class ConcatenateVideoSeq {
@@ -63,7 +60,6 @@ public class ConcatenateVideoSeq {
 				val random = Math.random * size
 				val randomInt = random.intValue;
 				val alt = videoseqAlt.videodescs.get(randomInt)
-				val desc = alt.description
 				val path = alt.location
 				writer.write("file '" + path + "'\n")
 				
