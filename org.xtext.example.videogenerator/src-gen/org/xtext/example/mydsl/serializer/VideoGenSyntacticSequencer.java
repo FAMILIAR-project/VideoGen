@@ -21,40 +21,19 @@ import org.xtext.example.mydsl.services.VideoGenGrammarAccess;
 public class VideoGenSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected VideoGenGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_VideoDescription___LEFT_BRACKETTerminalRuleCall_3_0_RIGHT_BRACKETTerminalRuleCall_3_5__q;
+	protected AbstractElementAlias match_VideoDescription___LeftCurlyBracketKeyword_3_0_RightCurlyBracketKeyword_3_5__q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (VideoGenGrammarAccess) access;
-		match_VideoDescription___LEFT_BRACKETTerminalRuleCall_3_0_RIGHT_BRACKETTerminalRuleCall_3_5__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getVideoDescriptionAccess().getLEFT_BRACKETTerminalRuleCall_3_0()), new TokenAlias(false, false, grammarAccess.getVideoDescriptionAccess().getRIGHT_BRACKETTerminalRuleCall_3_5()));
+		match_VideoDescription___LeftCurlyBracketKeyword_3_0_RightCurlyBracketKeyword_3_5__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getVideoDescriptionAccess().getLeftCurlyBracketKeyword_3_0()), new TokenAlias(false, false, grammarAccess.getVideoDescriptionAccess().getRightCurlyBracketKeyword_3_5()));
 	}
 	
 	@Override
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (ruleCall.getRule() == grammarAccess.getLEFT_BRACKETRule())
-			return getLEFT_BRACKETToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getRIGHT_BRACKETRule())
-			return getRIGHT_BRACKETToken(semanticObject, ruleCall, node);
 		return "";
 	}
 	
-	/**
-	 * terminal LEFT_BRACKET: '{' ;
-	 */
-	protected String getLEFT_BRACKETToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "{";
-	}
-	
-	/**
-	 * terminal RIGHT_BRACKET: '}';
-	 */
-	protected String getRIGHT_BRACKETToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "}";
-	}
 	
 	@Override
 	protected void emitUnassignedTokens(EObject semanticObject, ISynTransition transition, INode fromNode, INode toNode) {
@@ -62,20 +41,20 @@ public class VideoGenSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_VideoDescription___LEFT_BRACKETTerminalRuleCall_3_0_RIGHT_BRACKETTerminalRuleCall_3_5__q.equals(syntax))
-				emit_VideoDescription___LEFT_BRACKETTerminalRuleCall_3_0_RIGHT_BRACKETTerminalRuleCall_3_5__q(semanticObject, getLastNavigableState(), syntaxNodes);
+			if (match_VideoDescription___LeftCurlyBracketKeyword_3_0_RightCurlyBracketKeyword_3_5__q.equals(syntax))
+				emit_VideoDescription___LeftCurlyBracketKeyword_3_0_RightCurlyBracketKeyword_3_5__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
 
 	/**
 	 * Ambiguous syntax:
-	 *     (LEFT_BRACKET RIGHT_BRACKET)?
+	 *     ('{' '}')?
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     location=STRING (ambiguity) (rule end)
 	 */
-	protected void emit_VideoDescription___LEFT_BRACKETTerminalRuleCall_3_0_RIGHT_BRACKETTerminalRuleCall_3_5__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_VideoDescription___LeftCurlyBracketKeyword_3_0_RightCurlyBracketKeyword_3_5__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

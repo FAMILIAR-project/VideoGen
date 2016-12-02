@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.xtext.example.mydsl.videoGen.VideoDescription#getVideoid <em>Videoid</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.videoGen.VideoDescription#getLocation <em>Location</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.videoGen.VideoDescription#getDuration <em>Duration</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.videoGen.VideoDescription#isHasProba <em>Has Proba</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.videoGen.VideoDescription#getProbability <em>Probability</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.videoGen.VideoDescription#getSize <em>Size</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.videoGen.VideoDescription#getDescription <em>Description</em>}</li>
@@ -104,6 +105,32 @@ public interface VideoDescription extends EObject
    * @generated
    */
   void setDuration(int value);
+
+  /**
+   * Returns the value of the '<em><b>Has Proba</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Has Proba</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Has Proba</em>' attribute.
+   * @see #setHasProba(boolean)
+   * @see org.xtext.example.mydsl.videoGen.VideoGenPackage#getVideoDescription_HasProba()
+   * @model
+   * @generated
+   */
+  boolean isHasProba();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.videoGen.VideoDescription#isHasProba <em>Has Proba</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Has Proba</em>' attribute.
+   * @see #isHasProba()
+   * @generated
+   */
+  void setHasProba(boolean value);
 
   /**
    * Returns the value of the '<em><b>Probability</b></em>' attribute.

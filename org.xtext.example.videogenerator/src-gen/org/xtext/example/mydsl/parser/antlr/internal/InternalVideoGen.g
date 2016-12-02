@@ -105,9 +105,9 @@ ruleVideoGeneratorModel returns [EObject current=null]
     {
     	newLeafNode(otherlv_2, grammarAccess.getVideoGeneratorModelAccess().getVideoGenKeyword_2());
     }
-this_LEFT_BRACKET_3=RULE_LEFT_BRACKET
-    { 
-    newLeafNode(this_LEFT_BRACKET_3, grammarAccess.getVideoGeneratorModelAccess().getLEFT_BRACKETTerminalRuleCall_3()); 
+	otherlv_3='{' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getVideoGeneratorModelAccess().getLeftCurlyBracketKeyword_3());
     }
 (
 (
@@ -127,9 +127,9 @@ this_LEFT_BRACKET_3=RULE_LEFT_BRACKET
 	    }
 
 )
-)+this_RIGHT_BRACKET_5=RULE_RIGHT_BRACKET
-    { 
-    newLeafNode(this_RIGHT_BRACKET_5, grammarAccess.getVideoGeneratorModelAccess().getRIGHT_BRACKETTerminalRuleCall_5()); 
+)+	otherlv_5='}' 
+    {
+    	newLeafNode(otherlv_5, grammarAccess.getVideoGeneratorModelAccess().getRightCurlyBracketKeyword_5());
     }
 )
 ;
@@ -403,9 +403,9 @@ ruleAlternativeVideoSeq returns [EObject current=null]
 	    }
 
 )
-)?this_LEFT_BRACKET_2=RULE_LEFT_BRACKET
-    { 
-    newLeafNode(this_LEFT_BRACKET_2, grammarAccess.getAlternativeVideoSeqAccess().getLEFT_BRACKETTerminalRuleCall_2()); 
+)?	otherlv_2='{' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getAlternativeVideoSeqAccess().getLeftCurlyBracketKeyword_2());
     }
 (
 (
@@ -425,9 +425,9 @@ ruleAlternativeVideoSeq returns [EObject current=null]
 	    }
 
 )
-)+this_RIGHT_BRACKET_4=RULE_RIGHT_BRACKET
-    { 
-    newLeafNode(this_RIGHT_BRACKET_4, grammarAccess.getAlternativeVideoSeqAccess().getRIGHT_BRACKETTerminalRuleCall_4()); 
+)+	otherlv_4='}' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getAlternativeVideoSeqAccess().getRightCurlyBracketKeyword_4());
     }
 )
 ;
@@ -490,9 +490,9 @@ ruleVideoDescription returns [EObject current=null]
 	    }
 
 )
-)(this_LEFT_BRACKET_3=RULE_LEFT_BRACKET
-    { 
-    newLeafNode(this_LEFT_BRACKET_3, grammarAccess.getVideoDescriptionAccess().getLEFT_BRACKETTerminalRuleCall_3_0()); 
+)(	otherlv_3='{' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getVideoDescriptionAccess().getLeftCurlyBracketKeyword_3_0());
     }
 (	otherlv_4='duration' 
     {
@@ -516,11 +516,22 @@ ruleVideoDescription returns [EObject current=null]
 	    }
 
 )
-))?(	otherlv_6='probability' 
-    {
-    	newLeafNode(otherlv_6, grammarAccess.getVideoDescriptionAccess().getProbabilityKeyword_3_2_0());
-    }
+))?((
 (
+		lv_hasProba_6_0=	'probability' 
+    {
+        newLeafNode(lv_hasProba_6_0, grammarAccess.getVideoDescriptionAccess().getHasProbaProbabilityKeyword_3_2_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getVideoDescriptionRule());
+	        }
+       		setWithLastConsumed($current, "hasProba", true, "probability");
+	    }
+
+)
+)(
 (
 		lv_probability_7_0=RULE_INT
 		{
@@ -582,9 +593,9 @@ ruleVideoDescription returns [EObject current=null]
 	    }
 
 )
-))?this_RIGHT_BRACKET_12=RULE_RIGHT_BRACKET
-    { 
-    newLeafNode(this_RIGHT_BRACKET_12, grammarAccess.getVideoDescriptionAccess().getRIGHT_BRACKETTerminalRuleCall_3_5()); 
+))?	otherlv_12='}' 
+    {
+    	newLeafNode(otherlv_12, grammarAccess.getVideoDescriptionAccess().getRightCurlyBracketKeyword_3_5());
     }
 )?)
 ;
@@ -592,10 +603,6 @@ ruleVideoDescription returns [EObject current=null]
 
 
 
-
-RULE_LEFT_BRACKET : '{';
-
-RULE_RIGHT_BRACKET : '}';
 
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 

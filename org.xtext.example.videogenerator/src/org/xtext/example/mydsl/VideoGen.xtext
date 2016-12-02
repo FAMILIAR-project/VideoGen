@@ -4,12 +4,14 @@ generate videoGen "http://www.xtext.org/example/mydsl/VideoGen"
 
 VideoGeneratorModel: {VideoGeneratorModel}
 	(information=VideoGenInformation)?
-	'VideoGen' LEFT_BRACKET
+	'VideoGen' '{'
 	videoseqs+=VideoSeq+
-	RIGHT_BRACKET
+	'}'
 	;
 
-VideoGenInformation: {VideoGenInformation}
+VideoGenInformation:
+	
+	 {VideoGenInformation}
 ('@author' authorName=STRING)
 ('@version' version=STRING)?
 ('@creation' creationDate=STRING)?	
@@ -19,18 +21,17 @@ VideoSeq: MandatoryVideoSeq | OptionalVideoSeq | AlternativeVideoSeq ;
 	
 MandatoryVideoSeq : 'mandatory' description=VideoDescription;
 OptionalVideoSeq : 'optional' description=VideoDescription;
-AlternativeVideoSeq : 'alternatives' (videoid=ID)? LEFT_BRACKET videodescs+=VideoDescription+ RIGHT_BRACKET;
+AlternativeVideoSeq : 'alternatives' (videoid=ID)? '{' videodescs+=VideoDescription+ '}';
 
 VideoDescription : 'videoseq' (videoid=ID)? location=STRING
-	(LEFT_BRACKET
+	('{'
 	 ('duration' duration=INT)?
-	 ('probability' probability=INT)?
+	 (hasProba?='probability'  probability=INT)?
 	 ('size' size=INT)?
 	 ('description' description=STRING)? 
-	RIGHT_BRACKET)?
+	'}')?
 	
 ;
 
-terminal LEFT_BRACKET: '{' ; 
-terminal RIGHT_BRACKET: '}';
+
 

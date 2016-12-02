@@ -23,6 +23,7 @@ import org.xtext.example.mydsl.videoGen.VideoGenPackage;
  *   <li>{@link org.xtext.example.mydsl.videoGen.impl.VideoDescriptionImpl#getVideoid <em>Videoid</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.videoGen.impl.VideoDescriptionImpl#getLocation <em>Location</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.videoGen.impl.VideoDescriptionImpl#getDuration <em>Duration</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.videoGen.impl.VideoDescriptionImpl#isHasProba <em>Has Proba</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.videoGen.impl.VideoDescriptionImpl#getProbability <em>Probability</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.videoGen.impl.VideoDescriptionImpl#getSize <em>Size</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.videoGen.impl.VideoDescriptionImpl#getDescription <em>Description</em>}</li>
@@ -91,6 +92,26 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
    * @ordered
    */
   protected int duration = DURATION_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isHasProba() <em>Has Proba</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isHasProba()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean HAS_PROBA_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isHasProba() <em>Has Proba</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isHasProba()
+   * @generated
+   * @ordered
+   */
+  protected boolean hasProba = HAS_PROBA_EDEFAULT;
 
   /**
    * The default value of the '{@link #getProbability() <em>Probability</em>}' attribute.
@@ -247,6 +268,29 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
+  public boolean isHasProba()
+  {
+    return hasProba;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setHasProba(boolean newHasProba)
+  {
+    boolean oldHasProba = hasProba;
+    hasProba = newHasProba;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, VideoGenPackage.VIDEO_DESCRIPTION__HAS_PROBA, oldHasProba, hasProba));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public int getProbability()
   {
     return probability;
@@ -327,6 +371,8 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
         return getLocation();
       case VideoGenPackage.VIDEO_DESCRIPTION__DURATION:
         return getDuration();
+      case VideoGenPackage.VIDEO_DESCRIPTION__HAS_PROBA:
+        return isHasProba();
       case VideoGenPackage.VIDEO_DESCRIPTION__PROBABILITY:
         return getProbability();
       case VideoGenPackage.VIDEO_DESCRIPTION__SIZE:
@@ -355,6 +401,9 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
         return;
       case VideoGenPackage.VIDEO_DESCRIPTION__DURATION:
         setDuration((Integer)newValue);
+        return;
+      case VideoGenPackage.VIDEO_DESCRIPTION__HAS_PROBA:
+        setHasProba((Boolean)newValue);
         return;
       case VideoGenPackage.VIDEO_DESCRIPTION__PROBABILITY:
         setProbability((Integer)newValue);
@@ -388,6 +437,9 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
       case VideoGenPackage.VIDEO_DESCRIPTION__DURATION:
         setDuration(DURATION_EDEFAULT);
         return;
+      case VideoGenPackage.VIDEO_DESCRIPTION__HAS_PROBA:
+        setHasProba(HAS_PROBA_EDEFAULT);
+        return;
       case VideoGenPackage.VIDEO_DESCRIPTION__PROBABILITY:
         setProbability(PROBABILITY_EDEFAULT);
         return;
@@ -417,6 +469,8 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
         return LOCATION_EDEFAULT == null ? location != null : !LOCATION_EDEFAULT.equals(location);
       case VideoGenPackage.VIDEO_DESCRIPTION__DURATION:
         return duration != DURATION_EDEFAULT;
+      case VideoGenPackage.VIDEO_DESCRIPTION__HAS_PROBA:
+        return hasProba != HAS_PROBA_EDEFAULT;
       case VideoGenPackage.VIDEO_DESCRIPTION__PROBABILITY:
         return probability != PROBABILITY_EDEFAULT;
       case VideoGenPackage.VIDEO_DESCRIPTION__SIZE:
@@ -444,6 +498,8 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
     result.append(location);
     result.append(", duration: ");
     result.append(duration);
+    result.append(", hasProba: ");
+    result.append(hasProba);
     result.append(", probability: ");
     result.append(probability);
     result.append(", size: ");

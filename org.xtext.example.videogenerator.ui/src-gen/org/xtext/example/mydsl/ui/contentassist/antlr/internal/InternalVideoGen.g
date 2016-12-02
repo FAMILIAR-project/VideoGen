@@ -392,9 +392,11 @@ rule__VideoGeneratorModel__Group__3__Impl
     }
 :
 (
-{ before(grammarAccess.getVideoGeneratorModelAccess().getLEFT_BRACKETTerminalRuleCall_3()); }
-	RULE_LEFT_BRACKET
-{ after(grammarAccess.getVideoGeneratorModelAccess().getLEFT_BRACKETTerminalRuleCall_3()); }
+{ before(grammarAccess.getVideoGeneratorModelAccess().getLeftCurlyBracketKeyword_3()); }
+
+	'{' 
+
+{ after(grammarAccess.getVideoGeneratorModelAccess().getLeftCurlyBracketKeyword_3()); }
 )
 
 ;
@@ -456,9 +458,11 @@ rule__VideoGeneratorModel__Group__5__Impl
     }
 :
 (
-{ before(grammarAccess.getVideoGeneratorModelAccess().getRIGHT_BRACKETTerminalRuleCall_5()); }
-	RULE_RIGHT_BRACKET
-{ after(grammarAccess.getVideoGeneratorModelAccess().getRIGHT_BRACKETTerminalRuleCall_5()); }
+{ before(grammarAccess.getVideoGeneratorModelAccess().getRightCurlyBracketKeyword_5()); }
+
+	'}' 
+
+{ after(grammarAccess.getVideoGeneratorModelAccess().getRightCurlyBracketKeyword_5()); }
 )
 
 ;
@@ -997,9 +1001,11 @@ rule__AlternativeVideoSeq__Group__2__Impl
     }
 :
 (
-{ before(grammarAccess.getAlternativeVideoSeqAccess().getLEFT_BRACKETTerminalRuleCall_2()); }
-	RULE_LEFT_BRACKET
-{ after(grammarAccess.getAlternativeVideoSeqAccess().getLEFT_BRACKETTerminalRuleCall_2()); }
+{ before(grammarAccess.getAlternativeVideoSeqAccess().getLeftCurlyBracketKeyword_2()); }
+
+	'{' 
+
+{ after(grammarAccess.getAlternativeVideoSeqAccess().getLeftCurlyBracketKeyword_2()); }
 )
 
 ;
@@ -1061,9 +1067,11 @@ rule__AlternativeVideoSeq__Group__4__Impl
     }
 :
 (
-{ before(grammarAccess.getAlternativeVideoSeqAccess().getRIGHT_BRACKETTerminalRuleCall_4()); }
-	RULE_RIGHT_BRACKET
-{ after(grammarAccess.getAlternativeVideoSeqAccess().getRIGHT_BRACKETTerminalRuleCall_4()); }
+{ before(grammarAccess.getAlternativeVideoSeqAccess().getRightCurlyBracketKeyword_4()); }
+
+	'}' 
+
+{ after(grammarAccess.getAlternativeVideoSeqAccess().getRightCurlyBracketKeyword_4()); }
 )
 
 ;
@@ -1225,9 +1233,11 @@ rule__VideoDescription__Group_3__0__Impl
     }
 :
 (
-{ before(grammarAccess.getVideoDescriptionAccess().getLEFT_BRACKETTerminalRuleCall_3_0()); }
-	RULE_LEFT_BRACKET
-{ after(grammarAccess.getVideoDescriptionAccess().getLEFT_BRACKETTerminalRuleCall_3_0()); }
+{ before(grammarAccess.getVideoDescriptionAccess().getLeftCurlyBracketKeyword_3_0()); }
+
+	'{' 
+
+{ after(grammarAccess.getVideoDescriptionAccess().getLeftCurlyBracketKeyword_3_0()); }
 )
 
 ;
@@ -1369,9 +1379,11 @@ rule__VideoDescription__Group_3__5__Impl
     }
 :
 (
-{ before(grammarAccess.getVideoDescriptionAccess().getRIGHT_BRACKETTerminalRuleCall_3_5()); }
-	RULE_RIGHT_BRACKET
-{ after(grammarAccess.getVideoDescriptionAccess().getRIGHT_BRACKETTerminalRuleCall_3_5()); }
+{ before(grammarAccess.getVideoDescriptionAccess().getRightCurlyBracketKeyword_3_5()); }
+
+	'}' 
+
+{ after(grammarAccess.getVideoDescriptionAccess().getRightCurlyBracketKeyword_3_5()); }
 )
 
 ;
@@ -1473,11 +1485,9 @@ rule__VideoDescription__Group_3_2__0__Impl
     }
 :
 (
-{ before(grammarAccess.getVideoDescriptionAccess().getProbabilityKeyword_3_2_0()); }
-
-	'probability' 
-
-{ after(grammarAccess.getVideoDescriptionAccess().getProbabilityKeyword_3_2_0()); }
+{ before(grammarAccess.getVideoDescriptionAccess().getHasProbaAssignment_3_2_0()); }
+(rule__VideoDescription__HasProbaAssignment_3_2_0)
+{ after(grammarAccess.getVideoDescriptionAccess().getHasProbaAssignment_3_2_0()); }
 )
 
 ;
@@ -1825,6 +1835,29 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+rule__VideoDescription__HasProbaAssignment_3_2_0
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getVideoDescriptionAccess().getHasProbaProbabilityKeyword_3_2_0_0()); }
+(
+{ before(grammarAccess.getVideoDescriptionAccess().getHasProbaProbabilityKeyword_3_2_0_0()); }
+
+	'probability' 
+
+{ after(grammarAccess.getVideoDescriptionAccess().getHasProbaProbabilityKeyword_3_2_0_0()); }
+)
+
+{ after(grammarAccess.getVideoDescriptionAccess().getHasProbaProbabilityKeyword_3_2_0_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 rule__VideoDescription__ProbabilityAssignment_3_2_1
     @init {
 		int stackSize = keepStackSize();
@@ -1870,10 +1903,6 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-
-RULE_LEFT_BRACKET : '{';
-
-RULE_RIGHT_BRACKET : '}';
 
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 
