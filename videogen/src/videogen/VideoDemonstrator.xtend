@@ -64,12 +64,19 @@ class VideoDemonstrator {
 	}
 	
 	@Test
-	def testFile(){
-		val f =  new FileWriter("f.txt")
+	def void generer(){
+		var videoGen = loadVideoGenerator(URI.createURI("foo3.videogen")) 
+		assertNotNull(videoGen)
+		assertEquals(4, videoGen.videoseqs.size)	
+		val generatedFile = new FileWriter("result.txt")
+		modelToText(videoGen,generatedFile)
+		
+	}
+	
+	def void modelToText(VideoGeneratorModel videoGen, FileWriter file){
 		println ('This is a comment')
-		f.write('This is a comment\n')
-		// loading
-		var videoGen = loadVideoGenerator(URI.createURI("foo3.videogen")) 			
+		file.write('This is a comment\n')
+		// loading 			
 		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
 		videoGen.videoseqs.forEach[videoseq | 
 			if (videoseq instanceof MandatoryVideoSeq) {
@@ -77,9 +84,8 @@ class VideoDemonstrator {
 
 				if(!desc.videoid.isNullOrEmpty){
 					desc.videoid = genID()
-					//chaine.toString.concat("file " + genID());
 					println("file "  + "'"+ desc.location+"'")
-					f.write("file "  + "'"+ desc.location+"'\n")
+					file.write("file "  + "'"+ desc.location+"'\n")
 				}  
 				
 				  				
@@ -88,9 +94,8 @@ class VideoDemonstrator {
 				val desc = (videoseq as OptionalVideoSeq).description
 				if(!desc.videoid.isNullOrEmpty){
 					desc.videoid = genID() 
-					//chaine.toString.concat("file " + genID());
 					println("file "  + "'"+ desc.location+"'")
-					f.write("file "  + "'"+ desc.location+"'\n")
+					file.write("file "  + "'"+ desc.location+"'\n")
 				} 
 			}
 			else {
@@ -101,7 +106,7 @@ class VideoDemonstrator {
 					if(!vdesc.videoid.isNullOrEmpty){
 					 vdesc.videoid = genID()
 					println("file " + "'"+ vdesc.location+"'")
-					f.write("file "  + "'"+ vdesc.location+"'\n")
+					file.write("file "  + "'"+ vdesc.location+"'\n")
 				}
 			}
 		]
@@ -109,16 +114,9 @@ class VideoDemonstrator {
 	saveVideoGenerator(URI.createURI("Fichier3bis.xmi"), videoGen)
 	saveVideoGenerator(URI.createURI("Fichier3bis.videogen"), videoGen)
 		
-	//printToHTML(videoGen)
-	viewer(videoGen)
-	f.close
-		 
+	file.close
 	}
 	
-	def void viewer(VideoGeneratorModel videoGen){
-		print ("This is an example F3")
-		
-	}
 	def void printToHTML(VideoGeneratorModel videoGen) {
 		//var numSeq = 1
 		println("<ul>")
