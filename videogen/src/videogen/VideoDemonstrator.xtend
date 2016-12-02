@@ -1,6 +1,9 @@
 package videogen
 
+import java.io.File
+import java.io.PrintWriter
 import java.util.HashMap
+import java.util.Random
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
@@ -58,6 +61,36 @@ class VideoDemonstrator {
 	printToHTML(videoGen)
 		 
 			
+	}
+	
+	@Test
+	def testQ1() {
+		// loading
+		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
+		assertNotNull(videoGen)
+		assertEquals(7, videoGen.videoseqs.size)
+		val pw = new PrintWriter(new File("foo1.txt"))
+		pw.println("#Ceci est un commentaire")
+					
+		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
+		videoGen.videoseqs.forEach[videoseq | 
+			if (videoseq instanceof MandatoryVideoSeq) {
+				val desc = (videoseq as MandatoryVideoSeq).description
+				pw.println("file " + desc.location);
+			}
+			else if (videoseq instanceof OptionalVideoSeq) {
+				val desc = (videoseq as OptionalVideoSeq).description
+				var coin = new Random().nextInt(1)
+				if(coin == 1) pw.println("file " + desc.location)
+			}
+			else {
+				val altvid = (videoseq as AlternativeVideoSeq)
+				var coin = new Random().nextInt(altvid.videodescs.size)
+				var desc = altvid.videodescs.get(coin)
+				pw.println("file " + desc.location)
+			}
+		]
+		pw.close();
 	}
 	
 	def void printToHTML(VideoGeneratorModel videoGen) {
