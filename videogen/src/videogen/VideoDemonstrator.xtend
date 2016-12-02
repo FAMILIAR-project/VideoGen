@@ -116,6 +116,7 @@ class VideoDemonstrator {
 	}
 	
 	def void viewer(VideoGeneratorModel videoGen){
+		print ("ok")
 		
 	}
 	def void printToHTML(VideoGeneratorModel videoGen) {
