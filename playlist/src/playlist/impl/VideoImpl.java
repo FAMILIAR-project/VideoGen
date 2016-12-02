@@ -22,6 +22,7 @@ import playlist.Video;
  * <ul>
  *   <li>{@link playlist.impl.VideoImpl#getUrl <em>Url</em>}</li>
  *   <li>{@link playlist.impl.VideoImpl#getDuration <em>Duration</em>}</li>
+ *   <li>{@link playlist.impl.VideoImpl#getThumbnail <em>Thumbnail</em>}</li>
  * </ul>
  *
  * @generated
@@ -66,6 +67,26 @@ public class VideoImpl extends MinimalEObjectImpl.Container implements Video {
 	 * @ordered
 	 */
 	protected Integer duration = DURATION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getThumbnail() <em>Thumbnail</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getThumbnail()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String THUMBNAIL_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getThumbnail() <em>Thumbnail</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getThumbnail()
+	 * @generated
+	 * @ordered
+	 */
+	protected String thumbnail = THUMBNAIL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -133,6 +154,27 @@ public class VideoImpl extends MinimalEObjectImpl.Container implements Video {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getThumbnail() {
+		return thumbnail;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setThumbnail(String newThumbnail) {
+		String oldThumbnail = thumbnail;
+		thumbnail = newThumbnail;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PlaylistPackage.VIDEO__THUMBNAIL, oldThumbnail, thumbnail));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -140,6 +182,8 @@ public class VideoImpl extends MinimalEObjectImpl.Container implements Video {
 				return getUrl();
 			case PlaylistPackage.VIDEO__DURATION:
 				return getDuration();
+			case PlaylistPackage.VIDEO__THUMBNAIL:
+				return getThumbnail();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -157,6 +201,9 @@ public class VideoImpl extends MinimalEObjectImpl.Container implements Video {
 				return;
 			case PlaylistPackage.VIDEO__DURATION:
 				setDuration((Integer)newValue);
+				return;
+			case PlaylistPackage.VIDEO__THUMBNAIL:
+				setThumbnail((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -176,6 +223,9 @@ public class VideoImpl extends MinimalEObjectImpl.Container implements Video {
 			case PlaylistPackage.VIDEO__DURATION:
 				setDuration(DURATION_EDEFAULT);
 				return;
+			case PlaylistPackage.VIDEO__THUMBNAIL:
+				setThumbnail(THUMBNAIL_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -192,6 +242,8 @@ public class VideoImpl extends MinimalEObjectImpl.Container implements Video {
 				return URL_EDEFAULT == null ? url != null : !URL_EDEFAULT.equals(url);
 			case PlaylistPackage.VIDEO__DURATION:
 				return DURATION_EDEFAULT == null ? duration != null : !DURATION_EDEFAULT.equals(duration);
+			case PlaylistPackage.VIDEO__THUMBNAIL:
+				return THUMBNAIL_EDEFAULT == null ? thumbnail != null : !THUMBNAIL_EDEFAULT.equals(thumbnail);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -210,6 +262,8 @@ public class VideoImpl extends MinimalEObjectImpl.Container implements Video {
 		result.append(url);
 		result.append(", duration: ");
 		result.append(duration);
+		result.append(", thumbnail: ");
+		result.append(thumbnail);
 		result.append(')');
 		return result.toString();
 	}

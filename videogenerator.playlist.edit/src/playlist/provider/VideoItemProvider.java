@@ -62,6 +62,7 @@ public class VideoItemProvider
 
 			addUrlPropertyDescriptor(object);
 			addDurationPropertyDescriptor(object);
+			addThumbnailPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -111,6 +112,28 @@ public class VideoItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Thumbnail feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addThumbnailPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Video_thumbnail_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Video_thumbnail_feature", "_UI_Video_type"),
+				 PlaylistPackage.Literals.VIDEO__THUMBNAIL,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns Video.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -150,6 +173,7 @@ public class VideoItemProvider
 		switch (notification.getFeatureID(Video.class)) {
 			case PlaylistPackage.VIDEO__URL:
 			case PlaylistPackage.VIDEO__DURATION:
+			case PlaylistPackage.VIDEO__THUMBNAIL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

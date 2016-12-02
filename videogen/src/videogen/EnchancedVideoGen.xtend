@@ -44,6 +44,7 @@ class EnchancedVideoGen {
 				} else {
 					mediafile.duration = videoseq.description.duration
 				}
+				mediafile.thumbnail = extractThumbnail(videoseq.description.location, videoseq.description.videoid)
 				playlist.videos.add(mediafile)
 			}
 			if (videoseq instanceof OptionalVideoSeq) {
@@ -55,6 +56,8 @@ class EnchancedVideoGen {
 					} else {
 						mediafile.duration = videoseq.description.duration
 					}
+									mediafile.thumbnail = extractThumbnail(videoseq.description.location, videoseq.description.videoid)
+					
 					playlist.videos.add(mediafile)
 				}
 			}
@@ -68,6 +71,7 @@ class EnchancedVideoGen {
 				} else {
 					mediafile.duration = listAlt.get(quicesera).duration
 				}
+				mediafile.thumbnail = extractThumbnail(listAlt.get(quicesera).location, listAlt.get(quicesera).videoid)
 				playlist.videos.add(mediafile)
 			}
 		]
@@ -82,14 +86,25 @@ class EnchancedVideoGen {
 	def static extractDuration(String location) {
 		val cmd = "ffprobe -v error -select_streams v:0 -show_entries stream=duration -of " +
 			"default=noprint_wrappers=1:nokey=1 %s"
-			
-		val checkCmd = String.format(cmd, location)
 
+		val checkCmd = String.format(cmd, location)
 		val process = Runtime.runtime.exec(String.format(checkCmd, location))
 		process.waitFor
 		val in = new BufferedReader(new InputStreamReader(process.getInputStream()))
 		val value = in.readLine
 		return Double::parseDouble(value)
+	}
+
+	def static extractThumbnail(String location, String name) {
+		var cmd = "ffmpeg -i %s -ss 00:00:01.000 -vframes 1 " + "thumbnails/%s.jpg -y"
+		cmd = String.format(cmd, location, name)
+		if(!Files.exists(Paths.get("thumbnails")))
+		{
+			Files.createDirectory(Paths.get("thumbnails"))
+		}
+		val process = Runtime.runtime.exec(String.format(cmd, location))
+		process.waitFor
+		return String.format("thumbnails/%s", name)
 	}
 
 }

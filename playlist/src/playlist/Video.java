@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link playlist.Video#getUrl <em>Url</em>}</li>
  *   <li>{@link playlist.Video#getDuration <em>Duration</em>}</li>
+ *   <li>{@link playlist.Video#getThumbnail <em>Thumbnail</em>}</li>
  * </ul>
  *
  * @see playlist.PlaylistPackage#getVideo()
@@ -73,5 +74,31 @@ public interface Video extends EObject {
 	 * @generated
 	 */
 	void setDuration(Integer value);
+
+	/**
+	 * Returns the value of the '<em><b>Thumbnail</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Thumbnail</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Thumbnail</em>' attribute.
+	 * @see #setThumbnail(String)
+	 * @see playlist.PlaylistPackage#getVideo_Thumbnail()
+	 * @model
+	 * @generated
+	 */
+	String getThumbnail();
+
+	/**
+	 * Sets the value of the '{@link playlist.Video#getThumbnail <em>Thumbnail</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Thumbnail</em>' attribute.
+	 * @see #getThumbnail()
+	 * @generated
+	 */
+	void setThumbnail(String value);
 
 } // Video

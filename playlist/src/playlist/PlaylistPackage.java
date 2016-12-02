@@ -122,13 +122,22 @@ public interface PlaylistPackage extends EPackage {
 	int VIDEO__DURATION = 1;
 
 	/**
+	 * The feature id for the '<em><b>Thumbnail</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIDEO__THUMBNAIL = 2;
+
+	/**
 	 * The number of structural features of the '<em>Video</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VIDEO_FEATURE_COUNT = 2;
+	int VIDEO_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Video</em>' class.
@@ -192,6 +201,17 @@ public interface PlaylistPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getVideo_Duration();
+
+	/**
+	 * Returns the meta object for the attribute '{@link playlist.Video#getThumbnail <em>Thumbnail</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Thumbnail</em>'.
+	 * @see playlist.Video#getThumbnail()
+	 * @see #getVideo()
+	 * @generated
+	 */
+	EAttribute getVideo_Thumbnail();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -259,6 +279,14 @@ public interface PlaylistPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute VIDEO__DURATION = eINSTANCE.getVideo_Duration();
+
+		/**
+		 * The meta object literal for the '<em><b>Thumbnail</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VIDEO__THUMBNAIL = eINSTANCE.getVideo_Thumbnail();
 
 	}
 
