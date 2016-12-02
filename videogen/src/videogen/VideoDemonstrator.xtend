@@ -17,7 +17,6 @@ import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 
 import static org.junit.Assert.*
-import javafx.scene.media.MediaPlayer
 
 class VideoDemonstrator {
 	
