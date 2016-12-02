@@ -1,0 +1,9 @@
+grammar org.xtext.example.mydsl.Playlist with org.eclipse.xtext.common.Terminals
+
+generate playlist "http://www.xtext.org/example/mydsl/Playlist"
+
+Playlist:
+	vids+=MediaFile*;
+	
+MediaFile:
+	location=STRING;
