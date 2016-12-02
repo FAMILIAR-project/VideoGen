@@ -62,27 +62,25 @@ class VideoDemonstrator {
 	saveVideoGenerator(URI.createURI("foo2bis.videogen"), videoGen)
 		
 	printToHTML(videoGen)
-		 
-			
 	}
 	
 	@Test
 	def void modelToTextToFile(){
-		var videoGen = loadVideoGenerator(URI.createURI("foo3.videogen")) 
+		val filename = "foo3"
+		var videoGen = loadVideoGenerator(URI.createURI(filename + ".videogen")) 
 		assertNotNull(videoGen)
-		val generatedFile = new FileWriter("result.txt")
+		val generatedFile = new FileWriter(filename + ".txt")
 		assertNotNull(generatedFile)
 		modelToText(videoGen,generatedFile)
-		
 	}
 	
 		
 	@Test
 	def void modelToModelToFile(){
-		var videoGen = loadVideoGenerator(URI.createURI("foo3.videogen")) 
+		val filename = "foo3"
+		var videoGen = loadVideoGenerator(URI.createURI(filename + ".videogen")) 
 		assertNotNull(videoGen)
-		val FileWriter f = new FileWriter("videogen.m3u");
-		modelToModel(videoGen,f)
+		modelToModel(videoGen, filename);
 		
 	}
 	
@@ -132,7 +130,7 @@ class VideoDemonstrator {
 	file.close
 	}
 	
-	def void modelToModel(VideoGeneratorModel videoGen, FileWriter file){
+	def void modelToModel(VideoGeneratorModel videoGen, String filename){
 		val playlist = PlaylistFactory.eINSTANCE.createPlaylist();
 		val r = new Random();
 		
@@ -183,15 +181,25 @@ class VideoDemonstrator {
 	saveVideoGenerator(URI.createURI("Fichier3bis.xmi"), videoGen)
 	saveVideoGenerator(URI.createURI("Fichier3bis.videogen"), videoGen)
 	
-	convertPlaylistIntoFormat(playlist,"M3U", file)
+	convertPlaylistIntoFormat(playlist,filename, ".m3u")
 		
 	}
 	
-	def void convertPlaylistIntoFormat(Playlist playlist, String format, FileWriter f){
-		for (i : playlist.getVids().size >.. 0) {
-			val element = playlist.getVids().get(i)
-			f.write(element.location + "\n")
-		}	
+	def void convertPlaylistIntoFormat(Playlist playlist,String filename, String format){
+		
+		val FileWriter f = new FileWriter(filename + format)
+		if(format.equals(".m3u")){
+			for (i : playlist.getVids().size >.. 0) {
+				val element = playlist.getVids().get(i)
+				f.write(element.location + "\n")
+			}	
+		}
+		if(format.equals(".txt")){
+			for (i : playlist.getVids().size >.. 0) {
+				val element = playlist.getVids().get(i)
+				f.write("file '" + element.location+"'" + "\n")
+			}	
+		}
 		f.close()
 	}
 	
