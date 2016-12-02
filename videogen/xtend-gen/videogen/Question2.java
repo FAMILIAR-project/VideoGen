@@ -22,7 +22,7 @@ import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 import org.xtext.example.mydsl.videoGen.VideoSeq;
 
 @SuppressWarnings("all")
-public class Question1 {
+public class Question2 {
   public static VideoGeneratorModel loadVideoGenerator(final URI uri) {
     VideoGeneratorModel _xblockexpression = null;
     {
@@ -52,12 +52,12 @@ public class Question1 {
   
   public static void main(final String[] args) {
     try {
-      URI _createURI = URI.createURI("foo2.videogen");
-      VideoGeneratorModel videoGen = Question1.loadVideoGenerator(_createURI);
+      URI _createURI = URI.createURI("mastaconcat.videogen");
+      VideoGeneratorModel videoGen = Question2.loadVideoGenerator(_createURI);
       final ArrayList<String> list = new ArrayList<String>();
       final Random rand = new Random();
-      final String entry = "file \'%s\'";
-      final String cmd = "ffmpeg -y -f concat -i params.txt -c copy result.mp4";
+      final String entry = "%s";
+      final String cmd = "vlc play.m3u";
       EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
       final Consumer<VideoSeq> _function = (VideoSeq videoseq) -> {
         if ((videoseq instanceof MandatoryVideoSeq)) {
@@ -87,7 +87,7 @@ public class Question1 {
         }
       };
       _videoseqs.forEach(_function);
-      Path _get = Paths.get("params.txt");
+      Path _get = Paths.get("play.m3u");
       Files.write(_get, list);
       Runtime _runtime = Runtime.getRuntime();
       _runtime.exec(cmd);

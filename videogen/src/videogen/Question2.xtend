@@ -1,22 +1,20 @@
 package videogen
 
-import org.eclipse.emf.common.util.URI
-import java.util.HashMap
-import java.util.Random
-import org.eclipse.emf.ecore.resource.Resource
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
+import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.resource.Resource
+import java.util.HashMap
 import java.util.ArrayList
+import java.util.Random
 import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq
 import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq
-import java.util.stream.Stream
 import java.nio.file.Files
 import java.nio.file.Paths
 
-class Question1 {
-	
+class Question2 {
 	def static loadVideoGenerator(URI uri) {
 		new VideoGenStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()
 		var res = new ResourceSetImpl().getResource(uri, true);
@@ -31,11 +29,11 @@ class Question1 {
 	
 	def static main(String[] args)
 	{
-		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen"))
+		var videoGen = loadVideoGenerator(URI.createURI("mastaconcat.videogen"))
 		val list = new ArrayList()
 		val rand = new Random()
-		val entry = "file '%s'"
-		val cmd = "ffmpeg -y -f concat -i params.txt -c copy result.mp4"
+		val entry = "%s"
+		val cmd = "vlc play.m3u"
 		videoGen.videoseqs.forEach[videoseq|
 			if(videoseq instanceof MandatoryVideoSeq)
 			{
@@ -56,9 +54,8 @@ class Question1 {
 			}
 		
 		]
-		Files.write(Paths.get("params.txt"), list)
+		Files.write(Paths.get("play.m3u"), list)
 		Runtime.runtime.exec(cmd)
 		return
 	}
-	
 }
