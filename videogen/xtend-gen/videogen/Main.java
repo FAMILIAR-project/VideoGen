@@ -9,5 +9,6 @@ public class Main {
     final transformModelToText vv = new transformModelToText();
     Playlist playlist = vv.playlist();
     vv.transformationPlaylistToFileM3U(playlist);
+    vv.transformationPlaylistToFileffmpeg(playlist);
   }
 }

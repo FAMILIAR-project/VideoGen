@@ -11,7 +11,10 @@ class Main {
 //		Q2
 		var playlist = vv.playlist()
 		vv.transformationPlaylistToFileM3U(playlist)
-		
+//		Q4
+		vv.transformationPlaylistToFileffmpeg(playlist)
+//		Q5
+
 	}
 	
 }
