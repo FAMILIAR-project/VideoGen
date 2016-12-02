@@ -153,4 +153,20 @@ public class transformModelToText {
       throw Exceptions.sneakyThrow(_e);
     }
   }
+  
+  public void transformationPlaylistToFileffmpeg(final Playlist playlist) {
+    try {
+      final PrintWriter writer = new PrintWriter("result.ffmpeg");
+      EList<MediaFile> _videos = playlist.getVideos();
+      for (final MediaFile element : _videos) {
+        String _location = element.getLocation();
+        String _plus = ("file " + _location);
+        String _plus_1 = (_plus + "\n");
+        writer.write(_plus_1);
+      }
+      writer.close();
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
 }

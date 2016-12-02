@@ -120,4 +120,13 @@ class transformModelToText {
 		writer.close()
 	}
 	
+	def transformationPlaylistToFileffmpeg(Playlist playlist){
+		//ecrire dans un fichier
+		val writer=new PrintWriter("result.ffmpeg")
+		for(element : playlist.videos)
+			writer.write("file "+element.location+"\n")
+			
+		writer.close()
+	}
+	
 }
