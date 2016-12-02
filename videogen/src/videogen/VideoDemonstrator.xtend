@@ -116,7 +116,7 @@ class VideoDemonstrator {
 	}
 	
 	def void viewer(VideoGeneratorModel videoGen){
-		print ("This is an example")
+		print ("This is an example F3")
 		
 	}
 	def void printToHTML(VideoGeneratorModel videoGen) {
