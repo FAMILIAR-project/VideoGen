@@ -137,6 +137,15 @@ public class PlaylistPackageImpl extends EPackageImpl implements PlaylistPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getVideo_Duration() {
+		return (EAttribute)videoEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public PlaylistFactory getPlaylistFactory() {
 		return (PlaylistFactory)getEFactoryInstance();
 	}
@@ -165,6 +174,7 @@ public class PlaylistPackageImpl extends EPackageImpl implements PlaylistPackage
 
 		videoEClass = createEClass(VIDEO);
 		createEAttribute(videoEClass, VIDEO__URL);
+		createEAttribute(videoEClass, VIDEO__DURATION);
 	}
 
 	/**
@@ -202,6 +212,7 @@ public class PlaylistPackageImpl extends EPackageImpl implements PlaylistPackage
 
 		initEClass(videoEClass, Video.class, "Video", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getVideo_Url(), ecorePackage.getEString(), "url", null, 0, 1, Video.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getVideo_Duration(), ecorePackage.getEString(), "duration", null, 0, 1, Video.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

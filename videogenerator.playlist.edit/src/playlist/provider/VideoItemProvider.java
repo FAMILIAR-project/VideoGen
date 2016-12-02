@@ -61,6 +61,7 @@ public class VideoItemProvider
 			super.getPropertyDescriptors(object);
 
 			addUrlPropertyDescriptor(object);
+			addDurationPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -79,6 +80,28 @@ public class VideoItemProvider
 				 getString("_UI_Video_url_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Video_url_feature", "_UI_Video_type"),
 				 PlaylistPackage.Literals.VIDEO__URL,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Duration feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDurationPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Video_duration_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Video_duration_feature", "_UI_Video_type"),
+				 PlaylistPackage.Literals.VIDEO__DURATION,
 				 true,
 				 false,
 				 false,
@@ -126,6 +149,7 @@ public class VideoItemProvider
 
 		switch (notification.getFeatureID(Video.class)) {
 			case PlaylistPackage.VIDEO__URL:
+			case PlaylistPackage.VIDEO__DURATION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

@@ -113,13 +113,22 @@ public interface PlaylistPackage extends EPackage {
 	int VIDEO__URL = 0;
 
 	/**
+	 * The feature id for the '<em><b>Duration</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIDEO__DURATION = 1;
+
+	/**
 	 * The number of structural features of the '<em>Video</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VIDEO_FEATURE_COUNT = 1;
+	int VIDEO_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Video</em>' class.
@@ -172,6 +181,17 @@ public interface PlaylistPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getVideo_Url();
+
+	/**
+	 * Returns the meta object for the attribute '{@link playlist.Video#getDuration <em>Duration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Duration</em>'.
+	 * @see playlist.Video#getDuration()
+	 * @see #getVideo()
+	 * @generated
+	 */
+	EAttribute getVideo_Duration();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -231,6 +251,14 @@ public interface PlaylistPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute VIDEO__URL = eINSTANCE.getVideo_Url();
+
+		/**
+		 * The meta object literal for the '<em><b>Duration</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VIDEO__DURATION = eINSTANCE.getVideo_Duration();
 
 	}
 

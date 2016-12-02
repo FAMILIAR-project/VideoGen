@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link playlist.Video#getUrl <em>Url</em>}</li>
+ *   <li>{@link playlist.Video#getDuration <em>Duration</em>}</li>
  * </ul>
  *
  * @see playlist.PlaylistPackage#getVideo()
@@ -46,5 +47,31 @@ public interface Video extends EObject {
 	 * @generated
 	 */
 	void setUrl(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Duration</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Duration</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Duration</em>' attribute.
+	 * @see #setDuration(String)
+	 * @see playlist.PlaylistPackage#getVideo_Duration()
+	 * @model
+	 * @generated
+	 */
+	String getDuration();
+
+	/**
+	 * Sets the value of the '{@link playlist.Video#getDuration <em>Duration</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Duration</em>' attribute.
+	 * @see #getDuration()
+	 * @generated
+	 */
+	void setDuration(String value);
 
 } // Video

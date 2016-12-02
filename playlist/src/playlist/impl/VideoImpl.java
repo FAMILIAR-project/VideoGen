@@ -21,6 +21,7 @@ import playlist.Video;
  * </p>
  * <ul>
  *   <li>{@link playlist.impl.VideoImpl#getUrl <em>Url</em>}</li>
+ *   <li>{@link playlist.impl.VideoImpl#getDuration <em>Duration</em>}</li>
  * </ul>
  *
  * @generated
@@ -45,6 +46,26 @@ public class VideoImpl extends MinimalEObjectImpl.Container implements Video {
 	 * @ordered
 	 */
 	protected String url = URL_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDuration() <em>Duration</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDuration()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DURATION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDuration() <em>Duration</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDuration()
+	 * @generated
+	 * @ordered
+	 */
+	protected String duration = DURATION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -91,11 +112,34 @@ public class VideoImpl extends MinimalEObjectImpl.Container implements Video {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getDuration() {
+		return duration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDuration(String newDuration) {
+		String oldDuration = duration;
+		duration = newDuration;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PlaylistPackage.VIDEO__DURATION, oldDuration, duration));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case PlaylistPackage.VIDEO__URL:
 				return getUrl();
+			case PlaylistPackage.VIDEO__DURATION:
+				return getDuration();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -110,6 +154,9 @@ public class VideoImpl extends MinimalEObjectImpl.Container implements Video {
 		switch (featureID) {
 			case PlaylistPackage.VIDEO__URL:
 				setUrl((String)newValue);
+				return;
+			case PlaylistPackage.VIDEO__DURATION:
+				setDuration((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -126,6 +173,9 @@ public class VideoImpl extends MinimalEObjectImpl.Container implements Video {
 			case PlaylistPackage.VIDEO__URL:
 				setUrl(URL_EDEFAULT);
 				return;
+			case PlaylistPackage.VIDEO__DURATION:
+				setDuration(DURATION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -140,6 +190,8 @@ public class VideoImpl extends MinimalEObjectImpl.Container implements Video {
 		switch (featureID) {
 			case PlaylistPackage.VIDEO__URL:
 				return URL_EDEFAULT == null ? url != null : !URL_EDEFAULT.equals(url);
+			case PlaylistPackage.VIDEO__DURATION:
+				return DURATION_EDEFAULT == null ? duration != null : !DURATION_EDEFAULT.equals(duration);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -156,6 +208,8 @@ public class VideoImpl extends MinimalEObjectImpl.Container implements Video {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (url: ");
 		result.append(url);
+		result.append(", duration: ");
+		result.append(duration);
 		result.append(')');
 		return result.toString();
 	}
