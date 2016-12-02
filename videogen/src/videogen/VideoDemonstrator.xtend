@@ -1,19 +1,23 @@
 package videogen
 
+import java.io.FileWriter
 import java.util.HashMap
+import java.util.Random
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.junit.Test
 import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated
+import org.xtext.example.mydsl.playlist.MediaFile
+import org.xtext.example.mydsl.playlist.Playlist
+import org.xtext.example.mydsl.playlist.PlaylistFactory
 import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq
 import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq
 import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 
 import static org.junit.Assert.*
-import java.util.Random
-import java.io.FileWriter
+import javafx.scene.media.MediaPlayer
 
 class VideoDemonstrator {
 	
@@ -117,6 +121,71 @@ class VideoDemonstrator {
 		
 	file.close
 	}
+	
+	def void ModelToModel(VideoGeneratorModel videoGen){
+		val playlist = PlaylistFactory.eINSTANCE.createPlaylist();
+		val r = new Random();
+		
+		println ('This is a comment')
+		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
+		videoGen.videoseqs.forEach[videoseq | 
+			if (videoseq instanceof MandatoryVideoSeq) {
+				val desc = (videoseq as MandatoryVideoSeq).description
+
+				if(!desc.videoid.isNullOrEmpty){
+					desc.videoid = genID()
+					println("file "  + "'"+ desc.location+"'")
+					val MediaFile mediaFile = PlaylistFactory.eINSTANCE.createMediaFile
+					mediaFile.location = desc.location
+					playlist.getVids().add(mediaFile)
+				}  
+				
+				
+				  				
+			}
+			else if (videoseq instanceof OptionalVideoSeq) {
+				val desc = (videoseq as OptionalVideoSeq).description
+				if(!desc.videoid.isNullOrEmpty){
+					if(r.nextBoolean()){
+						desc.videoid = genID() 
+						println("file "  + "'"+ desc.location+"'")
+						val MediaFile mediaFile = PlaylistFactory.eINSTANCE.createMediaFile
+						mediaFile.location = desc.location
+						playlist.getVids().add(mediaFile)
+					}
+				} 
+			}
+			else {
+				val altvid = (videoseq as AlternativeVideoSeq)
+				if(altvid.videoid.isNullOrEmpty) altvid.videoid = genID()
+					val vdesc = altvid.videodescs.get(r.nextInt(altvid.videodescs.size));
+					if(!vdesc.videoid.isNullOrEmpty){
+					 vdesc.videoid = genID()
+					println("file " + "'"+ vdesc.location+"'")
+					val MediaFile mediaFile = PlaylistFactory.eINSTANCE.createMediaFile
+					mediaFile.location = vdesc.location
+					playlist.getVids().add(mediaFile)
+					
+				}
+			}
+		]
+	// serializing
+	saveVideoGenerator(URI.createURI("Fichier3bis.xmi"), videoGen)
+	saveVideoGenerator(URI.createURI("Fichier3bis.videogen"), videoGen)
+	
+	convertPlaylistIntoFormat(playlist,"M3U")
+		
+	}
+	
+	@Test
+	def void convertPlaylistIntoFormat(Playlist playlist, String format){
+		val FileWriter f = new FileWriter("videogen.m3u");
+		for(MediaPlayer mp : playlist.getVids()){
+			
+		}
+		
+	}
+	
 	
 	def void printToHTML(VideoGeneratorModel videoGen) {
 		//var numSeq = 1
