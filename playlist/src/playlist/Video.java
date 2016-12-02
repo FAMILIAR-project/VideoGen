@@ -57,12 +57,12 @@ public interface Video extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Duration</em>' attribute.
-	 * @see #setDuration(String)
+	 * @see #setDuration(Integer)
 	 * @see playlist.PlaylistPackage#getVideo_Duration()
 	 * @model
 	 * @generated
 	 */
-	String getDuration();
+	Integer getDuration();
 
 	/**
 	 * Sets the value of the '{@link playlist.Video#getDuration <em>Duration</em>}' attribute.
@@ -72,6 +72,6 @@ public interface Video extends EObject {
 	 * @see #getDuration()
 	 * @generated
 	 */
-	void setDuration(String value);
+	void setDuration(Integer value);
 
 } // Video

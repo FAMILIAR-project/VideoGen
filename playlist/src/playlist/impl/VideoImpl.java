@@ -55,7 +55,7 @@ public class VideoImpl extends MinimalEObjectImpl.Container implements Video {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String DURATION_EDEFAULT = null;
+	protected static final Integer DURATION_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getDuration() <em>Duration</em>}' attribute.
@@ -65,7 +65,7 @@ public class VideoImpl extends MinimalEObjectImpl.Container implements Video {
 	 * @generated
 	 * @ordered
 	 */
-	protected String duration = DURATION_EDEFAULT;
+	protected Integer duration = DURATION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -112,7 +112,7 @@ public class VideoImpl extends MinimalEObjectImpl.Container implements Video {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getDuration() {
+	public Integer getDuration() {
 		return duration;
 	}
 
@@ -121,8 +121,8 @@ public class VideoImpl extends MinimalEObjectImpl.Container implements Video {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDuration(String newDuration) {
-		String oldDuration = duration;
+	public void setDuration(Integer newDuration) {
+		Integer oldDuration = duration;
 		duration = newDuration;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PlaylistPackage.VIDEO__DURATION, oldDuration, duration));
@@ -156,7 +156,7 @@ public class VideoImpl extends MinimalEObjectImpl.Container implements Video {
 				setUrl((String)newValue);
 				return;
 			case PlaylistPackage.VIDEO__DURATION:
-				setDuration((String)newValue);
+				setDuration((Integer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
