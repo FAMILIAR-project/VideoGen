@@ -19,8 +19,8 @@ import org.xtext.example.mydsl.videoGen.VideoDescription;
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 import org.xtext.example.mydsl.videoGen.VideoSeq;
 import playlist.MediaFile;
+import playlist.Playlist;
 import playlist.PlaylistFactory;
-import playlist.playlist;
 
 @SuppressWarnings("all")
 public class transformModelToText {
@@ -90,10 +90,10 @@ public class transformModelToText {
     return ("v" + Integer.valueOf(_plusPlus));
   }
   
-  public playlist playlist() {
-    playlist _xblockexpression = null;
+  public Playlist playlist() {
+    Playlist _xblockexpression = null;
     {
-      final playlist playlist = PlaylistFactory.eINSTANCE.createplaylist();
+      final Playlist playlist = PlaylistFactory.eINSTANCE.createPlaylist();
       URI _createURI = URI.createURI("foo1.videogen");
       VideoGeneratorModel videoGen = this.loadVideoGenerator(_createURI);
       final Random random = new Random();
@@ -139,7 +139,18 @@ public class transformModelToText {
     return _xblockexpression;
   }
   
-  public Object transformationPlaylistToFile() {
-    return null;
+  public void transformationPlaylistToFileM3U(final Playlist playlist) {
+    try {
+      final PrintWriter writer = new PrintWriter("result.m3u");
+      EList<MediaFile> _videos = playlist.getVideos();
+      for (final MediaFile element : _videos) {
+        String _location = element.getLocation();
+        String _plus = (_location + "\n");
+        writer.write(_plus);
+      }
+      writer.close();
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 }

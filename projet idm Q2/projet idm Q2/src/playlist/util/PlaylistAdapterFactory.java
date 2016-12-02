@@ -68,8 +68,8 @@ public class PlaylistAdapterFactory extends AdapterFactoryImpl {
 	protected PlaylistSwitch<Adapter> modelSwitch =
 		new PlaylistSwitch<Adapter>() {
 			@Override
-			public Adapter caseplaylist(playlist object) {
-				return createplaylistAdapter();
+			public Adapter casePlaylist(Playlist object) {
+				return createPlaylistAdapter();
 			}
 			@Override
 			public Adapter caseMediaFile(MediaFile object) {
@@ -96,16 +96,16 @@ public class PlaylistAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link playlist.playlist <em>playlist</em>}'.
+	 * Creates a new adapter for an object of class '{@link playlist.Playlist <em>Playlist</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see playlist.playlist
+	 * @see playlist.Playlist
 	 * @generated
 	 */
-	public Adapter createplaylistAdapter() {
+	public Adapter createPlaylistAdapter() {
 		return null;
 	}
 

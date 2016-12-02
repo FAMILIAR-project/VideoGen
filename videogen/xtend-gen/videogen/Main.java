@@ -1,12 +1,13 @@
 package videogen;
 
-import playlist.playlist;
+import playlist.Playlist;
 import videogen.transformModelToText;
 
 @SuppressWarnings("all")
 public class Main {
   public static void main(final String[] args) {
     final transformModelToText vv = new transformModelToText();
-    playlist playlist = vv.playlist();
+    Playlist playlist = vv.playlist();
+    vv.transformationPlaylistToFileM3U(playlist);
   }
 }

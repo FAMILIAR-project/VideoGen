@@ -18,6 +18,8 @@ import java.io.PrintWriter
 import java.util.Random
 import playlist.PlaylistFactory
 
+import playlist.Playlist
+
 class transformModelToText {
 	def loadVideoGenerator(URI uri) {
 		new VideoGenStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()
@@ -73,7 +75,7 @@ class transformModelToText {
 	}
 //	Q2
 	def playlist(){
-		val playlist = PlaylistFactory.eINSTANCE.createplaylist;
+		val playlist = PlaylistFactory.eINSTANCE.createPlaylist;
 		
 		var videoGen = loadVideoGenerator(URI.createURI("foo1.videogen")) 
 	  val random=new Random()
@@ -106,10 +108,16 @@ class transformModelToText {
 			
 		]
 		playlist
+		// la dernière instruction est un return
 	}
 	
-	def transformationPlaylistToFile(){
-		
+	def transformationPlaylistToFileM3U(Playlist playlist){
+		//ecrire dans un fichier
+		val writer=new PrintWriter("result.m3u")
+		for(element : playlist.videos)
+			writer.write(element.location+"\n")
+			
+		writer.close()
 	}
 	
 }

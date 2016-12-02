@@ -10,7 +10,8 @@ class Main {
 //		vv.transform()
 //		Q2
 		var playlist = vv.playlist()
-		
+		vv.transformationPlaylistToFileM3U(playlist)
 		
 	}
+	
 }

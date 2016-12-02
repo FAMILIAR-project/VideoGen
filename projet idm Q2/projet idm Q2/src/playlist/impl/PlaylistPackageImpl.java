@@ -10,9 +10,9 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import playlist.MediaFile;
+import playlist.Playlist;
 import playlist.PlaylistFactory;
 import playlist.PlaylistPackage;
-import playlist.playlist;
 
 /**
  * <!-- begin-user-doc -->
@@ -101,7 +101,7 @@ public class PlaylistPackageImpl extends EPackageImpl implements PlaylistPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getplaylist() {
+	public EClass getPlaylist() {
 		return playlistEClass;
 	}
 
@@ -110,7 +110,7 @@ public class PlaylistPackageImpl extends EPackageImpl implements PlaylistPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getplaylist_Videos() {
+	public EReference getPlaylist_Videos() {
 		return (EReference)playlistEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -197,8 +197,8 @@ public class PlaylistPackageImpl extends EPackageImpl implements PlaylistPackage
 		// Add supertypes to classes
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(playlistEClass, playlist.class, "playlist", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getplaylist_Videos(), this.getMediaFile(), null, "videos", null, 0, -1, playlist.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(playlistEClass, Playlist.class, "Playlist", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPlaylist_Videos(), this.getMediaFile(), null, "videos", null, 0, -1, Playlist.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(mediaFileEClass, MediaFile.class, "MediaFile", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getMediaFile_Location(), ecorePackage.getEString(), "location", null, 0, 1, MediaFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -67,8 +67,8 @@ public class PlaylistSwitch<T> extends Switch<T> {
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
 			case PlaylistPackage.PLAYLIST: {
-				playlist playlist = (playlist)theEObject;
-				T result = caseplaylist(playlist);
+				Playlist playlist = (Playlist)theEObject;
+				T result = casePlaylist(playlist);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -83,17 +83,17 @@ public class PlaylistSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>playlist</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Playlist</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>playlist</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Playlist</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseplaylist(playlist object) {
+	public T casePlaylist(Playlist object) {
 		return null;
 	}
 

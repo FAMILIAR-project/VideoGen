@@ -13,23 +13,23 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import playlist.MediaFile;
+import playlist.Playlist;
 import playlist.PlaylistPackage;
-import playlist.playlist;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>playlist</b></em>'.
+ * An implementation of the model object '<em><b>Playlist</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link playlist.impl.playlistImpl#getVideos <em>Videos</em>}</li>
+ *   <li>{@link playlist.impl.PlaylistImpl#getVideos <em>Videos</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class playlistImpl extends MinimalEObjectImpl.Container implements playlist {
+public class PlaylistImpl extends MinimalEObjectImpl.Container implements Playlist {
 	/**
 	 * The cached value of the '{@link #getVideos() <em>Videos</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -45,7 +45,7 @@ public class playlistImpl extends MinimalEObjectImpl.Container implements playli
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected playlistImpl() {
+	protected PlaylistImpl() {
 		super();
 	}
 
@@ -131,4 +131,4 @@ public class playlistImpl extends MinimalEObjectImpl.Container implements playli
 		return super.eIsSet(featureID);
 	}
 
-} //playlistImpl
+} //PlaylistImpl

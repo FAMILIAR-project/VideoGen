@@ -22,13 +22,13 @@ public interface PlaylistFactory extends EFactory {
 	PlaylistFactory eINSTANCE = playlist.impl.PlaylistFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>playlist</em>'.
+	 * Returns a new object of class '<em>Playlist</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>playlist</em>'.
+	 * @return a new object of class '<em>Playlist</em>'.
 	 * @generated
 	 */
-	playlist createplaylist();
+	Playlist createPlaylist();
 
 	/**
 	 * Returns a new object of class '<em>Media File</em>'.

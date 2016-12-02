@@ -8,21 +8,21 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>playlist</b></em>'.
+ * A representation of the model object '<em><b>Playlist</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link playlist.playlist#getVideos <em>Videos</em>}</li>
+ *   <li>{@link playlist.Playlist#getVideos <em>Videos</em>}</li>
  * </ul>
  *
- * @see playlist.PlaylistPackage#getplaylist()
+ * @see playlist.PlaylistPackage#getPlaylist()
  * @model
  * @generated
  */
-public interface playlist extends EObject {
+public interface Playlist extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Videos</b></em>' reference list.
 	 * The list contents are of type {@link playlist.MediaFile}.
@@ -33,10 +33,10 @@ public interface playlist extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Videos</em>' reference list.
-	 * @see playlist.PlaylistPackage#getplaylist_Videos()
+	 * @see playlist.PlaylistPackage#getPlaylist_Videos()
 	 * @model
 	 * @generated
 	 */
 	EList<MediaFile> getVideos();
 
-} // playlist
+} // Playlist

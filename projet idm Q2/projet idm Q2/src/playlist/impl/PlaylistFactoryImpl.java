@@ -56,7 +56,7 @@ public class PlaylistFactoryImpl extends EFactoryImpl implements PlaylistFactory
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case PlaylistPackage.PLAYLIST: return createplaylist();
+			case PlaylistPackage.PLAYLIST: return createPlaylist();
 			case PlaylistPackage.MEDIA_FILE: return createMediaFile();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -68,8 +68,8 @@ public class PlaylistFactoryImpl extends EFactoryImpl implements PlaylistFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public playlist createplaylist() {
-		playlistImpl playlist = new playlistImpl();
+	public Playlist createPlaylist() {
+		PlaylistImpl playlist = new PlaylistImpl();
 		return playlist;
 	}
 
