@@ -10,7 +10,7 @@ class PlaylistToText {
 	 * @param format format de la liste a choisir entre "ffmpeg" et "m3u"
 	 * @return texte representant la playlist
 	 */
-	def playlistToText(Playlist playlist, String format){
+	def static playlistToText(Playlist playlist, String format){
 		val result = new StringBuilder()
 		if(format.equals("m3u")){
 			playlist.videos.forEach[vid |
@@ -22,7 +22,7 @@ class PlaylistToText {
 				result.append("file '"+vid.url+"'"+System.lineSeparator)
 			]
 		}
-		result.toString()
+		result.toString
 	}
 	
 }
