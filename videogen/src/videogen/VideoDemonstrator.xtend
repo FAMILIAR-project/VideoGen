@@ -13,7 +13,6 @@ import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 
 import static org.junit.Assert.*
 import java.util.Random
-import java.io.File
 import java.io.FileWriter
 
 class VideoDemonstrator {
@@ -64,11 +63,11 @@ class VideoDemonstrator {
 	}
 	
 	@Test
-	def void generer(){
+	def void modelToTextToFile(){
 		var videoGen = loadVideoGenerator(URI.createURI("foo3.videogen")) 
 		assertNotNull(videoGen)
-		assertEquals(4, videoGen.videoseqs.size)	
 		val generatedFile = new FileWriter("result.txt")
+		assertNotNull(generatedFile)
 		modelToText(videoGen,generatedFile)
 		
 	}

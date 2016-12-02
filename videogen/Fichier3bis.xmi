@@ -7,7 +7,7 @@
     <description videoid="v1" location="v2folder/v2.mp4"/>
   </videoseqs>
   <videoseqs xsi:type="videoGen:AlternativeVideoSeq" videoid="v3">
-    <videodescs videoid="v31" location="v31.mp4"/>
-    <videodescs videoid="v2" location="v32.mp4"/>
+    <videodescs videoid="v2" location="v31.mp4"/>
+    <videodescs videoid="v32" location="v32.mp4"/>
   </videoseqs>
 </videoGen:VideoGeneratorModel>
