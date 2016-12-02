@@ -76,6 +76,16 @@ class VideoDemonstrator {
 		
 	}
 	
+		
+	@Test
+	def void modelToModelToFile(){
+		var videoGen = loadVideoGenerator(URI.createURI("foo3.videogen")) 
+		assertNotNull(videoGen)
+		val FileWriter f = new FileWriter("videogen.m3u");
+		modelToModel(videoGen,f)
+		
+	}
+	
 	def void modelToText(VideoGeneratorModel videoGen, FileWriter file){
 		val r = new Random();
 		println ('This is a comment')
@@ -122,7 +132,7 @@ class VideoDemonstrator {
 	file.close
 	}
 	
-	def void ModelToModel(VideoGeneratorModel videoGen){
+	def void modelToModel(VideoGeneratorModel videoGen, FileWriter file){
 		val playlist = PlaylistFactory.eINSTANCE.createPlaylist();
 		val r = new Random();
 		
@@ -173,17 +183,16 @@ class VideoDemonstrator {
 	saveVideoGenerator(URI.createURI("Fichier3bis.xmi"), videoGen)
 	saveVideoGenerator(URI.createURI("Fichier3bis.videogen"), videoGen)
 	
-	convertPlaylistIntoFormat(playlist,"M3U")
+	convertPlaylistIntoFormat(playlist,"M3U", file)
 		
 	}
 	
-	@Test
-	def void convertPlaylistIntoFormat(Playlist playlist, String format){
-		val FileWriter f = new FileWriter("videogen.m3u");
-		for(MediaPlayer mp : playlist.getVids()){
-			
-		}
-		
+	def void convertPlaylistIntoFormat(Playlist playlist, String format, FileWriter f){
+		for (i : playlist.getVids().size >.. 0) {
+			val element = playlist.getVids().get(i)
+			f.write(element.location + "\n")
+		}	
+		f.close()
 	}
 	
 	
