@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated playlist -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="playlist.presentation.PlaylistModelWizardID"
+            name="%_UI_PlaylistModelWizard_label"
+            class="playlist.presentation.PlaylistModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/PlaylistModelFile.gif">
+         <description>%_UI_PlaylistModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated playlist -->
+      <editor
+            id="playlist.presentation.PlaylistEditorID"
+            name="%_UI_PlaylistEditor_label"
+            icon="icons/full/obj16/PlaylistModelFile.gif"
+            extensions="playlist"
+            class="playlist.presentation.PlaylistEditor"
+            contributorClass="playlist.presentation.PlaylistActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
