@@ -29,33 +29,6 @@ class Question2 {
 	
 	def static main(String[] args)
 	{
-		var videoGen = loadVideoGenerator(URI.createURI("mastaconcat.videogen"))
-		val list = new ArrayList()
-		val rand = new Random()
-		val entry = "%s"
-		val cmd = "vlc play.m3u"
-		videoGen.videoseqs.forEach[videoseq|
-			if(videoseq instanceof MandatoryVideoSeq)
-			{
-				list.add(String.format(entry,(videoseq as MandatoryVideoSeq).description.location))
-			}
-			if(videoseq instanceof OptionalVideoSeq)
-			{
-				if(rand.nextInt(2) == 1)
-				{
-					list.add(String.format(entry,(videoseq as OptionalVideoSeq).description.location))
-				}
-			}
-			if(videoseq instanceof AlternativeVideoSeq)
-			{
-				val listAlt = (videoseq as AlternativeVideoSeq).videodescs
-				val quicesera = rand.nextInt(listAlt.size)
-				list.add(String.format(entry,listAlt.get(quicesera).location))
-			}
 		
-		]
-		Files.write(Paths.get("play.m3u"), list)
-		Runtime.runtime.exec(cmd)
-		return
 	}
 }

@@ -3,4 +3,4 @@
 videogen/params.txt
 videogen/play.m3u
 videogen/mastaconcat.videogen
-*.xtendbin
+videogen/xtend-gen
