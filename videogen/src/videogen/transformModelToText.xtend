@@ -108,6 +108,8 @@ class transformModelToText {
 		playlist
 	}
 	
-	def transformationPlaylistToFile(){}
+	def transformationPlaylistToFile(){
+		
+	}
 	
 }
