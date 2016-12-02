@@ -73,6 +73,7 @@ class VideoDemonstrator {
 	}
 	
 	def void modelToText(VideoGeneratorModel videoGen, FileWriter file){
+		val r = new Random();
 		println ('This is a comment')
 		file.write('This is a comment\n')
 		// loading 			
@@ -92,15 +93,16 @@ class VideoDemonstrator {
 			else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
 				if(!desc.videoid.isNullOrEmpty){
-					desc.videoid = genID() 
-					println("file "  + "'"+ desc.location+"'")
-					file.write("file "  + "'"+ desc.location+"'\n")
+					if(r.nextBoolean()){
+						desc.videoid = genID() 
+						println("file "  + "'"+ desc.location+"'")
+						file.write("file "  + "'"+ desc.location+"'\n")
+					}
 				} 
 			}
 			else {
 				val altvid = (videoseq as AlternativeVideoSeq)
 				if(altvid.videoid.isNullOrEmpty) altvid.videoid = genID()
-					val r = new Random()
 					val vdesc = altvid.videodescs.get(r.nextInt(altvid.videodescs.size));
 					if(!vdesc.videoid.isNullOrEmpty){
 					 vdesc.videoid = genID()
