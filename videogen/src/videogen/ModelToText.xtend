@@ -21,6 +21,7 @@ class ModelToText{
 	def void modelToText(URI uri,FileWriter fout){
 		var videogen = loadVideoGenerator(uri)
 		val rnd = new Random()
+		
 		//println("# this is a comment")
 		fout.write("# this is a comment\n")
 		videogen.videoseqs.forEach[vid|
