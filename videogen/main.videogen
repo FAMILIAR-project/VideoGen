@@ -1,19 +1,9 @@
 VideoGen {
-	mandatory videoseq "/home/dania/Documents/IDM/Videos/video1.mp4"
+	mandatory videoseq v1 "/home/dania/Documents/IDM/Videos/video1.mp4"
 	
-	optional videoseq vid6 "/home/dania/Documents/IDM/Videos/video2.mp4"
-	optional videoseq vid7 "/home/dania/Documents/IDM/Videos/video2.mp4"
-	optional videoseq vid9 "/home/dania/Documents/IDM/Videos/video2.mp4"
-	optional videoseq vid9 "/home/dania/Documents/IDM/Videos/video2.mp4"
-	optional videoseq vid9 "/home/dania/Documents/IDM/Videos/video2.mp4"
-	optional videoseq vid9 "/home/dania/Documents/IDM/Videos/video2.mp4"
-	optional videoseq vid9 "/home/dania/Documents/IDM/Videos/video2.mp4"
-	optional videoseq vid9 "/home/dania/Documents/IDM/Videos/video2.mp4"
-	optional videoseq vid9 "/home/dania/Documents/IDM/Videos/video2.mp4"
-	optional videoseq vid9 "/home/dania/Documents/IDM/Videos/video2.mp4"
-	optional videoseq vid9 "/home/dania/Documents/IDM/Videos/video2.mp4"
-	optional videoseq vid9 "/home/dania/Documents/IDM/Videos/video2.mp4"
-	
+	mandatory videoseq v1"/home/dania/Documents/IDM/Videos/video2.mp4"
+
+
 	alternatives vid10{
 		videoseq "/home/dania/Documents/IDM/Videos/video1.mp4"
 		videoseq "/home/dania/Documents/IDM/Videos/video2.mp4"
