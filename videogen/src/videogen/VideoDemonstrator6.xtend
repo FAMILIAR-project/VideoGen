@@ -173,7 +173,7 @@ class VideoDemonstrator6 {
 	}
 
 	def generateHtmlFile(String vignette) {
-		// New file 
+		// New file  
 		try {
 			val ffmpeg = new File("/home/dania/Documents/IDM/vignettes.html");
 			if (!ffmpeg.exists()) {

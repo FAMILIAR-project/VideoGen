@@ -97,7 +97,7 @@ class VideoDemonstrator5 {
 			} else if (videoseq instanceof OptionalVideoSeq) {
 				println("Optional")
 				val rand = new Random().nextInt(2);
-				// Random between 0-1
+				// Random between 0-1 
 				if (rand == 0) {
 					val fileLocation = (videoseq as OptionalVideoSeq).description.location;
 					var fileId = (videoseq as OptionalVideoSeq).description.videoid;
