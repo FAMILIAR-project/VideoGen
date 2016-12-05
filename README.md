@@ -15,9 +15,13 @@ une Mode est soit Random, Probability ou Configurator
 Configurator est associé à Probability ou alternative
 
 ##Question 15
---> Creation d'un script Jhipster qui prend en parametre la configuration
---> Selon le type de config, lancer la bonne commande Jhipster pour le site 
-	--> mode Aléatoire : qu'un bouton à generer
-	--> mode Probabilité : qu'un bouton à generer
-	--> mode Configurator : ajouter un champ pour choisir l'aléatoire ou probabilité et videogen les ajoutera aux videos obligatoires
+* Creation d'un script Jhipster qui prend en parametre la configuration
+
+* Selon le type de config, lancer la bonne commande Jhipster pour le site 
+
+	* mode Aléatoire : qu'un bouton à generer
+	
+	* mode Probabilité : qu'un bouton à generer
+	
+	* mode Configurator : ajouter un champ pour choisir l'aléatoire ou probabilité et videogen les ajoutera aux videos 		obligatoires
 	
