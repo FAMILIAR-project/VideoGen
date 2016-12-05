@@ -9,10 +9,12 @@ A configurable generator of generator of video variants
 `videogen` is a Java/Xtend project that uses the Xtext project and shows how to transform a VideoGen transformation.  
 
 ##Question 14
+
 fmGen = FM (VideoGenerator: Mode; Mode: (Random|Probability|Configurator); Configurator: (WithRandom|WithProbability); ) 
-VideoGenerator a un mode 
-une Mode est soit Random, Probability ou Configurator
-Configurator est associé à Probability ou alternative
+
+* VideoGenerator a un mode 
+* une Mode est soit Random, Probability ou Configurator
+* Configurator est associé à Probability ou alternative
 
 ##Question 15
 * Creation d'un script Jhipster qui prend en parametre la configuration
