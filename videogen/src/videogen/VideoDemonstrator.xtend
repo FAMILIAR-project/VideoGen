@@ -29,7 +29,7 @@ import java.io.File
 class VideoDemonstrator {
 	static Writer writer
 	
-	def loadVideoGenerator(URI uri) {
+	def static loadVideoGenerator(URI uri) {
 		new VideoGenStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()
 		var res = new ResourceSetImpl().getResource(uri, true);
 		res.contents.get(0) as VideoGeneratorModel
@@ -57,7 +57,7 @@ class VideoDemonstrator {
 				strPlaylist += 'file \'' + fileLocation + '\'\r\n'	
 			}
 			else if (vseq instanceof OptionalVideoSeq) {
-				val i = new Random().nextInt(1)
+				val i = new Random().nextInt(2)
 				if (i == 0) {
 					val fileLocation = (vseq as OptionalVideoSeq).description.location;
 					strPlaylist += 'file \'' + fileLocation + '\'\r\n'		
@@ -79,8 +79,8 @@ class VideoDemonstrator {
 		createFile("script.txt",strPlaylist)		
 	}
 		
-	@Test
-	def testM3U() {
+
+	def static void testM3U() {
 		// loading
 		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
 		assertNotNull(videoGen)
@@ -100,7 +100,7 @@ class VideoDemonstrator {
 				pl.files.add(vf)
 			}
 			else if (vseq instanceof OptionalVideoSeq) {
-				val i = new Random().nextInt(1)
+				val i = new Random().nextInt(2)
 				if (i == 0) {
 					val fileLocation = (vseq as OptionalVideoSeq).description.location;
 					val vf = PlaylistFactory.eINSTANCE.createVideoFile		
@@ -131,8 +131,7 @@ class VideoDemonstrator {
 		generateM3UEXT(pl)
 	}
 	
-	@Test
-	def testGenerateThrumbnails() {
+	def String testGenerateThrumbnails() {
 		// loading
 		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
 		assertNotNull(videoGen)
@@ -173,7 +172,8 @@ class VideoDemonstrator {
 			}
 		}
 		html += "</ul>"
-		createFile("video.html",html)		
+		createFile("video.html",html)	
+		return html	
 		
 	}
 		
