@@ -13,8 +13,9 @@ The Configurator mode has 2 feature, WithRandom and WithProbability.
 ## Deployment with Feature Model - Question 15
 Create a Jhipster script with have the configuration in parameters.
 Depending on the type of configuration, the Jhipster command start :
-	- For the Random Mode : a website with a generator button.
-	- For the Probability Mode : a website with a generator button who generate playlist depending on the probability.
-	- For the Configurator Mode : a website with a drop-down list to choose the random or the probability mode.
+
+- For the Random Mode : a website with a generator button.
+- For the Probability Mode : a website with a generator button who generate playlist depending on the probability.
+- For the Configurator Mode : a website with a drop-down list to choose the random or the probability mode.
  
 
