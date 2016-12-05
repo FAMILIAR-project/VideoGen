@@ -144,7 +144,6 @@ class VideoDemonstrator {
 					desc.setDuration(ffmpeg.getDuration(desc.location))
 					println(ffmpeg.getDuration(desc.location))
 					println("file "  + "'"+ desc.location+"'")
-					println("Duration :" + desc.duration)
 					
 					val MediaFile mediaFile = PlaylistFactory.eINSTANCE.createMediaFile
 					mediaFile.location = desc.location
@@ -159,7 +158,6 @@ class VideoDemonstrator {
 						desc.videoid = genID() 
 						desc.setDuration(ffmpeg.getDuration(desc.location))
 						println("file "  + "'"+ desc.location+"'")
-						println("Duration :" + desc.duration)
 						
 						val MediaFile mediaFile = PlaylistFactory.eINSTANCE.createMediaFile
 						mediaFile.location = desc.location
@@ -176,7 +174,6 @@ class VideoDemonstrator {
 					 vdesc.videoid = genID()
 					 vdesc.setDuration(ffmpeg.getDuration(vdesc.location))
 					 println("file " + "'"+ vdesc.location+"'")
-					 println("Duration :" + vdesc.duration)
 					
 					val MediaFile mediaFile = PlaylistFactory.eINSTANCE.createMediaFile
 					mediaFile.location = vdesc.location
