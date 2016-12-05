@@ -142,8 +142,8 @@ class VideoDemonstrator {
 				if(!desc.videoid.isNullOrEmpty){
 					desc.videoid = genID()
 					desc.setDuration(ffmpeg.getDuration(desc.location))
-					println(ffmpeg.getDuration(desc.location))
 					println("file "  + "'"+ desc.location+"'")
+					ffmpeg.generateVignette(desc.location)
 					
 					val MediaFile mediaFile = PlaylistFactory.eINSTANCE.createMediaFile
 					mediaFile.location = desc.location
@@ -158,6 +158,7 @@ class VideoDemonstrator {
 						desc.videoid = genID() 
 						desc.setDuration(ffmpeg.getDuration(desc.location))
 						println("file "  + "'"+ desc.location+"'")
+						ffmpeg.generateVignette(desc.location)
 						
 						val MediaFile mediaFile = PlaylistFactory.eINSTANCE.createMediaFile
 						mediaFile.location = desc.location
@@ -174,6 +175,7 @@ class VideoDemonstrator {
 					 vdesc.videoid = genID()
 					 vdesc.setDuration(ffmpeg.getDuration(vdesc.location))
 					 println("file " + "'"+ vdesc.location+"'")
+					 ffmpeg.generateVignette(vdesc.location)
 					
 					val MediaFile mediaFile = PlaylistFactory.eINSTANCE.createMediaFile
 					mediaFile.location = vdesc.location
