@@ -1,23 +1,8 @@
 VideoGen {
-	
-	mandatory videoseq v0 "V1/v1.mp4" 
-	optional videoseq v1 "v2folder/v2.mp4" {
-		probability 25
-	}
-	alternatives vid3 {
-		videoseq v2 "v3/seq1.mp4" 
-		videoseq vid31 "v3/seq2.mp4"
-		videoseq vid32 "v3/seq3.mp4"
-	}
-	
-	alternatives vid4 {
-		videoseq vid41 "v4/seq1.mp4"
-		videoseq vid42 "v4/seq2.mp4"
-	}
-	mandatory videoseq vid5 "v5.mp4"
-	
-	optional videoseq vid8 "v8.avi"
-	alternatives vid9 {
-		videoseq vid81 "V81.avi"
+	mandatory videoseq v1 "C:/Users/kaoutar/git/VideoGen/videogen/videosTel/nancyagram.mp4"
+	optional videoseq v2 "C:/Users/kaoutar/git/VideoGen/videogen/videosTel/standbyme.mp4"
+	alternatives v3 { 
+		videoseq v31 "C:/Users/kaoutar/git/VideoGen/videogen/videosTel/standbyme.mp4"
+		videoseq v32 "C:/Users/kaoutar/git/VideoGen/videogen/videosTel/videoplayback.mp4"
 	}
 }
