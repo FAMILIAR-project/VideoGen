@@ -53,8 +53,9 @@ class VideoDemonstrator {
 				
 			} else if (videoseq instanceof OptionalVideoSeq) {
 				println("Optional")
+				val rand = new Random().nextInt(2);
 				// Random between 0-1
-				if (new Random().ints(1) == 1) {
+				if (rand == 0) {
 					val fileLocation = (videoseq as OptionalVideoSeq).description.location;
 					strPlaylist += 'file \'' + fileLocation + '\'' + System.lineSeparator();
 				} 
