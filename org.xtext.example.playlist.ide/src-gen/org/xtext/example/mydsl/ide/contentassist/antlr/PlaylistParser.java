@@ -35,8 +35,10 @@ public class PlaylistParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
+					put(grammarAccess.getMediaFileAccess().getGroup(), "rule__MediaFile__Group__0");
 					put(grammarAccess.getPlaylistAccess().getVidsAssignment(), "rule__Playlist__VidsAssignment");
-					put(grammarAccess.getMediaFileAccess().getLocationAssignment(), "rule__MediaFile__LocationAssignment");
+					put(grammarAccess.getMediaFileAccess().getLocationAssignment_0(), "rule__MediaFile__LocationAssignment_0");
+					put(grammarAccess.getMediaFileAccess().getDurationAssignment_1(), "rule__MediaFile__DurationAssignment_1");
 				}
 			};
 		}

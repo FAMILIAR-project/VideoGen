@@ -12,12 +12,12 @@ import java.util.ArrayList;
 
 @SuppressWarnings("all")
 public class InternalPlaylistLexer extends Lexer {
-    public static final int RULE_ID=5;
+    public static final int RULE_ID=6;
     public static final int RULE_WS=9;
     public static final int RULE_STRING=4;
     public static final int RULE_ANY_OTHER=10;
     public static final int RULE_SL_COMMENT=8;
-    public static final int RULE_INT=6;
+    public static final int RULE_INT=5;
     public static final int RULE_ML_COMMENT=7;
     public static final int EOF=-1;
 
@@ -39,10 +39,10 @@ public class InternalPlaylistLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalPlaylist.g:134:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // InternalPlaylist.g:134:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalPlaylist.g:154:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // InternalPlaylist.g:154:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // InternalPlaylist.g:134:11: ( '^' )?
+            // InternalPlaylist.g:154:11: ( '^' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -51,7 +51,7 @@ public class InternalPlaylistLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // InternalPlaylist.g:134:11: '^'
+                    // InternalPlaylist.g:154:11: '^'
                     {
                     match('^'); 
 
@@ -69,7 +69,7 @@ public class InternalPlaylistLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // InternalPlaylist.g:134:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalPlaylist.g:154:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop2:
             do {
                 int alt2=2;
@@ -118,10 +118,10 @@ public class InternalPlaylistLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalPlaylist.g:136:10: ( ( '0' .. '9' )+ )
-            // InternalPlaylist.g:136:12: ( '0' .. '9' )+
+            // InternalPlaylist.g:156:10: ( ( '0' .. '9' )+ )
+            // InternalPlaylist.g:156:12: ( '0' .. '9' )+
             {
-            // InternalPlaylist.g:136:12: ( '0' .. '9' )+
+            // InternalPlaylist.g:156:12: ( '0' .. '9' )+
             int cnt3=0;
             loop3:
             do {
@@ -135,7 +135,7 @@ public class InternalPlaylistLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // InternalPlaylist.g:136:13: '0' .. '9'
+            	    // InternalPlaylist.g:156:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -167,10 +167,10 @@ public class InternalPlaylistLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalPlaylist.g:138:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // InternalPlaylist.g:138:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalPlaylist.g:158:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // InternalPlaylist.g:158:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // InternalPlaylist.g:138:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalPlaylist.g:158:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -188,10 +188,10 @@ public class InternalPlaylistLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // InternalPlaylist.g:138:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // InternalPlaylist.g:158:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // InternalPlaylist.g:138:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // InternalPlaylist.g:158:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop4:
                     do {
                         int alt4=3;
@@ -207,7 +207,7 @@ public class InternalPlaylistLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // InternalPlaylist.g:138:21: '\\\\' .
+                    	    // InternalPlaylist.g:158:21: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -215,7 +215,7 @@ public class InternalPlaylistLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // InternalPlaylist.g:138:28: ~ ( ( '\\\\' | '\"' ) )
+                    	    // InternalPlaylist.g:158:28: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -240,10 +240,10 @@ public class InternalPlaylistLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // InternalPlaylist.g:138:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // InternalPlaylist.g:158:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // InternalPlaylist.g:138:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // InternalPlaylist.g:158:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop5:
                     do {
                         int alt5=3;
@@ -259,7 +259,7 @@ public class InternalPlaylistLexer extends Lexer {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // InternalPlaylist.g:138:54: '\\\\' .
+                    	    // InternalPlaylist.g:158:54: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -267,7 +267,7 @@ public class InternalPlaylistLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // InternalPlaylist.g:138:61: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // InternalPlaylist.g:158:61: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -310,12 +310,12 @@ public class InternalPlaylistLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalPlaylist.g:140:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // InternalPlaylist.g:140:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // InternalPlaylist.g:160:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // InternalPlaylist.g:160:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // InternalPlaylist.g:140:24: ( options {greedy=false; } : . )*
+            // InternalPlaylist.g:160:24: ( options {greedy=false; } : . )*
             loop7:
             do {
                 int alt7=2;
@@ -340,7 +340,7 @@ public class InternalPlaylistLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // InternalPlaylist.g:140:52: .
+            	    // InternalPlaylist.g:160:52: .
             	    {
             	    matchAny(); 
 
@@ -370,12 +370,12 @@ public class InternalPlaylistLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalPlaylist.g:142:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // InternalPlaylist.g:142:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // InternalPlaylist.g:162:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // InternalPlaylist.g:162:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // InternalPlaylist.g:142:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // InternalPlaylist.g:162:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop8:
             do {
                 int alt8=2;
@@ -388,7 +388,7 @@ public class InternalPlaylistLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // InternalPlaylist.g:142:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // InternalPlaylist.g:162:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -408,7 +408,7 @@ public class InternalPlaylistLexer extends Lexer {
                 }
             } while (true);
 
-            // InternalPlaylist.g:142:40: ( ( '\\r' )? '\\n' )?
+            // InternalPlaylist.g:162:40: ( ( '\\r' )? '\\n' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -417,9 +417,9 @@ public class InternalPlaylistLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
-                    // InternalPlaylist.g:142:41: ( '\\r' )? '\\n'
+                    // InternalPlaylist.g:162:41: ( '\\r' )? '\\n'
                     {
-                    // InternalPlaylist.g:142:41: ( '\\r' )?
+                    // InternalPlaylist.g:162:41: ( '\\r' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -428,7 +428,7 @@ public class InternalPlaylistLexer extends Lexer {
                     }
                     switch (alt9) {
                         case 1 :
-                            // InternalPlaylist.g:142:41: '\\r'
+                            // InternalPlaylist.g:162:41: '\\r'
                             {
                             match('\r'); 
 
@@ -460,10 +460,10 @@ public class InternalPlaylistLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalPlaylist.g:144:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // InternalPlaylist.g:144:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalPlaylist.g:164:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // InternalPlaylist.g:164:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // InternalPlaylist.g:144:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalPlaylist.g:164:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt11=0;
             loop11:
             do {
@@ -517,8 +517,8 @@ public class InternalPlaylistLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalPlaylist.g:146:16: ( . )
-            // InternalPlaylist.g:146:18: .
+            // InternalPlaylist.g:166:16: ( . )
+            // InternalPlaylist.g:166:18: .
             {
             matchAny(); 
 

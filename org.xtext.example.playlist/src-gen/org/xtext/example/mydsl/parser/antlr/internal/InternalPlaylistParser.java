@@ -21,14 +21,14 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalPlaylistParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_INT", "RULE_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER"
     };
-    public static final int RULE_ID=5;
+    public static final int RULE_ID=6;
     public static final int RULE_WS=9;
     public static final int RULE_STRING=4;
     public static final int RULE_ANY_OTHER=10;
     public static final int RULE_SL_COMMENT=8;
-    public static final int RULE_INT=6;
+    public static final int RULE_INT=5;
     public static final int RULE_ML_COMMENT=7;
     public static final int EOF=-1;
 
@@ -227,39 +227,72 @@ public class InternalPlaylistParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMediaFile"
-    // InternalPlaylist.g:107:1: ruleMediaFile returns [EObject current=null] : ( (lv_location_0_0= RULE_STRING ) ) ;
+    // InternalPlaylist.g:107:1: ruleMediaFile returns [EObject current=null] : ( ( (lv_location_0_0= RULE_STRING ) ) ( (lv_duration_1_0= RULE_INT ) ) ) ;
     public final EObject ruleMediaFile() throws RecognitionException {
         EObject current = null;
 
         Token lv_location_0_0=null;
+        Token lv_duration_1_0=null;
 
 
         	enterRule();
 
         try {
-            // InternalPlaylist.g:113:2: ( ( (lv_location_0_0= RULE_STRING ) ) )
-            // InternalPlaylist.g:114:2: ( (lv_location_0_0= RULE_STRING ) )
+            // InternalPlaylist.g:113:2: ( ( ( (lv_location_0_0= RULE_STRING ) ) ( (lv_duration_1_0= RULE_INT ) ) ) )
+            // InternalPlaylist.g:114:2: ( ( (lv_location_0_0= RULE_STRING ) ) ( (lv_duration_1_0= RULE_INT ) ) )
             {
-            // InternalPlaylist.g:114:2: ( (lv_location_0_0= RULE_STRING ) )
-            // InternalPlaylist.g:115:3: (lv_location_0_0= RULE_STRING )
+            // InternalPlaylist.g:114:2: ( ( (lv_location_0_0= RULE_STRING ) ) ( (lv_duration_1_0= RULE_INT ) ) )
+            // InternalPlaylist.g:115:3: ( (lv_location_0_0= RULE_STRING ) ) ( (lv_duration_1_0= RULE_INT ) )
             {
-            // InternalPlaylist.g:115:3: (lv_location_0_0= RULE_STRING )
-            // InternalPlaylist.g:116:4: lv_location_0_0= RULE_STRING
+            // InternalPlaylist.g:115:3: ( (lv_location_0_0= RULE_STRING ) )
+            // InternalPlaylist.g:116:4: (lv_location_0_0= RULE_STRING )
             {
-            lv_location_0_0=(Token)match(input,RULE_STRING,FOLLOW_2); 
+            // InternalPlaylist.g:116:4: (lv_location_0_0= RULE_STRING )
+            // InternalPlaylist.g:117:5: lv_location_0_0= RULE_STRING
+            {
+            lv_location_0_0=(Token)match(input,RULE_STRING,FOLLOW_4); 
 
-            				newLeafNode(lv_location_0_0, grammarAccess.getMediaFileAccess().getLocationSTRINGTerminalRuleCall_0());
-            			
+            					newLeafNode(lv_location_0_0, grammarAccess.getMediaFileAccess().getLocationSTRINGTerminalRuleCall_0_0());
+            				
 
-            				if (current==null) {
-            					current = createModelElement(grammarAccess.getMediaFileRule());
-            				}
-            				setWithLastConsumed(
-            					current,
-            					"location",
-            					lv_location_0_0,
-            					"org.eclipse.xtext.common.Terminals.STRING");
-            			
+            					if (current==null) {
+            						current = createModelElement(grammarAccess.getMediaFileRule());
+            					}
+            					setWithLastConsumed(
+            						current,
+            						"location",
+            						lv_location_0_0,
+            						"org.eclipse.xtext.common.Terminals.STRING");
+            				
+
+            }
+
+
+            }
+
+            // InternalPlaylist.g:133:3: ( (lv_duration_1_0= RULE_INT ) )
+            // InternalPlaylist.g:134:4: (lv_duration_1_0= RULE_INT )
+            {
+            // InternalPlaylist.g:134:4: (lv_duration_1_0= RULE_INT )
+            // InternalPlaylist.g:135:5: lv_duration_1_0= RULE_INT
+            {
+            lv_duration_1_0=(Token)match(input,RULE_INT,FOLLOW_2); 
+
+            					newLeafNode(lv_duration_1_0, grammarAccess.getMediaFileAccess().getDurationINTTerminalRuleCall_1_0());
+            				
+
+            					if (current==null) {
+            						current = createModelElement(grammarAccess.getMediaFileRule());
+            					}
+            					setWithLastConsumed(
+            						current,
+            						"duration",
+            						lv_duration_1_0,
+            						"org.eclipse.xtext.common.Terminals.INT");
+            				
+
+            }
+
 
             }
 
@@ -292,5 +325,6 @@ public class InternalPlaylistParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_1 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_2 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x0000000000000012L});
+    public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0000000000000020L});
 
 }

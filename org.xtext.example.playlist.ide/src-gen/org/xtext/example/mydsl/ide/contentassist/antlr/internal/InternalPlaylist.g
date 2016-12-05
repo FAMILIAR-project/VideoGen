@@ -90,14 +90,68 @@ ruleMediaFile
 	}
 	:
 	(
-		{ before(grammarAccess.getMediaFileAccess().getLocationAssignment()); }
-		(rule__MediaFile__LocationAssignment)
-		{ after(grammarAccess.getMediaFileAccess().getLocationAssignment()); }
+		{ before(grammarAccess.getMediaFileAccess().getGroup()); }
+		(rule__MediaFile__Group__0)
+		{ after(grammarAccess.getMediaFileAccess().getGroup()); }
 	)
 ;
 finally {
 	restoreStackSize(stackSize);
 }
+
+rule__MediaFile__Group__0
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__MediaFile__Group__0__Impl
+	rule__MediaFile__Group__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__MediaFile__Group__0__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getMediaFileAccess().getLocationAssignment_0()); }
+	(rule__MediaFile__LocationAssignment_0)
+	{ after(grammarAccess.getMediaFileAccess().getLocationAssignment_0()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__MediaFile__Group__1
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__MediaFile__Group__1__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__MediaFile__Group__1__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getMediaFileAccess().getDurationAssignment_1()); }
+	(rule__MediaFile__DurationAssignment_1)
+	{ after(grammarAccess.getMediaFileAccess().getDurationAssignment_1()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 
 rule__Playlist__VidsAssignment
 	@init {
@@ -114,15 +168,30 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__MediaFile__LocationAssignment
+rule__MediaFile__LocationAssignment_0
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getMediaFileAccess().getLocationSTRINGTerminalRuleCall_0()); }
+		{ before(grammarAccess.getMediaFileAccess().getLocationSTRINGTerminalRuleCall_0_0()); }
 		RULE_STRING
-		{ after(grammarAccess.getMediaFileAccess().getLocationSTRINGTerminalRuleCall_0()); }
+		{ after(grammarAccess.getMediaFileAccess().getLocationSTRINGTerminalRuleCall_0_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__MediaFile__DurationAssignment_1
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getMediaFileAccess().getDurationINTTerminalRuleCall_1_0()); }
+		RULE_INT
+		{ after(grammarAccess.getMediaFileAccess().getDurationINTTerminalRuleCall_1_0()); }
 	)
 ;
 finally {

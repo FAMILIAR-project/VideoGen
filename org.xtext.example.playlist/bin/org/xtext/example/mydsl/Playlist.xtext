@@ -6,4 +6,4 @@ Playlist:
 	vids+=MediaFile*;
 	
 MediaFile:
-	location=STRING;
+	location=STRING duration=INT;

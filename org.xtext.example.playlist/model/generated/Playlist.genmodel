@@ -11,6 +11,7 @@
     </genClasses>
     <genClasses ecoreClass="Playlist.ecore#//MediaFile">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Playlist.ecore#//MediaFile/location"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Playlist.ecore#//MediaFile/duration"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

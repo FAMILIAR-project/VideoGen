@@ -105,13 +105,22 @@ public interface PlaylistPackage extends EPackage
   int MEDIA_FILE__LOCATION = 0;
 
   /**
+   * The feature id for the '<em><b>Duration</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MEDIA_FILE__DURATION = 1;
+
+  /**
    * The number of structural features of the '<em>Media File</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MEDIA_FILE_FEATURE_COUNT = 1;
+  int MEDIA_FILE_FEATURE_COUNT = 2;
 
 
   /**
@@ -155,6 +164,17 @@ public interface PlaylistPackage extends EPackage
    * @generated
    */
   EAttribute getMediaFile_Location();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.playlist.MediaFile#getDuration <em>Duration</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Duration</em>'.
+   * @see org.xtext.example.mydsl.playlist.MediaFile#getDuration()
+   * @see #getMediaFile()
+   * @generated
+   */
+  EAttribute getMediaFile_Duration();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -214,6 +234,14 @@ public interface PlaylistPackage extends EPackage
      * @generated
      */
     EAttribute MEDIA_FILE__LOCATION = eINSTANCE.getMediaFile_Location();
+
+    /**
+     * The meta object literal for the '<em><b>Duration</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MEDIA_FILE__DURATION = eINSTANCE.getMediaFile_Duration();
 
   }
 

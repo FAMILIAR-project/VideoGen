@@ -113,20 +113,40 @@ ruleMediaFile returns [EObject current=null]
 }:
 	(
 		(
-			lv_location_0_0=RULE_STRING
-			{
-				newLeafNode(lv_location_0_0, grammarAccess.getMediaFileAccess().getLocationSTRINGTerminalRuleCall_0());
-			}
-			{
-				if ($current==null) {
-					$current = createModelElement(grammarAccess.getMediaFileRule());
+			(
+				lv_location_0_0=RULE_STRING
+				{
+					newLeafNode(lv_location_0_0, grammarAccess.getMediaFileAccess().getLocationSTRINGTerminalRuleCall_0_0());
 				}
-				setWithLastConsumed(
-					$current,
-					"location",
-					lv_location_0_0,
-					"org.eclipse.xtext.common.Terminals.STRING");
-			}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getMediaFileRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"location",
+						lv_location_0_0,
+						"org.eclipse.xtext.common.Terminals.STRING");
+				}
+			)
+		)
+		(
+			(
+				lv_duration_1_0=RULE_INT
+				{
+					newLeafNode(lv_duration_1_0, grammarAccess.getMediaFileAccess().getDurationINTTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getMediaFileRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"duration",
+						lv_duration_1_0,
+						"org.eclipse.xtext.common.Terminals.INT");
+				}
+			)
 		)
 	)
 ;

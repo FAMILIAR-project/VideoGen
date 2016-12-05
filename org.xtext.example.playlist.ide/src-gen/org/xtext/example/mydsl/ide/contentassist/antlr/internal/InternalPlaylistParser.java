@@ -22,14 +22,14 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalPlaylistParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_INT", "RULE_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER"
     };
-    public static final int RULE_ID=5;
+    public static final int RULE_ID=6;
     public static final int RULE_WS=9;
     public static final int RULE_STRING=4;
     public static final int RULE_ANY_OTHER=10;
     public static final int RULE_SL_COMMENT=8;
-    public static final int RULE_INT=6;
+    public static final int RULE_INT=5;
     public static final int RULE_ML_COMMENT=7;
     public static final int EOF=-1;
 
@@ -194,31 +194,31 @@ public class InternalPlaylistParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "ruleMediaFile"
-    // InternalPlaylist.g:87:1: ruleMediaFile : ( ( rule__MediaFile__LocationAssignment ) ) ;
+    // InternalPlaylist.g:87:1: ruleMediaFile : ( ( rule__MediaFile__Group__0 ) ) ;
     public final void ruleMediaFile() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPlaylist.g:91:2: ( ( ( rule__MediaFile__LocationAssignment ) ) )
-            // InternalPlaylist.g:92:2: ( ( rule__MediaFile__LocationAssignment ) )
+            // InternalPlaylist.g:91:2: ( ( ( rule__MediaFile__Group__0 ) ) )
+            // InternalPlaylist.g:92:2: ( ( rule__MediaFile__Group__0 ) )
             {
-            // InternalPlaylist.g:92:2: ( ( rule__MediaFile__LocationAssignment ) )
-            // InternalPlaylist.g:93:3: ( rule__MediaFile__LocationAssignment )
+            // InternalPlaylist.g:92:2: ( ( rule__MediaFile__Group__0 ) )
+            // InternalPlaylist.g:93:3: ( rule__MediaFile__Group__0 )
             {
-             before(grammarAccess.getMediaFileAccess().getLocationAssignment()); 
-            // InternalPlaylist.g:94:3: ( rule__MediaFile__LocationAssignment )
-            // InternalPlaylist.g:94:4: rule__MediaFile__LocationAssignment
+             before(grammarAccess.getMediaFileAccess().getGroup()); 
+            // InternalPlaylist.g:94:3: ( rule__MediaFile__Group__0 )
+            // InternalPlaylist.g:94:4: rule__MediaFile__Group__0
             {
             pushFollow(FOLLOW_2);
-            rule__MediaFile__LocationAssignment();
+            rule__MediaFile__Group__0();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getMediaFileAccess().getLocationAssignment()); 
+             after(grammarAccess.getMediaFileAccess().getGroup()); 
 
             }
 
@@ -240,18 +240,183 @@ public class InternalPlaylistParser extends AbstractInternalContentAssistParser 
     // $ANTLR end "ruleMediaFile"
 
 
+    // $ANTLR start "rule__MediaFile__Group__0"
+    // InternalPlaylist.g:102:1: rule__MediaFile__Group__0 : rule__MediaFile__Group__0__Impl rule__MediaFile__Group__1 ;
+    public final void rule__MediaFile__Group__0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalPlaylist.g:106:1: ( rule__MediaFile__Group__0__Impl rule__MediaFile__Group__1 )
+            // InternalPlaylist.g:107:2: rule__MediaFile__Group__0__Impl rule__MediaFile__Group__1
+            {
+            pushFollow(FOLLOW_4);
+            rule__MediaFile__Group__0__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__MediaFile__Group__1();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__MediaFile__Group__0"
+
+
+    // $ANTLR start "rule__MediaFile__Group__0__Impl"
+    // InternalPlaylist.g:114:1: rule__MediaFile__Group__0__Impl : ( ( rule__MediaFile__LocationAssignment_0 ) ) ;
+    public final void rule__MediaFile__Group__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalPlaylist.g:118:1: ( ( ( rule__MediaFile__LocationAssignment_0 ) ) )
+            // InternalPlaylist.g:119:1: ( ( rule__MediaFile__LocationAssignment_0 ) )
+            {
+            // InternalPlaylist.g:119:1: ( ( rule__MediaFile__LocationAssignment_0 ) )
+            // InternalPlaylist.g:120:2: ( rule__MediaFile__LocationAssignment_0 )
+            {
+             before(grammarAccess.getMediaFileAccess().getLocationAssignment_0()); 
+            // InternalPlaylist.g:121:2: ( rule__MediaFile__LocationAssignment_0 )
+            // InternalPlaylist.g:121:3: rule__MediaFile__LocationAssignment_0
+            {
+            pushFollow(FOLLOW_2);
+            rule__MediaFile__LocationAssignment_0();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getMediaFileAccess().getLocationAssignment_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__MediaFile__Group__0__Impl"
+
+
+    // $ANTLR start "rule__MediaFile__Group__1"
+    // InternalPlaylist.g:129:1: rule__MediaFile__Group__1 : rule__MediaFile__Group__1__Impl ;
+    public final void rule__MediaFile__Group__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalPlaylist.g:133:1: ( rule__MediaFile__Group__1__Impl )
+            // InternalPlaylist.g:134:2: rule__MediaFile__Group__1__Impl
+            {
+            pushFollow(FOLLOW_2);
+            rule__MediaFile__Group__1__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__MediaFile__Group__1"
+
+
+    // $ANTLR start "rule__MediaFile__Group__1__Impl"
+    // InternalPlaylist.g:140:1: rule__MediaFile__Group__1__Impl : ( ( rule__MediaFile__DurationAssignment_1 ) ) ;
+    public final void rule__MediaFile__Group__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalPlaylist.g:144:1: ( ( ( rule__MediaFile__DurationAssignment_1 ) ) )
+            // InternalPlaylist.g:145:1: ( ( rule__MediaFile__DurationAssignment_1 ) )
+            {
+            // InternalPlaylist.g:145:1: ( ( rule__MediaFile__DurationAssignment_1 ) )
+            // InternalPlaylist.g:146:2: ( rule__MediaFile__DurationAssignment_1 )
+            {
+             before(grammarAccess.getMediaFileAccess().getDurationAssignment_1()); 
+            // InternalPlaylist.g:147:2: ( rule__MediaFile__DurationAssignment_1 )
+            // InternalPlaylist.g:147:3: rule__MediaFile__DurationAssignment_1
+            {
+            pushFollow(FOLLOW_2);
+            rule__MediaFile__DurationAssignment_1();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getMediaFileAccess().getDurationAssignment_1()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__MediaFile__Group__1__Impl"
+
+
     // $ANTLR start "rule__Playlist__VidsAssignment"
-    // InternalPlaylist.g:102:1: rule__Playlist__VidsAssignment : ( ruleMediaFile ) ;
+    // InternalPlaylist.g:156:1: rule__Playlist__VidsAssignment : ( ruleMediaFile ) ;
     public final void rule__Playlist__VidsAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPlaylist.g:106:1: ( ( ruleMediaFile ) )
-            // InternalPlaylist.g:107:2: ( ruleMediaFile )
+            // InternalPlaylist.g:160:1: ( ( ruleMediaFile ) )
+            // InternalPlaylist.g:161:2: ( ruleMediaFile )
             {
-            // InternalPlaylist.g:107:2: ( ruleMediaFile )
-            // InternalPlaylist.g:108:3: ruleMediaFile
+            // InternalPlaylist.g:161:2: ( ruleMediaFile )
+            // InternalPlaylist.g:162:3: ruleMediaFile
             {
              before(grammarAccess.getPlaylistAccess().getVidsMediaFileParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -281,22 +446,22 @@ public class InternalPlaylistParser extends AbstractInternalContentAssistParser 
     // $ANTLR end "rule__Playlist__VidsAssignment"
 
 
-    // $ANTLR start "rule__MediaFile__LocationAssignment"
-    // InternalPlaylist.g:117:1: rule__MediaFile__LocationAssignment : ( RULE_STRING ) ;
-    public final void rule__MediaFile__LocationAssignment() throws RecognitionException {
+    // $ANTLR start "rule__MediaFile__LocationAssignment_0"
+    // InternalPlaylist.g:171:1: rule__MediaFile__LocationAssignment_0 : ( RULE_STRING ) ;
+    public final void rule__MediaFile__LocationAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPlaylist.g:121:1: ( ( RULE_STRING ) )
-            // InternalPlaylist.g:122:2: ( RULE_STRING )
+            // InternalPlaylist.g:175:1: ( ( RULE_STRING ) )
+            // InternalPlaylist.g:176:2: ( RULE_STRING )
             {
-            // InternalPlaylist.g:122:2: ( RULE_STRING )
-            // InternalPlaylist.g:123:3: RULE_STRING
+            // InternalPlaylist.g:176:2: ( RULE_STRING )
+            // InternalPlaylist.g:177:3: RULE_STRING
             {
-             before(grammarAccess.getMediaFileAccess().getLocationSTRINGTerminalRuleCall_0()); 
+             before(grammarAccess.getMediaFileAccess().getLocationSTRINGTerminalRuleCall_0_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
-             after(grammarAccess.getMediaFileAccess().getLocationSTRINGTerminalRuleCall_0()); 
+             after(grammarAccess.getMediaFileAccess().getLocationSTRINGTerminalRuleCall_0_0()); 
 
             }
 
@@ -315,7 +480,44 @@ public class InternalPlaylistParser extends AbstractInternalContentAssistParser 
         }
         return ;
     }
-    // $ANTLR end "rule__MediaFile__LocationAssignment"
+    // $ANTLR end "rule__MediaFile__LocationAssignment_0"
+
+
+    // $ANTLR start "rule__MediaFile__DurationAssignment_1"
+    // InternalPlaylist.g:186:1: rule__MediaFile__DurationAssignment_1 : ( RULE_INT ) ;
+    public final void rule__MediaFile__DurationAssignment_1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalPlaylist.g:190:1: ( ( RULE_INT ) )
+            // InternalPlaylist.g:191:2: ( RULE_INT )
+            {
+            // InternalPlaylist.g:191:2: ( RULE_INT )
+            // InternalPlaylist.g:192:3: RULE_INT
+            {
+             before(grammarAccess.getMediaFileAccess().getDurationINTTerminalRuleCall_1_0()); 
+            match(input,RULE_INT,FOLLOW_2); 
+             after(grammarAccess.getMediaFileAccess().getDurationINTTerminalRuleCall_1_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__MediaFile__DurationAssignment_1"
 
     // Delegated rules
 
@@ -325,5 +527,6 @@ public class InternalPlaylistParser extends AbstractInternalContentAssistParser 
     public static final BitSet FOLLOW_1 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_2 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x0000000000000012L});
+    public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0000000000000020L});
 
 }

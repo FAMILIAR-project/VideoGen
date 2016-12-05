@@ -49,15 +49,18 @@ public class PlaylistSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     MediaFile returns MediaFile
 	 *
 	 * Constraint:
-	 *     location=STRING
+	 *     (location=STRING duration=INT)
 	 */
 	protected void sequence_MediaFile(ISerializationContext context, MediaFile semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, PlaylistPackage.Literals.MEDIA_FILE__LOCATION) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PlaylistPackage.Literals.MEDIA_FILE__LOCATION));
+			if (transientValues.isValueTransient(semanticObject, PlaylistPackage.Literals.MEDIA_FILE__DURATION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PlaylistPackage.Literals.MEDIA_FILE__DURATION));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getMediaFileAccess().getLocationSTRINGTerminalRuleCall_0(), semanticObject.getLocation());
+		feeder.accept(grammarAccess.getMediaFileAccess().getLocationSTRINGTerminalRuleCall_0_0(), semanticObject.getLocation());
+		feeder.accept(grammarAccess.getMediaFileAccess().getDurationINTTerminalRuleCall_1_0(), semanticObject.getDuration());
 		feeder.finish();
 	}
 	

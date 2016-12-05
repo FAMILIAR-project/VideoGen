@@ -9,6 +9,7 @@ import java.util.List;
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.Grammar;
 import org.eclipse.xtext.GrammarUtil;
+import org.eclipse.xtext.Group;
 import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.TerminalRule;
@@ -36,18 +37,30 @@ public class PlaylistGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	public class MediaFileElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.Playlist.MediaFile");
-		private final Assignment cLocationAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cLocationSTRINGTerminalRuleCall_0 = (RuleCall)cLocationAssignment.eContents().get(0);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cLocationAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cLocationSTRINGTerminalRuleCall_0_0 = (RuleCall)cLocationAssignment_0.eContents().get(0);
+		private final Assignment cDurationAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cDurationINTTerminalRuleCall_1_0 = (RuleCall)cDurationAssignment_1.eContents().get(0);
 		
 		//MediaFile:
-		//	location=STRING;
+		//	location=STRING duration=INT;
 		@Override public ParserRule getRule() { return rule; }
 		
+		//location=STRING duration=INT
+		public Group getGroup() { return cGroup; }
+		
 		//location=STRING
-		public Assignment getLocationAssignment() { return cLocationAssignment; }
+		public Assignment getLocationAssignment_0() { return cLocationAssignment_0; }
 		
 		//STRING
-		public RuleCall getLocationSTRINGTerminalRuleCall_0() { return cLocationSTRINGTerminalRuleCall_0; }
+		public RuleCall getLocationSTRINGTerminalRuleCall_0_0() { return cLocationSTRINGTerminalRuleCall_0_0; }
+		
+		//duration=INT
+		public Assignment getDurationAssignment_1() { return cDurationAssignment_1; }
+		
+		//INT
+		public RuleCall getDurationINTTerminalRuleCall_1_0() { return cDurationINTTerminalRuleCall_1_0; }
 	}
 	
 	
@@ -105,7 +118,7 @@ public class PlaylistGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//MediaFile:
-	//	location=STRING;
+	//	location=STRING duration=INT;
 	public MediaFileElements getMediaFileAccess() {
 		return pMediaFile;
 	}

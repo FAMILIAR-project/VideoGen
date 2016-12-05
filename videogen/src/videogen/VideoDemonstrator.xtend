@@ -132,7 +132,7 @@ class VideoDemonstrator {
 	def void modelToModel(VideoGeneratorModel videoGen, String filename){
 		val playlist = PlaylistFactory.eINSTANCE.createPlaylist();
 		val r = new Random();
-		
+		val ffmpeg = new FfmpegHelper()
 		println ('This is a comment')
 		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
 		videoGen.videoseqs.forEach[videoseq | 
@@ -141,23 +141,29 @@ class VideoDemonstrator {
 
 				if(!desc.videoid.isNullOrEmpty){
 					desc.videoid = genID()
+					desc.setDuration(ffmpeg.getDuration(desc.location))
+					println(ffmpeg.getDuration(desc.location))
 					println("file "  + "'"+ desc.location+"'")
+					println("Duration :" + desc.duration)
+					
 					val MediaFile mediaFile = PlaylistFactory.eINSTANCE.createMediaFile
 					mediaFile.location = desc.location
+					mediaFile.duration = desc.duration
 					playlist.getVids().add(mediaFile)
-				}  
-				
-				
-				  				
+				}  	
 			}
 			else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
 				if(!desc.videoid.isNullOrEmpty){
 					if(r.nextBoolean()){
 						desc.videoid = genID() 
+						desc.setDuration(ffmpeg.getDuration(desc.location))
 						println("file "  + "'"+ desc.location+"'")
+						println("Duration :" + desc.duration)
+						
 						val MediaFile mediaFile = PlaylistFactory.eINSTANCE.createMediaFile
 						mediaFile.location = desc.location
+						mediaFile.duration = desc.duration
 						playlist.getVids().add(mediaFile)
 					}
 				} 
@@ -168,9 +174,13 @@ class VideoDemonstrator {
 					val vdesc = altvid.videodescs.get(r.nextInt(altvid.videodescs.size));
 					if(!vdesc.videoid.isNullOrEmpty){
 					 vdesc.videoid = genID()
-					println("file " + "'"+ vdesc.location+"'")
+					 vdesc.setDuration(ffmpeg.getDuration(vdesc.location))
+					 println("file " + "'"+ vdesc.location+"'")
+					 println("Duration :" + vdesc.duration)
+					
 					val MediaFile mediaFile = PlaylistFactory.eINSTANCE.createMediaFile
 					mediaFile.location = vdesc.location
+					mediaFile.duration = vdesc.duration
 					playlist.getVids().add(mediaFile)
 					
 				}
