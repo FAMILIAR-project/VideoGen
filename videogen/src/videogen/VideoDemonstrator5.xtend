@@ -153,6 +153,7 @@ class VideoDemonstrator5 {
 			bw.write("<!DOCTYPE html><html><body>");
 
 			bw.write(vignette);
+			
 			bw.write("</html></body>");
 			bw.close();
 
