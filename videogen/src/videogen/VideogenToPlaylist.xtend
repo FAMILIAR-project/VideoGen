@@ -10,14 +10,13 @@ import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq
 import java.io.FileWriter
 
-//import playlist.*
 import playlist.Playlist
 import playlist.Video
 import playlist.PlaylistFactory
 import playlist.Comment
-import playlist.Content
 
 class VideogenToPlaylist {
+	//Partie 2
 	def loadVideoGenerator(URI uri) {
 		new VideoGenStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()
 		var res = new ResourceSetImpl().getResource(uri, true);
@@ -28,47 +27,32 @@ class VideogenToPlaylist {
 		var videogen = loadVideoGenerator(uri)
 		val rnd = new Random()
 		val playlist = PlaylistFactory.eINSTANCE.createPlaylist
-		//println("# this is a comment")
-		//fout.write("# this is a comment\n")
 		videogen.videoseqs.forEach[vid|
 			if (vid instanceof MandatoryVideoSeq){
-				//println("file '"+vid.description.location+"'")
-				//fout.write("file '"+vid.description.location+"'\n")
-				//var path = AbsolutePath.
 				val video = PlaylistFactory.eINSTANCE.createVideo
 				video.setPath(vid.description.location)
 				playlist.contents.add(video)
-				//playlist.
-				//playlist.contents.add(AbsolutePath.setDir(vid.description.location))
 			}
 			if (vid instanceof OptionalVideoSeq){
 				if (rnd.nextBoolean()){
-					//println("file '"+vid.description.location+"'")
-					//fout.write("file '"+vid.description.location+"'\n")
 					val video = PlaylistFactory.eINSTANCE.createVideo
 					video.setPath(vid.description.location)
 					playlist.contents.add(video)
 				}
 			}
 			if (vid instanceof AlternativeVideoSeq){
-				
 				var n = rnd.nextInt(vid.videodescs.size)
-				//println("file '"+vid.videodescs.get(n).location+"'")
-				//fout.write("file '"+vid.videodescs.get(n).location+"'\n")
 				val video = PlaylistFactory.eINSTANCE.createVideo
 				video.setPath(vid.videodescs.get(n).location)
 				playlist.contents.add(video)
 			}
 		]
-		//var ext = fout.
 		convertPlaylistIntoFormat(playlist, ext, fout)
-		//fout.write(playlistStr)
 		fout.close()
 	}
 	
 	def void convertPlaylistIntoFormat(Playlist playlist, String format, FileWriter fout){
 		//convertir en fichier texte
-		//var out = ""
 		if (format.equals("M3U")){
 			playlist.contents.forEach[vid|
 				if (vid instanceof Comment){

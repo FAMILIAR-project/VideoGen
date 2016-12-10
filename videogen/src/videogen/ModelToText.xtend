@@ -11,7 +11,7 @@ import java.util.Random
 import java.io.FileWriter
 
 class ModelToText{
-	
+	//Partie 1
 	def loadVideoGenerator(URI uri) {
 		new VideoGenStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()
 		var res = new ResourceSetImpl().getResource(uri, true);
@@ -21,24 +21,18 @@ class ModelToText{
 	def void modelToText(URI uri,FileWriter fout){
 		var videogen = loadVideoGenerator(uri)
 		val rnd = new Random()
-		
-		//println("# this is a comment")
 		fout.write("# this is a comment\n")
 		videogen.videoseqs.forEach[vid|
 			if (vid instanceof MandatoryVideoSeq){
-				//println("file '"+vid.description.location+"'")
 				fout.write("file '"+vid.description.location+"'\n")
 			}
 			if (vid instanceof OptionalVideoSeq){
 				if (rnd.nextBoolean()){
-					//println("file '"+vid.description.location+"'")
 					fout.write("file '"+vid.description.location+"'\n")
 				}
 			}
 			if (vid instanceof AlternativeVideoSeq){
-				
 				var n = rnd.nextInt(vid.videodescs.size)
-				//println("file '"+vid.videodescs.get(n).location+"'")
 				fout.write("file '"+vid.videodescs.get(n).location+"'\n")
 			}
 		]

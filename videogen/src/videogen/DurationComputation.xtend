@@ -10,11 +10,10 @@ import java.util.HashMap
 import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq
 import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq
-
-//import org.xtext.example.mydsl.videoGen.VideoGenFactory
+import java.util.Random
 
 class DurationComputation {
-	
+	//Partie 3
 	def loadVideoGenerator(URI uri) {
 		new VideoGenStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()
 		var res = new ResourceSetImpl().getResource(uri, true);
@@ -41,8 +40,8 @@ class DurationComputation {
 			}
 			if (vid instanceof AlternativeVideoSeq){
 				for (videodesc:vid.videodescs){
-					val duration = computeDuration(videodesc.description.)
-					videodesc.description.duration = duration as int
+					val duration = computeDuration(videodesc.location)
+					videodesc.duration = duration as int
 				}
 
 			}
@@ -50,22 +49,48 @@ class DurationComputation {
 		saveVideoGenerator(out,videogen)
 	}
 	
-	def int computeDuration(String videoLocation){
-		var cmd = "/usr/local/bin/ffprobe -v error -select_streams v:0 -show_entries stream=duration -of default=noprint_wrappers=1:nokey=1 -i " + videoLocation
-		var Process process = Runtime.getRuntime().exec(cmd)
-		process.waitFor()
-		}
-		
-	def void generateThumbnail(String videoLocation, String name){
-		var cmd = "/usr/local/bin/ffmpeg -i " + videoLocation + " -ss 00:00:01.000 -vframes 1 " + "/thumb" + name + ".jpg -y"
-		var Process process = Runtime.getRuntime().exec(cmd)
-		process.waitFor()
+	def modelToM3UExtended(URI in,String out){
+		var mod = loadVideoGenerator(in)
+		val fout = new FileWriter(out)
+		val rnd = new Random()
+		mod.videoseqs.forEach[vid|
+			if (vid instanceof MandatoryVideoSeq){
+				fout.write("#EXT-X-DISCONTINUITY\n")
+				fout.write("#EXTINF:"+vid.description.duration+"\n")
+				fout.write(vid.description.location+"\n")
+			}
+			if (vid instanceof OptionalVideoSeq){
+				if (rnd.nextBoolean()){
+					fout.write("#EXT-X-DISCONTINUITY\n")
+					fout.write("#EXTINF:"+vid.description.duration+"\n")
+					fout.write(vid.description.location+"\n")
+				}
+			}
+			if (vid instanceof AlternativeVideoSeq){
+				var n = rnd.nextInt(vid.videodescs.size)
+				fout.write("#EXT-X-DISCONTINUITY\n")
+				fout.write("#EXTINF:"+vid.videodescs.get(n).duration+"\n")
+				fout.write(vid.videodescs.get(n).location+"\n")
+			}
+		]
+		fout.write("#EXT-X-ENDLIST")
+		fout.close()
 	}
 	
+	
+	def int computeDuration(String videoLocation){
+		var cmd = "/usr/bin/ffprobe -v error -select_streams v:0 -show_entries stream=duration -of default=noprint_wrappers=1:nokey=1 -i \"" + videoLocation+"\""
+		var Process process = Runtime.getRuntime().exec(cmd)
+		process.waitFor()
+		process.getInputStream().read
+		}
+		
 	def static void main(String[] args) {
 		val dc = new DurationComputation
 		val fin = URI.createURI("foo2.videogen")
 		val fout = URI.createURI("foo2duration.videogen")
+		val m3uext = "foo2.m3u"
 		dc.durationCompute(fin,fout)
+		dc.modelToM3UExtended(fout,m3uext)
 	}
 }
