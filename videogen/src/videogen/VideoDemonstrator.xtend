@@ -12,6 +12,12 @@ import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 
 import static org.junit.Assert.*
+import java.io.FileWriter
+import java.io.File
+import java.io.FileReader
+import java.util.Random
+import playlist.Playlist
+import playlist.PlaylistFactory
 
 class VideoDemonstrator {
 	
@@ -29,6 +35,7 @@ class VideoDemonstrator {
 	
 	@Test
 	def test1() {
+		
 		// loading
 		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
 		assertNotNull(videoGen)
@@ -41,6 +48,7 @@ class VideoDemonstrator {
 			}
 			else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
+				
 				if(desc.videoid.isNullOrEmpty) desc.videoid = genID() 
 			}
 			else {
@@ -58,6 +66,135 @@ class VideoDemonstrator {
 	printToHTML(videoGen)
 		 
 			
+	}
+	
+	@Test
+	def test3() {
+		
+		// loading
+		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
+		assertNotNull(videoGen)
+		assertEquals(7, videoGen.videoseqs.size)
+		        
+       val outputFile = new File("outagain.txt"); 
+       
+        val out = new FileWriter(outputFile); 			
+		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
+		videoGen.videoseqs.forEach[videoseq | 
+			
+			if (videoseq instanceof MandatoryVideoSeq) {
+				val chem = (videoseq as MandatoryVideoSeq).description.location
+				out.write(chem)
+				out.write("\n")
+				 				
+			}
+			else if (videoseq instanceof OptionalVideoSeq) {
+				val optional = new Random(2)
+				if(optional.nextInt()==1)
+				{
+					val chem = (videoseq as OptionalVideoSeq).description.location
+				out.write(chem)
+				out.write("\n")
+				
+				}
+				
+			}
+			
+			else {
+				val altvid = (videoseq as AlternativeVideoSeq)
+				val size = altvid.videodescs.size()
+				
+				val optional = new Random().nextInt(altvid.videodescs.size())
+				out.write(altvid.videodescs.get(optional).location+"\n")
+				 				
+		}
+			]
+			out.close
+	// serializing
+		 
+			
+	}
+	
+	@Test
+	def test4() {
+		
+		// loading
+		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
+		// Model to model
+		
+		val playlist = PlaylistFactory.eINSTANCE.createPlaylist()
+		
+		
+       val outputFile = new File("outagain.txt"); 
+       
+        val out = new FileWriter(outputFile); 			
+		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
+		videoGen.videoseqs.forEach[videoseq | 
+			
+			if (videoseq instanceof MandatoryVideoSeq) {
+				val chem = (videoseq as MandatoryVideoSeq).description.location
+				out.write(chem)
+				out.write("\n")
+				
+				val mediafile = PlaylistFactory.eINSTANCE.createMediafile()
+				mediafile.location = chem
+				playlist.videos.add(mediafile)
+				 				
+			}
+			else if (videoseq instanceof OptionalVideoSeq) {
+				val optional = new Random(1)
+				if(optional.nextInt()==1)
+				{
+					val chem = (videoseq as OptionalVideoSeq).description.location
+				out.write(chem)
+				out.write("\n")
+				
+				val mediafile = PlaylistFactory.eINSTANCE.createMediafile()
+				mediafile.location = chem
+				playlist.videos.add(mediafile)
+				
+				}
+				
+			}
+			
+			else {
+				val altvid = (videoseq as AlternativeVideoSeq)
+				val size = altvid.videodescs.size()
+				
+				val optional = new Random().nextInt(altvid.videodescs.size())
+				out.write(altvid.videodescs.get(optional).location+"\n")
+				
+				val mediafile = PlaylistFactory.eINSTANCE.createMediafile()
+				mediafile.location = altvid.videodescs.get(optional).location
+				playlist.videos.add(mediafile)
+				 				
+		}
+			]
+			out.close
+	// serializing
+	
+		 convertPlaylistIntoFormat(playlist, "m3u")
+			
+	}
+	
+
+	
+	
+	def convertPlaylistIntoFormat(Playlist p, String format)
+	{
+		 
+		p.videos.forEach[ video|
+			val str = video.location+"."+format
+			video.location=str
+			
+        System.out.println(video.location+"\n")
+        
+        
+			
+			
+		]
+		
+		
 	}
 	
 	def void printToHTML(VideoGeneratorModel videoGen) {
