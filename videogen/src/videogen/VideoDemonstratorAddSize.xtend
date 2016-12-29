@@ -12,8 +12,13 @@ import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 import static org.junit.Assert.*
 import java.util.Random
+import java.io.BufferedReader
+import java.io.InputStreamReader
 
-class VideoDemonstratorFFmpeg {
+class VideoDemonstratorAddSize {
+	
+	var static pathFFmpeg = "C:/Users/PHILIP_Mi/Documents/Divers/Miage/M2/IDM/TP3/FFMpeg/ffmpeg-20161110-872b358-win64-static/bin/";
+	var static pathVideo = "C:/Users/PHILIP_Mi/Documents/Divers/Miage/M2/IDM/TP3/FFMpeg/"
 	
 	def loadVideoGenerator(URI uri) {
 		new VideoGenStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()
@@ -51,31 +56,28 @@ class VideoDemonstratorFFmpeg {
 				}
 			}
 		]
+	
+	printFFmpegSize(videoGen)
+	
 	// serializing
-	saveVideoGenerator(URI.createURI("foo2bis.xmi"), videoGen)
-	saveVideoGenerator(URI.createURI("foo2bis.videogen"), videoGen)
-		
-	printFFmpeg(videoGen)
-		 
-			
+	saveVideoGenerator(URI.createURI("fooRealaug.xmi"), videoGen)
+	saveVideoGenerator(URI.createURI("fooRealaug.videogen"), videoGen)		
 	}
 	
-	def void printFFmpeg(VideoGeneratorModel videoGen) {
+	def void printFFmpegSize(VideoGeneratorModel videoGen) {
 		//var numSeq = 1
-		println("#Sequence FFmpeg generate")
 		videoGen.videoseqs.forEach[videoseq | 
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
 				if(!desc.videoid.isNullOrEmpty && !desc.location.isNullOrEmpty)  
-					println ("file '" + desc.location + "'")  				
+					desc.duration = getDuration(pathVideo+desc.location)  				
 			}
 			else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
 				if(!desc.videoid.isNullOrEmpty && !desc.location.isNullOrEmpty) {
 					val test = new Random().nextInt(100) //Generer un nombre entre 0 et 100
-					println("#TestRes:" + test)
 					if(test <= 50){
-						println ("file '" + desc.location + "'")
+						desc.duration = getDuration(pathVideo+desc.location)  
 					} 	 	
 				}
 			}
@@ -83,19 +85,31 @@ class VideoDemonstratorFFmpeg {
 				val altvid = (videoseq as AlternativeVideoSeq)
 				//On récupere la taille de la liste et on genere un entier aléatoire pour chosir la video 
 				val choix = new Random().nextInt(altvid.videodescs.size)
-				println("#Choix:" + choix)
 				val vdesc = altvid.videodescs.get(choix)	 
 				if(!vdesc.videoid.isNullOrEmpty && !vdesc.location.isNullOrEmpty) 
-					println ("file '" + vdesc.location + "'") 
-		
+					vdesc.duration = getDuration(pathVideo+vdesc.location) 
 			}
 		]
-		println("#End of generation")
 	}
 	
 	static var i = 0;
 	def genID() {
 		"v" + i++
+	}
+	
+	//Méthode pour calculer la durée d'une vidéo (pour M3u extends)
+	def static int getDuration(String path) {
+		var pathnorm = path.replace("/","\\")
+		var Process process = Runtime.getRuntime().exec(pathFFmpeg+ "ffprobe -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 \"" + pathnorm + "\"")
+		
+		process.waitFor()		
+		var BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))
+		var String line = "";
+		var String outputJson = "";
+	   while ((line = reader.readLine()) != null) {
+	       outputJson = outputJson + line;
+	   }
+	   return Math.round(Float.parseFloat(outputJson))-1;
 	}
 	
 }

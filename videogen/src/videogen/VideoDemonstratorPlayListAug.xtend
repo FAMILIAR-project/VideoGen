@@ -13,7 +13,7 @@ import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 import static org.junit.Assert.*
 import java.util.Random
 
-class VideoDemonstratorFFmpeg {
+class VideoDemonstratorPlayListAug {
 	
 	def loadVideoGenerator(URI uri) {
 		new VideoGenStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()
@@ -30,7 +30,7 @@ class VideoDemonstratorFFmpeg {
 	@Test
 	def test1() {
 		// loading
-		var videoGen = loadVideoGenerator(URI.createURI("fooReal.videogen")) 
+		var videoGen = loadVideoGenerator(URI.createURI("fooRealAug.videogen")) 
 		assertNotNull(videoGen)
 		//assertEquals(7, videoGen.videoseqs.size)			
 		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
@@ -62,20 +62,23 @@ class VideoDemonstratorFFmpeg {
 	
 	def void printFFmpeg(VideoGeneratorModel videoGen) {
 		//var numSeq = 1
-		println("#Sequence FFmpeg generate")
+		println("#EXTM3U")
 		videoGen.videoseqs.forEach[videoseq | 
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
 				if(!desc.videoid.isNullOrEmpty && !desc.location.isNullOrEmpty)  
-					println ("file '" + desc.location + "'")  				
+					println("#EXT-X-DISCONTINUITY")
+					println("#EXTINF:"+ desc.duration) 
+					println ("" + desc.location + "")		
 			}
 			else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
 				if(!desc.videoid.isNullOrEmpty && !desc.location.isNullOrEmpty) {
 					val test = new Random().nextInt(100) //Generer un nombre entre 0 et 100
-					println("#TestRes:" + test)
 					if(test <= 50){
-						println ("file '" + desc.location + "'")
+						println("#EXT-X-DISCONTINUITY")
+						println("#EXTINF:"+ desc.duration) 
+						println ("" + desc.location + "")	
 					} 	 	
 				}
 			}
@@ -83,19 +86,19 @@ class VideoDemonstratorFFmpeg {
 				val altvid = (videoseq as AlternativeVideoSeq)
 				//On récupere la taille de la liste et on genere un entier aléatoire pour chosir la video 
 				val choix = new Random().nextInt(altvid.videodescs.size)
-				println("#Choix:" + choix)
 				val vdesc = altvid.videodescs.get(choix)	 
 				if(!vdesc.videoid.isNullOrEmpty && !vdesc.location.isNullOrEmpty) 
-					println ("file '" + vdesc.location + "'") 
+					println("#EXT-X-DISCONTINUITY")
+					println("#EXTINF:"+ vdesc.duration) 
+					println ("" + vdesc.location + "")	
 		
 			}
 		]
-		println("#End of generation")
+		println("#EXT-X-ENDLIST")
 	}
 	
 	static var i = 0;
 	def genID() {
 		"v" + i++
 	}
-	
 }

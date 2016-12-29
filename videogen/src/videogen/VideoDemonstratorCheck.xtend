@@ -12,8 +12,9 @@ import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 import static org.junit.Assert.*
 import java.util.Random
+import java.util.ArrayList
 
-class VideoDemonstratorFFmpeg {
+class VideoDemonstratorCheck {
 	
 	def loadVideoGenerator(URI uri) {
 		new VideoGenStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()
@@ -61,21 +62,28 @@ class VideoDemonstratorFFmpeg {
 	}
 	
 	def void printFFmpeg(VideoGeneratorModel videoGen) {
+		val listIdUse = new ArrayList<String>();
 		//var numSeq = 1
 		println("#Sequence FFmpeg generate")
 		videoGen.videoseqs.forEach[videoseq | 
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
 				if(!desc.videoid.isNullOrEmpty && !desc.location.isNullOrEmpty)  
-					println ("file '" + desc.location + "'")  				
+					println ("file '" + desc.location + "'")  		
+					listIdUse.add(desc.videoid);	
 			}
 			else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
 				if(!desc.videoid.isNullOrEmpty && !desc.location.isNullOrEmpty) {
 					val test = new Random().nextInt(100) //Generer un nombre entre 0 et 100
-					println("#TestRes:" + test)
-					if(test <= 50){
-						println ("file '" + desc.location + "'")
+					if(test>100 || test<0){
+						println("WARNING: le resultat de test est incohérent: vidéo ignorée")
+					}else{
+						println("#TestRes:" + test)
+						if(test <= 50){
+							println ("file '" + desc.location + "'")
+							listIdUse.add(desc.videoid);
+						}
 					} 	 	
 				}
 			}
@@ -84,12 +92,18 @@ class VideoDemonstratorFFmpeg {
 				//On récupere la taille de la liste et on genere un entier aléatoire pour chosir la video 
 				val choix = new Random().nextInt(altvid.videodescs.size)
 				println("#Choix:" + choix)
-				val vdesc = altvid.videodescs.get(choix)	 
-				if(!vdesc.videoid.isNullOrEmpty && !vdesc.location.isNullOrEmpty) 
-					println ("file '" + vdesc.location + "'") 
-		
+				if(choix>altvid.videodescs.size || choix<0){
+					System.out.println("WARNING: le resultat de test est incohérent: vidéo ignorée")
+				}else{
+					val vdesc = altvid.videodescs.get(choix)	 
+					if(!vdesc.videoid.isNullOrEmpty && !vdesc.location.isNullOrEmpty) {
+						println ("file '" + vdesc.location + "'") 
+						listIdUse.add(vdesc.videoid);
+					}
+				}
 			}
 		]
+		//TODO: utiliser listIdUse pour verifier id
 		println("#End of generation")
 	}
 	

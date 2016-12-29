@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated PlayList -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="M3u.presentation.M3uModelWizardID"
+            name="%_UI_M3uModelWizard_label"
+            class="M3u.presentation.M3uModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/M3uModelFile.gif">
+         <description>%_UI_M3uModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated PlayList -->
+      <editor
+            id="M3u.presentation.M3uEditorID"
+            name="%_UI_M3uEditor_label"
+            icon="icons/full/obj16/M3uModelFile.gif"
+            extensions="m3u"
+            class="M3u.presentation.M3uEditor"
+            contributorClass="M3u.presentation.M3uActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
