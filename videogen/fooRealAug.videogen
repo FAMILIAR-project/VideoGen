@@ -2,7 +2,7 @@ VideoGen {
 	mandatory videoseq v1 "Sample/V1.mp4" { duration 38 }
 	optional videoseq v2 "Sample/V2.mp4" { duration 24 }
 	alternatives v3 { 
-		videoseq v31 "Sample/V3.mp4"
-		videoseq v32 "Sample/V4.mp4"
-	{ duration 22 } }
+		videoseq v31 "Sample/V3.mp4" { duration 22 }
+		videoseq v32 "Sample/V4.mp4" { duration 14 }
+	 }
 }

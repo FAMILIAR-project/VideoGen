@@ -29,7 +29,7 @@ import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 import org.xtext.example.mydsl.videoGen.VideoSeq;
 
 @SuppressWarnings("all")
-public class VideoDemonstratorFFmpegPlayList {
+public class VideoDemonstratorPlayList {
   private static String pathFFmpeg = "C:/Users/PHILIP_Mi/Documents/Divers/Miage/M2/IDM/TP3/FFMpeg/ffmpeg-20161110-872b358-win64-static/bin/";
   
   private static String pathVideo = "C:/Users/PHILIP_Mi/Documents/Divers/Miage/M2/IDM/TP3/FFMpeg/";
@@ -107,9 +107,9 @@ public class VideoDemonstratorFFmpegPlayList {
       }
     };
     _videoseqs.forEach(_function);
-    URI _createURI_1 = URI.createURI("foo2bis.xmi");
+    URI _createURI_1 = URI.createURI("fooRealOut.xmi");
     this.saveVideoGenerator(_createURI_1, videoGen);
-    URI _createURI_2 = URI.createURI("foo2bis.videogen");
+    URI _createURI_2 = URI.createURI("fooRealOut.videogen");
     this.saveVideoGenerator(_createURI_2, videoGen);
     this.registerPlayList(videoGen, play);
   }
@@ -165,7 +165,7 @@ public class VideoDemonstratorFFmpegPlayList {
   private static int i = 0;
   
   public String genID() {
-    int _plusPlus = VideoDemonstratorFFmpegPlayList.i++;
+    int _plusPlus = VideoDemonstratorPlayList.i++;
     return ("v" + Integer.valueOf(_plusPlus));
   }
   
@@ -191,8 +191,8 @@ public class VideoDemonstratorFFmpegPlayList {
       {
         InputOutput.<String>println("#EXT-X-DISCONTINUITY");
         String _location_1 = f_1.getLocation();
-        String _plus_3 = (VideoDemonstratorFFmpegPlayList.pathVideo + _location_1);
-        int _duration = VideoDemonstratorFFmpegPlayList.getDuration(_plus_3);
+        String _plus_3 = (VideoDemonstratorPlayList.pathVideo + _location_1);
+        int _duration = VideoDemonstratorPlayList.getDuration(_plus_3);
         String _plus_4 = ("#EXTINF:" + Integer.valueOf(_duration));
         InputOutput.<String>println(_plus_4);
         String _location_2 = f_1.getLocation();
@@ -208,7 +208,7 @@ public class VideoDemonstratorFFmpegPlayList {
     try {
       String pathnorm = path.replace("/", "\\");
       Runtime _runtime = Runtime.getRuntime();
-      Process process = _runtime.exec((((VideoDemonstratorFFmpegPlayList.pathFFmpeg + "ffprobe -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 \"") + pathnorm) + "\""));
+      Process process = _runtime.exec((((VideoDemonstratorPlayList.pathFFmpeg + "ffprobe -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 \"") + pathnorm) + "\""));
       process.waitFor();
       InputStream _inputStream = process.getInputStream();
       InputStreamReader _inputStreamReader = new InputStreamReader(_inputStream);

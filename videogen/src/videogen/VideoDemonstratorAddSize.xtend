@@ -60,8 +60,8 @@ class VideoDemonstratorAddSize {
 	printFFmpegSize(videoGen)
 	
 	// serializing
-	saveVideoGenerator(URI.createURI("fooRealaug.xmi"), videoGen)
-	saveVideoGenerator(URI.createURI("fooRealaug.videogen"), videoGen)		
+	saveVideoGenerator(URI.createURI("fooRealOut.xmi"), videoGen)
+	saveVideoGenerator(URI.createURI("fooRealOut.videogen"), videoGen)		
 	}
 	
 	def void printFFmpegSize(VideoGeneratorModel videoGen) {

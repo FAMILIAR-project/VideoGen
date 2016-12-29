@@ -53,8 +53,8 @@ class VideoDemonstratorCheck {
 			}
 		]
 	// serializing
-	saveVideoGenerator(URI.createURI("foo2bis.xmi"), videoGen)
-	saveVideoGenerator(URI.createURI("foo2bis.videogen"), videoGen)
+	saveVideoGenerator(URI.createURI("fooRealOut.xmi"), videoGen)
+	saveVideoGenerator(URI.createURI("fooRealOut.videogen"), videoGen)		
 		
 	printFFmpeg(videoGen)
 		 
@@ -103,7 +103,6 @@ class VideoDemonstratorCheck {
 				}
 			}
 		]
-		//TODO: utiliser listIdUse pour verifier id
 		println("#End of generation")
 	}
 	

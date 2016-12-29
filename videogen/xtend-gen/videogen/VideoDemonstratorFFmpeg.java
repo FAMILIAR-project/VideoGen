@@ -95,9 +95,9 @@ public class VideoDemonstratorFFmpeg {
       }
     };
     _videoseqs.forEach(_function);
-    URI _createURI_1 = URI.createURI("foo2bis.xmi");
+    URI _createURI_1 = URI.createURI("fooRealOut.xmi");
     this.saveVideoGenerator(_createURI_1, videoGen);
-    URI _createURI_2 = URI.createURI("foo2bis.videogen");
+    URI _createURI_2 = URI.createURI("fooRealOut.videogen");
     this.saveVideoGenerator(_createURI_2, videoGen);
     this.printFFmpeg(videoGen);
   }

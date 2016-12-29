@@ -103,9 +103,9 @@ public class VideoDemonstratorAddSize {
     };
     _videoseqs.forEach(_function);
     this.printFFmpegSize(videoGen);
-    URI _createURI_1 = URI.createURI("fooRealaug.xmi");
+    URI _createURI_1 = URI.createURI("fooRealOut.xmi");
     this.saveVideoGenerator(_createURI_1, videoGen);
-    URI _createURI_2 = URI.createURI("fooRealaug.videogen");
+    URI _createURI_2 = URI.createURI("fooRealOut.videogen");
     this.saveVideoGenerator(_createURI_2, videoGen);
   }
   

@@ -20,7 +20,7 @@ import M3u.MediaFile
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
-class VideoDemonstratorFFmpegPlayList {
+class VideoDemonstratorPlayList {
 	
 	var static pathFFmpeg = "C:/Users/PHILIP_Mi/Documents/Divers/Miage/M2/IDM/TP3/FFMpeg/ffmpeg-20161110-872b358-win64-static/bin/";
 	var static pathVideo = "C:/Users/PHILIP_Mi/Documents/Divers/Miage/M2/IDM/TP3/FFMpeg/"
@@ -62,8 +62,8 @@ class VideoDemonstratorFFmpegPlayList {
 			}
 		]
 	// serializing
-	saveVideoGenerator(URI.createURI("foo2bis.xmi"), videoGen)
-	saveVideoGenerator(URI.createURI("foo2bis.videogen"), videoGen)
+	saveVideoGenerator(URI.createURI("fooRealOut.xmi"), videoGen)
+	saveVideoGenerator(URI.createURI("fooRealOut.videogen"), videoGen)		
 	registerPlayList(videoGen,play)
 			
 	}
