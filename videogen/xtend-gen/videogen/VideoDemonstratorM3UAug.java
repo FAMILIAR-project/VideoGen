@@ -22,7 +22,7 @@ import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 import org.xtext.example.mydsl.videoGen.VideoSeq;
 
 @SuppressWarnings("all")
-public class VideoDemonstratorPlayListAug {
+public class VideoDemonstratorM3UAug {
   public VideoGeneratorModel loadVideoGenerator(final URI uri) {
     VideoGeneratorModel _xblockexpression = null;
     {
@@ -163,7 +163,7 @@ public class VideoDemonstratorPlayListAug {
   private static int i = 0;
   
   public String genID() {
-    int _plusPlus = VideoDemonstratorPlayListAug.i++;
+    int _plusPlus = VideoDemonstratorM3UAug.i++;
     return ("v" + Integer.valueOf(_plusPlus));
   }
 }

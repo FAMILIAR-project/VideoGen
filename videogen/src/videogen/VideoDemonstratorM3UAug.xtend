@@ -13,7 +13,7 @@ import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 import static org.junit.Assert.*
 import java.util.Random
 
-class VideoDemonstratorPlayListAug {
+class VideoDemonstratorM3UAug {
 	
 	def loadVideoGenerator(URI uri) {
 		new VideoGenStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()

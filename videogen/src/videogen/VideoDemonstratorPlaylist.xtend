@@ -113,7 +113,7 @@ class VideoDemonstratorFFmpegPlayList {
 		"v" + i++
 	}
 	
-	//Faire méthode pour generer les 3 fichiers avec la playlist
+	//Faire méthode pour generer les 3 fichiers avec la playlist (ici on fait le .M3U et ffmpeg)
 	def void createScripts(Playlist play){
 		System.out.println("Size:"+play.mediafile.size)
 		//Transformation FFMpeg
