@@ -27,3 +27,5 @@ fmGen = FM (VideoGenerator: Mode; Mode: (Random|Probability|Configurator); Confi
 	
 	* mode Configurator : ajouter un champ pour choisir l'aléatoire ou probabilité et videogen les ajoutera aux videos 		obligatoires
 	
+##Projet 1 : Text Inséré 
+* Transformation situé au niveau des tests appelé projetInsertText.xtend 
