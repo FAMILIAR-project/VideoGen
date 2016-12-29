@@ -24,6 +24,7 @@ class VideoDemonstratorCalculMetrique {
 	var static pathVideo = "C:/Users/PHILIP_Mi/Documents/Divers/Miage/M2/IDM/TP3/FFMpeg/"
 	
 	//Création des variables qui vont servir pour le métrique
+	final int nbVariante = 1;
 	final HashMap<Integer,Integer> tailleVar = new HashMap<Integer,Integer>() //HashMap nombre de video par variante
 	final HashMap<Integer,Integer> dureeVar = new HashMap<Integer,Integer>() //HashMap durée vidéo par variante
 	final HashMap<Integer,String> idVar = new HashMap<Integer,String>() //HashMap id video par variante
@@ -105,10 +106,48 @@ class VideoDemonstratorCalculMetrique {
 			else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
 				if(!desc.videoid.isNullOrEmpty && !desc.location.isNullOrEmpty) {
-					//TODO
 					//Calculer durée
-					var durée = getDuration(pathVideo+desc.location)
-					//Parcourir chaque hashmap et rajouter pour chaque variante: 
+					var duree = getDuration(pathVideo+desc.location)
+					//Si les hashMap sont vide: on va créer la premiére variante avec la video et une seconde sans
+					if(tailleVar.empty){
+						tailleVar.put(1,1) //on va rajouter un à la taille de la séquence
+						dureeVar.put(1,duree) //On rajoute la durée de la vidéoy
+						idVar.put(1,desc.videoid) //On rajoute l'id de la video
+						tailleVar.put(2,0) //on va rajouter un à la taille de la séquence
+						dureeVar.put(2,0) //On rajoute la durée de la vidéo
+						idVar.put(2,"") //On rajoute l'id de la video
+					//Sinon on va parcourir chaque hashmap et chaque variante.Pour chaque variante:
+					//On va créer une nouvelle variante dans les hashmap qui ont les mêmes données que la variante auquelle on ajoute les données de la vidéo
+					}else{
+						//On va rajouter des elements en même temps qu'on lit: dangereux 
+						//on fait donc des hashmap pour contenir les nouveaux elements à rajouter qu'on ajoutera à nos hashmap à la fin
+						var HashMap<Integer,Integer> tailleVarNew = new HashMap<Integer,Integer>();  
+						var HashMap<Integer,Integer> dureeVarNew = new HashMap<Integer,Integer>();  
+						var HashMap<Integer,String> idVarNew = new HashMap<Integer,String>();
+						
+						//compteurs qui indique le nb d'element qu'on a rajouté (pour éviter qu'une nouvelle variante écrase une autre)
+						var int t=0
+						var int d= 0
+						var int i= 0
+						for(variantet: tailleVar.entrySet){
+							t++
+							tailleVarNew.put(tailleVar.size()+t,variantet.value+1) //+1 à la taille de la séquence
+						}
+						for(varianted: dureeVar.entrySet){
+							d++
+							dureeVarNew.put(dureeVar.size()+d,varianted.value+duree) // la durée de la video
+						}
+						for(variantei: idVar.entrySet){
+							i++
+							idVarNew.put(idVar.size()+i,variantei.value+" "+desc.videoid) //On rajoute l'id de la video
+						}
+						
+						//Maintenant qu'on nos nouvelles variantes dans les nouvelles hashmap : on rajoute leur contenu dans les hashmap du calcul
+						tailleVar.putAll(tailleVarNew);
+						dureeVar.putAll(dureeVarNew);
+						idVar.putAll(idVarNew);
+					}
+					
 					//Créer un nouvelle element dans les hashmap qui ont les mêmes donnée que la variante et rajouter en plus: +1 à la taille, la durée de la video,l'id de la vidéo	
 				}
 			}

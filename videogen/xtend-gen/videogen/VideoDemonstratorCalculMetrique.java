@@ -35,6 +35,8 @@ public class VideoDemonstratorCalculMetrique {
   
   private static String pathVideo = "C:/Users/PHILIP_Mi/Documents/Divers/Miage/M2/IDM/TP3/FFMpeg/";
   
+  private final int nbVariante = 1;
+  
   private final HashMap<Integer, Integer> tailleVar = new HashMap<Integer, Integer>();
   
   private final HashMap<Integer, Integer> dureeVar = new HashMap<Integer, Integer>();
@@ -167,7 +169,62 @@ public class VideoDemonstratorCalculMetrique {
           if (((!StringExtensions.isNullOrEmpty(desc_1.getVideoid())) && (!StringExtensions.isNullOrEmpty(desc_1.getLocation())))) {
             String _location_1 = desc_1.getLocation();
             String _plus_5 = (VideoDemonstratorCalculMetrique.pathVideo + _location_1);
-            int durée = VideoDemonstratorCalculMetrique.getDuration(_plus_5);
+            int duree_1 = VideoDemonstratorCalculMetrique.getDuration(_plus_5);
+            boolean _isEmpty_1 = this.tailleVar.isEmpty();
+            if (_isEmpty_1) {
+              this.tailleVar.put(Integer.valueOf(1), Integer.valueOf(1));
+              this.dureeVar.put(Integer.valueOf(1), Integer.valueOf(duree_1));
+              String _videoid_2 = desc_1.getVideoid();
+              this.idVar.put(Integer.valueOf(1), _videoid_2);
+              this.tailleVar.put(Integer.valueOf(2), Integer.valueOf(0));
+              this.dureeVar.put(Integer.valueOf(2), Integer.valueOf(0));
+              this.idVar.put(Integer.valueOf(2), "");
+            } else {
+              HashMap<Integer, Integer> tailleVarNew = new HashMap<Integer, Integer>();
+              HashMap<Integer, Integer> dureeVarNew = new HashMap<Integer, Integer>();
+              HashMap<Integer, String> idVarNew = new HashMap<Integer, String>();
+              int t = 0;
+              int d = 0;
+              int i = 0;
+              Set<Map.Entry<Integer, Integer>> _entrySet_3 = this.tailleVar.entrySet();
+              for (final Map.Entry<Integer, Integer> variantet : _entrySet_3) {
+                {
+                  t++;
+                  int _size = this.tailleVar.size();
+                  int _plus_6 = (_size + t);
+                  Integer _value_3 = variantet.getValue();
+                  int _plus_7 = ((_value_3).intValue() + 1);
+                  tailleVarNew.put(Integer.valueOf(_plus_6), Integer.valueOf(_plus_7));
+                }
+              }
+              Set<Map.Entry<Integer, Integer>> _entrySet_4 = this.dureeVar.entrySet();
+              for (final Map.Entry<Integer, Integer> varianted : _entrySet_4) {
+                {
+                  d++;
+                  int _size = this.dureeVar.size();
+                  int _plus_6 = (_size + d);
+                  Integer _value_3 = varianted.getValue();
+                  int _plus_7 = ((_value_3).intValue() + duree_1);
+                  dureeVarNew.put(Integer.valueOf(_plus_6), Integer.valueOf(_plus_7));
+                }
+              }
+              Set<Map.Entry<Integer, String>> _entrySet_5 = this.idVar.entrySet();
+              for (final Map.Entry<Integer, String> variantei : _entrySet_5) {
+                {
+                  i++;
+                  int _size = this.idVar.size();
+                  int _plus_6 = (_size + i);
+                  String _value_3 = variantei.getValue();
+                  String _plus_7 = (_value_3 + " ");
+                  String _videoid_3 = desc_1.getVideoid();
+                  String _plus_8 = (_plus_7 + _videoid_3);
+                  idVarNew.put(Integer.valueOf(_plus_6), _plus_8);
+                }
+              }
+              this.tailleVar.putAll(tailleVarNew);
+              this.dureeVar.putAll(dureeVarNew);
+              this.idVar.putAll(idVarNew);
+            }
           }
         } else {
           final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
@@ -175,7 +232,7 @@ public class VideoDemonstratorCalculMetrique {
           for (final VideoDescription vdesc : _videodescs) {
             String _location_2 = vdesc.getLocation();
             String _plus_6 = (VideoDemonstratorCalculMetrique.pathVideo + _location_2);
-            int durée_1 = VideoDemonstratorCalculMetrique.getDuration(_plus_6);
+            int durée = VideoDemonstratorCalculMetrique.getDuration(_plus_6);
           }
         }
       }
