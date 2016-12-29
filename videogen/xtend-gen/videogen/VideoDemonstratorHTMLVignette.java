@@ -24,6 +24,9 @@ import org.xtext.example.mydsl.videoGen.VideoDescription;
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 import org.xtext.example.mydsl.videoGen.VideoSeq;
 
+/**
+ * Transformation xtend pour generer les vignettes des vidéos + un script html
+ */
 @SuppressWarnings("all")
 public class VideoDemonstratorHTMLVignette {
   private static String pathFFmpeg = "C:/Users/PHILIP_Mi/Documents/Divers/Miage/M2/IDM/TP3/FFMpeg/ffmpeg-20161110-872b358-win64-static/bin/";

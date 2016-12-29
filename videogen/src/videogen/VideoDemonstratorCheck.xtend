@@ -14,6 +14,9 @@ import static org.junit.Assert.*
 import java.util.Random
 import java.util.ArrayList
 
+/**
+ * Class pour vérifier la validitée d'un model en le parcourant
+ */
 class VideoDemonstratorCheck {
 	
 	def loadVideoGenerator(URI uri) {
@@ -32,8 +35,7 @@ class VideoDemonstratorCheck {
 	def test1() {
 		// loading
 		var videoGen = loadVideoGenerator(URI.createURI("fooReal.videogen")) 
-		assertNotNull(videoGen)
-		//assertEquals(7, videoGen.videoseqs.size)			
+		assertNotNull(videoGen)	
 		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
 		videoGen.videoseqs.forEach[videoseq | 
 			if (videoseq instanceof MandatoryVideoSeq) {
@@ -56,14 +58,13 @@ class VideoDemonstratorCheck {
 	saveVideoGenerator(URI.createURI("fooRealOut.xmi"), videoGen)
 	saveVideoGenerator(URI.createURI("fooRealOut.videogen"), videoGen)		
 		
-	printFFmpeg(videoGen)
-		 
-			
+	check(videoGen) //Appel méthode pour vérifier le model
+		 	
 	}
 	
-	def void printFFmpeg(VideoGeneratorModel videoGen) {
+	//Méthode pour vérifier le model en le parcourant, renvoit des warning en cas de pb
+	def void check(VideoGeneratorModel videoGen) {
 		val listIdUse = new ArrayList<String>();
-		//var numSeq = 1
 		println("#Sequence FFmpeg generate")
 		videoGen.videoseqs.forEach[videoseq | 
 			if (videoseq instanceof MandatoryVideoSeq) {

@@ -11,12 +11,15 @@ import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq
 import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 import static org.junit.Assert.*
-import java.util.Random
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
+/**
+ * Transformation xtend pour generer les vignettes des vidéos + un script html
+ **/
 class VideoDemonstratorHTMLVignette {
 	
+	//ATTENTION Changer les paths suivant l'endroit ou se trouve la console FFMpeg,les vidéos et le dossier pour les vignettes
 	var static pathFFmpeg = "C:/Users/PHILIP_Mi/Documents/Divers/Miage/M2/IDM/TP3/FFMpeg/ffmpeg-20161110-872b358-win64-static/bin/";
 	var static pathVideo = "C:/Users/PHILIP_Mi/Documents/Divers/Miage/M2/IDM/TP3/FFMpeg/"
 	var static pathVignette = "C:/Users/PHILIP_Mi/Documents/Divers/Miage/M2/IDM/TP3/FFMpeg/Vignettes/"
@@ -58,13 +61,14 @@ class VideoDemonstratorHTMLVignette {
 			}
 		]
 	
-	printHTMLVign(videoGen)
+	printHTMLVign(videoGen) //Appel méthode pour faire le html
 	
 	// serializing
 	saveVideoGenerator(URI.createURI("fooRealOut.xmi"), videoGen)
 	saveVideoGenerator(URI.createURI("fooRealOut.videogen"), videoGen)		
 	}
 	
+	//méthode qui va faire le html et la génération des ressources (ici les vingettes)
 	def void printHTMLVign(VideoGeneratorModel videoGen) {
 		//En-tête html
 		println("<!doctype html>
@@ -79,26 +83,19 @@ class VideoDemonstratorHTMLVignette {
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
 				if(!desc.videoid.isNullOrEmpty && !desc.location.isNullOrEmpty)  
-					getVignette(pathVideo+desc.location,desc.videoid,getDuration(pathVideo+desc.location)) 
-					println("	<div style='background-color: #FFFFFF;'><h3>Video:</h3><img style='width:304px;height:228px;' src=\""+pathVignette+desc.videoid+".png\"></div>"); 				
+					getVignette(pathVideo+desc.location,desc.videoid,getDuration(pathVideo+desc.location)) //On appelle la fonction pour faire des vignettes
+					println("	<div style='background-color: #FFFFFF;'><h3>Video:</h3><img style='width:304px;height:228px;' src=\""+pathVignette+desc.videoid+".png\"></div>"); //on genere le code html pour afficher la vignette 				
 			}
 			else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
 				if(!desc.videoid.isNullOrEmpty && !desc.location.isNullOrEmpty) {
-					//val test = new Random().nextInt(100) //Generer un nombre entre 0 et 100
-					//if(test <= 50){
 					getVignette(pathVideo+desc.location,desc.videoid,getDuration(pathVideo+desc.location))
-					println("	<div style='background-color: #FFFFFF;'><h3>Videos optionel:</h3><img style='width:304px;height:228px;' src=\""+pathVignette+desc.videoid+".png\"></div>");   
-					//} 	 	
+					println("	<div style='background-color: #FFFFFF;'><h3>Videos optionel:</h3><img style='width:304px;height:228px;' src=\""+pathVignette+desc.videoid+".png\"></div>");    	 	
 				}
 			}
 			else {
 				val altvid = (videoseq as AlternativeVideoSeq)
-				//On récupere la taille de la liste et on genere un entier aléatoire pour chosir la video 
-				//val choix = new Random().nextInt(altvid.videodescs.size)
-				//val vdesc = altvid.videodescs.get(choix)	 
-				//if(!vdesc.videoid.isNullOrEmpty && !vdesc.location.isNullOrEmpty)
-				println("	<div style='background-color: #FFFFFF;'><h3>Videos alternatives:</h3>"); 
+					println("	<div style='background-color: #FFFFFF;'><h3>Videos alternatives:</h3>"); 
 				for(vdesc: altvid.videodescs){
 					getVignette(pathVideo+vdesc.location,vdesc.videoid,getDuration(pathVideo+vdesc.location)) 
 					println("	<img style='width:304px;height:228px;' src=\""+pathVignette+vdesc.videoid+".png\">"); 
@@ -114,14 +111,14 @@ class VideoDemonstratorHTMLVignette {
 		"v" + i++
 	}
 	
-	//Méthode pour calculer la durée d'une vidéo (pour M3u extends)
+	//Appel fonction pour créer une vignette avec une commande puis la stocker dans un dossier
 	def static void getVignette(String path, String name, int duration) {
 		var pathnorm = path.replace("/","\\")
 		var Process process = Runtime.getRuntime().exec(pathFFmpeg+"ffmpeg -y -i "+ pathnorm +" -r 1 -t 00:00:01 -ss 00:00:02 -f image2 "+pathVignette+name+".png")
 		process.waitFor()//Attention peut etre long à faire
 	}
-	
-	//Méthode pour calculer la durée d'une vidéo (pour M3u extends)
+
+	//Méthode pour calculer la durée d'une vidéo 
 	def static int getDuration(String path) {
 		var pathnorm = path.replace("/","\\")
 		

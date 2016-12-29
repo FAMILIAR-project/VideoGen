@@ -15,8 +15,12 @@ import java.util.Random
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
+/**
+ * Transformation xtend pour generer une vignette des vidéos
+ **/
 class VideoDemonstratorAddVignette {
 	
+	//ATTENTION Changer les paths suivant l'endroit ou se trouve la console FFMpeg,les vidéos et le dossier pour les vignettes
 	var static pathFFmpeg = "C:/Users/PHILIP_Mi/Documents/Divers/Miage/M2/IDM/TP3/FFMpeg/ffmpeg-20161110-872b358-win64-static/bin/";
 	var static pathVideo = "C:/Users/PHILIP_Mi/Documents/Divers/Miage/M2/IDM/TP3/FFMpeg/"
 	var static pathVignette = "C:/Users/PHILIP_Mi/Documents/Divers/Miage/M2/IDM/TP3/FFMpeg/Vignettes/"
@@ -38,7 +42,6 @@ class VideoDemonstratorAddVignette {
 		// loading
 		var videoGen = loadVideoGenerator(URI.createURI("fooReal.videogen")) 
 		assertNotNull(videoGen)
-		//assertEquals(7, videoGen.videoseqs.size)			
 		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
 		videoGen.videoseqs.forEach[videoseq | 
 			if (videoseq instanceof MandatoryVideoSeq) {
@@ -58,37 +61,36 @@ class VideoDemonstratorAddVignette {
 			}
 		]
 	
-	addVignette(videoGen)
+	addVignette(videoGen) //Appel fonction pour rajouter une vignette
 	
 	// serializing
 	saveVideoGenerator(URI.createURI("fooRealOut.xmi"), videoGen)
 	saveVideoGenerator(URI.createURI("fooRealOut.videogen"), videoGen)		
 	}
 	
+	//Fonction qui pour chaque vidéo chosit va créer une vignette
 	def void addVignette(VideoGeneratorModel videoGen) {
-		//var numSeq = 1
 		videoGen.videoseqs.forEach[videoseq | 
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
 				if(!desc.videoid.isNullOrEmpty && !desc.location.isNullOrEmpty)  
-					getVignette(pathVideo+desc.location,desc.videoid,getDuration(pathVideo+desc.location))  				
+					getVignette(pathVideo+desc.location,desc.videoid,getDuration(pathVideo+desc.location)) //Appel fonction pour créer une vignette			
 			}
 			else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
 				if(!desc.videoid.isNullOrEmpty && !desc.location.isNullOrEmpty) {
-					val test = new Random().nextInt(100) //Generer un nombre entre 0 et 100
+					val test = new Random().nextInt(100) 
 					if(test <= 50){
-						getVignette(pathVideo+desc.location,desc.videoid,getDuration(pathVideo+desc.location))  
+						getVignette(pathVideo+desc.location,desc.videoid,getDuration(pathVideo+desc.location)) //Appel fonction pour créer une vignette	 
 					} 	 	
 				}
 			}
 			else {
 				val altvid = (videoseq as AlternativeVideoSeq)
-				//On récupere la taille de la liste et on genere un entier aléatoire pour chosir la video 
 				val choix = new Random().nextInt(altvid.videodescs.size)
 				val vdesc = altvid.videodescs.get(choix)	 
 				if(!vdesc.videoid.isNullOrEmpty && !vdesc.location.isNullOrEmpty) 
-					getVignette(pathVideo+vdesc.location,vdesc.videoid,getDuration(pathVideo+vdesc.location)) 
+					getVignette(pathVideo+vdesc.location,vdesc.videoid,getDuration(pathVideo+vdesc.location)) //Appel fonction pour créer une vignette	
 			}
 		]
 	}
@@ -98,29 +100,29 @@ class VideoDemonstratorAddVignette {
 		"v" + i++
 	}
 	
-	//Méthode pour calculer la durée d'une vidéo (pour M3u extends)
+	//Appel fonction pour créer une vignette avec une commande puis la stocker dans un dossier
 	def static void getVignette(String path, String name, int duration) {
+		//On lance une commande...
 		var pathnorm = path.replace("/","\\")
 		var Process process = Runtime.getRuntime().exec(pathFFmpeg+"ffmpeg -y -i "+ pathnorm +" -r 1 -t 00:00:01 -ss 00:00:02 -f image2 "+pathVignette+name+".png")
-		process.waitFor()
-		//Attention peut etre long à faire avec la durée total
+		process.waitFor() //...on attends la fin du traitement
+		//Attention peut etre long à faire avec la durée totale c'est pour ça qu'on la réduit à une seconde ici
 		//pathFFmpeg+"ffmpeg -y -i "+ pathnorm +" -r 1 -t 00:00:01 -ss 00:00:"+duration+" -f image2 "+pathVignette+name+".png");
 	}
 	
-	//Méthode pour calculer la durée d'une vidéo (pour M3u extends)
+	//Méthode pour calculer la durée d'une vidéo (pour avoir la durée réelle de la video)
 	def static int getDuration(String path) {
+		//On lance une commande ...
 		var pathnorm = path.replace("/","\\")
-		
 		var Process process = Runtime.getRuntime().exec(pathFFmpeg+ "ffprobe -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 \"" + pathnorm + "\"")
-		
-		process.waitFor()		
+		process.waitFor() // ...on attends le résultat ...			
 		var BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))
 		var String line = "";
 		var String outputJson = "";
 	   while ((line = reader.readLine()) != null) {
 	       outputJson = outputJson + line;
 	   }
-	   return Math.round(Float.parseFloat(outputJson))-1;
+	   return Math.round(Float.parseFloat(outputJson))-1; //... on retourne la durée de la vidéo récupérée
 	}
 	
 }

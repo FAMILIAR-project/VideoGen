@@ -21,6 +21,9 @@ import org.xtext.example.mydsl.videoGen.VideoDescription;
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 import org.xtext.example.mydsl.videoGen.VideoSeq;
 
+/**
+ * Transformation xtend pour generer un script FFmpeg (Question 1)
+ */
 @SuppressWarnings("all")
 public class VideoDemonstratorFFmpeg {
   public VideoGeneratorModel loadVideoGenerator(final URI uri) {

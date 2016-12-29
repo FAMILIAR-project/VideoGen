@@ -22,6 +22,9 @@ import org.xtext.example.mydsl.videoGen.VideoDescription;
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 import org.xtext.example.mydsl.videoGen.VideoSeq;
 
+/**
+ * Class pour vérifier la validitée d'un model en le parcourant
+ */
 @SuppressWarnings("all")
 public class VideoDemonstratorCheck {
   public VideoGeneratorModel loadVideoGenerator(final URI uri) {
@@ -100,10 +103,10 @@ public class VideoDemonstratorCheck {
     this.saveVideoGenerator(_createURI_1, videoGen);
     URI _createURI_2 = URI.createURI("fooRealOut.videogen");
     this.saveVideoGenerator(_createURI_2, videoGen);
-    this.printFFmpeg(videoGen);
+    this.check(videoGen);
   }
   
-  public void printFFmpeg(final VideoGeneratorModel videoGen) {
+  public void check(final VideoGeneratorModel videoGen) {
     final ArrayList<String> listIdUse = new ArrayList<String>();
     InputOutput.<String>println("#Sequence FFmpeg generate");
     EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();

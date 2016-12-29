@@ -5,7 +5,6 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
-import java.util.Random;
 import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -24,6 +23,9 @@ import org.xtext.example.mydsl.videoGen.VideoDescription;
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 import org.xtext.example.mydsl.videoGen.VideoSeq;
 
+/**
+ * Transformation xtend pour rajouter un durée dans le fichier du model
+ */
 @SuppressWarnings("all")
 public class VideoDemonstratorAddSize {
   private static String pathFFmpeg = "C:/Users/PHILIP_Mi/Documents/Divers/Miage/M2/IDM/TP3/FFMpeg/ffmpeg-20161110-872b358-win64-static/bin/";
@@ -102,14 +104,14 @@ public class VideoDemonstratorAddSize {
       }
     };
     _videoseqs.forEach(_function);
-    this.printFFmpegSize(videoGen);
-    URI _createURI_1 = URI.createURI("fooRealOut.xmi");
+    this.printSize(videoGen);
+    URI _createURI_1 = URI.createURI("fooRealAug.xmi");
     this.saveVideoGenerator(_createURI_1, videoGen);
-    URI _createURI_2 = URI.createURI("fooRealOut.videogen");
+    URI _createURI_2 = URI.createURI("fooRealAug.videogen");
     this.saveVideoGenerator(_createURI_2, videoGen);
   }
   
-  public void printFFmpegSize(final VideoGeneratorModel videoGen) {
+  public void printSize(final VideoGeneratorModel videoGen) {
     EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
     final Consumer<VideoSeq> _function = (VideoSeq videoseq) -> {
       if ((videoseq instanceof MandatoryVideoSeq)) {
@@ -124,28 +126,21 @@ public class VideoDemonstratorAddSize {
         if ((videoseq instanceof OptionalVideoSeq)) {
           final VideoDescription desc_1 = ((OptionalVideoSeq) videoseq).getDescription();
           if (((!StringExtensions.isNullOrEmpty(desc_1.getVideoid())) && (!StringExtensions.isNullOrEmpty(desc_1.getLocation())))) {
-            Random _random = new Random();
-            final int test = _random.nextInt(100);
-            if ((test <= 50)) {
-              String _location_1 = desc_1.getLocation();
-              String _plus_1 = (VideoDemonstratorAddSize.pathVideo + _location_1);
-              int _duration_1 = VideoDemonstratorAddSize.getDuration(_plus_1);
-              desc_1.setDuration(_duration_1);
-            }
+            String _location_1 = desc_1.getLocation();
+            String _plus_1 = (VideoDemonstratorAddSize.pathVideo + _location_1);
+            int _duration_1 = VideoDemonstratorAddSize.getDuration(_plus_1);
+            desc_1.setDuration(_duration_1);
           }
         } else {
           final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
-          Random _random_1 = new Random();
           EList<VideoDescription> _videodescs = altvid.getVideodescs();
-          int _size = _videodescs.size();
-          final int choix = _random_1.nextInt(_size);
-          EList<VideoDescription> _videodescs_1 = altvid.getVideodescs();
-          final VideoDescription vdesc = _videodescs_1.get(choix);
-          if (((!StringExtensions.isNullOrEmpty(vdesc.getVideoid())) && (!StringExtensions.isNullOrEmpty(vdesc.getLocation())))) {
-            String _location_2 = vdesc.getLocation();
-            String _plus_2 = (VideoDemonstratorAddSize.pathVideo + _location_2);
-            int _duration_2 = VideoDemonstratorAddSize.getDuration(_plus_2);
-            vdesc.setDuration(_duration_2);
+          for (final VideoDescription vdesc : _videodescs) {
+            if (((!StringExtensions.isNullOrEmpty(vdesc.getVideoid())) && (!StringExtensions.isNullOrEmpty(vdesc.getLocation())))) {
+              String _location_2 = vdesc.getLocation();
+              String _plus_2 = (VideoDemonstratorAddSize.pathVideo + _location_2);
+              int _duration_2 = VideoDemonstratorAddSize.getDuration(_plus_2);
+              vdesc.setDuration(_duration_2);
+            }
           }
         }
       }

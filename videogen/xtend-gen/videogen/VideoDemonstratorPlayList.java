@@ -28,6 +28,10 @@ import org.xtext.example.mydsl.videoGen.VideoDescription;
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 import org.xtext.example.mydsl.videoGen.VideoSeq;
 
+/**
+ * Transformation xtend model-to-model puis model to text pour obtenir une playlist
+ * et deux formats (ffmpeg et M3U) à partir de cette playlist (Question 3/4/5)
+ */
 @SuppressWarnings("all")
 public class VideoDemonstratorPlayList {
   private static String pathFFmpeg = "C:/Users/PHILIP_Mi/Documents/Divers/Miage/M2/IDM/TP3/FFMpeg/ffmpeg-20161110-872b358-win64-static/bin/";
@@ -170,35 +174,31 @@ public class VideoDemonstratorPlayList {
   }
   
   public void createScripts(final Playlist play) {
-    EList<MediaFile> _mediafile = play.getMediafile();
-    int _size = _mediafile.size();
-    String _plus = ("Size:" + Integer.valueOf(_size));
-    System.out.println(_plus);
     InputOutput.<String>println("=======FFMpeg======");
     InputOutput.<String>println("#DebutGeneration");
-    EList<MediaFile> _mediafile_1 = play.getMediafile();
-    for (final MediaFile f : _mediafile_1) {
+    EList<MediaFile> _mediafile = play.getMediafile();
+    for (final MediaFile f : _mediafile) {
       String _location = f.getLocation();
-      String _plus_1 = ("file \'" + _location);
-      String _plus_2 = (_plus_1 + "\'");
-      InputOutput.<String>println(_plus_2);
+      String _plus = ("file \'" + _location);
+      String _plus_1 = (_plus + "\'");
+      InputOutput.<String>println(_plus_1);
     }
     InputOutput.<String>println("#FinGeneration");
     InputOutput.<String>println("======M3U======");
     InputOutput.<String>println("#EXTM3U");
-    EList<MediaFile> _mediafile_2 = play.getMediafile();
-    for (final MediaFile f_1 : _mediafile_2) {
+    EList<MediaFile> _mediafile_1 = play.getMediafile();
+    for (final MediaFile f_1 : _mediafile_1) {
       {
         InputOutput.<String>println("#EXT-X-DISCONTINUITY");
         String _location_1 = f_1.getLocation();
-        String _plus_3 = (VideoDemonstratorPlayList.pathVideo + _location_1);
-        int _duration = VideoDemonstratorPlayList.getDuration(_plus_3);
-        String _plus_4 = ("#EXTINF:" + Integer.valueOf(_duration));
-        InputOutput.<String>println(_plus_4);
+        String _plus_2 = (VideoDemonstratorPlayList.pathVideo + _location_1);
+        int _duration = VideoDemonstratorPlayList.getDuration(_plus_2);
+        String _plus_3 = ("#EXTINF:" + Integer.valueOf(_duration));
+        InputOutput.<String>println(_plus_3);
         String _location_2 = f_1.getLocation();
-        String _plus_5 = ("" + _location_2);
-        String _plus_6 = (_plus_5 + "");
-        InputOutput.<String>println(_plus_6);
+        String _plus_4 = ("" + _location_2);
+        String _plus_5 = (_plus_4 + "");
+        InputOutput.<String>println(_plus_5);
       }
     }
     InputOutput.<String>println("#EXT-X-ENDLIST");

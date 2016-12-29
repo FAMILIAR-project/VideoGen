@@ -21,6 +21,9 @@ import org.xtext.example.mydsl.videoGen.VideoDescription;
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 import org.xtext.example.mydsl.videoGen.VideoSeq;
 
+/**
+ * Transformation xtend pour generer un script M3U à partir d'un model auquel on a rajouté la taille de la vidéo
+ */
 @SuppressWarnings("all")
 public class VideoDemonstratorM3UAug {
   public VideoGeneratorModel loadVideoGenerator(final URI uri) {
@@ -99,10 +102,10 @@ public class VideoDemonstratorM3UAug {
     this.saveVideoGenerator(_createURI_1, videoGen);
     URI _createURI_2 = URI.createURI("fooRealOut.videogen");
     this.saveVideoGenerator(_createURI_2, videoGen);
-    this.printFFmpeg(videoGen);
+    this.printM3UAug(videoGen);
   }
   
-  public void printFFmpeg(final VideoGeneratorModel videoGen) {
+  public void printM3UAug(final VideoGeneratorModel videoGen) {
     InputOutput.<String>println("#EXTM3U");
     EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
     final Consumer<VideoSeq> _function = (VideoSeq videoseq) -> {

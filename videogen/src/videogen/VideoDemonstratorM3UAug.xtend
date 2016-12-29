@@ -13,6 +13,9 @@ import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 import static org.junit.Assert.*
 import java.util.Random
 
+/**
+ * Transformation xtend pour generer un script M3U à partir d'un model auquel on a rajouté la taille de la vidéo
+ **/
 class VideoDemonstratorM3UAug {
 	
 	def loadVideoGenerator(URI uri) {
@@ -54,13 +57,14 @@ class VideoDemonstratorM3UAug {
 	// serializing
 	saveVideoGenerator(URI.createURI("fooRealOut.xmi"), videoGen)
 	saveVideoGenerator(URI.createURI("fooRealOut.videogen"), videoGen)		
-		
-	printFFmpeg(videoGen)
+	//Appelle d'une fonction qui va generer un script M3U
+	printM3UAug(videoGen)
 		 
 			
 	}
 	
-	def void printFFmpeg(VideoGeneratorModel videoGen) {
+	//Fonction qui va generer un script M3U
+	def void printM3UAug(VideoGeneratorModel videoGen) {
 		//var numSeq = 1
 		println("#EXTM3U")
 		videoGen.videoseqs.forEach[videoseq | 
@@ -68,13 +72,13 @@ class VideoDemonstratorM3UAug {
 				val desc = (videoseq as MandatoryVideoSeq).description
 				if(!desc.videoid.isNullOrEmpty && !desc.location.isNullOrEmpty)  
 					println("#EXT-X-DISCONTINUITY")
-					println("#EXTINF:"+ desc.duration) 
+					println("#EXTINF:"+ desc.duration) //on récupére la durée au lieu de la calculer
 					println ("" + desc.location + "")		
 			}
 			else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
 				if(!desc.videoid.isNullOrEmpty && !desc.location.isNullOrEmpty) {
-					val test = new Random().nextInt(100) //Generer un nombre entre 0 et 100
+					val test = new Random().nextInt(100)
 					if(test <= 50){
 						println("#EXT-X-DISCONTINUITY")
 						println("#EXTINF:"+ desc.duration) 
@@ -84,7 +88,6 @@ class VideoDemonstratorM3UAug {
 			}
 			else {
 				val altvid = (videoseq as AlternativeVideoSeq)
-				//On récupere la taille de la liste et on genere un entier aléatoire pour chosir la video 
 				val choix = new Random().nextInt(altvid.videodescs.size)
 				val vdesc = altvid.videodescs.get(choix)	 
 				if(!vdesc.videoid.isNullOrEmpty && !vdesc.location.isNullOrEmpty) 

@@ -13,6 +13,9 @@ import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 import static org.junit.Assert.*
 import java.util.Random
 
+/**
+ * Transformation xtend pour generer un script FFmpeg (Question 1)
+ **/
 class VideoDemonstratorFFmpeg {
 	
 	def loadVideoGenerator(URI uri) {
@@ -31,8 +34,7 @@ class VideoDemonstratorFFmpeg {
 	def test1() {
 		// loading
 		var videoGen = loadVideoGenerator(URI.createURI("fooReal.videogen")) 
-		assertNotNull(videoGen)
-		//assertEquals(7, videoGen.videoseqs.size)			
+		assertNotNull(videoGen)	
 		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
 		videoGen.videoseqs.forEach[videoseq | 
 			if (videoseq instanceof MandatoryVideoSeq) {
@@ -51,34 +53,35 @@ class VideoDemonstratorFFmpeg {
 				}
 			}
 		]
-	// serializing
-	saveVideoGenerator(URI.createURI("fooRealOut.xmi"), videoGen)
-	saveVideoGenerator(URI.createURI("fooRealOut.videogen"), videoGen)		
-		
-	printFFmpeg(videoGen)
-		 
-			
+		// serializing
+		saveVideoGenerator(URI.createURI("fooRealOut.xmi"), videoGen)
+		saveVideoGenerator(URI.createURI("fooRealOut.videogen"), videoGen)		
+	    // Appel de la fonction pour generer en sortie un script FFmpeg	 
+		printFFmpeg(videoGen)		
 	}
 	
+	//Fonction qui genere en sortie le FFmpeg en tenant compte des cas optionnal et alternatives
 	def void printFFmpeg(VideoGeneratorModel videoGen) {
-		//var numSeq = 1
 		println("#Sequence FFmpeg generate")
 		videoGen.videoseqs.forEach[videoseq | 
+			//Cas video obligatoire
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
 				if(!desc.videoid.isNullOrEmpty && !desc.location.isNullOrEmpty)  
 					println ("file '" + desc.location + "'")  				
 			}
+			//Cas video optionnelle
 			else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
 				if(!desc.videoid.isNullOrEmpty && !desc.location.isNullOrEmpty) {
 					val test = new Random().nextInt(100) //Generer un nombre entre 0 et 100
 					println("#TestRes:" + test)
-					if(test <= 50){
+					if(test <= 50){ //Si le nombre est en dessous de 50: on rajoute la video optionnelle
 						println ("file '" + desc.location + "'")
 					} 	 	
 				}
 			}
+			//Cas video alternative
 			else {
 				val altvid = (videoseq as AlternativeVideoSeq)
 				//On récupere la taille de la liste et on genere un entier aléatoire pour chosir la video 
