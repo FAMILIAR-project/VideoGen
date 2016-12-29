@@ -5,7 +5,7 @@ fmGen = FM (VideoGenerator: Mode; //Notre VideoGenerator est composé de mode
         //On décrit les modes qu'on peut utiliser
         Random: RandomSelect [SauvegardeVideoR] [AfficherVignetteR]; //Selection au hasard des video non-mandatory
         Probality: ProbVid [SauvegardeVideoP] [AfficherVignetteP]; //ProbVid sera une fonction qui chosira une vidéo suivant sa fréquence
-        Configurator: VideoSeqOrder Hybrid [SauvegardeVideoCo]; //Le configurator sera constituer d'une serie de video choisie et d'un hybrid qui rajoutera des séquences aléatoires.
+        Configurator: VideoSeqOrder Hybrid [SauvegardeVideoCo]; //Le configurator sera constitué d'une serie de video choisie et d'un hybrid qui rajoutera des séquences aléatoires.
         Crazy: VideoSeqRandomOrder (ConfiguratorCr|ProbabilityCr)+ [AfficherVignetteCr] [SauvegardeVideoCr]; //Crazy assemble des videos dans un ordre aléatoire
           
         //On décrit les elements qui servent pour les trois modes

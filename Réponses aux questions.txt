@@ -13,21 +13,23 @@ Fichier xtend de transformation:
 => VideoGenForked\videogen\src\videogen\VideoDemonstratorPlaylist.xtend
 
 =====Question 6=====
-
-Les bénéfices en utilisant un intermédiaire comme le model-to-model est surtout le fait d'éviter de reparcourir le model autant de fois qu'on a de 
+Les bénéfices en utilisant un model intermédiaire (model-to-model) estle fait d'éviter de reparcourir le model autant de fois qu'on a de 
 format différent à produire: Comme tout ce qu'on a besoin est stocké dans un model intermédiaire on n'a plus qu'a relire ce model intermédiaire: 
-c'est donc un gain de performance, cela limite la complexité du code et facilite l'ajout de nouveaux formats.
+c'est donc un gain de performance, cela limite la complexité du code (duplication) et facilite l'ajout de nouveaux formats.
 La contrepartie est qu'il a une dépendance supplémentaire à un model externe ce qui peut-être gênant.
 
-La difficultés, personnellement, est de bien comprendre comment utiliser un model intermédiaire: comment importer un model d'un autre projet et 
-de correctement le manipuler.
+La difficultés, à titre personnel,est de bien comprendre comment utiliser un model intermédiaire: comment importer un model d'un autre projet et 
+correctement le manipuler.
 Le métamodel intermédiaire pose une forte contrainte de dépendance supplémentaire ce qui peut rendre la récupération et l'utilisation du projet compliqué 
 mais il évite de dupliquer du code.
-Donc je recommande d'utiliser ce métamodel intermédiaire uniquement si on doit faire plusieurs "scripts" avec des méthodes de construction/syntaxes 
-différentes les unes des autres d’un même modele.
+Donc je recommande d'utiliser ce métamodel intermédiaire uniquement si on doit faire plusieurs "scripts", avec des méthodes de construction/syntaxes 
+différentes les unes des autres, à partir d’un même modele.
+
 =====Question 7=====
 Fichier xtend de transformation:
 => VideoGenForked\videogen\src\videogen\VideoDemonstratorAddSize.xtend
+Fichier model de sortie:
+=> fooRealAug.videogen
 
 =====Question 8=====
 Fichier xtend de transformation:
@@ -52,11 +54,9 @@ Pas fait (manque de temps)
 Pas fait (manque de temps)
 
 =====Question 14=====
-
 Voir le script "Q14 - Feature model"
 
 =====Question 15=====
-
 Pour utiliser ce feature model il suffit de reprendre les xtend fait avant ou d'en rajouter de nouveaux:
 Par exemple pour le mode aléatoire on a un xtend qui existe déja: quand on affiche les mandatory, quand on fait un test pour savoir si on rajoute 
 une vidéo optionelle et quand  on choisit au hasard une video parmis N pour les alternatifs.
