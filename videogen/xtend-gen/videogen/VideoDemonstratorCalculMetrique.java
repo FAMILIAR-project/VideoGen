@@ -228,12 +228,58 @@ public class VideoDemonstratorCalculMetrique {
           }
         } else {
           final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
+          HashMap<Integer, Integer> tailleVarNew_1 = new HashMap<Integer, Integer>();
+          HashMap<Integer, Integer> dureeVarNew_1 = new HashMap<Integer, Integer>();
+          HashMap<Integer, String> idVarNew_1 = new HashMap<Integer, String>();
+          int t_1 = 0;
+          int d_1 = 0;
+          int i_1 = 0;
           EList<VideoDescription> _videodescs = altvid.getVideodescs();
           for (final VideoDescription vdesc : _videodescs) {
-            String _location_2 = vdesc.getLocation();
-            String _plus_6 = (VideoDemonstratorCalculMetrique.pathVideo + _location_2);
-            int durée = VideoDemonstratorCalculMetrique.getDuration(_plus_6);
+            {
+              String _location_2 = vdesc.getLocation();
+              String _plus_6 = (VideoDemonstratorCalculMetrique.pathVideo + _location_2);
+              int duree_2 = VideoDemonstratorCalculMetrique.getDuration(_plus_6);
+              Set<Map.Entry<Integer, Integer>> _entrySet_6 = this.tailleVar.entrySet();
+              for (final Map.Entry<Integer, Integer> variantet_1 : _entrySet_6) {
+                {
+                  t_1++;
+                  int _size = this.tailleVar.size();
+                  int _plus_7 = (_size + t_1);
+                  Integer _value_3 = variantet_1.getValue();
+                  int _plus_8 = ((_value_3).intValue() + 1);
+                  tailleVarNew_1.put(Integer.valueOf(_plus_7), Integer.valueOf(_plus_8));
+                }
+              }
+              Set<Map.Entry<Integer, Integer>> _entrySet_7 = this.dureeVar.entrySet();
+              for (final Map.Entry<Integer, Integer> varianted_1 : _entrySet_7) {
+                {
+                  d_1++;
+                  int _size = this.dureeVar.size();
+                  int _plus_7 = (_size + d_1);
+                  Integer _value_3 = varianted_1.getValue();
+                  int _plus_8 = ((_value_3).intValue() + duree_2);
+                  dureeVarNew_1.put(Integer.valueOf(_plus_7), Integer.valueOf(_plus_8));
+                }
+              }
+              Set<Map.Entry<Integer, String>> _entrySet_8 = this.idVar.entrySet();
+              for (final Map.Entry<Integer, String> variantei_1 : _entrySet_8) {
+                {
+                  i_1++;
+                  int _size = this.idVar.size();
+                  int _plus_7 = (_size + i_1);
+                  String _value_3 = variantei_1.getValue();
+                  String _plus_8 = (_value_3 + " ");
+                  String _videoid_3 = vdesc.getVideoid();
+                  String _plus_9 = (_plus_8 + _videoid_3);
+                  idVarNew_1.put(Integer.valueOf(_plus_7), _plus_9);
+                }
+              }
+            }
           }
+          this.tailleVar.putAll(tailleVarNew_1);
+          this.dureeVar.putAll(dureeVarNew_1);
+          this.idVar.putAll(idVarNew_1);
         }
       }
     };

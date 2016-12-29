@@ -148,20 +148,43 @@ class VideoDemonstratorCalculMetrique {
 						idVar.putAll(idVarNew);
 					}
 					
-					//Créer un nouvelle element dans les hashmap qui ont les mêmes donnée que la variante et rajouter en plus: +1 à la taille, la durée de la video,l'id de la vidéo	
 				}
 			}
 			//Cas video alternative
 			else {
 				val altvid = (videoseq as AlternativeVideoSeq)
+				//on fait donc des hashmap pour contenir les nouveaux elements à rajouter qu'on ajoutera à nos hashmap à la fin
+				var HashMap<Integer,Integer> tailleVarNew = new HashMap<Integer,Integer>();  
+				var HashMap<Integer,Integer> dureeVarNew = new HashMap<Integer,Integer>();  
+				var HashMap<Integer,String> idVarNew = new HashMap<Integer,String>();
+						
+				//compteurs qui indique le nb d'element qu'on a rajouté (pour éviter qu'une nouvelle variante écrase une autre)
+				var int t=0
+				var int d= 0
+				var int i= 0
 				for(vdesc: altvid.videodescs){
-					//TODO
 					//Calculer durée
-					var durée = getDuration(pathVideo+vdesc.location)
-					//Parcourir chaque hashmap et rajouter pour chaque variante: 
-					//Si c'est le preimier choix: on maj la variante sinon:
-					//Créer un nouvelle element (variante) dans les hashmap qui ont les mêmes donnée que la variante et rajouter en plus: +1 à la taille, la durée de la video,l'id de la vidéo	
+					var duree = getDuration(pathVideo+vdesc.location)
+					//On va créer une nouvelle variante dans les hashmap qui ont les mêmes données que la variante auquelle on ajoute les données de la vidéo
+					for(variantet: tailleVar.entrySet){
+						t++
+						tailleVarNew.put(tailleVar.size()+t,variantet.value+1) //+1 à la taille de la séquence
+					}
+					for(varianted: dureeVar.entrySet){
+						d++
+						dureeVarNew.put(dureeVar.size()+d,varianted.value+duree) // la durée de la video
+					}
+					for(variantei: idVar.entrySet){
+						i++
+						idVarNew.put(idVar.size()+i,variantei.value+" "+vdesc.videoid) //On rajoute l'id de la video
+					}
+						
+						
 				}
+				//Maintenant qu'on nos nouvelles variantes dans les nouvelles hashmap : on rajoute leur contenu dans les hashmap du calcul
+				tailleVar.putAll(tailleVarNew);
+				dureeVar.putAll(dureeVarNew);
+				idVar.putAll(idVarNew);
 			}
 		]
 		println(tailleVar)
