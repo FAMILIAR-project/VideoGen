@@ -1,19 +1,18 @@
 package videogen
 
-import org.eclipse.emf.common.util.URI
+import java.nio.file.Files
+import java.nio.file.Paths
+import java.util.ArrayList
 import java.util.HashMap
 import java.util.Random
+import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated
-import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
-import java.util.ArrayList
+import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq
 import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq
 import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
-import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq
-import java.util.stream.Stream
-import java.nio.file.Files
-import java.nio.file.Paths
+import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 
 class Question1 {
 	
@@ -29,6 +28,10 @@ class Question1 {
 		rs.save(new HashMap());
 	}
 	
+	/**
+	 * A partir d'un fichier videogen, crée la liste des URL des vidéos choisies
+	 * Concatène avec ffmpeg
+	 */
 	def static main(String[] args)
 	{
 		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen"))

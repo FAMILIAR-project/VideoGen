@@ -2,7 +2,7 @@ package videogen
 
 import java.nio.file.Files
 import java.nio.file.Paths
-import java.util.ArrayList
+import java.util.Collections
 import java.util.HashMap
 import java.util.Random
 import org.eclipse.emf.common.util.URI
@@ -13,9 +13,7 @@ import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq
 import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq
 import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
-import playlist.Playlist
 import playlist.PlaylistFactory
-import java.util.Collections
 
 class Question2 {
 	def static loadVideoGenerator(URI uri) {
@@ -30,6 +28,11 @@ class Question2 {
 		rs.save(new HashMap());
 	}
 	
+	/**
+	 * Crée une playlist à partir d'un fichier videogen
+	 * Sauvegarde la playlist dans un fichier play.m3u
+	 * Lance la playlist avec vlc
+	 */
 	def static main(String[] args)
 	{
 		var videoGen = loadVideoGenerator(URI.createURI("mastaconcat.videogen"))
@@ -45,7 +48,7 @@ class Question2 {
 			}
 			if(videoseq instanceof OptionalVideoSeq)
 			{
-				if(rand.nextInt(2) == 1)
+				if(rand.nextInt(2) == 1) //50% de chance
 				{
 					val mediafile = PlaylistFactory.eINSTANCE.createVideo
 					mediafile.url = videoseq.description.location
@@ -55,7 +58,7 @@ class Question2 {
 			if(videoseq instanceof AlternativeVideoSeq)
 			{
 				val listAlt = (videoseq as AlternativeVideoSeq).videodescs
-				val quicesera = rand.nextInt(listAlt.size)
+				val quicesera = rand.nextInt(listAlt.size) //Equiprobabilite
 				val mediafile = PlaylistFactory.eINSTANCE.createVideo
 				mediafile.url = listAlt.get(quicesera).location
 				playlist.videos.add(mediafile)
