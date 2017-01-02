@@ -17,6 +17,7 @@ import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 
 import static org.junit.Assert.*
+import java.io.BufferedWriter
 
 class VideoDemonstrator {
 	
@@ -133,6 +134,10 @@ class VideoDemonstrator {
 		val playlist = PlaylistFactory.eINSTANCE.createPlaylist();
 		val r = new Random();
 		val ffmpeg = new FfmpegHelper()
+		val StringBuilder sb = new StringBuilder();
+		generateHeader(sb)
+		sb.append("<div>")
+		
 		println ('This is a comment')
 		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
 		videoGen.videoseqs.forEach[videoseq | 
@@ -144,6 +149,9 @@ class VideoDemonstrator {
 					desc.setDuration(ffmpeg.getDuration(desc.location))
 					println("file "  + "'"+ desc.location+"'")
 					ffmpeg.generateVignette(desc.location)
+		
+					//Q10				
+					sb.append("<img src=../input/" + desc.location.substring(0, desc.location.lastIndexOf('.'))+ ".jpg width=\"100\" height=\"100\">")
 					
 					val MediaFile mediaFile = PlaylistFactory.eINSTANCE.createMediaFile
 					mediaFile.location = desc.location
@@ -159,6 +167,9 @@ class VideoDemonstrator {
 						desc.setDuration(ffmpeg.getDuration(desc.location))
 						println("file "  + "'"+ desc.location+"'")
 						ffmpeg.generateVignette(desc.location)
+						
+						//Q10
+						sb.append("<img src=../input/" + desc.location.substring(0, desc.location.lastIndexOf('.'))+ ".jpg width=\"100\" height=\"100\">")
 						
 						val MediaFile mediaFile = PlaylistFactory.eINSTANCE.createMediaFile
 						mediaFile.location = desc.location
@@ -176,12 +187,21 @@ class VideoDemonstrator {
 					 vdesc.setDuration(ffmpeg.getDuration(vdesc.location))
 					 println("file " + "'"+ vdesc.location+"'")
 					 ffmpeg.generateVignette(vdesc.location)
-					
+					 
+					 //Q10
+					 sb.append("</div>")
+					 sb.append("</br>")
+					 sb.append("<div>")
+					 sb.append("<img src=../input/" + vdesc.location.substring(0, vdesc.location.lastIndexOf('.'))+ ".jpg width=\"100\" height=\"100\">")
+					 sb.append("</div>")
+					 
 					val MediaFile mediaFile = PlaylistFactory.eINSTANCE.createMediaFile
 					mediaFile.location = vdesc.location
 					mediaFile.duration = vdesc.duration
 					playlist.getVids().add(mediaFile)
 					
+					generateEndOfHtmlFile(sb);
+					writeHtmlFile(sb)
 				}
 			}
 		]
@@ -211,6 +231,30 @@ class VideoDemonstrator {
 		f.close()
 	}
 	
+	//Q10
+	def StringBuilder generateHeader(StringBuilder sb){
+	    sb.append("<html>");
+	    sb.append("<head>");
+	    sb.append("<title>Title Of the page");
+	    sb.append("</title>");
+	    sb.append("</head>");
+	    sb.append("<body>");
+		return sb
+	}
+	
+	//Q10
+	def StringBuilder generateEndOfHtmlFile(StringBuilder sb){
+		sb.append("</body>");
+    	sb.append("</html>");
+	}
+	
+	//Q10
+	def writeHtmlFile(StringBuilder sb){
+		    val FileWriter fstream = new FileWriter("output/vignette.html");
+		    val BufferedWriter out = new BufferedWriter(fstream);
+		    out.write(sb.toString());
+		    out.close();
+	}
 	
 	def void printToHTML(VideoGeneratorModel videoGen) {
 		//var numSeq = 1
