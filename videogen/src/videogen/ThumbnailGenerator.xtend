@@ -8,16 +8,9 @@ import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq
 import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq
 import java.io.FileWriter
-import java.io.BufferedWriter
-import java.io.OutputStreamWriter
-import java.io.IOException
-import java.io.FileOutputStream
 
 class ThumbnailGenerator {
 	//Partie 4
-	
-	
-	static BufferedWriter writer
 	
 	def loadVideoGenerator(URI uri) {
 		new VideoGenStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()
@@ -54,17 +47,6 @@ class ThumbnailGenerator {
 		process.waitFor()
 		//println(process.exitValue())
 	}
-	
-	def static void createFile(String filename, String content){
-		try {
-		    writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filename), "utf-8"));
-		    writer.write(content);
-		} catch (IOException ex) {
-		  System.out.println(ex.message)
-		} finally {
-		   try { writer.close();} catch (Exception ex) {/*ignore*/}
-		}
-  	}
 	
 	def static String extractName(String txt){
 		var sp1 = txt.split("/")
