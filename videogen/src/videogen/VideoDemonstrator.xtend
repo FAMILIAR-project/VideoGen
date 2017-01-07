@@ -78,13 +78,34 @@ class VideoDemonstrator {
 		assertNotNull(generatedFile)
 		modelToText(videoGen,generatedFile)
 	}
+	
+	
 
 	@Test
-	def void modelToModelToFile(){
+	def void modelToModelToTxt(){
 		val filename = "foo3"
 		var videoGen = loadVideoGenerator(URI.createURI(filename + ".videogen")) 
 		assertNotNull(videoGen)
-		modelToModel(videoGen, filename);
+		val playlist = modelToModel(videoGen, filename);
+		convertPlaylistToTxt(playlist,filename)
+	}
+	
+	@Test
+	def void modelToModelToM3U(){
+		val filename = "foo3"
+		var videoGen = loadVideoGenerator(URI.createURI(filename + ".videogen")) 
+		assertNotNull(videoGen)
+		val playlist = modelToModel(videoGen, filename);
+		convertPlaylistToM3U(playlist,filename)
+	}
+	
+	@Test
+	def void modelToModelToM3UEtendu(){
+		val filename = "foo3"
+		var videoGen = loadVideoGenerator(URI.createURI(filename + ".videogen")) 
+		assertNotNull(videoGen)
+		val playlist = modelToModel(videoGen, filename);
+		convertPlaylistToM3UEtendu(playlist,filename)
 	}
 	
 	@Test 
@@ -143,7 +164,7 @@ class VideoDemonstrator {
 	file.close
 	}
 	
-	def void modelToModel(VideoGeneratorModel videoGen, String filename){
+	def Playlist modelToModel(VideoGeneratorModel videoGen, String filename){
 		val playlist = PlaylistFactory.eINSTANCE.createPlaylist();
 		val r = new Random();
 		val ffmpeg = new FfmpegHelper()
@@ -164,7 +185,7 @@ class VideoDemonstrator {
 					ffmpeg.generateVignette(desc.location)
 		
 					//Q10				
-					sb.append("<img src=../input/" + desc.location.substring(0, desc.location.lastIndexOf('.'))+ ".jpg width=\"100\" height=\"100\">")
+					sb.append("<img src=" + desc.location.substring(0, desc.location.lastIndexOf('.'))+ ".jpg width=\"100\" height=\"100\">")
 					
 					val MediaFile mediaFile = PlaylistFactory.eINSTANCE.createMediaFile
 					mediaFile.location = desc.location
@@ -182,7 +203,7 @@ class VideoDemonstrator {
 						ffmpeg.generateVignette(desc.location)
 						
 						//Q10
-						sb.append("<img src=../input/" + desc.location.substring(0, desc.location.lastIndexOf('.'))+ ".jpg width=\"100\" height=\"100\">")
+						sb.append("<img src=" + desc.location.substring(0, desc.location.lastIndexOf('.'))+ ".jpg width=\"100\" height=\"100\">")
 						
 						val MediaFile mediaFile = PlaylistFactory.eINSTANCE.createMediaFile
 						mediaFile.location = desc.location
@@ -205,7 +226,7 @@ class VideoDemonstrator {
 					 sb.append("</div>")
 					 sb.append("</br>")
 					 sb.append("<div>")
-					 sb.append("<img src=../input/" + vdesc.location.substring(0, vdesc.location.lastIndexOf('.'))+ ".jpg width=\"100\" height=\"100\">")
+					 sb.append("<img src=" + vdesc.location.substring(0, vdesc.location.lastIndexOf('.'))+ ".jpg width=\"100\" height=\"100\">")
 					 sb.append("</div>")
 					 
 					val MediaFile mediaFile = PlaylistFactory.eINSTANCE.createMediaFile
@@ -222,52 +243,44 @@ class VideoDemonstrator {
 	saveVideoGenerator(URI.createURI("Fichier3bis.xmi"), videoGen)
 	saveVideoGenerator(URI.createURI("Fichier3bis.videogen"), videoGen)
 	
-	convertPlaylistIntoFormat(playlist,filename, ".m3u")
+	return playlist;
 		
 	}
 	
-	def void convertPlaylistIntoFormat(Playlist playlist,String filename, String format){
-		
-		val FileWriter f = new FileWriter(filename + format)
-		if(format.equals(".m3u")){
-			for (i : playlist.getVids().size >.. 0) {
-				val element = playlist.getVids().get(i)
-				f.write(element.location + "\n")
-			}	
-		}
-		if(format.equals(".txt")){
-			for (i : playlist.getVids().size >.. 0) {
-				val element = playlist.getVids().get(i)
-				f.write("file '" + element.location+"'" + "\n")
-			}	
+	/* Converti une playlist au txt */
+	def void convertPlaylistToTxt(Playlist playlist,String filename){
+		val FileWriter f = new FileWriter(filename + ".txt")
+		for (i : playlist.getVids().size >.. 0) {
+			val element = playlist.getVids().get(i)
+			f.write("file '" + element.location+"'" + "\n")
+		}	
+		f.close()
+	}
+	
+	/* Converti une playlist au format m3u */
+	def void convertPlaylistToM3U(Playlist playlist,String filename){
+		val FileWriter f = new FileWriter(filename + ".m3u")
+		for (i : playlist.getVids().size >.. 0) {
+			val element = playlist.getVids().get(i)
+			f.write(element.location + "\n")
+		}	
+		f.close()
+	}
+	
+	/* Converti une playlist au format m3u étendu */
+	//QUESTION 8
+	def void convertPlaylistToM3UEtendu(Playlist playlist,String filename){
+		val FileWriter f = new FileWriter(filename + "e.m3u")
+		f.write("#EXTM3U \n")
+		for (i : playlist.getVids().size >.. 0) {
+			val element = playlist.getVids().get(i)
+			f.write("#EXTINF:"+ element.duration + "\n")
+			f.write(element.location + "\n")
+			f.write("\n")		
 		}
 		f.close()
 	}
 	
-	//Q10
-	def StringBuilder generateHeader(StringBuilder sb){
-	    sb.append("<html>");
-	    sb.append("<head>");
-	    sb.append("<title>Title Of the page");
-	    sb.append("</title>");
-	    sb.append("</head>");
-	    sb.append("<body>");
-		return sb
-	}
-	
-	//Q10
-	def StringBuilder generateEndOfHtmlFile(StringBuilder sb){
-		sb.append("</body>");
-    	sb.append("</html>");
-	}
-	
-	//Q10
-	def writeHtmlFile(StringBuilder sb){
-		    val FileWriter fstream = new FileWriter("output/vignette.html");
-		    val BufferedWriter out = new BufferedWriter(fstream);
-		    out.write(sb.toString());
-		    out.close();
-	}
 	
 	//QUESTION 12 : VERIFICATION DES IDS
 	def verifieId(VideoGeneratorModel videoGen){
@@ -317,27 +330,52 @@ class VideoDemonstrator {
 	//QUESTION 12 : VERIFICATION DES CHEMINS
 	def verifieLocation(VideoGeneratorModel videoGen){
 		println("LOCATION VERIFICATION")
-		val videoFolder = "input/"
 		videoGen.videoseqs.forEach [ videoseq |
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
-				if (!new File(videoFolder + desc.location).exists()) {
+				if (!new File(desc.location).exists()) {
 					println("[LOCATION ERREUR] le chemin : " + desc.location + "est introuvable !");
 				}
 			} else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
-				if (!new File(videoFolder + desc.location).exists()) {
+				if (!new File(desc.location).exists()) {
 					println("[LOCATION ERREUR] le chemin : " + desc.location + "est introuvable !");
 				}
 			} else {
 				val desc = (videoseq as AlternativeVideoSeq)
 				for (vdesc : desc.videodescs) {
-				if (!new File(videoFolder + vdesc.location).exists()) {
+				if (!new File(vdesc.location).exists()) {
 					println("[LOCATION ERREUR] le chemin : " + vdesc.location + "est introuvable !");
 				}
 				}
 			}
 		]
+	}
+	
+	/* HTML */
+	//Q10
+	def StringBuilder generateHeader(StringBuilder sb){
+	    sb.append("<html>");
+	    sb.append("<head>");
+	    sb.append("<title>Title Of the page");
+	    sb.append("</title>");
+	    sb.append("</head>");
+	    sb.append("<body>");
+		return sb
+	}
+	
+	//Q10
+	def StringBuilder generateEndOfHtmlFile(StringBuilder sb){
+		sb.append("</body>");
+    	sb.append("</html>");
+	}
+	
+	//Q10
+	def writeHtmlFile(StringBuilder sb){
+		    val FileWriter fstream = new FileWriter("output/vignette.html");
+		    val BufferedWriter out = new BufferedWriter(fstream);
+		    out.write(sb.toString());
+		    out.close();
 	}
 	
 	def void printToHTML(VideoGeneratorModel videoGen) {
