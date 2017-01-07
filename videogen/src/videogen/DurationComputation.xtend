@@ -11,6 +11,8 @@ import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq
 import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq
 import java.util.Random
+import java.io.BufferedReader
+import java.io.InputStreamReader
 
 class DurationComputation {
 	//Partie 3
@@ -82,14 +84,24 @@ class DurationComputation {
 		var cmd = "/usr/bin/ffprobe -v error -select_streams v:0 -show_entries stream=duration -of default=noprint_wrappers=1:nokey=1 -i \"" + videoLocation+"\""
 		var Process process = Runtime.getRuntime().exec(cmd)
 		process.waitFor()
-		process.getInputStream().read
+		//process.getInputStream().read
+		println(process.exitValue())
+		var BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+
+		var String line = "";
+		var String outputJson = "";
+	    while ((line = reader.readLine()) != null) {
+	        outputJson = outputJson + line;
+	    }
+	    println(Math.round(Float.parseFloat(outputJson))-1)
+	    return Math.round(Float.parseFloat(outputJson))-1;
 		}
 		
 	def static void main(String[] args) {
 		val dc = new DurationComputation
-		val fin = URI.createURI("foo2.videogen")
-		val fout = URI.createURI("foo2duration.videogen")
-		val m3uext = "foo2.m3u"
+		val fin = URI.createURI("test.videogen")
+		val fout = URI.createURI("testduration.videogen")
+		val m3uext = "test.m3u"
 		dc.durationCompute(fin,fout)
 		dc.modelToM3UExtended(fout,m3uext)
 	}

@@ -8,9 +8,17 @@ import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq
 import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq
 import java.io.FileWriter
+import java.io.BufferedWriter
+import java.io.OutputStreamWriter
+import java.io.IOException
+import java.io.FileOutputStream
 
 class ThumbnailGenerator {
 	//Partie 4
+	
+	
+	static BufferedWriter writer
+	
 	def loadVideoGenerator(URI uri) {
 		new VideoGenStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()
 		var res = new ResourceSetImpl().getResource(uri, true);
@@ -37,14 +45,28 @@ class ThumbnailGenerator {
 	
 	def void generateThumbnail(String videoLocation){
 		var wd = System.getProperty("user.dir")
-		var name = extractName(videoLocation)//attraper la dernière partie...
-		var cmd = "/usr/bin/ffmpeg -i \"" + wd+"/"+videoLocation + "\" -ss 00:00:01.000 -vframes 1 \""+wd+"/thumb/" + name + ".jpg\" -y"
-		println(cmd)
+		var name = extractName(videoLocation)
+		//println(name)
+		//createFile(wd+"/thumb/" + name + ".jpg","")
+		//println(wd+"/"+videoLocation)
+		var cmd = "/usr/bin/ffmpeg -i " + wd+"/"+videoLocation + " -ss 00:00:01.000 -vframes 1 "+wd+"/thumb/" + name + ".jpg -y"
 		var Process process = Runtime.getRuntime().exec(cmd)
 		process.waitFor()
+		//println(process.exitValue())
 	}
 	
-	def String extractName(String txt){
+	def static void createFile(String filename, String content){
+		try {
+		    writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filename), "utf-8"));
+		    writer.write(content);
+		} catch (IOException ex) {
+		  System.out.println(ex.message)
+		} finally {
+		   try { writer.close();} catch (Exception ex) {/*ignore*/}
+		}
+  	}
+	
+	def static String extractName(String txt){
 		var sp1 = txt.split("/")
 		var sp2 = sp1.get(sp1.size-1).split("\\.")
 		return sp2.get(0)
@@ -82,7 +104,7 @@ class ThumbnailGenerator {
 		val tg = new ThumbnailGenerator
 		val fin = URI.createURI("test.videogen")
 		val fout = "test.html"
-		println("wd = "+System.getProperty("user.dir"))
+		//println("wd = "+System.getProperty("user.dir"))
 		tg.thumbnailGenerator(fin,fout)
 	}
 }

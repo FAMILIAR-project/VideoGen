@@ -19,7 +19,7 @@ class MetricsComputation {
 	def metricsComputation(URI in){
 		var videogen = loadVideoGenerator(in)
 		var nb = variationNumber(videogen)
-		
+		print("Nombre de variations : "+nb)
 	}
 	
 	def int variationNumber(VideoGeneratorModel videogen){
