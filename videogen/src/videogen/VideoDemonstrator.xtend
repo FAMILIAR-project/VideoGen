@@ -185,7 +185,7 @@ class VideoDemonstrator {
 					ffmpeg.generateVignette(desc.location)
 		
 					//Q10				
-					sb.append("<img src=" + desc.location.substring(0, desc.location.lastIndexOf('.'))+ ".jpg width=\"100\" height=\"100\">")
+					sb.append("<img src=../" + desc.location.substring(0, desc.location.lastIndexOf('.'))+ ".jpg width=\"100\" height=\"100\">")
 					
 					val MediaFile mediaFile = PlaylistFactory.eINSTANCE.createMediaFile
 					mediaFile.location = desc.location
@@ -203,7 +203,7 @@ class VideoDemonstrator {
 						ffmpeg.generateVignette(desc.location)
 						
 						//Q10
-						sb.append("<img src=" + desc.location.substring(0, desc.location.lastIndexOf('.'))+ ".jpg width=\"100\" height=\"100\">")
+						sb.append("<img src=../" + desc.location.substring(0, desc.location.lastIndexOf('.'))+ ".jpg width=\"100\" height=\"100\">")
 						
 						val MediaFile mediaFile = PlaylistFactory.eINSTANCE.createMediaFile
 						mediaFile.location = desc.location
@@ -226,7 +226,7 @@ class VideoDemonstrator {
 					 sb.append("</div>")
 					 sb.append("</br>")
 					 sb.append("<div>")
-					 sb.append("<img src=" + vdesc.location.substring(0, vdesc.location.lastIndexOf('.'))+ ".jpg width=\"100\" height=\"100\">")
+					 sb.append("<img src=../" + vdesc.location.substring(0, vdesc.location.lastIndexOf('.'))+ ".jpg width=\"100\" height=\"100\">")
 					 sb.append("</div>")
 					 
 					val MediaFile mediaFile = PlaylistFactory.eINSTANCE.createMediaFile
