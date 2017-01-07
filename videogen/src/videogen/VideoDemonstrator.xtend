@@ -111,12 +111,10 @@ class VideoDemonstrator {
 	
 	@Test 
 	def void verifieVideoGen(){
-		val filename = "foo3"
-		var videoGen = loadVideoGenerator(URI.createURI(filename + ".videogen")) 
-		assertNotNull(videoGen)
+		val filename = URI.createURI("foo3.videogen")
+		val VideoGenVerificator verificator = new VideoGenVerificator()
 		println("\nVérification de la specification Videogen : "+ filename + ".videogen")
-		verifieId(videoGen)
-		verifieLocation(videoGen)
+		verificator.verifieVideoGen(filename);
 	}
 	
 	def void modelToText(VideoGeneratorModel videoGen, FileWriter file){
@@ -295,75 +293,7 @@ class VideoDemonstrator {
 	}
 	
 	
-	//QUESTION 12 : VERIFICATION DES IDS
-	def verifieId(VideoGeneratorModel videoGen){
-		val listId = <String> newArrayList()
-		println("ID VERIFICATION")
-		videoGen.videoseqs.forEach [ videoseq |
-			if (videoseq instanceof MandatoryVideoSeq) {
-				val desc = (videoseq as MandatoryVideoSeq).description
-				if (desc.videoid != null) {
-					if (listId.contains(desc.videoid)) {
-						println("[ID ERREUR]: " + desc.videoid + " existe déja !")
-					} else {
-						listId.add(desc.videoid)
-					}
-				}
-			} else if (videoseq instanceof OptionalVideoSeq) {
-				val desc = (videoseq as OptionalVideoSeq).description
-				if (desc.videoid != null) {
-					if (listId.contains(desc.videoid)) {
-						println("[ID ERREUR] : " + desc.videoid + " existe déja !")
-					} else {
-						listId.add(desc.videoid)
-					}
-				}
-			} else {
-				val desc = (videoseq as AlternativeVideoSeq)
-				if (desc.videoid != null) {
-					if (listId.contains(desc.videoid)) {
-						println("[ID ERREUR] : " + desc.videoid + " existe déja !")
-					} else {
-						listId.add(desc.videoid)
-					}
-				}
-				for (vdesc : desc.videodescs) {
-					if (vdesc.videoid != null) {
-						if (listId.contains(vdesc.videoid)) {
-						println("[ID ERREUR] l'id : " + vdesc.videoid + " existe déja !")
-						} else {
-							listId.add(vdesc.videoid)
-						}
-					}
-				}
-			}
-		]
-	}
-	
-	//QUESTION 12 : VERIFICATION DES CHEMINS
-	def verifieLocation(VideoGeneratorModel videoGen){
-		println("LOCATION VERIFICATION")
-		videoGen.videoseqs.forEach [ videoseq |
-			if (videoseq instanceof MandatoryVideoSeq) {
-				val desc = (videoseq as MandatoryVideoSeq).description
-				if (!new File(desc.location).exists()) {
-					println("[LOCATION ERREUR] le chemin : " + desc.location + "est introuvable !");
-				}
-			} else if (videoseq instanceof OptionalVideoSeq) {
-				val desc = (videoseq as OptionalVideoSeq).description
-				if (!new File(desc.location).exists()) {
-					println("[LOCATION ERREUR] le chemin : " + desc.location + "est introuvable !");
-				}
-			} else {
-				val desc = (videoseq as AlternativeVideoSeq)
-				for (vdesc : desc.videodescs) {
-				if (!new File(vdesc.location).exists()) {
-					println("[LOCATION ERREUR] le chemin : " + vdesc.location + "est introuvable !");
-				}
-				}
-			}
-		]
-	}
+
 	
 	/* HTML */
 	//Q10
