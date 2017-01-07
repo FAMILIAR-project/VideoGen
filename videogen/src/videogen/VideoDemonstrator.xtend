@@ -40,6 +40,7 @@ class VideoDemonstrator {
 	
 	@Test
 	def test1() {
+		println("TEST")
 		// loading
 		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
 		assertNotNull(videoGen)
@@ -100,7 +101,7 @@ class VideoDemonstrator {
 	}
 	
 	@Test
-	def void modelToModelToM3UEtendu(){
+	def void modelToModelToM3UExtended(){
 		val filename = "foo3"
 		var videoGen = loadVideoGenerator(URI.createURI(filename + ".videogen")) 
 		assertNotNull(videoGen)
@@ -113,7 +114,7 @@ class VideoDemonstrator {
 		val filename = "foo3"
 		var videoGen = loadVideoGenerator(URI.createURI(filename + ".videogen")) 
 		assertNotNull(videoGen)
-		println("Vérification de la specification Videogen : "+ filename + ".videogen")
+		println("\nVérification de la specification Videogen : "+ filename + ".videogen")
 		verifieId(videoGen)
 		verifieLocation(videoGen)
 	}
@@ -248,8 +249,11 @@ class VideoDemonstrator {
 	}
 	
 	/* Converti une playlist au txt */
-	def void convertPlaylistToTxt(Playlist playlist,String filename){
+	def void convertPlaylistToTxt(Playlist playlist,String filename){		
 		val FileWriter f = new FileWriter(filename + ".txt")
+		println("\nCONVERTION PLAYLIST AU FORMAT txt")
+		println("Fichier de sortie : " + filename + ".txt")
+		
 		for (i : playlist.getVids().size >.. 0) {
 			val element = playlist.getVids().get(i)
 			f.write("file '" + element.location+"'" + "\n")
@@ -260,6 +264,9 @@ class VideoDemonstrator {
 	/* Converti une playlist au format m3u */
 	def void convertPlaylistToM3U(Playlist playlist,String filename){
 		val FileWriter f = new FileWriter(filename + ".m3u")
+		println("\nCONVERTION PLAYLIST AU FORMAT M3U")
+		println("Fichier de sortie : " + filename + ".m3u")
+		
 		for (i : playlist.getVids().size >.. 0) {
 			val element = playlist.getVids().get(i)
 			f.write(element.location + "\n")
@@ -270,14 +277,20 @@ class VideoDemonstrator {
 	/* Converti une playlist au format m3u étendu */
 	//QUESTION 8
 	def void convertPlaylistToM3UEtendu(Playlist playlist,String filename){
-		val FileWriter f = new FileWriter(filename + "e.m3u")
+		
+		val FileWriter f = new FileWriter(filename + "_extended.m3u")
+		println("\nCONVERTION PLAYLIST AU FORMAT M3U ETENDU")
+		println("Fichier de sortie : " + filename + "_extended.m3u")
+		
 		f.write("#EXTM3U \n")
 		for (i : playlist.getVids().size >.. 0) {
 			val element = playlist.getVids().get(i)
+			f.write("#EXT-X-DISCONTINUITY\n")
 			f.write("#EXTINF:"+ element.duration + "\n")
 			f.write(element.location + "\n")
 			f.write("\n")		
 		}
+		f.write("#EXT-X-ENDLIST")
 		f.close()
 	}
 	
@@ -379,6 +392,7 @@ class VideoDemonstrator {
 	}
 	
 	def void printToHTML(VideoGeneratorModel videoGen) {
+		println("\nPRINT TO HML :")
 		//var numSeq = 1
 		println("<ul>")
 		videoGen.videoseqs.forEach[videoseq | 

@@ -3,6 +3,6 @@ VideoGen {
 	optional videoseq v2 "input/v2folder/v2.mp4"
 	alternatives v3 { 
 		videoseq v31 "input/v31.mp4"
-		videoseq v31 "input/v32.mp4"
+		videoseq v32 "input/v32.mp4"
 	}
 }
