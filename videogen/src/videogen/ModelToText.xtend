@@ -68,8 +68,8 @@ def public static void main(String[] args){
 			}
 		}
 	
-	var file = new File ("result.txt")
-	 var filewriter = new FileWriter(file)
+	  var file = new File ("result.txt")
+	  var filewriter = new FileWriter(file)
       filewriter.write( data );
       filewriter.flush
       filewriter.close
@@ -124,5 +124,5 @@ def public static void main(String[] args){
 	
 }
 
-	
+
 }
