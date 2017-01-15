@@ -582,9 +582,126 @@ ruleVideoDescription returns [EObject current=null]
 	    }
 
 )
-))?this_RIGHT_BRACKET_12=RULE_RIGHT_BRACKET
+))?(	otherlv_12='subtitle' 
+    {
+    	newLeafNode(otherlv_12, grammarAccess.getVideoDescriptionAccess().getSubtitleKeyword_3_5_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getVideoDescriptionAccess().getSubtitleSubtitleParserRuleCall_3_5_1_0()); 
+	    }
+		lv_subtitle_13_0=ruleSubtitle		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getVideoDescriptionRule());
+	        }
+       		set(
+       			$current, 
+       			"subtitle",
+        		lv_subtitle_13_0, 
+        		"org.xtext.example.mydsl.VideoGen.Subtitle");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))?this_RIGHT_BRACKET_14=RULE_RIGHT_BRACKET
     { 
-    newLeafNode(this_RIGHT_BRACKET_12, grammarAccess.getVideoDescriptionAccess().getRIGHT_BRACKETTerminalRuleCall_3_5()); 
+    newLeafNode(this_RIGHT_BRACKET_14, grammarAccess.getVideoDescriptionAccess().getRIGHT_BRACKETTerminalRuleCall_3_6()); 
+    }
+)?)
+;
+
+
+
+
+
+// Entry rule entryRuleSubtitle
+entryRuleSubtitle returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getSubtitleRule()); }
+	 iv_ruleSubtitle=ruleSubtitle 
+	 { $current=$iv_ruleSubtitle.current; } 
+	 EOF 
+;
+
+// Rule Subtitle
+ruleSubtitle returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='subtitle' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getSubtitleAccess().getSubtitleKeyword_0());
+    }
+(
+(
+		lv_text_1_0=RULE_STRING
+		{
+			newLeafNode(lv_text_1_0, grammarAccess.getSubtitleAccess().getTextSTRINGTerminalRuleCall_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getSubtitleRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"text",
+        		lv_text_1_0, 
+        		"org.eclipse.xtext.common.Terminals.STRING");
+	    }
+
+)
+)(this_LEFT_BRACKET_2=RULE_LEFT_BRACKET
+    { 
+    newLeafNode(this_LEFT_BRACKET_2, grammarAccess.getSubtitleAccess().getLEFT_BRACKETTerminalRuleCall_2_0()); 
+    }
+(	otherlv_3='color' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getSubtitleAccess().getColorKeyword_2_1_0());
+    }
+(
+(
+		lv_colorfont_4_0=RULE_STRING
+		{
+			newLeafNode(lv_colorfont_4_0, grammarAccess.getSubtitleAccess().getColorfontSTRINGTerminalRuleCall_2_1_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getSubtitleRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"colorfont",
+        		lv_colorfont_4_0, 
+        		"org.eclipse.xtext.common.Terminals.STRING");
+	    }
+
+)
+))?(	otherlv_5='size' 
+    {
+    	newLeafNode(otherlv_5, grammarAccess.getSubtitleAccess().getSizeKeyword_2_2_0());
+    }
+(
+(
+		lv_size_6_0=RULE_STRING
+		{
+			newLeafNode(lv_size_6_0, grammarAccess.getSubtitleAccess().getSizeSTRINGTerminalRuleCall_2_2_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getSubtitleRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"size",
+        		lv_size_6_0, 
+        		"org.eclipse.xtext.common.Terminals.STRING");
+	    }
+
+)
+))?this_RIGHT_BRACKET_7=RULE_RIGHT_BRACKET
+    { 
+    newLeafNode(this_RIGHT_BRACKET_7, grammarAccess.getSubtitleAccess().getRIGHT_BRACKETTerminalRuleCall_2_3()); 
     }
 )?)
 ;

@@ -18,6 +18,7 @@ import org.xtext.example.mydsl.services.VideoGenGrammarAccess;
 import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq;
 import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq;
 import org.xtext.example.mydsl.videoGen.OptionalVideoSeq;
+import org.xtext.example.mydsl.videoGen.Subtitle;
 import org.xtext.example.mydsl.videoGen.VideoDescription;
 import org.xtext.example.mydsl.videoGen.VideoGenInformation;
 import org.xtext.example.mydsl.videoGen.VideoGenPackage;
@@ -45,6 +46,9 @@ public class VideoGenSemanticSequencer extends AbstractDelegatingSemanticSequenc
 				return; 
 			case VideoGenPackage.OPTIONAL_VIDEO_SEQ:
 				sequence_OptionalVideoSeq(context, (OptionalVideoSeq) semanticObject); 
+				return; 
+			case VideoGenPackage.SUBTITLE:
+				sequence_Subtitle(context, (Subtitle) semanticObject); 
 				return; 
 			case VideoGenPackage.VIDEO_DESCRIPTION:
 				sequence_VideoDescription(context, (VideoDescription) semanticObject); 
@@ -113,6 +117,18 @@ public class VideoGenSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	
 	/**
 	 * Contexts:
+	 *     Subtitle returns Subtitle
+	 *
+	 * Constraint:
+	 *     (text=STRING colorfont=STRING? size=STRING?)
+	 */
+	protected void sequence_Subtitle(ISerializationContext context, Subtitle semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     VideoDescription returns VideoDescription
 	 *
 	 * Constraint:
@@ -122,7 +138,8 @@ public class VideoGenSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *         duration=INT? 
 	 *         probability=INT? 
 	 *         size=INT? 
-	 *         description=STRING?
+	 *         description=STRING? 
+	 *         subtitle=Subtitle?
 	 *     )
 	 */
 	protected void sequence_VideoDescription(ISerializationContext context, VideoDescription semanticObject) {

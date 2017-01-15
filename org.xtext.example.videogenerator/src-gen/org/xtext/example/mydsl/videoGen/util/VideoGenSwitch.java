@@ -124,6 +124,13 @@ public class VideoGenSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case VideoGenPackage.SUBTITLE:
+      {
+        Subtitle subtitle = (Subtitle)theEObject;
+        T result = caseSubtitle(subtitle);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       default: return defaultCase(theEObject);
     }
   }
@@ -236,6 +243,22 @@ public class VideoGenSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseVideoDescription(VideoDescription object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Subtitle</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Subtitle</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSubtitle(Subtitle object)
   {
     return null;
   }

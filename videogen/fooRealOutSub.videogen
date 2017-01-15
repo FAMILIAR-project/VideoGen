@@ -1,0 +1,4 @@
+VideoGen {
+	mandatory videoseq v1 "Sample/V1.mp4" {subtitle subtitle "titre video" {color "white"}}
+	optional videoseq v2 "Sample/V2.mp4" {subtitle
+subtitle "sous titre 2" {color "black" } }}

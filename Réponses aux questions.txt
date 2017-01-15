@@ -66,3 +66,12 @@ Pour les autres modes il suffit de réaliser les xtend de la même maniére.
 =====Projet1 : Calcul des métriques=====
 Fichier xtend de transformation:
 => VideoGenForked\videogen\src\videogen\VideoDemonstratorCalculMetrique.xtend
+
+
+=====Projet2 : Incruster du texte dans une vidéo=====
+Fichier xtend de transformation: 
+=> VideoGenForked\videogen\src\videogen\VideoDemonstratorAddTexte.xtend
+Et mise à jour de la grammaire
+=>VideoGenForked\org.xtext.example.videogenerator\src\org\xtext\example\mydsl\VideoGen.xtext
+
+Note: La commande d'ajout de sous-titre ne marche pas mais le principe est là (récupération d'info issue d'un model pour executer une commande)

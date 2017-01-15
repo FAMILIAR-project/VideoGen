@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.xtext.example.mydsl.videoGen.VideoDescription#getProbability <em>Probability</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.videoGen.VideoDescription#getSize <em>Size</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.videoGen.VideoDescription#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.videoGen.VideoDescription#getSubtitle <em>Subtitle</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.mydsl.videoGen.VideoGenPackage#getVideoDescription()
@@ -182,5 +183,31 @@ public interface VideoDescription extends EObject
    * @generated
    */
   void setDescription(String value);
+
+  /**
+   * Returns the value of the '<em><b>Subtitle</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Subtitle</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Subtitle</em>' containment reference.
+   * @see #setSubtitle(Subtitle)
+   * @see org.xtext.example.mydsl.videoGen.VideoGenPackage#getVideoDescription_Subtitle()
+   * @model containment="true"
+   * @generated
+   */
+  Subtitle getSubtitle();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.videoGen.VideoDescription#getSubtitle <em>Subtitle</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Subtitle</em>' containment reference.
+   * @see #getSubtitle()
+   * @generated
+   */
+  void setSubtitle(Subtitle value);
 
 } // VideoDescription

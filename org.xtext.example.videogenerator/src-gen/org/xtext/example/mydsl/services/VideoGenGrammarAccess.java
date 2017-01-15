@@ -264,15 +264,19 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cDescriptionKeyword_3_4_0 = (Keyword)cGroup_3_4.eContents().get(0);
 		private final Assignment cDescriptionAssignment_3_4_1 = (Assignment)cGroup_3_4.eContents().get(1);
 		private final RuleCall cDescriptionSTRINGTerminalRuleCall_3_4_1_0 = (RuleCall)cDescriptionAssignment_3_4_1.eContents().get(0);
-		private final RuleCall cRIGHT_BRACKETTerminalRuleCall_3_5 = (RuleCall)cGroup_3.eContents().get(5);
+		private final Group cGroup_3_5 = (Group)cGroup_3.eContents().get(5);
+		private final Keyword cSubtitleKeyword_3_5_0 = (Keyword)cGroup_3_5.eContents().get(0);
+		private final Assignment cSubtitleAssignment_3_5_1 = (Assignment)cGroup_3_5.eContents().get(1);
+		private final RuleCall cSubtitleSubtitleParserRuleCall_3_5_1_0 = (RuleCall)cSubtitleAssignment_3_5_1.eContents().get(0);
+		private final RuleCall cRIGHT_BRACKETTerminalRuleCall_3_6 = (RuleCall)cGroup_3.eContents().get(6);
 		
 		//VideoDescription:
 		//	'videoseq' videoid=ID? location=STRING (LEFT_BRACKET ('duration' duration=INT)? ('probability' probability=INT)?
-		//	('size' size=INT)? ('description' description=STRING)? RIGHT_BRACKET)?;
+		//	('size' size=INT)? ('description' description=STRING)? ('subtitle' subtitle=Subtitle)? RIGHT_BRACKET)?;
 		@Override public ParserRule getRule() { return rule; }
 
 		//'videoseq' videoid=ID? location=STRING (LEFT_BRACKET ('duration' duration=INT)? ('probability' probability=INT)? ('size'
-		//size=INT)? ('description' description=STRING)? RIGHT_BRACKET)?
+		//size=INT)? ('description' description=STRING)? ('subtitle' subtitle=Subtitle)? RIGHT_BRACKET)?
 		public Group getGroup() { return cGroup; }
 
 		//'videoseq'
@@ -291,7 +295,7 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getLocationSTRINGTerminalRuleCall_2_0() { return cLocationSTRINGTerminalRuleCall_2_0; }
 
 		//(LEFT_BRACKET ('duration' duration=INT)? ('probability' probability=INT)? ('size' size=INT)? ('description'
-		//description=STRING)? RIGHT_BRACKET)?
+		//description=STRING)? ('subtitle' subtitle=Subtitle)? RIGHT_BRACKET)?
 		public Group getGroup_3() { return cGroup_3; }
 
 		//LEFT_BRACKET
@@ -345,8 +349,88 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 		//STRING
 		public RuleCall getDescriptionSTRINGTerminalRuleCall_3_4_1_0() { return cDescriptionSTRINGTerminalRuleCall_3_4_1_0; }
 
+		//('subtitle' subtitle=Subtitle)?
+		public Group getGroup_3_5() { return cGroup_3_5; }
+
+		//'subtitle'
+		public Keyword getSubtitleKeyword_3_5_0() { return cSubtitleKeyword_3_5_0; }
+
+		//subtitle=Subtitle
+		public Assignment getSubtitleAssignment_3_5_1() { return cSubtitleAssignment_3_5_1; }
+
+		//Subtitle
+		public RuleCall getSubtitleSubtitleParserRuleCall_3_5_1_0() { return cSubtitleSubtitleParserRuleCall_3_5_1_0; }
+
 		//RIGHT_BRACKET
-		public RuleCall getRIGHT_BRACKETTerminalRuleCall_3_5() { return cRIGHT_BRACKETTerminalRuleCall_3_5; }
+		public RuleCall getRIGHT_BRACKETTerminalRuleCall_3_6() { return cRIGHT_BRACKETTerminalRuleCall_3_6; }
+	}
+
+	public class SubtitleElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.VideoGen.Subtitle");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cSubtitleKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cTextAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cTextSTRINGTerminalRuleCall_1_0 = (RuleCall)cTextAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final RuleCall cLEFT_BRACKETTerminalRuleCall_2_0 = (RuleCall)cGroup_2.eContents().get(0);
+		private final Group cGroup_2_1 = (Group)cGroup_2.eContents().get(1);
+		private final Keyword cColorKeyword_2_1_0 = (Keyword)cGroup_2_1.eContents().get(0);
+		private final Assignment cColorfontAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
+		private final RuleCall cColorfontSTRINGTerminalRuleCall_2_1_1_0 = (RuleCall)cColorfontAssignment_2_1_1.eContents().get(0);
+		private final Group cGroup_2_2 = (Group)cGroup_2.eContents().get(2);
+		private final Keyword cSizeKeyword_2_2_0 = (Keyword)cGroup_2_2.eContents().get(0);
+		private final Assignment cSizeAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
+		private final RuleCall cSizeSTRINGTerminalRuleCall_2_2_1_0 = (RuleCall)cSizeAssignment_2_2_1.eContents().get(0);
+		private final RuleCall cRIGHT_BRACKETTerminalRuleCall_2_3 = (RuleCall)cGroup_2.eContents().get(3);
+		
+		//Subtitle:
+		//	'subtitle' text=STRING (LEFT_BRACKET ('color' colorfont=STRING)? ('size' size=STRING)? RIGHT_BRACKET)?;
+		@Override public ParserRule getRule() { return rule; }
+
+		//'subtitle' text=STRING (LEFT_BRACKET ('color' colorfont=STRING)? ('size' size=STRING)? RIGHT_BRACKET)?
+		public Group getGroup() { return cGroup; }
+
+		//'subtitle'
+		public Keyword getSubtitleKeyword_0() { return cSubtitleKeyword_0; }
+
+		//text=STRING
+		public Assignment getTextAssignment_1() { return cTextAssignment_1; }
+
+		//STRING
+		public RuleCall getTextSTRINGTerminalRuleCall_1_0() { return cTextSTRINGTerminalRuleCall_1_0; }
+
+		//(LEFT_BRACKET ('color' colorfont=STRING)? ('size' size=STRING)? RIGHT_BRACKET)?
+		public Group getGroup_2() { return cGroup_2; }
+
+		//LEFT_BRACKET
+		public RuleCall getLEFT_BRACKETTerminalRuleCall_2_0() { return cLEFT_BRACKETTerminalRuleCall_2_0; }
+
+		//('color' colorfont=STRING)?
+		public Group getGroup_2_1() { return cGroup_2_1; }
+
+		//'color'
+		public Keyword getColorKeyword_2_1_0() { return cColorKeyword_2_1_0; }
+
+		//colorfont=STRING
+		public Assignment getColorfontAssignment_2_1_1() { return cColorfontAssignment_2_1_1; }
+
+		//STRING
+		public RuleCall getColorfontSTRINGTerminalRuleCall_2_1_1_0() { return cColorfontSTRINGTerminalRuleCall_2_1_1_0; }
+
+		//('size' size=STRING)?
+		public Group getGroup_2_2() { return cGroup_2_2; }
+
+		//'size'
+		public Keyword getSizeKeyword_2_2_0() { return cSizeKeyword_2_2_0; }
+
+		//size=STRING
+		public Assignment getSizeAssignment_2_2_1() { return cSizeAssignment_2_2_1; }
+
+		//STRING
+		public RuleCall getSizeSTRINGTerminalRuleCall_2_2_1_0() { return cSizeSTRINGTerminalRuleCall_2_2_1_0; }
+
+		//RIGHT_BRACKET
+		public RuleCall getRIGHT_BRACKETTerminalRuleCall_2_3() { return cRIGHT_BRACKETTerminalRuleCall_2_3; }
 	}
 	
 	
@@ -357,6 +441,7 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 	private final OptionalVideoSeqElements pOptionalVideoSeq;
 	private final AlternativeVideoSeqElements pAlternativeVideoSeq;
 	private final VideoDescriptionElements pVideoDescription;
+	private final SubtitleElements pSubtitle;
 	private final TerminalRule tLEFT_BRACKET;
 	private final TerminalRule tRIGHT_BRACKET;
 	
@@ -376,6 +461,7 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 		this.pOptionalVideoSeq = new OptionalVideoSeqElements();
 		this.pAlternativeVideoSeq = new AlternativeVideoSeqElements();
 		this.pVideoDescription = new VideoDescriptionElements();
+		this.pSubtitle = new SubtitleElements();
 		this.tLEFT_BRACKET = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.VideoGen.LEFT_BRACKET");
 		this.tRIGHT_BRACKET = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.VideoGen.RIGHT_BRACKET");
 	}
@@ -469,13 +555,23 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 
 	//VideoDescription:
 	//	'videoseq' videoid=ID? location=STRING (LEFT_BRACKET ('duration' duration=INT)? ('probability' probability=INT)?
-	//	('size' size=INT)? ('description' description=STRING)? RIGHT_BRACKET)?;
+	//	('size' size=INT)? ('description' description=STRING)? ('subtitle' subtitle=Subtitle)? RIGHT_BRACKET)?;
 	public VideoDescriptionElements getVideoDescriptionAccess() {
 		return pVideoDescription;
 	}
 	
 	public ParserRule getVideoDescriptionRule() {
 		return getVideoDescriptionAccess().getRule();
+	}
+
+	//Subtitle:
+	//	'subtitle' text=STRING (LEFT_BRACKET ('color' colorfont=STRING)? ('size' size=STRING)? RIGHT_BRACKET)?;
+	public SubtitleElements getSubtitleAccess() {
+		return pSubtitle;
+	}
+	
+	public ParserRule getSubtitleRule() {
+		return getSubtitleAccess().getRule();
 	}
 
 	//terminal LEFT_BRACKET:

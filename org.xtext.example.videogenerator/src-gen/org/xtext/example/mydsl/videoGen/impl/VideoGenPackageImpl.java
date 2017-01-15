@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq;
 import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq;
 import org.xtext.example.mydsl.videoGen.OptionalVideoSeq;
+import org.xtext.example.mydsl.videoGen.Subtitle;
 import org.xtext.example.mydsl.videoGen.VideoDescription;
 import org.xtext.example.mydsl.videoGen.VideoGenFactory;
 import org.xtext.example.mydsl.videoGen.VideoGenInformation;
@@ -75,6 +76,13 @@ public class VideoGenPackageImpl extends EPackageImpl implements VideoGenPackage
    * @generated
    */
   private EClass videoDescriptionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass subtitleEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -364,6 +372,56 @@ public class VideoGenPackageImpl extends EPackageImpl implements VideoGenPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getVideoDescription_Subtitle()
+  {
+    return (EReference)videoDescriptionEClass.getEStructuralFeatures().get(6);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getSubtitle()
+  {
+    return subtitleEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getSubtitle_Text()
+  {
+    return (EAttribute)subtitleEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getSubtitle_Colorfont()
+  {
+    return (EAttribute)subtitleEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getSubtitle_Size()
+  {
+    return (EAttribute)subtitleEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public VideoGenFactory getVideoGenFactory()
   {
     return (VideoGenFactory)getEFactoryInstance();
@@ -417,6 +475,12 @@ public class VideoGenPackageImpl extends EPackageImpl implements VideoGenPackage
     createEAttribute(videoDescriptionEClass, VIDEO_DESCRIPTION__PROBABILITY);
     createEAttribute(videoDescriptionEClass, VIDEO_DESCRIPTION__SIZE);
     createEAttribute(videoDescriptionEClass, VIDEO_DESCRIPTION__DESCRIPTION);
+    createEReference(videoDescriptionEClass, VIDEO_DESCRIPTION__SUBTITLE);
+
+    subtitleEClass = createEClass(SUBTITLE);
+    createEAttribute(subtitleEClass, SUBTITLE__TEXT);
+    createEAttribute(subtitleEClass, SUBTITLE__COLORFONT);
+    createEAttribute(subtitleEClass, SUBTITLE__SIZE);
   }
 
   /**
@@ -481,6 +545,12 @@ public class VideoGenPackageImpl extends EPackageImpl implements VideoGenPackage
     initEAttribute(getVideoDescription_Probability(), ecorePackage.getEInt(), "probability", null, 0, 1, VideoDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getVideoDescription_Size(), ecorePackage.getEInt(), "size", null, 0, 1, VideoDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getVideoDescription_Description(), ecorePackage.getEString(), "description", null, 0, 1, VideoDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getVideoDescription_Subtitle(), this.getSubtitle(), null, "subtitle", null, 0, 1, VideoDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(subtitleEClass, Subtitle.class, "Subtitle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getSubtitle_Text(), ecorePackage.getEString(), "text", null, 0, 1, Subtitle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getSubtitle_Colorfont(), ecorePackage.getEString(), "colorfont", null, 0, 1, Subtitle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getSubtitle_Size(), ecorePackage.getEString(), "size", null, 0, 1, Subtitle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);
