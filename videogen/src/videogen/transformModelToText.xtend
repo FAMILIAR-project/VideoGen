@@ -233,12 +233,17 @@ class transformModelToText {
 	//Q7
 	def calculDuree(String videoLocation){
 		println("duration : "+videoLocation)
-		var cmd = "/usr/local/bin/ffprobe -v error -select_streams v:0 -show_entries stream=duration -of default=noprint_wrappers=1:nokey=1 -i " +videoLocation 
+		var cmd = "ffprobe -v error -select_streams v:0 -show_entries stream=duration -of default=noprint_wrappers=1:nokey=1 -i " +videoLocation 
 		var p =Runtime.runtime.exec(cmd)
 		var reader= new BufferedReader(new InputStreamReader(p.inputStream))
 		var line=0.0
-	      line =Double.parseDouble(reader.readLine())
+		var truc = reader.readLine()
+		if(truc != null){
+	      line =Double.parseDouble(truc)
 	      line
+		}
+		else
+			1
 		
 	}
 	//Q9
@@ -259,35 +264,45 @@ class transformModelToText {
 	}
 	//Q10
 	def void printToHTML(VideoGeneratorModel videoGen) {
+		val writer=new PrintWriter("PageHTMLvideogen.html")
+			
 		//var numSeq = 1
 		println("<ul>")
+		writer.write("<ul>\n")
 		videoGen.videoseqs.forEach[videoseq | 
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description.location
-				  creationVignette(desc,1,desc+".png")
-				  println ("<li>" +"<img src="+desc+".png/></li>")  				
+				creationVignette(desc,calculDuree(desc).intValue/2,desc+".png")
+				println ("<li>" +"<img src="+desc+".png/></li>")  	
+				writer.write("<li>" +"<img src="+desc+".png/></li>\n")			
 			}
 			else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description.location
 				
-					creationVignette(desc,1,desc+".png")
-				  println ("<li>" +"<img src="+desc+".png/></li>")  
+					creationVignette(desc,calculDuree(desc).intValue/2,desc+".png")
+				  println ("<li>" +"<img src="+desc+".png/></li>")	
+				writer.write("<li>" +"<img src="+desc+".png/></li>\n")	  
 			}
 			else {
 				val altvid = (videoseq as AlternativeVideoSeq)
 	
 					
 				if (altvid.videodescs.size > 0) // there are vid seq alternatives
-					println ("<ul>")
+					println ("<ul>")	
+				writer.write("<ul>\n")	
 				for (vdesc : altvid.videodescs) {
-					creationVignette(vdesc.location,1,vdesc.location+".png")
-				  println ("<li>" +"<img src="+vdesc.location+".png/></li>")  
+					creationVignette(vdesc.location,calculDuree(vdesc.location).intValue/2,vdesc.location+".png")
+				  println ("<li>" +"<img src="+vdesc.location+".png/></li>")  	
+				writer.write("<li>" +"<img src="+vdesc.location+".png/></li>\n")	
 				}
 				if (altvid.videodescs.size > 0) // there are vid seq alternatives
-					println ("</ul>")
+					println ("</ul>")	
+				writer.write("</ul>\n")	
 			}
 		]
 		println("</ul>")
+		writer.write("<ul>\n")	
+		writer.close()
 }
 //Q11
 def verify(){

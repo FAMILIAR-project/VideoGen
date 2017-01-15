@@ -9,11 +9,11 @@ class Main {
 //		vv.transform()
 //		Q2
 		var playlist = vv.playlist()
-		vv.transformationPlaylistToFileM3U(playlist)
+//		vv.transformationPlaylistToFileM3U(playlist)
 //		Q4
-		vv.transformationPlaylistToFileffmpeg(playlist)
+//		vv.transformationPlaylistToFileffmpeg(playlist)
 //		Q5
-	vv.playlistVignette(playlist);
+//	vv.playlistVignette(playlist);
 	var videoGen = vv.loadVideoGenerator(URI.createURI("foo1.videogen")) 
 	vv.printToHTML(videoGen);
 
