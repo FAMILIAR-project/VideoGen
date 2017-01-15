@@ -163,7 +163,7 @@ class VideoDemonstratorCalculMetrique {
 			else {
 				val altvid = (videoseq as AlternativeVideoSeq)
 				
-				//Si les hashMap sont vides: on va n premiere variantes (n= nombere d'alternatives)
+				//Si les hashMap sont vides: on va créer n premiere variantes (n= nombre d'alternatives)
 				if(tailleVar.empty){
 					for(vdesc: altvid.videodescs){
 						//Calculer durée
@@ -187,7 +187,8 @@ class VideoDemonstratorCalculMetrique {
 					var int i= 0
 					var boolean first = true;
 					
-					//Pour la premiere alternative (first = true) on va completer les variantes actuels pour les autres on va créer une nouvelle variante
+					//Pour la premiere alternative (first = true) on va completer les variantes actuelles 
+					//pour les autres alternatives on va créer une nouvelle variante pour chaque variantes actuelles
 					//Et dans tout les cas on rajoute les donneés de la vidéo alternative
 					for(vdesc: altvid.videodescs){
 						//Calculer durée
