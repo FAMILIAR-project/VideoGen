@@ -13,9 +13,11 @@ import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 import static org.junit.Assert.*
 import java.io.BufferedReader
 import java.io.InputStreamReader
+import java.io.PrintWriter
+import java.io.IOException
 
 /**
- * Transformation xtend pour generer un script FFmpeg (Question 1)
+ * Transformation xtend pour faire des calculs métriques (projet 1)
  **/
 class VideoDemonstratorCalculMetrique {
 	
@@ -23,7 +25,10 @@ class VideoDemonstratorCalculMetrique {
 	var static pathFFmpeg = "C:/Users/PHILIP_Mi/Documents/Divers/Miage/M2/IDM/TP3/FFMpeg/ffmpeg-20161110-872b358-win64-static/bin/";
 	var static pathVideo = "C:/Users/PHILIP_Mi/Documents/Divers/Miage/M2/IDM/TP3/FFMpeg/"
 	
-	//Création des variables qui vont servir pour le métrique
+	//Constante qui représente la borne à ne pas dépasser (nb de sequence max dans le CSV)
+	var static borneCsv = 100;
+	
+	//Création des variables qui vont contenir les données qui vont servir pour le métrique
 	final HashMap<Integer,Integer> tailleVar = new HashMap<Integer,Integer>() //HashMap nombre de video par variante
 	final HashMap<Integer,Integer> dureeVar = new HashMap<Integer,Integer>() //HashMap durée vidéo par variante
 	final HashMap<Integer,String> idVar = new HashMap<Integer,String>() //HashMap id video par variante
@@ -42,7 +47,7 @@ class VideoDemonstratorCalculMetrique {
 	
 	@Test
 	def test1() {
-		// loading
+		// Loading
 		var videoGen = loadVideoGenerator(URI.createURI("fooReal.videogen")) 
 		assertNotNull(videoGen)	
 		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
@@ -63,36 +68,38 @@ class VideoDemonstratorCalculMetrique {
 				}
 			}
 		]
-		// serializing
+		// Serializing
 		saveVideoGenerator(URI.createURI("fooRealOut.xmi"), videoGen)
 		saveVideoGenerator(URI.createURI("fooRealOut.videogen"), videoGen)	
 			
-	    // Appel de la fonction pour calculer les métriques	 
-		doCalcMetrique(videoGen)		
+	    // Appel de la fonction pour determiner les séquences
+		findSequence(videoGen)		
 	}
 	
-	//Fonction qui va calculer des métriques
-	def void doCalcMetrique(VideoGeneratorModel videoGen) {
-		
+	//Fonction qui va determiner les différentes séquences possibles et récuperer/stocker les données métriques de celles-ci 
+	def void findSequence(VideoGeneratorModel videoGen) {
 		videoGen.videoseqs.forEach[videoseq | 
-			//Cas video obligatoire
+			/*Cas video obligatoire*/
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
 				if(!desc.videoid.isNullOrEmpty && !desc.location.isNullOrEmpty) {
+					
 					//Calculer durée
 					var duree = getDuration(pathVideo+desc.location)
-					//Si les hashMap sont vide: on va créer la premiére variante
+					
+					//Si les hashMap sont vides: on va créer la premiére variante
 					if(tailleVar.empty){
-						tailleVar.put(1,1) //on va rajouter un à la taille de la séquence
+						tailleVar.put(1,1) //On va rajouter un à la taille de la séquence
 						dureeVar.put(1,duree) //On rajoute la durée de la vidéo
 						idVar.put(1,desc.videoid) //On rajoute l'id de la video
-					//Sinon on va parcourir chaque hashmap et rajouter  les infos pour chaque element,variante:
+					
+					//Sinon on va parcourir chaque hashmap et rajouter les infos pour chaque element, variante:
 					}else{
 						for(variante: tailleVar.entrySet){
 							tailleVar.put(variante.key,variante.value+1) //+1 à la taille de la séquence
 						}
 						for(variante: dureeVar.entrySet){
-							dureeVar.put(variante.key,variante.value+duree) // la durée de la video
+							dureeVar.put(variante.key,variante.value+duree) ///On rajoute la durée de la video
 						}
 						for(variante: idVar.entrySet){
 							idVar.put(variante.key,variante.value+" "+desc.videoid) //On rajoute l'id de la video
@@ -101,30 +108,33 @@ class VideoDemonstratorCalculMetrique {
 					
 				} 	  				
 			}
-			//Cas video optionnelle
+			
+			/*Cas video optionnelle*/
 			else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
 				if(!desc.videoid.isNullOrEmpty && !desc.location.isNullOrEmpty) {
 					//Calculer durée
 					var duree = getDuration(pathVideo+desc.location)
+					
 					//Si les hashMap sont vide: on va créer la premiére variante avec la video et une seconde sans
 					if(tailleVar.empty){
-						tailleVar.put(1,1) //on va rajouter un à la taille de la séquence
+						tailleVar.put(1,1) //On va rajouter un à la taille de la séquence
 						dureeVar.put(1,duree) //On rajoute la durée de la vidéoy
 						idVar.put(1,desc.videoid) //On rajoute l'id de la video
-						tailleVar.put(2,0) //on va rajouter un à la taille de la séquence
+						tailleVar.put(2,0) //On va rajouter un à la taille de la séquence
 						dureeVar.put(2,0) //On rajoute la durée de la vidéo
 						idVar.put(2,"") //On rajoute l'id de la video
+					
 					//Sinon on va parcourir chaque hashmap et chaque variante.Pour chaque variante:
-					//On va créer une nouvelle variante dans les hashmap qui ont les mêmes données que la variante auquelle on ajoute les données de la vidéo
+					//On va créer une nouvelle variante dans les hashmap qui ont les mêmes données que la variante auquel on ajoute les données de la vidéo
 					}else{
-						//On va rajouter des elements en même temps qu'on lit: dangereux 
-						//on fait donc des hashmap pour contenir les nouveaux elements à rajouter qu'on ajoutera à nos hashmap à la fin
+						//On fait donc des hashmap pour contenir les nouveaux elements à rajouter qu'on ajoutera à nos premiers hashmap à la fin
+						//Car il ne faut jamais parcourir une map et la modifier en même temps (Donc on ne fait pas l'ajout directement dans les trois hashmap définit avant)
 						var HashMap<Integer,Integer> tailleVarNew = new HashMap<Integer,Integer>();  
 						var HashMap<Integer,Integer> dureeVarNew = new HashMap<Integer,Integer>();  
 						var HashMap<Integer,String> idVarNew = new HashMap<Integer,String>();
 						
-						//compteurs qui indique le nb d'element qu'on a rajouté (pour éviter qu'une nouvelle variante écrase une autre)
+						//Compteurs qui indique le nb d'element qu'on a rajouté (pour éviter qu'une nouvelle variante écrase une autre)
 						var int t=0
 						var int d= 0
 						var int i= 0
@@ -146,55 +156,89 @@ class VideoDemonstratorCalculMetrique {
 						dureeVar.putAll(dureeVarNew);
 						idVar.putAll(idVarNew);
 					}
-					
 				}
 			}
-			//Cas video alternative
+			
+			/*Cas video alternative*/
 			else {
 				val altvid = (videoseq as AlternativeVideoSeq)
-				//on fait donc des hashmap pour contenir les nouveaux elements à rajouter qu'on ajoutera à nos hashmap à la fin
-				//Car il ne faut jamais parcourir une amp et la modfier en même temps (d'ou qu'on ne fait pas l'ajout directement dans les trois hashmap définit avant)
-				var HashMap<Integer,Integer> tailleVarNew = new HashMap<Integer,Integer>();  
-				var HashMap<Integer,Integer> dureeVarNew = new HashMap<Integer,Integer>();  
-				var HashMap<Integer,String> idVarNew = new HashMap<Integer,String>();
-						
-				//compteurs qui indique le nb d'element qu'on a rajouté (pour éviter qu'une nouvelle variante écrase une autre)
-				var int t=0
-				var int d= 0
-				var int i= 0
-				for(vdesc: altvid.videodescs){
-					//Calculer durée
-					var duree = getDuration(pathVideo+vdesc.location)
-					//On va créer une nouvelle variante dans les hashmap qui ont les mêmes données que la variante auquelle on ajoute les données de la vidéo
-					for(variantet: tailleVar.entrySet){
-						t++
-						tailleVarNew.put(tailleVar.size()+t,variantet.value+1) //+1 à la taille de la séquence
+				
+				//Si les hashMap sont vides: on va n premiere variantes (n= nombere d'alternatives)
+				if(tailleVar.empty){
+					for(vdesc: altvid.videodescs){
+						//Calculer durée
+						var duree = getDuration(pathVideo+vdesc.location)
+						tailleVar.put(tailleVar.size+1,1) //On va rajouter un à la taille de la séquence
+						dureeVar.put(dureeVar.size+1,duree) //On rajoute la durée de la vidéo
+						idVar.put(idVar.size+1,vdesc.videoid) //On rajoute l'id de la video
 					}
-					for(varianted: dureeVar.entrySet){
-						d++
-						dureeVarNew.put(dureeVar.size()+d,varianted.value+duree) // la durée de la video
-					}
-					for(variantei: idVar.entrySet){
-						i++
-						idVarNew.put(idVar.size()+i,variantei.value+" "+vdesc.videoid) //On rajoute l'id de la video
-					}
+				
+				//Sinon on va parcourir chaque hashmap et rajouter les infos pour chaque element, variante:
+				}else{	
+					//On fait donc des hashmap pour contenir les nouveaux elements à rajouter qu'on ajoutera à nos premiers hashmap à la fin
+					//Car il ne faut jamais parcourir une map et la modifier en même temps (Donc on ne fait pas l'ajout directement dans les trois hashmap définit avant)
+					var HashMap<Integer,Integer> tailleVarNew = new HashMap<Integer,Integer>();  
+					var HashMap<Integer,Integer> dureeVarNew = new HashMap<Integer,Integer>();  
+					var HashMap<Integer,String> idVarNew = new HashMap<Integer,String>();
+							
+					//Compteurs qui indique le nb d'element qu'on a rajouté (pour éviter qu'une nouvelle variante écrase une autre)
+					var int t=0
+					var int d= 0
+					var int i= 0
+					var boolean first = true;
+					
+					//Pour la premiere alternative (first = true) on va completer les variantes actuels pour les autres on va créer une nouvelle variante
+					//Et dans tout les cas on rajoute les donneés de la vidéo alternative
+					for(vdesc: altvid.videodescs){
+						//Calculer durée
+						var duree = getDuration(pathVideo+vdesc.location)
 						
+						//Cas premiere alternatives: on complete les variantes actuels
+						if (first) {
+							for(variante: tailleVar.entrySet){
+								tailleVarNew.put(variante.key,variante.value+1) //+1 à la taille de la séquence
+							}
+							for(variante: dureeVar.entrySet){
+								dureeVarNew.put(variante.key,variante.value+duree) ///On rajoute la durée de la video
+							}
+							for(variante: idVar.entrySet){
+								idVarNew.put(variante.key,variante.value+" "+vdesc.videoid) //On rajoute l'id de la video
+							}
+							first= false; //on indique que le premier element à été traité
 						
+						//Cas autre alternative: on crée de nouvelles variantes
+						}else{
+							for(variantet: tailleVar.entrySet){
+								t++
+								tailleVarNew.put(tailleVar.size()+t,variantet.value+1) //+1 à la taille de la séquence
+							}
+							for(varianted: dureeVar.entrySet){
+								d++
+								dureeVarNew.put(dureeVar.size()+d,varianted.value+duree) // la durée de la video
+							}
+							for(variantei: idVar.entrySet){
+								i++
+								idVarNew.put(idVar.size()+i,variantei.value+" "+vdesc.videoid) //On rajoute l'id de la video
+							}	
+						}
+							
+							
+					}
+					//Maintenant qu'on nos nouvelles variantes dans les nouvelles hashmap : on rajoute leur contenu dans les hashmap du calcul
+					tailleVar.putAll(tailleVarNew);
+					dureeVar.putAll(dureeVarNew);
+					idVar.putAll(idVarNew);
 				}
-				//Maintenant qu'on nos nouvelles variantes dans les nouvelles hashmap : on rajoute leur contenu dans les hashmap du calcul
-				tailleVar.putAll(tailleVarNew);
-				dureeVar.putAll(dureeVarNew);
-				idVar.putAll(idVarNew);
 			}
 		]
 		println(tailleVar)
 		println(dureeVar)
 		println(idVar)
-		
+		//Appel de la méthode pour les variables clefs et l'export
 		exportCSV(tailleVar,dureeVar,idVar);
 	}
 	
-	//Méthode pour exporter un csv et indiquer les variables clef
+	//Méthode pour exporter un csv et afficher les variables clefs des métriques
 	def static void exportCSV(HashMap<Integer,Integer> tailleVar,HashMap<Integer,Integer> dureeVar,HashMap<Integer,String> idVar){
 		/*Création des variables clefs*/
 		var int tailleMin=-1; //-1 Indique qu'on fait aucun calcul pour cette variable
@@ -208,17 +252,20 @@ class VideoDemonstratorCalculMetrique {
 		var nbsequence=tailleVar.size;
 		
 		/*Création du String qui contient les infos pour le fichier csv */
-		var contentsCSV="Séquence,Taille,Durée\n"
+		var contentsCSV="Sequence;Taille;Duree\n"
 		
 		/*On va parcourir les tableaux pour remplir toutes les variables*/
 		//Un premier parcourt pour remplir le CSV
-		for(var int i=1; i<nbsequence; i++){
+		var int i= 1;
+		//On n'oublie pas de vérifier qu'on dépasse pas la borne (taille max csv)
+		while (i <nbsequence && i < borneCsv){
 			//On rajoute la liste des id dans le contenu du CSV
-			contentsCSV+=idVar.get(i)+",";
+			contentsCSV+=idVar.get(i)+";";
 			//On rajoute la taille dans le contenu du CSV
-			contentsCSV+=tailleVar.get(i)+",";
+			contentsCSV+=tailleVar.get(i)+";";
 			//On rajoute la duree dans le contenu du CSV
 			contentsCSV+=dureeVar.get(i)+"\n";
+			i++;
 		}
 		
 		//Deux boucles pour les variables clefs
@@ -227,7 +274,7 @@ class VideoDemonstratorCalculMetrique {
 			if(tailleMin==-1 || tailleMin > variantet.value){
 				tailleMin = variantet.value; //si c'est le cas on l'enregistre dans une variable
 			}
-			//On vérfie si c'est la taille maximum	
+			//On vérifie si c'est la taille maximum	
 			if(tailleMax==-1 || tailleMax < variantet.value){
 				tailleMax = variantet.value; //si c'est le cas on l'enregistre dans une variable
 			}
@@ -235,11 +282,11 @@ class VideoDemonstratorCalculMetrique {
 			tailleMoy+=variantet.value;	
 		}
 		for(varianted: dureeVar.entrySet){
-			//On verifie si c'est la taille minimum
+			//On verifie si c'est la durée minimum
 			if(dureeMin==-1 || dureeMin > varianted.value){
 				dureeMin = varianted.value; //si c'est le cas on l'enregistre dans une variable
 			}
-			//On vérfie si c'est la taille maximum	
+			//On vérfie si c'est la durée maximum	
 			if(dureeMax==-1 || dureeMax < varianted.value){
 				dureeMax = varianted.value; //si c'est le cas on l'enregistre dans une variable
 			}
@@ -256,7 +303,13 @@ class VideoDemonstratorCalculMetrique {
 		System.out.println("Nb Séquence: "+nbsequence);
 		
 		/*Création et remplissage du csv*/
-		System.out.println(contentsCSV);
+		try{
+    	var PrintWriter writer = new PrintWriter("exportCsv.csv", "UTF-8");
+    	writer.println(contentsCSV);
+    	writer.close();
+		} catch (IOException e) {
+   			System.out.println(e.stackTrace);
+		}
 		
 		
 	}

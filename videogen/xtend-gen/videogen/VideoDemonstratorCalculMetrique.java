@@ -2,8 +2,10 @@ package videogen;
 
 import com.google.common.base.Objects;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -27,13 +29,15 @@ import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 import org.xtext.example.mydsl.videoGen.VideoSeq;
 
 /**
- * Transformation xtend pour generer un script FFmpeg (Question 1)
+ * Transformation xtend pour faire des calculs métriques (projet 1)
  */
 @SuppressWarnings("all")
 public class VideoDemonstratorCalculMetrique {
   private static String pathFFmpeg = "C:/Users/PHILIP_Mi/Documents/Divers/Miage/M2/IDM/TP3/FFMpeg/ffmpeg-20161110-872b358-win64-static/bin/";
   
   private static String pathVideo = "C:/Users/PHILIP_Mi/Documents/Divers/Miage/M2/IDM/TP3/FFMpeg/";
+  
+  private static int borneCsv = 100;
   
   private final HashMap<Integer, Integer> tailleVar = new HashMap<Integer, Integer>();
   
@@ -117,10 +121,10 @@ public class VideoDemonstratorCalculMetrique {
     this.saveVideoGenerator(_createURI_1, videoGen);
     URI _createURI_2 = URI.createURI("fooRealOut.videogen");
     this.saveVideoGenerator(_createURI_2, videoGen);
-    this.doCalcMetrique(videoGen);
+    this.findSequence(videoGen);
   }
   
-  public void doCalcMetrique(final VideoGeneratorModel videoGen) {
+  public void findSequence(final VideoGeneratorModel videoGen) {
     EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
     final Consumer<VideoSeq> _function = (VideoSeq videoseq) -> {
       if ((videoseq instanceof MandatoryVideoSeq)) {
@@ -226,58 +230,108 @@ public class VideoDemonstratorCalculMetrique {
           }
         } else {
           final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
-          HashMap<Integer, Integer> tailleVarNew_1 = new HashMap<Integer, Integer>();
-          HashMap<Integer, Integer> dureeVarNew_1 = new HashMap<Integer, Integer>();
-          HashMap<Integer, String> idVarNew_1 = new HashMap<Integer, String>();
-          int t_1 = 0;
-          int d_1 = 0;
-          int i_1 = 0;
-          EList<VideoDescription> _videodescs = altvid.getVideodescs();
-          for (final VideoDescription vdesc : _videodescs) {
-            {
-              String _location_2 = vdesc.getLocation();
-              String _plus_6 = (VideoDemonstratorCalculMetrique.pathVideo + _location_2);
-              int duree_2 = VideoDemonstratorCalculMetrique.getDuration(_plus_6);
-              Set<Map.Entry<Integer, Integer>> _entrySet_6 = this.tailleVar.entrySet();
-              for (final Map.Entry<Integer, Integer> variantet_1 : _entrySet_6) {
-                {
-                  t_1++;
-                  int _size = this.tailleVar.size();
-                  int _plus_7 = (_size + t_1);
-                  Integer _value_3 = variantet_1.getValue();
-                  int _plus_8 = ((_value_3).intValue() + 1);
-                  tailleVarNew_1.put(Integer.valueOf(_plus_7), Integer.valueOf(_plus_8));
-                }
+          boolean _isEmpty_2 = this.tailleVar.isEmpty();
+          if (_isEmpty_2) {
+            EList<VideoDescription> _videodescs = altvid.getVideodescs();
+            for (final VideoDescription vdesc : _videodescs) {
+              {
+                String _location_2 = vdesc.getLocation();
+                String _plus_6 = (VideoDemonstratorCalculMetrique.pathVideo + _location_2);
+                int duree_2 = VideoDemonstratorCalculMetrique.getDuration(_plus_6);
+                int _size = this.tailleVar.size();
+                int _plus_7 = (_size + 1);
+                this.tailleVar.put(Integer.valueOf(_plus_7), Integer.valueOf(1));
+                int _size_1 = this.dureeVar.size();
+                int _plus_8 = (_size_1 + 1);
+                this.dureeVar.put(Integer.valueOf(_plus_8), Integer.valueOf(duree_2));
+                int _size_2 = this.idVar.size();
+                int _plus_9 = (_size_2 + 1);
+                String _videoid_3 = vdesc.getVideoid();
+                this.idVar.put(Integer.valueOf(_plus_9), _videoid_3);
               }
-              Set<Map.Entry<Integer, Integer>> _entrySet_7 = this.dureeVar.entrySet();
-              for (final Map.Entry<Integer, Integer> varianted_1 : _entrySet_7) {
-                {
-                  d_1++;
-                  int _size = this.dureeVar.size();
-                  int _plus_7 = (_size + d_1);
-                  Integer _value_3 = varianted_1.getValue();
-                  int _plus_8 = ((_value_3).intValue() + duree_2);
-                  dureeVarNew_1.put(Integer.valueOf(_plus_7), Integer.valueOf(_plus_8));
-                }
-              }
-              Set<Map.Entry<Integer, String>> _entrySet_8 = this.idVar.entrySet();
-              for (final Map.Entry<Integer, String> variantei_1 : _entrySet_8) {
-                {
-                  i_1++;
-                  int _size = this.idVar.size();
-                  int _plus_7 = (_size + i_1);
-                  String _value_3 = variantei_1.getValue();
-                  String _plus_8 = (_value_3 + " ");
-                  String _videoid_3 = vdesc.getVideoid();
-                  String _plus_9 = (_plus_8 + _videoid_3);
-                  idVarNew_1.put(Integer.valueOf(_plus_7), _plus_9);
+            }
+          } else {
+            HashMap<Integer, Integer> tailleVarNew_1 = new HashMap<Integer, Integer>();
+            HashMap<Integer, Integer> dureeVarNew_1 = new HashMap<Integer, Integer>();
+            HashMap<Integer, String> idVarNew_1 = new HashMap<Integer, String>();
+            int t_1 = 0;
+            int d_1 = 0;
+            int i_1 = 0;
+            boolean first = true;
+            EList<VideoDescription> _videodescs_1 = altvid.getVideodescs();
+            for (final VideoDescription vdesc_1 : _videodescs_1) {
+              {
+                String _location_2 = vdesc_1.getLocation();
+                String _plus_6 = (VideoDemonstratorCalculMetrique.pathVideo + _location_2);
+                int duree_2 = VideoDemonstratorCalculMetrique.getDuration(_plus_6);
+                if (first) {
+                  Set<Map.Entry<Integer, Integer>> _entrySet_6 = this.tailleVar.entrySet();
+                  for (final Map.Entry<Integer, Integer> variante_3 : _entrySet_6) {
+                    Integer _key_3 = variante_3.getKey();
+                    Integer _value_3 = variante_3.getValue();
+                    int _plus_7 = ((_value_3).intValue() + 1);
+                    tailleVarNew_1.put(_key_3, Integer.valueOf(_plus_7));
+                  }
+                  Set<Map.Entry<Integer, Integer>> _entrySet_7 = this.dureeVar.entrySet();
+                  for (final Map.Entry<Integer, Integer> variante_4 : _entrySet_7) {
+                    Integer _key_4 = variante_4.getKey();
+                    Integer _value_4 = variante_4.getValue();
+                    int _plus_8 = ((_value_4).intValue() + duree_2);
+                    dureeVarNew_1.put(_key_4, Integer.valueOf(_plus_8));
+                  }
+                  Set<Map.Entry<Integer, String>> _entrySet_8 = this.idVar.entrySet();
+                  for (final Map.Entry<Integer, String> variante_5 : _entrySet_8) {
+                    Integer _key_5 = variante_5.getKey();
+                    String _value_5 = variante_5.getValue();
+                    String _plus_9 = (_value_5 + " ");
+                    String _videoid_3 = vdesc_1.getVideoid();
+                    String _plus_10 = (_plus_9 + _videoid_3);
+                    idVarNew_1.put(_key_5, _plus_10);
+                  }
+                  first = false;
+                } else {
+                  Set<Map.Entry<Integer, Integer>> _entrySet_9 = this.tailleVar.entrySet();
+                  for (final Map.Entry<Integer, Integer> variantet_1 : _entrySet_9) {
+                    {
+                      t_1++;
+                      int _size = this.tailleVar.size();
+                      int _plus_11 = (_size + t_1);
+                      Integer _value_6 = variantet_1.getValue();
+                      int _plus_12 = ((_value_6).intValue() + 1);
+                      tailleVarNew_1.put(Integer.valueOf(_plus_11), Integer.valueOf(_plus_12));
+                    }
+                  }
+                  Set<Map.Entry<Integer, Integer>> _entrySet_10 = this.dureeVar.entrySet();
+                  for (final Map.Entry<Integer, Integer> varianted_1 : _entrySet_10) {
+                    {
+                      d_1++;
+                      int _size = this.dureeVar.size();
+                      int _plus_11 = (_size + d_1);
+                      Integer _value_6 = varianted_1.getValue();
+                      int _plus_12 = ((_value_6).intValue() + duree_2);
+                      dureeVarNew_1.put(Integer.valueOf(_plus_11), Integer.valueOf(_plus_12));
+                    }
+                  }
+                  Set<Map.Entry<Integer, String>> _entrySet_11 = this.idVar.entrySet();
+                  for (final Map.Entry<Integer, String> variantei_1 : _entrySet_11) {
+                    {
+                      i_1++;
+                      int _size = this.idVar.size();
+                      int _plus_11 = (_size + i_1);
+                      String _value_6 = variantei_1.getValue();
+                      String _plus_12 = (_value_6 + " ");
+                      String _videoid_4 = vdesc_1.getVideoid();
+                      String _plus_13 = (_plus_12 + _videoid_4);
+                      idVarNew_1.put(Integer.valueOf(_plus_11), _plus_13);
+                    }
+                  }
                 }
               }
             }
+            this.tailleVar.putAll(tailleVarNew_1);
+            this.dureeVar.putAll(dureeVarNew_1);
+            this.idVar.putAll(idVarNew_1);
           }
-          this.tailleVar.putAll(tailleVarNew_1);
-          this.dureeVar.putAll(dureeVarNew_1);
-          this.idVar.putAll(idVarNew_1);
         }
       }
     };
@@ -296,21 +350,23 @@ public class VideoDemonstratorCalculMetrique {
     int dureeMoy = (-1);
     int dureeMax = (-1);
     int nbsequence = tailleVar.size();
-    String contentsCSV = "Séquence,Taille,Durée\n";
-    for (int i = 1; (i < nbsequence); i++) {
+    String contentsCSV = "Sequence;Taille;Duree\n";
+    int i = 1;
+    while (((i < nbsequence) && (i < VideoDemonstratorCalculMetrique.borneCsv))) {
       {
         String _contentsCSV = contentsCSV;
         String _get = idVar.get(Integer.valueOf(i));
-        String _plus = (_get + ",");
+        String _plus = (_get + ";");
         contentsCSV = (_contentsCSV + _plus);
         String _contentsCSV_1 = contentsCSV;
         Integer _get_1 = tailleVar.get(Integer.valueOf(i));
-        String _plus_1 = (_get_1 + ",");
+        String _plus_1 = (_get_1 + ";");
         contentsCSV = (_contentsCSV_1 + _plus_1);
         String _contentsCSV_2 = contentsCSV;
         Integer _get_2 = dureeVar.get(Integer.valueOf(i));
         String _plus_2 = (_get_2 + "\n");
         contentsCSV = (_contentsCSV_2 + _plus_2);
+        i++;
       }
     }
     Set<Map.Entry<Integer, Integer>> _entrySet = tailleVar.entrySet();
@@ -350,7 +406,19 @@ public class VideoDemonstratorCalculMetrique {
     System.out.println(((((("Taille max: " + Integer.valueOf(tailleMax)) + " Taille min: ") + Integer.valueOf(tailleMin)) + " Taille moy: ") + Integer.valueOf(tailleMoy)));
     System.out.println(((((("Duree max: " + Integer.valueOf(dureeMax)) + " Duree min: ") + Integer.valueOf(dureeMin)) + " Duree moy: ") + Integer.valueOf(dureeMoy)));
     System.out.println(("Nb Séquence: " + Integer.valueOf(nbsequence)));
-    System.out.println(contentsCSV);
+    try {
+      PrintWriter writer = new PrintWriter("exportCsv.csv", "UTF-8");
+      writer.println(contentsCSV);
+      writer.close();
+    } catch (final Throwable _t) {
+      if (_t instanceof IOException) {
+        final IOException e = (IOException)_t;
+        StackTraceElement[] _stackTrace = e.getStackTrace();
+        System.out.println(_stackTrace);
+      } else {
+        throw Exceptions.sneakyThrow(_t);
+      }
+    }
   }
   
   public static int getDuration(final String path) {
