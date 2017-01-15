@@ -434,7 +434,7 @@ public class transformModelToText {
               String _genID_1 = this.genID();
               idOp = _genID_1;
             }
-            if ((probabilite > 100)) {
+            if ((probabilite > 1)) {
               throw new Exception();
             }
           } else {

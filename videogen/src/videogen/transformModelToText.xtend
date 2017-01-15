@@ -314,7 +314,7 @@ def verify(){
 			    
 				 	 idOp=(videoseq as OptionalVideoSeq).description.videoid
 				 	  if(idOp.isNullOrEmpty) idOp = genID()
-				 	  if(probabilite>100)
+				 	  if(probabilite>1)
 				 	  throw new Exception()
 				 	 
 			
