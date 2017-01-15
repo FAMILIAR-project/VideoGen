@@ -232,7 +232,7 @@ class transformModelToText {
 	}
 	//Q7
 	def calculDuree(String videoLocation){
-		
+		println("duration : "+videoLocation)
 		var cmd = "/usr/local/bin/ffprobe -v error -select_streams v:0 -show_entries stream=duration -of default=noprint_wrappers=1:nokey=1 -i " +videoLocation 
 		var p =Runtime.runtime.exec(cmd)
 		var reader= new BufferedReader(new InputStreamReader(p.inputStream))
@@ -243,14 +243,12 @@ class transformModelToText {
 	}
 	//Q9
 	def creationVignette(String videoLocation,int tempsCapture,String chemin){
-		
-		var cmd = "ffmpeg -y -i"+videoLocation+ "-r 1 -t 00:00:01 -ss 00:00:"+tempsCapture+ "-f image2"+chemin 
+		println("vignette : "+videoLocation +" to "+chemin+ " at "+tempsCapture+"s") 
+    	var p1 =Runtime.runtime.exec("pwd")
+		var reader1= new BufferedReader(new InputStreamReader(p1.inputStream))
+		var pwd = reader1.readLine()
+		var cmd = "ffmpeg -y -i "+pwd+"/"+videoLocation+ " -r 1 -t 00:00:01 -ss 00:00:"+tempsCapture+ " "+pwd+"/"+chemin 
 		var p =Runtime.runtime.exec(cmd)
-		var reader= new BufferedReader(new InputStreamReader(p.inputStream))
-		var line=0.0
-	      line =Double.parseDouble(reader.readLine())
-	      line
-		
 	}
 	//Q9
 	def playlistVignette(Playlist playlist){

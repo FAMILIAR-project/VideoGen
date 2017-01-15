@@ -1,7 +1,7 @@
 VideoGen {
 	
-	mandatory videoseq v1 "v/v1/v1.mp4" 
-	optional videoseq v2 "v/v2/v2.mp4" {
+	mandatory videoseq v1 "v/v1/V1.mp4" 
+	optional videoseq v2 "v/v2/V2.mp4" {
 		probability 25
 	}
 	alternatives v3 {
@@ -20,8 +20,8 @@ VideoGen {
 	}
 	mandatory videoseq v5 "v/v5.mp4"
 	
-	optional videoseq v6 "v/v6.avi"
+	optional videoseq v6 "v/v6.mp4"
 	alternatives v7 {
-		videoseq v71 "v/V71.avi"
+		videoseq v71 "v/V71.mp4"
 	}
 }

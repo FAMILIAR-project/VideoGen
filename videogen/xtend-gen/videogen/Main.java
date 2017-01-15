@@ -1,5 +1,7 @@
 package videogen;
 
+import org.eclipse.emf.common.util.URI;
+import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 import playlist.Playlist;
 import videogen.transformModelToText;
 
@@ -10,5 +12,9 @@ public class Main {
     Playlist playlist = vv.playlist();
     vv.transformationPlaylistToFileM3U(playlist);
     vv.transformationPlaylistToFileffmpeg(playlist);
+    vv.playlistVignette(playlist);
+    URI _createURI = URI.createURI("foo1.videogen");
+    VideoGeneratorModel videoGen = vv.loadVideoGenerator(_createURI);
+    vv.printToHTML(videoGen);
   }
 }

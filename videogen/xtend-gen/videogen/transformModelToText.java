@@ -303,6 +303,7 @@ public class transformModelToText {
     try {
       double _xblockexpression = (double) 0;
       {
+        InputOutput.<String>println(("duration : " + videoLocation));
         String cmd = ("/usr/local/bin/ffprobe -v error -select_streams v:0 -show_entries stream=duration -of default=noprint_wrappers=1:nokey=1 -i " + videoLocation);
         Runtime _runtime = Runtime.getRuntime();
         Process p = _runtime.exec(cmd);
@@ -321,23 +322,18 @@ public class transformModelToText {
     }
   }
   
-  public double creationVignette(final String videoLocation, final int tempsCapture, final String chemin) {
+  public void creationVignette(final String videoLocation, final int tempsCapture, final String chemin) {
     try {
-      double _xblockexpression = (double) 0;
-      {
-        String cmd = ((((("ffmpeg -y -i" + videoLocation) + "-r 1 -t 00:00:01 -ss 00:00:") + Integer.valueOf(tempsCapture)) + "-f image2") + chemin);
-        Runtime _runtime = Runtime.getRuntime();
-        Process p = _runtime.exec(cmd);
-        InputStream _inputStream = p.getInputStream();
-        InputStreamReader _inputStreamReader = new InputStreamReader(_inputStream);
-        BufferedReader reader = new BufferedReader(_inputStreamReader);
-        double line = 0.0;
-        String _readLine = reader.readLine();
-        double _parseDouble = Double.parseDouble(_readLine);
-        line = _parseDouble;
-        _xblockexpression = line;
-      }
-      return _xblockexpression;
+      InputOutput.<String>println((((((("vignette : " + videoLocation) + " to ") + chemin) + " at ") + Integer.valueOf(tempsCapture)) + "s"));
+      Runtime _runtime = Runtime.getRuntime();
+      Process p1 = _runtime.exec("pwd");
+      InputStream _inputStream = p1.getInputStream();
+      InputStreamReader _inputStreamReader = new InputStreamReader(_inputStream);
+      BufferedReader reader1 = new BufferedReader(_inputStreamReader);
+      String pwd = reader1.readLine();
+      String cmd = ((((((((("ffmpeg -y -i " + pwd) + "/") + videoLocation) + " -r 1 -t 00:00:01 -ss 00:00:") + Integer.valueOf(tempsCapture)) + " ") + pwd) + "/") + chemin);
+      Runtime _runtime_1 = Runtime.getRuntime();
+      Process p = _runtime_1.exec(cmd);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
