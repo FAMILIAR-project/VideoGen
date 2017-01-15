@@ -57,8 +57,11 @@ class projetInsertext {
 		
 		var String[] name = videoLocation.split("\\.(?=[^\\.]+$)");
 	    
-		var cmd = "ffmpeg -i "+ videoLocation +" -vf drawtext='fontsize=15:fontfile=FreeSerif.ttf:text=LONG_LINE:y=100:x=100' -codec:a copy " + name.get(0) + "-2.mp4"
+		var cmd = "ffmpeg -i "+ videoLocation +" -vf drawtext='fontsize=15:fontfile=FreeSerif.ttf:text="+text+":y=100:x=100' -codec:a copy " + name.get(0) + "-2.mp4"	    
 	    
+		//var cmd	= 'ffmpeg -i '+ videoLocation +' -vf drawtext="fontfile=/path/to/font.ttf:\\text='+ text +': fontcolor=white: fontsize=24: box=1: boxcolor=black@0.5:\\boxborderw=5: x=(w-text_w)/2: y=(h-text_h)/2" -codec:a copy ' + name.get(0) + '-2.mp4';    
+   
+	
 	    System.out.println(cmd)
 
 		var Process process = Runtime.getRuntime().exec(cmd);
@@ -96,7 +99,7 @@ class projetInsertext {
 				var mediafile = fact.createMediaFile()
 				mediafile.location = fileLocation 
 				mediafile.duration =  getDuration(fileLocation)
-				mediafile.insertedText = fileLocation
+				mediafile.insertedText = "Mandatory"
 				
 				var locatTemp = insertText(mediafile.location, mediafile.insertedText)
 				mediafile.location = locatTemp
@@ -114,7 +117,7 @@ class projetInsertext {
 					var mediafile = fact.createMediaFile()
 					mediafile.location = fileLocation
 					mediafile.duration =  getDuration(fileLocation)
-					mediafile.insertedText = 'nom : ' + fileLocation
+					mediafile.insertedText = "Optional"
 					
 					var locatTemp = insertText(mediafile.location, mediafile.insertedText)
 					mediafile.location =locatTemp
@@ -130,7 +133,7 @@ class projetInsertext {
 				var mediafile = fact.createMediaFile()
 				mediafile.location = fileLocation 
 				mediafile.duration =  getDuration(fileLocation)
-				mediafile.insertedText = 'nom : ' + fileLocation
+				mediafile.insertedText = "Alternative"
 				
 				var locatTemp = insertText(mediafile.location, mediafile.insertedText)
 				

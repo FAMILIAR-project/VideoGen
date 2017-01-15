@@ -87,7 +87,7 @@ public class projetInsertext {
       System.out.println("debut");
       String[] name = videoLocation.split("\\.(?=[^\\.]+$)");
       String _get = name[0];
-      String _plus = ((("ffmpeg -i " + videoLocation) + " -vf drawtext=\'fontsize=15:fontfile=FreeSerif.ttf:text=LONG_LINE:y=100:x=100\' -codec:a copy ") + _get);
+      String _plus = ((((("ffmpeg -i " + videoLocation) + " -vf drawtext=\'fontsize=15:fontfile=FreeSerif.ttf:text=") + text) + ":y=100:x=100\' -codec:a copy ") + _get);
       String cmd = (_plus + "-2.mp4");
       System.out.println(cmd);
       Runtime _runtime = Runtime.getRuntime();
@@ -128,7 +128,7 @@ public class projetInsertext {
         mediafile.setLocation(fileLocation);
         double _duration = projetInsertext.getDuration(fileLocation);
         mediafile.setDuration(_duration);
-        mediafile.setInsertedText(fileLocation);
+        mediafile.setInsertedText("Mandatory");
         String _location = mediafile.getLocation();
         String _insertedText = mediafile.getInsertedText();
         String locatTemp = projetInsertext.insertText(_location, _insertedText);
@@ -149,7 +149,7 @@ public class projetInsertext {
             mediafile_1.setLocation(fileLocation_1);
             double _duration_1 = projetInsertext.getDuration(fileLocation_1);
             mediafile_1.setDuration(_duration_1);
-            mediafile_1.setInsertedText(("nom : " + fileLocation_1));
+            mediafile_1.setInsertedText("Optional");
             String _location_2 = mediafile_1.getLocation();
             String _insertedText_1 = mediafile_1.getInsertedText();
             String locatTemp_1 = projetInsertext.insertText(_location_2, _insertedText_1);
@@ -170,7 +170,7 @@ public class projetInsertext {
           mediafile_2.setLocation(fileLocation_2);
           double _duration_2 = projetInsertext.getDuration(fileLocation_2);
           mediafile_2.setDuration(_duration_2);
-          mediafile_2.setInsertedText(("nom : " + fileLocation_2));
+          mediafile_2.setInsertedText("Alternative");
           String _location_3 = mediafile_2.getLocation();
           String _insertedText_2 = mediafile_2.getInsertedText();
           String locatTemp_2 = projetInsertext.insertText(_location_3, _insertedText_2);
