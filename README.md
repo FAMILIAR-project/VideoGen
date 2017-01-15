@@ -29,3 +29,11 @@ fmGen = FM (VideoGenerator: Mode; Mode: (Random|Probability|Configurator); Confi
 	
 ##Projet 1 : Text Inséré 
 * Transformation situé au niveau des tests appelé projetInsertText.xtend 
+
+##Projet 2 : Gification
+* Transformation situé au niveau des tests appelé VideoDemonstratorGification.xtend
+
+La transformation est paramétrable sur plusieurs points : 
+* Taille : La taille du gif est modifiable en pixel. Par défaut, 300px de largeur
+* Début : Quand doit commencer le gif par rapport à la vidéo. Temps en secondes
+* Durée : Durée du Gif. Par défaut dure toute la vidéo.
