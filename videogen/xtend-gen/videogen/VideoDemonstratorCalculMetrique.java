@@ -35,8 +35,6 @@ public class VideoDemonstratorCalculMetrique {
   
   private static String pathVideo = "C:/Users/PHILIP_Mi/Documents/Divers/Miage/M2/IDM/TP3/FFMpeg/";
   
-  private final int nbVariante = 1;
-  
   private final HashMap<Integer, Integer> tailleVar = new HashMap<Integer, Integer>();
   
   private final HashMap<Integer, Integer> dureeVar = new HashMap<Integer, Integer>();
@@ -119,10 +117,10 @@ public class VideoDemonstratorCalculMetrique {
     this.saveVideoGenerator(_createURI_1, videoGen);
     URI _createURI_2 = URI.createURI("fooRealOut.videogen");
     this.saveVideoGenerator(_createURI_2, videoGen);
-    this.printCalcMetrique(videoGen);
+    this.doCalcMetrique(videoGen);
   }
   
-  public void printCalcMetrique(final VideoGeneratorModel videoGen) {
+  public void doCalcMetrique(final VideoGeneratorModel videoGen) {
     EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
     final Consumer<VideoSeq> _function = (VideoSeq videoseq) -> {
       if ((videoseq instanceof MandatoryVideoSeq)) {
@@ -287,9 +285,72 @@ public class VideoDemonstratorCalculMetrique {
     InputOutput.<HashMap<Integer, Integer>>println(this.tailleVar);
     InputOutput.<HashMap<Integer, Integer>>println(this.dureeVar);
     InputOutput.<HashMap<Integer, String>>println(this.idVar);
-    int _size = this.tailleVar.size();
-    String _plus = ("Nb séquence: " + Integer.valueOf(_size));
-    InputOutput.<String>println(_plus);
+    VideoDemonstratorCalculMetrique.exportCSV(this.tailleVar, this.dureeVar, this.idVar);
+  }
+  
+  public static void exportCSV(final HashMap<Integer, Integer> tailleVar, final HashMap<Integer, Integer> dureeVar, final HashMap<Integer, String> idVar) {
+    int tailleMin = (-1);
+    int tailleMoy = (-1);
+    int tailleMax = (-1);
+    int dureeMin = (-1);
+    int dureeMoy = (-1);
+    int dureeMax = (-1);
+    int nbsequence = tailleVar.size();
+    String contentsCSV = "Séquence,Taille,Durée\n";
+    for (int i = 1; (i < nbsequence); i++) {
+      {
+        String _contentsCSV = contentsCSV;
+        String _get = idVar.get(Integer.valueOf(i));
+        String _plus = (_get + ",");
+        contentsCSV = (_contentsCSV + _plus);
+        String _contentsCSV_1 = contentsCSV;
+        Integer _get_1 = tailleVar.get(Integer.valueOf(i));
+        String _plus_1 = (_get_1 + ",");
+        contentsCSV = (_contentsCSV_1 + _plus_1);
+        String _contentsCSV_2 = contentsCSV;
+        Integer _get_2 = dureeVar.get(Integer.valueOf(i));
+        String _plus_2 = (_get_2 + "\n");
+        contentsCSV = (_contentsCSV_2 + _plus_2);
+      }
+    }
+    Set<Map.Entry<Integer, Integer>> _entrySet = tailleVar.entrySet();
+    for (final Map.Entry<Integer, Integer> variantet : _entrySet) {
+      {
+        if (((tailleMin == (-1)) || (tailleMin > (variantet.getValue()).intValue()))) {
+          Integer _value = variantet.getValue();
+          tailleMin = (_value).intValue();
+        }
+        if (((tailleMax == (-1)) || (tailleMax < (variantet.getValue()).intValue()))) {
+          Integer _value_1 = variantet.getValue();
+          tailleMax = (_value_1).intValue();
+        }
+        int _tailleMoy = tailleMoy;
+        Integer _value_2 = variantet.getValue();
+        tailleMoy = (_tailleMoy + (_value_2).intValue());
+      }
+    }
+    Set<Map.Entry<Integer, Integer>> _entrySet_1 = dureeVar.entrySet();
+    for (final Map.Entry<Integer, Integer> varianted : _entrySet_1) {
+      {
+        if (((dureeMin == (-1)) || (dureeMin > (varianted.getValue()).intValue()))) {
+          Integer _value = varianted.getValue();
+          dureeMin = (_value).intValue();
+        }
+        if (((dureeMax == (-1)) || (dureeMax < (varianted.getValue()).intValue()))) {
+          Integer _value_1 = varianted.getValue();
+          dureeMax = (_value_1).intValue();
+        }
+        int _dureeMoy = dureeMoy;
+        Integer _value_2 = varianted.getValue();
+        dureeMoy = (_dureeMoy + (_value_2).intValue());
+      }
+    }
+    dureeMoy = (dureeMoy / nbsequence);
+    tailleMoy = (tailleMoy / nbsequence);
+    System.out.println(((((("Taille max: " + Integer.valueOf(tailleMax)) + " Taille min: ") + Integer.valueOf(tailleMin)) + " Taille moy: ") + Integer.valueOf(tailleMoy)));
+    System.out.println(((((("Duree max: " + Integer.valueOf(dureeMax)) + " Duree min: ") + Integer.valueOf(dureeMin)) + " Duree moy: ") + Integer.valueOf(dureeMoy)));
+    System.out.println(("Nb Séquence: " + Integer.valueOf(nbsequence)));
+    System.out.println(contentsCSV);
   }
   
   public static int getDuration(final String path) {

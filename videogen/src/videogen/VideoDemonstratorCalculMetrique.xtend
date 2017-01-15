@@ -24,7 +24,6 @@ class VideoDemonstratorCalculMetrique {
 	var static pathVideo = "C:/Users/PHILIP_Mi/Documents/Divers/Miage/M2/IDM/TP3/FFMpeg/"
 	
 	//Création des variables qui vont servir pour le métrique
-	final int nbVariante = 1;
 	final HashMap<Integer,Integer> tailleVar = new HashMap<Integer,Integer>() //HashMap nombre de video par variante
 	final HashMap<Integer,Integer> dureeVar = new HashMap<Integer,Integer>() //HashMap durée vidéo par variante
 	final HashMap<Integer,String> idVar = new HashMap<Integer,String>() //HashMap id video par variante
@@ -69,11 +68,11 @@ class VideoDemonstratorCalculMetrique {
 		saveVideoGenerator(URI.createURI("fooRealOut.videogen"), videoGen)	
 			
 	    // Appel de la fonction pour calculer les métriques	 
-		printCalcMetrique(videoGen)		
+		doCalcMetrique(videoGen)		
 	}
 	
 	//Fonction qui va calculer des métriques
-	def void printCalcMetrique(VideoGeneratorModel videoGen) {
+	def void doCalcMetrique(VideoGeneratorModel videoGen) {
 		
 		videoGen.videoseqs.forEach[videoseq | 
 			//Cas video obligatoire
@@ -154,6 +153,7 @@ class VideoDemonstratorCalculMetrique {
 			else {
 				val altvid = (videoseq as AlternativeVideoSeq)
 				//on fait donc des hashmap pour contenir les nouveaux elements à rajouter qu'on ajoutera à nos hashmap à la fin
+				//Car il ne faut jamais parcourir une amp et la modfier en même temps (d'ou qu'on ne fait pas l'ajout directement dans les trois hashmap définit avant)
 				var HashMap<Integer,Integer> tailleVarNew = new HashMap<Integer,Integer>();  
 				var HashMap<Integer,Integer> dureeVarNew = new HashMap<Integer,Integer>();  
 				var HashMap<Integer,String> idVarNew = new HashMap<Integer,String>();
@@ -190,10 +190,76 @@ class VideoDemonstratorCalculMetrique {
 		println(tailleVar)
 		println(dureeVar)
 		println(idVar)
-		println("Nb séquence: "+tailleVar.size)
-		//TODO: futur appelle à une méthoe pour generer un csv propres (nb variante = taille hashmap)
+		
+		exportCSV(tailleVar,dureeVar,idVar);
 	}
 	
+	//Méthode pour exporter un csv et indiquer les variables clef
+	def static void exportCSV(HashMap<Integer,Integer> tailleVar,HashMap<Integer,Integer> dureeVar,HashMap<Integer,String> idVar){
+		/*Création des variables clefs*/
+		var int tailleMin=-1; //-1 Indique qu'on fait aucun calcul pour cette variable
+		var int tailleMoy=-1;
+		var int tailleMax=-1;
+		
+		var int dureeMin=-1;
+		var int dureeMoy=-1;
+		var int dureeMax=-1;
+		
+		var nbsequence=tailleVar.size;
+		
+		/*Création du String qui contient les infos pour le fichier csv */
+		var contentsCSV="Séquence,Taille,Durée\n"
+		
+		/*On va parcourir les tableaux pour remplir toutes les variables*/
+		//Un premier parcourt pour remplir le CSV
+		for(var int i=1; i<nbsequence; i++){
+			//On rajoute la liste des id dans le contenu du CSV
+			contentsCSV+=idVar.get(i)+",";
+			//On rajoute la taille dans le contenu du CSV
+			contentsCSV+=tailleVar.get(i)+",";
+			//On rajoute la duree dans le contenu du CSV
+			contentsCSV+=dureeVar.get(i)+"\n";
+		}
+		
+		//Deux boucles pour les variables clefs
+		for(variantet: tailleVar.entrySet){
+			//On verifie si c'est la taille minimum
+			if(tailleMin==-1 || tailleMin > variantet.value){
+				tailleMin = variantet.value; //si c'est le cas on l'enregistre dans une variable
+			}
+			//On vérfie si c'est la taille maximum	
+			if(tailleMax==-1 || tailleMax < variantet.value){
+				tailleMax = variantet.value; //si c'est le cas on l'enregistre dans une variable
+			}
+			//On rajoute dans TailleMoy la taille
+			tailleMoy+=variantet.value;	
+		}
+		for(varianted: dureeVar.entrySet){
+			//On verifie si c'est la taille minimum
+			if(dureeMin==-1 || dureeMin > varianted.value){
+				dureeMin = varianted.value; //si c'est le cas on l'enregistre dans une variable
+			}
+			//On vérfie si c'est la taille maximum	
+			if(dureeMax==-1 || dureeMax < varianted.value){
+				dureeMax = varianted.value; //si c'est le cas on l'enregistre dans une variable
+			}
+			//On rajoute dans TailleMoy la taille
+			dureeMoy+=varianted.value;
+		}
+		//On calcule la moyenne durée et taille
+		dureeMoy=dureeMoy/nbsequence;
+		tailleMoy=tailleMoy/nbsequence;
+		
+		/*Affichage des variables clefs*/
+		System.out.println("Taille max: "+tailleMax+" Taille min: "+tailleMin+ " Taille moy: "+tailleMoy);
+		System.out.println("Duree max: "+dureeMax+" Duree min: "+dureeMin+ " Duree moy: "+dureeMoy);
+		System.out.println("Nb Séquence: "+nbsequence);
+		
+		/*Création et remplissage du csv*/
+		System.out.println(contentsCSV);
+		
+		
+	}
 	//Méthode pour calculer la durée d'une vidéo (avec FFmpeg)
 	def static int getDuration(String path) {
 		//On lance une commande ...

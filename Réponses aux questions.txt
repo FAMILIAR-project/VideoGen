@@ -62,3 +62,7 @@ Par exemple pour le mode aléatoire on a un xtend qui existe déja: quand on affic
 une vidéo optionelle et quand  on choisit au hasard une video parmis N pour les alternatifs.
 Ici, donc, on peut déja déployer un site web pour un mode aléatoire du feature model.
 Pour les autres modes il suffit de réaliser les xtend de la même maniére.
+
+=====Projet1 : Calcul des métriques=====
+Fichier xtend de transformation:
+=> VideoGenForked\videogen\src\videogen\VideoDemonstratorCalculMetrique.xtend
