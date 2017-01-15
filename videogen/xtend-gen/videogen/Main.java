@@ -10,9 +10,6 @@ public class Main {
   public static void main(final String[] args) {
     final transformModelToText vv = new transformModelToText();
     Playlist playlist = vv.playlist();
-    vv.transformationPlaylistToFileM3U(playlist);
-    vv.transformationPlaylistToFileffmpeg(playlist);
-    vv.playlistVignette(playlist);
     URI _createURI = URI.createURI("foo1.videogen");
     VideoGeneratorModel videoGen = vv.loadVideoGenerator(_createURI);
     vv.printToHTML(videoGen);

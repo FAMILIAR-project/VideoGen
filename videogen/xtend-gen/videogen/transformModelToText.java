@@ -304,17 +304,28 @@ public class transformModelToText {
       double _xblockexpression = (double) 0;
       {
         InputOutput.<String>println(("duration : " + videoLocation));
-        String cmd = ("/usr/local/bin/ffprobe -v error -select_streams v:0 -show_entries stream=duration -of default=noprint_wrappers=1:nokey=1 -i " + videoLocation);
+        String cmd = ("ffprobe -v error -select_streams v:0 -show_entries stream=duration -of default=noprint_wrappers=1:nokey=1 -i " + videoLocation);
         Runtime _runtime = Runtime.getRuntime();
         Process p = _runtime.exec(cmd);
         InputStream _inputStream = p.getInputStream();
         InputStreamReader _inputStreamReader = new InputStreamReader(_inputStream);
         BufferedReader reader = new BufferedReader(_inputStreamReader);
         double line = 0.0;
-        String _readLine = reader.readLine();
-        double _parseDouble = Double.parseDouble(_readLine);
-        line = _parseDouble;
-        _xblockexpression = line;
+        String truc = reader.readLine();
+        double _xifexpression = (double) 0;
+        boolean _notEquals = (!Objects.equal(truc, null));
+        if (_notEquals) {
+          double _xblockexpression_1 = (double) 0;
+          {
+            double _parseDouble = Double.parseDouble(truc);
+            line = _parseDouble;
+            _xblockexpression_1 = line;
+          }
+          _xifexpression = _xblockexpression_1;
+        } else {
+          _xifexpression = 1;
+        }
+        _xblockexpression = _xifexpression;
       }
       return _xblockexpression;
     } catch (Throwable _e) {
@@ -350,52 +361,78 @@ public class transformModelToText {
   }
   
   public void printToHTML(final VideoGeneratorModel videoGen) {
-    InputOutput.<String>println("<ul>");
-    EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
-    final Consumer<VideoSeq> _function = (VideoSeq videoseq) -> {
-      if ((videoseq instanceof MandatoryVideoSeq)) {
-        VideoDescription _description = ((MandatoryVideoSeq) videoseq).getDescription();
-        final String desc = _description.getLocation();
-        this.creationVignette(desc, 1, (desc + ".png"));
-        InputOutput.<String>println(((("<li>" + "<img src=") + desc) + ".png/></li>"));
-      } else {
-        if ((videoseq instanceof OptionalVideoSeq)) {
-          VideoDescription _description_1 = ((OptionalVideoSeq) videoseq).getDescription();
-          final String desc_1 = _description_1.getLocation();
-          this.creationVignette(desc_1, 1, (desc_1 + ".png"));
-          InputOutput.<String>println(((("<li>" + "<img src=") + desc_1) + ".png/></li>"));
+    try {
+      final PrintWriter writer = new PrintWriter("PageHTMLvideogen.html");
+      InputOutput.<String>println("<ul>");
+      writer.write("<ul>\n");
+      EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
+      final Consumer<VideoSeq> _function = (VideoSeq videoseq) -> {
+        if ((videoseq instanceof MandatoryVideoSeq)) {
+          VideoDescription _description = ((MandatoryVideoSeq) videoseq).getDescription();
+          final String desc = _description.getLocation();
+          double _calculDuree = this.calculDuree(desc);
+          int _intValue = Double.valueOf(_calculDuree).intValue();
+          int _divide = (_intValue / 2);
+          this.creationVignette(desc, _divide, (desc + ".png"));
+          InputOutput.<String>println(((("<li>" + "<img src=") + desc) + ".png/></li>"));
+          writer.write(((("<li>" + "<img src=") + desc) + ".png/></li>\n"));
         } else {
-          final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
-          EList<VideoDescription> _videodescs = altvid.getVideodescs();
-          int _size = _videodescs.size();
-          boolean _greaterThan = (_size > 0);
-          if (_greaterThan) {
-            InputOutput.<String>println("<ul>");
-          }
-          EList<VideoDescription> _videodescs_1 = altvid.getVideodescs();
-          for (final VideoDescription vdesc : _videodescs_1) {
-            {
-              String _location = vdesc.getLocation();
-              String _location_1 = vdesc.getLocation();
-              String _plus = (_location_1 + ".png");
-              this.creationVignette(_location, 1, _plus);
-              String _location_2 = vdesc.getLocation();
-              String _plus_1 = (("<li>" + "<img src=") + _location_2);
-              String _plus_2 = (_plus_1 + ".png/></li>");
-              InputOutput.<String>println(_plus_2);
+          if ((videoseq instanceof OptionalVideoSeq)) {
+            VideoDescription _description_1 = ((OptionalVideoSeq) videoseq).getDescription();
+            final String desc_1 = _description_1.getLocation();
+            double _calculDuree_1 = this.calculDuree(desc_1);
+            int _intValue_1 = Double.valueOf(_calculDuree_1).intValue();
+            int _divide_1 = (_intValue_1 / 2);
+            this.creationVignette(desc_1, _divide_1, (desc_1 + ".png"));
+            InputOutput.<String>println(((("<li>" + "<img src=") + desc_1) + ".png/></li>"));
+            writer.write(((("<li>" + "<img src=") + desc_1) + ".png/></li>\n"));
+          } else {
+            final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
+            EList<VideoDescription> _videodescs = altvid.getVideodescs();
+            int _size = _videodescs.size();
+            boolean _greaterThan = (_size > 0);
+            if (_greaterThan) {
+              InputOutput.<String>println("<ul>");
             }
-          }
-          EList<VideoDescription> _videodescs_2 = altvid.getVideodescs();
-          int _size_1 = _videodescs_2.size();
-          boolean _greaterThan_1 = (_size_1 > 0);
-          if (_greaterThan_1) {
-            InputOutput.<String>println("</ul>");
+            writer.write("<ul>\n");
+            EList<VideoDescription> _videodescs_1 = altvid.getVideodescs();
+            for (final VideoDescription vdesc : _videodescs_1) {
+              {
+                String _location = vdesc.getLocation();
+                String _location_1 = vdesc.getLocation();
+                double _calculDuree_2 = this.calculDuree(_location_1);
+                int _intValue_2 = Double.valueOf(_calculDuree_2).intValue();
+                int _divide_2 = (_intValue_2 / 2);
+                String _location_2 = vdesc.getLocation();
+                String _plus = (_location_2 + ".png");
+                this.creationVignette(_location, _divide_2, _plus);
+                String _location_3 = vdesc.getLocation();
+                String _plus_1 = (("<li>" + "<img src=") + _location_3);
+                String _plus_2 = (_plus_1 + ".png/></li>");
+                InputOutput.<String>println(_plus_2);
+                String _location_4 = vdesc.getLocation();
+                String _plus_3 = (("<li>" + "<img src=") + _location_4);
+                String _plus_4 = (_plus_3 + ".png/></li>\n");
+                writer.write(_plus_4);
+              }
+            }
+            EList<VideoDescription> _videodescs_2 = altvid.getVideodescs();
+            int _size_1 = _videodescs_2.size();
+            boolean _greaterThan_1 = (_size_1 > 0);
+            if (_greaterThan_1) {
+              InputOutput.<String>println("</ul>");
+            }
+            writer.write("</ul>\n");
           }
         }
-      }
-    };
-    _videoseqs.forEach(_function);
-    InputOutput.<String>println("</ul>");
+      };
+      _videoseqs.forEach(_function);
+      InputOutput.<String>println("</ul>");
+      writer.write("<ul>\n");
+      writer.close();
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
   
   public void verify() {

@@ -1,0 +1,8 @@
+version: '2'
+services:
+    videogenapplication-sonar:
+        container_name: videogenapplication-sonar
+        image: sonarqube:5.6.1-alpine
+        ports:
+            - 9000:9000
+            - 9092:9092
