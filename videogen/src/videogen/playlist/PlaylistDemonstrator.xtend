@@ -30,6 +30,7 @@ class PlaylistDemonstrator {
 	
 	@Test
 	def videogenToPlaylist() {
+		println("OKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK");
 		var videoGen = loadVideoGenerator(URI.createURI("test.videogen")) 
 		assertNotNull(videoGen)
 		assertEquals(7, videoGen.videoseqs.size)

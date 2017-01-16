@@ -1,0 +1,21 @@
+{
+    "webappApp": {
+        "generate" : {
+            "home": {
+                "title": "Generates",
+                "createLabel": "Créer un nouveau Generate",
+                "createOrEditLabel": "Créer ou éditer un Generate",
+                "search": "Recherche pour Generate"
+            },
+            "created": "Un nouveau Generate a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Generate avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Generate avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Generate {{ id }} ?"
+            },
+            "detail": {
+                "title": "Generate"
+            }
+        }
+    }
+}
