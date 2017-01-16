@@ -1,117 +1,61 @@
 package videogen.playlist;
 
-import java.io.PrintWriter;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.xtext.xbase.lib.Exceptions;
-import org.eclipse.xtext.xbase.lib.InputOutput;
-import org.junit.Assert;
 import org.junit.Test;
-import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated;
-import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq;
-import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq;
-import org.xtext.example.mydsl.videoGen.OptionalVideoSeq;
-import org.xtext.example.mydsl.videoGen.VideoDescription;
-import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
-import org.xtext.example.mydsl.videoGen.VideoSeq;
-import org.xtext.example.playlist.PlaylistStandaloneSetupGenerated;
-import org.xtext.example.playlist.playlist.Playlist;
-import org.xtext.example.playlist.playlist.Video;
-import org.xtext.example.playlist.playlist.impl.PlaylistFactoryImpl;
 
 @SuppressWarnings("all")
 public class PlaylistDemonstrator {
   public VideoGeneratorModel loadVideoGenerator(final URI uri) {
-    VideoGeneratorModel _xblockexpression = null;
-    {
-      VideoGenStandaloneSetupGenerated _videoGenStandaloneSetupGenerated = new VideoGenStandaloneSetupGenerated();
-      _videoGenStandaloneSetupGenerated.createInjectorAndDoEMFRegistration();
-      ResourceSetImpl _resourceSetImpl = new ResourceSetImpl();
-      Resource res = _resourceSetImpl.getResource(uri, true);
-      EList<EObject> _contents = res.getContents();
-      EObject _get = _contents.get(0);
-      _xblockexpression = ((VideoGeneratorModel) _get);
-    }
-    return _xblockexpression;
+    throw new Error("Unresolved compilation problems:"
+      + "\nVideoGeneratorModel cannot be resolved to a type."
+      + "\nVideoGenStandaloneSetupGenerated cannot be resolved."
+      + "\ncreateInjectorAndDoEMFRegistration cannot be resolved");
   }
   
   public Playlist loadPlaylist(final URI uri) {
-    Playlist _xblockexpression = null;
-    {
-      PlaylistStandaloneSetupGenerated _playlistStandaloneSetupGenerated = new PlaylistStandaloneSetupGenerated();
-      _playlistStandaloneSetupGenerated.createInjectorAndDoEMFRegistration();
-      ResourceSetImpl _resourceSetImpl = new ResourceSetImpl();
-      Resource res = _resourceSetImpl.getResource(uri, true);
-      EList<EObject> _contents = res.getContents();
-      EObject _get = _contents.get(0);
-      _xblockexpression = ((Playlist) _get);
-    }
-    return _xblockexpression;
+    throw new Error("Unresolved compilation problems:"
+      + "\nPlaylist cannot be resolved to a type."
+      + "\nPlaylistStandaloneSetupGenerated cannot be resolved."
+      + "\ncreateInjectorAndDoEMFRegistration cannot be resolved");
   }
   
   @Test
   public void videogenToPlaylist() {
-    URI _createURI = URI.createURI("test.videogen");
-    VideoGeneratorModel videoGen = this.loadVideoGenerator(_createURI);
-    Assert.assertNotNull(videoGen);
-    EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
-    int _size = _videoseqs.size();
-    Assert.assertEquals(7, _size);
-    PlaylistFactoryImpl playlistFactory = new PlaylistFactoryImpl();
-    Playlist playlist = playlistFactory.createPlaylist();
-    EList<VideoSeq> videoseqs = videoGen.getVideoseqs();
-    int _size_1 = videoseqs.size();
-    InputOutput.<Integer>println(Integer.valueOf(_size_1));
-    for (final VideoSeq videoseq : videoseqs) {
-      {
-        String location = "";
-        if ((videoseq instanceof MandatoryVideoSeq)) {
-          VideoDescription _description = ((MandatoryVideoSeq) videoseq).getDescription();
-          String _location = _description.getLocation();
-          location = _location;
-        } else {
-          if ((videoseq instanceof OptionalVideoSeq)) {
-            VideoDescription _description_1 = ((OptionalVideoSeq) videoseq).getDescription();
-            String _location_1 = _description_1.getLocation();
-            location = _location_1;
-          } else {
-            final EList<VideoDescription> alts = ((AlternativeVideoSeq) videoseq).getVideodescs();
-            for (final VideoDescription alt : alts) {
-              String _location_2 = alt.getLocation();
-              location = _location_2;
-            }
-          }
-        }
-        Video video = playlistFactory.createVideo();
-        video.setLocation(location);
-        EList<Video> _videos = playlist.getVideos();
-        _videos.add(video);
-      }
-    }
-    Assert.assertNotNull(playlist);
-    EList<Video> _videos = playlist.getVideos();
-    int _size_2 = _videos.size();
-    Assert.assertEquals(7, _size_2);
-    this.playlist2text(playlist);
+    throw new Error("Unresolved compilation problems:"
+      + "\nMandatoryVideoSeq cannot be resolved to a type."
+      + "\nMandatoryVideoSeq cannot be resolved to a type."
+      + "\nOptionalVideoSeq cannot be resolved to a type."
+      + "\nOptionalVideoSeq cannot be resolved to a type."
+      + "\nAlternativeVideoSeq cannot be resolved to a type."
+      + "\nPlaylistFactoryImpl cannot be resolved."
+      + "\nThe method loadVideoGenerator(URI) from the type PlaylistDemonstrator refers to the missing type VideoGeneratorModel"
+      + "\nUnreachable code: The if condition can never match. It is already handled by a previous condition."
+      + "\nThe method playlist2text(Playlist) from the type PlaylistDemonstrator refers to the missing type Playlist"
+      + "\nvideoseqs cannot be resolved"
+      + "\nsize cannot be resolved"
+      + "\ncreatePlaylist cannot be resolved"
+      + "\nvideoseqs cannot be resolved"
+      + "\nsize cannot be resolved"
+      + "\ndescription cannot be resolved"
+      + "\nlocation cannot be resolved"
+      + "\ndescription cannot be resolved"
+      + "\nlocation cannot be resolved"
+      + "\nvideodescs cannot be resolved"
+      + "\nlocation cannot be resolved"
+      + "\ncreateVideo cannot be resolved"
+      + "\nlocation cannot be resolved"
+      + "\nvideos cannot be resolved"
+      + "\nadd cannot be resolved"
+      + "\nvideos cannot be resolved"
+      + "\nsize cannot be resolved");
   }
   
-  public void playlist2text(final Playlist playlist) {
-    try {
-      final PrintWriter writer = new PrintWriter("test.m3u", "UTF-8");
-      for (int i = 0; (i < playlist.getVideos().size()); i++) {
-        EList<Video> _videos = playlist.getVideos();
-        Video _get = _videos.get(i);
-        String _location = _get.getLocation();
-        String _plus = ("file \'" + _location);
-        String _plus_1 = (_plus + "\' \n");
-        writer.write(_plus_1);
-      }
-      writer.close();
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
+  public void playlist2text(final /* Playlist */Object playlist) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nvideos cannot be resolved"
+      + "\nsize cannot be resolved"
+      + "\nvideos cannot be resolved"
+      + "\nget cannot be resolved"
+      + "\nlocation cannot be resolved");
   }
 }
