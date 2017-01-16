@@ -66,7 +66,7 @@ class PlaylistDemonstrator {
 	def playlist2text(Playlist playlist) {
 		val writer = new PrintWriter("test.m3u", "UTF-8")
 		for(var i = 0; i < playlist.videos.size; i++) {
-			writer.write("file '" + playlist.videos.get(i).location + "' \n")
+			writer.write(playlist.videos.get(i).location + "\n")
 		}
 		writer.close();
 	}

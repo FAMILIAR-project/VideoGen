@@ -105,9 +105,8 @@ public class PlaylistDemonstrator {
         EList<Video> _videos = playlist.getVideos();
         Video _get = _videos.get(i);
         String _location = _get.getLocation();
-        String _plus = ("file \'" + _location);
-        String _plus_1 = (_plus + "\' \n");
-        writer.write(_plus_1);
+        String _plus = (_location + "\n");
+        writer.write(_plus);
       }
       writer.close();
     } catch (Throwable _e) {
