@@ -1,9 +1,20 @@
 package videogen;
 
+import java.io.PrintWriter;
+import java.util.function.Consumer;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.xtext.xbase.lib.Exceptions;
+import org.junit.Assert;
 import org.junit.Test;
+import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq;
+import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq;
+import org.xtext.example.mydsl.videoGen.OptionalVideoSeq;
+import org.xtext.example.mydsl.videoGen.VideoDescription;
+import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
+import org.xtext.example.mydsl.videoGen.VideoSeq;
 import videogen.VideoDemonstrator;
 
 @SuppressWarnings("all")
@@ -22,37 +33,54 @@ public class ConcatenateVideoSeq {
   
   @Test
   public void generateAllAlternatives() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nMandatoryVideoSeq cannot be resolved to a type."
-      + "\nMandatoryVideoSeq cannot be resolved to a type."
-      + "\nOptionalVideoSeq cannot be resolved to a type."
-      + "\nOptionalVideoSeq cannot be resolved to a type."
-      + "\nOptionalVideoSeq cannot be resolved to a type."
-      + "\nOptionalVideoSeq cannot be resolved to a type."
-      + "\nAlternativeVideoSeq cannot be resolved to a type."
-      + "\nThe method loadVideoGenerator(URI) from the type VideoDemonstrator refers to the missing type VideoGeneratorModel"
-      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context."
-      + "\nUnreachable code: The if condition can never match. It is already handled by a previous condition."
-      + "\nvideoseqs cannot be resolved"
-      + "\nsize cannot be resolved"
-      + "\nvideoseqs cannot be resolved"
-      + "\nforEach cannot be resolved"
-      + "\ndescription cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\ndescription cannot be resolved"
-      + "\nprobability cannot be resolved"
-      + "\n== cannot be resolved"
-      + "\n&& cannot be resolved"
-      + "\ndescription cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\ndescription cannot be resolved"
-      + "\nprobability cannot be resolved"
-      + "\ndescription cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nvideodescs cannot be resolved"
-      + "\nsize cannot be resolved"
-      + "\nvideodescs cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlocation cannot be resolved");
+    try {
+      URI _createURI = URI.createURI("foo2.videogen");
+      VideoGeneratorModel videoGen = this.vd.loadVideoGenerator(_createURI);
+      final PrintWriter writer = new PrintWriter("test.txt", "UTF-8");
+      Assert.assertNotNull(videoGen);
+      EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
+      int _size = _videoseqs.size();
+      Assert.assertEquals(7, _size);
+      EList<VideoSeq> _videoseqs_1 = videoGen.getVideoseqs();
+      final Consumer<VideoSeq> _function = (VideoSeq videoseq) -> {
+        if ((videoseq instanceof MandatoryVideoSeq)) {
+          final VideoDescription desc = ((MandatoryVideoSeq) videoseq).getDescription();
+          final String path = desc.getLocation();
+          writer.write((("file \'" + path) + "\'\n"));
+        } else {
+          if ((videoseq instanceof OptionalVideoSeq)) {
+            final OptionalVideoSeq videoseqOptional = ((OptionalVideoSeq) videoseq);
+            double _random = Math.random();
+            final double random = (_random * 100);
+            if (((videoseqOptional.getDescription().getProbability() == 0) && (random <= 50))) {
+              final VideoDescription desc_1 = ((OptionalVideoSeq) videoseq).getDescription();
+              final String path_1 = desc_1.getLocation();
+              writer.write((("file \'" + path_1) + "\'\n"));
+            } else {
+              if (((random >= 0) && (random <= videoseqOptional.getDescription().getProbability()))) {
+                final VideoDescription desc_2 = ((OptionalVideoSeq) videoseq).getDescription();
+                final String path_2 = desc_2.getLocation();
+                writer.write((("file \'" + path_2) + "\'\n"));
+              }
+            }
+          } else {
+            final AlternativeVideoSeq videoseqAlt = ((AlternativeVideoSeq) videoseq);
+            EList<VideoDescription> _videodescs = videoseqAlt.getVideodescs();
+            final int size = _videodescs.size();
+            double _random_1 = Math.random();
+            final double random_1 = (_random_1 * size);
+            final int randomInt = Double.valueOf(random_1).intValue();
+            EList<VideoDescription> _videodescs_1 = videoseqAlt.getVideodescs();
+            final VideoDescription alt = _videodescs_1.get(randomInt);
+            final String path_3 = alt.getLocation();
+            writer.write((("file \'" + path_3) + "\'\n"));
+          }
+        }
+      };
+      _videoseqs_1.forEach(_function);
+      writer.close();
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 }
