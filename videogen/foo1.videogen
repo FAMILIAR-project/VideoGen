@@ -15,13 +15,13 @@ VideoGen {
 	}
 	
 	alternatives v4 {
-		videoseq v41 "v/v4/seq1.mp4"
-		videoseq v42 "v/v4/seq2.mp4"
+		videoseq v40 "v/v4/seq1.mp4"
+		videoseq v41 "v/v4/seq2.mp4"
 	}
 	mandatory videoseq v5 "v/v5.mp4"
 	
 	optional videoseq v6 "v/v6.mp4"
 	alternatives v7 {
-		videoseq v71 "v/V71.mp4"
+		videoseq v71 "v/v71.mp4"
 	}
 }

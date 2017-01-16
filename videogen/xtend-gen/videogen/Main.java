@@ -12,6 +12,6 @@ public class Main {
     Playlist playlist = vv.playlist();
     URI _createURI = URI.createURI("foo1.videogen");
     VideoGeneratorModel videoGen = vv.loadVideoGenerator(_createURI);
-    vv.printToHTML(videoGen);
+    vv.printToHTMLWithRandom(videoGen);
   }
 }

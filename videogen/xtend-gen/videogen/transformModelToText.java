@@ -257,7 +257,7 @@ public class transformModelToText {
           if ((videoseq instanceof OptionalVideoSeq)) {
             VideoDescription _description_2 = ((OptionalVideoSeq) videoseq).getDescription();
             final String desc_1 = _description_2.getLocation();
-            VideoDescription _description_3 = ((MandatoryVideoSeq) videoseq).getDescription();
+            VideoDescription _description_3 = ((OptionalVideoSeq) videoseq).getDescription();
             int duree_1 = _description_3.getDuration();
             double _calculDuree_1 = this.calculDuree(desc_1);
             int _intValue_1 = Double.valueOf(_calculDuree_1).intValue();
@@ -303,7 +303,10 @@ public class transformModelToText {
     try {
       double _xblockexpression = (double) 0;
       {
+<<<<<<< HEAD
         InputOutput.<String>println(("duration : " + videoLocation));
+=======
+>>>>>>> c5bf08b... fix vignette generation
         String cmd = ("ffprobe -v error -select_streams v:0 -show_entries stream=duration -of default=noprint_wrappers=1:nokey=1 -i " + videoLocation);
         Runtime _runtime = Runtime.getRuntime();
         Process p = _runtime.exec(cmd);
@@ -335,16 +338,24 @@ public class transformModelToText {
   
   public void creationVignette(final String videoLocation, final int tempsCapture, final String chemin) {
     try {
-      InputOutput.<String>println((((((("vignette : " + videoLocation) + " to ") + chemin) + " at ") + Integer.valueOf(tempsCapture)) + "s"));
       Runtime _runtime = Runtime.getRuntime();
       Process p1 = _runtime.exec("pwd");
       InputStream _inputStream = p1.getInputStream();
       InputStreamReader _inputStreamReader = new InputStreamReader(_inputStream);
       BufferedReader reader1 = new BufferedReader(_inputStreamReader);
       String pwd = reader1.readLine();
-      String cmd = ((((((((("ffmpeg -y -i " + pwd) + "/") + videoLocation) + " -r 1 -t 00:00:01 -ss 00:00:") + Integer.valueOf(tempsCapture)) + " ") + pwd) + "/") + chemin);
+      InputOutput.<String>println((((((("vignette : " + videoLocation) + " to ") + chemin) + " at ") + Integer.valueOf(tempsCapture)) + "s"));
+      String cmd = ((((("ffmpeg -y -i " + videoLocation) + " -r 1 -t 00:00:01 -ss 00:00:") + Integer.valueOf(tempsCapture)) + " ") + chemin);
+      InputOutput.<String>println(("with cmd : " + cmd));
       Runtime _runtime_1 = Runtime.getRuntime();
       Process p = _runtime_1.exec(cmd);
+      while (p.isAlive()) {
+        boolean _isAlive = p.isAlive();
+        boolean _not = (!_isAlive);
+        if (_not) {
+          return;
+        }
+      }
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -375,7 +386,11 @@ public class transformModelToText {
           int _divide = (_intValue / 2);
           this.creationVignette(desc, _divide, (desc + ".png"));
           InputOutput.<String>println(((("<li>" + "<img src=") + desc) + ".png/></li>"));
+<<<<<<< HEAD
           writer.write(((("<li>" + "<img src=") + desc) + ".png/></li>\n"));
+=======
+          writer.write(((("<li>" + "Mandatory<img src=") + desc) + ".png/></li>\n"));
+>>>>>>> c5bf08b... fix vignette generation
         } else {
           if ((videoseq instanceof OptionalVideoSeq)) {
             VideoDescription _description_1 = ((OptionalVideoSeq) videoseq).getDescription();
@@ -385,7 +400,11 @@ public class transformModelToText {
             int _divide_1 = (_intValue_1 / 2);
             this.creationVignette(desc_1, _divide_1, (desc_1 + ".png"));
             InputOutput.<String>println(((("<li>" + "<img src=") + desc_1) + ".png/></li>"));
+<<<<<<< HEAD
             writer.write(((("<li>" + "<img src=") + desc_1) + ".png/></li>\n"));
+=======
+            writer.write(((("<li>" + "Optional<img src=") + desc_1) + ".png/></li>\n"));
+>>>>>>> c5bf08b... fix vignette generation
           } else {
             final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
             EList<VideoDescription> _videodescs = altvid.getVideodescs();
@@ -411,7 +430,11 @@ public class transformModelToText {
                 String _plus_2 = (_plus_1 + ".png/></li>");
                 InputOutput.<String>println(_plus_2);
                 String _location_4 = vdesc.getLocation();
+<<<<<<< HEAD
                 String _plus_3 = (("<li>" + "<img src=") + _location_4);
+=======
+                String _plus_3 = (("<li>" + "Alternative<img src=") + _location_4);
+>>>>>>> c5bf08b... fix vignette generation
                 String _plus_4 = (_plus_3 + ".png/></li>\n");
                 writer.write(_plus_4);
               }
@@ -497,6 +520,81 @@ public class transformModelToText {
           }
         }
       }
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  public void printToHTMLWithRandom(final VideoGeneratorModel playlist) {
+    try {
+      final PrintWriter writer = new PrintWriter("PageHTMLvideogen2.html");
+      final Random random = new Random();
+      InputOutput.<String>println("<ul>");
+      writer.write("<ul>\n");
+      EList<VideoSeq> _videoseqs = playlist.getVideoseqs();
+      final Consumer<VideoSeq> _function = (VideoSeq videoseq) -> {
+        if ((videoseq instanceof MandatoryVideoSeq)) {
+          VideoDescription _description = ((MandatoryVideoSeq) videoseq).getDescription();
+          final String desc = _description.getLocation();
+          double _calculDuree = this.calculDuree(desc);
+          int _intValue = Double.valueOf(_calculDuree).intValue();
+          int _divide = (_intValue / 2);
+          this.creationVignette(desc, _divide, (desc + ".png"));
+          InputOutput.<String>println(((("<li>" + "<img src=") + desc) + ".png/></li>"));
+          writer.write(((("<li>" + "Mandatory<img src=") + desc) + ".png/></li>\n"));
+        } else {
+          if ((videoseq instanceof OptionalVideoSeq)) {
+            VideoDescription _description_1 = ((OptionalVideoSeq) videoseq).getDescription();
+            final String desc_1 = _description_1.getLocation();
+            int proba = random.nextInt(2);
+            InputOutput.<String>println(("proba :" + Integer.valueOf(proba)));
+            if ((proba == 1)) {
+              double _calculDuree_1 = this.calculDuree(desc_1);
+              int _intValue_1 = Double.valueOf(_calculDuree_1).intValue();
+              int _divide_1 = (_intValue_1 / 2);
+              this.creationVignette(desc_1, _divide_1, (desc_1 + ".png"));
+              InputOutput.<String>println(((("<li>" + "<img src=") + desc_1) + ".png/></li>"));
+              writer.write(((("<li>" + "Optional<img src=") + desc_1) + ".png/></li>\n"));
+            }
+          } else {
+            final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
+            EList<VideoDescription> _videodescs = altvid.getVideodescs();
+            int _size = _videodescs.size();
+            boolean _greaterThan = (_size > 0);
+            if (_greaterThan) {
+              InputOutput.<String>println("<ul>");
+            }
+            writer.write("<ul>\n");
+            EList<VideoDescription> _videodescs_1 = altvid.getVideodescs();
+            int _size_1 = _videodescs_1.size();
+            int proba_1 = random.nextInt(_size_1);
+            EList<VideoDescription> _videodescs_2 = altvid.getVideodescs();
+            final VideoDescription vaa = _videodescs_2.get(proba_1);
+            String _location = vaa.getLocation();
+            String _location_1 = vaa.getLocation();
+            double _calculDuree_2 = this.calculDuree(_location_1);
+            int _intValue_2 = Double.valueOf(_calculDuree_2).intValue();
+            int _divide_2 = (_intValue_2 / 2);
+            String _location_2 = vaa.getLocation();
+            String _plus = (_location_2 + ".png");
+            this.creationVignette(_location, _divide_2, _plus);
+            String _location_3 = vaa.getLocation();
+            String _plus_1 = (("<li>" + "<img src=") + _location_3);
+            String _plus_2 = (_plus_1 + ".png/></li>");
+            InputOutput.<String>println(_plus_2);
+            String _location_4 = vaa.getLocation();
+            String _plus_3 = (("<li>" + "Alternative<img src=") + _location_4);
+            String _plus_4 = (_plus_3 + ".png/></li>\n");
+            writer.write(_plus_4);
+          }
+        }
+        InputOutput.<String>println("</ul>");
+        writer.write("</ul>\n");
+      };
+      _videoseqs.forEach(_function);
+      InputOutput.<String>println("</ul>");
+      writer.write("<ul>\n");
+      writer.close();
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

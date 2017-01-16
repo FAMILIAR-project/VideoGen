@@ -202,7 +202,7 @@ class transformModelToText {
 			}
 			else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description.location
-				 var duree=(videoseq as MandatoryVideoSeq).description.duration
+				 var duree=(videoseq as OptionalVideoSeq).description.duration
 				 duree=calculDuree(desc).intValue()
 			     var proba=random.nextInt(1)
 				if(proba==1){
@@ -232,7 +232,7 @@ class transformModelToText {
 	}
 	//Q7
 	def calculDuree(String videoLocation){
-		println("duration : "+videoLocation)
+//		println("duration : "+videoLocation)
 		var cmd = "ffprobe -v error -select_streams v:0 -show_entries stream=duration -of default=noprint_wrappers=1:nokey=1 -i " +videoLocation 
 		var p =Runtime.runtime.exec(cmd)
 		var reader= new BufferedReader(new InputStreamReader(p.inputStream))
@@ -248,12 +248,17 @@ class transformModelToText {
 	}
 	//Q9
 	def creationVignette(String videoLocation,int tempsCapture,String chemin){
-		println("vignette : "+videoLocation +" to "+chemin+ " at "+tempsCapture+"s") 
     	var p1 =Runtime.runtime.exec("pwd")
 		var reader1= new BufferedReader(new InputStreamReader(p1.inputStream))
 		var pwd = reader1.readLine()
-		var cmd = "ffmpeg -y -i "+pwd+"/"+videoLocation+ " -r 1 -t 00:00:01 -ss 00:00:"+tempsCapture+ " "+pwd+"/"+chemin 
+//		println("vignette : "+pwd+"/"+videoLocation +" to "+pwd+"/"+chemin+ " at "+tempsCapture+"s")
+		println("vignette : "+videoLocation +" to "+chemin+ " at "+tempsCapture+"s") 
+		var cmd = "ffmpeg -y -i "+videoLocation+ " -r 1 -t 00:00:01 -ss 00:00:"+tempsCapture+ " "+chemin 
+		println("with cmd : "+cmd)
 		var p =Runtime.runtime.exec(cmd)
+		while(p.alive)
+			if(!p.alive)
+				return	
 	}
 	//Q9
 	def playlistVignette(Playlist playlist){
@@ -274,14 +279,14 @@ class transformModelToText {
 				val desc = (videoseq as MandatoryVideoSeq).description.location
 				creationVignette(desc,calculDuree(desc).intValue/2,desc+".png")
 				println ("<li>" +"<img src="+desc+".png/></li>")  	
-				writer.write("<li>" +"<img src="+desc+".png/></li>\n")			
+				writer.write("<li>" +"Mandatory<img src="+desc+".png/></li>\n")			
 			}
 			else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description.location
 				
 					creationVignette(desc,calculDuree(desc).intValue/2,desc+".png")
 				  println ("<li>" +"<img src="+desc+".png/></li>")	
-				writer.write("<li>" +"<img src="+desc+".png/></li>\n")	  
+				writer.write("<li>" +"Optional<img src="+desc+".png/></li>\n")	  
 			}
 			else {
 				val altvid = (videoseq as AlternativeVideoSeq)
@@ -293,7 +298,7 @@ class transformModelToText {
 				for (vdesc : altvid.videodescs) {
 					creationVignette(vdesc.location,calculDuree(vdesc.location).intValue/2,vdesc.location+".png")
 				  println ("<li>" +"<img src="+vdesc.location+".png/></li>")  	
-				writer.write("<li>" +"<img src="+vdesc.location+".png/></li>\n")	
+				writer.write("<li>" +"Alternative<img src="+vdesc.location+".png/></li>\n")	
 				}
 				if (altvid.videodescs.size > 0) // there are vid seq alternatives
 					println ("</ul>")	
@@ -353,12 +358,51 @@ def verify(){
 		}
 	
 	  
-		
-		
-			
-		
-		
 	}
+		
+	//Q12
 	}
+	def void printToHTMLWithRandom(VideoGeneratorModel playlist) {
+		val writer=new PrintWriter("PageHTMLvideogen2.html")
+			val random=new Random()
+		//var numSeq = 1
+		println("<ul>")
+		writer.write("<ul>\n")
+		playlist.videoseqs.forEach[videoseq | 
+			if (videoseq instanceof MandatoryVideoSeq) {
+				val desc = (videoseq as MandatoryVideoSeq).description.location
+				creationVignette(desc,calculDuree(desc).intValue/2,desc+".png")
+				println ("<li>" +"<img src="+desc+".png/></li>")  	
+				writer.write("<li>" +"Mandatory<img src="+desc+".png/></li>\n")			
+			}
+			else if (videoseq instanceof OptionalVideoSeq) {
+				val desc = (videoseq as OptionalVideoSeq).description.location
+				 var proba=random.nextInt(2)
+				 println("proba :"+proba)
+				 if(proba==1){
+					creationVignette(desc,calculDuree(desc).intValue/2,desc+".png")
+				  println ("<li>" +"<img src="+desc+".png/></li>")	
+				writer.write("<li>" +"Optional<img src="+desc+".png/></li>\n")	  
+				 }
+			}
+			else {
+				val altvid = (videoseq as AlternativeVideoSeq)
 	
+					
+				if (altvid.videodescs.size > 0) // there are vid seq alternatives
+					println ("<ul>")	
+				writer.write("<ul>\n")	
+				var proba = random.nextInt(altvid.videodescs.size)
+				val vaa=altvid.videodescs.get(proba)
+					creationVignette(vaa.location,calculDuree(vaa.location).intValue/2,vaa.location+".png")
+				  println ("<li>" +"<img src="+vaa.location+".png/></li>")  	
+				writer.write("<li>" +"Alternative<img src="+vaa.location+".png/></li>\n")	
+				}
+					println ("</ul>")	
+				writer.write("</ul>\n")	
+		]
+		println("</ul>")
+		writer.write("<ul>\n")	
+		writer.close()
+}
 }
