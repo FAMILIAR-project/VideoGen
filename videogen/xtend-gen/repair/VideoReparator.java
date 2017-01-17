@@ -26,7 +26,9 @@ import repair.SequenceGenerator;
  * Generate ffmpeg
  */
 @SuppressWarnings("all")
-public class VideoGenerator {
+public class VideoReparator {
+  private VideoGeneratorModel repaired;
+  
   /**
    * Load
    */
@@ -61,34 +63,31 @@ public class VideoGenerator {
   }
   
   @Test
-  public void generate() {
-    URI _createURI = URI.createURI("foo2.videogen");
-    VideoGeneratorModel videoGen = this.loadVideoGenerator(_createURI);
-    Assert.assertNotNull(videoGen);
-    EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
-    int _size = _videoseqs.size();
-    Assert.assertEquals(7, _size);
-    this.repairId(videoGen);
-    URI _createURI_1 = URI.createURI("foo2bis.xmi");
-    this.saveVideoGenerator(_createURI_1, videoGen);
-    URI _createURI_2 = URI.createURI("foo2bis.videogen");
-    this.saveVideoGenerator(_createURI_2, videoGen);
-    SequenceGenerator _sequenceGenerator = new SequenceGenerator(videoGen);
-    VideoGeneratorModel finalVideo = _sequenceGenerator.getRepairedModel();
-    EList<VideoSeq> _videoseqs_1 = finalVideo.getVideoseqs();
-    final Consumer<VideoSeq> _function = (VideoSeq videoseq) -> {
-      if ((videoseq instanceof MandatoryVideoSeq)) {
-        final VideoDescription desc = ((MandatoryVideoSeq) videoseq).getDescription();
-        this.printDesc(desc);
-      } else {
-        if ((videoseq instanceof OptionalVideoSeq)) {
-          final VideoDescription desc_1 = ((OptionalVideoSeq) videoseq).getDescription();
-        } else {
-          final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
-        }
-      }
-    };
-    _videoseqs_1.forEach(_function);
+  public VideoGeneratorModel generate() {
+    VideoGeneratorModel _xblockexpression = null;
+    {
+      URI _createURI = URI.createURI("test.videogen");
+      VideoGeneratorModel videoGen = this.loadVideoGenerator(_createURI);
+      Assert.assertNotNull(videoGen);
+      this.repairId(videoGen);
+      URI _createURI_1 = URI.createURI("foo2bis.xmi");
+      this.saveVideoGenerator(_createURI_1, videoGen);
+      URI _createURI_2 = URI.createURI("foo2bis.videogen");
+      this.saveVideoGenerator(_createURI_2, videoGen);
+      SequenceGenerator _sequenceGenerator = new SequenceGenerator(videoGen);
+      VideoGeneratorModel finalVideo = _sequenceGenerator.getRepairedModel();
+      _xblockexpression = this.repaired = finalVideo;
+    }
+    return _xblockexpression;
+  }
+  
+  public VideoGeneratorModel getRepair() {
+    VideoGeneratorModel _xblockexpression = null;
+    {
+      this.generate();
+      _xblockexpression = this.repaired;
+    }
+    return _xblockexpression;
   }
   
   public void printDesc(final VideoDescription desc) {
@@ -163,7 +162,7 @@ public class VideoGenerator {
   private static int i = 0;
   
   public String genID() {
-    int _plusPlus = VideoGenerator.i++;
+    int _plusPlus = VideoReparator.i++;
     return ("v" + Integer.valueOf(_plusPlus));
   }
 }

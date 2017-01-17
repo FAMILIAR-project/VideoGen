@@ -96,7 +96,7 @@ class SequenceGenerator {
 	}
 	
 	def double getSize(VideoDescription desc){
-		var File file =new File("/home/loic/Videos/op/a.mkv");
+		var File file =new File(desc.location);
 		if(file.exists){
 			var double bytes = file.length();
 			var double kilobytes = (bytes / 1024);
@@ -108,7 +108,6 @@ class SequenceGenerator {
 	}
 	
 	def void fix(VideoDescription desc){
-		desc.location="/home/loic/Videos/op/a.mkv"
 		if(desc.duration == 0){
 			desc.duration=getDuration(desc.location) as int
 					

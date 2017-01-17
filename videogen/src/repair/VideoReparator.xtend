@@ -17,7 +17,9 @@ import org.xtext.example.mydsl.videoGen.VideoDescription
 /**
  * Generate ffmpeg
  */
-public class VideoGenerator {
+public class VideoReparator {
+	
+	private VideoGeneratorModel repaired;
 	
 	/**
 	 * Load
@@ -37,13 +39,14 @@ public class VideoGenerator {
 		rs.save(new HashMap());
 	}
 	
+	
+	
 	@Test
 	def generate() {
 		
 		// Loading
-		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
+		var videoGen = loadVideoGenerator(URI.createURI("test.videogen")) 
 		assertNotNull(videoGen)
-		assertEquals(7, videoGen.videoseqs.size)		
 			
 		// Repair id
 		repairId(videoGen)
@@ -55,26 +58,34 @@ public class VideoGenerator {
 		// Build sequence
 		var finalVideo=(new SequenceGenerator(videoGen)).getRepairedModel()
 		
+		repaired=finalVideo
+		
 		// Print sequence
-		finalVideo.videoseqs.forEach[videoseq | 
+		/*finalVideo.videoseqs.forEach[videoseq | 
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
 				printDesc(desc)			
 			}
 			else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
+				printDesc(desc)			
+				
 			}
 			else {
 				val altvid = (videoseq as AlternativeVideoSeq)
-				/*for (vdesc : altvid.videodescs) {
-					current.add(vdesc)
-				}*/
+				for (vdesc : altvid.videodescs) {
+					printDesc(vdesc)			
+				}
 				
 			}
-		]
+		]*/
 	}
 	
-	
+	def public VideoGeneratorModel getRepair(){
+		generate()
+		this.repaired
+		
+	}
 	
 	def void printDesc(VideoDescription desc){
 		println("Location : "+desc.location)

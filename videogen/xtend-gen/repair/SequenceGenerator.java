@@ -116,7 +116,8 @@ public class SequenceGenerator {
   }
   
   public double getSize(final VideoDescription desc) {
-    File file = new File("/home/loic/Videos/op/a.mkv");
+    String _location = desc.getLocation();
+    File file = new File(_location);
     boolean _exists = file.exists();
     if (_exists) {
       double bytes = file.length();
@@ -128,7 +129,6 @@ public class SequenceGenerator {
   }
   
   public void fix(final VideoDescription desc) {
-    desc.setLocation("/home/loic/Videos/op/a.mkv");
     int _duration = desc.getDuration();
     boolean _equals = (_duration == 0);
     if (_equals) {
