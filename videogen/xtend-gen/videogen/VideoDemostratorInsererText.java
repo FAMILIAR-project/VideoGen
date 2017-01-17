@@ -11,6 +11,7 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -65,7 +66,7 @@ public class VideoDemostratorInsererText {
     try {
       Runtime _runtime = Runtime.getRuntime();
       Process process = _runtime.exec(("C:\\Users\\Sandra\\Desktop\\ffmpeg-20161127-801b5c1-win64-static\\bin\\ffprobe -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 " + videoLocation));
-      process.waitFor();
+      process.waitFor(2000, TimeUnit.MILLISECONDS);
       InputStream _inputStream = process.getInputStream();
       InputStreamReader _inputStreamReader = new InputStreamReader(_inputStream);
       BufferedReader reader = new BufferedReader(_inputStreamReader);
@@ -82,27 +83,23 @@ public class VideoDemostratorInsererText {
     }
   }
   
-  public static String insertText(final String videoLocation, final String text) {
+  /**
+   * Inserer du text dans la video
+   * videoLocation = hubication de la video
+   * text = texte a inserer dans la video
+   * position = position du texte inseré
+   */
+  public static String insertText(final String videoLocation, final String text, final String positionX, final String positionY) {
     try {
-      System.out.println("debut");
       String[] name = videoLocation.split("\\.(?=[^\\.]+$)");
+      String pathFontFile = "/Users/Sandra/";
       String _get = name[0];
-      String _plus = ((("C:\\Users\\Sandra\\Desktop\\ffmpeg-20161127-801b5c1-win64-static\\bin\\ffmpeg -i " + videoLocation) + " -vf drawtext=\'fontfile=arial.ttf:text=testt:fontcolor=white:fontsize=24\' -codec:a copy ") + _get);
+      String _plus = ((((((((((("C:\\Users\\Sandra\\Desktop\\ffmpeg-20161127-801b5c1-win64-static\\bin\\ffmpeg -i " + videoLocation) + " -vf drawtext=\'fontfile=") + pathFontFile) + "arial.ttf:text=") + text) + ":fontcolor=white:fontsize=44:box=1:boxcolor=black@0.5:boxborderw=5:x=") + positionX) + ":y=") + positionY) + "\' -codec:a copy ") + _get);
       String cmd1 = (_plus + "-2.mp4");
-      System.out.println(cmd1);
+      InputOutput.<String>println(("Commande : " + cmd1));
       Runtime _runtime = Runtime.getRuntime();
       Process process = _runtime.exec(cmd1);
-      process.waitFor();
-      InputStream _inputStream = process.getInputStream();
-      InputStreamReader _inputStreamReader = new InputStreamReader(_inputStream);
-      BufferedReader reader = new BufferedReader(_inputStreamReader);
-      String line = "";
-      String outputJson = "";
-      while ((!Objects.equal((line = reader.readLine()), null))) {
-        outputJson = (outputJson + line);
-      }
-      String _string = outputJson.toString();
-      System.out.println(_string);
+      process.waitFor(2000, TimeUnit.MILLISECONDS);
       String _get_1 = name[0];
       return (_get_1 + "-2.mp4");
     } catch (Throwable _e) {
@@ -128,10 +125,14 @@ public class VideoDemostratorInsererText {
         mediafile.setLocation(fileLocation);
         double _duration = VideoDemostratorInsererText.getDuration(fileLocation);
         mediafile.setDuration(_duration);
-        mediafile.setText(fileLocation);
+        mediafile.setText("VideoObligatoire");
+        mediafile.setPositionX("(w-text_w)/2");
+        mediafile.setPositionY("(h-text_h)/2");
         String _location = mediafile.getLocation();
         String _text = mediafile.getText();
-        String locatTemp = VideoDemostratorInsererText.insertText(_location, _text);
+        String _positionX = mediafile.getPositionX();
+        String _positionY = mediafile.getPositionY();
+        String locatTemp = VideoDemostratorInsererText.insertText(_location, _text, _positionX, _positionY);
         mediafile.setLocation(locatTemp);
         String _location_1 = mediafile.getLocation();
         System.out.println(_location_1);
@@ -149,10 +150,14 @@ public class VideoDemostratorInsererText {
             mediafile_1.setLocation(fileLocation_1);
             double _duration_1 = VideoDemostratorInsererText.getDuration(fileLocation_1);
             mediafile_1.setDuration(_duration_1);
-            mediafile_1.setText(("nom : " + fileLocation_1));
+            mediafile_1.setText("VideoOptional");
+            mediafile_1.setPositionX("(w-text_w)/3");
+            mediafile_1.setPositionY("(h-text_h)/3");
             String _location_2 = mediafile_1.getLocation();
             String _text_1 = mediafile_1.getText();
-            String locatTemp_1 = VideoDemostratorInsererText.insertText(_location_2, _text_1);
+            String _positionX_1 = mediafile_1.getPositionX();
+            String _positionY_1 = mediafile_1.getPositionY();
+            String locatTemp_1 = VideoDemostratorInsererText.insertText(_location_2, _text_1, _positionX_1, _positionY_1);
             mediafile_1.setLocation(locatTemp_1);
             EList<MediaFile> _mediaFile_1 = playlist.getMediaFile();
             _mediaFile_1.add(mediafile_1);
@@ -170,10 +175,14 @@ public class VideoDemostratorInsererText {
           mediafile_2.setLocation(fileLocation_2);
           double _duration_2 = VideoDemostratorInsererText.getDuration(fileLocation_2);
           mediafile_2.setDuration(_duration_2);
-          mediafile_2.setText(("nom : " + fileLocation_2));
+          mediafile_2.setText("VideoAlternative");
+          mediafile_2.setPositionX("(w-text_w)/4");
+          mediafile_2.setPositionY("(h-text_h)/4");
           String _location_3 = mediafile_2.getLocation();
           String _text_2 = mediafile_2.getText();
-          String locatTemp_2 = VideoDemostratorInsererText.insertText(_location_3, _text_2);
+          String _positionX_2 = mediafile_2.getPositionX();
+          String _positionY_2 = mediafile_2.getPositionY();
+          String locatTemp_2 = VideoDemostratorInsererText.insertText(_location_3, _text_2, _positionX_2, _positionY_2);
           mediafile_2.setLocation(locatTemp_2);
           EList<MediaFile> _mediaFile_2 = playlist.getMediaFile();
           _mediaFile_2.add(mediafile_2);

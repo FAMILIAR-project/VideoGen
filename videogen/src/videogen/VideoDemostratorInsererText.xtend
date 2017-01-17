@@ -22,6 +22,7 @@ import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 import static org.junit.Assert.*
 import videogenPlayList.impl.VideogenPlayListFactoryImpl
 import videogenPlayList.MediaFile
+import java.util.concurrent.TimeUnit
 
 class VideoDemostratorInsererText {
 
@@ -39,10 +40,11 @@ class VideoDemostratorInsererText {
 	}
 	
 	def static double getDuration(String videoLocation){
+		//a changer selon l'hubication du fichier ffmpeg
 		var Process process = Runtime.getRuntime().exec("C:\\Users\\Sandra\\Desktop\\ffmpeg-20161127-801b5c1-win64-static\\bin\\ffprobe -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 " + videoLocation );
 		
 		
-		process.waitFor();
+		process.waitFor(2000, TimeUnit.MILLISECONDS);
 
 		var BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 		var String line = "";
@@ -53,27 +55,30 @@ class VideoDemostratorInsererText {
 		return Math.round(Double.parseDouble(outputJson))-1;
 	}
 	
-	def static String insertText(String videoLocation, String text){
-		System.out.println("debut")
+	/**
+	 * Inserer du text dans la video
+	 * videoLocation = hubication de la video
+	 * text = texte a inserer dans la video
+	 * position = position du texte inseré
+	 */
+	def static String insertText(String videoLocation, String text, String positionX, String positionY){
 		
 		var String[] name = videoLocation.split("\\.(?=[^\\.]+$)");
 	    
-		//var cmd = "C:\\Users\\Sandra\\Desktop\\ffmpeg-20161127-801b5c1-win64-static\\bin\\ffmpeg -i "+ videoLocation +" -vf drawtext='fontsize=15:fontfile=arial.ttf:text=merde:y=100:x=100' -codec:a copy " + name.get(0) + "-2.mp4"
-		var cmd1 = "C:\\Users\\Sandra\\Desktop\\ffmpeg-20161127-801b5c1-win64-static\\bin\\ffmpeg -i "+ videoLocation + " -vf drawtext='fontfile=arial.ttf:text=testt:fontcolor=white:fontsize=24' -codec:a copy " + name.get(0) + "-2.mp4"
 	    
-	    System.out.println(cmd1)
-
+	    // A changer selon l'ubication du fichier "ttf"
+	     
+	    var String pathFontFile = "/Users/Sandra/";
+	    
+	    // a changer selon l'hubication du executable ffmpeg
+		var cmd1 = "C:\\Users\\Sandra\\Desktop\\ffmpeg-20161127-801b5c1-win64-static\\bin\\ffmpeg -i "+videoLocation+" -vf drawtext='fontfile=" + pathFontFile + "arial.ttf:text="+text+":fontcolor=white:fontsize=44:box=1:boxcolor=black@0.5:boxborderw=5:x="+positionX+":y="+positionY+"' -codec:a copy " + name.get(0) + "-2.mp4"
+	    	 
+		println("Commande : " + cmd1);
+		
 		var Process process = Runtime.getRuntime().exec(cmd1);
-		process.waitFor();
 		
+		process.waitFor(2000, TimeUnit.MILLISECONDS);
 		
-		var BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-		var String line = "";
-		var String outputJson = "";
-	    while ((line = reader.readLine()) != null) {
-	        outputJson = outputJson + line;
-	    }
-	    System.out.println(outputJson.toString())
 	    
 	   return name.get(0) + '-2.mp4'
 	}
@@ -98,9 +103,11 @@ class VideoDemostratorInsererText {
 				var mediafile = fact.createMediaFile()
 				mediafile.location = fileLocation 
 				mediafile.duration =  getDuration(fileLocation)
-				mediafile.text = fileLocation
+				mediafile.text = "VideoObligatoire"
+				mediafile.positionX = "(w-text_w)/2" //le texte sera dans le centre de la video
+				mediafile.positionY = "(h-text_h)/2"
 				
-				var locatTemp = insertText(mediafile.location, mediafile.text)
+				var locatTemp = insertText(mediafile.location, mediafile.text, mediafile.positionX, mediafile.positionY)
 				mediafile.location = locatTemp
 				System.out.println(mediafile.location)
 				playlist.mediaFile.add(mediafile)
@@ -116,9 +123,11 @@ class VideoDemostratorInsererText {
 					var mediafile = fact.createMediaFile()
 					mediafile.location = fileLocation
 					mediafile.duration =  getDuration(fileLocation)
-					mediafile.text = 'nom : ' + fileLocation
+					mediafile.text = "VideoOptional"
+					mediafile.positionX = "(w-text_w)/3"
+					mediafile.positionY = "(h-text_h)/3"
 					
-					var locatTemp = insertText(mediafile.location, mediafile.text)
+					var locatTemp = insertText(mediafile.location, mediafile.text, mediafile.positionX, mediafile.positionY)
 					mediafile.location =locatTemp
 					
 					playlist.mediaFile.add(mediafile)
@@ -132,9 +141,11 @@ class VideoDemostratorInsererText {
 				var mediafile = fact.createMediaFile()
 				mediafile.location = fileLocation 
 				mediafile.duration =  getDuration(fileLocation)
-				mediafile.text = 'nom : ' + fileLocation
+				mediafile.text = "VideoAlternative"
+				mediafile.positionX = "(w-text_w)/4"
+				mediafile.positionY = "(h-text_h)/4"
 				
-				var locatTemp = insertText(mediafile.location, mediafile.text)
+				var locatTemp = insertText(mediafile.location, mediafile.text, mediafile.positionX, mediafile.positionY)
 				
 				mediafile.location =locatTemp
 				
