@@ -54,7 +54,7 @@ class ModelToModel {
 			else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
 				
-				val i = new Random().nextInt(1)
+				val i = new Random().nextInt(2)
 				if(i==0){
 				
 				val mediaFile = PlayListFactory.eINSTANCE.createMediaFile
@@ -77,9 +77,11 @@ class ModelToModel {
 			
 			}
 		]
-	val playlistOnString = convertPlaylistIntoFormat(playlist, "M3U")
+	//val playlistOnString = convertPlaylistIntoFormat(playlist, "M3U")
+	val playlistOnString = convertPlaylistIntoFormat(playlist, "txt")
 		
-	 var file = new File ("playlist.m3u")
+	// var file = new File ("playlist.m3u")
+	var file = new File ("ffmpeg.txt")
 	 var filewriter = new FileWriter(file)
       filewriter.write( playlistOnString );
       filewriter.flush
@@ -88,6 +90,8 @@ class ModelToModel {
 	}
 	
 	def static convertPlaylistIntoFormat(PlayList playlist,String ext) {
+		
+		var ffmpeg = new FFMPEGHelpere()
 		var data =""
 		
 		if("M3U".equals(ext)){
@@ -101,12 +105,86 @@ class ModelToModel {
 			
 			
 		}
+		if ("txt".equals(ext)){
+			
+				val vids = playlist.vids
+			for(MediaFile f : vids){
+				
+				data +="file '"+f.location+"'"+'\n'
+				
+			}
+			
+		}
 		data
 		
 	}
+	
+	def static modelToPlayListWithDuration() {
+		var ffmpeg = new FFMPEGHelpere()
+	
+		// loading
+		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
+			
+
+		val playlist = PlayListFactory.eINSTANCE.createPlayList
+		for(videoseq : videoGen.videoseqs){
+		//videoGen.videoseqs.forEach[videoseq | 
+			if (videoseq instanceof MandatoryVideoSeq) {
+			val desc = (videoseq as MandatoryVideoSeq).description
+			val mediaFile = PlayListFactory.eINSTANCE.createMediaFile
+				mediaFile.location = desc.location
+				
+				ffmpeg.executeCmd(desc.location.toString,"v1")
+				
+			    playlist.vids.add(mediaFile);
+			  
+				}
+			
+			else if (videoseq instanceof OptionalVideoSeq) {
+				val desc = (videoseq as OptionalVideoSeq).description
+				
+				val i = new Random().nextInt(2)
+				if(i==0){
+				
+				val mediaFile = PlayListFactory.eINSTANCE.createMediaFile
+				mediaFile.location = desc.location
+				ffmpeg.executeCmd(desc.location.toString,"v2")
+			    playlist.vids.add(mediaFile);
+				
+					
+				}
+			}
+			else {
+				val altvid = (videoseq as AlternativeVideoSeq)
+				 
+				val j = new Random().nextInt(altvid.videodescs.size)
+				val vid = altvid.videodescs.get(j)
+				
+				val mediaFile = PlayListFactory.eINSTANCE.createMediaFile
+				mediaFile.location = vid.location
+				ffmpeg.executeCmd(vid.location.toString,"v3")
+			    playlist.vids.add(mediaFile);
+				
+			
+			}
+			
+			}
+		
+	//val playlistOnString = convertPlaylistIntoFormat(playlist, "M3U")
+	val playlistOnString = convertPlaylistIntoFormat(playlist, "txt")
+		
+	// var file = new File ("playlist.m3u")
+	var file = new File ("ffmpeg.txt")
+	 var filewriter = new FileWriter(file)
+      filewriter.write( playlistOnString );
+      filewriter.flush
+      filewriter.close 
+			
+	}
+	
 
 def public static void main(String[] args){
 	
-	 modelToPlayList()
+	 modelToPlayListWithDuration()
 }
 }
