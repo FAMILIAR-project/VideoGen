@@ -295,10 +295,11 @@ def verify(){
 	  
 	}
 		
-	//Q12
+	//Q12+generation video concatener
 	}
 	def void printToHTMLWithRandom(VideoGeneratorModel playlist) {
 		val writer=new PrintWriter("PageHTMLvideogen2.html")
+		val writer2=new PrintWriter("ffmpegConcatFile")
 			val random=new Random()
 		//var numSeq = 1
 		println("<ul>")
@@ -308,7 +309,8 @@ def verify(){
 				val desc = (videoseq as MandatoryVideoSeq).description.location
 				creationVignette(desc,calculDuree(desc).intValue/2,desc+".png")
 				println ("<li>" +"<img src="+desc+".png/></li>")  	
-				writer.write("<li>" +"Mandatory<img src="+desc+".png/></li>\n")			
+				writer.write("<li>" +"Mandatory<img src="+desc+".png/></li>\n")		
+				writer2.write("file \'"+desc+"\'\n")
 			}
 			else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description.location
@@ -317,7 +319,8 @@ def verify(){
 				 if(proba==1){
 					creationVignette(desc,calculDuree(desc).intValue/2,desc+".png")
 				  println ("<li>" +"<img src="+desc+".png/></li>")	
-				writer.write("<li>" +"Optional<img src="+desc+".png/></li>\n")	  
+				writer.write("<li>" +"Optional<img src="+desc+".png/></li>\n")
+				writer2.write("file \'"+desc+"\'\n")	  
 				 }
 			}
 			else {
@@ -332,12 +335,21 @@ def verify(){
 					creationVignette(vaa.location,calculDuree(vaa.location).intValue/2,vaa.location+".png")
 				  println ("<li>" +"<img src="+vaa.location+".png/></li>")  	
 				writer.write("<li>" +"Alternative<img src="+vaa.location+".png/></li>\n")	
+				writer2.write("file \'"+vaa.location+"\'\n")
 				}
 					println ("</ul>")	
 				writer.write("</ul>\n")	
 		]
 		println("</ul>")
 		writer.write("<ul>\n")	
+		writer.close()
+		writer2.close
+		
+		var cmd = "ffmpeg -f concat -i ffmpegConcatFile -c copy output.mp4" 
+		var p =Runtime.runtime.exec(cmd)
+		while(p.alive)
+			if(!p.alive)
+				return	
 		writer.close()}
 	
 	//QSUP1
