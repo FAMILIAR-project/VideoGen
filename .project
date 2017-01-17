@@ -3,6 +3,7 @@
 	<name>VideoGen</name>
 	<comment></comment>
 	<projects>
+		<project>org.xtext.example.videogenerator</project>
 	</projects>
 	<buildSpec>
 	</buildSpec>

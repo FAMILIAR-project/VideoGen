@@ -1,14 +1,18 @@
 package m3umodel;
 
+import M3UPlaylist.Entry;
+import M3UPlaylist.Playlist;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.function.Consumer;
 import m3umodel.SequenceGenerator;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
@@ -74,9 +78,14 @@ public class VideoGenerator {
     URI _createURI_2 = URI.createURI("foo2bis.videogen");
     this.saveVideoGenerator(_createURI_2, videoGen);
     SequenceGenerator _sequenceGenerator = new SequenceGenerator(videoGen);
-    ArrayList<String> finalVideo = _sequenceGenerator.getSequence();
-    for (final String f : finalVideo) {
-      InputOutput.<String>print((f + "\n"));
+    Playlist finalPlaylist = _sequenceGenerator.getPlaylist();
+    Diagnostic validate = Diagnostician.INSTANCE.validate(finalPlaylist);
+    int _severity = validate.getSeverity();
+    Assert.assertEquals(Diagnostic.OK, _severity);
+    EList<Entry> entries = finalPlaylist.getEntries();
+    for (final Entry e : entries) {
+      String _path = e.getPath();
+      InputOutput.<String>println(_path);
     }
   }
   

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<M3UP:Playlist
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:M3UP="http://m3uplaylist.com/"
+    xsi:schemaLocation="http://m3uplaylist.com/ playlist.ecore">
+  <Entries path="video1"/>
+  <Entries path="video2"/>
+</M3UP:Playlist>

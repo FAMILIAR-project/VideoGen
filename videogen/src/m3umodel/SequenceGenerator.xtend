@@ -7,7 +7,9 @@ import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq
 import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq
 import java.util.Random
-
+import M3UPlaylist.Playlist
+import M3UPlaylist.M3UPlaylistFactory
+import M3UPlaylist.Entry
 
 /**
  * Sequence generator
@@ -24,6 +26,8 @@ class SequenceGenerator {
 	private ArrayList<String> sequence=new ArrayList<String>()
 	// VideoGen Model
 	private VideoGeneratorModel data;
+	// M3UPlaylist model
+	private Playlist playlist=M3UPlaylistFactory.eINSTANCE.createPlaylist()
 	
 	
 	/**
@@ -39,13 +43,19 @@ class SequenceGenerator {
 			appendVideo(o.location)
 		}
 		buildAlternative() // Build alternative
+		
+		for(file:sequence){
+			var Entry entry=M3UPlaylistFactory.eINSTANCE.createEntry()
+			entry.path=file
+			playlist.entries.add(entry)
+		}
 	}
 	
 	/**
 	 * Sequence getter
 	 */
-	def ArrayList<String> getSequence(){
-		sequence
+	def Playlist getPlaylist(){
+		playlist
 	}
 	
 	/**
@@ -105,7 +115,7 @@ class SequenceGenerator {
 	 * Add location to the sequence
 	 */
 	def void appendVideo(String file){
-		sequence.add("file \""+file+"\"")
+		sequence.add(file)
 	}
 
 	/**

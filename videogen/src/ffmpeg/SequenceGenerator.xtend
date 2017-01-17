@@ -49,6 +49,17 @@ class SequenceGenerator {
 	}
 	
 	/**
+	 * Get plain text
+	 */
+	def String getText(){
+		var String o=new String()
+		for(e:sequence){
+			o+=e+"\n"
+		}
+		o
+	}
+	
+	/**
 	 * Build alternative entries
 	 */
 	def void buildAlternative(){

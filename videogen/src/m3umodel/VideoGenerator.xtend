@@ -13,6 +13,10 @@ import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 import static org.junit.Assert.*;
 import java.util.ArrayList
 import org.xtext.example.mydsl.videoGen.VideoDescription
+import org.eclipse.emf.common.util.Diagnostic
+import org.eclipse.emf.ecore.util.Diagnostician
+import M3UPlaylist.M3UPlaylistFactory
+import M3UPlaylist.Entry
 
 /**
  * Generate ffmpeg
@@ -52,13 +56,19 @@ public class VideoGenerator {
 		saveVideoGenerator(URI.createURI("foo2bis.xmi"), videoGen)
 		saveVideoGenerator(URI.createURI("foo2bis.videogen"), videoGen)
 		
-		// Build sequence
-		var finalVideo=(new SequenceGenerator(videoGen)).getSequence()
+		// Build playlist
+		var finalPlaylist=(new SequenceGenerator(videoGen)).getPlaylist()
+
+		var Diagnostic validate = Diagnostician.INSTANCE.validate(finalPlaylist);
+	
+	  	assertEquals(Diagnostic.OK, validate.getSeverity());
+	
+		var entries=finalPlaylist.getEntries()
 		
-		// Print sequence
-		for(f: finalVideo){
-			print(f+"\n")
-		}	
+		for(e:entries){
+			println(e.path)
+		}
+			
 	}
 	
 	

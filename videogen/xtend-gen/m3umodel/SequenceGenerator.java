@@ -1,5 +1,8 @@
 package m3umodel;
 
+import M3UPlaylist.Entry;
+import M3UPlaylist.M3UPlaylistFactory;
+import M3UPlaylist.Playlist;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.function.Consumer;
@@ -26,6 +29,8 @@ public class SequenceGenerator {
   
   private VideoGeneratorModel data;
   
+  private Playlist playlist = M3UPlaylistFactory.eINSTANCE.createPlaylist();
+  
   /**
    * Constructor
    */
@@ -39,13 +44,21 @@ public class SequenceGenerator {
       this.appendVideo(_location);
     }
     this.buildAlternative();
+    for (final String file : this.sequence) {
+      {
+        Entry entry = M3UPlaylistFactory.eINSTANCE.createEntry();
+        entry.setPath(file);
+        EList<Entry> _entries = this.playlist.getEntries();
+        _entries.add(entry);
+      }
+    }
   }
   
   /**
    * Sequence getter
    */
-  public ArrayList<String> getSequence() {
-    return this.sequence;
+  public Playlist getPlaylist() {
+    return this.playlist;
   }
   
   /**
@@ -119,7 +132,7 @@ public class SequenceGenerator {
    * Add location to the sequence
    */
   public void appendVideo(final String file) {
-    this.sequence.add((("file \"" + file) + "\""));
+    this.sequence.add(file);
   }
   
   /**

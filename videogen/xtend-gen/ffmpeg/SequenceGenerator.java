@@ -49,6 +49,22 @@ public class SequenceGenerator {
   }
   
   /**
+   * Get plain text
+   */
+  public String getText() {
+    String _xblockexpression = null;
+    {
+      String o = new String();
+      for (final String e : this.sequence) {
+        String _o = o;
+        o = (_o + (e + "\n"));
+      }
+      _xblockexpression = o;
+    }
+    return _xblockexpression;
+  }
+  
+  /**
    * Build alternative entries
    */
   public void buildAlternative() {
