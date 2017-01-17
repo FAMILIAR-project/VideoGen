@@ -1,9 +1,18 @@
 package fr.istic.app.web.rest;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,10 +33,29 @@ public class GenerateResource {
     private GenerateRepository generateRepository;
 
     @RequestMapping(value = "/random",
-        method = RequestMethod.GET)
-    public void generate() {
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<String> generate() {
         PlaylistDemonstrator playlistDemonstrator = new PlaylistDemonstrator();
         playlistDemonstrator.videogenToPlaylist();
+        
+        List<String> videos = new ArrayList<String>();
+        
+        try {
+        	BufferedReader br = new BufferedReader(new FileReader("test.m3u"));
+            String line = br.readLine();
+
+            while (line != null) {
+                videos.add(line);
+                line = br.readLine();
+            }
+            
+            br.close();
+        }
+        catch(IOException io){
+        }
+        //return JSON
+        return videos;
     }
 
 //    /**

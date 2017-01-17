@@ -73,29 +73,42 @@ public class PlaylistDemonstrator {
           VideoDescription _description = ((MandatoryVideoSeq) videoseq).getDescription();
           String _location = _description.getLocation();
           location = _location;
+          Video video = playlistFactory.createVideo();
+          video.setLocation(location);
+          EList<Video> _videos = playlist.getVideos();
+          _videos.add(video);
         } else {
           if ((videoseq instanceof OptionalVideoSeq)) {
-            VideoDescription _description_1 = ((OptionalVideoSeq) videoseq).getDescription();
-            String _location_1 = _description_1.getLocation();
-            location = _location_1;
+            double _random = Math.random();
+            double _multiply = (_random * 2);
+            final int random = ((int) _multiply);
+            if ((random == 1)) {
+              VideoDescription _description_1 = ((OptionalVideoSeq) videoseq).getDescription();
+              String _location_1 = _description_1.getLocation();
+              location = _location_1;
+              Video video_1 = playlistFactory.createVideo();
+              video_1.setLocation(location);
+              EList<Video> _videos_1 = playlist.getVideos();
+              _videos_1.add(video_1);
+            }
           } else {
             final EList<VideoDescription> alts = ((AlternativeVideoSeq) videoseq).getVideodescs();
-            for (final VideoDescription alt : alts) {
-              String _location_2 = alt.getLocation();
-              location = _location_2;
-            }
+            double _random_1 = Math.random();
+            int _size_2 = alts.size();
+            double _multiply_1 = (_random_1 * _size_2);
+            final int random_1 = ((int) _multiply_1);
+            VideoDescription _get = alts.get(random_1);
+            String _location_2 = _get.getLocation();
+            location = _location_2;
+            Video video_2 = playlistFactory.createVideo();
+            video_2.setLocation(location);
+            EList<Video> _videos_2 = playlist.getVideos();
+            _videos_2.add(video_2);
           }
         }
-        Video video = playlistFactory.createVideo();
-        video.setLocation(location);
-        EList<Video> _videos = playlist.getVideos();
-        _videos.add(video);
       }
     }
     Assert.assertNotNull(playlist);
-    EList<Video> _videos = playlist.getVideos();
-    int _size_2 = _videos.size();
-    Assert.assertEquals(7, _size_2);
     this.playlist2text(playlist);
   }
   

@@ -14,13 +14,18 @@
 
         vm.alerts = [];
 
+        vm.videos = [];
+
         function generateRandom() {
             $http({
                 method: 'GET',
                 url: '/api/random'
-            }).success(function(result){
+            }).success(function(result) {
+                console.log(result);
+                vm.videos = result;
                 console.log("generateRandom");
-                vm.alerts.push({ type: 'success', msg: 'Your video has been processed !' });
+
+                vm.isGenerated = true;
             }).error(function(error) {
                 console.log("error");
             });

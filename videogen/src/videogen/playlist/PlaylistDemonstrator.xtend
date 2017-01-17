@@ -41,24 +41,32 @@ class PlaylistDemonstrator {
 		for(videoseq : videoseqs) {
 			var location = ''
 			if (videoseq instanceof MandatoryVideoSeq) {
-				location = (videoseq as MandatoryVideoSeq).description.location			
+				location = (videoseq as MandatoryVideoSeq).description.location
+				var video = playlistFactory.createVideo
+				video.location = location
+				playlist.videos.add(video)
 			}
 			else if (videoseq instanceof OptionalVideoSeq) {
-				location = (videoseq as OptionalVideoSeq).description.location
+				val random = (Math.random() * 2) as int
+				if(random == 1) {
+					location = (videoseq as OptionalVideoSeq).description.location
+					var video = playlistFactory.createVideo
+					video.location = location
+					playlist.videos.add(video)
+				}
 			}
 			else {
 				val alts = (videoseq as AlternativeVideoSeq).videodescs
-				for(alt : alts) {
-					location = alt.location
-				}
+				val random = (Math.random() * alts.size) as int
+				location = alts.get(random).location;
+				
+				var video = playlistFactory.createVideo
+				video.location = location
+				playlist.videos.add(video)
 			}
-			var video = playlistFactory.createVideo
-			video.location = location
-			playlist.videos.add(video)
 		}
 		
 		assertNotNull(playlist)
-		assertEquals(7, playlist.videos.size)
 		
 		
 		playlist2text(playlist)

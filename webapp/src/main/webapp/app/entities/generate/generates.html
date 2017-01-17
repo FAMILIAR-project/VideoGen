@@ -6,7 +6,11 @@
             <tab heading="Random Generator">
                 <div style="width:100%;text-align:center;">
                     <button style="margin:15px 0px 15px 0px;" ng-click="vm.generateRandom()">Generate a random video !</button>
-                    {{vm.x}}
+                </div>
+
+                   <video ng-repeat="video in vm.videos track by $index" id="video" width="320" height="240" controls>
+                       <source src="{{video}}" type="video/mp4">
+                   </video >
                 </div>
             </tab>
         </tabset>
