@@ -1,23 +1,17 @@
 package videogen
 
-import java.util.HashMap
+
 import org.eclipse.emf.common.util.URI
-import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.junit.Test
 import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated
 import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq
 import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq
 import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
-
-import static org.junit.Assert.*
-
 import java.util.ArrayList
 import java.io.PrintWriter
 import java.util.Random
 import playlist.PlaylistFactory
-
 import playlist.Playlist
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -31,22 +25,16 @@ class transformModelToText {
 //	Q1
 	def transform(){
 	var videoGen = loadVideoGenerator(URI.createURI("foo1.videogen")) 
-     val writer=new PrintWriter("/home/yousra/workspaceIDM/VideoGen/videogen/src/videogen/videogenresult.txt","UTF-8")
+     val writer=new PrintWriter("videogenresult.txt","UTF-8")
 	  val random=new Random()
-	  random.nextInt(101)	
-				// writer.println(random.nextInt(101))	
-		
-		videoGen.videoseqs.forEach[videoseq |
+	 videoGen.videoseqs.forEach[videoseq |
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description.location
 				 writer.println("file"+" "+"'"+desc+"'"+"\n")				
 			}
 			else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description.location
-				//println("proba optional "+(videoseq as OptionalVideoSeq).description.probability);
-			     var proba=random.nextInt(1)
-				//if((videoseq as OptionalVideoSeq).description.probability == 0)
-					//(videoseq as OptionalVideoSeq).description.probability = 50
+				 var proba=random.nextInt(1)
 				if(proba==1)
 				 	writer.println("file"+" "+"'"+desc+"'"+"\n")	
 				 	println("proba "+desc+" "+proba)
@@ -56,20 +44,12 @@ class transformModelToText {
 				var l = new ArrayList()
 				var proba = random.nextInt(altvid.videodescs.size)
 				val vaa=altvid.videodescs.get(proba)
-				//var cumulproba = 100
-				
-					 writer.println("file"+" "+"'"+vaa.location+"'"+"\n")		
+				writer.println("file"+" "+"'"+vaa.location+"'"+"\n")		
 				}
 			
 		]
-	
-	  
-		
-		writer.close()
-			
-		
-		
-	}
+	writer.close()
+			}
 	
 	static var i = 0;
 	
@@ -113,7 +93,7 @@ class transformModelToText {
 			
 		]
 		playlist
-		// la dernière instruction est un return
+		
 	}
 	//Q3
 	def transformationPlaylistToFileM3U(Playlist playlist){
@@ -121,8 +101,7 @@ class transformModelToText {
 		val writer=new PrintWriter("result.m3u")
 		for(element : playlist.videos)
 			writer.write(element.location+"\n")
-			
-		writer.close()
+			writer.close()
 	}
 	//Q4
 	def transformationPlaylistToFileffmpeg(Playlist playlist){
@@ -144,46 +123,8 @@ class transformModelToText {
 		writer.write("#EXT-X-ENDLIST")	
 		writer.close()
 	}
-	//Q7-1
-	def transformAjoutDuree(){
-	var videoGen = loadVideoGenerator(URI.createURI("foo1.videogen")) 
-  
-	  val random=new Random()
-	  random.nextInt(101)	
-				// writer.println(random.nextInt(101))	
-		
-		videoGen.videoseqs.forEach[videoseq |
-			if (videoseq instanceof MandatoryVideoSeq) {
-				val desc = (videoseq as MandatoryVideoSeq).description.location
-				var duree=(videoseq as MandatoryVideoSeq).description.duration
-				 duree=calculDuree(desc).intValue()
-				
-	             			
-			}
-			else if (videoseq instanceof OptionalVideoSeq) {
-				val desc = (videoseq as OptionalVideoSeq).description.location
-				calculDuree(desc)
-				//println("proba optional "+(videoseq as OptionalVideoSeq).description.probability);
-			     var proba=random.nextInt(1)
-				//if((videoseq as OptionalVideoSeq).description.probability == 0)
-					//(videoseq as OptionalVideoSeq).description.probability = 50
-				
-			}
-			else {
-				val altvid = (videoseq as AlternativeVideoSeq)
-				var l = new ArrayList()
-				var proba = random.nextInt(altvid.videodescs.size)
-				val vaa=altvid.videodescs.get(proba)
-				//var cumulproba = 100
-				
-					 	
-				}
-			
-		]
-			
-		
-	}
-	//Q7-2
+	
+	//Q7
 	def playlistWithDuration(){
 		val playlist = PlaylistFactory.eINSTANCE.createPlaylist;
 		
@@ -228,11 +169,10 @@ class transformModelToText {
 			
 		]
 		playlist
-		// la dernière instruction est un return
+	
 	}
 	//Q7
 	def calculDuree(String videoLocation){
-//		println("duration : "+videoLocation)
 		var cmd = "ffprobe -v error -select_streams v:0 -show_entries stream=duration -of default=noprint_wrappers=1:nokey=1 -i " +videoLocation 
 		var p =Runtime.runtime.exec(cmd)
 		var reader= new BufferedReader(new InputStreamReader(p.inputStream))
@@ -312,18 +252,16 @@ class transformModelToText {
 //Q11
 def verify(){
 	var videoGen = loadVideoGenerator(URI.createURI("foo1.videogen")) 
-   val random=new Random()
-	  random.nextInt(101)
-	  var idOp=""
+      var idOp=""
 	  var idAl=""
 	  var idM=""
-	 // val idM=1	
-				// writer.println(random.nextInt(101))	
-		
+			
 		for(videoseq :videoGen.videoseqs){
 			if (videoseq instanceof MandatoryVideoSeq) {
 			idM = (videoseq as MandatoryVideoSeq).description.videoid
 				 if(idM.isNullOrEmpty) idM = genID()
+				  if((idM==idOp || idM==idAl))
+				 	  throw new Exception()
 							
 			}
 			else if (videoseq instanceof OptionalVideoSeq) {
@@ -332,12 +270,9 @@ def verify(){
 			    
 				 	 idOp=(videoseq as OptionalVideoSeq).description.videoid
 				 	  if(idOp.isNullOrEmpty) idOp = genID()
-				 	  if(probabilite>1)
+				 	  if((idOp==idM || idOp==idAl)|| probabilite>1)
 				 	  throw new Exception()
-				 	 
-			
-			
-			}
+				 			}
 			else {
 			
 				var totalProb=0
@@ -346,7 +281,7 @@ def verify(){
 				 idAl= vdesc.videoid
 				 val probabilite=vdesc.probability
 				  if(idAl.isNullOrEmpty) idAl = genID()
-				  if(idAl==idOp || idAl==idM || idM==idOp)
+				  if(idAl==idOp || idAl==idM)
 				  	throw new Exception()
 				  
 				 totalProb+=probabilite
@@ -414,7 +349,7 @@ def verify(){
 		 
 		
 		}
-//QSUP3
+//QSUP3-1
 	def createFeatureModel(){
 		var videoGen = loadVideoGenerator(URI.createURI("foo1.videogen"))
 		 val random=new Random() 
@@ -478,11 +413,8 @@ def verify(){
 			writer.close()
 		
 		
-	}//fmVideoGen=FM(VideoGen:v1[v2]v3;v3:(v30|v31|v32);v4;v4:(v40|v41);v5[v6]v7;v7:(v71);
-//fmVideoGen=FM(VideoGen:v1[v2]v3v4v5[v6]v7;v3:(v30|v31|v32);v4:(v40|v41);v7:(v71);
-	//writer.write(c1+c2+c3+c4+c5+")")
-	//writer.write(c1+c2+c3+c4)
-	
+	}
+	//QSUP3-2
 		def createFeatureModel2(){
 		var videoGen = loadVideoGenerator(URI.createURI("foo1.videogen"))
 		 val random=new Random() 
@@ -528,42 +460,66 @@ def verify(){
 				if(videoseq instanceof AlternativeVideoSeq){
 					val altvid = (videoseq as AlternativeVideoSeq)
 				c8=altvid.videoid
+				var count=altvid.videodescs.size
 				if(c8.isNullOrEmpty)
 				c8=genID()
+				if(altvid.videodescs.size>1){
 				c9=";"+c8+":"+"("
 				writer.write(c9)
-				 	var count=altvid.videodescs.size
+				 	
 				 for (vdesc : altvid.videodescs) {
 				 	
-					if(count > 1){
+					  if(count>1){
 			 	         
 					 	c10=vdesc.videoid
 					 	
 					 	if(c10.isNullOrEmpty)
 					 	c10=genID()
 					 	writer.write(c10+"|")
-					 	}
-				 	else {
-				 
-				 	
-					 	c10=vdesc.videoid
+					 	
+					 	
+				 	}
+				 	else{
+				 		c10=vdesc.videoid
 					 	
 					 	if(c10.isNullOrEmpty)
 					 	
 					 	c10=genID()
 					 	writer.write(c10+")")
+				 	}
+				 	count = (count -1)
+				 	
+				 	}
+				 	}
+				 
+				 	else{
+				 		c9=";"+c8+":"
+				writer.write(c9)
+				 		for (vdesc : altvid.videodescs){
+					 	c10=vdesc.videoid
+					 	
+					 	if(c10.isNullOrEmpty)
+					 	
+					 	c10=genID()
+					 	writer.write(c10)
 					 	}
-					 	count = (count -1)
+					 	
+					 	}
+					 
 					}
 					
-					
+				
+			
 				}
-					
-					}
 				writer.write(";)")
-			writer.close()
+				writer.close()	
+				}
+				
+					
+					
+				
+	
 		
-		
-	}
+	
 	  	  
 }

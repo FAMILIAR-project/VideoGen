@@ -47,9 +47,8 @@ public class transformModelToText {
     try {
       URI _createURI = URI.createURI("foo1.videogen");
       VideoGeneratorModel videoGen = this.loadVideoGenerator(_createURI);
-      final PrintWriter writer = new PrintWriter("/home/yousra/workspaceIDM/VideoGen/videogen/src/videogen/videogenresult.txt", "UTF-8");
+      final PrintWriter writer = new PrintWriter("videogenresult.txt", "UTF-8");
       final Random random = new Random();
-      random.nextInt(101);
       EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
       final Consumer<VideoSeq> _function = (VideoSeq videoseq) -> {
         if ((videoseq instanceof MandatoryVideoSeq)) {
@@ -194,41 +193,6 @@ public class transformModelToText {
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
-  }
-  
-  public void transformAjoutDuree() {
-    URI _createURI = URI.createURI("foo1.videogen");
-    VideoGeneratorModel videoGen = this.loadVideoGenerator(_createURI);
-    final Random random = new Random();
-    random.nextInt(101);
-    EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
-    final Consumer<VideoSeq> _function = (VideoSeq videoseq) -> {
-      if ((videoseq instanceof MandatoryVideoSeq)) {
-        VideoDescription _description = ((MandatoryVideoSeq) videoseq).getDescription();
-        final String desc = _description.getLocation();
-        VideoDescription _description_1 = ((MandatoryVideoSeq) videoseq).getDescription();
-        int duree = _description_1.getDuration();
-        double _calculDuree = this.calculDuree(desc);
-        int _intValue = Double.valueOf(_calculDuree).intValue();
-        duree = _intValue;
-      } else {
-        if ((videoseq instanceof OptionalVideoSeq)) {
-          VideoDescription _description_2 = ((OptionalVideoSeq) videoseq).getDescription();
-          final String desc_1 = _description_2.getLocation();
-          this.calculDuree(desc_1);
-          int proba = random.nextInt(1);
-        } else {
-          final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
-          ArrayList<Object> l = new ArrayList<Object>();
-          EList<VideoDescription> _videodescs = altvid.getVideodescs();
-          int _size = _videodescs.size();
-          int proba_1 = random.nextInt(_size);
-          EList<VideoDescription> _videodescs_1 = altvid.getVideodescs();
-          final VideoDescription vaa = _videodescs_1.get(proba_1);
-        }
-      }
-    };
-    _videoseqs.forEach(_function);
   }
   
   public Playlist playlistWithDuration() {
@@ -446,8 +410,6 @@ public class transformModelToText {
     try {
       URI _createURI = URI.createURI("foo1.videogen");
       VideoGeneratorModel videoGen = this.loadVideoGenerator(_createURI);
-      final Random random = new Random();
-      random.nextInt(101);
       String idOp = "";
       String idAl = "";
       String idM = "";
@@ -462,6 +424,9 @@ public class transformModelToText {
             String _genID = this.genID();
             idM = _genID;
           }
+          if ((Objects.equal(idM, idOp) || Objects.equal(idM, idAl))) {
+            throw new Exception();
+          }
         } else {
           if ((videoseq instanceof OptionalVideoSeq)) {
             VideoDescription _description_1 = ((OptionalVideoSeq) videoseq).getDescription();
@@ -474,7 +439,7 @@ public class transformModelToText {
               String _genID_1 = this.genID();
               idOp = _genID_1;
             }
-            if ((probabilite > 1)) {
+            if (((Objects.equal(idOp, idM) || Objects.equal(idOp, idAl)) || (probabilite > 1))) {
               throw new Exception();
             }
           } else {
@@ -491,7 +456,7 @@ public class transformModelToText {
                   String _genID_2 = this.genID();
                   idAl = _genID_2;
                 }
-                if (((Objects.equal(idAl, idOp) || Objects.equal(idAl, idM)) || Objects.equal(idM, idOp))) {
+                if ((Objects.equal(idAl, idOp) || Objects.equal(idAl, idM))) {
                   throw new Exception();
                 }
                 int _talProb = totalProb;
@@ -739,38 +704,59 @@ public class transformModelToText {
           final AlternativeVideoSeq altvid_1 = ((AlternativeVideoSeq) videoseq_1);
           String _videoid_3 = altvid_1.getVideoid();
           c8 = _videoid_3;
+          EList<VideoDescription> _videodescs = altvid_1.getVideodescs();
+          int count = _videodescs.size();
           boolean _isNullOrEmpty_3 = StringExtensions.isNullOrEmpty(c8);
           if (_isNullOrEmpty_3) {
             String _genID_3 = this.genID();
             c8 = _genID_3;
           }
-          c9 = (((";" + c8) + ":") + "(");
-          writer.write(c9);
-          EList<VideoDescription> _videodescs = altvid_1.getVideodescs();
-          int count = _videodescs.size();
           EList<VideoDescription> _videodescs_1 = altvid_1.getVideodescs();
-          for (final VideoDescription vdesc : _videodescs_1) {
-            {
-              if ((count > 1)) {
-                String _videoid_4 = vdesc.getVideoid();
+          int _size = _videodescs_1.size();
+          boolean _greaterThan = (_size > 1);
+          if (_greaterThan) {
+            c9 = (((";" + c8) + ":") + "(");
+            writer.write(c9);
+            EList<VideoDescription> _videodescs_2 = altvid_1.getVideodescs();
+            for (final VideoDescription vdesc : _videodescs_2) {
+              {
+                if ((count > 1)) {
+                  String _videoid_4 = vdesc.getVideoid();
+                  c10 = _videoid_4;
+                  boolean _isNullOrEmpty_4 = StringExtensions.isNullOrEmpty(c10);
+                  if (_isNullOrEmpty_4) {
+                    String _genID_4 = this.genID();
+                    c10 = _genID_4;
+                  }
+                  writer.write((c10 + "|"));
+                } else {
+                  String _videoid_5 = vdesc.getVideoid();
+                  c10 = _videoid_5;
+                  boolean _isNullOrEmpty_5 = StringExtensions.isNullOrEmpty(c10);
+                  if (_isNullOrEmpty_5) {
+                    String _genID_5 = this.genID();
+                    c10 = _genID_5;
+                  }
+                  writer.write((c10 + ")"));
+                }
+                count = (count - 1);
+              }
+            }
+          } else {
+            c9 = ((";" + c8) + ":");
+            writer.write(c9);
+            EList<VideoDescription> _videodescs_3 = altvid_1.getVideodescs();
+            for (final VideoDescription vdesc_1 : _videodescs_3) {
+              {
+                String _videoid_4 = vdesc_1.getVideoid();
                 c10 = _videoid_4;
                 boolean _isNullOrEmpty_4 = StringExtensions.isNullOrEmpty(c10);
                 if (_isNullOrEmpty_4) {
                   String _genID_4 = this.genID();
                   c10 = _genID_4;
                 }
-                writer.write((c10 + "|"));
-              } else {
-                String _videoid_5 = vdesc.getVideoid();
-                c10 = _videoid_5;
-                boolean _isNullOrEmpty_5 = StringExtensions.isNullOrEmpty(c10);
-                if (_isNullOrEmpty_5) {
-                  String _genID_5 = this.genID();
-                  c10 = _genID_5;
-                }
-                writer.write((c10 + ")"));
+                writer.write(c10);
               }
-              count = (count - 1);
             }
           }
         }
