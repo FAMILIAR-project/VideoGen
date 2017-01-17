@@ -14,11 +14,12 @@ class Main {
 //		vv.transformationPlaylistToFileffmpeg(playlist)
 //		Q5
 //	vv.playlistVignette(playlist);
-	var videoGen = vv.loadVideoGenerator(URI.createURI("foo1.videogen"))
+	//var videoGen = vv.loadVideoGenerator(URI.createURI("foo1.videogen"))
 //	vv.printToHTML(videoGen);
 	
 	//Q12 genere une pageHTML
-	vv.printToHTMLWithRandom(videoGen)
+	//vv.printToHTMLWithRandom(videoGen)
+	vv.createFeatureModel()
 	}
 	
 }

@@ -303,10 +303,6 @@ public class transformModelToText {
     try {
       double _xblockexpression = (double) 0;
       {
-<<<<<<< HEAD
-        InputOutput.<String>println(("duration : " + videoLocation));
-=======
->>>>>>> c5bf08b... fix vignette generation
         String cmd = ("ffprobe -v error -select_streams v:0 -show_entries stream=duration -of default=noprint_wrappers=1:nokey=1 -i " + videoLocation);
         Runtime _runtime = Runtime.getRuntime();
         Process p = _runtime.exec(cmd);
@@ -386,11 +382,7 @@ public class transformModelToText {
           int _divide = (_intValue / 2);
           this.creationVignette(desc, _divide, (desc + ".png"));
           InputOutput.<String>println(((("<li>" + "<img src=") + desc) + ".png/></li>"));
-<<<<<<< HEAD
-          writer.write(((("<li>" + "<img src=") + desc) + ".png/></li>\n"));
-=======
           writer.write(((("<li>" + "Mandatory<img src=") + desc) + ".png/></li>\n"));
->>>>>>> c5bf08b... fix vignette generation
         } else {
           if ((videoseq instanceof OptionalVideoSeq)) {
             VideoDescription _description_1 = ((OptionalVideoSeq) videoseq).getDescription();
@@ -400,11 +392,7 @@ public class transformModelToText {
             int _divide_1 = (_intValue_1 / 2);
             this.creationVignette(desc_1, _divide_1, (desc_1 + ".png"));
             InputOutput.<String>println(((("<li>" + "<img src=") + desc_1) + ".png/></li>"));
-<<<<<<< HEAD
-            writer.write(((("<li>" + "<img src=") + desc_1) + ".png/></li>\n"));
-=======
             writer.write(((("<li>" + "Optional<img src=") + desc_1) + ".png/></li>\n"));
->>>>>>> c5bf08b... fix vignette generation
           } else {
             final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
             EList<VideoDescription> _videodescs = altvid.getVideodescs();
@@ -430,11 +418,7 @@ public class transformModelToText {
                 String _plus_2 = (_plus_1 + ".png/></li>");
                 InputOutput.<String>println(_plus_2);
                 String _location_4 = vdesc.getLocation();
-<<<<<<< HEAD
-                String _plus_3 = (("<li>" + "<img src=") + _location_4);
-=======
                 String _plus_3 = (("<li>" + "Alternative<img src=") + _location_4);
->>>>>>> c5bf08b... fix vignette generation
                 String _plus_4 = (_plus_3 + ".png/></li>\n");
                 writer.write(_plus_4);
               }
@@ -594,6 +578,101 @@ public class transformModelToText {
       _videoseqs.forEach(_function);
       InputOutput.<String>println("</ul>");
       writer.write("<ul>\n");
+      writer.close();
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  public void createVideoGen(final String path) {
+    try {
+      final PrintWriter writer = new PrintWriter("creationAutomatique.videogen");
+      String cmd = "";
+      Runtime _runtime = Runtime.getRuntime();
+      Process execCommande = _runtime.exec(cmd);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  public void createFeatureModel() {
+    try {
+      URI _createURI = URI.createURI("foo1.videogen");
+      VideoGeneratorModel videoGen = this.loadVideoGenerator(_createURI);
+      final Random random = new Random();
+      final PrintWriter writer = new PrintWriter("fmVideoGen.fm");
+      String c1 = "";
+      String c2 = "";
+      String c3 = "";
+      String c4 = "";
+      String c5 = "";
+      String c6 = "";
+      c1 = "fmVideoGen=FM(VideoGen:";
+      writer.write(c1);
+      EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
+      for (final VideoSeq videoseq : _videoseqs) {
+        if ((videoseq instanceof MandatoryVideoSeq)) {
+          VideoDescription _description = ((MandatoryVideoSeq) videoseq).getDescription();
+          String _videoid = _description.getVideoid();
+          c2 = _videoid;
+          boolean _isNullOrEmpty = StringExtensions.isNullOrEmpty(c2);
+          if (_isNullOrEmpty) {
+            String _genID = this.genID();
+            c2 = _genID;
+          }
+          writer.write(c2);
+        } else {
+          if ((videoseq instanceof OptionalVideoSeq)) {
+            VideoDescription _description_1 = ((OptionalVideoSeq) videoseq).getDescription();
+            String _videoid_1 = _description_1.getVideoid();
+            c3 = _videoid_1;
+            boolean _isNullOrEmpty_1 = StringExtensions.isNullOrEmpty(c3);
+            if (_isNullOrEmpty_1) {
+              String _genID_1 = this.genID();
+              c3 = _genID_1;
+            }
+            writer.write((("[" + c3) + "]"));
+          } else {
+            final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
+            String _videoid_2 = altvid.getVideoid();
+            c6 = _videoid_2;
+            boolean _isNullOrEmpty_2 = StringExtensions.isNullOrEmpty(c6);
+            if (_isNullOrEmpty_2) {
+              String _genID_2 = this.genID();
+              c6 = _genID_2;
+            }
+            c4 = (((c6 + ";") + c6) + ":(");
+            writer.write(c4);
+            EList<VideoDescription> _videodescs = altvid.getVideodescs();
+            int count = _videodescs.size();
+            EList<VideoDescription> _videodescs_1 = altvid.getVideodescs();
+            for (final VideoDescription vdesc : _videodescs_1) {
+              {
+                if ((count > 1)) {
+                  String _videoid_3 = vdesc.getVideoid();
+                  c5 = _videoid_3;
+                  boolean _isNullOrEmpty_3 = StringExtensions.isNullOrEmpty(c5);
+                  if (_isNullOrEmpty_3) {
+                    String _genID_3 = this.genID();
+                    c5 = _genID_3;
+                  }
+                  writer.write((c5 + "|"));
+                } else {
+                  String _videoid_4 = vdesc.getVideoid();
+                  c5 = _videoid_4;
+                  boolean _isNullOrEmpty_4 = StringExtensions.isNullOrEmpty(c5);
+                  if (_isNullOrEmpty_4) {
+                    String _genID_4 = this.genID();
+                    c5 = _genID_4;
+                  }
+                  writer.write((c5 + ");"));
+                }
+                count = (count - 1);
+              }
+            }
+          }
+        }
+      }
       writer.close();
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);

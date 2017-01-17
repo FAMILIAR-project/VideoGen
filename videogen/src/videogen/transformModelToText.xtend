@@ -403,6 +403,91 @@ def verify(){
 		]
 		println("</ul>")
 		writer.write("<ul>\n")	
-		writer.close()
-}
+		writer.close()}
+	
+	//QSUP1
+	def createVideoGen(String path){
+		
+		val writer=new PrintWriter("creationAutomatique.videogen");
+		var cmd = "" 
+		var execCommande =Runtime.runtime.exec(cmd)
+		 
+		
+		}
+//QSUP3
+	def createFeatureModel(){
+		var videoGen = loadVideoGenerator(URI.createURI("foo1.videogen"))
+		 val random=new Random() 
+		val writer = new PrintWriter("fmVideoGen.fm")
+		var c1=""
+		var c2=""
+		var c3=""
+		var c4=""
+		var c5=""
+		var c6=""
+		
+		
+		 
+		 c1="fmVideoGen=FM(VideoGen:"
+     writer.write(c1)
+	 
+	 	
+				// writer.println(random.nextInt(101))	
+		
+			for(videoseq :videoGen.videoseqs){
+				if (videoseq instanceof MandatoryVideoSeq) {
+					c2=(videoseq as MandatoryVideoSeq).description.videoid
+				if(c2.isNullOrEmpty) 
+				   c2= genID()
+				writer.write(c2)     			
+			}
+			else if (videoseq instanceof OptionalVideoSeq) {
+				c3=(videoseq as OptionalVideoSeq).description.videoid
+				
+				if(c3.isNullOrEmpty)
+				
+				c3=genID()
+				writer.write("["+c3+"]")
+			}
+			else {
+				val altvid = (videoseq as AlternativeVideoSeq)
+				c6=altvid.videoid
+				if(c6.isNullOrEmpty)
+				c6=genID()
+				c4=c6+";"+c6+":("
+				writer.write(c4)
+				 	var count=altvid.videodescs.size
+				 for (vdesc : altvid.videodescs) {
+				 	
+					if(count > 1){
+			 	         
+					 	c5=vdesc.videoid
+					 	
+					 	if(c5.isNullOrEmpty)
+					 	c5=genID()
+					 	writer.write(c5+"|")
+					 	}
+				 	else {
+				 
+				 	
+					 	c5=vdesc.videoid
+					 	
+					 	if(c5.isNullOrEmpty)
+					 	
+					 	c5=genID()
+					 	writer.write(c5+");")
+					 	}
+					 	count = (count -1)
+					}
+					
+					}
+				}
+			writer.close()
+		
+		
+	}//fmVideoGen=FM(VideoGen:v1[v2]v3;v3:(v30|v31|v32);v4;v4:(v40|v41);v5[v6]v7;v7:(v71);
+//fmVideoGen=FM(VideoGen:v1[v2]v3v4v5[v6]v7;v3:(v30|v31|v32);v4:(v40|v41);v7:(v71);
+	//writer.write(c1+c2+c3+c4+c5+")")
+	//writer.write(c1+c2+c3+c4)
+	  	  
 }
