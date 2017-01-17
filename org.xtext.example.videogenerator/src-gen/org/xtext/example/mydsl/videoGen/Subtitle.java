@@ -85,12 +85,12 @@ public interface Subtitle extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Size</em>' attribute.
-   * @see #setSize(String)
+   * @see #setSize(int)
    * @see org.xtext.example.mydsl.videoGen.VideoGenPackage#getSubtitle_Size()
    * @model
    * @generated
    */
-  String getSize();
+  int getSize();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.videoGen.Subtitle#getSize <em>Size</em>}' attribute.
@@ -100,6 +100,6 @@ public interface Subtitle extends EObject
    * @see #getSize()
    * @generated
    */
-  void setSize(String value);
+  void setSize(int value);
 
 } // Subtitle

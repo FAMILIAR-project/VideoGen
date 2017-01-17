@@ -74,4 +74,4 @@ Fichier xtend de transformation:
 Et mise à jour de la grammaire
 =>VideoGenForked\org.xtext.example.videogenerator\src\org\xtext\example\mydsl\VideoGen.xtext
 
-Note: La commande d'ajout de sous-titre ne marche pas mais le principe est là (récupération d'info issue d'un model pour executer une commande)
+Note: La commande d'ajout de sous-titre ne marche pas mais le principe est là (récupération d'info issue d'un modele pour executer une commande)

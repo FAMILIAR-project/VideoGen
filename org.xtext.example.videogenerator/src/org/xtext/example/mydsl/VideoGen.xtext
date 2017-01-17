@@ -31,7 +31,7 @@ VideoDescription : 'videoseq' (videoid=ID)? location=STRING
 	RIGHT_BRACKET)?
 ;
 
-Subtitle: 'subtitle' text=STRING (LEFT_BRACKET('color' colorfont=STRING)? ('size' size=STRING)?RIGHT_BRACKET)?;
+Subtitle: 'subtitle' text=STRING (LEFT_BRACKET('color' colorfont=STRING)? ('size' size=INT)? RIGHT_BRACKET)?;
 terminal LEFT_BRACKET: '{' ; 
 terminal RIGHT_BRACKET: '}';
 

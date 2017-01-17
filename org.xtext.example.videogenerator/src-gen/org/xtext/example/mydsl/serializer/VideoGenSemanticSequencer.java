@@ -120,7 +120,7 @@ public class VideoGenSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     Subtitle returns Subtitle
 	 *
 	 * Constraint:
-	 *     (text=STRING colorfont=STRING? size=STRING?)
+	 *     (text=STRING colorfont=STRING? size=INT?)
 	 */
 	protected void sequence_Subtitle(ISerializationContext context, Subtitle semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

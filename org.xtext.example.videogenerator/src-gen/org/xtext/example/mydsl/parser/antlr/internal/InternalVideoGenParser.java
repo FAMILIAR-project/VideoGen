@@ -1509,7 +1509,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleSubtitle"
-    // InternalVideoGen.g:628:1: ruleSubtitle returns [EObject current=null] : (otherlv_0= 'subtitle' ( (lv_text_1_0= RULE_STRING ) ) (this_LEFT_BRACKET_2= RULE_LEFT_BRACKET (otherlv_3= 'color' ( (lv_colorfont_4_0= RULE_STRING ) ) )? (otherlv_5= 'size' ( (lv_size_6_0= RULE_STRING ) ) )? this_RIGHT_BRACKET_7= RULE_RIGHT_BRACKET )? ) ;
+    // InternalVideoGen.g:628:1: ruleSubtitle returns [EObject current=null] : (otherlv_0= 'subtitle' ( (lv_text_1_0= RULE_STRING ) ) (this_LEFT_BRACKET_2= RULE_LEFT_BRACKET (otherlv_3= 'color' ( (lv_colorfont_4_0= RULE_STRING ) ) )? (otherlv_5= 'size' ( (lv_size_6_0= RULE_INT ) ) )? this_RIGHT_BRACKET_7= RULE_RIGHT_BRACKET )? ) ;
     public final EObject ruleSubtitle() throws RecognitionException {
         EObject current = null;
 
@@ -1525,11 +1525,11 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalVideoGen.g:631:28: ( (otherlv_0= 'subtitle' ( (lv_text_1_0= RULE_STRING ) ) (this_LEFT_BRACKET_2= RULE_LEFT_BRACKET (otherlv_3= 'color' ( (lv_colorfont_4_0= RULE_STRING ) ) )? (otherlv_5= 'size' ( (lv_size_6_0= RULE_STRING ) ) )? this_RIGHT_BRACKET_7= RULE_RIGHT_BRACKET )? ) )
-            // InternalVideoGen.g:632:1: (otherlv_0= 'subtitle' ( (lv_text_1_0= RULE_STRING ) ) (this_LEFT_BRACKET_2= RULE_LEFT_BRACKET (otherlv_3= 'color' ( (lv_colorfont_4_0= RULE_STRING ) ) )? (otherlv_5= 'size' ( (lv_size_6_0= RULE_STRING ) ) )? this_RIGHT_BRACKET_7= RULE_RIGHT_BRACKET )? )
+            // InternalVideoGen.g:631:28: ( (otherlv_0= 'subtitle' ( (lv_text_1_0= RULE_STRING ) ) (this_LEFT_BRACKET_2= RULE_LEFT_BRACKET (otherlv_3= 'color' ( (lv_colorfont_4_0= RULE_STRING ) ) )? (otherlv_5= 'size' ( (lv_size_6_0= RULE_INT ) ) )? this_RIGHT_BRACKET_7= RULE_RIGHT_BRACKET )? ) )
+            // InternalVideoGen.g:632:1: (otherlv_0= 'subtitle' ( (lv_text_1_0= RULE_STRING ) ) (this_LEFT_BRACKET_2= RULE_LEFT_BRACKET (otherlv_3= 'color' ( (lv_colorfont_4_0= RULE_STRING ) ) )? (otherlv_5= 'size' ( (lv_size_6_0= RULE_INT ) ) )? this_RIGHT_BRACKET_7= RULE_RIGHT_BRACKET )? )
             {
-            // InternalVideoGen.g:632:1: (otherlv_0= 'subtitle' ( (lv_text_1_0= RULE_STRING ) ) (this_LEFT_BRACKET_2= RULE_LEFT_BRACKET (otherlv_3= 'color' ( (lv_colorfont_4_0= RULE_STRING ) ) )? (otherlv_5= 'size' ( (lv_size_6_0= RULE_STRING ) ) )? this_RIGHT_BRACKET_7= RULE_RIGHT_BRACKET )? )
-            // InternalVideoGen.g:632:3: otherlv_0= 'subtitle' ( (lv_text_1_0= RULE_STRING ) ) (this_LEFT_BRACKET_2= RULE_LEFT_BRACKET (otherlv_3= 'color' ( (lv_colorfont_4_0= RULE_STRING ) ) )? (otherlv_5= 'size' ( (lv_size_6_0= RULE_STRING ) ) )? this_RIGHT_BRACKET_7= RULE_RIGHT_BRACKET )?
+            // InternalVideoGen.g:632:1: (otherlv_0= 'subtitle' ( (lv_text_1_0= RULE_STRING ) ) (this_LEFT_BRACKET_2= RULE_LEFT_BRACKET (otherlv_3= 'color' ( (lv_colorfont_4_0= RULE_STRING ) ) )? (otherlv_5= 'size' ( (lv_size_6_0= RULE_INT ) ) )? this_RIGHT_BRACKET_7= RULE_RIGHT_BRACKET )? )
+            // InternalVideoGen.g:632:3: otherlv_0= 'subtitle' ( (lv_text_1_0= RULE_STRING ) ) (this_LEFT_BRACKET_2= RULE_LEFT_BRACKET (otherlv_3= 'color' ( (lv_colorfont_4_0= RULE_STRING ) ) )? (otherlv_5= 'size' ( (lv_size_6_0= RULE_INT ) ) )? this_RIGHT_BRACKET_7= RULE_RIGHT_BRACKET )?
             {
             otherlv_0=(Token)match(input,25,FOLLOW_7); 
 
@@ -1561,7 +1561,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalVideoGen.g:654:2: (this_LEFT_BRACKET_2= RULE_LEFT_BRACKET (otherlv_3= 'color' ( (lv_colorfont_4_0= RULE_STRING ) ) )? (otherlv_5= 'size' ( (lv_size_6_0= RULE_STRING ) ) )? this_RIGHT_BRACKET_7= RULE_RIGHT_BRACKET )?
+            // InternalVideoGen.g:654:2: (this_LEFT_BRACKET_2= RULE_LEFT_BRACKET (otherlv_3= 'color' ( (lv_colorfont_4_0= RULE_STRING ) ) )? (otherlv_5= 'size' ( (lv_size_6_0= RULE_INT ) ) )? this_RIGHT_BRACKET_7= RULE_RIGHT_BRACKET )?
             int alt17=2;
             int LA17_0 = input.LA(1);
 
@@ -1570,7 +1570,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
             }
             switch (alt17) {
                 case 1 :
-                    // InternalVideoGen.g:654:3: this_LEFT_BRACKET_2= RULE_LEFT_BRACKET (otherlv_3= 'color' ( (lv_colorfont_4_0= RULE_STRING ) ) )? (otherlv_5= 'size' ( (lv_size_6_0= RULE_STRING ) ) )? this_RIGHT_BRACKET_7= RULE_RIGHT_BRACKET
+                    // InternalVideoGen.g:654:3: this_LEFT_BRACKET_2= RULE_LEFT_BRACKET (otherlv_3= 'color' ( (lv_colorfont_4_0= RULE_STRING ) ) )? (otherlv_5= 'size' ( (lv_size_6_0= RULE_INT ) ) )? this_RIGHT_BRACKET_7= RULE_RIGHT_BRACKET
                     {
                     this_LEFT_BRACKET_2=(Token)match(input,RULE_LEFT_BRACKET,FOLLOW_23); 
                      
@@ -1623,7 +1623,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalVideoGen.g:680:4: (otherlv_5= 'size' ( (lv_size_6_0= RULE_STRING ) ) )?
+                    // InternalVideoGen.g:680:4: (otherlv_5= 'size' ( (lv_size_6_0= RULE_INT ) ) )?
                     int alt16=2;
                     int LA16_0 = input.LA(1);
 
@@ -1632,21 +1632,21 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
                     }
                     switch (alt16) {
                         case 1 :
-                            // InternalVideoGen.g:680:6: otherlv_5= 'size' ( (lv_size_6_0= RULE_STRING ) )
+                            // InternalVideoGen.g:680:6: otherlv_5= 'size' ( (lv_size_6_0= RULE_INT ) )
                             {
-                            otherlv_5=(Token)match(input,23,FOLLOW_7); 
+                            otherlv_5=(Token)match(input,23,FOLLOW_16); 
 
                                 	newLeafNode(otherlv_5, grammarAccess.getSubtitleAccess().getSizeKeyword_2_2_0());
                                 
-                            // InternalVideoGen.g:684:1: ( (lv_size_6_0= RULE_STRING ) )
-                            // InternalVideoGen.g:685:1: (lv_size_6_0= RULE_STRING )
+                            // InternalVideoGen.g:684:1: ( (lv_size_6_0= RULE_INT ) )
+                            // InternalVideoGen.g:685:1: (lv_size_6_0= RULE_INT )
                             {
-                            // InternalVideoGen.g:685:1: (lv_size_6_0= RULE_STRING )
-                            // InternalVideoGen.g:686:3: lv_size_6_0= RULE_STRING
+                            // InternalVideoGen.g:685:1: (lv_size_6_0= RULE_INT )
+                            // InternalVideoGen.g:686:3: lv_size_6_0= RULE_INT
                             {
-                            lv_size_6_0=(Token)match(input,RULE_STRING,FOLLOW_22); 
+                            lv_size_6_0=(Token)match(input,RULE_INT,FOLLOW_22); 
 
-                            			newLeafNode(lv_size_6_0, grammarAccess.getSubtitleAccess().getSizeSTRINGTerminalRuleCall_2_2_1_0()); 
+                            			newLeafNode(lv_size_6_0, grammarAccess.getSubtitleAccess().getSizeINTTerminalRuleCall_2_2_1_0()); 
                             		
 
                             	        if (current==null) {
@@ -1656,7 +1656,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
                                    			current, 
                                    			"size",
                                     		lv_size_6_0, 
-                                    		"org.eclipse.xtext.common.Terminals.STRING");
+                                    		"org.eclipse.xtext.common.Terminals.INT");
                             	    
 
                             }

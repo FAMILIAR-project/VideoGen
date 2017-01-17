@@ -2386,8 +2386,8 @@ rule__Subtitle__SizeAssignment_2_2_1
     }
 :
 (
-{ before(grammarAccess.getSubtitleAccess().getSizeSTRINGTerminalRuleCall_2_2_1_0()); }
-	RULE_STRING{ after(grammarAccess.getSubtitleAccess().getSizeSTRINGTerminalRuleCall_2_2_1_0()); }
+{ before(grammarAccess.getSubtitleAccess().getSizeINTTerminalRuleCall_2_2_1_0()); }
+	RULE_INT{ after(grammarAccess.getSubtitleAccess().getSizeINTTerminalRuleCall_2_2_1_0()); }
 )
 
 ;

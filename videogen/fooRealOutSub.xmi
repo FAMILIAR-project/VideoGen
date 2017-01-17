@@ -7,7 +7,16 @@
   </videoseqs>
   <videoseqs xsi:type="videoGen:OptionalVideoSeq">
     <description videoid="v2" location="Sample/V2.mp4">
-      <subtitle text="sous titre 2" colorfont="black"/>
+      <subtitle text="sous titre 2" colorfont="black" size="24"/>
     </description>
+  </videoseqs>
+  <videoseqs xsi:type="videoGen:AlternativeVideoSeq" videoid="v30">
+    <videodescs videoid="v31" location="Sample/V3.mp4">
+      <subtitle text="sous titre 3" colorfont="black" size="20"/>
+    </videodescs>
+    <videodescs videoid="v32" location="Sample/V4.mp4"/>
+    <videodescs videoid="v33" location="Sample/V5.mp4">
+      <subtitle text="sous titre 4" size="12"/>
+    </videodescs>
   </videoseqs>
 </videoGen:VideoGeneratorModel>

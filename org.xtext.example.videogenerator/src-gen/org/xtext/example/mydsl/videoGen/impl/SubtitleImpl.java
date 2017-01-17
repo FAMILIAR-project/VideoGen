@@ -77,7 +77,7 @@ public class SubtitleImpl extends MinimalEObjectImpl.Container implements Subtit
    * @generated
    * @ordered
    */
-  protected static final String SIZE_EDEFAULT = null;
+  protected static final int SIZE_EDEFAULT = 0;
 
   /**
    * The cached value of the '{@link #getSize() <em>Size</em>}' attribute.
@@ -87,7 +87,7 @@ public class SubtitleImpl extends MinimalEObjectImpl.Container implements Subtit
    * @generated
    * @ordered
    */
-  protected String size = SIZE_EDEFAULT;
+  protected int size = SIZE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -161,7 +161,7 @@ public class SubtitleImpl extends MinimalEObjectImpl.Container implements Subtit
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getSize()
+  public int getSize()
   {
     return size;
   }
@@ -171,9 +171,9 @@ public class SubtitleImpl extends MinimalEObjectImpl.Container implements Subtit
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setSize(String newSize)
+  public void setSize(int newSize)
   {
-    String oldSize = size;
+    int oldSize = size;
     size = newSize;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, VideoGenPackage.SUBTITLE__SIZE, oldSize, size));
@@ -216,7 +216,7 @@ public class SubtitleImpl extends MinimalEObjectImpl.Container implements Subtit
         setColorfont((String)newValue);
         return;
       case VideoGenPackage.SUBTITLE__SIZE:
-        setSize((String)newValue);
+        setSize((Integer)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -260,7 +260,7 @@ public class SubtitleImpl extends MinimalEObjectImpl.Container implements Subtit
       case VideoGenPackage.SUBTITLE__COLORFONT:
         return COLORFONT_EDEFAULT == null ? colorfont != null : !COLORFONT_EDEFAULT.equals(colorfont);
       case VideoGenPackage.SUBTITLE__SIZE:
-        return SIZE_EDEFAULT == null ? size != null : !SIZE_EDEFAULT.equals(size);
+        return size != SIZE_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }

@@ -14,17 +14,17 @@ import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 import static org.junit.Assert.*
 
 /**
- * Transformation xtend pour rajouter un durée dans le fichier du model
+ * Transformation xtend pour rajouter du texte dans chaque vidéo
  **/
-class VideoDemonstratorAddTexte {
-	//TODO: cooriger pb size et pb avec alternative (plus lu)
-	//TODO: relire
-	
+class VideoDemonstratorAddTexte {	
 	//ATTENTION Changer les paths suivant l'endroit ou se trouve la console FFMpeg et les vidéos
 	var static pathFFmpeg = "C:/Users/PHILIP_Mi/Documents/Divers/Miage/M2/IDM/TP3/FFMpeg/ffmpeg-20161110-872b358-win64-static/bin/";
 	var static pathVideo = "C:/Users/PHILIP_Mi/Documents/Divers/Miage/M2/IDM/TP3/FFMpeg/"
-	var static pathVideoSubtitle = "C:/Users/PHILIP_Mi/Documents/Divers/Miage/M2/IDM/TP3/FFMpeg/Subs" //Pour le dossier de destination des videos transformés
-	var static pathFontSubtitle = "C:/Windows/Fonts/Arial.ttf" //Pour le font des textes
+	var static pathVideoSubtitle = "C:/Users/PHILIP_Mi/Documents/Divers/Miage/M2/IDM/TP3/FFMpeg/Subs" //Pour le dossier de destination des videos transformées
+	var static pathFontSubtitle = "C:/Windows/Fonts/Arial.ttf" //Pour le fichier de font des textes
+	
+	val static COLOR="white" //Couleur par défaut
+	val static SIZE=20;  //Taille par défaut
 	
 	def loadVideoGenerator(URI uri) {
 		new VideoGenStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()
@@ -40,8 +40,8 @@ class VideoDemonstratorAddTexte {
 	
 	@Test
 	def test1() {
-		// loading
-		var videoGen = loadVideoGenerator(URI.createURI("fooRealSub.videogen")) //Version avec sous titre
+		// Loading
+		var videoGen = loadVideoGenerator(URI.createURI("fooRealSub.videogen")) //On utilise un model avec l'ajout de sous-titre
 		assertNotNull(videoGen)
 		//assertEquals(7, videoGen.videoseqs.size)			
 		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
@@ -73,29 +73,28 @@ class VideoDemonstratorAddTexte {
 	
 	}
 	
-	//Fonction qui va parcourir les videos pour l'ajout du texte
+	//Fonction qui va parcourir les videos pour leur ajouter du texte
 	def void addSub(VideoGeneratorModel videoGen) {
 		videoGen.videoseqs.forEach[videoseq | 
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
 				if(!desc.videoid.isNullOrEmpty && !desc.location.isNullOrEmpty)  {
 					//On vérifie si on a des sous-titres de demandées
-					println(desc.subtitle)
 					if(desc.subtitle!= null && !desc.subtitle.text.isNullOrEmpty){
-						var String text= desc.subtitle.text; //On récupére le texte
+						var String text= desc.subtitle.text; //Si oui on récupére le texte dans une variables
 						var String color; //Pour récuperer la couleur du texte
 						var int fontSize; //Pour récuperer la taille du texte
 						//On vérifie si on a fournit la taille des sous-titre
-						if (!desc.subtitle.size.isNullOrEmpty){
-							fontSize= Integer.parseInt(desc.subtitle.size); //Si oui on le récupére
+						if (desc.subtitle.size !=0){
+							fontSize= desc.subtitle.size; //Si oui on le récupére
 						}else{
-							fontSize=20; //Sinon on indique une valeur par défault puisque le paramêtre n'est pas reseigné
+							fontSize=SIZE; //Sinon on indique une valeur par défault puisque le paramêtre n'est pas reseigné
 						}
 						//On vérifie si on a fournit la couleur des sous-titre
 						if (!desc.subtitle.colorfont.isNullOrEmpty){
 							color= desc.subtitle.colorfont; //Si oui on le récupére
 						}else{
-							color="white"; //Sinon on indique une valeur par défault puisque le paramêtre n'est pas reseigné
+							color=COLOR; //Sinon on indique une valeur par défault puisque le paramêtre n'est pas reseigné
 						}
 						addSubtitle(pathVideo+desc.location,desc.videoid,text,color,fontSize) //Appel d'une fonction pour rajouter des sous-titres  				
 					}		
@@ -106,50 +105,49 @@ class VideoDemonstratorAddTexte {
 				val desc = (videoseq as OptionalVideoSeq).description
 				if(!desc.videoid.isNullOrEmpty && !desc.location.isNullOrEmpty) {
 					//On vérifie si on a des sous-titres de demandées
-					println(desc.subtitle)
 					if(desc.subtitle!= null && !desc.subtitle.text.isNullOrEmpty){
-						var String text= desc.subtitle.text; //On récupére le texte
+						var String text= desc.subtitle.text; //Si oui on récupére le texte dans une variables
 						var String color; //Pour récuperer la couleur du texte
 						var int fontSize; //Pour récuperer la taille du texte
 						//On vérifie si on a fournit la taille des sous-titre
-						if (!desc.subtitle.size.isNullOrEmpty){
-							fontSize= Integer.parseInt(desc.subtitle.size); //Si oui on le récupére
+						if (desc.subtitle.size !=0){
+							fontSize= desc.subtitle.size; //Si oui on le récupére
 						}else{
-							fontSize=20; //Sinon on indique une valeur par défault puisque le paramêtre n'est pas reseigné
+							fontSize=SIZE; //Sinon on indique une valeur par défault puisque le paramêtre n'est pas reseigné
 						}
 						//On vérifie si on a fournit la couleur des sous-titre
 						if (!desc.subtitle.colorfont.isNullOrEmpty){
 							color= desc.subtitle.colorfont; //Si oui on le récupére
 						}else{
-							color="white"; //Sinon on indique une valeur par défault puisque le paramêtre n'est pas reseigné
+							color=COLOR; //Sinon on indique une valeur par défault puisque le paramêtre n'est pas reseigné
 						}
 						addSubtitle(pathVideo+desc.location,desc.videoid,text,color,fontSize) //Appel d'une fonction pour rajouter des sous-titres  				
-					}
+					}		
 				}
 			}
 			else {
 				val altvid = (videoseq as AlternativeVideoSeq)
 				for (vdesc : altvid.videodescs) { 
 					if(!vdesc.videoid.isNullOrEmpty && !vdesc.location.isNullOrEmpty) {
-						println(vdesc.subtitle)
+						//On vérifie si on a des sous-titres de demandées
 						if(vdesc.subtitle!= null && !vdesc.subtitle.text.isNullOrEmpty){
-							var String text= vdesc.subtitle.text; //On récupére le texte
+							var String text= vdesc.subtitle.text; //Si oui on récupére le texte dans une variables
 							var String color; //Pour récuperer la couleur du texte
 							var int fontSize; //Pour récuperer la taille du texte
 							//On vérifie si on a fournit la taille des sous-titre
-							if (!vdesc.subtitle.size.isNullOrEmpty){
-								fontSize= Integer.parseInt(vdesc.subtitle.size); //Si oui on le récupére
+							if (vdesc.subtitle.size !=0){
+								fontSize= vdesc.subtitle.size; //Si oui on le récupére
 							}else{
-								fontSize=20; //Sinon on indique une valeur par défault puisque le paramêtre n'est pas reseigné
+								fontSize=SIZE; //Sinon on indique une valeur par défault puisque le paramêtre n'est pas reseigné
 							}
 							//On vérifie si on a fournit la couleur des sous-titre
 							if (!vdesc.subtitle.colorfont.isNullOrEmpty){
 								color= vdesc.subtitle.colorfont; //Si oui on le récupére
 							}else{
-								color="white"; //Sinon on indique une valeur par défault puisque le paramêtre n'est pas reseigné
+								color=COLOR; //Sinon on indique une valeur par défault puisque le paramêtre n'est pas reseigné
 							}
 							addSubtitle(pathVideo+vdesc.location,vdesc.videoid,text,color,fontSize) //Appel d'une fonction pour rajouter des sous-titres  				
-						}
+						}		
 					}
 				}	
 			}
@@ -164,17 +162,18 @@ class VideoDemonstratorAddTexte {
 	//Méthode pour calculer la durée d'une vidéo (avec FFmpeg)
 	/*Paramêtre:
 	 * path: chemin de la video
-	 * name: nom de la video en sortie
+	 * name: nom de la video 
 	 * texte: le texte de la video
 	 * color: couleur du texte
 	 * size: taille du texte
-	 * (Note: on peut jouer sur d'autres paramêtres pour cela completer la grammair xtext)
+	 * (Note: on peut jouer sur d'autres paramêtres pour cela completer la grammaire xtext puis les paramêtres de cette fonction)
 	 */
 	
 	def static void addSubtitle(String path,String name,String texte,String color,Integer size) {
-		//On lance une commande ... Note: la commande refuse de fonctionner pour le moment
-		System.out.println("ffmpeg -i " +path+" -vf drawtext=\"fontfile="+pathFontSubtitle+": \\text='"+texte+"': fontcolor="+color+": fontsize="+size+": box=1: boxcolor=black@0.5: \\ boxborderw=5: x=(w-text_w)/2: y=(h-text_h)/2\" -codec:a copy "+ pathVideoSubtitle+"/"+ name + ".mp4")
-		//var Process process = Runtime.getRuntime().exec(pathFFmpeg+"ffmpeg -i " +path+" -vf drawtext=\"fontfile="+pathFontSubtitle+": \\text='Stack Overflow': fontcolor=white: fontsize=24: box=1: boxcolor=black@0.5: \\ boxborderw=5: x=(w-text_w)/2: y=(h-text_h)/2\" -codec:a copy "+ pathVideoSubtitle+"/"+ name + ".mp4");
+		/*Note: la commande ne veut pas fonctionner pour le moment mais le principe est là*/
+		System.out.println(pathFFmpeg+"ffmpeg -i " +path+" -vf drawtext=\"fontfile="+pathFontSubtitle+": text='"+texte+"': fontcolor="+color+": fontsize="+size+": box=1: boxcolor=black@0.5: boxborderw=5: x=(w-text_w)/2: y=(h-text_h)/2\" -codec:a copy "+ pathVideoSubtitle+"/"+ name + ".mp4")
+		//On lance une commande ...
+		//var Process process = Runtime.getRuntime().exec(pathFFmpeg+"ffmpeg -i " +path+" -vf drawtext=\"fontfile="+pathFontSubtitle+": text='"+texte+"': fontcolor="+color+": fontsize="+size+": box=1: boxcolor=black@0.5: boxborderw=5: x=(w-text_w)/2: y=(h-text_h)/2\" -codec:a copy "+ pathVideoSubtitle+"/"+ name + ".mp4");
 		//process.waitFor()	// ...on attends le résultat ...	
 	}
 	

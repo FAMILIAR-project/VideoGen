@@ -380,14 +380,14 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_2_2 = (Group)cGroup_2.eContents().get(2);
 		private final Keyword cSizeKeyword_2_2_0 = (Keyword)cGroup_2_2.eContents().get(0);
 		private final Assignment cSizeAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
-		private final RuleCall cSizeSTRINGTerminalRuleCall_2_2_1_0 = (RuleCall)cSizeAssignment_2_2_1.eContents().get(0);
+		private final RuleCall cSizeINTTerminalRuleCall_2_2_1_0 = (RuleCall)cSizeAssignment_2_2_1.eContents().get(0);
 		private final RuleCall cRIGHT_BRACKETTerminalRuleCall_2_3 = (RuleCall)cGroup_2.eContents().get(3);
 		
 		//Subtitle:
-		//	'subtitle' text=STRING (LEFT_BRACKET ('color' colorfont=STRING)? ('size' size=STRING)? RIGHT_BRACKET)?;
+		//	'subtitle' text=STRING (LEFT_BRACKET ('color' colorfont=STRING)? ('size' size=INT)? RIGHT_BRACKET)?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//'subtitle' text=STRING (LEFT_BRACKET ('color' colorfont=STRING)? ('size' size=STRING)? RIGHT_BRACKET)?
+		//'subtitle' text=STRING (LEFT_BRACKET ('color' colorfont=STRING)? ('size' size=INT)? RIGHT_BRACKET)?
 		public Group getGroup() { return cGroup; }
 
 		//'subtitle'
@@ -399,7 +399,7 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 		//STRING
 		public RuleCall getTextSTRINGTerminalRuleCall_1_0() { return cTextSTRINGTerminalRuleCall_1_0; }
 
-		//(LEFT_BRACKET ('color' colorfont=STRING)? ('size' size=STRING)? RIGHT_BRACKET)?
+		//(LEFT_BRACKET ('color' colorfont=STRING)? ('size' size=INT)? RIGHT_BRACKET)?
 		public Group getGroup_2() { return cGroup_2; }
 
 		//LEFT_BRACKET
@@ -417,17 +417,17 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 		//STRING
 		public RuleCall getColorfontSTRINGTerminalRuleCall_2_1_1_0() { return cColorfontSTRINGTerminalRuleCall_2_1_1_0; }
 
-		//('size' size=STRING)?
+		//('size' size=INT)?
 		public Group getGroup_2_2() { return cGroup_2_2; }
 
 		//'size'
 		public Keyword getSizeKeyword_2_2_0() { return cSizeKeyword_2_2_0; }
 
-		//size=STRING
+		//size=INT
 		public Assignment getSizeAssignment_2_2_1() { return cSizeAssignment_2_2_1; }
 
-		//STRING
-		public RuleCall getSizeSTRINGTerminalRuleCall_2_2_1_0() { return cSizeSTRINGTerminalRuleCall_2_2_1_0; }
+		//INT
+		public RuleCall getSizeINTTerminalRuleCall_2_2_1_0() { return cSizeINTTerminalRuleCall_2_2_1_0; }
 
 		//RIGHT_BRACKET
 		public RuleCall getRIGHT_BRACKETTerminalRuleCall_2_3() { return cRIGHT_BRACKETTerminalRuleCall_2_3; }
@@ -565,7 +565,7 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Subtitle:
-	//	'subtitle' text=STRING (LEFT_BRACKET ('color' colorfont=STRING)? ('size' size=STRING)? RIGHT_BRACKET)?;
+	//	'subtitle' text=STRING (LEFT_BRACKET ('color' colorfont=STRING)? ('size' size=INT)? RIGHT_BRACKET)?;
 	public SubtitleElements getSubtitleAccess() {
 		return pSubtitle;
 	}

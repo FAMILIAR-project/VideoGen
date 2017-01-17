@@ -5394,7 +5394,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:2053:1: ( rule__Subtitle__Group_2_2__0__Impl rule__Subtitle__Group_2_2__1 )
             // InternalVideoGen.g:2054:2: rule__Subtitle__Group_2_2__0__Impl rule__Subtitle__Group_2_2__1
             {
-            pushFollow(FOLLOW_10);
+            pushFollow(FOLLOW_16);
             rule__Subtitle__Group_2_2__0__Impl();
 
             state._fsp--;
@@ -6230,21 +6230,21 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Subtitle__SizeAssignment_2_2_1"
-    // InternalVideoGen.g:2383:1: rule__Subtitle__SizeAssignment_2_2_1 : ( RULE_STRING ) ;
+    // InternalVideoGen.g:2383:1: rule__Subtitle__SizeAssignment_2_2_1 : ( RULE_INT ) ;
     public final void rule__Subtitle__SizeAssignment_2_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalVideoGen.g:2387:1: ( ( RULE_STRING ) )
-            // InternalVideoGen.g:2388:1: ( RULE_STRING )
+            // InternalVideoGen.g:2387:1: ( ( RULE_INT ) )
+            // InternalVideoGen.g:2388:1: ( RULE_INT )
             {
-            // InternalVideoGen.g:2388:1: ( RULE_STRING )
-            // InternalVideoGen.g:2389:1: RULE_STRING
+            // InternalVideoGen.g:2388:1: ( RULE_INT )
+            // InternalVideoGen.g:2389:1: RULE_INT
             {
-             before(grammarAccess.getSubtitleAccess().getSizeSTRINGTerminalRuleCall_2_2_1_0()); 
-            match(input,RULE_STRING,FOLLOW_2); 
-             after(grammarAccess.getSubtitleAccess().getSizeSTRINGTerminalRuleCall_2_2_1_0()); 
+             before(grammarAccess.getSubtitleAccess().getSizeINTTerminalRuleCall_2_2_1_0()); 
+            match(input,RULE_INT,FOLLOW_2); 
+             after(grammarAccess.getSubtitleAccess().getSizeINTTerminalRuleCall_2_2_1_0()); 
 
             }
 

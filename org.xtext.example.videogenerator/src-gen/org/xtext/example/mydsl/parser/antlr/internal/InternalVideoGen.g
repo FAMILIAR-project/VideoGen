@@ -683,9 +683,9 @@ ruleSubtitle returns [EObject current=null]
     }
 (
 (
-		lv_size_6_0=RULE_STRING
+		lv_size_6_0=RULE_INT
 		{
-			newLeafNode(lv_size_6_0, grammarAccess.getSubtitleAccess().getSizeSTRINGTerminalRuleCall_2_2_1_0()); 
+			newLeafNode(lv_size_6_0, grammarAccess.getSubtitleAccess().getSizeINTTerminalRuleCall_2_2_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -695,7 +695,7 @@ ruleSubtitle returns [EObject current=null]
        			$current, 
        			"size",
         		lv_size_6_0, 
-        		"org.eclipse.xtext.common.Terminals.STRING");
+        		"org.eclipse.xtext.common.Terminals.INT");
 	    }
 
 )
