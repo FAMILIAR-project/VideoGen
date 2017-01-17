@@ -22,7 +22,7 @@ import org.xtext.example.mydsl.videoGen.VideoDescription
 import java.util.ArrayList
 import java.util.List
 
-class EnchancedVideoGen {
+class EnhancedVideoGen {
 	def static loadVideoGenerator(URI uri) {
 		new VideoGenStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()
 		var res = new ResourceSetImpl().getResource(uri, true);
