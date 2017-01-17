@@ -11,19 +11,19 @@ This project allows to discover, use DSL by creating grammar, making model-to-te
 
 ## Technology
 
-Technologies uses for this project:
--Xtext for create grammar, generate meta-model and create model editor.
--Xtend for use grammar and model in order to generate something usable (scripts, files...).
--FFmpeg for transform videos and read generated scripts.
--Familiar project tool for create Feature model
+Technologies uses for this project:  
+-Xtext for create grammar, generate meta-model and create model editor.  
+-Xtend for use grammar and model in order to generate something usable (scripts, files...).  
+-FFmpeg for transform videos and read generated scripts.  
+-Familiar project tool for create Feature model.  
 
 ## Project structure
 
--org.xtext.example.videogenerator\src\org\xtext\example\mydsl\VideoGen.xtext : Grammar of DSL.
--PlayListMeta: projet to create and new DSL for playlists (model-to-model). 
--VideoGenForked\videogen\src\videogen: Folder where all xtend (=transformation) are created.
-
--"Réponses aux questions.txt" file with all responses about IDM Student Project.
--"Q14 - Feature model.txt" Feature model for answer to question 14.
+-org.xtext.example.videogenerator\src\org\xtext\example\mydsl\VideoGen.xtext : Grammar of DSL.  
+-PlayListMeta: projet to create and new DSL for playlists (model-to-model).   
+-VideoGenForked\videogen\src\videogen: Folder where all xtend (=transformation) are created.  
+  
+-"Réponses aux questions.txt" file with all responses about IDM Student Project.  
+-"Q14 - Feature model.txt" Feature model for answer to question 14.  
 
 
