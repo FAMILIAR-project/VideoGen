@@ -7,8 +7,8 @@
     <description videoid="v1" location="/home/loic/Videos/2.mp4" probability="25"/>
   </videoseqs>
   <videoseqs xsi:type="videoGen:AlternativeVideoSeq" videoid="vid3">
-    <videodescs videoid="vid30" location="/home/loic/Videos/1.mp4"/>
-    <videodescs videoid="vid31" location="/home/loic/Videos/2.mp4"/>
+    <videodescs videoid="vid30" location="/home/loic/Videos/1.mp4" probability="50"/>
+    <videodescs videoid="vid31" location="/home/loic/Videos/2.mp4" probability="50"/>
     <videodescs videoid="vid32" location="/home/loic/Videos/3.mp4"/>
   </videoseqs>
 </videoGen:VideoGeneratorModel>
