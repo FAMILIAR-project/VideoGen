@@ -13,7 +13,7 @@ Fichier xtend de transformation:
 => VideoGenForked\videogen\src\videogen\VideoDemonstratorPlaylist.xtend
 
 =====Question 6=====
-Les bénéfices en utilisant un model intermédiaire (model-to-model) estle fait d'éviter de reparcourir le model autant de fois qu'on a de 
+Les bénéfices en utilisant un model intermédiaire (model-to-model) est le fait d'éviter de reparcourir le model autant de fois qu'on a de 
 format différent à produire: Comme tout ce qu'on a besoin est stocké dans un model intermédiaire on n'a plus qu'a relire ce model intermédiaire: 
 c'est donc un gain de performance, cela limite la complexité du code (duplication) et facilite l'ajout de nouveaux formats.
 La contrepartie est qu'il a une dépendance supplémentaire à un model externe ce qui peut-être gênant.
