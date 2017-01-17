@@ -32,7 +32,6 @@ class DurationComputation {
 		var videogen = loadVideoGenerator(in)
 		videogen.videoseqs.forEach[vid|
 			if (vid instanceof MandatoryVideoSeq){
-				//var cmd = "/usr/local/bin/ffprobe -v error -select_streams v:0 -show_entries stream=duration -of default=noprint_wrappers=1:nokey=1 -i " + videoLocation
 				val duration = computeDuration(vid.description.location) //<-- calculer la durée
 				vid.description.duration = duration
 			}
@@ -43,9 +42,8 @@ class DurationComputation {
 			if (vid instanceof AlternativeVideoSeq){
 				for (videodesc:vid.videodescs){
 					val duration = computeDuration(videodesc.location)
-					videodesc.duration = duration as int
+					videodesc.duration = duration
 				}
-
 			}
 		]
 		saveVideoGenerator(out,videogen)
@@ -81,11 +79,9 @@ class DurationComputation {
 	
 	
 	def int computeDuration(String videoLocation){
-		var cmd = "/usr/bin/ffprobe -v error -select_streams v:0 -show_entries stream=duration -of default=noprint_wrappers=1:nokey=1 -i \"" + videoLocation+"\""
+		var cmd = "/usr/bin/ffprobe -v error -select_streams v:0 -show_entries stream=duration -of default=noprint_wrappers=1:nokey=1 -i " + videoLocation
 		var Process process = Runtime.getRuntime().exec(cmd)
 		process.waitFor()
-		//process.getInputStream().read
-		println(process.exitValue())
 		var BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 
 		var String line = "";
@@ -93,15 +89,17 @@ class DurationComputation {
 	    while ((line = reader.readLine()) != null) {
 	        outputJson = outputJson + line;
 	    }
-	    println(Math.round(Float.parseFloat(outputJson))-1)
+	    if (process.exitValue()==1){
+	    	println(videoLocation)
+	    }
 	    return Math.round(Float.parseFloat(outputJson))-1;
 		}
 		
 	def static void main(String[] args) {
 		val dc = new DurationComputation
-		val fin = URI.createURI("test.videogen")
-		val fout = URI.createURI("testduration.videogen")
-		val m3uext = "test.m3u"
+		val fin = URI.createURI("perso.videogen")
+		val fout = URI.createURI("persoduration.videogen")
+		val m3uext = "perso.m3u"
 		dc.durationCompute(fin,fout)
 		dc.modelToM3UExtended(fout,m3uext)
 	}

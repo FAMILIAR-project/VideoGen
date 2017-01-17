@@ -117,7 +117,7 @@ class VideogenChecking {
 	}
 	def static void main(String[] args) {
 		val vc = new VideogenChecking
-		val fin = URI.createURI("test.videogen")
+		val fin = URI.createURI("perso.videogen")
 		vc.videogenChecking(fin)
 	}
 }

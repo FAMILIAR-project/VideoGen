@@ -42,7 +42,7 @@ class ThumbnailGenerator {
 		//println(name)
 		//createFile(wd+"/thumb/" + name + ".jpg","")
 		//println(wd+"/"+videoLocation)
-		var cmd = "/usr/bin/ffmpeg -i " + wd+"/"+videoLocation + " -ss 00:00:01.000 -vframes 1 "+wd+"/thumb/" + name + ".jpg -y"
+		var cmd = "/usr/bin/ffmpeg -i " +videoLocation + " -ss 00:00:01.000 -vframes 1 "+wd+"/thumb/" + name + ".jpg -y"
 		var Process process = Runtime.getRuntime().exec(cmd)
 		process.waitFor()
 		//println(process.exitValue())
@@ -55,16 +55,17 @@ class ThumbnailGenerator {
 	}
 	
 	def void printToHTML(VideoGeneratorModel mod,FileWriter fout){
+		val wd = System.getProperty("user.dir")
 		fout.write("<html>\n")
 		mod.videoseqs.forEach[vid|
 			if (vid instanceof MandatoryVideoSeq){
-				var thumbnailName = "thumb/"+extractName(vid.description.location)+".jpg"
+				var thumbnailName = wd+"/thumb/"+extractName(vid.description.location)+".jpg"
 				fout.write("<div>\n")
 				fout.write("<img src=\""+thumbnailName+"\">\n")
 				fout.write("</div>\n") 
 			}
 			if (vid instanceof OptionalVideoSeq){
-				var thumbnailName = "thumb/"+extractName(vid.description.location)+".jpg"
+				var thumbnailName = wd+"/thumb/"+extractName(vid.description.location)+".jpg"
 				fout.write("<div>\n")
 				fout.write("<img src=\""+thumbnailName+"\">\n")
 				fout.write("</div>\n") 
@@ -72,7 +73,7 @@ class ThumbnailGenerator {
 			if (vid instanceof AlternativeVideoSeq){
 				fout.write("<div>\n")				 
 				for (videodesc:vid.videodescs){
-					var thumbnailName = "thumb/"+extractName(videodesc.location)+".jpg"
+					var thumbnailName = wd+"/thumb/"+extractName(videodesc.location)+".jpg"
 					fout.write("<img src=\""+thumbnailName+"\">\n")
 				}
 				fout.write("</div>\n")
@@ -84,8 +85,8 @@ class ThumbnailGenerator {
 	
 	def static void main(String[] args) {
 		val tg = new ThumbnailGenerator
-		val fin = URI.createURI("test.videogen")
-		val fout = "test.html"
+		val fin = URI.createURI("perso.videogen")
+		val fout = "perso.html"
 		//println("wd = "+System.getProperty("user.dir"))
 		tg.thumbnailGenerator(fin,fout)
 	}

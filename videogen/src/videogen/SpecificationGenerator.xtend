@@ -21,29 +21,41 @@ class SpecificationGenerator {
 		var videogen = VideoGenFactory.eINSTANCE.createVideoGeneratorModel
 		for (sfolder : subFolders){
 			if (sfolder.isFile()){
-				print("Warning : we didn't expect a file ("+sfolder.getName+") at this level")
+				println("Warning : we didn't expect a file ("+sfolder.getName+") at this level")
 			}else{
 				var id = sfolder.getName
-				var location = sfolder.getPath
+				//println(id)
+				//var location = sfolder.getPath
+				//println(location)
 				var listOfFiles = sfolder.listFiles()
 				if (listOfFiles.length==1){
+					//println(id)
 					var manda = VideoGenFactory.eINSTANCE.createMandatoryVideoSeq
+					//var videoid = manda.description.videoid
 					manda.description.videoid = id
-					manda.description.location = location
+					//videoid = id
+					print("test : "+manda.description.videoid)
+					//manda.description.location = location
 					videogen.videoseqs.add(manda)
 				}
 				if (listOfFiles.length==0){
-					print("Warning : folder "+id+" is empty")
+					println("Warning : folder "+id+" is empty")
 				}
 				if (listOfFiles.length>1){
 					var altern = VideoGenFactory.eINSTANCE.createAlternativeVideoSeq
+					altern.videoid = id
 					for (file : listOfFiles){
-						var aid = file.getName
-						var alocation = file.getPath
-						var videodesc = VideoGenFactory.eINSTANCE.createVideoDescription
-						videodesc.videoid = aid
-						videodesc.location = alocation
-						altern.videodescs.add(videodesc)
+						if (file.isFile()){
+							//pour le moment, pas de vérification que le fichier soit valide
+							var aid = file.getName
+							var alocation = file.getPath
+							var videodesc = VideoGenFactory.eINSTANCE.createVideoDescription
+							videodesc.videoid = aid
+							videodesc.location = alocation
+							altern.videodescs.add(videodesc)
+						}else{
+							println("Warning : we didn't expect a folder ("+file.getName+") at this level")
+						}
 					}
 					videogen.videoseqs.add(altern)
 				}
@@ -54,8 +66,8 @@ class SpecificationGenerator {
 	
 	def static void main(String[] args) {
 		val dc = new SpecificationGenerator
-		val folder = "specif"
-		val specifname = URI.createURI("specif.videogen")
+		val folder = "/home/nirina/Vidéos"
+		val specifname = URI.createURI("videoperso.videogen")
 		dc.generateSpecification(folder,specifname)
 	}
 }
