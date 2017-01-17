@@ -19,7 +19,7 @@ class MetricsComputation {
 	def metricsComputation(URI in){
 		var videogen = loadVideoGenerator(in)
 		var nb = variationNumber(videogen)
-		print("Nombre de variations : "+nb)
+		println("Nombre de variations : "+nb)
 		durationStatistic(videogen)
 		sizeStatistic(videogen)
 	}
@@ -74,9 +74,9 @@ class MetricsComputation {
 				min+=tmpmin
 			}
 		}
-		print("Durée maximum : "+max)
-		print("Durée minimum : "+min)
-		print("Durée moyenne : "+moy)
+		println("Durée maximum : "+max)
+		println("Durée minimum : "+min)
+		println("Durée moyenne : "+moy)
 	}
 	
 	def sizeStatistic(VideoGeneratorModel videogen){
@@ -85,7 +85,7 @@ class MetricsComputation {
 	
 	def static void main(String[] args) {
 		val mc = new MetricsComputation
-		val fin = URI.createURI("foo2.videogen")
+		val fin = URI.createURI("persoduration.videogen")
 		//val m3uext = "foo2.m3u"
 		mc.metricsComputation(fin)
 	}
