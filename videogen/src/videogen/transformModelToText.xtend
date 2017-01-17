@@ -424,16 +424,9 @@ def verify(){
 		var c3=""
 		var c4=""
 		var c5=""
-		var c6=""
-		
-		
-		 
+		var c6=""	 
 		 c1="fmVideoGen=FM(VideoGen:"
      writer.write(c1)
-	 
-	 	
-				// writer.println(random.nextInt(101))	
-		
 			for(videoseq :videoGen.videoseqs){
 				if (videoseq instanceof MandatoryVideoSeq) {
 					c2=(videoseq as MandatoryVideoSeq).description.videoid
@@ -489,5 +482,88 @@ def verify(){
 //fmVideoGen=FM(VideoGen:v1[v2]v3v4v5[v6]v7;v3:(v30|v31|v32);v4:(v40|v41);v7:(v71);
 	//writer.write(c1+c2+c3+c4+c5+")")
 	//writer.write(c1+c2+c3+c4)
+	
+		def createFeatureModel2(){
+		var videoGen = loadVideoGenerator(URI.createURI("foo1.videogen"))
+		 val random=new Random() 
+		val writer = new PrintWriter("fmVideoGen.fm")
+		var c1=""
+		var c2=""
+		var c3=""
+		var c4=""
+		var c5=""
+		var c6=""
+		var c7=""
+		var c8=""
+		var c9=""
+		var c10=""	 
+		 c1="fmVideoGen=FM(VideoGen:"
+     writer.write(c1)
+			for(videoseq :videoGen.videoseqs){
+				if (videoseq instanceof MandatoryVideoSeq) {
+					c2=(videoseq as MandatoryVideoSeq).description.videoid
+				if(c2.isNullOrEmpty) 
+				   c2= genID()
+				writer.write(c2)     			
+			}
+			else if (videoseq instanceof OptionalVideoSeq) {
+				c3=(videoseq as OptionalVideoSeq).description.videoid
+				
+				if(c3.isNullOrEmpty)
+				
+				c3=genID()
+				writer.write("["+c3+"]")
+			}
+			else {
+				val altvid = (videoseq as AlternativeVideoSeq)
+				c6=altvid.videoid
+				if(c6.isNullOrEmpty)
+				c6=genID()
+				
+				writer.write(c6)
+					
+					}
+					}
+			for(videoseq :videoGen.videoseqs){
+				if(videoseq instanceof AlternativeVideoSeq){
+					val altvid = (videoseq as AlternativeVideoSeq)
+				c8=altvid.videoid
+				if(c8.isNullOrEmpty)
+				c8=genID()
+				c9=";"+c8+":"+"("
+				writer.write(c9)
+				 	var count=altvid.videodescs.size
+				 for (vdesc : altvid.videodescs) {
+				 	
+					if(count > 1){
+			 	         
+					 	c10=vdesc.videoid
+					 	
+					 	if(c10.isNullOrEmpty)
+					 	c10=genID()
+					 	writer.write(c10+"|")
+					 	}
+				 	else {
+				 
+				 	
+					 	c10=vdesc.videoid
+					 	
+					 	if(c10.isNullOrEmpty)
+					 	
+					 	c10=genID()
+					 	writer.write(c10+")")
+					 	}
+					 	count = (count -1)
+					}
+					
+					
+				}
+					
+					}
+				writer.write(";)")
+			writer.close()
+		
+		
+	}
 	  	  
 }

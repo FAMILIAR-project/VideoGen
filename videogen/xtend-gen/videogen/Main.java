@@ -8,6 +8,6 @@ public class Main {
   public static void main(final String[] args) {
     final transformModelToText vv = new transformModelToText();
     Playlist playlist = vv.playlist();
-    vv.createFeatureModel();
+    vv.createFeatureModel2();
   }
 }

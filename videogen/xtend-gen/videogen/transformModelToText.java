@@ -678,4 +678,107 @@ public class transformModelToText {
       throw Exceptions.sneakyThrow(_e);
     }
   }
+  
+  public void createFeatureModel2() {
+    try {
+      URI _createURI = URI.createURI("foo1.videogen");
+      VideoGeneratorModel videoGen = this.loadVideoGenerator(_createURI);
+      final Random random = new Random();
+      final PrintWriter writer = new PrintWriter("fmVideoGen.fm");
+      String c1 = "";
+      String c2 = "";
+      String c3 = "";
+      String c4 = "";
+      String c5 = "";
+      String c6 = "";
+      String c7 = "";
+      String c8 = "";
+      String c9 = "";
+      String c10 = "";
+      c1 = "fmVideoGen=FM(VideoGen:";
+      writer.write(c1);
+      EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
+      for (final VideoSeq videoseq : _videoseqs) {
+        if ((videoseq instanceof MandatoryVideoSeq)) {
+          VideoDescription _description = ((MandatoryVideoSeq) videoseq).getDescription();
+          String _videoid = _description.getVideoid();
+          c2 = _videoid;
+          boolean _isNullOrEmpty = StringExtensions.isNullOrEmpty(c2);
+          if (_isNullOrEmpty) {
+            String _genID = this.genID();
+            c2 = _genID;
+          }
+          writer.write(c2);
+        } else {
+          if ((videoseq instanceof OptionalVideoSeq)) {
+            VideoDescription _description_1 = ((OptionalVideoSeq) videoseq).getDescription();
+            String _videoid_1 = _description_1.getVideoid();
+            c3 = _videoid_1;
+            boolean _isNullOrEmpty_1 = StringExtensions.isNullOrEmpty(c3);
+            if (_isNullOrEmpty_1) {
+              String _genID_1 = this.genID();
+              c3 = _genID_1;
+            }
+            writer.write((("[" + c3) + "]"));
+          } else {
+            final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
+            String _videoid_2 = altvid.getVideoid();
+            c6 = _videoid_2;
+            boolean _isNullOrEmpty_2 = StringExtensions.isNullOrEmpty(c6);
+            if (_isNullOrEmpty_2) {
+              String _genID_2 = this.genID();
+              c6 = _genID_2;
+            }
+            writer.write(c6);
+          }
+        }
+      }
+      EList<VideoSeq> _videoseqs_1 = videoGen.getVideoseqs();
+      for (final VideoSeq videoseq_1 : _videoseqs_1) {
+        if ((videoseq_1 instanceof AlternativeVideoSeq)) {
+          final AlternativeVideoSeq altvid_1 = ((AlternativeVideoSeq) videoseq_1);
+          String _videoid_3 = altvid_1.getVideoid();
+          c8 = _videoid_3;
+          boolean _isNullOrEmpty_3 = StringExtensions.isNullOrEmpty(c8);
+          if (_isNullOrEmpty_3) {
+            String _genID_3 = this.genID();
+            c8 = _genID_3;
+          }
+          c9 = (((";" + c8) + ":") + "(");
+          writer.write(c9);
+          EList<VideoDescription> _videodescs = altvid_1.getVideodescs();
+          int count = _videodescs.size();
+          EList<VideoDescription> _videodescs_1 = altvid_1.getVideodescs();
+          for (final VideoDescription vdesc : _videodescs_1) {
+            {
+              if ((count > 1)) {
+                String _videoid_4 = vdesc.getVideoid();
+                c10 = _videoid_4;
+                boolean _isNullOrEmpty_4 = StringExtensions.isNullOrEmpty(c10);
+                if (_isNullOrEmpty_4) {
+                  String _genID_4 = this.genID();
+                  c10 = _genID_4;
+                }
+                writer.write((c10 + "|"));
+              } else {
+                String _videoid_5 = vdesc.getVideoid();
+                c10 = _videoid_5;
+                boolean _isNullOrEmpty_5 = StringExtensions.isNullOrEmpty(c10);
+                if (_isNullOrEmpty_5) {
+                  String _genID_5 = this.genID();
+                  c10 = _genID_5;
+                }
+                writer.write((c10 + ")"));
+              }
+              count = (count - 1);
+            }
+          }
+        }
+      }
+      writer.write(";)");
+      writer.close();
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
 }

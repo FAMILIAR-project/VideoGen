@@ -19,7 +19,7 @@ class Main {
 	
 	//Q12 genere une pageHTML
 	//vv.printToHTMLWithRandom(videoGen)
-	vv.createFeatureModel()
+	vv.createFeatureModel2()
 	}
 	
 }
