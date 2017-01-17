@@ -268,16 +268,20 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cDescriptionKeyword_3_4_0 = (Keyword)cGroup_3_4.eContents().get(0);
 		private final Assignment cDescriptionAssignment_3_4_1 = (Assignment)cGroup_3_4.eContents().get(1);
 		private final RuleCall cDescriptionSTRINGTerminalRuleCall_3_4_1_0 = (RuleCall)cDescriptionAssignment_3_4_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_3_5 = (Keyword)cGroup_3.eContents().get(5);
+		private final Group cGroup_3_5 = (Group)cGroup_3.eContents().get(5);
+		private final Keyword cFilterKeyword_3_5_0 = (Keyword)cGroup_3_5.eContents().get(0);
+		private final Assignment cFilterAssignment_3_5_1 = (Assignment)cGroup_3_5.eContents().get(1);
+		private final RuleCall cFilterSTRINGTerminalRuleCall_3_5_1_0 = (RuleCall)cFilterAssignment_3_5_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_3_6 = (Keyword)cGroup_3.eContents().get(6);
 		
 		//VideoDescription:
 		//	'videoseq' videoid=ID? location=STRING ('{' ('duration' duration=INT)? (hasProba?='probability' probability=INT)?
-		//	('size' size=INT)? ('description' description=STRING)?
+		//	('size' size=INT)? ('description' description=STRING)? ('filter' filter=STRING)?
 		//	'}')?;
 		@Override public ParserRule getRule() { return rule; }
 
 		//'videoseq' videoid=ID? location=STRING ('{' ('duration' duration=INT)? (hasProba?='probability' probability=INT)?
-		//('size' size=INT)? ('description' description=STRING)? '}')?
+		//('size' size=INT)? ('description' description=STRING)? ('filter' filter=STRING)? '}')?
 		public Group getGroup() { return cGroup; }
 
 		//'videoseq'
@@ -296,7 +300,7 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getLocationSTRINGTerminalRuleCall_2_0() { return cLocationSTRINGTerminalRuleCall_2_0; }
 
 		//('{' ('duration' duration=INT)? (hasProba?='probability' probability=INT)? ('size' size=INT)? ('description'
-		//description=STRING)? '}')?
+		//description=STRING)? ('filter' filter=STRING)? '}')?
 		public Group getGroup_3() { return cGroup_3; }
 
 		//'{'
@@ -353,8 +357,20 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 		//STRING
 		public RuleCall getDescriptionSTRINGTerminalRuleCall_3_4_1_0() { return cDescriptionSTRINGTerminalRuleCall_3_4_1_0; }
 
+		//('filter' filter=STRING)?
+		public Group getGroup_3_5() { return cGroup_3_5; }
+
+		//'filter'
+		public Keyword getFilterKeyword_3_5_0() { return cFilterKeyword_3_5_0; }
+
+		//filter=STRING
+		public Assignment getFilterAssignment_3_5_1() { return cFilterAssignment_3_5_1; }
+
+		//STRING
+		public RuleCall getFilterSTRINGTerminalRuleCall_3_5_1_0() { return cFilterSTRINGTerminalRuleCall_3_5_1_0; }
+
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_3_5() { return cRightCurlyBracketKeyword_3_5; }
+		public Keyword getRightCurlyBracketKeyword_3_6() { return cRightCurlyBracketKeyword_3_6; }
 	}
 	
 	
@@ -476,7 +492,7 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 
 	//VideoDescription:
 	//	'videoseq' videoid=ID? location=STRING ('{' ('duration' duration=INT)? (hasProba?='probability' probability=INT)?
-	//	('size' size=INT)? ('description' description=STRING)?
+	//	('size' size=INT)? ('description' description=STRING)? ('filter' filter=STRING)?
 	//	'}')?;
 	public VideoDescriptionElements getVideoDescriptionAccess() {
 		return pVideoDescription;

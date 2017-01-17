@@ -29,6 +29,7 @@ VideoDescription : 'videoseq' (videoid=ID)? location=STRING
 	 (hasProba?='probability'  probability=INT)?
 	 ('size' size=INT)?
 	 ('description' description=STRING)? 
+	 ('filter' filter=STRING)?
 	'}')?
 	
 ;

@@ -2,14 +2,6 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="videoGen" nsURI="http://www.xtext.org/example/mydsl/VideoGen"
     nsPrefix="videoGen">
-  <eAnnotations source="http://www.eclipse.org/OCL/Import">
-    <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
-  </eAnnotations>
-  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
-    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
-    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
-  </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="VideoGeneratorModel">
     <eStructuralFeatures xsi:type="ecore:EReference" name="information" eType="#//VideoGenInformation"
         containment="true"/>
@@ -23,36 +15,14 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VideoSeq"/>
   <eClassifiers xsi:type="ecore:EClass" name="MandatoryVideoSeq" eSuperTypes="#//VideoSeq">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="videoidUnique locationUnique"/>
-    </eAnnotations>
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="videoidUnique" value="description->isUnique(videoid) "/>
-      <details key="locationUnique" value="description->isUnique(location) "/>
-    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="description" eType="#//VideoDescription"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OptionalVideoSeq" eSuperTypes="#//VideoSeq">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="videoidUnique locationUnique probaValue"/>
-    </eAnnotations>
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="videoidUnique" value="description->isUnique(videoid) "/>
-      <details key="locationUnique" value="description->isUnique(location) "/>
-      <details key="probaValue" value="self.description.probability&lt;= 1"/>
-    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="description" eType="#//VideoDescription"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AlternativeVideoSeq" eSuperTypes="#//VideoSeq">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="videoidUnique locationUnique"/>
-    </eAnnotations>
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="videoidUnique" value="videodescs->isUnique(videoid) "/>
-      <details key="locationUnique" value="videodescs->isUnique(location) "/>
-    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="videoid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="videodescs" upperBound="-1"
         eType="#//VideoDescription" containment="true"/>
@@ -65,5 +35,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="probability" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="filter" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

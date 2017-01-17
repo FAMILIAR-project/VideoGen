@@ -593,9 +593,31 @@ ruleVideoDescription returns [EObject current=null]
 	    }
 
 )
-))?	otherlv_12='}' 
+))?(	otherlv_12='filter' 
     {
-    	newLeafNode(otherlv_12, grammarAccess.getVideoDescriptionAccess().getRightCurlyBracketKeyword_3_5());
+    	newLeafNode(otherlv_12, grammarAccess.getVideoDescriptionAccess().getFilterKeyword_3_5_0());
+    }
+(
+(
+		lv_filter_13_0=RULE_STRING
+		{
+			newLeafNode(lv_filter_13_0, grammarAccess.getVideoDescriptionAccess().getFilterSTRINGTerminalRuleCall_3_5_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getVideoDescriptionRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"filter",
+        		lv_filter_13_0, 
+        		"org.eclipse.xtext.common.Terminals.STRING");
+	    }
+
+)
+))?	otherlv_14='}' 
+    {
+    	newLeafNode(otherlv_14, grammarAccess.getVideoDescriptionAccess().getRightCurlyBracketKeyword_3_6());
     }
 )?)
 ;

@@ -5,6 +5,7 @@
 'alternatives'=19
 'description'=24
 'duration'=21
+'filter'=25
 'mandatory'=17
 'optional'=18
 'probability'=22
@@ -33,3 +34,4 @@ T__21=21
 T__22=22
 T__23=23
 T__24=24
+T__25=25

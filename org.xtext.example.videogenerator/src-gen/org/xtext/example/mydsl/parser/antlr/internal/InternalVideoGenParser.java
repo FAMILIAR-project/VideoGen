@@ -21,7 +21,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalVideoGenParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'VideoGen'", "'{'", "'}'", "'@author'", "'@version'", "'@creation'", "'mandatory'", "'optional'", "'alternatives'", "'videoseq'", "'duration'", "'probability'", "'size'", "'description'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'VideoGen'", "'{'", "'}'", "'@author'", "'@version'", "'@creation'", "'mandatory'", "'optional'", "'alternatives'", "'videoseq'", "'duration'", "'probability'", "'size'", "'description'", "'filter'"
     };
     public static final int RULE_STRING=4;
     public static final int RULE_SL_COMMENT=8;
@@ -43,6 +43,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
     public static final int RULE_ML_COMMENT=7;
     public static final int T__23=23;
     public static final int T__24=24;
+    public static final int T__25=25;
     public static final int T__20=20;
     public static final int T__21=21;
 
@@ -1088,7 +1089,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleVideoDescription"
-    // InternalVideoGen.g:449:1: ruleVideoDescription returns [EObject current=null] : (otherlv_0= 'videoseq' ( (lv_videoid_1_0= RULE_ID ) )? ( (lv_location_2_0= RULE_STRING ) ) (otherlv_3= '{' (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? ( ( (lv_hasProba_6_0= 'probability' ) ) ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )? otherlv_12= '}' )? ) ;
+    // InternalVideoGen.g:449:1: ruleVideoDescription returns [EObject current=null] : (otherlv_0= 'videoseq' ( (lv_videoid_1_0= RULE_ID ) )? ( (lv_location_2_0= RULE_STRING ) ) (otherlv_3= '{' (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? ( ( (lv_hasProba_6_0= 'probability' ) ) ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )? (otherlv_12= 'filter' ( (lv_filter_13_0= RULE_STRING ) ) )? otherlv_14= '}' )? ) ;
     public final EObject ruleVideoDescription() throws RecognitionException {
         EObject current = null;
 
@@ -1105,15 +1106,17 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
         Token otherlv_10=null;
         Token lv_description_11_0=null;
         Token otherlv_12=null;
+        Token lv_filter_13_0=null;
+        Token otherlv_14=null;
 
          enterRule(); 
             
         try {
-            // InternalVideoGen.g:452:28: ( (otherlv_0= 'videoseq' ( (lv_videoid_1_0= RULE_ID ) )? ( (lv_location_2_0= RULE_STRING ) ) (otherlv_3= '{' (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? ( ( (lv_hasProba_6_0= 'probability' ) ) ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )? otherlv_12= '}' )? ) )
-            // InternalVideoGen.g:453:1: (otherlv_0= 'videoseq' ( (lv_videoid_1_0= RULE_ID ) )? ( (lv_location_2_0= RULE_STRING ) ) (otherlv_3= '{' (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? ( ( (lv_hasProba_6_0= 'probability' ) ) ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )? otherlv_12= '}' )? )
+            // InternalVideoGen.g:452:28: ( (otherlv_0= 'videoseq' ( (lv_videoid_1_0= RULE_ID ) )? ( (lv_location_2_0= RULE_STRING ) ) (otherlv_3= '{' (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? ( ( (lv_hasProba_6_0= 'probability' ) ) ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )? (otherlv_12= 'filter' ( (lv_filter_13_0= RULE_STRING ) ) )? otherlv_14= '}' )? ) )
+            // InternalVideoGen.g:453:1: (otherlv_0= 'videoseq' ( (lv_videoid_1_0= RULE_ID ) )? ( (lv_location_2_0= RULE_STRING ) ) (otherlv_3= '{' (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? ( ( (lv_hasProba_6_0= 'probability' ) ) ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )? (otherlv_12= 'filter' ( (lv_filter_13_0= RULE_STRING ) ) )? otherlv_14= '}' )? )
             {
-            // InternalVideoGen.g:453:1: (otherlv_0= 'videoseq' ( (lv_videoid_1_0= RULE_ID ) )? ( (lv_location_2_0= RULE_STRING ) ) (otherlv_3= '{' (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? ( ( (lv_hasProba_6_0= 'probability' ) ) ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )? otherlv_12= '}' )? )
-            // InternalVideoGen.g:453:3: otherlv_0= 'videoseq' ( (lv_videoid_1_0= RULE_ID ) )? ( (lv_location_2_0= RULE_STRING ) ) (otherlv_3= '{' (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? ( ( (lv_hasProba_6_0= 'probability' ) ) ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )? otherlv_12= '}' )?
+            // InternalVideoGen.g:453:1: (otherlv_0= 'videoseq' ( (lv_videoid_1_0= RULE_ID ) )? ( (lv_location_2_0= RULE_STRING ) ) (otherlv_3= '{' (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? ( ( (lv_hasProba_6_0= 'probability' ) ) ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )? (otherlv_12= 'filter' ( (lv_filter_13_0= RULE_STRING ) ) )? otherlv_14= '}' )? )
+            // InternalVideoGen.g:453:3: otherlv_0= 'videoseq' ( (lv_videoid_1_0= RULE_ID ) )? ( (lv_location_2_0= RULE_STRING ) ) (otherlv_3= '{' (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? ( ( (lv_hasProba_6_0= 'probability' ) ) ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )? (otherlv_12= 'filter' ( (lv_filter_13_0= RULE_STRING ) ) )? otherlv_14= '}' )?
             {
             otherlv_0=(Token)match(input,20,FOLLOW_13); 
 
@@ -1182,16 +1185,16 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalVideoGen.g:493:2: (otherlv_3= '{' (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? ( ( (lv_hasProba_6_0= 'probability' ) ) ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )? otherlv_12= '}' )?
-            int alt13=2;
-            int LA13_0 = input.LA(1);
+            // InternalVideoGen.g:493:2: (otherlv_3= '{' (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? ( ( (lv_hasProba_6_0= 'probability' ) ) ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )? (otherlv_12= 'filter' ( (lv_filter_13_0= RULE_STRING ) ) )? otherlv_14= '}' )?
+            int alt14=2;
+            int LA14_0 = input.LA(1);
 
-            if ( (LA13_0==12) ) {
-                alt13=1;
+            if ( (LA14_0==12) ) {
+                alt14=1;
             }
-            switch (alt13) {
+            switch (alt14) {
                 case 1 :
-                    // InternalVideoGen.g:493:4: otherlv_3= '{' (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? ( ( (lv_hasProba_6_0= 'probability' ) ) ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )? otherlv_12= '}'
+                    // InternalVideoGen.g:493:4: otherlv_3= '{' (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? ( ( (lv_hasProba_6_0= 'probability' ) ) ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )? (otherlv_12= 'filter' ( (lv_filter_13_0= RULE_STRING ) ) )? otherlv_14= '}'
                     {
                     otherlv_3=(Token)match(input,12,FOLLOW_15); 
 
@@ -1403,9 +1406,56 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_12=(Token)match(input,13,FOLLOW_2); 
+                    // InternalVideoGen.g:596:4: (otherlv_12= 'filter' ( (lv_filter_13_0= RULE_STRING ) ) )?
+                    int alt13=2;
+                    int LA13_0 = input.LA(1);
 
-                        	newLeafNode(otherlv_12, grammarAccess.getVideoDescriptionAccess().getRightCurlyBracketKeyword_3_5());
+                    if ( (LA13_0==25) ) {
+                        alt13=1;
+                    }
+                    switch (alt13) {
+                        case 1 :
+                            // InternalVideoGen.g:596:6: otherlv_12= 'filter' ( (lv_filter_13_0= RULE_STRING ) )
+                            {
+                            otherlv_12=(Token)match(input,25,FOLLOW_7); 
+
+                                	newLeafNode(otherlv_12, grammarAccess.getVideoDescriptionAccess().getFilterKeyword_3_5_0());
+                                
+                            // InternalVideoGen.g:600:1: ( (lv_filter_13_0= RULE_STRING ) )
+                            // InternalVideoGen.g:601:1: (lv_filter_13_0= RULE_STRING )
+                            {
+                            // InternalVideoGen.g:601:1: (lv_filter_13_0= RULE_STRING )
+                            // InternalVideoGen.g:602:3: lv_filter_13_0= RULE_STRING
+                            {
+                            lv_filter_13_0=(Token)match(input,RULE_STRING,FOLLOW_21); 
+
+                            			newLeafNode(lv_filter_13_0, grammarAccess.getVideoDescriptionAccess().getFilterSTRINGTerminalRuleCall_3_5_1_0()); 
+                            		
+
+                            	        if (current==null) {
+                            	            current = createModelElement(grammarAccess.getVideoDescriptionRule());
+                            	        }
+                                   		setWithLastConsumed(
+                                   			current, 
+                                   			"filter",
+                                    		lv_filter_13_0, 
+                                    		"org.eclipse.xtext.common.Terminals.STRING");
+                            	    
+
+                            }
+
+
+                            }
+
+
+                            }
+                            break;
+
+                    }
+
+                    otherlv_14=(Token)match(input,13,FOLLOW_2); 
+
+                        	newLeafNode(otherlv_14, grammarAccess.getVideoDescriptionAccess().getRightCurlyBracketKeyword_3_6());
                         
 
                     }
@@ -1451,11 +1501,12 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000000000102000L});
     public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000000000000030L});
     public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000000000001002L});
-    public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000001E02000L});
+    public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000003E02000L});
     public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000000001C02000L});
-    public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0000000001802000L});
-    public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0000000001002000L});
-    public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000000003C02000L});
+    public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0000000003802000L});
+    public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0000000003002000L});
+    public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x0000000002002000L});
+    public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x0000000000002000L});
 
 }
