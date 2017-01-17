@@ -1,6 +1,8 @@
 VideoGen {
 	
-	mandatory videoseq v1 "v/v1/V1.mp4" 
+	mandatory videoseq v1 "v/v1/V1.mp4" {
+	filter "vectorscope"
+	}
 	optional videoseq v2 "v/v2/V2.mp4" {
 		probability 25
 	}
@@ -18,7 +20,9 @@ VideoGen {
 		videoseq v40 "v/v4/seq1.mp4"
 		videoseq v41 "v/v4/seq2.mp4"
 	}
-	mandatory videoseq v5 "v/v5.mp4"
+	mandatory videoseq v5 "v/v5.mp4"{
+	filter "waveform"
+	}
 	
 	optional videoseq v6 "v/v6.mp4"
 	alternatives v7 {

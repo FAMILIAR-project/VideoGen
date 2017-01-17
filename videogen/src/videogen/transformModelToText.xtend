@@ -350,17 +350,114 @@ def verify(){
 		while(p.alive)
 			if(!p.alive)
 				return	
-		writer.close()}
+		}
 	
 	//QSUP1
-	def createVideoGen(String path){
+	def createVideoGen(){
 		
-		val writer=new PrintWriter("creationAutomatique.videogen");
-		var cmd = "" 
+		
+		var cmd = "./scriptVG.sh" 
 		var execCommande =Runtime.runtime.exec(cmd)
+		while(execCommande.alive)
+			if(!execCommande.alive)
+				return
 		 
 		
 		}
+//QSUP2
+def applyFilter(String filter, String inputVideo){
+	println("appel filter")
+	var cmd = "ffmpeg -i "+inputVideo+" -strict -2  -vf \"format=yuva444p9, "+filter+"\"  "+inputVideo+".avecfilter.mp4" 
+		println("cmd :"+cmd)
+		var execCommande =Runtime.runtime.exec(cmd)
+		println("exit code : "+execCommande.waitFor)
+		println("la commande est bonne, si vous copier la cmd depuis le dossier videogen dans un terminal elle fonctionne")
+	
+	var reader= new BufferedReader(new InputStreamReader(execCommande.inputStream))
+		var truc = reader.readLine()
+	while(truc != null){
+		println(truc)
+		truc = reader.readLine()
+	}
+	println("leaving filter")
+}
+def filters(VideoGeneratorModel playlist){
+	//ffmpeg -i v5.mp4 -strict -2  -vf "format=yuva444p9, vectorscope"  jj.mp4
+		 // ffmpeg -i v5.mp4 -strict -2  -vf "format=yuva444p9, waveform"  jj.mp4
+//		  ffmpeg -i v5.mp4 -strict -2  -vf "format=yuva444p9, crop=320:240"  jj.mp4
+		 //ffmpeg -i v5.mp4 -strict -2  -vf "format=yuva444p9, ciescope"  jj.mp4
+	val writer=new PrintWriter("PageHTMLvideogen2.html")
+		val writer2=new PrintWriter("ffmpegConcatFile")
+			val random=new Random()
+		//var numSeq = 1
+		println("<ul>")
+		writer.write("<ul>\n")
+		playlist.videoseqs.forEach[videoseq | 
+			if (videoseq instanceof MandatoryVideoSeq) {
+				val desc = (videoseq as MandatoryVideoSeq).description.location
+				creationVignette(desc,calculDuree(desc).intValue/2,desc+".png")
+				println ("<li>" +"<img src="+desc+".png/></li>")  
+				if(!(videoseq as MandatoryVideoSeq).description.filter.isNullOrEmpty){
+					applyFilter((videoseq as MandatoryVideoSeq).description.filter,desc)
+					writer2.write("file \'"+desc+".avecfilter.mp4\'\n")
+				}
+				else{
+					writer2.write("file \'"+desc+"\'\n")
+				}
+				writer.write("<li>" +"Mandatory<img src="+desc+".png/></li>\n")		
+			}
+			else if (videoseq instanceof OptionalVideoSeq) {
+				val desc = (videoseq as OptionalVideoSeq).description.location
+				 var proba=random.nextInt(2)
+				 println("proba :"+proba)
+				 if(proba==1){
+					creationVignette(desc,calculDuree(desc).intValue/2,desc+".png")
+				  println ("<li>" +"<img src="+desc+".png/></li>")	
+				  if(!(videoseq as OptionalVideoSeq).description.filter.isNullOrEmpty){
+					applyFilter((videoseq as MandatoryVideoSeq).description.filter,desc)
+					writer2.write("file \'"+desc+".avecfilter.mp4\'\n")
+				}
+				else{
+					writer2.write("file \'"+desc+"\'\n")	  
+				}
+					writer.write("<li>" +"Optional<img src="+desc+".png/></li>\n")
+				}
+			}
+			else {
+				val altvid = (videoseq as AlternativeVideoSeq)
+	
+					
+				if (altvid.videodescs.size > 0) // there are vid seq alternatives
+					println ("<ul>")	
+				writer.write("<ul>\n")	
+				var proba = random.nextInt(altvid.videodescs.size)
+				val vaa=altvid.videodescs.get(proba)
+					creationVignette(vaa.location,calculDuree(vaa.location).intValue/2,vaa.location+".png")
+				  println ("<li>" +"<img src="+vaa.location+".png/></li>")  	
+				writer.write("<li>" +"Alternative<img src="+vaa.location+".png/></li>\n")	
+				if(!vaa.filter.isNullOrEmpty){
+					applyFilter((videoseq as MandatoryVideoSeq).description.filter,vaa.location)
+					writer2.write("file \'"+vaa.location+".avecfilter.mp4\'\n")
+				}
+				else{
+					writer2.write("file \'"+vaa.location+"\'\n")	  
+				}
+			}
+			println ("</ul>")	
+			writer.write("</ul>\n")
+		]
+		println("</ul>")
+		writer.write("<ul>\n")	
+		writer.close()
+		writer2.close
+		
+		var cmd = "ffmpeg -f concat -i ffmpegConcatFile -c copy output.mp4" 
+		var p =Runtime.runtime.exec(cmd)
+		while(p.alive)
+			if(!p.alive)
+				return	
+		}
+
 //QSUP3-1
 	def createFeatureModel(){
 		var videoGen = loadVideoGenerator(URI.createURI("foo1.videogen"))

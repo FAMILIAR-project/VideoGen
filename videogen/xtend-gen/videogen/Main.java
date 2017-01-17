@@ -12,7 +12,7 @@ public class Main {
     Playlist playlist = vv.playlist();
     URI _createURI = URI.createURI("foo1.videogen");
     VideoGeneratorModel videoGen = vv.loadVideoGenerator(_createURI);
-    vv.printToHTMLWithRandom(videoGen);
-    vv.createFeatureModel2();
+    vv.createVideoGen();
+    vv.filters(videoGen);
   }
 }

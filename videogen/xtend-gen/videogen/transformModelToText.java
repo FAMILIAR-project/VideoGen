@@ -477,6 +477,7 @@ public class transformModelToText {
   public void printToHTMLWithRandom(final VideoGeneratorModel playlist) {
     try {
       final PrintWriter writer = new PrintWriter("PageHTMLvideogen2.html");
+      final PrintWriter writer2 = new PrintWriter("ffmpegConcatFile");
       final Random random = new Random();
       InputOutput.<String>println("<ul>");
       writer.write("<ul>\n");
@@ -491,6 +492,7 @@ public class transformModelToText {
           this.creationVignette(desc, _divide, (desc + ".png"));
           InputOutput.<String>println(((("<li>" + "<img src=") + desc) + ".png/></li>"));
           writer.write(((("<li>" + "Mandatory<img src=") + desc) + ".png/></li>\n"));
+          writer2.write((("file \'" + desc) + "\'\n"));
         } else {
           if ((videoseq instanceof OptionalVideoSeq)) {
             VideoDescription _description_1 = ((OptionalVideoSeq) videoseq).getDescription();
@@ -503,6 +505,171 @@ public class transformModelToText {
               int _divide_1 = (_intValue_1 / 2);
               this.creationVignette(desc_1, _divide_1, (desc_1 + ".png"));
               InputOutput.<String>println(((("<li>" + "<img src=") + desc_1) + ".png/></li>"));
+              writer.write(((("<li>" + "Optional<img src=") + desc_1) + ".png/></li>\n"));
+              writer2.write((("file \'" + desc_1) + "\'\n"));
+            }
+          } else {
+            final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
+            EList<VideoDescription> _videodescs = altvid.getVideodescs();
+            int _size = _videodescs.size();
+            boolean _greaterThan = (_size > 0);
+            if (_greaterThan) {
+              InputOutput.<String>println("<ul>");
+            }
+            writer.write("<ul>\n");
+            EList<VideoDescription> _videodescs_1 = altvid.getVideodescs();
+            int _size_1 = _videodescs_1.size();
+            int proba_1 = random.nextInt(_size_1);
+            EList<VideoDescription> _videodescs_2 = altvid.getVideodescs();
+            final VideoDescription vaa = _videodescs_2.get(proba_1);
+            String _location = vaa.getLocation();
+            String _location_1 = vaa.getLocation();
+            double _calculDuree_2 = this.calculDuree(_location_1);
+            int _intValue_2 = Double.valueOf(_calculDuree_2).intValue();
+            int _divide_2 = (_intValue_2 / 2);
+            String _location_2 = vaa.getLocation();
+            String _plus = (_location_2 + ".png");
+            this.creationVignette(_location, _divide_2, _plus);
+            String _location_3 = vaa.getLocation();
+            String _plus_1 = (("<li>" + "<img src=") + _location_3);
+            String _plus_2 = (_plus_1 + ".png/></li>");
+            InputOutput.<String>println(_plus_2);
+            String _location_4 = vaa.getLocation();
+            String _plus_3 = (("<li>" + "Alternative<img src=") + _location_4);
+            String _plus_4 = (_plus_3 + ".png/></li>\n");
+            writer.write(_plus_4);
+            String _location_5 = vaa.getLocation();
+            String _plus_5 = ("file \'" + _location_5);
+            String _plus_6 = (_plus_5 + "\'\n");
+            writer2.write(_plus_6);
+          }
+        }
+        InputOutput.<String>println("</ul>");
+        writer.write("</ul>\n");
+      };
+      _videoseqs.forEach(_function);
+      InputOutput.<String>println("</ul>");
+      writer.write("<ul>\n");
+      writer.close();
+      writer2.close();
+      String cmd = "ffmpeg -f concat -i ffmpegConcatFile -c copy output.mp4";
+      Runtime _runtime = Runtime.getRuntime();
+      Process p = _runtime.exec(cmd);
+      while (p.isAlive()) {
+        boolean _isAlive = p.isAlive();
+        boolean _not = (!_isAlive);
+        if (_not) {
+          return;
+        }
+      }
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  public void createVideoGen() {
+    try {
+      String cmd = "./scriptVG.sh";
+      Runtime _runtime = Runtime.getRuntime();
+      Process execCommande = _runtime.exec(cmd);
+      while (execCommande.isAlive()) {
+        boolean _isAlive = execCommande.isAlive();
+        boolean _not = (!_isAlive);
+        if (_not) {
+          return;
+        }
+      }
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  public String applyFilter(final String filter, final String inputVideo) {
+    try {
+      String _xblockexpression = null;
+      {
+        InputOutput.<String>println("appel filter");
+        String cmd = (((((("ffmpeg -i " + inputVideo) + " -strict -2  -vf \"format=yuva444p9, ") + filter) + "\"  ") + inputVideo) + ".avecfilter.mp4");
+        InputOutput.<String>println(("cmd :" + cmd));
+        Runtime _runtime = Runtime.getRuntime();
+        Process execCommande = _runtime.exec(cmd);
+        int _waitFor = execCommande.waitFor();
+        String _plus = ("exit code : " + Integer.valueOf(_waitFor));
+        InputOutput.<String>println(_plus);
+        InputOutput.<String>println("la commande est bonne, si vous copier la cmd depuis le dossier videogen dans un terminal elle fonctionne");
+        InputStream _inputStream = execCommande.getInputStream();
+        InputStreamReader _inputStreamReader = new InputStreamReader(_inputStream);
+        BufferedReader reader = new BufferedReader(_inputStreamReader);
+        String truc = reader.readLine();
+        while ((!Objects.equal(truc, null))) {
+          {
+            InputOutput.<String>println(truc);
+            String _readLine = reader.readLine();
+            truc = _readLine;
+          }
+        }
+        _xblockexpression = InputOutput.<String>println("leaving filter");
+      }
+      return _xblockexpression;
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  public void filters(final VideoGeneratorModel playlist) {
+    try {
+      final PrintWriter writer = new PrintWriter("PageHTMLvideogen2.html");
+      final PrintWriter writer2 = new PrintWriter("ffmpegConcatFile");
+      final Random random = new Random();
+      InputOutput.<String>println("<ul>");
+      writer.write("<ul>\n");
+      EList<VideoSeq> _videoseqs = playlist.getVideoseqs();
+      final Consumer<VideoSeq> _function = (VideoSeq videoseq) -> {
+        if ((videoseq instanceof MandatoryVideoSeq)) {
+          VideoDescription _description = ((MandatoryVideoSeq) videoseq).getDescription();
+          final String desc = _description.getLocation();
+          double _calculDuree = this.calculDuree(desc);
+          int _intValue = Double.valueOf(_calculDuree).intValue();
+          int _divide = (_intValue / 2);
+          this.creationVignette(desc, _divide, (desc + ".png"));
+          InputOutput.<String>println(((("<li>" + "<img src=") + desc) + ".png/></li>"));
+          VideoDescription _description_1 = ((MandatoryVideoSeq) videoseq).getDescription();
+          String _filter = _description_1.getFilter();
+          boolean _isNullOrEmpty = StringExtensions.isNullOrEmpty(_filter);
+          boolean _not = (!_isNullOrEmpty);
+          if (_not) {
+            VideoDescription _description_2 = ((MandatoryVideoSeq) videoseq).getDescription();
+            String _filter_1 = _description_2.getFilter();
+            this.applyFilter(_filter_1, desc);
+            writer2.write((("file \'" + desc) + ".avecfilter.mp4\'\n"));
+          } else {
+            writer2.write((("file \'" + desc) + "\'\n"));
+          }
+          writer.write(((("<li>" + "Mandatory<img src=") + desc) + ".png/></li>\n"));
+        } else {
+          if ((videoseq instanceof OptionalVideoSeq)) {
+            VideoDescription _description_3 = ((OptionalVideoSeq) videoseq).getDescription();
+            final String desc_1 = _description_3.getLocation();
+            int proba = random.nextInt(2);
+            InputOutput.<String>println(("proba :" + Integer.valueOf(proba)));
+            if ((proba == 1)) {
+              double _calculDuree_1 = this.calculDuree(desc_1);
+              int _intValue_1 = Double.valueOf(_calculDuree_1).intValue();
+              int _divide_1 = (_intValue_1 / 2);
+              this.creationVignette(desc_1, _divide_1, (desc_1 + ".png"));
+              InputOutput.<String>println(((("<li>" + "<img src=") + desc_1) + ".png/></li>"));
+              VideoDescription _description_4 = ((OptionalVideoSeq) videoseq).getDescription();
+              String _filter_2 = _description_4.getFilter();
+              boolean _isNullOrEmpty_1 = StringExtensions.isNullOrEmpty(_filter_2);
+              boolean _not_1 = (!_isNullOrEmpty_1);
+              if (_not_1) {
+                VideoDescription _description_5 = ((MandatoryVideoSeq) videoseq).getDescription();
+                String _filter_3 = _description_5.getFilter();
+                this.applyFilter(_filter_3, desc_1);
+                writer2.write((("file \'" + desc_1) + ".avecfilter.mp4\'\n"));
+              } else {
+                writer2.write((("file \'" + desc_1) + "\'\n"));
+              }
               writer.write(((("<li>" + "Optional<img src=") + desc_1) + ".png/></li>\n"));
             }
           } else {
@@ -535,6 +702,24 @@ public class transformModelToText {
             String _plus_3 = (("<li>" + "Alternative<img src=") + _location_4);
             String _plus_4 = (_plus_3 + ".png/></li>\n");
             writer.write(_plus_4);
+            String _filter_4 = vaa.getFilter();
+            boolean _isNullOrEmpty_2 = StringExtensions.isNullOrEmpty(_filter_4);
+            boolean _not_2 = (!_isNullOrEmpty_2);
+            if (_not_2) {
+              VideoDescription _description_6 = ((MandatoryVideoSeq) videoseq).getDescription();
+              String _filter_5 = _description_6.getFilter();
+              String _location_5 = vaa.getLocation();
+              this.applyFilter(_filter_5, _location_5);
+              String _location_6 = vaa.getLocation();
+              String _plus_5 = ("file \'" + _location_6);
+              String _plus_6 = (_plus_5 + ".avecfilter.mp4\'\n");
+              writer2.write(_plus_6);
+            } else {
+              String _location_7 = vaa.getLocation();
+              String _plus_7 = ("file \'" + _location_7);
+              String _plus_8 = (_plus_7 + "\'\n");
+              writer2.write(_plus_8);
+            }
           }
         }
         InputOutput.<String>println("</ul>");
@@ -544,17 +729,17 @@ public class transformModelToText {
       InputOutput.<String>println("</ul>");
       writer.write("<ul>\n");
       writer.close();
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
-  }
-  
-  public void createVideoGen(final String path) {
-    try {
-      final PrintWriter writer = new PrintWriter("creationAutomatique.videogen");
-      String cmd = "";
+      writer2.close();
+      String cmd = "ffmpeg -f concat -i ffmpegConcatFile -c copy output.mp4";
       Runtime _runtime = Runtime.getRuntime();
-      Process execCommande = _runtime.exec(cmd);
+      Process p = _runtime.exec(cmd);
+      while (p.isAlive()) {
+        boolean _isAlive = p.isAlive();
+        boolean _not = (!_isAlive);
+        if (_not) {
+          return;
+        }
+      }
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

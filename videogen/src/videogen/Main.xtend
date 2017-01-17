@@ -18,8 +18,12 @@ class Main {
 	//vv.printToHTML(videoGen);
 	
 	//Q12 genere une pageHTML
-	vv.printToHTMLWithRandom(videoGen)
-	vv.createFeatureModel2()
+	//vv.printToHTMLWithRandom(videoGen)
+	//Exercice  SUPP 3
+	//vv.createFeatureModel2()
+	//EXercice SUPP 1
+	vv.createVideoGen
+	//Execice SUPP 2
+	vv.filters(videoGen)
 	}
-	
 }
