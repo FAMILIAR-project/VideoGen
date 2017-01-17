@@ -4,7 +4,7 @@
     <description videoid="v0" location="V1/v1.mp4"/>
   </videoseqs>
   <videoseqs xsi:type="videoGen:OptionalVideoSeq">
-    <description videoid="v1" location="v2folder/v2.mp4" probability="25"/>
+    <description videoid="v1" location="v2folder/v2.mp4"/>
   </videoseqs>
   <videoseqs xsi:type="videoGen:AlternativeVideoSeq" videoid="vid3">
     <videodescs videoid="v2" location="v3/seq1.mp4"/>

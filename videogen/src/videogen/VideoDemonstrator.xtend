@@ -99,53 +99,44 @@ class VideoDemonstrator {
 	}
 	
 	def void printToFile(VideoGeneratorModel videoGen) {
-		//var numSeq = 1
-		//println("<ul>")
+		
 		var file = new File("test.txt")
-		//var string = "hihihi amel"
      	var fileWriter = new FileWriter(file)
      	
 		
-		println(" avant for")		
 		for(videoseq : videoGen.videoseqs){
 	
-			//println(" je suis après le for")
 			if (videoseq instanceof MandatoryVideoSeq){
 				val desc = (videoseq as MandatoryVideoSeq).description
 				if(!desc.videoid.isNullOrEmpty){ 
-					println ("<li>" + desc.videoid + "</li>")  
 					fileWriter.write("file "+desc.location+"\n")
 					fileWriter.flush()
-			      	//fileWriter.close()
 				}
 									
 			}else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
-				var rdm = new Random().nextInt(1)
-				
+				var rdm = new Random().nextInt(2)
+				//println(" ro " +rdm)
 				if(rdm == 1){
 					if(!desc.videoid.isNullOrEmpty) {
-						println ("<li>" + desc.videoid + "</li>") 
 						fileWriter.write("file "+desc.location+"\n")
 						fileWriter.flush();
 				      	//fileWriter.close()
 				     
-				   	}
+				   }
 					
 				}
 				}else {
 				
 					val altvid = (videoseq as AlternativeVideoSeq)
 					var random = new Random().nextInt(altvid.videodescs.size)
-					print(" r "+random+"\n")
+					//print(" ra "+random+"\n")
 					var vdesc = altvid.videodescs.get(random);
 					
 				
 			      	if(!vdesc.videoid.isNullOrEmpty) {
-						println ("<li>" + vdesc.videoid + "</li>")
-						fileWriter.write("file "+vdesc.videoid+"\n")
+						fileWriter.write("file "+vdesc.location+"\n")
 						fileWriter.flush();
-			      		//SfileWriter.close()
 					}
 				
 				}
@@ -153,9 +144,6 @@ class VideoDemonstrator {
 			}
 			
 		
-		
-			
-		fileWriter.flush();
 		fileWriter.close()
 		
 		
