@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ASCII"?>
+<videoGen:VideoGeneratorModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:videoGen="http://www.xtext.org/example/mydsl/VideoGen">
+  <videoseqs xsi:type="videoGen:MandatoryVideoSeq">
+    <description videoid="v0" location="C:/Users/Sandra/git/VideoGen/videogen/videos/v1/v1.mp4"/>
+  </videoseqs>
+  <videoseqs xsi:type="videoGen:OptionalVideoSeq">
+    <description videoid="v1" location="C:/Users/Sandra/git/VideoGen/videogen/videos/v2/v2.mp4"/>
+  </videoseqs>
+  <videoseqs xsi:type="videoGen:AlternativeVideoSeq" videoid="vid3">
+    <videodescs videoid="v2" location="C:/Users/Sandra/git/VideoGen/videogen/videos/v3/seq1.mp4"/>
+    <videodescs videoid="vid31" location="C:/Users/Sandra/git/VideoGen/videogen/videos/v3/seq2.mp4"/>
+    <videodescs videoid="vid32" location="C:/Users/Sandra/git/VideoGen/videogen/videos/v3/seq3.mp4"/>
+  </videoseqs>
+</videoGen:VideoGeneratorModel>
