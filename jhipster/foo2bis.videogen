@@ -1,0 +1,17 @@
+VideoGen {
+	
+	mandatory videoseq v0 "/home/loic/Videos/1.mp4" 
+	optional videoseq v1 "/home/loic/Videos/2.mp4" {
+		probability 25
+	}
+	alternatives vid3 {
+		videoseq vid30 "/home/loic/Videos/1.mp4" {
+				probability 50
+		}
+		videoseq vid31 "/home/loic/Videos/2.mp4" {
+				probability 50
+		}
+		videoseq vid32 "/home/loic/Videos/3.mp4"
+	}
+	
+}

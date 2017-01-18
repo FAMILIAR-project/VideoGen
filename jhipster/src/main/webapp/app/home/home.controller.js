@@ -5,9 +5,9 @@
         .module('videogenApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state'];
+    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state','VideoGen'];
 
-    function HomeController ($scope, Principal, LoginService, $state) {
+    function HomeController ($scope, Principal, LoginService, $state, VideoGen) {
         var vm = this;
 
         vm.account = null;
@@ -19,6 +19,9 @@
         });
 
         getAccount();
+        VideoGen.regenerate().$promise.then(function(a){
+          console.log("Jean" + a);
+        });
 
         function getAccount() {
             Principal.identity().then(function(account) {
