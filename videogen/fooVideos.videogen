@@ -1,6 +1,9 @@
 VideoGen {
 	mandatory videoseq v1 "C:/Users/kaoutar/git/VideoGen/videogen/videosTel/nancyagram.mp4"
+	optional videoseq v2 "C:/Users/kaoutar/git/VideoGen/videogen/videosTel/vdf.mp4"
 	optional videoseq v2 "C:/Users/kaoutar/git/VideoGen/videogen/videosTel/standbyme.mp4"
+	optional videoseq v2 "C:/Users/kaoutar/git/VideoGen/videogen/videosTel/videoplayback.mp4"
+	
 	alternatives v3 { 
 		videoseq v31 "C:/Users/kaoutar/git/VideoGen/videogen/videosTel/standbyme.mp4"
 		videoseq v32 "C:/Users/kaoutar/git/VideoGen/videogen/videosTel/videoplayback.mp4"

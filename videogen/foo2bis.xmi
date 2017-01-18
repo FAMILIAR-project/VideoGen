@@ -4,7 +4,13 @@
     <description videoid="v1" location="C:/Users/kaoutar/git/VideoGen/videogen/videosTel/nancyagram.mp4"/>
   </videoseqs>
   <videoseqs xsi:type="videoGen:OptionalVideoSeq">
+    <description videoid="v2" location="C:/Users/kaoutar/git/VideoGen/videogen/videosTel/vdf.mp4"/>
+  </videoseqs>
+  <videoseqs xsi:type="videoGen:OptionalVideoSeq">
     <description videoid="v2" location="C:/Users/kaoutar/git/VideoGen/videogen/videosTel/standbyme.mp4"/>
+  </videoseqs>
+  <videoseqs xsi:type="videoGen:OptionalVideoSeq">
+    <description videoid="v2" location="C:/Users/kaoutar/git/VideoGen/videogen/videosTel/videoplayback.mp4"/>
   </videoseqs>
   <videoseqs xsi:type="videoGen:AlternativeVideoSeq" videoid="v3">
     <videodescs videoid="v31" location="C:/Users/kaoutar/git/VideoGen/videogen/videosTel/standbyme.mp4"/>

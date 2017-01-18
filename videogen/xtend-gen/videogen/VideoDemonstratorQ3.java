@@ -120,7 +120,7 @@ public class VideoDemonstratorQ3 {
             _mediaFile_1.add(mediaFile_1);
           }
         } else {
-          InputOutput.<String>println("else");
+          InputOutput.<String>println("Alternatives");
           EList<VideoDescription> _videodescs = ((AlternativeVideoSeq) videoseq).getVideodescs();
           final int size = _videodescs.size();
           EList<VideoDescription> _videodescs_1 = ((AlternativeVideoSeq) videoseq).getVideodescs();

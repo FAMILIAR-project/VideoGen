@@ -82,7 +82,7 @@ class VideoDemonstratorQ3 {
 				} 
 			}
 			else {
-				println("else")
+				println("Alternatives")
 				val size = (videoseq as AlternativeVideoSeq).videodescs.size;		
 				var fileLocation = (videoseq as AlternativeVideoSeq).videodescs.get(new Random().nextInt(size)).location;
 
