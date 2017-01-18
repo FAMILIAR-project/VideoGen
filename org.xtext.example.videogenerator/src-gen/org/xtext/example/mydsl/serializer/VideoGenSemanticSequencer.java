@@ -16,6 +16,7 @@ import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequence
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import org.xtext.example.mydsl.services.VideoGenGrammarAccess;
 import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq;
+import org.xtext.example.mydsl.videoGen.Filter;
 import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq;
 import org.xtext.example.mydsl.videoGen.OptionalVideoSeq;
 import org.xtext.example.mydsl.videoGen.VideoDescription;
@@ -39,6 +40,9 @@ public class VideoGenSemanticSequencer extends AbstractDelegatingSemanticSequenc
 			switch (semanticObject.eClass().getClassifierID()) {
 			case VideoGenPackage.ALTERNATIVE_VIDEO_SEQ:
 				sequence_AlternativeVideoSeq(context, (AlternativeVideoSeq) semanticObject); 
+				return; 
+			case VideoGenPackage.FILTER:
+				sequence_Filter(context, (Filter) semanticObject); 
 				return; 
 			case VideoGenPackage.MANDATORY_VIDEO_SEQ:
 				sequence_MandatoryVideoSeq(context, (MandatoryVideoSeq) semanticObject); 
@@ -70,6 +74,24 @@ public class VideoGenSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 */
 	protected void sequence_AlternativeVideoSeq(ISerializationContext context, AlternativeVideoSeq semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Filter returns Filter
+	 *
+	 * Constraint:
+	 *     filter=STRING
+	 */
+	protected void sequence_Filter(ISerializationContext context, Filter semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, VideoGenPackage.Literals.FILTER__FILTER) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, VideoGenPackage.Literals.FILTER__FILTER));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getFilterAccess().getFilterSTRINGTerminalRuleCall_1_0(), semanticObject.getFilter());
+		feeder.finish();
 	}
 	
 	
@@ -122,7 +144,8 @@ public class VideoGenSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *         duration=INT? 
 	 *         probability=INT? 
 	 *         size=INT? 
-	 *         description=STRING?
+	 *         description=STRING? 
+	 *         filters+=Filter*
 	 *     )
 	 */
 	protected void sequence_VideoDescription(ISerializationContext context, VideoDescription semanticObject) {

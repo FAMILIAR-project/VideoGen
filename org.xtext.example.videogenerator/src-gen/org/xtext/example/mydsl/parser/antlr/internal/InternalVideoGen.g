@@ -582,11 +582,80 @@ ruleVideoDescription returns [EObject current=null]
 	    }
 
 )
-))?this_RIGHT_BRACKET_12=RULE_RIGHT_BRACKET
+))?(	otherlv_12='filters' 
+    {
+    	newLeafNode(otherlv_12, grammarAccess.getVideoDescriptionAccess().getFiltersKeyword_3_5_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getVideoDescriptionAccess().getFiltersFilterParserRuleCall_3_5_1_0()); 
+	    }
+		lv_filters_13_0=ruleFilter		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getVideoDescriptionRule());
+	        }
+       		add(
+       			$current, 
+       			"filters",
+        		lv_filters_13_0, 
+        		"org.xtext.example.mydsl.VideoGen.Filter");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)+)?this_RIGHT_BRACKET_14=RULE_RIGHT_BRACKET
     { 
-    newLeafNode(this_RIGHT_BRACKET_12, grammarAccess.getVideoDescriptionAccess().getRIGHT_BRACKETTerminalRuleCall_3_5()); 
+    newLeafNode(this_RIGHT_BRACKET_14, grammarAccess.getVideoDescriptionAccess().getRIGHT_BRACKETTerminalRuleCall_3_6()); 
     }
 )?)
+;
+
+
+
+
+
+// Entry rule entryRuleFilter
+entryRuleFilter returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getFilterRule()); }
+	 iv_ruleFilter=ruleFilter 
+	 { $current=$iv_ruleFilter.current; } 
+	 EOF 
+;
+
+// Rule Filter
+ruleFilter returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(this_LEFT_BRACKET_0=RULE_LEFT_BRACKET
+    { 
+    newLeafNode(this_LEFT_BRACKET_0, grammarAccess.getFilterAccess().getLEFT_BRACKETTerminalRuleCall_0()); 
+    }
+(
+(
+		lv_filter_1_0=RULE_STRING
+		{
+			newLeafNode(lv_filter_1_0, grammarAccess.getFilterAccess().getFilterSTRINGTerminalRuleCall_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getFilterRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"filter",
+        		lv_filter_1_0, 
+        		"org.eclipse.xtext.common.Terminals.STRING");
+	    }
+
+)
+)this_RIGHT_BRACKET_2=RULE_RIGHT_BRACKET
+    { 
+    newLeafNode(this_RIGHT_BRACKET_2, grammarAccess.getFilterAccess().getRIGHT_BRACKETTerminalRuleCall_2()); 
+    }
+)
 ;
 
 

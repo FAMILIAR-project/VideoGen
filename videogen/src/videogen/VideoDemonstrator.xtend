@@ -10,6 +10,7 @@ import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq
 import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq
 import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
+import videogen.vignette.FFMPEGHelper
 
 import static org.junit.Assert.*
 
@@ -58,6 +59,61 @@ class VideoDemonstrator {
 	printToHTML(videoGen)
 		 
 			
+	}
+	
+	@Test
+	def testFilters() {
+		// loading
+		var videoGen = loadVideoGenerator(URI.createURI("test.videogen"))			
+		for(video : videoGen.videoseqs) {
+			if(video instanceof MandatoryVideoSeq) {
+				var videoMandatory = (video as MandatoryVideoSeq)
+				var filters = videoMandatory.description.filters
+				var location = videoMandatory.description.location
+				if(filters.size != 0) {
+					for(f : filters) {
+						var filter = f.filter
+						println(filter)
+						var ffmpegHelper = new FFMPEGHelper
+						println(location)
+						ffmpegHelper.applyFilter(filter, location, "filteredVideos/" + location)
+					}
+				}
+			}
+			else if (video instanceof OptionalVideoSeq) {
+				val random = (Math.random() * 2) as int
+				if(random == 1) {
+					var videoOptional = (video as OptionalVideoSeq)
+					var filters = videoOptional.description.filters
+					var location = videoOptional.description.location
+					if(filters.size != 0) {
+						for(f : filters) {
+							var filter = f.filter
+							println(filter)
+							var ffmpegHelper = new FFMPEGHelper
+							println(location)
+							ffmpegHelper.applyFilter(filter, location, "filteredVideos/" + location)
+						}
+					}
+				}
+			}
+			else {
+				val alts = (video as AlternativeVideoSeq).videodescs
+				val random = (Math.random() * alts.size) as int
+				var videoAlt = alts.get(random)
+				var location = videoAlt.location;
+				var filters = videoAlt.filters
+				if(filters.size != 0) {
+					for(f : filters) {
+						var filter = f.filter
+						println(filter)
+						var ffmpegHelper = new FFMPEGHelper
+						println(location)
+						ffmpegHelper.applyFilter(filter, location, "filteredVideos/" + location)
+					}
+				}
+			}
+		}
 	}
 	
 	def void printToHTML(VideoGeneratorModel videoGen) {

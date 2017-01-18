@@ -54,7 +54,6 @@ public class PlaylistDemonstrator {
   
   @Test
   public void videogenToPlaylist() {
-    InputOutput.<String>println("OKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK");
     URI _createURI = URI.createURI("test.videogen");
     VideoGeneratorModel videoGen = this.loadVideoGenerator(_createURI);
     Assert.assertNotNull(videoGen);

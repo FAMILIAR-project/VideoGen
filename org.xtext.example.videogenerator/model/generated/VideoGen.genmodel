@@ -34,6 +34,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VideoGen.ecore#//VideoDescription/probability"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VideoGen.ecore#//VideoDescription/size"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VideoGen.ecore#//VideoDescription/description"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VideoGen.ecore#//VideoDescription/filters"/>
+    </genClasses>
+    <genClasses ecoreClass="VideoGen.ecore#//Filter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VideoGen.ecore#//Filter/filter"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

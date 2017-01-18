@@ -316,13 +316,50 @@ public interface VideoGenPackage extends EPackage
   int VIDEO_DESCRIPTION__DESCRIPTION = 5;
 
   /**
+   * The feature id for the '<em><b>Filters</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VIDEO_DESCRIPTION__FILTERS = 6;
+
+  /**
    * The number of structural features of the '<em>Video Description</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int VIDEO_DESCRIPTION_FEATURE_COUNT = 6;
+  int VIDEO_DESCRIPTION_FEATURE_COUNT = 7;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.videoGen.impl.FilterImpl <em>Filter</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.videoGen.impl.FilterImpl
+   * @see org.xtext.example.mydsl.videoGen.impl.VideoGenPackageImpl#getFilter()
+   * @generated
+   */
+  int FILTER = 7;
+
+  /**
+   * The feature id for the '<em><b>Filter</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FILTER__FILTER = 0;
+
+  /**
+   * The number of structural features of the '<em>Filter</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FILTER_FEATURE_COUNT = 1;
 
 
   /**
@@ -561,6 +598,38 @@ public interface VideoGenPackage extends EPackage
   EAttribute getVideoDescription_Description();
 
   /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.videoGen.VideoDescription#getFilters <em>Filters</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Filters</em>'.
+   * @see org.xtext.example.mydsl.videoGen.VideoDescription#getFilters()
+   * @see #getVideoDescription()
+   * @generated
+   */
+  EReference getVideoDescription_Filters();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.videoGen.Filter <em>Filter</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Filter</em>'.
+   * @see org.xtext.example.mydsl.videoGen.Filter
+   * @generated
+   */
+  EClass getFilter();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.videoGen.Filter#getFilter <em>Filter</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Filter</em>'.
+   * @see org.xtext.example.mydsl.videoGen.Filter#getFilter()
+   * @see #getFilter()
+   * @generated
+   */
+  EAttribute getFilter_Filter();
+
+  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -772,6 +841,32 @@ public interface VideoGenPackage extends EPackage
      * @generated
      */
     EAttribute VIDEO_DESCRIPTION__DESCRIPTION = eINSTANCE.getVideoDescription_Description();
+
+    /**
+     * The meta object literal for the '<em><b>Filters</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference VIDEO_DESCRIPTION__FILTERS = eINSTANCE.getVideoDescription_Filters();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.videoGen.impl.FilterImpl <em>Filter</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.videoGen.impl.FilterImpl
+     * @see org.xtext.example.mydsl.videoGen.impl.VideoGenPackageImpl#getFilter()
+     * @generated
+     */
+    EClass FILTER = eINSTANCE.getFilter();
+
+    /**
+     * The meta object literal for the '<em><b>Filter</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FILTER__FILTER = eINSTANCE.getFilter_Filter();
 
   }
 

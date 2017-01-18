@@ -2,6 +2,8 @@
  */
 package org.xtext.example.mydsl.videoGen;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -19,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.xtext.example.mydsl.videoGen.VideoDescription#getProbability <em>Probability</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.videoGen.VideoDescription#getSize <em>Size</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.videoGen.VideoDescription#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.videoGen.VideoDescription#getFilters <em>Filters</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.mydsl.videoGen.VideoGenPackage#getVideoDescription()
@@ -182,5 +185,21 @@ public interface VideoDescription extends EObject
    * @generated
    */
   void setDescription(String value);
+
+  /**
+   * Returns the value of the '<em><b>Filters</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.example.mydsl.videoGen.Filter}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Filters</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Filters</em>' containment reference list.
+   * @see org.xtext.example.mydsl.videoGen.VideoGenPackage#getVideoDescription_Filters()
+   * @model containment="true"
+   * @generated
+   */
+  EList<Filter> getFilters();
 
 } // VideoDescription

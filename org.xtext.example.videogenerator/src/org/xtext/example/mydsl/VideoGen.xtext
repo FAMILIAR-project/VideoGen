@@ -26,9 +26,16 @@ VideoDescription : 'videoseq' (videoid=ID)? location=STRING
 	 ('duration' duration=INT)?
 	 ('probability' probability=INT)?
 	 ('size' size=INT)?
-	 ('description' description=STRING)? 
+	 ('description' description=STRING)?
+	 ('filters' filters+=Filter+)?
 	RIGHT_BRACKET)?
 	
+;
+
+Filter : 
+	LEFT_BRACKET
+	filter=STRING
+	RIGHT_BRACKET
 ;
 
 terminal LEFT_BRACKET: '{' ; 

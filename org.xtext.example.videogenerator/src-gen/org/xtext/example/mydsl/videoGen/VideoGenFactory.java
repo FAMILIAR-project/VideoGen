@@ -86,6 +86,15 @@ public interface VideoGenFactory extends EFactory
   VideoDescription createVideoDescription();
 
   /**
+   * Returns a new object of class '<em>Filter</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Filter</em>'.
+   * @generated
+   */
+  Filter createFilter();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
