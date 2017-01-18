@@ -34,10 +34,17 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VideoGen.ecore#//VideoDescription/probability"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VideoGen.ecore#//VideoDescription/size"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VideoGen.ecore#//VideoDescription/description"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VideoGen.ecore#//VideoDescription/filters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VideoGen.ecore#//VideoDescription/filter"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VideoGen.ecore#//VideoDescription/text"/>
     </genClasses>
     <genClasses ecoreClass="VideoGen.ecore#//Filter">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VideoGen.ecore#//Filter/filter"/>
+    </genClasses>
+    <genClasses ecoreClass="VideoGen.ecore#//Text">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VideoGen.ecore#//Text/content"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VideoGen.ecore#//Text/position"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VideoGen.ecore#//Text/color"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VideoGen.ecore#//Text/size"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

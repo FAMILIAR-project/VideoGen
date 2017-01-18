@@ -2,12 +2,8 @@
  */
 package org.xtext.example.mydsl.videoGen.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -15,10 +11,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.xtext.example.mydsl.videoGen.Filter;
+import org.xtext.example.mydsl.videoGen.Text;
 import org.xtext.example.mydsl.videoGen.VideoDescription;
 import org.xtext.example.mydsl.videoGen.VideoGenPackage;
 
@@ -36,7 +30,8 @@ import org.xtext.example.mydsl.videoGen.VideoGenPackage;
  *   <li>{@link org.xtext.example.mydsl.videoGen.impl.VideoDescriptionImpl#getProbability <em>Probability</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.videoGen.impl.VideoDescriptionImpl#getSize <em>Size</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.videoGen.impl.VideoDescriptionImpl#getDescription <em>Description</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.videoGen.impl.VideoDescriptionImpl#getFilters <em>Filters</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.videoGen.impl.VideoDescriptionImpl#getFilter <em>Filter</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.videoGen.impl.VideoDescriptionImpl#getText <em>Text</em>}</li>
  * </ul>
  *
  * @generated
@@ -164,14 +159,24 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
   protected String description = DESCRIPTION_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getFilters() <em>Filters</em>}' containment reference list.
+   * The cached value of the '{@link #getFilter() <em>Filter</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getFilters()
+   * @see #getFilter()
    * @generated
    * @ordered
    */
-  protected EList<Filter> filters;
+  protected Filter filter;
+
+  /**
+   * The cached value of the '{@link #getText() <em>Text</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getText()
+   * @generated
+   * @ordered
+   */
+  protected Text text;
 
   /**
    * <!-- begin-user-doc -->
@@ -337,13 +342,95 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Filter> getFilters()
+  public Filter getFilter()
   {
-    if (filters == null)
+    return filter;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetFilter(Filter newFilter, NotificationChain msgs)
+  {
+    Filter oldFilter = filter;
+    filter = newFilter;
+    if (eNotificationRequired())
     {
-      filters = new EObjectContainmentEList<Filter>(Filter.class, this, VideoGenPackage.VIDEO_DESCRIPTION__FILTERS);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VideoGenPackage.VIDEO_DESCRIPTION__FILTER, oldFilter, newFilter);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
     }
-    return filters;
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setFilter(Filter newFilter)
+  {
+    if (newFilter != filter)
+    {
+      NotificationChain msgs = null;
+      if (filter != null)
+        msgs = ((InternalEObject)filter).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VideoGenPackage.VIDEO_DESCRIPTION__FILTER, null, msgs);
+      if (newFilter != null)
+        msgs = ((InternalEObject)newFilter).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VideoGenPackage.VIDEO_DESCRIPTION__FILTER, null, msgs);
+      msgs = basicSetFilter(newFilter, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, VideoGenPackage.VIDEO_DESCRIPTION__FILTER, newFilter, newFilter));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Text getText()
+  {
+    return text;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetText(Text newText, NotificationChain msgs)
+  {
+    Text oldText = text;
+    text = newText;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VideoGenPackage.VIDEO_DESCRIPTION__TEXT, oldText, newText);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setText(Text newText)
+  {
+    if (newText != text)
+    {
+      NotificationChain msgs = null;
+      if (text != null)
+        msgs = ((InternalEObject)text).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VideoGenPackage.VIDEO_DESCRIPTION__TEXT, null, msgs);
+      if (newText != null)
+        msgs = ((InternalEObject)newText).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VideoGenPackage.VIDEO_DESCRIPTION__TEXT, null, msgs);
+      msgs = basicSetText(newText, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, VideoGenPackage.VIDEO_DESCRIPTION__TEXT, newText, newText));
   }
 
   /**
@@ -356,8 +443,10 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
   {
     switch (featureID)
     {
-      case VideoGenPackage.VIDEO_DESCRIPTION__FILTERS:
-        return ((InternalEList<?>)getFilters()).basicRemove(otherEnd, msgs);
+      case VideoGenPackage.VIDEO_DESCRIPTION__FILTER:
+        return basicSetFilter(null, msgs);
+      case VideoGenPackage.VIDEO_DESCRIPTION__TEXT:
+        return basicSetText(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -384,8 +473,10 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
         return getSize();
       case VideoGenPackage.VIDEO_DESCRIPTION__DESCRIPTION:
         return getDescription();
-      case VideoGenPackage.VIDEO_DESCRIPTION__FILTERS:
-        return getFilters();
+      case VideoGenPackage.VIDEO_DESCRIPTION__FILTER:
+        return getFilter();
+      case VideoGenPackage.VIDEO_DESCRIPTION__TEXT:
+        return getText();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -395,7 +486,6 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
@@ -419,9 +509,11 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
       case VideoGenPackage.VIDEO_DESCRIPTION__DESCRIPTION:
         setDescription((String)newValue);
         return;
-      case VideoGenPackage.VIDEO_DESCRIPTION__FILTERS:
-        getFilters().clear();
-        getFilters().addAll((Collection<? extends Filter>)newValue);
+      case VideoGenPackage.VIDEO_DESCRIPTION__FILTER:
+        setFilter((Filter)newValue);
+        return;
+      case VideoGenPackage.VIDEO_DESCRIPTION__TEXT:
+        setText((Text)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -455,8 +547,11 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
       case VideoGenPackage.VIDEO_DESCRIPTION__DESCRIPTION:
         setDescription(DESCRIPTION_EDEFAULT);
         return;
-      case VideoGenPackage.VIDEO_DESCRIPTION__FILTERS:
-        getFilters().clear();
+      case VideoGenPackage.VIDEO_DESCRIPTION__FILTER:
+        setFilter((Filter)null);
+        return;
+      case VideoGenPackage.VIDEO_DESCRIPTION__TEXT:
+        setText((Text)null);
         return;
     }
     super.eUnset(featureID);
@@ -484,8 +579,10 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
         return size != SIZE_EDEFAULT;
       case VideoGenPackage.VIDEO_DESCRIPTION__DESCRIPTION:
         return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-      case VideoGenPackage.VIDEO_DESCRIPTION__FILTERS:
-        return filters != null && !filters.isEmpty();
+      case VideoGenPackage.VIDEO_DESCRIPTION__FILTER:
+        return filter != null;
+      case VideoGenPackage.VIDEO_DESCRIPTION__TEXT:
+        return text != null;
     }
     return super.eIsSet(featureID);
   }

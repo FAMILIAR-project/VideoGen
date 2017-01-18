@@ -27,7 +27,8 @@ VideoDescription : 'videoseq' (videoid=ID)? location=STRING
 	 ('probability' probability=INT)?
 	 ('size' size=INT)?
 	 ('description' description=STRING)?
-	 ('filters' filters+=Filter+)?
+	 ('filter' filter=Filter)?
+	 ('text' text=Text)?
 	RIGHT_BRACKET)?
 	
 ;
@@ -37,6 +38,21 @@ Filter :
 	filter=STRING
 	RIGHT_BRACKET
 ;
+
+Text :
+	LEFT_BRACKET
+	'content' content=STRING
+	'position' position=Position
+	'color' color=STRING
+	'size' size=INT
+	RIGHT_BRACKET
+;
+
+Position :
+	'TOP' | 'BOTTOM' | 'CENTER'
+;
+
+
 
 terminal LEFT_BRACKET: '{' ; 
 terminal RIGHT_BRACKET: '}';

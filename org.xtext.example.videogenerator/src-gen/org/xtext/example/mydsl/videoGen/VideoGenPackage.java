@@ -316,13 +316,22 @@ public interface VideoGenPackage extends EPackage
   int VIDEO_DESCRIPTION__DESCRIPTION = 5;
 
   /**
-   * The feature id for the '<em><b>Filters</b></em>' containment reference list.
+   * The feature id for the '<em><b>Filter</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int VIDEO_DESCRIPTION__FILTERS = 6;
+  int VIDEO_DESCRIPTION__FILTER = 6;
+
+  /**
+   * The feature id for the '<em><b>Text</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VIDEO_DESCRIPTION__TEXT = 7;
 
   /**
    * The number of structural features of the '<em>Video Description</em>' class.
@@ -331,7 +340,7 @@ public interface VideoGenPackage extends EPackage
    * @generated
    * @ordered
    */
-  int VIDEO_DESCRIPTION_FEATURE_COUNT = 7;
+  int VIDEO_DESCRIPTION_FEATURE_COUNT = 8;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.videoGen.impl.FilterImpl <em>Filter</em>}' class.
@@ -360,6 +369,61 @@ public interface VideoGenPackage extends EPackage
    * @ordered
    */
   int FILTER_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.videoGen.impl.TextImpl <em>Text</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.videoGen.impl.TextImpl
+   * @see org.xtext.example.mydsl.videoGen.impl.VideoGenPackageImpl#getText()
+   * @generated
+   */
+  int TEXT = 8;
+
+  /**
+   * The feature id for the '<em><b>Content</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TEXT__CONTENT = 0;
+
+  /**
+   * The feature id for the '<em><b>Position</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TEXT__POSITION = 1;
+
+  /**
+   * The feature id for the '<em><b>Color</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TEXT__COLOR = 2;
+
+  /**
+   * The feature id for the '<em><b>Size</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TEXT__SIZE = 3;
+
+  /**
+   * The number of structural features of the '<em>Text</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TEXT_FEATURE_COUNT = 4;
 
 
   /**
@@ -598,15 +662,26 @@ public interface VideoGenPackage extends EPackage
   EAttribute getVideoDescription_Description();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.videoGen.VideoDescription#getFilters <em>Filters</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.videoGen.VideoDescription#getFilter <em>Filter</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Filters</em>'.
-   * @see org.xtext.example.mydsl.videoGen.VideoDescription#getFilters()
+   * @return the meta object for the containment reference '<em>Filter</em>'.
+   * @see org.xtext.example.mydsl.videoGen.VideoDescription#getFilter()
    * @see #getVideoDescription()
    * @generated
    */
-  EReference getVideoDescription_Filters();
+  EReference getVideoDescription_Filter();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.videoGen.VideoDescription#getText <em>Text</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Text</em>'.
+   * @see org.xtext.example.mydsl.videoGen.VideoDescription#getText()
+   * @see #getVideoDescription()
+   * @generated
+   */
+  EReference getVideoDescription_Text();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.videoGen.Filter <em>Filter</em>}'.
@@ -628,6 +703,60 @@ public interface VideoGenPackage extends EPackage
    * @generated
    */
   EAttribute getFilter_Filter();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.videoGen.Text <em>Text</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Text</em>'.
+   * @see org.xtext.example.mydsl.videoGen.Text
+   * @generated
+   */
+  EClass getText();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.videoGen.Text#getContent <em>Content</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Content</em>'.
+   * @see org.xtext.example.mydsl.videoGen.Text#getContent()
+   * @see #getText()
+   * @generated
+   */
+  EAttribute getText_Content();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.videoGen.Text#getPosition <em>Position</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Position</em>'.
+   * @see org.xtext.example.mydsl.videoGen.Text#getPosition()
+   * @see #getText()
+   * @generated
+   */
+  EAttribute getText_Position();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.videoGen.Text#getColor <em>Color</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Color</em>'.
+   * @see org.xtext.example.mydsl.videoGen.Text#getColor()
+   * @see #getText()
+   * @generated
+   */
+  EAttribute getText_Color();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.videoGen.Text#getSize <em>Size</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Size</em>'.
+   * @see org.xtext.example.mydsl.videoGen.Text#getSize()
+   * @see #getText()
+   * @generated
+   */
+  EAttribute getText_Size();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -843,12 +972,20 @@ public interface VideoGenPackage extends EPackage
     EAttribute VIDEO_DESCRIPTION__DESCRIPTION = eINSTANCE.getVideoDescription_Description();
 
     /**
-     * The meta object literal for the '<em><b>Filters</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Filter</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference VIDEO_DESCRIPTION__FILTERS = eINSTANCE.getVideoDescription_Filters();
+    EReference VIDEO_DESCRIPTION__FILTER = eINSTANCE.getVideoDescription_Filter();
+
+    /**
+     * The meta object literal for the '<em><b>Text</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference VIDEO_DESCRIPTION__TEXT = eINSTANCE.getVideoDescription_Text();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.videoGen.impl.FilterImpl <em>Filter</em>}' class.
@@ -867,6 +1004,48 @@ public interface VideoGenPackage extends EPackage
      * @generated
      */
     EAttribute FILTER__FILTER = eINSTANCE.getFilter_Filter();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.videoGen.impl.TextImpl <em>Text</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.videoGen.impl.TextImpl
+     * @see org.xtext.example.mydsl.videoGen.impl.VideoGenPackageImpl#getText()
+     * @generated
+     */
+    EClass TEXT = eINSTANCE.getText();
+
+    /**
+     * The meta object literal for the '<em><b>Content</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TEXT__CONTENT = eINSTANCE.getText_Content();
+
+    /**
+     * The meta object literal for the '<em><b>Position</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TEXT__POSITION = eINSTANCE.getText_Position();
+
+    /**
+     * The meta object literal for the '<em><b>Color</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TEXT__COLOR = eINSTANCE.getText_Color();
+
+    /**
+     * The meta object literal for the '<em><b>Size</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TEXT__SIZE = eINSTANCE.getText_Size();
 
   }
 

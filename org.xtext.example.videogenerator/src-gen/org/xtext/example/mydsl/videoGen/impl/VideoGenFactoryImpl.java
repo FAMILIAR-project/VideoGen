@@ -72,6 +72,7 @@ public class VideoGenFactoryImpl extends EFactoryImpl implements VideoGenFactory
       case VideoGenPackage.ALTERNATIVE_VIDEO_SEQ: return createAlternativeVideoSeq();
       case VideoGenPackage.VIDEO_DESCRIPTION: return createVideoDescription();
       case VideoGenPackage.FILTER: return createFilter();
+      case VideoGenPackage.TEXT: return createText();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -163,6 +164,17 @@ public class VideoGenFactoryImpl extends EFactoryImpl implements VideoGenFactory
   {
     FilterImpl filter = new FilterImpl();
     return filter;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Text createText()
+  {
+    TextImpl text = new TextImpl();
+    return text;
   }
 
   /**

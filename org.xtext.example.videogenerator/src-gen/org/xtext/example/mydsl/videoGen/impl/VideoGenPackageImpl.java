@@ -13,6 +13,7 @@ import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq;
 import org.xtext.example.mydsl.videoGen.Filter;
 import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq;
 import org.xtext.example.mydsl.videoGen.OptionalVideoSeq;
+import org.xtext.example.mydsl.videoGen.Text;
 import org.xtext.example.mydsl.videoGen.VideoDescription;
 import org.xtext.example.mydsl.videoGen.VideoGenFactory;
 import org.xtext.example.mydsl.videoGen.VideoGenInformation;
@@ -83,6 +84,13 @@ public class VideoGenPackageImpl extends EPackageImpl implements VideoGenPackage
    * @generated
    */
   private EClass filterEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass textEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -372,9 +380,19 @@ public class VideoGenPackageImpl extends EPackageImpl implements VideoGenPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getVideoDescription_Filters()
+  public EReference getVideoDescription_Filter()
   {
     return (EReference)videoDescriptionEClass.getEStructuralFeatures().get(6);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getVideoDescription_Text()
+  {
+    return (EReference)videoDescriptionEClass.getEStructuralFeatures().get(7);
   }
 
   /**
@@ -395,6 +413,56 @@ public class VideoGenPackageImpl extends EPackageImpl implements VideoGenPackage
   public EAttribute getFilter_Filter()
   {
     return (EAttribute)filterEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getText()
+  {
+    return textEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getText_Content()
+  {
+    return (EAttribute)textEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getText_Position()
+  {
+    return (EAttribute)textEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getText_Color()
+  {
+    return (EAttribute)textEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getText_Size()
+  {
+    return (EAttribute)textEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -455,10 +523,17 @@ public class VideoGenPackageImpl extends EPackageImpl implements VideoGenPackage
     createEAttribute(videoDescriptionEClass, VIDEO_DESCRIPTION__PROBABILITY);
     createEAttribute(videoDescriptionEClass, VIDEO_DESCRIPTION__SIZE);
     createEAttribute(videoDescriptionEClass, VIDEO_DESCRIPTION__DESCRIPTION);
-    createEReference(videoDescriptionEClass, VIDEO_DESCRIPTION__FILTERS);
+    createEReference(videoDescriptionEClass, VIDEO_DESCRIPTION__FILTER);
+    createEReference(videoDescriptionEClass, VIDEO_DESCRIPTION__TEXT);
 
     filterEClass = createEClass(FILTER);
     createEAttribute(filterEClass, FILTER__FILTER);
+
+    textEClass = createEClass(TEXT);
+    createEAttribute(textEClass, TEXT__CONTENT);
+    createEAttribute(textEClass, TEXT__POSITION);
+    createEAttribute(textEClass, TEXT__COLOR);
+    createEAttribute(textEClass, TEXT__SIZE);
   }
 
   /**
@@ -523,10 +598,17 @@ public class VideoGenPackageImpl extends EPackageImpl implements VideoGenPackage
     initEAttribute(getVideoDescription_Probability(), ecorePackage.getEInt(), "probability", null, 0, 1, VideoDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getVideoDescription_Size(), ecorePackage.getEInt(), "size", null, 0, 1, VideoDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getVideoDescription_Description(), ecorePackage.getEString(), "description", null, 0, 1, VideoDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getVideoDescription_Filters(), this.getFilter(), null, "filters", null, 0, -1, VideoDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getVideoDescription_Filter(), this.getFilter(), null, "filter", null, 0, 1, VideoDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getVideoDescription_Text(), this.getText(), null, "text", null, 0, 1, VideoDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(filterEClass, Filter.class, "Filter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getFilter_Filter(), ecorePackage.getEString(), "filter", null, 0, 1, Filter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(textEClass, Text.class, "Text", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getText_Content(), ecorePackage.getEString(), "content", null, 0, 1, Text.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getText_Position(), ecorePackage.getEString(), "position", null, 0, 1, Text.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getText_Color(), ecorePackage.getEString(), "color", null, 0, 1, Text.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getText_Size(), ecorePackage.getEInt(), "size", null, 0, 1, Text.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

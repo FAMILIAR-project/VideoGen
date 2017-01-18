@@ -19,6 +19,7 @@ import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq;
 import org.xtext.example.mydsl.videoGen.Filter;
 import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq;
 import org.xtext.example.mydsl.videoGen.OptionalVideoSeq;
+import org.xtext.example.mydsl.videoGen.Text;
 import org.xtext.example.mydsl.videoGen.VideoDescription;
 import org.xtext.example.mydsl.videoGen.VideoGenInformation;
 import org.xtext.example.mydsl.videoGen.VideoGenPackage;
@@ -49,6 +50,9 @@ public class VideoGenSemanticSequencer extends AbstractDelegatingSemanticSequenc
 				return; 
 			case VideoGenPackage.OPTIONAL_VIDEO_SEQ:
 				sequence_OptionalVideoSeq(context, (OptionalVideoSeq) semanticObject); 
+				return; 
+			case VideoGenPackage.TEXT:
+				sequence_Text(context, (Text) semanticObject); 
 				return; 
 			case VideoGenPackage.VIDEO_DESCRIPTION:
 				sequence_VideoDescription(context, (VideoDescription) semanticObject); 
@@ -135,6 +139,33 @@ public class VideoGenSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	
 	/**
 	 * Contexts:
+	 *     Text returns Text
+	 *
+	 * Constraint:
+	 *     (content=STRING position=Position color=STRING size=INT)
+	 */
+	protected void sequence_Text(ISerializationContext context, Text semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, VideoGenPackage.Literals.TEXT__CONTENT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, VideoGenPackage.Literals.TEXT__CONTENT));
+			if (transientValues.isValueTransient(semanticObject, VideoGenPackage.Literals.TEXT__POSITION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, VideoGenPackage.Literals.TEXT__POSITION));
+			if (transientValues.isValueTransient(semanticObject, VideoGenPackage.Literals.TEXT__COLOR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, VideoGenPackage.Literals.TEXT__COLOR));
+			if (transientValues.isValueTransient(semanticObject, VideoGenPackage.Literals.TEXT__SIZE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, VideoGenPackage.Literals.TEXT__SIZE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getTextAccess().getContentSTRINGTerminalRuleCall_2_0(), semanticObject.getContent());
+		feeder.accept(grammarAccess.getTextAccess().getPositionPositionParserRuleCall_4_0(), semanticObject.getPosition());
+		feeder.accept(grammarAccess.getTextAccess().getColorSTRINGTerminalRuleCall_6_0(), semanticObject.getColor());
+		feeder.accept(grammarAccess.getTextAccess().getSizeINTTerminalRuleCall_8_0(), semanticObject.getSize());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     VideoDescription returns VideoDescription
 	 *
 	 * Constraint:
@@ -145,7 +176,8 @@ public class VideoGenSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *         probability=INT? 
 	 *         size=INT? 
 	 *         description=STRING? 
-	 *         filters+=Filter*
+	 *         filter=Filter? 
+	 *         text=Text?
 	 *     )
 	 */
 	protected void sequence_VideoDescription(ISerializationContext context, VideoDescription semanticObject) {

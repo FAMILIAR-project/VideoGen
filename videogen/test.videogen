@@ -1,14 +1,26 @@
 VideoGen {
 	
 	mandatory videoseq "1.mp4" {
-		filters {
+		filter {
 			"SEPIA"
+		}
+		text {
+			content "TEST"
+			position TOP
+			color "white"
+			size 24
 		}
 	} 
 	optional videoseq "2.mp4" {
 		probability 75
-		filters {
+		filter {
 			"SEPIA"
+		}
+		text {
+			content "BLABLA"
+			position BOTTOM
+			color "black"
+			size 50
 		}
 	}
 	alternatives vid3 {
@@ -26,9 +38,15 @@ VideoGen {
 	optional videoseq vid8 "4.mp4"
 	alternatives vid9 {
 		videoseq vid81 "3.mp4" {
-			filters {
+			filter {
 				"BLACK_AND_WHITE"
 			}
+			text {
+			content "YOLO"
+			position CENTER
+			color "blue"
+			size 24
+		}
 		}
 	}
 }

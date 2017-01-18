@@ -22,7 +22,24 @@
                 url: '/api/random'
             }).success(function(result) {
                 console.log(result);
-                vm.videos = result;
+                vm.videos = [];
+
+                result.forEach(function(element) {
+                    console.log(element);
+                    vm.videos.push({
+                        sources: [{
+                            type: 'video/mp4',
+                            src:  element
+                        }]
+                    });
+                });
+
+                flowplayer('#jsplaylist', {
+                   rtmp: "rtmp://s3b78u0kbtx79q.cloudfront.net/cfx/st",
+                   playlist: vm.videos
+                });
+
+                console.log(vm.videos);
                 console.log("generateRandom");
 
                 vm.isGenerated = true;
