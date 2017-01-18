@@ -138,7 +138,7 @@ public class ModelToModel {
     return _xblockexpression;
   }
   
-  public static void modelToPlayListWithDuration() {
+  public static void modelToPlayListWithScreenShot() {
     try {
       FFMPEGHelpere ffmpeg = new FFMPEGHelpere();
       URI _createURI = URI.createURI("foo2.videogen");
@@ -201,7 +201,77 @@ public class ModelToModel {
     }
   }
   
+  public static void printWebPage() {
+    try {
+      FFMPEGHelpere ffmpeg = new FFMPEGHelpere();
+      File file = new File("screenShot.html");
+      FileWriter filewriter = new FileWriter(file);
+      URI _createURI = URI.createURI("foo2.videogen");
+      VideoGeneratorModel videoGen = ModelToModel.loadVideoGenerator(_createURI);
+      filewriter.write("<html> <body>");
+      EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
+      for (final VideoSeq videoseq : _videoseqs) {
+        if ((videoseq instanceof MandatoryVideoSeq)) {
+          final VideoDescription desc = ((MandatoryVideoSeq) videoseq).getDescription();
+          String _location = desc.getLocation();
+          String _string = _location.toString();
+          String _location_1 = desc.getLocation();
+          ffmpeg.executeCmd(_string, _location_1);
+          String _location_2 = desc.getLocation();
+          String _plus = (("<div> <img" + " src = \"screenshot/") + _location_2);
+          String _plus_1 = (_plus + ".png\"");
+          String _plus_2 = (_plus_1 + " height = \"300px\"");
+          String _plus_3 = (_plus_2 + " width = \"300px\"");
+          String _plus_4 = (_plus_3 + "\"/></div>");
+          filewriter.write(_plus_4);
+          filewriter.write("</br>");
+        } else {
+          if ((videoseq instanceof OptionalVideoSeq)) {
+            final VideoDescription desc_1 = ((OptionalVideoSeq) videoseq).getDescription();
+            String _location_3 = desc_1.getLocation();
+            String _string_1 = _location_3.toString();
+            String _location_4 = desc_1.getLocation();
+            ffmpeg.executeCmd(_string_1, _location_4);
+            String _location_5 = desc_1.getLocation();
+            String _plus_5 = (("<div> <img" + " src = \"screenshot/") + _location_5);
+            String _plus_6 = (_plus_5 + ".png\"");
+            String _plus_7 = (_plus_6 + " height = \"300px\"");
+            String _plus_8 = (_plus_7 + " width = \"300px\"");
+            String _plus_9 = (_plus_8 + "\"/></div>");
+            filewriter.write(_plus_9);
+            filewriter.write("</br>");
+          } else {
+            final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
+            filewriter.write("<div> ");
+            EList<VideoDescription> _videodescs = altvid.getVideodescs();
+            for (final VideoDescription vdesc : _videodescs) {
+              {
+                String _location_6 = vdesc.getLocation();
+                String _string_2 = _location_6.toString();
+                String _location_7 = vdesc.getLocation();
+                ffmpeg.executeCmd(_string_2, _location_7);
+                String _location_8 = vdesc.getLocation();
+                String _plus_10 = (("<img" + " src = \"screenshot/") + _location_8);
+                String _plus_11 = (_plus_10 + ".png\"");
+                String _plus_12 = (_plus_11 + " height = \"300px\"");
+                String _plus_13 = (_plus_12 + " width = \"300px\"");
+                String _plus_14 = (_plus_13 + "\"/>");
+                filewriter.write(_plus_14);
+              }
+            }
+            filewriter.write("</div> ");
+          }
+        }
+      }
+      filewriter.write("</body></html> ");
+      filewriter.flush();
+      filewriter.close();
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
   public static void main(final String[] args) {
-    ModelToModel.modelToPlayListWithDuration();
+    ModelToModel.printWebPage();
   }
 }

@@ -5,7 +5,9 @@ VideoGen {
 		probability 25
 	}
 	alternatives vid3 {
-		videoseq "videos/v3.mp4" 
+		videoseq "videos/v3.mp4"
+		videoseq "videos/v4.mp4"
+		
 	}
 	
 }

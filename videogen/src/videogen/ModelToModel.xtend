@@ -119,7 +119,7 @@ class ModelToModel {
 		
 	}
 	
-	def static modelToPlayListWithDuration() {
+	def static modelToPlayListWithScreenShot() {
 		var ffmpeg = new FFMPEGHelpere()
 	
 		// loading
@@ -182,9 +182,62 @@ class ModelToModel {
 			
 	}
 	
+def static printWebPage() {
+			
+		var ffmpeg = new FFMPEGHelpere()
+		var file = new File ("screenShot.html")
+	    var filewriter = new FileWriter(file)
+     			
+		// loading
+		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
+		filewriter.write("<html> <body>" );
+			
+		for(videoseq : videoGen.videoseqs){
+			if (videoseq instanceof MandatoryVideoSeq) {
+			val desc = (videoseq as MandatoryVideoSeq).description
+				
+	     		ffmpeg.executeCmd(desc.location.toString,desc.location)
+				filewriter.write("<div> <img"+ " src = \"screenshot/"+desc.location+".png\""+  " height = \"300px\""
+    +" width = \"300px\""+"\"/></div>");
+				
+			 filewriter.write("</br>" );
+			  
+				}
+			
+			else if (videoseq instanceof OptionalVideoSeq) {
+				val desc = (videoseq as OptionalVideoSeq).description
+				
+				ffmpeg.executeCmd(desc.location.toString,desc.location)
+				filewriter.write("<div> <img"+ " src = \"screenshot/"+desc.location+".png\""+  " height = \"300px\""
+    +" width = \"300px\""+"\"/></div>");
+			   
+				filewriter.write("</br>" );
+			}
+			else {
+				val altvid = (videoseq as AlternativeVideoSeq)
+				 
+				filewriter.write("<div> " );
+				for (vdesc : altvid.videodescs) {
+					
+				
+				ffmpeg.executeCmd(vdesc.location.toString,vdesc.location)
+				filewriter.write("<img"+ " src = \"screenshot/"+vdesc.location+".png\""+  " height = \"300px\""
+    +" width = \"300px\""+"\"/>");
+				}
+				filewriter.write("</div> " );
+			
+			}
+			
+			}
+			
+			filewriter.write("</body></html> " );
+			filewriter.flush
+            filewriter.close 
+			
+	}
 
 def public static void main(String[] args){
 	
-	 modelToPlayListWithDuration()
+	 printWebPage()
 }
 }
