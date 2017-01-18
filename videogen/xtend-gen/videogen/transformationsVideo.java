@@ -28,7 +28,7 @@ import playlist.Playlist;
 import playlist.PlaylistFactory;
 
 @SuppressWarnings("all")
-public class transformModelToText {
+public class transformationsVideo {
   public VideoGeneratorModel loadVideoGenerator(final URI uri) {
     VideoGeneratorModel _xblockexpression = null;
     {
@@ -90,10 +90,14 @@ public class transformModelToText {
   private static int i = 0;
   
   public String genID() {
-    int _plusPlus = transformModelToText.i++;
+    int _plusPlus = transformationsVideo.i++;
     return ("v" + Integer.valueOf(_plusPlus));
   }
   
+  /**
+   * Question3:transformation model-to-model qui prend en entrée une spécification
+   * VideoGen et qui produit en sortie une instance de playlist
+   */
   public Playlist playlist() {
     Playlist _xblockexpression = null;
     {
@@ -143,6 +147,10 @@ public class transformModelToText {
     return _xblockexpression;
   }
   
+  /**
+   * Question 3:transformation model-to-text qui prend en entrée un modèle de playlist et
+   * qui produit en sortie un fichier texte .m3u compréhensible par VLC
+   */
   public void transformationPlaylistToFileM3U(final Playlist playlist) {
     try {
       final PrintWriter writer = new PrintWriter("result.m3u");
@@ -158,6 +166,10 @@ public class transformModelToText {
     }
   }
   
+  /**
+   * Question 4:transformation model-to-text qui prend en entrée un modèle de playlist et
+   * qui produit en sortie une liste compréhensible par ffmpeg
+   */
   public void transformationPlaylistToFileffmpeg(final Playlist playlist) {
     try {
       final PrintWriter writer = new PrintWriter("result.ffmpeg");
@@ -174,6 +186,11 @@ public class transformModelToText {
     }
   }
   
+  /**
+   * Question 5-Q8:transformation model-to-text qui prend en entrée un modèle conforme au
+   *  métamodèle de playlist et qui produit en sortie un fichier texte au format
+   * “M3U étendu”
+   */
   public void transformationPlaylistToFileM3UEtendu(final Playlist playlist) {
     try {
       final PrintWriter writer = new PrintWriter("resultEtendu.m3u");
@@ -195,6 +212,10 @@ public class transformModelToText {
     }
   }
   
+  /**
+   * Question 7:transformation qui prend en entrée une spécification VideoGen et qui
+   * assigne une valeur « durée » pour chaque séquence vidéo
+   */
   public Playlist playlistWithDuration() {
     Playlist _xblockexpression = null;
     {
@@ -321,6 +342,10 @@ public class transformModelToText {
     }
   }
   
+  /**
+   * Question 9:transformation qui prend en entrée une spécification VideoGen et qui
+   * génère en sortie un ensemble de vignettes pour toutes les séquences vidéos
+   */
   public void playlistVignette(final Playlist playlist) {
     EList<MediaFile> _videos = playlist.getVideos();
     for (final MediaFile element : _videos) {
@@ -331,6 +356,10 @@ public class transformModelToText {
     }
   }
   
+  /**
+   * Question 10:transformation qui prend en entrée une spécification VideoGen et qui
+   * génère en sortie une page Web affichant les vignettes
+   */
   public void printToHTML(final VideoGeneratorModel videoGen) {
     try {
       final PrintWriter writer = new PrintWriter("PageHTMLvideogen.html");
@@ -406,6 +435,13 @@ public class transformModelToText {
     }
   }
   
+  /**
+   * Question 11 : transformation qui prend en entrée une spécification VideoGen et qui
+   * vérifie:
+   * L'unicité des ID
+   * une probabilité d’une séquence vidéo “optionnelle” ne peut dépasser 1 (100%);
+   * la somme des probabilités ne doit pas dépasser 100% pour les séquences video “alternatif”
+   */
   public void verify() {
     try {
       URI _createURI = URI.createURI("foo1.videogen");
@@ -589,14 +625,16 @@ public class transformModelToText {
       String _xblockexpression = null;
       {
         InputOutput.<String>println("appel filter");
-        String cmd = (((((("ffmpeg -i " + inputVideo) + " -strict -2  -vf \"format=yuva444p9, ") + filter) + "\"  ") + inputVideo) + ".avecfilter.mp4");
+        String cmd = (((((("ffmpeg -i " + inputVideo) + " -strict -2  -vf \"format=yuva444p9, ") + filter) + "\"  ") + inputVideo) + 
+          ".avecfilter.mp4");
         InputOutput.<String>println(("cmd :" + cmd));
         Runtime _runtime = Runtime.getRuntime();
         Process execCommande = _runtime.exec(cmd);
         int _waitFor = execCommande.waitFor();
         String _plus = ("exit code : " + Integer.valueOf(_waitFor));
         InputOutput.<String>println(_plus);
-        InputOutput.<String>println("la commande est bonne, si vous copier la cmd depuis le dossier videogen dans un terminal elle fonctionne");
+        InputOutput.<String>println(
+          "la commande est bonne, si vous copier la cmd depuis le dossier videogen dans un terminal elle fonctionne");
         InputStream _inputStream = execCommande.getInputStream();
         InputStreamReader _inputStreamReader = new InputStreamReader(_inputStream);
         BufferedReader reader = new BufferedReader(_inputStreamReader);
@@ -754,94 +792,7 @@ public class transformModelToText {
       String c1 = "";
       String c2 = "";
       String c3 = "";
-      String c4 = "";
-      String c5 = "";
       String c6 = "";
-      c1 = "fmVideoGen=FM(VideoGen:";
-      writer.write(c1);
-      EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
-      for (final VideoSeq videoseq : _videoseqs) {
-        if ((videoseq instanceof MandatoryVideoSeq)) {
-          VideoDescription _description = ((MandatoryVideoSeq) videoseq).getDescription();
-          String _videoid = _description.getVideoid();
-          c2 = _videoid;
-          boolean _isNullOrEmpty = StringExtensions.isNullOrEmpty(c2);
-          if (_isNullOrEmpty) {
-            String _genID = this.genID();
-            c2 = _genID;
-          }
-          writer.write(c2);
-        } else {
-          if ((videoseq instanceof OptionalVideoSeq)) {
-            VideoDescription _description_1 = ((OptionalVideoSeq) videoseq).getDescription();
-            String _videoid_1 = _description_1.getVideoid();
-            c3 = _videoid_1;
-            boolean _isNullOrEmpty_1 = StringExtensions.isNullOrEmpty(c3);
-            if (_isNullOrEmpty_1) {
-              String _genID_1 = this.genID();
-              c3 = _genID_1;
-            }
-            writer.write((("[" + c3) + "]"));
-          } else {
-            final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
-            String _videoid_2 = altvid.getVideoid();
-            c6 = _videoid_2;
-            boolean _isNullOrEmpty_2 = StringExtensions.isNullOrEmpty(c6);
-            if (_isNullOrEmpty_2) {
-              String _genID_2 = this.genID();
-              c6 = _genID_2;
-            }
-            c4 = (((c6 + ";") + c6) + ":(");
-            writer.write(c4);
-            EList<VideoDescription> _videodescs = altvid.getVideodescs();
-            int count = _videodescs.size();
-            EList<VideoDescription> _videodescs_1 = altvid.getVideodescs();
-            for (final VideoDescription vdesc : _videodescs_1) {
-              {
-                if ((count > 1)) {
-                  String _videoid_3 = vdesc.getVideoid();
-                  c5 = _videoid_3;
-                  boolean _isNullOrEmpty_3 = StringExtensions.isNullOrEmpty(c5);
-                  if (_isNullOrEmpty_3) {
-                    String _genID_3 = this.genID();
-                    c5 = _genID_3;
-                  }
-                  writer.write((c5 + "|"));
-                } else {
-                  String _videoid_4 = vdesc.getVideoid();
-                  c5 = _videoid_4;
-                  boolean _isNullOrEmpty_4 = StringExtensions.isNullOrEmpty(c5);
-                  if (_isNullOrEmpty_4) {
-                    String _genID_4 = this.genID();
-                    c5 = _genID_4;
-                  }
-                  writer.write((c5 + ");"));
-                }
-                count = (count - 1);
-              }
-            }
-          }
-        }
-      }
-      writer.close();
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
-  }
-  
-  public void createFeatureModel2() {
-    try {
-      URI _createURI = URI.createURI("foo1.videogen");
-      VideoGeneratorModel videoGen = this.loadVideoGenerator(_createURI);
-      final Random random = new Random();
-      final PrintWriter writer = new PrintWriter("fmVideoGen.fm");
-      String c1 = "";
-      String c2 = "";
-      String c3 = "";
-      String c4 = "";
-      String c5 = "";
-      String c6 = "";
-      String c7 = "";
       String c8 = "";
       String c9 = "";
       String c10 = "";
