@@ -41,6 +41,7 @@ public class SequenceGenerator {
   }
   
   public void buildPlaylist() {
+    this.sequence.clear();
     String _text = this.text;
     this.text = (_text + "#EXTM3U\n");
     this.sequence.add("#EXTM3U");
@@ -69,6 +70,8 @@ public class SequenceGenerator {
         String _path = e.getPath();
         String _plus_3 = (_path + "\n");
         this.text = (_text_3 + _plus_3);
+        String _path_1 = e.getPath();
+        this.sequence.add(_path_1);
       }
     }
   }

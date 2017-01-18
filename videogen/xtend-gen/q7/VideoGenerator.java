@@ -7,7 +7,6 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.junit.Test;
-import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 import q7.SequenceGenerator;
 
 /**
@@ -23,10 +22,8 @@ public class VideoGenerator {
     InputOutput.<String>print(text);
   }
   
-  public List<String> getPlaylist(final VideoGeneratorModel playlist) {
-    q3.VideoGenerator _videoGenerator = new q3.VideoGenerator();
-    Playlist _generatePlaylist = _videoGenerator.generatePlaylist(playlist);
-    SequenceGenerator _sequenceGenerator = new SequenceGenerator(_generatePlaylist);
+  public List<String> generateStringList(final Playlist playlist) {
+    SequenceGenerator _sequenceGenerator = new SequenceGenerator(playlist);
     return _sequenceGenerator.getSequence();
   }
   

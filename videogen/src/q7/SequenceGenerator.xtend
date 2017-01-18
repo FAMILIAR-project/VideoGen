@@ -42,6 +42,7 @@ class SequenceGenerator {
 	}
 	
 	def buildPlaylist(){
+		sequence.clear()
 		text+="#EXTM3U\n"
 		sequence.add("#EXTM3U")
 		for( e:playlist.entries){
@@ -56,6 +57,8 @@ class SequenceGenerator {
 				
 			}
 			text+=e.path+"\n"
+			sequence.add(e.path)
+			
 		}
 	}
 	

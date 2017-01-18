@@ -10,7 +10,7 @@ import q11.VideoGenLoader;
 import q3.SequenceGenerator;
 
 /**
- * Video to M3U
+ * Video to M3U Model
  */
 @SuppressWarnings("all")
 public class VideoGenerator {

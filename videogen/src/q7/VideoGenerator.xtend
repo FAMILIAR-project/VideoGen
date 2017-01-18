@@ -24,8 +24,8 @@ public class VideoGenerator {
 
 	}
 	
-	def List<String> getPlaylist(VideoGeneratorModel playlist){
-		new SequenceGenerator((new q3.VideoGenerator()).generatePlaylist(playlist)).getSequence()
+	def List<String> generateStringList(Playlist playlist){
+		new SequenceGenerator(playlist).getSequence()
 	}
 	
 	def Playlist getSample(){

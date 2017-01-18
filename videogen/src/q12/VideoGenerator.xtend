@@ -20,9 +20,12 @@ public class VideoGenerator {
 	}
 	
 	def List<String> generatePlaylistForFile(String file){
-		var videoGen=(new VideoReparator()).getRepaired(file)
-		
-		(new q7.VideoGenerator()).getPlaylist(videoGen)
+		// Loading
+		var videoGen = (new q11.VideoGenLoader()).load(file)
+		var playlistModel=(new q3.VideoGenerator()).generatePlaylist(videoGen)		
+		var playlistM3U=(new q7.VideoGenerator()).generateStringList(playlistModel)
+		println(playlistM3U.size)
+		playlistM3U
 	}
 		
 }

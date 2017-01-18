@@ -6,7 +6,7 @@ import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 import q11.VideoGenLoader
 
 /**
- * Video to M3U
+ * Video to M3U Model
  */
 public class VideoGenerator {
 
