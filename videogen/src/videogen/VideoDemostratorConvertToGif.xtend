@@ -1,10 +1,7 @@
 package videogen
 
 import java.io.BufferedReader
-import java.io.BufferedWriter
 import java.io.File
-import java.io.FileWriter
-import java.io.IOException
 import java.io.InputStreamReader
 import java.util.HashMap
 import java.util.Random
@@ -21,9 +18,7 @@ import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 
 import static org.junit.Assert.*
 import videogenPlayList.impl.VideogenPlayListFactoryImpl
-import videogenPlayList.MediaFile
 import java.util.concurrent.TimeUnit
-import videogenGif.Gif
 
 class VideoDemostratorConvertToGif {
 

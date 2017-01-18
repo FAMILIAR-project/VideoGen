@@ -17,6 +17,7 @@ import java.io.FileWriter
 import java.io.IOException
 import java.io.BufferedWriter
 import videogenPlayList.impl.VideogenPlayListFactoryImpl
+import java.util.concurrent.TimeUnit
 
 /**
  * Vignettes
@@ -37,15 +38,15 @@ class VideoDemonstratorQ9Q10 {
 
 
 	def static String createVignette(String path, String filename) {
-		var String cmdVignette = "C:\\Users\\Sandra\\Desktop\\ffmpeg-20161127-801b5c1-win64-static\\bin\\ffmpeg -y -i " + path +
-			" -r 1 -t 00:00:03 -ss 00:00:04 -f image2 C:\\Users\\Sandra\\git\\VideoGen\\videogen\\vignettes\\" + filename + ".png"
+			
+		var String cmdVignette = "C:\\Users\\Sandra\\Desktop\\ffmpeg-20161127-801b5c1-win64-static\\bin\\ffmpeg -i " + path + " -ss 00:00:01.000 -vframes 1 vignettes/" + filename + "1.jpg"
 			
 			
-
+		println(cmdVignette)
 		var Process process = Runtime.getRuntime().exec(cmdVignette);
-		process.waitFor();
+		process.waitFor(2000, TimeUnit.MILLISECONDS);
 
-		return filename + ".png"
+		return filename + "1.jpg"
 	}
 
 	@Test
@@ -55,7 +56,6 @@ class VideoDemonstratorQ9Q10 {
 		var playlist= fact.createPlayList()
 		assertNotNull(videoGen)
 
-		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
 		for (videoseq : videoGen.videoseqs.toSet) {
 			if (videoseq instanceof MandatoryVideoSeq) {
 
@@ -100,17 +100,20 @@ class VideoDemonstratorQ9Q10 {
 		}
 		// New file 
 		try {
-			val ffmpeg = new File("C:\\Users\\Sandra\\git\\VideoGen\\videogen\\vignettes\\vignettesQ9.html");
-			if (!ffmpeg.exists()) {
-				ffmpeg.createNewFile();
+			val res = new File("vignettes/vignettesQ9.html");
+			if (!res.exists()) {
+				res.createNewFile();
 			}
-			val fw = new FileWriter(ffmpeg.getAbsoluteFile());
+			val fw = new FileWriter(res.getAbsoluteFile());
 			val bw = new BufferedWriter(fw);
 			bw.write("<!DOCTYPE html>" + System.lineSeparator());
+			bw.write("<head>" + System.lineSeparator());
+			bw.write("<link rel=\"stylesheet\" href=\"style.css\"/>" + System.lineSeparator());
+			bw.write("</head>" + System.lineSeparator());
 			bw.write("<body>" + System.lineSeparator());
 			bw.write(vignette + System.lineSeparator());
+			bw.write("</body>" + System.lineSeparator());
 			bw.write("</html>" + System.lineSeparator());
-			bw.write("</body>");
 			bw.close();
 			
 		} catch (IOException e) {

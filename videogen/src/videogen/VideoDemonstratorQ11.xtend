@@ -19,6 +19,7 @@ import java.io.BufferedWriter
 import videogenPlayList.impl.VideogenPlayListFactoryImpl
 import java.util.ArrayList
 import java.util.List
+import java.util.concurrent.TimeUnit
 
 /**
  * Question 11 :
@@ -47,15 +48,12 @@ class VideoDemonstratorQ11 {
 
 
 	def static String createVignette(String path, String filename) {
-		var String cmdVignette = "C:\\Users\\Sandra\\Desktop\\ffmpeg-20161127-801b5c1-win64-static\\bin\\ffmpeg -y -i " + path +
-			" -r 1 -t 00:00:03 -ss 00:00:04 -f image2 C:\\Users\\Sandra\\git\\VideoGen\\videogen\\vignettes\\" + filename + ".png"
-			
-			
-
+		var String cmdVignette = "C:\\Users\\Sandra\\Desktop\\ffmpeg-20161127-801b5c1-win64-static\\bin\\ffmpeg -i " + path + " -ss 00:00:01.000 -vframes 1 vignettes/" + filename + "2.jpg"
+	
 		var Process process = Runtime.getRuntime().exec(cmdVignette);
-		process.waitFor();
+		process.waitFor(2000, TimeUnit.MILLISECONDS);
 
-		return filename + ".png"
+		return filename + "2.jpg"
 	}
 
 	@Test
@@ -84,7 +82,7 @@ class VideoDemonstratorQ11 {
 					vignettesID.add(mediafile.location)
 					playlist.mediaFile.add(mediafile)
 				}else{
-					vignette += "<p>Cette video est déjà presente !!!   " + "<b>"+mediafile.location+"</b>" +"</p>"
+					vignette += "<p>Cette video mandatory est déjà presente !!!   " + "<b>"+mediafile.location+"</b>" +"</p>"
 				}
 
 			println(vignettesID.toString)	
@@ -107,7 +105,7 @@ class VideoDemonstratorQ11 {
 						vignettesID.add(mediafile.location)
 						playlist.mediaFile.add(mediafile)
 					}else{
-						vignette += "<p>test</p>"
+						vignette += "<p>Cette video optional  est déjà presente !!!</p>"
 					}
 				
 					println(vignettesID.toString)
@@ -127,7 +125,7 @@ class VideoDemonstratorQ11 {
 					vignettesID.add(mediafile.location)
 					playlist.mediaFile.add(mediafile)
 				}else{
-					vignette += "<p>test</p>"
+					vignette += "<p>Cette video alternative est déjà presente !!!</p>"
 				}
 				
 				println(vignettesID.toString)
@@ -135,16 +133,20 @@ class VideoDemonstratorQ11 {
 		}
 		// New file 
 		try {
-			val ffmpeg = new File("C:\\Users\\Sandra\\git\\VideoGen\\videogen\\vignettes\\vignettesQ11.html");
-			if (!ffmpeg.exists()) {
-				ffmpeg.createNewFile();
+			val res = new File("vignettes/vignettesQ11.html");
+			if (!res.exists()) {
+				res.createNewFile();
 			}
-			val fw = new FileWriter(ffmpeg.getAbsoluteFile());
+			val fw = new FileWriter(res.getAbsoluteFile());
 			val bw = new BufferedWriter(fw);
-			bw.write("<!DOCTYPE html><html><body>");
-			
-			bw.write(vignette);
-			bw.write("</html></body>");
+			bw.write("<!DOCTYPE html>" + System.lineSeparator());
+			bw.write("<head>" + System.lineSeparator());
+			bw.write("<link rel=\"stylesheet\" href=\"style.css\"/>" + System.lineSeparator());
+			bw.write("</head>" + System.lineSeparator());
+			bw.write("<body>" + System.lineSeparator());
+			bw.write(vignette + System.lineSeparator());
+			bw.write("</body>" + System.lineSeparator());
+			bw.write("</html>" + System.lineSeparator());
 			bw.close();
 			
 		} catch (IOException e) {
