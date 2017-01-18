@@ -1,0 +1,9 @@
+grammar org.xtext.example.playlist.Playlist with org.eclipse.xtext.common.Terminals
+
+generate playlist "http://www.xtext.org/example/playlist/Playlist"
+
+Playlist:
+	videos+=Video+;
+	
+Video:
+	'file' name=STRING;
