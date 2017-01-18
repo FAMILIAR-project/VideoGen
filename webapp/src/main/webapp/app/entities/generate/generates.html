@@ -8,10 +8,42 @@
                     <button style="margin:15px 0px 15px 0px;" ng-click="vm.generateRandom()">Generate a random video !</button>
                 </div>
 
-                   <video ng-repeat="video in vm.videos track by $index" id="video" width="320" height="240" controls>
-                       <source src="{{video}}" type="video/mp4">
-                   </video >
+                <video ng-repeat="video in vm.videos track by $index" id="video" width="320" height="240" controls>
+                  <source src="{{video}}" type="video/mp4">
+                </video >
+
+
+                <div  id="jsplaylist">
+                   <!-- optional prev/next buttons -->
+                   <a class="fp-prev"></a>
+                   <a class="fp-next"></a>
                 </div>
+
+                <script>
+                var allVideos = [{
+                    sources: [{
+                        type: 'video/mp4',
+                        src:  "1.mp4"
+                    }]
+                },
+                {
+                    sources: [{
+                        type: 'video/mp4',
+                        src:  "2.mp4"
+                    }]
+                }
+                {
+                    sources: [{
+                        type: 'video/mp4',
+                        src:  "3.mp4"
+                    }]
+                }];
+
+                flowplayer('#jsplaylist', {
+                   rtmp: "rtmp://s3b78u0kbtx79q.cloudfront.net/cfx/st",
+                   playlist: allVideos
+                });
+                </script>
             </tab>
         </tabset>
     </div>
