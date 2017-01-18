@@ -1,6 +1,20 @@
+#EXTM3U#EXTINF:4, no-info
 Videos/V6.mp4
+#EXTINF:4, no-info
+Videos/old/sea/V5.mp4
+#EXTINF:4, no-info
 Videos/old/sea/V7.mp4
+#EXTINF:3, no-info
+Videos/random/V1.mp4
+#EXTINF:2, no-info
+Videos/random/V2.mp4
+#EXTINF:2, no-info
+Videos/random/V4.mp4
+#EXTINF:4, no-info
 Videos/V6.mp4
+#EXTINF:5, no-info
 Videos/random/V3.mp4
+#EXTINF:4, no-info
 Videos/old/sea/V7.mp4
+#EXTINF:3, no-info
 Videos/random/V1.mp4

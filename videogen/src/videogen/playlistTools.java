@@ -1,10 +1,16 @@
 package videogen;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -28,6 +34,8 @@ import org.xtext.example.mydsl.videoGen.OptionalVideoSeq;
 import org.xtext.example.mydsl.videoGen.VideoDescription;
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 import org.xtext.example.mydsl.videoGen.VideoSeq;
+
+
 
 @SuppressWarnings("all")
 public class playlistTools {
@@ -64,29 +72,33 @@ public class playlistTools {
     try {
       Runtime runtime = Runtime.getRuntime();
       final Process res = runtime.exec("ffmpeg.exe -f concat -i out.ffmpeg -c copy output.mp4");
-      System.out.println(res);
-    } catch (Throwable _e) {
+    }
+    catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
   
   
-  public void genDuration(String file){
-	  
-	  String cmd = "ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "+file+" >res.txt";
-	  Process process;
-		try {
-			process = Runtime.getRuntime().exec(cmd);
-			try {
-				process.waitFor();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+  public int genDuration(String file){
+	
+	  try {
+	      Runtime runtime = Runtime.getRuntime();
+	      final Process res = runtime.exec("ffprobe -v error -select_streams v:0 -show_entries stream=duration -of default=noprint_wrappers=1:nokey=1 -i " +file);
+	      InputStream lsOut = lsOut = res.getInputStream();
+          InputStreamReader isr = new InputStreamReader(lsOut);
+          BufferedReader in = new BufferedReader(isr);
+          
+          String line;
+          while ((line = in.readLine()) != null)
+          {       
+            return(Double.valueOf(line).intValue());    
+          }
+          
+	    }
+	    catch (Throwable _e) {
+	      throw Exceptions.sneakyThrow(_e);
+	    }
+	  return 0;
   }
   
   public void genVignette(String file){
@@ -115,6 +127,7 @@ public class playlistTools {
           String _path = file.getPath();
           String _plus = (_path + "\n");
           fw.write(_plus);
+          fw.flush();
         } catch (Throwable _e) {
           throw Exceptions.sneakyThrow(_e);
         }
@@ -125,6 +138,35 @@ public class playlistTools {
       throw Exceptions.sneakyThrow(_e);
     }
   }
+  
+  public void playlistToM3UExtended(final Playlist playlist) {
+	    try {
+	      final FileWriter fw = new FileWriter("out.m3u");
+	      fw.write("#EXTM3U");
+	      fw.flush();
+	      EList<MediaFile> _files = playlist.getFiles();
+	      final Consumer<MediaFile> _function = (MediaFile file) -> {
+	        try {        	
+	          String _path = file.getPath();
+	          int d= genDuration(_path);
+	          File f = new File("res.txt");
+	          
+	          fw.write("#EXTINF:" +d+", no-info\n");
+	          fw.flush();
+	          String _plus = (_path + "\n");
+	          fw.write(_plus);
+	          fw.flush();
+	        } catch (Throwable _e) {
+	          throw Exceptions.sneakyThrow(_e);
+	        }
+	      };
+	      _files.forEach(_function);
+	      fw.close();
+	    } catch (Throwable _e) {
+	      throw Exceptions.sneakyThrow(_e);
+	    }
+	  }
+  
   
   public void playlistToFFMPEG(final Playlist playlist) {
     try {
@@ -711,6 +753,14 @@ public class playlistTools {
 	       // do something
 	    }
   }
+  
+  public void videogenGenerator(String file){
+	  URI _createURI = URI.createURI(file);
+	  File f = new File(file);
+	  System.out.println(f.isDirectory());
+
+  }
+  
   
   public String genID() {
     int _plusPlus = playlistTools.i++;

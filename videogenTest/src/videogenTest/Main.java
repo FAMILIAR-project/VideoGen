@@ -12,7 +12,11 @@ public class Main {
 		//pst.genVignette("Videos/V6.mp4");
 		//pst.genDuration("output.mp4");
 		//pst.playlistToVignettes(pst.videogenToPlaylistFull("foo2bis.videogen"));
-		pst.videoGenToHTML("foo2bis.videogen");
+		//pst.videoGenToHTML("foo2bis.videogen");
+		//pst.videogenGenerator("foo2bis.videogen");
+		pst.genDuration("Videos/V6.mp4");
+		pst.concatFFMPEG();
+		pst.playlistToM3U(pst.videogenToPlaylistFull("foo2bis.videogen"));
 	}
 
 }
