@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalVideoGenParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_LEFT_BRACKET", "RULE_RIGHT_BRACKET", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'VideoGen'", "'@author'", "'@version'", "'@creation'", "'mandatory'", "'optional'", "'alternatives'", "'videoseq'", "'duration'", "'probability'", "'size'", "'description'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_LEFT_BRACKET", "RULE_RIGHT_BRACKET", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'VideoGen'", "'@author'", "'@version'", "'@creation'", "'mandatory'", "'optional'", "'alternatives'", "'videoseq'", "'duration'", "'probability'", "'size'", "'description'", "'text'"
     };
     public static final int RULE_STRING=6;
     public static final int RULE_SL_COMMENT=10;
@@ -44,6 +44,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
     public static final int RULE_ML_COMMENT=9;
     public static final int T__23=23;
     public static final int T__24=24;
+    public static final int T__25=25;
     public static final int T__20=20;
     public static final int T__21=21;
 
@@ -3622,17 +3623,22 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VideoDescription__Group_3__5"
-    // InternalVideoGen.g:1355:1: rule__VideoDescription__Group_3__5 : rule__VideoDescription__Group_3__5__Impl ;
+    // InternalVideoGen.g:1355:1: rule__VideoDescription__Group_3__5 : rule__VideoDescription__Group_3__5__Impl rule__VideoDescription__Group_3__6 ;
     public final void rule__VideoDescription__Group_3__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalVideoGen.g:1359:1: ( rule__VideoDescription__Group_3__5__Impl )
-            // InternalVideoGen.g:1360:2: rule__VideoDescription__Group_3__5__Impl
+            // InternalVideoGen.g:1359:1: ( rule__VideoDescription__Group_3__5__Impl rule__VideoDescription__Group_3__6 )
+            // InternalVideoGen.g:1360:2: rule__VideoDescription__Group_3__5__Impl rule__VideoDescription__Group_3__6
             {
-            pushFollow(FOLLOW_2);
+            pushFollow(FOLLOW_15);
             rule__VideoDescription__Group_3__5__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__VideoDescription__Group_3__6();
 
             state._fsp--;
 
@@ -3655,21 +3661,42 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VideoDescription__Group_3__5__Impl"
-    // InternalVideoGen.g:1366:1: rule__VideoDescription__Group_3__5__Impl : ( RULE_RIGHT_BRACKET ) ;
+    // InternalVideoGen.g:1367:1: rule__VideoDescription__Group_3__5__Impl : ( ( rule__VideoDescription__Group_3_5__0 )? ) ;
     public final void rule__VideoDescription__Group_3__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalVideoGen.g:1370:1: ( ( RULE_RIGHT_BRACKET ) )
-            // InternalVideoGen.g:1371:1: ( RULE_RIGHT_BRACKET )
+            // InternalVideoGen.g:1371:1: ( ( ( rule__VideoDescription__Group_3_5__0 )? ) )
+            // InternalVideoGen.g:1372:1: ( ( rule__VideoDescription__Group_3_5__0 )? )
             {
-            // InternalVideoGen.g:1371:1: ( RULE_RIGHT_BRACKET )
-            // InternalVideoGen.g:1372:1: RULE_RIGHT_BRACKET
+            // InternalVideoGen.g:1372:1: ( ( rule__VideoDescription__Group_3_5__0 )? )
+            // InternalVideoGen.g:1373:1: ( rule__VideoDescription__Group_3_5__0 )?
             {
-             before(grammarAccess.getVideoDescriptionAccess().getRIGHT_BRACKETTerminalRuleCall_3_5()); 
-            match(input,RULE_RIGHT_BRACKET,FOLLOW_2); 
-             after(grammarAccess.getVideoDescriptionAccess().getRIGHT_BRACKETTerminalRuleCall_3_5()); 
+             before(grammarAccess.getVideoDescriptionAccess().getGroup_3_5()); 
+            // InternalVideoGen.g:1374:1: ( rule__VideoDescription__Group_3_5__0 )?
+            int alt14=2;
+            int LA14_0 = input.LA(1);
+
+            if ( (LA14_0==25) ) {
+                alt14=1;
+            }
+            switch (alt14) {
+                case 1 :
+                    // InternalVideoGen.g:1374:2: rule__VideoDescription__Group_3_5__0
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__VideoDescription__Group_3_5__0();
+
+                    state._fsp--;
+
+
+                    }
+                    break;
+
+            }
+
+             after(grammarAccess.getVideoDescriptionAccess().getGroup_3_5()); 
 
             }
 
@@ -3691,15 +3718,85 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
     // $ANTLR end "rule__VideoDescription__Group_3__5__Impl"
 
 
+    // $ANTLR start "rule__VideoDescription__Group_3__6"
+    // InternalVideoGen.g:1384:1: rule__VideoDescription__Group_3__6 : rule__VideoDescription__Group_3__6__Impl ;
+    public final void rule__VideoDescription__Group_3__6() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalVideoGen.g:1388:1: ( rule__VideoDescription__Group_3__6__Impl )
+            // InternalVideoGen.g:1389:2: rule__VideoDescription__Group_3__6__Impl
+            {
+            pushFollow(FOLLOW_2);
+            rule__VideoDescription__Group_3__6__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__VideoDescription__Group_3__6"
+
+
+    // $ANTLR start "rule__VideoDescription__Group_3__6__Impl"
+    // InternalVideoGen.g:1395:1: rule__VideoDescription__Group_3__6__Impl : ( RULE_RIGHT_BRACKET ) ;
+    public final void rule__VideoDescription__Group_3__6__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalVideoGen.g:1399:1: ( ( RULE_RIGHT_BRACKET ) )
+            // InternalVideoGen.g:1400:1: ( RULE_RIGHT_BRACKET )
+            {
+            // InternalVideoGen.g:1400:1: ( RULE_RIGHT_BRACKET )
+            // InternalVideoGen.g:1401:1: RULE_RIGHT_BRACKET
+            {
+             before(grammarAccess.getVideoDescriptionAccess().getRIGHT_BRACKETTerminalRuleCall_3_6()); 
+            match(input,RULE_RIGHT_BRACKET,FOLLOW_2); 
+             after(grammarAccess.getVideoDescriptionAccess().getRIGHT_BRACKETTerminalRuleCall_3_6()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__VideoDescription__Group_3__6__Impl"
+
+
     // $ANTLR start "rule__VideoDescription__Group_3_1__0"
-    // InternalVideoGen.g:1395:1: rule__VideoDescription__Group_3_1__0 : rule__VideoDescription__Group_3_1__0__Impl rule__VideoDescription__Group_3_1__1 ;
+    // InternalVideoGen.g:1426:1: rule__VideoDescription__Group_3_1__0 : rule__VideoDescription__Group_3_1__0__Impl rule__VideoDescription__Group_3_1__1 ;
     public final void rule__VideoDescription__Group_3_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalVideoGen.g:1399:1: ( rule__VideoDescription__Group_3_1__0__Impl rule__VideoDescription__Group_3_1__1 )
-            // InternalVideoGen.g:1400:2: rule__VideoDescription__Group_3_1__0__Impl rule__VideoDescription__Group_3_1__1
+            // InternalVideoGen.g:1430:1: ( rule__VideoDescription__Group_3_1__0__Impl rule__VideoDescription__Group_3_1__1 )
+            // InternalVideoGen.g:1431:2: rule__VideoDescription__Group_3_1__0__Impl rule__VideoDescription__Group_3_1__1
             {
             pushFollow(FOLLOW_16);
             rule__VideoDescription__Group_3_1__0__Impl();
@@ -3730,17 +3827,17 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VideoDescription__Group_3_1__0__Impl"
-    // InternalVideoGen.g:1407:1: rule__VideoDescription__Group_3_1__0__Impl : ( 'duration' ) ;
+    // InternalVideoGen.g:1438:1: rule__VideoDescription__Group_3_1__0__Impl : ( 'duration' ) ;
     public final void rule__VideoDescription__Group_3_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalVideoGen.g:1411:1: ( ( 'duration' ) )
-            // InternalVideoGen.g:1412:1: ( 'duration' )
+            // InternalVideoGen.g:1442:1: ( ( 'duration' ) )
+            // InternalVideoGen.g:1443:1: ( 'duration' )
             {
-            // InternalVideoGen.g:1412:1: ( 'duration' )
-            // InternalVideoGen.g:1413:1: 'duration'
+            // InternalVideoGen.g:1443:1: ( 'duration' )
+            // InternalVideoGen.g:1444:1: 'duration'
             {
              before(grammarAccess.getVideoDescriptionAccess().getDurationKeyword_3_1_0()); 
             match(input,21,FOLLOW_2); 
@@ -3767,14 +3864,14 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VideoDescription__Group_3_1__1"
-    // InternalVideoGen.g:1426:1: rule__VideoDescription__Group_3_1__1 : rule__VideoDescription__Group_3_1__1__Impl ;
+    // InternalVideoGen.g:1457:1: rule__VideoDescription__Group_3_1__1 : rule__VideoDescription__Group_3_1__1__Impl ;
     public final void rule__VideoDescription__Group_3_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalVideoGen.g:1430:1: ( rule__VideoDescription__Group_3_1__1__Impl )
-            // InternalVideoGen.g:1431:2: rule__VideoDescription__Group_3_1__1__Impl
+            // InternalVideoGen.g:1461:1: ( rule__VideoDescription__Group_3_1__1__Impl )
+            // InternalVideoGen.g:1462:2: rule__VideoDescription__Group_3_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__VideoDescription__Group_3_1__1__Impl();
@@ -3800,21 +3897,21 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VideoDescription__Group_3_1__1__Impl"
-    // InternalVideoGen.g:1437:1: rule__VideoDescription__Group_3_1__1__Impl : ( ( rule__VideoDescription__DurationAssignment_3_1_1 ) ) ;
+    // InternalVideoGen.g:1468:1: rule__VideoDescription__Group_3_1__1__Impl : ( ( rule__VideoDescription__DurationAssignment_3_1_1 ) ) ;
     public final void rule__VideoDescription__Group_3_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalVideoGen.g:1441:1: ( ( ( rule__VideoDescription__DurationAssignment_3_1_1 ) ) )
-            // InternalVideoGen.g:1442:1: ( ( rule__VideoDescription__DurationAssignment_3_1_1 ) )
+            // InternalVideoGen.g:1472:1: ( ( ( rule__VideoDescription__DurationAssignment_3_1_1 ) ) )
+            // InternalVideoGen.g:1473:1: ( ( rule__VideoDescription__DurationAssignment_3_1_1 ) )
             {
-            // InternalVideoGen.g:1442:1: ( ( rule__VideoDescription__DurationAssignment_3_1_1 ) )
-            // InternalVideoGen.g:1443:1: ( rule__VideoDescription__DurationAssignment_3_1_1 )
+            // InternalVideoGen.g:1473:1: ( ( rule__VideoDescription__DurationAssignment_3_1_1 ) )
+            // InternalVideoGen.g:1474:1: ( rule__VideoDescription__DurationAssignment_3_1_1 )
             {
              before(grammarAccess.getVideoDescriptionAccess().getDurationAssignment_3_1_1()); 
-            // InternalVideoGen.g:1444:1: ( rule__VideoDescription__DurationAssignment_3_1_1 )
-            // InternalVideoGen.g:1444:2: rule__VideoDescription__DurationAssignment_3_1_1
+            // InternalVideoGen.g:1475:1: ( rule__VideoDescription__DurationAssignment_3_1_1 )
+            // InternalVideoGen.g:1475:2: rule__VideoDescription__DurationAssignment_3_1_1
             {
             pushFollow(FOLLOW_2);
             rule__VideoDescription__DurationAssignment_3_1_1();
@@ -3847,14 +3944,14 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VideoDescription__Group_3_2__0"
-    // InternalVideoGen.g:1458:1: rule__VideoDescription__Group_3_2__0 : rule__VideoDescription__Group_3_2__0__Impl rule__VideoDescription__Group_3_2__1 ;
+    // InternalVideoGen.g:1489:1: rule__VideoDescription__Group_3_2__0 : rule__VideoDescription__Group_3_2__0__Impl rule__VideoDescription__Group_3_2__1 ;
     public final void rule__VideoDescription__Group_3_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalVideoGen.g:1462:1: ( rule__VideoDescription__Group_3_2__0__Impl rule__VideoDescription__Group_3_2__1 )
-            // InternalVideoGen.g:1463:2: rule__VideoDescription__Group_3_2__0__Impl rule__VideoDescription__Group_3_2__1
+            // InternalVideoGen.g:1493:1: ( rule__VideoDescription__Group_3_2__0__Impl rule__VideoDescription__Group_3_2__1 )
+            // InternalVideoGen.g:1494:2: rule__VideoDescription__Group_3_2__0__Impl rule__VideoDescription__Group_3_2__1
             {
             pushFollow(FOLLOW_16);
             rule__VideoDescription__Group_3_2__0__Impl();
@@ -3885,17 +3982,17 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VideoDescription__Group_3_2__0__Impl"
-    // InternalVideoGen.g:1470:1: rule__VideoDescription__Group_3_2__0__Impl : ( 'probability' ) ;
+    // InternalVideoGen.g:1501:1: rule__VideoDescription__Group_3_2__0__Impl : ( 'probability' ) ;
     public final void rule__VideoDescription__Group_3_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalVideoGen.g:1474:1: ( ( 'probability' ) )
-            // InternalVideoGen.g:1475:1: ( 'probability' )
+            // InternalVideoGen.g:1505:1: ( ( 'probability' ) )
+            // InternalVideoGen.g:1506:1: ( 'probability' )
             {
-            // InternalVideoGen.g:1475:1: ( 'probability' )
-            // InternalVideoGen.g:1476:1: 'probability'
+            // InternalVideoGen.g:1506:1: ( 'probability' )
+            // InternalVideoGen.g:1507:1: 'probability'
             {
              before(grammarAccess.getVideoDescriptionAccess().getProbabilityKeyword_3_2_0()); 
             match(input,22,FOLLOW_2); 
@@ -3922,14 +4019,14 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VideoDescription__Group_3_2__1"
-    // InternalVideoGen.g:1489:1: rule__VideoDescription__Group_3_2__1 : rule__VideoDescription__Group_3_2__1__Impl ;
+    // InternalVideoGen.g:1520:1: rule__VideoDescription__Group_3_2__1 : rule__VideoDescription__Group_3_2__1__Impl ;
     public final void rule__VideoDescription__Group_3_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalVideoGen.g:1493:1: ( rule__VideoDescription__Group_3_2__1__Impl )
-            // InternalVideoGen.g:1494:2: rule__VideoDescription__Group_3_2__1__Impl
+            // InternalVideoGen.g:1524:1: ( rule__VideoDescription__Group_3_2__1__Impl )
+            // InternalVideoGen.g:1525:2: rule__VideoDescription__Group_3_2__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__VideoDescription__Group_3_2__1__Impl();
@@ -3955,21 +4052,21 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VideoDescription__Group_3_2__1__Impl"
-    // InternalVideoGen.g:1500:1: rule__VideoDescription__Group_3_2__1__Impl : ( ( rule__VideoDescription__ProbabilityAssignment_3_2_1 ) ) ;
+    // InternalVideoGen.g:1531:1: rule__VideoDescription__Group_3_2__1__Impl : ( ( rule__VideoDescription__ProbabilityAssignment_3_2_1 ) ) ;
     public final void rule__VideoDescription__Group_3_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalVideoGen.g:1504:1: ( ( ( rule__VideoDescription__ProbabilityAssignment_3_2_1 ) ) )
-            // InternalVideoGen.g:1505:1: ( ( rule__VideoDescription__ProbabilityAssignment_3_2_1 ) )
+            // InternalVideoGen.g:1535:1: ( ( ( rule__VideoDescription__ProbabilityAssignment_3_2_1 ) ) )
+            // InternalVideoGen.g:1536:1: ( ( rule__VideoDescription__ProbabilityAssignment_3_2_1 ) )
             {
-            // InternalVideoGen.g:1505:1: ( ( rule__VideoDescription__ProbabilityAssignment_3_2_1 ) )
-            // InternalVideoGen.g:1506:1: ( rule__VideoDescription__ProbabilityAssignment_3_2_1 )
+            // InternalVideoGen.g:1536:1: ( ( rule__VideoDescription__ProbabilityAssignment_3_2_1 ) )
+            // InternalVideoGen.g:1537:1: ( rule__VideoDescription__ProbabilityAssignment_3_2_1 )
             {
              before(grammarAccess.getVideoDescriptionAccess().getProbabilityAssignment_3_2_1()); 
-            // InternalVideoGen.g:1507:1: ( rule__VideoDescription__ProbabilityAssignment_3_2_1 )
-            // InternalVideoGen.g:1507:2: rule__VideoDescription__ProbabilityAssignment_3_2_1
+            // InternalVideoGen.g:1538:1: ( rule__VideoDescription__ProbabilityAssignment_3_2_1 )
+            // InternalVideoGen.g:1538:2: rule__VideoDescription__ProbabilityAssignment_3_2_1
             {
             pushFollow(FOLLOW_2);
             rule__VideoDescription__ProbabilityAssignment_3_2_1();
@@ -4002,14 +4099,14 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VideoDescription__Group_3_3__0"
-    // InternalVideoGen.g:1521:1: rule__VideoDescription__Group_3_3__0 : rule__VideoDescription__Group_3_3__0__Impl rule__VideoDescription__Group_3_3__1 ;
+    // InternalVideoGen.g:1552:1: rule__VideoDescription__Group_3_3__0 : rule__VideoDescription__Group_3_3__0__Impl rule__VideoDescription__Group_3_3__1 ;
     public final void rule__VideoDescription__Group_3_3__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalVideoGen.g:1525:1: ( rule__VideoDescription__Group_3_3__0__Impl rule__VideoDescription__Group_3_3__1 )
-            // InternalVideoGen.g:1526:2: rule__VideoDescription__Group_3_3__0__Impl rule__VideoDescription__Group_3_3__1
+            // InternalVideoGen.g:1556:1: ( rule__VideoDescription__Group_3_3__0__Impl rule__VideoDescription__Group_3_3__1 )
+            // InternalVideoGen.g:1557:2: rule__VideoDescription__Group_3_3__0__Impl rule__VideoDescription__Group_3_3__1
             {
             pushFollow(FOLLOW_16);
             rule__VideoDescription__Group_3_3__0__Impl();
@@ -4040,17 +4137,17 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VideoDescription__Group_3_3__0__Impl"
-    // InternalVideoGen.g:1533:1: rule__VideoDescription__Group_3_3__0__Impl : ( 'size' ) ;
+    // InternalVideoGen.g:1564:1: rule__VideoDescription__Group_3_3__0__Impl : ( 'size' ) ;
     public final void rule__VideoDescription__Group_3_3__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalVideoGen.g:1537:1: ( ( 'size' ) )
-            // InternalVideoGen.g:1538:1: ( 'size' )
+            // InternalVideoGen.g:1568:1: ( ( 'size' ) )
+            // InternalVideoGen.g:1569:1: ( 'size' )
             {
-            // InternalVideoGen.g:1538:1: ( 'size' )
-            // InternalVideoGen.g:1539:1: 'size'
+            // InternalVideoGen.g:1569:1: ( 'size' )
+            // InternalVideoGen.g:1570:1: 'size'
             {
              before(grammarAccess.getVideoDescriptionAccess().getSizeKeyword_3_3_0()); 
             match(input,23,FOLLOW_2); 
@@ -4077,14 +4174,14 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VideoDescription__Group_3_3__1"
-    // InternalVideoGen.g:1552:1: rule__VideoDescription__Group_3_3__1 : rule__VideoDescription__Group_3_3__1__Impl ;
+    // InternalVideoGen.g:1583:1: rule__VideoDescription__Group_3_3__1 : rule__VideoDescription__Group_3_3__1__Impl ;
     public final void rule__VideoDescription__Group_3_3__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalVideoGen.g:1556:1: ( rule__VideoDescription__Group_3_3__1__Impl )
-            // InternalVideoGen.g:1557:2: rule__VideoDescription__Group_3_3__1__Impl
+            // InternalVideoGen.g:1587:1: ( rule__VideoDescription__Group_3_3__1__Impl )
+            // InternalVideoGen.g:1588:2: rule__VideoDescription__Group_3_3__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__VideoDescription__Group_3_3__1__Impl();
@@ -4110,21 +4207,21 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VideoDescription__Group_3_3__1__Impl"
-    // InternalVideoGen.g:1563:1: rule__VideoDescription__Group_3_3__1__Impl : ( ( rule__VideoDescription__SizeAssignment_3_3_1 ) ) ;
+    // InternalVideoGen.g:1594:1: rule__VideoDescription__Group_3_3__1__Impl : ( ( rule__VideoDescription__SizeAssignment_3_3_1 ) ) ;
     public final void rule__VideoDescription__Group_3_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalVideoGen.g:1567:1: ( ( ( rule__VideoDescription__SizeAssignment_3_3_1 ) ) )
-            // InternalVideoGen.g:1568:1: ( ( rule__VideoDescription__SizeAssignment_3_3_1 ) )
+            // InternalVideoGen.g:1598:1: ( ( ( rule__VideoDescription__SizeAssignment_3_3_1 ) ) )
+            // InternalVideoGen.g:1599:1: ( ( rule__VideoDescription__SizeAssignment_3_3_1 ) )
             {
-            // InternalVideoGen.g:1568:1: ( ( rule__VideoDescription__SizeAssignment_3_3_1 ) )
-            // InternalVideoGen.g:1569:1: ( rule__VideoDescription__SizeAssignment_3_3_1 )
+            // InternalVideoGen.g:1599:1: ( ( rule__VideoDescription__SizeAssignment_3_3_1 ) )
+            // InternalVideoGen.g:1600:1: ( rule__VideoDescription__SizeAssignment_3_3_1 )
             {
              before(grammarAccess.getVideoDescriptionAccess().getSizeAssignment_3_3_1()); 
-            // InternalVideoGen.g:1570:1: ( rule__VideoDescription__SizeAssignment_3_3_1 )
-            // InternalVideoGen.g:1570:2: rule__VideoDescription__SizeAssignment_3_3_1
+            // InternalVideoGen.g:1601:1: ( rule__VideoDescription__SizeAssignment_3_3_1 )
+            // InternalVideoGen.g:1601:2: rule__VideoDescription__SizeAssignment_3_3_1
             {
             pushFollow(FOLLOW_2);
             rule__VideoDescription__SizeAssignment_3_3_1();
@@ -4157,14 +4254,14 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VideoDescription__Group_3_4__0"
-    // InternalVideoGen.g:1584:1: rule__VideoDescription__Group_3_4__0 : rule__VideoDescription__Group_3_4__0__Impl rule__VideoDescription__Group_3_4__1 ;
+    // InternalVideoGen.g:1615:1: rule__VideoDescription__Group_3_4__0 : rule__VideoDescription__Group_3_4__0__Impl rule__VideoDescription__Group_3_4__1 ;
     public final void rule__VideoDescription__Group_3_4__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalVideoGen.g:1588:1: ( rule__VideoDescription__Group_3_4__0__Impl rule__VideoDescription__Group_3_4__1 )
-            // InternalVideoGen.g:1589:2: rule__VideoDescription__Group_3_4__0__Impl rule__VideoDescription__Group_3_4__1
+            // InternalVideoGen.g:1619:1: ( rule__VideoDescription__Group_3_4__0__Impl rule__VideoDescription__Group_3_4__1 )
+            // InternalVideoGen.g:1620:2: rule__VideoDescription__Group_3_4__0__Impl rule__VideoDescription__Group_3_4__1
             {
             pushFollow(FOLLOW_10);
             rule__VideoDescription__Group_3_4__0__Impl();
@@ -4195,17 +4292,17 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VideoDescription__Group_3_4__0__Impl"
-    // InternalVideoGen.g:1596:1: rule__VideoDescription__Group_3_4__0__Impl : ( 'description' ) ;
+    // InternalVideoGen.g:1627:1: rule__VideoDescription__Group_3_4__0__Impl : ( 'description' ) ;
     public final void rule__VideoDescription__Group_3_4__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalVideoGen.g:1600:1: ( ( 'description' ) )
-            // InternalVideoGen.g:1601:1: ( 'description' )
+            // InternalVideoGen.g:1631:1: ( ( 'description' ) )
+            // InternalVideoGen.g:1632:1: ( 'description' )
             {
-            // InternalVideoGen.g:1601:1: ( 'description' )
-            // InternalVideoGen.g:1602:1: 'description'
+            // InternalVideoGen.g:1632:1: ( 'description' )
+            // InternalVideoGen.g:1633:1: 'description'
             {
              before(grammarAccess.getVideoDescriptionAccess().getDescriptionKeyword_3_4_0()); 
             match(input,24,FOLLOW_2); 
@@ -4232,14 +4329,14 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VideoDescription__Group_3_4__1"
-    // InternalVideoGen.g:1615:1: rule__VideoDescription__Group_3_4__1 : rule__VideoDescription__Group_3_4__1__Impl ;
+    // InternalVideoGen.g:1646:1: rule__VideoDescription__Group_3_4__1 : rule__VideoDescription__Group_3_4__1__Impl ;
     public final void rule__VideoDescription__Group_3_4__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalVideoGen.g:1619:1: ( rule__VideoDescription__Group_3_4__1__Impl )
-            // InternalVideoGen.g:1620:2: rule__VideoDescription__Group_3_4__1__Impl
+            // InternalVideoGen.g:1650:1: ( rule__VideoDescription__Group_3_4__1__Impl )
+            // InternalVideoGen.g:1651:2: rule__VideoDescription__Group_3_4__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__VideoDescription__Group_3_4__1__Impl();
@@ -4265,21 +4362,21 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VideoDescription__Group_3_4__1__Impl"
-    // InternalVideoGen.g:1626:1: rule__VideoDescription__Group_3_4__1__Impl : ( ( rule__VideoDescription__DescriptionAssignment_3_4_1 ) ) ;
+    // InternalVideoGen.g:1657:1: rule__VideoDescription__Group_3_4__1__Impl : ( ( rule__VideoDescription__DescriptionAssignment_3_4_1 ) ) ;
     public final void rule__VideoDescription__Group_3_4__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalVideoGen.g:1630:1: ( ( ( rule__VideoDescription__DescriptionAssignment_3_4_1 ) ) )
-            // InternalVideoGen.g:1631:1: ( ( rule__VideoDescription__DescriptionAssignment_3_4_1 ) )
+            // InternalVideoGen.g:1661:1: ( ( ( rule__VideoDescription__DescriptionAssignment_3_4_1 ) ) )
+            // InternalVideoGen.g:1662:1: ( ( rule__VideoDescription__DescriptionAssignment_3_4_1 ) )
             {
-            // InternalVideoGen.g:1631:1: ( ( rule__VideoDescription__DescriptionAssignment_3_4_1 ) )
-            // InternalVideoGen.g:1632:1: ( rule__VideoDescription__DescriptionAssignment_3_4_1 )
+            // InternalVideoGen.g:1662:1: ( ( rule__VideoDescription__DescriptionAssignment_3_4_1 ) )
+            // InternalVideoGen.g:1663:1: ( rule__VideoDescription__DescriptionAssignment_3_4_1 )
             {
              before(grammarAccess.getVideoDescriptionAccess().getDescriptionAssignment_3_4_1()); 
-            // InternalVideoGen.g:1633:1: ( rule__VideoDescription__DescriptionAssignment_3_4_1 )
-            // InternalVideoGen.g:1633:2: rule__VideoDescription__DescriptionAssignment_3_4_1
+            // InternalVideoGen.g:1664:1: ( rule__VideoDescription__DescriptionAssignment_3_4_1 )
+            // InternalVideoGen.g:1664:2: rule__VideoDescription__DescriptionAssignment_3_4_1
             {
             pushFollow(FOLLOW_2);
             rule__VideoDescription__DescriptionAssignment_3_4_1();
@@ -4311,18 +4408,173 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
     // $ANTLR end "rule__VideoDescription__Group_3_4__1__Impl"
 
 
+    // $ANTLR start "rule__VideoDescription__Group_3_5__0"
+    // InternalVideoGen.g:1678:1: rule__VideoDescription__Group_3_5__0 : rule__VideoDescription__Group_3_5__0__Impl rule__VideoDescription__Group_3_5__1 ;
+    public final void rule__VideoDescription__Group_3_5__0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalVideoGen.g:1682:1: ( rule__VideoDescription__Group_3_5__0__Impl rule__VideoDescription__Group_3_5__1 )
+            // InternalVideoGen.g:1683:2: rule__VideoDescription__Group_3_5__0__Impl rule__VideoDescription__Group_3_5__1
+            {
+            pushFollow(FOLLOW_10);
+            rule__VideoDescription__Group_3_5__0__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__VideoDescription__Group_3_5__1();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__VideoDescription__Group_3_5__0"
+
+
+    // $ANTLR start "rule__VideoDescription__Group_3_5__0__Impl"
+    // InternalVideoGen.g:1690:1: rule__VideoDescription__Group_3_5__0__Impl : ( 'text' ) ;
+    public final void rule__VideoDescription__Group_3_5__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalVideoGen.g:1694:1: ( ( 'text' ) )
+            // InternalVideoGen.g:1695:1: ( 'text' )
+            {
+            // InternalVideoGen.g:1695:1: ( 'text' )
+            // InternalVideoGen.g:1696:1: 'text'
+            {
+             before(grammarAccess.getVideoDescriptionAccess().getTextKeyword_3_5_0()); 
+            match(input,25,FOLLOW_2); 
+             after(grammarAccess.getVideoDescriptionAccess().getTextKeyword_3_5_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__VideoDescription__Group_3_5__0__Impl"
+
+
+    // $ANTLR start "rule__VideoDescription__Group_3_5__1"
+    // InternalVideoGen.g:1709:1: rule__VideoDescription__Group_3_5__1 : rule__VideoDescription__Group_3_5__1__Impl ;
+    public final void rule__VideoDescription__Group_3_5__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalVideoGen.g:1713:1: ( rule__VideoDescription__Group_3_5__1__Impl )
+            // InternalVideoGen.g:1714:2: rule__VideoDescription__Group_3_5__1__Impl
+            {
+            pushFollow(FOLLOW_2);
+            rule__VideoDescription__Group_3_5__1__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__VideoDescription__Group_3_5__1"
+
+
+    // $ANTLR start "rule__VideoDescription__Group_3_5__1__Impl"
+    // InternalVideoGen.g:1720:1: rule__VideoDescription__Group_3_5__1__Impl : ( ( rule__VideoDescription__TextAssignment_3_5_1 ) ) ;
+    public final void rule__VideoDescription__Group_3_5__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalVideoGen.g:1724:1: ( ( ( rule__VideoDescription__TextAssignment_3_5_1 ) ) )
+            // InternalVideoGen.g:1725:1: ( ( rule__VideoDescription__TextAssignment_3_5_1 ) )
+            {
+            // InternalVideoGen.g:1725:1: ( ( rule__VideoDescription__TextAssignment_3_5_1 ) )
+            // InternalVideoGen.g:1726:1: ( rule__VideoDescription__TextAssignment_3_5_1 )
+            {
+             before(grammarAccess.getVideoDescriptionAccess().getTextAssignment_3_5_1()); 
+            // InternalVideoGen.g:1727:1: ( rule__VideoDescription__TextAssignment_3_5_1 )
+            // InternalVideoGen.g:1727:2: rule__VideoDescription__TextAssignment_3_5_1
+            {
+            pushFollow(FOLLOW_2);
+            rule__VideoDescription__TextAssignment_3_5_1();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getVideoDescriptionAccess().getTextAssignment_3_5_1()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__VideoDescription__Group_3_5__1__Impl"
+
+
     // $ANTLR start "rule__VideoGeneratorModel__InformationAssignment_1"
-    // InternalVideoGen.g:1648:1: rule__VideoGeneratorModel__InformationAssignment_1 : ( ruleVideoGenInformation ) ;
+    // InternalVideoGen.g:1742:1: rule__VideoGeneratorModel__InformationAssignment_1 : ( ruleVideoGenInformation ) ;
     public final void rule__VideoGeneratorModel__InformationAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalVideoGen.g:1652:1: ( ( ruleVideoGenInformation ) )
-            // InternalVideoGen.g:1653:1: ( ruleVideoGenInformation )
+            // InternalVideoGen.g:1746:1: ( ( ruleVideoGenInformation ) )
+            // InternalVideoGen.g:1747:1: ( ruleVideoGenInformation )
             {
-            // InternalVideoGen.g:1653:1: ( ruleVideoGenInformation )
-            // InternalVideoGen.g:1654:1: ruleVideoGenInformation
+            // InternalVideoGen.g:1747:1: ( ruleVideoGenInformation )
+            // InternalVideoGen.g:1748:1: ruleVideoGenInformation
             {
              before(grammarAccess.getVideoGeneratorModelAccess().getInformationVideoGenInformationParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -4353,17 +4605,17 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VideoGeneratorModel__VideoseqsAssignment_4"
-    // InternalVideoGen.g:1663:1: rule__VideoGeneratorModel__VideoseqsAssignment_4 : ( ruleVideoSeq ) ;
+    // InternalVideoGen.g:1757:1: rule__VideoGeneratorModel__VideoseqsAssignment_4 : ( ruleVideoSeq ) ;
     public final void rule__VideoGeneratorModel__VideoseqsAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalVideoGen.g:1667:1: ( ( ruleVideoSeq ) )
-            // InternalVideoGen.g:1668:1: ( ruleVideoSeq )
+            // InternalVideoGen.g:1761:1: ( ( ruleVideoSeq ) )
+            // InternalVideoGen.g:1762:1: ( ruleVideoSeq )
             {
-            // InternalVideoGen.g:1668:1: ( ruleVideoSeq )
-            // InternalVideoGen.g:1669:1: ruleVideoSeq
+            // InternalVideoGen.g:1762:1: ( ruleVideoSeq )
+            // InternalVideoGen.g:1763:1: ruleVideoSeq
             {
              before(grammarAccess.getVideoGeneratorModelAccess().getVideoseqsVideoSeqParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -4394,17 +4646,17 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VideoGenInformation__AuthorNameAssignment_1_1"
-    // InternalVideoGen.g:1678:1: rule__VideoGenInformation__AuthorNameAssignment_1_1 : ( RULE_STRING ) ;
+    // InternalVideoGen.g:1772:1: rule__VideoGenInformation__AuthorNameAssignment_1_1 : ( RULE_STRING ) ;
     public final void rule__VideoGenInformation__AuthorNameAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalVideoGen.g:1682:1: ( ( RULE_STRING ) )
-            // InternalVideoGen.g:1683:1: ( RULE_STRING )
+            // InternalVideoGen.g:1776:1: ( ( RULE_STRING ) )
+            // InternalVideoGen.g:1777:1: ( RULE_STRING )
             {
-            // InternalVideoGen.g:1683:1: ( RULE_STRING )
-            // InternalVideoGen.g:1684:1: RULE_STRING
+            // InternalVideoGen.g:1777:1: ( RULE_STRING )
+            // InternalVideoGen.g:1778:1: RULE_STRING
             {
              before(grammarAccess.getVideoGenInformationAccess().getAuthorNameSTRINGTerminalRuleCall_1_1_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
@@ -4431,17 +4683,17 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VideoGenInformation__VersionAssignment_2_1"
-    // InternalVideoGen.g:1693:1: rule__VideoGenInformation__VersionAssignment_2_1 : ( RULE_STRING ) ;
+    // InternalVideoGen.g:1787:1: rule__VideoGenInformation__VersionAssignment_2_1 : ( RULE_STRING ) ;
     public final void rule__VideoGenInformation__VersionAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalVideoGen.g:1697:1: ( ( RULE_STRING ) )
-            // InternalVideoGen.g:1698:1: ( RULE_STRING )
+            // InternalVideoGen.g:1791:1: ( ( RULE_STRING ) )
+            // InternalVideoGen.g:1792:1: ( RULE_STRING )
             {
-            // InternalVideoGen.g:1698:1: ( RULE_STRING )
-            // InternalVideoGen.g:1699:1: RULE_STRING
+            // InternalVideoGen.g:1792:1: ( RULE_STRING )
+            // InternalVideoGen.g:1793:1: RULE_STRING
             {
              before(grammarAccess.getVideoGenInformationAccess().getVersionSTRINGTerminalRuleCall_2_1_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
@@ -4468,17 +4720,17 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VideoGenInformation__CreationDateAssignment_3_1"
-    // InternalVideoGen.g:1708:1: rule__VideoGenInformation__CreationDateAssignment_3_1 : ( RULE_STRING ) ;
+    // InternalVideoGen.g:1802:1: rule__VideoGenInformation__CreationDateAssignment_3_1 : ( RULE_STRING ) ;
     public final void rule__VideoGenInformation__CreationDateAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalVideoGen.g:1712:1: ( ( RULE_STRING ) )
-            // InternalVideoGen.g:1713:1: ( RULE_STRING )
+            // InternalVideoGen.g:1806:1: ( ( RULE_STRING ) )
+            // InternalVideoGen.g:1807:1: ( RULE_STRING )
             {
-            // InternalVideoGen.g:1713:1: ( RULE_STRING )
-            // InternalVideoGen.g:1714:1: RULE_STRING
+            // InternalVideoGen.g:1807:1: ( RULE_STRING )
+            // InternalVideoGen.g:1808:1: RULE_STRING
             {
              before(grammarAccess.getVideoGenInformationAccess().getCreationDateSTRINGTerminalRuleCall_3_1_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
@@ -4505,17 +4757,17 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__MandatoryVideoSeq__DescriptionAssignment_1"
-    // InternalVideoGen.g:1723:1: rule__MandatoryVideoSeq__DescriptionAssignment_1 : ( ruleVideoDescription ) ;
+    // InternalVideoGen.g:1817:1: rule__MandatoryVideoSeq__DescriptionAssignment_1 : ( ruleVideoDescription ) ;
     public final void rule__MandatoryVideoSeq__DescriptionAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalVideoGen.g:1727:1: ( ( ruleVideoDescription ) )
-            // InternalVideoGen.g:1728:1: ( ruleVideoDescription )
+            // InternalVideoGen.g:1821:1: ( ( ruleVideoDescription ) )
+            // InternalVideoGen.g:1822:1: ( ruleVideoDescription )
             {
-            // InternalVideoGen.g:1728:1: ( ruleVideoDescription )
-            // InternalVideoGen.g:1729:1: ruleVideoDescription
+            // InternalVideoGen.g:1822:1: ( ruleVideoDescription )
+            // InternalVideoGen.g:1823:1: ruleVideoDescription
             {
              before(grammarAccess.getMandatoryVideoSeqAccess().getDescriptionVideoDescriptionParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -4546,17 +4798,17 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__OptionalVideoSeq__DescriptionAssignment_1"
-    // InternalVideoGen.g:1738:1: rule__OptionalVideoSeq__DescriptionAssignment_1 : ( ruleVideoDescription ) ;
+    // InternalVideoGen.g:1832:1: rule__OptionalVideoSeq__DescriptionAssignment_1 : ( ruleVideoDescription ) ;
     public final void rule__OptionalVideoSeq__DescriptionAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalVideoGen.g:1742:1: ( ( ruleVideoDescription ) )
-            // InternalVideoGen.g:1743:1: ( ruleVideoDescription )
+            // InternalVideoGen.g:1836:1: ( ( ruleVideoDescription ) )
+            // InternalVideoGen.g:1837:1: ( ruleVideoDescription )
             {
-            // InternalVideoGen.g:1743:1: ( ruleVideoDescription )
-            // InternalVideoGen.g:1744:1: ruleVideoDescription
+            // InternalVideoGen.g:1837:1: ( ruleVideoDescription )
+            // InternalVideoGen.g:1838:1: ruleVideoDescription
             {
              before(grammarAccess.getOptionalVideoSeqAccess().getDescriptionVideoDescriptionParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -4587,17 +4839,17 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__AlternativeVideoSeq__VideoidAssignment_1"
-    // InternalVideoGen.g:1753:1: rule__AlternativeVideoSeq__VideoidAssignment_1 : ( RULE_ID ) ;
+    // InternalVideoGen.g:1847:1: rule__AlternativeVideoSeq__VideoidAssignment_1 : ( RULE_ID ) ;
     public final void rule__AlternativeVideoSeq__VideoidAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalVideoGen.g:1757:1: ( ( RULE_ID ) )
-            // InternalVideoGen.g:1758:1: ( RULE_ID )
+            // InternalVideoGen.g:1851:1: ( ( RULE_ID ) )
+            // InternalVideoGen.g:1852:1: ( RULE_ID )
             {
-            // InternalVideoGen.g:1758:1: ( RULE_ID )
-            // InternalVideoGen.g:1759:1: RULE_ID
+            // InternalVideoGen.g:1852:1: ( RULE_ID )
+            // InternalVideoGen.g:1853:1: RULE_ID
             {
              before(grammarAccess.getAlternativeVideoSeqAccess().getVideoidIDTerminalRuleCall_1_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -4624,17 +4876,17 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__AlternativeVideoSeq__VideodescsAssignment_3"
-    // InternalVideoGen.g:1768:1: rule__AlternativeVideoSeq__VideodescsAssignment_3 : ( ruleVideoDescription ) ;
+    // InternalVideoGen.g:1862:1: rule__AlternativeVideoSeq__VideodescsAssignment_3 : ( ruleVideoDescription ) ;
     public final void rule__AlternativeVideoSeq__VideodescsAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalVideoGen.g:1772:1: ( ( ruleVideoDescription ) )
-            // InternalVideoGen.g:1773:1: ( ruleVideoDescription )
+            // InternalVideoGen.g:1866:1: ( ( ruleVideoDescription ) )
+            // InternalVideoGen.g:1867:1: ( ruleVideoDescription )
             {
-            // InternalVideoGen.g:1773:1: ( ruleVideoDescription )
-            // InternalVideoGen.g:1774:1: ruleVideoDescription
+            // InternalVideoGen.g:1867:1: ( ruleVideoDescription )
+            // InternalVideoGen.g:1868:1: ruleVideoDescription
             {
              before(grammarAccess.getAlternativeVideoSeqAccess().getVideodescsVideoDescriptionParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -4665,17 +4917,17 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VideoDescription__VideoidAssignment_1"
-    // InternalVideoGen.g:1783:1: rule__VideoDescription__VideoidAssignment_1 : ( RULE_ID ) ;
+    // InternalVideoGen.g:1877:1: rule__VideoDescription__VideoidAssignment_1 : ( RULE_ID ) ;
     public final void rule__VideoDescription__VideoidAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalVideoGen.g:1787:1: ( ( RULE_ID ) )
-            // InternalVideoGen.g:1788:1: ( RULE_ID )
+            // InternalVideoGen.g:1881:1: ( ( RULE_ID ) )
+            // InternalVideoGen.g:1882:1: ( RULE_ID )
             {
-            // InternalVideoGen.g:1788:1: ( RULE_ID )
-            // InternalVideoGen.g:1789:1: RULE_ID
+            // InternalVideoGen.g:1882:1: ( RULE_ID )
+            // InternalVideoGen.g:1883:1: RULE_ID
             {
              before(grammarAccess.getVideoDescriptionAccess().getVideoidIDTerminalRuleCall_1_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -4702,17 +4954,17 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VideoDescription__LocationAssignment_2"
-    // InternalVideoGen.g:1798:1: rule__VideoDescription__LocationAssignment_2 : ( RULE_STRING ) ;
+    // InternalVideoGen.g:1892:1: rule__VideoDescription__LocationAssignment_2 : ( RULE_STRING ) ;
     public final void rule__VideoDescription__LocationAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalVideoGen.g:1802:1: ( ( RULE_STRING ) )
-            // InternalVideoGen.g:1803:1: ( RULE_STRING )
+            // InternalVideoGen.g:1896:1: ( ( RULE_STRING ) )
+            // InternalVideoGen.g:1897:1: ( RULE_STRING )
             {
-            // InternalVideoGen.g:1803:1: ( RULE_STRING )
-            // InternalVideoGen.g:1804:1: RULE_STRING
+            // InternalVideoGen.g:1897:1: ( RULE_STRING )
+            // InternalVideoGen.g:1898:1: RULE_STRING
             {
              before(grammarAccess.getVideoDescriptionAccess().getLocationSTRINGTerminalRuleCall_2_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
@@ -4739,17 +4991,17 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VideoDescription__DurationAssignment_3_1_1"
-    // InternalVideoGen.g:1813:1: rule__VideoDescription__DurationAssignment_3_1_1 : ( RULE_INT ) ;
+    // InternalVideoGen.g:1907:1: rule__VideoDescription__DurationAssignment_3_1_1 : ( RULE_INT ) ;
     public final void rule__VideoDescription__DurationAssignment_3_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalVideoGen.g:1817:1: ( ( RULE_INT ) )
-            // InternalVideoGen.g:1818:1: ( RULE_INT )
+            // InternalVideoGen.g:1911:1: ( ( RULE_INT ) )
+            // InternalVideoGen.g:1912:1: ( RULE_INT )
             {
-            // InternalVideoGen.g:1818:1: ( RULE_INT )
-            // InternalVideoGen.g:1819:1: RULE_INT
+            // InternalVideoGen.g:1912:1: ( RULE_INT )
+            // InternalVideoGen.g:1913:1: RULE_INT
             {
              before(grammarAccess.getVideoDescriptionAccess().getDurationINTTerminalRuleCall_3_1_1_0()); 
             match(input,RULE_INT,FOLLOW_2); 
@@ -4776,17 +5028,17 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VideoDescription__ProbabilityAssignment_3_2_1"
-    // InternalVideoGen.g:1828:1: rule__VideoDescription__ProbabilityAssignment_3_2_1 : ( RULE_INT ) ;
+    // InternalVideoGen.g:1922:1: rule__VideoDescription__ProbabilityAssignment_3_2_1 : ( RULE_INT ) ;
     public final void rule__VideoDescription__ProbabilityAssignment_3_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalVideoGen.g:1832:1: ( ( RULE_INT ) )
-            // InternalVideoGen.g:1833:1: ( RULE_INT )
+            // InternalVideoGen.g:1926:1: ( ( RULE_INT ) )
+            // InternalVideoGen.g:1927:1: ( RULE_INT )
             {
-            // InternalVideoGen.g:1833:1: ( RULE_INT )
-            // InternalVideoGen.g:1834:1: RULE_INT
+            // InternalVideoGen.g:1927:1: ( RULE_INT )
+            // InternalVideoGen.g:1928:1: RULE_INT
             {
              before(grammarAccess.getVideoDescriptionAccess().getProbabilityINTTerminalRuleCall_3_2_1_0()); 
             match(input,RULE_INT,FOLLOW_2); 
@@ -4813,17 +5065,17 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VideoDescription__SizeAssignment_3_3_1"
-    // InternalVideoGen.g:1843:1: rule__VideoDescription__SizeAssignment_3_3_1 : ( RULE_INT ) ;
+    // InternalVideoGen.g:1937:1: rule__VideoDescription__SizeAssignment_3_3_1 : ( RULE_INT ) ;
     public final void rule__VideoDescription__SizeAssignment_3_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalVideoGen.g:1847:1: ( ( RULE_INT ) )
-            // InternalVideoGen.g:1848:1: ( RULE_INT )
+            // InternalVideoGen.g:1941:1: ( ( RULE_INT ) )
+            // InternalVideoGen.g:1942:1: ( RULE_INT )
             {
-            // InternalVideoGen.g:1848:1: ( RULE_INT )
-            // InternalVideoGen.g:1849:1: RULE_INT
+            // InternalVideoGen.g:1942:1: ( RULE_INT )
+            // InternalVideoGen.g:1943:1: RULE_INT
             {
              before(grammarAccess.getVideoDescriptionAccess().getSizeINTTerminalRuleCall_3_3_1_0()); 
             match(input,RULE_INT,FOLLOW_2); 
@@ -4850,17 +5102,17 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VideoDescription__DescriptionAssignment_3_4_1"
-    // InternalVideoGen.g:1858:1: rule__VideoDescription__DescriptionAssignment_3_4_1 : ( RULE_STRING ) ;
+    // InternalVideoGen.g:1952:1: rule__VideoDescription__DescriptionAssignment_3_4_1 : ( RULE_STRING ) ;
     public final void rule__VideoDescription__DescriptionAssignment_3_4_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalVideoGen.g:1862:1: ( ( RULE_STRING ) )
-            // InternalVideoGen.g:1863:1: ( RULE_STRING )
+            // InternalVideoGen.g:1956:1: ( ( RULE_STRING ) )
+            // InternalVideoGen.g:1957:1: ( RULE_STRING )
             {
-            // InternalVideoGen.g:1863:1: ( RULE_STRING )
-            // InternalVideoGen.g:1864:1: RULE_STRING
+            // InternalVideoGen.g:1957:1: ( RULE_STRING )
+            // InternalVideoGen.g:1958:1: RULE_STRING
             {
              before(grammarAccess.getVideoDescriptionAccess().getDescriptionSTRINGTerminalRuleCall_3_4_1_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
@@ -4885,6 +5137,43 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
     }
     // $ANTLR end "rule__VideoDescription__DescriptionAssignment_3_4_1"
 
+
+    // $ANTLR start "rule__VideoDescription__TextAssignment_3_5_1"
+    // InternalVideoGen.g:1967:1: rule__VideoDescription__TextAssignment_3_5_1 : ( RULE_STRING ) ;
+    public final void rule__VideoDescription__TextAssignment_3_5_1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalVideoGen.g:1971:1: ( ( RULE_STRING ) )
+            // InternalVideoGen.g:1972:1: ( RULE_STRING )
+            {
+            // InternalVideoGen.g:1972:1: ( RULE_STRING )
+            // InternalVideoGen.g:1973:1: RULE_STRING
+            {
+             before(grammarAccess.getVideoDescriptionAccess().getTextSTRINGTerminalRuleCall_3_5_1_0()); 
+            match(input,RULE_STRING,FOLLOW_2); 
+             after(grammarAccess.getVideoDescriptionAccess().getTextSTRINGTerminalRuleCall_3_5_1_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__VideoDescription__TextAssignment_3_5_1"
+
     // Delegated rules
 
 
@@ -4904,7 +5193,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
     public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000000000000090L});
     public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000000000100002L});
     public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x00000000000000C0L});
-    public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000001E00020L});
+    public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000003E00020L});
     public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000000000000100L});
 
 }

@@ -582,9 +582,31 @@ ruleVideoDescription returns [EObject current=null]
 	    }
 
 )
-))?this_RIGHT_BRACKET_12=RULE_RIGHT_BRACKET
+))?(	otherlv_12='text' 
+    {
+    	newLeafNode(otherlv_12, grammarAccess.getVideoDescriptionAccess().getTextKeyword_3_5_0());
+    }
+(
+(
+		lv_text_13_0=RULE_STRING
+		{
+			newLeafNode(lv_text_13_0, grammarAccess.getVideoDescriptionAccess().getTextSTRINGTerminalRuleCall_3_5_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getVideoDescriptionRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"text",
+        		lv_text_13_0, 
+        		"org.eclipse.xtext.common.Terminals.STRING");
+	    }
+
+)
+))?this_RIGHT_BRACKET_14=RULE_RIGHT_BRACKET
     { 
-    newLeafNode(this_RIGHT_BRACKET_12, grammarAccess.getVideoDescriptionAccess().getRIGHT_BRACKETTerminalRuleCall_3_5()); 
+    newLeafNode(this_RIGHT_BRACKET_14, grammarAccess.getVideoDescriptionAccess().getRIGHT_BRACKETTerminalRuleCall_3_6()); 
     }
 )?)
 ;

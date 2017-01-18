@@ -364,6 +364,16 @@ public class VideoGenPackageImpl extends EPackageImpl implements VideoGenPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getVideoDescription_Text()
+  {
+    return (EAttribute)videoDescriptionEClass.getEStructuralFeatures().get(6);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public VideoGenFactory getVideoGenFactory()
   {
     return (VideoGenFactory)getEFactoryInstance();
@@ -417,6 +427,7 @@ public class VideoGenPackageImpl extends EPackageImpl implements VideoGenPackage
     createEAttribute(videoDescriptionEClass, VIDEO_DESCRIPTION__PROBABILITY);
     createEAttribute(videoDescriptionEClass, VIDEO_DESCRIPTION__SIZE);
     createEAttribute(videoDescriptionEClass, VIDEO_DESCRIPTION__DESCRIPTION);
+    createEAttribute(videoDescriptionEClass, VIDEO_DESCRIPTION__TEXT);
   }
 
   /**
@@ -481,6 +492,7 @@ public class VideoGenPackageImpl extends EPackageImpl implements VideoGenPackage
     initEAttribute(getVideoDescription_Probability(), ecorePackage.getEInt(), "probability", null, 0, 1, VideoDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getVideoDescription_Size(), ecorePackage.getEInt(), "size", null, 0, 1, VideoDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getVideoDescription_Description(), ecorePackage.getEString(), "description", null, 0, 1, VideoDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getVideoDescription_Text(), ecorePackage.getEString(), "text", null, 0, 1, VideoDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

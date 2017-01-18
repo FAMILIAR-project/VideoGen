@@ -1,16 +1,18 @@
 VideoGen {
 	
-	mandatory videoseq v0 "videos/chat.mp4" 
+	mandatory videoseq chat "videos/chat.mp4" {
+		text "du texte"
+	}
 	optional videoseq v1 "videos/magie-fail.mp4" 
 	
 	alternatives vid3 {
-		videoseq v2 "v3/seq1.mp4" 
+		videoseq v2 "videos/poteau.mp4" 
 		videoseq vid31 "videos/chat.mp4"
 		videoseq vid32 "videos/magie-fail.mp4"
 	}
 	
 	alternatives vid4 {
-		videoseq vid41 "videos/poteau.mp4"
+		videoseq vid41 "videos/magie-fail.mp4"
 		videoseq vid42 "videos/chat.mp4"
 	}
 	

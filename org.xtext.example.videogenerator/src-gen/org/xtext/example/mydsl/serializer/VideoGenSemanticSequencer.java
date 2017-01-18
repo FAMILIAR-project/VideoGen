@@ -122,7 +122,8 @@ public class VideoGenSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *         duration=INT? 
 	 *         probability=INT? 
 	 *         size=INT? 
-	 *         description=STRING?
+	 *         description=STRING? 
+	 *         text=STRING?
 	 *     )
 	 */
 	protected void sequence_VideoDescription(ISerializationContext context, VideoDescription semanticObject) {

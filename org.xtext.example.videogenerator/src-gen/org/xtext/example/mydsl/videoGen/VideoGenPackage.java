@@ -316,13 +316,22 @@ public interface VideoGenPackage extends EPackage
   int VIDEO_DESCRIPTION__DESCRIPTION = 5;
 
   /**
+   * The feature id for the '<em><b>Text</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VIDEO_DESCRIPTION__TEXT = 6;
+
+  /**
    * The number of structural features of the '<em>Video Description</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int VIDEO_DESCRIPTION_FEATURE_COUNT = 6;
+  int VIDEO_DESCRIPTION_FEATURE_COUNT = 7;
 
 
   /**
@@ -561,6 +570,17 @@ public interface VideoGenPackage extends EPackage
   EAttribute getVideoDescription_Description();
 
   /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.videoGen.VideoDescription#getText <em>Text</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Text</em>'.
+   * @see org.xtext.example.mydsl.videoGen.VideoDescription#getText()
+   * @see #getVideoDescription()
+   * @generated
+   */
+  EAttribute getVideoDescription_Text();
+
+  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -772,6 +792,14 @@ public interface VideoGenPackage extends EPackage
      * @generated
      */
     EAttribute VIDEO_DESCRIPTION__DESCRIPTION = eINSTANCE.getVideoDescription_Description();
+
+    /**
+     * The meta object literal for the '<em><b>Text</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute VIDEO_DESCRIPTION__TEXT = eINSTANCE.getVideoDescription_Text();
 
   }
 

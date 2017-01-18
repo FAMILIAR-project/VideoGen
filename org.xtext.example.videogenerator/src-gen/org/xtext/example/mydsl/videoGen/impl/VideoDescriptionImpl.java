@@ -26,6 +26,7 @@ import org.xtext.example.mydsl.videoGen.VideoGenPackage;
  *   <li>{@link org.xtext.example.mydsl.videoGen.impl.VideoDescriptionImpl#getProbability <em>Probability</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.videoGen.impl.VideoDescriptionImpl#getSize <em>Size</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.videoGen.impl.VideoDescriptionImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.videoGen.impl.VideoDescriptionImpl#getText <em>Text</em>}</li>
  * </ul>
  *
  * @generated
@@ -151,6 +152,26 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
    * @ordered
    */
   protected String description = DESCRIPTION_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getText() <em>Text</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getText()
+   * @generated
+   * @ordered
+   */
+  protected static final String TEXT_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getText() <em>Text</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getText()
+   * @generated
+   * @ordered
+   */
+  protected String text = TEXT_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -316,6 +337,29 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getText()
+  {
+    return text;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setText(String newText)
+  {
+    String oldText = text;
+    text = newText;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, VideoGenPackage.VIDEO_DESCRIPTION__TEXT, oldText, text));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
@@ -333,6 +377,8 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
         return getSize();
       case VideoGenPackage.VIDEO_DESCRIPTION__DESCRIPTION:
         return getDescription();
+      case VideoGenPackage.VIDEO_DESCRIPTION__TEXT:
+        return getText();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -364,6 +410,9 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
         return;
       case VideoGenPackage.VIDEO_DESCRIPTION__DESCRIPTION:
         setDescription((String)newValue);
+        return;
+      case VideoGenPackage.VIDEO_DESCRIPTION__TEXT:
+        setText((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -397,6 +446,9 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
       case VideoGenPackage.VIDEO_DESCRIPTION__DESCRIPTION:
         setDescription(DESCRIPTION_EDEFAULT);
         return;
+      case VideoGenPackage.VIDEO_DESCRIPTION__TEXT:
+        setText(TEXT_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -423,6 +475,8 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
         return size != SIZE_EDEFAULT;
       case VideoGenPackage.VIDEO_DESCRIPTION__DESCRIPTION:
         return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+      case VideoGenPackage.VIDEO_DESCRIPTION__TEXT:
+        return TEXT_EDEFAULT == null ? text != null : !TEXT_EDEFAULT.equals(text);
     }
     return super.eIsSet(featureID);
   }
@@ -450,6 +504,8 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
     result.append(size);
     result.append(", description: ");
     result.append(description);
+    result.append(", text: ");
+    result.append(text);
     result.append(')');
     return result.toString();
   }

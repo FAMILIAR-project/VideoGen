@@ -71,7 +71,7 @@ class VideoDemonstrator {
 	}
 	
 	@Test
-	def testQ9() {
+	def test3() {
 		// loading
 		var videoGen = loadVideoGenerator(URI.createURI("drole.videogen")) 
 		assertNotNull(videoGen)
@@ -99,7 +99,10 @@ class VideoDemonstrator {
 		saveVideoGenerator(URI.createURI("drole.videogen"), videoGen)
 			
 		//printToHTML(videoGen)
-		printToFileQ9(videoGen)	
+		//printToFileQ9(videoGen)	
+		//printToWebVignette(videoGen)
+		//printToGIF(videoGen)
+		addText(videoGen)
 	}
 	
 	@Test
@@ -110,8 +113,8 @@ class VideoDemonstrator {
 		assertEquals(2, playlist.videos.size)			
 		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
 		
-		//printToM3U(playlist)
-		printToFileQ4(playlist)	
+		printToM3U(playlist)
+		//printToFileQ4(playlist)	
 	}
 	
 	
@@ -195,9 +198,8 @@ class VideoDemonstrator {
 	
 	def void printToFileQ9(VideoGeneratorModel videoGen) {
 		
-		var file = new File("Q9.txt")
-     	var fileWriter = new FileWriter(file)
-     	var toto = new Toto
+
+     	var vi = new Command
      	
 		
 		for(videoseq : videoGen.videoseqs){
@@ -206,7 +208,7 @@ class VideoDemonstrator {
 				val desc = (videoseq as MandatoryVideoSeq).description
 				if(!desc.videoid.isNullOrEmpty){ 
 					
-					toto.toto(desc.location,desc.videoid)
+					vi.vignette(desc.location,desc.videoid)
 				
 				}
 									
@@ -217,7 +219,7 @@ class VideoDemonstrator {
 				if(rdm == 1){
 					if(!desc.videoid.isNullOrEmpty) {
 						
-       					toto.toto(desc.location,desc.videoid)
+       					vi.vignette(desc.location,desc.videoid)
 						
 				     
 				   }
@@ -233,14 +235,61 @@ class VideoDemonstrator {
 				
 			      	if(!vdesc.videoid.isNullOrEmpty) {
 			      		
-			      		toto.toto(vdesc.location,vdesc.videoid)
+			      		vi.vignette(vdesc.location,vdesc.videoid)
 						
 					}
 				
 				}
 			
 			}
-		fileWriter.close()	
+	}
+	
+	def void printToGIF(VideoGeneratorModel videoGen) {
+		
+     	var vi = new Command
+     	
+		
+		for(videoseq : videoGen.videoseqs){
+	
+			if (videoseq instanceof MandatoryVideoSeq){
+				val desc = (videoseq as MandatoryVideoSeq).description
+				if(!desc.videoid.isNullOrEmpty){ 
+					println(desc.location+" "+desc.videoid)
+					vi.gif(desc.location,desc.videoid)
+					
+				
+				}
+									
+			}else if (videoseq instanceof OptionalVideoSeq) {
+				val desc = (videoseq as OptionalVideoSeq).description
+				var rdm = new Random().nextInt(2)
+				//println(" ro " +rdm)
+				if(rdm == 1){
+					if(!desc.videoid.isNullOrEmpty) {
+						
+       					vi.gif(desc.location,desc.videoid)
+						
+				     
+				   }
+					
+				}
+				}else {
+				
+					val altvid = (videoseq as AlternativeVideoSeq)
+					var random = new Random().nextInt(altvid.videodescs.size)
+					//print(" ra "+random+"\n")
+					var vdesc = altvid.videodescs.get(random);
+					
+				
+			      	if(!vdesc.videoid.isNullOrEmpty) {
+			      		
+			      		vi.gif(vdesc.location,vdesc.videoid)
+						
+					}
+				
+				}
+			
+			}
 	}
 	
 	def void printToM3U(Playlist playlist) {
@@ -267,6 +316,148 @@ class VideoDemonstrator {
 		
 		fileWriter.close()			
 		
+	}
+	
+	
+	
+	def void printToWebVignette(VideoGeneratorModel videoGen) {
+		//var numSeq = 1
+		var file = new File("Q10.html")
+     	var fileWriter = new FileWriter(file)
+     	var vignette = new Command
+     	
+		for(videoseq : videoGen.videoseqs){ 
+			if (videoseq instanceof MandatoryVideoSeq) {
+				val desc = (videoseq as MandatoryVideoSeq).description
+				if(!desc.videoid.isNullOrEmpty){	
+							
+					vignette.vignette(desc.location,desc.videoid)
+					fileWriter.write("<img src=\"" + desc.videoid + ".png\"> \n");
+					fileWriter.write("<br/>")
+					fileWriter.flush()
+				}  
+						
+			}
+			else if (videoseq instanceof OptionalVideoSeq) {
+				val desc = (videoseq as OptionalVideoSeq).description
+				var rdm = new Random().nextInt(2)
+				//println(" ro " +rdm)
+				if(rdm == 1){
+					if(!desc.videoid.isNullOrEmpty){
+						println(rdm)
+					
+						vignette.vignette(desc.location,desc.videoid)
+						fileWriter.write("<img src=\"" + desc.videoid + ".png\"> \n")
+						fileWriter.write("<br/>")
+						fileWriter.flush()
+						
+					}	
+				}
+				
+			}else {
+				val altvid = (videoseq as AlternativeVideoSeq)
+				var random = new Random().nextInt(altvid.videodescs.size)
+				var vdesc = altvid.videodescs.get(random);
+				
+				if(!altvid.videoid.isNullOrEmpty){
+					println(random)
+					vignette.vignette(vdesc.location,vdesc.videoid)
+					fileWriter.write("<img src=\"" + vdesc.videoid + ".png\"> \n");
+					fileWriter.flush()
+						
+				}
+				
+			}
+		}
+	}
+	
+	def void verifyQ11(VideoGeneratorModel videoGen) {
+		
+		var file = new File("Q11.txt")
+     	var fileWriter = new FileWriter(file)
+     	val String[] mondatory = newArrayOfSize(10)
+     	val String[] optional = newArrayOfSize(10)
+     	val String[] alternative = newArrayOfSize(10)
+		
+		for(videoseq : videoGen.videoseqs){
+	
+			if(videoseq instanceof MandatoryVideoSeq){
+				
+				val desc = (videoseq as MandatoryVideoSeq).description
+				var location = desc.videoid
+				mondatory.add(location)
+				
+			}else if(videoseq instanceof OptionalVideoSeq){
+					
+				val desc = (videoseq as OptionalVideoSeq).description
+				var location = desc.videoid
+				optional.add(location)
+					
+			}else{
+				
+				val altvid = (videoseq as AlternativeVideoSeq)
+				var location = altvid.videoid
+				alternative.add(location)			
+			}	
+		}
+		for(m : mondatory){
+			for(m2 : mondatory){
+				
+			}
+		}
+	}
+	
+	def void addText(VideoGeneratorModel videoGen) {
+		
+     	var vi = new Command
+     	
+		
+		for(videoseq : videoGen.videoseqs){
+	
+			if (videoseq instanceof MandatoryVideoSeq){
+				val desc = (videoseq as MandatoryVideoSeq).description
+				if(!desc.videoid.isNullOrEmpty){ 
+				
+					println(desc.text)
+					println("loc "+desc.location)
+					println("name "+desc.videoid)
+					
+					
+					vi.text(desc.location, desc.videoid, desc.text)
+					
+				
+				}
+									
+			}/*else if (videoseq instanceof OptionalVideoSeq) {
+				val desc = (videoseq as OptionalVideoSeq).description
+				var rdm = new Random().nextInt(2)
+				//println(" ro " +rdm)
+				if(rdm == 1){
+					if(!desc.videoid.isNullOrEmpty) {
+						
+       					vi.gif(desc.location,desc.videoid)
+						
+				     
+				   }
+					
+				}
+				}else {
+				
+					val altvid = (videoseq as AlternativeVideoSeq)
+					var random = new Random().nextInt(altvid.videodescs.size)
+					//print(" ra "+random+"\n")
+					var vdesc = altvid.videodescs.get(random);
+					
+				
+			      	if(!vdesc.videoid.isNullOrEmpty) {
+			      		
+			      		vi.gif(vdesc.location,vdesc.videoid)
+						
+					}
+				
+				}*/
+			
+			}
 	}
 	
 	static var i = 0;
