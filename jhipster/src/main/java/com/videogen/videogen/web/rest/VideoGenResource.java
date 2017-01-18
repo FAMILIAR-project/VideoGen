@@ -6,6 +6,7 @@ import com.videogen.videogen.web.rest.vm.ManagedUserVM;
 
 //import q10.VideoGenerator;
 
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +30,8 @@ public class VideoGenResource {
     private final Logger log = LoggerFactory.getLogger(VideoGenResource.class);
 
     private String videoGenPath="src/main/webapp/videogen/";
-   
+    private String videoGenFile=Paths.get(videoGenPath,"test.videogen").toString();
+
     /**
      * POST  /register : register the user.
      *
@@ -41,20 +43,22 @@ public class VideoGenResource {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public Response regenerate() {
-        /*List<String> playlist=(new q12.VideoGenerator()).generatePlaylistForFile(videoGenPath+"test.videogen");*/
+
+      /*  List<String> playlist=(new q12.VideoGenerator()).generatePlaylistForFile(videoGenFile);*/œ
+
         Response r=new Response();
        /* r.playlist=playlist;*/
         return r;
-        
+
     }
-    
-    
+
+
     class Response{
     	boolean done=false;
     	List<String> playlist=new ArrayList<>();
-    	
-    	
-    	
+
+
+
 
 		public List<String> getPlaylist() {
 			return playlist;
@@ -69,7 +73,7 @@ public class VideoGenResource {
 			this.done = done;
 		}
 
-    	
+
     }
-   
+
 }
