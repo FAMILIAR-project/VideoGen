@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ASCII"?>
+<m3U:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:m3U="http://www.xtext.org/example/playlist/m3u/M3U">
+  <listVideo location="V1/v1.mp4"/>
+  <listVideo location="v2folder/v2.mp4"/>
+  <listVideo location="v3/seq1.mp4"/>
+  <listVideo location="v4/seq1.mp4"/>
+  <listVideo location="v5.mp4"/>
+  <listVideo location="v8.avi"/>
+  <listVideo location="V81.avi"/>
+</m3U:Model>

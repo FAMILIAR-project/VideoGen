@@ -1,6 +1,7 @@
 package videogen
 
 import java.util.HashMap
+import java.io.PrintWriter
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
@@ -30,6 +31,7 @@ class VideoDemonstrator {
 	@Test
 	def test1() {
 		// loading
+		
 		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
 		assertNotNull(videoGen)
 		assertEquals(7, videoGen.videoseqs.size)			
@@ -61,34 +63,29 @@ class VideoDemonstrator {
 	}
 	
 	def void printToHTML(VideoGeneratorModel videoGen) {
+		 val writer = new PrintWriter("ffmpeglist.txt", "UTF-8");
 		//var numSeq = 1
-		println("<ul>")
+		//xx = xx + "# this is a comment";
 		videoGen.videoseqs.forEach[videoseq | 
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
 				if(!desc.videoid.isNullOrEmpty)  
-					println ("<li>" + desc.videoid + "</li>")  				
+					writer.println ("file '" + desc.location+ "'")  				
 			}
 			else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
 				if(!desc.videoid.isNullOrEmpty) 
-					println ("<li>" + desc.videoid + "</li>") 
+					writer.println ("file '" + desc.videoid+ "'") 
 			}
 			else {
 				val altvid = (videoseq as AlternativeVideoSeq)
-				if(!altvid.videoid.isNullOrEmpty) 
-					println ("<li>" + altvid.videoid + "</li>")
-				if (altvid.videodescs.size > 0) // there are vid seq alternatives
-					println ("<ul>")
-				for (vdesc : altvid.videodescs) {
-					if(!vdesc.videoid.isNullOrEmpty) 
-						println ("<li>" + vdesc.videoid + "</li>")
-				}
-				if (altvid.videodescs.size > 0) // there are vid seq alternatives
-					println ("</ul>")
+				if(!altvid.videodescs.get(0).videoid.isNullOrEmpty) 
+					writer.println ("file '" + altvid.videodescs.get(0).location+ "'")
 			}
-		]
-		println("</ul>")
+		]	
+	
+		writer.close();
+		//Runtime.getRuntime().exec("ffmpeg -f concat -i ffmpeglist.txt -c copy output");
 	}
 	
 	static var i = 0;
