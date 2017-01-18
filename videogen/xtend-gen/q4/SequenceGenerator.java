@@ -3,6 +3,7 @@ package q4;
 import M3UPlaylist.Entry;
 import M3UPlaylist.M3UPlaylistFactory;
 import M3UPlaylist.Playlist;
+import java.util.ArrayList;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -15,7 +16,7 @@ import org.junit.Assert;
 public class SequenceGenerator {
   private Playlist playlist = M3UPlaylistFactory.eINSTANCE.createPlaylist();
   
-  private String text = new String();
+  private ArrayList<String> sequence = new ArrayList<String>();
   
   /**
    * Constructor
@@ -29,34 +30,37 @@ public class SequenceGenerator {
   }
   
   public String getText() {
-    return this.text;
+    String _xblockexpression = null;
+    {
+      String o = new String();
+      for (final String e : this.sequence) {
+        String _o = o;
+        o = (_o + (e + "\n"));
+      }
+      _xblockexpression = o;
+    }
+    return _xblockexpression;
+  }
+  
+  /**
+   * Sequence getter
+   */
+  public ArrayList<String> getSequence() {
+    return this.sequence;
+  }
+  
+  /**
+   * Add location to the sequence
+   */
+  public void appendVideo(final String file) {
+    this.sequence.add((("file \"" + file) + "\""));
   }
   
   public void buildPlaylist() {
-    String _text = this.text;
-    this.text = (_text + "#EXTM3U\n");
     EList<Entry> _entries = this.playlist.getEntries();
     for (final Entry e : _entries) {
-      {
-        boolean _isDiscontinuity = e.isDiscontinuity();
-        if (_isDiscontinuity) {
-          String _text_1 = this.text;
-          this.text = (_text_1 + "#EXT-X-DISCONTINUITY\n");
-        }
-        Integer _duration = e.getDuration();
-        boolean _notEquals = ((_duration).intValue() != (-1));
-        if (_notEquals) {
-          String _text_2 = this.text;
-          Integer _duration_1 = e.getDuration();
-          String _plus = ("#EXTINF:" + _duration_1);
-          String _plus_1 = (_plus + "\n");
-          this.text = (_text_2 + _plus_1);
-        }
-        String _text_3 = this.text;
-        String _path = e.getPath();
-        String _plus_2 = (_path + "\n");
-        this.text = (_text_3 + _plus_2);
-      }
+      String _path = e.getPath();
+      this.appendVideo(_path);
     }
   }
 }

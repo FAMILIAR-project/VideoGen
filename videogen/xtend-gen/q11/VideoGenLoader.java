@@ -20,10 +20,10 @@ import org.xtext.example.mydsl.videoGen.VideoSeq;
 import q8.VideoReparator;
 
 /**
- * Generate ffmpeg
+ * Check VideoGenModel
  */
 @SuppressWarnings("all")
-public class VideoVerificator {
+public class VideoGenLoader {
   public VideoGeneratorModel videoGen;
   
   /**
@@ -65,6 +65,18 @@ public class VideoVerificator {
     VideoGeneratorModel videoGen = videoReparator.getRepair();
     this.checkID(videoGen);
     this.checkProbability(videoGen);
+  }
+  
+  public VideoGeneratorModel load(final String path) {
+    VideoGeneratorModel _xblockexpression = null;
+    {
+      VideoReparator videoReparator = new VideoReparator();
+      VideoGeneratorModel videoGen = videoReparator.getRepaired(path);
+      this.checkID(videoGen);
+      this.checkProbability(videoGen);
+      _xblockexpression = videoGen;
+    }
+    return _xblockexpression;
   }
   
   public String printWarning(final String text) {

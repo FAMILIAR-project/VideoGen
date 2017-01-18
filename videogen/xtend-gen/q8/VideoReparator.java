@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
-import org.junit.Assert;
 import org.junit.Test;
 import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated;
 import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq;
@@ -20,6 +19,7 @@ import org.xtext.example.mydsl.videoGen.OptionalVideoSeq;
 import org.xtext.example.mydsl.videoGen.VideoDescription;
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 import org.xtext.example.mydsl.videoGen.VideoSeq;
+import q11.VideoGenLoader;
 import q8.SequenceGenerator;
 
 /**
@@ -64,17 +64,30 @@ public class VideoReparator {
   
   @Test
   public void generate() {
-    URI _createURI = URI.createURI("src/main/webapp/videogen/test.videogen");
-    VideoGeneratorModel videoGen = this.loadVideoGenerator(_createURI);
-    Assert.assertNotNull(videoGen);
-    this.repairId(videoGen);
-    URI _createURI_1 = URI.createURI("foo2bis.xmi");
-    this.saveVideoGenerator(_createURI_1, videoGen);
-    URI _createURI_2 = URI.createURI("foo2bis.videogen");
-    this.saveVideoGenerator(_createURI_2, videoGen);
+    VideoGenLoader _videoGenLoader = new VideoGenLoader();
+    VideoGeneratorModel videoGen = _videoGenLoader.load("foo2.videogen");
     SequenceGenerator _sequenceGenerator = new SequenceGenerator(videoGen);
     VideoGeneratorModel finalVideo = _sequenceGenerator.getRepairedModel();
     this.repaired = finalVideo;
+    EList<VideoSeq> _videoseqs = finalVideo.getVideoseqs();
+    final Consumer<VideoSeq> _function = (VideoSeq videoseq) -> {
+      if ((videoseq instanceof MandatoryVideoSeq)) {
+        final VideoDescription desc = ((MandatoryVideoSeq) videoseq).getDescription();
+        this.printDesc(desc);
+      } else {
+        if ((videoseq instanceof OptionalVideoSeq)) {
+          final VideoDescription desc_1 = ((OptionalVideoSeq) videoseq).getDescription();
+          this.printDesc(desc_1);
+        } else {
+          final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
+          EList<VideoDescription> _videodescs = altvid.getVideodescs();
+          for (final VideoDescription vdesc : _videodescs) {
+            this.printDesc(vdesc);
+          }
+        }
+      }
+    };
+    _videoseqs.forEach(_function);
   }
   
   public VideoGeneratorModel getRepaired(final String videoGenFile) {

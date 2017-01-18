@@ -1,11 +1,12 @@
 package q4
 
-
-import static org.junit.Assert.*;
-import M3UPlaylist.Playlist
 import M3UPlaylist.M3UPlaylistFactory
+import M3UPlaylist.Playlist
+import java.util.ArrayList
 import org.eclipse.emf.common.util.Diagnostic
 import org.eclipse.emf.ecore.util.Diagnostician
+
+import static org.junit.Assert.*
 
 /**
  * Sequence generator
@@ -15,8 +16,8 @@ class SequenceGenerator {
 
 	// M3UPlaylist model
 	private Playlist playlist=M3UPlaylistFactory.eINSTANCE.createPlaylist()
-	
-	private String text=new String()
+	// Final Sequence
+	private ArrayList<String> sequence=new ArrayList<String>()
 	
 	/**
 	 * Constructor
@@ -28,23 +29,35 @@ class SequenceGenerator {
 	  	assertEquals("Invalid playlist model", Diagnostic.OK, validate.getSeverity());
 		
 		this.playlist=data
+		
 		buildPlaylist()
 	}
 	
 	def String getText(){
-		text
+		var String o=new String()
+		for(e:sequence){
+			o+=e+"\n"
+		}
+		o
+	}
+	
+	/**
+	 * Sequence getter
+	 */
+	def ArrayList<String> getSequence(){
+		sequence
+	}
+	
+	/**
+	 * Add location to the sequence
+	 */
+	def void appendVideo(String file){
+		sequence.add("file \""+file+"\"")
 	}
 	
 	def buildPlaylist(){
-		text+="#EXTM3U\n"
 		for( e:playlist.entries){
-			if(e.discontinuity){
-				text+="#EXT-X-DISCONTINUITY\n"
-			}
-			if(e.duration!=-1){
-				text+="#EXTINF:"+e.duration+"\n"
-			}
-			text+=e.path+"\n"
+			appendVideo(e.path)
 		}
 	}
 	

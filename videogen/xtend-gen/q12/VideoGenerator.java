@@ -1,5 +1,6 @@
 package q12;
 
+import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -9,9 +10,6 @@ import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated;
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 import q8.VideoReparator;
 
-/**
- * Generate ffmpeg
- */
 @SuppressWarnings("all")
 public class VideoGenerator {
   /**
@@ -31,12 +29,12 @@ public class VideoGenerator {
     return _xblockexpression;
   }
   
-  public String generatePlaylistForFile(final String file) {
-    String _xblockexpression = null;
+  public List<String> generatePlaylistForFile(final String file) {
+    List<String> _xblockexpression = null;
     {
       VideoReparator _videoReparator = new VideoReparator();
       VideoGeneratorModel videoGen = _videoReparator.getRepaired(file);
-      q4.VideoGenerator _videoGenerator = new q4.VideoGenerator();
+      q7.VideoGenerator _videoGenerator = new q7.VideoGenerator();
       _xblockexpression = _videoGenerator.getPlaylist(videoGen);
     }
     return _xblockexpression;
