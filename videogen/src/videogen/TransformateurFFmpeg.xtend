@@ -63,6 +63,41 @@ class TransformateurFFmpeg {
 			
 	}
 	
+	@Test
+	def test2() {
+		// loading
+		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
+		assertNotNull(videoGen)
+		assertEquals(7, videoGen.videoseqs.size)			
+		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
+
+		res += "#EXTM3U\n"
+		
+		videoGen.videoseqs.forEach[videoseq | 
+			if (videoseq instanceof MandatoryVideoSeq) {
+				val desc = (videoseq as MandatoryVideoSeq).description
+				res += ecrireBlocM3U(desc)
+			}
+			else if (videoseq instanceof OptionalVideoSeq) {
+				val desc = (videoseq as OptionalVideoSeq).description
+				res += ecrireBlocM3U(desc) 
+			}
+			else {
+				val altvid = (videoseq as AlternativeVideoSeq)
+				if(altvid.videoid.isNullOrEmpty) altvid.videoid = genID()
+				for (vdesc : altvid.videodescs) {
+					res += ecrireBlocM3U(vdesc)
+				}
+			}
+		]
+	// serializing
+	saveVideoGenerator(URI.createURI("foo2bis.xmi"), videoGen)
+	saveVideoGenerator(URI.createURI("foo2bis.videogen"), videoGen)		
+	System.out.println(res) 
+		
+	}
+	
+	
 	static var i = 0;
 	def genID() {
 		"v" + i++
@@ -72,6 +107,18 @@ class TransformateurFFmpeg {
 		var tmp = "file "
 		tmp += desc.location
 		tmp += "\n"	
+		return tmp
+	}
+	
+	def ecrireBlocM3U(VideoDescription desc){
+		var tmp = "file"
+		tmp += "#EXTINF:"
+		tmp += desc.duration
+		tmp += ","
+		var name = desc.location.substring(0, desc.location.lastIndexOf('.'))
+		tmp += name
+		tmp += "\n"
+		tmp += desc.location
 		return tmp
 	}
 	
