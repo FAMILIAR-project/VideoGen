@@ -2,6 +2,7 @@ package videogen;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.function.Consumer;
@@ -620,75 +621,97 @@ public class playlistTools {
     _videoseqs.forEach(_function);
   }
   
-  public void printToHTML(final VideoGeneratorModel videoGen) {
-    InputOutput.<String>println("<ul>");
-    EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
-    final Consumer<VideoSeq> _function = (VideoSeq videoseq) -> {
-      if ((videoseq instanceof MandatoryVideoSeq)) {
-        final VideoDescription desc = ((MandatoryVideoSeq) videoseq).getDescription();
-        String _videoid = desc.getVideoid();
-        boolean _isNullOrEmpty = StringExtensions.isNullOrEmpty(_videoid);
-        boolean _not = (!_isNullOrEmpty);
-        if (_not) {
-          String _videoid_1 = desc.getVideoid();
-          String _plus = ("<li>" + _videoid_1);
-          String _plus_1 = (_plus + "</li>");
-          InputOutput.<String>println(_plus_1);
-        }
-      } else {
-        if ((videoseq instanceof OptionalVideoSeq)) {
-          final VideoDescription desc_1 = ((OptionalVideoSeq) videoseq).getDescription();
-          String _videoid_2 = desc_1.getVideoid();
-          boolean _isNullOrEmpty_1 = StringExtensions.isNullOrEmpty(_videoid_2);
-          boolean _not_1 = (!_isNullOrEmpty_1);
-          if (_not_1) {
-            String _videoid_3 = desc_1.getVideoid();
-            String _plus_2 = ("<li>" + _videoid_3);
-            String _plus_3 = (_plus_2 + "</li>");
-            InputOutput.<String>println(_plus_3);
-          }
-        } else {
-          final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
-          String _videoid_4 = altvid.getVideoid();
-          boolean _isNullOrEmpty_2 = StringExtensions.isNullOrEmpty(_videoid_4);
-          boolean _not_2 = (!_isNullOrEmpty_2);
-          if (_not_2) {
-            String _videoid_5 = altvid.getVideoid();
-            String _plus_4 = ("<li>" + _videoid_5);
-            String _plus_5 = (_plus_4 + "</li>");
-            InputOutput.<String>println(_plus_5);
-          }
-          EList<VideoDescription> _videodescs = altvid.getVideodescs();
-          int _size = _videodescs.size();
-          boolean _greaterThan = (_size > 0);
-          if (_greaterThan) {
-            InputOutput.<String>println("<ul>");
-          }
-          EList<VideoDescription> _videodescs_1 = altvid.getVideodescs();
-          for (final VideoDescription vdesc : _videodescs_1) {
-            String _videoid_6 = vdesc.getVideoid();
-            boolean _isNullOrEmpty_3 = StringExtensions.isNullOrEmpty(_videoid_6);
-            boolean _not_3 = (!_isNullOrEmpty_3);
-            if (_not_3) {
-              String _videoid_7 = vdesc.getVideoid();
-              String _plus_6 = ("<li>" + _videoid_7);
-              String _plus_7 = (_plus_6 + "</li>");
-              InputOutput.<String>println(_plus_7);
-            }
-          }
-          EList<VideoDescription> _videodescs_2 = altvid.getVideodescs();
-          int _size_1 = _videodescs_2.size();
-          boolean _greaterThan_1 = (_size_1 > 0);
-          if (_greaterThan_1) {
-            InputOutput.<String>println("</ul>");
-          }
-        }
-      }
-    };
-    _videoseqs.forEach(_function);
-    InputOutput.<String>println("</ul>");
-  }
+  public String printToHTML(final VideoGeneratorModel videoGen) {
+	    final StringBuffer s = new StringBuffer();
+	    s.append("<html>");
+	    s.append("<h1>Liste des videos disponibles </h1>");
+	    s.append("<ul>");
+	    EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
+	    final Consumer<VideoSeq> _function = (VideoSeq videoseq) -> {
+	      if ((videoseq instanceof MandatoryVideoSeq)) {
+	        final VideoDescription desc = ((MandatoryVideoSeq) videoseq).getDescription();
+	        String _videoid = desc.getVideoid();
+	        boolean _isNullOrEmpty = StringExtensions.isNullOrEmpty(_videoid);
+	        boolean _not = (!_isNullOrEmpty);
+	        if (_not) {
+	          s.append("<h2>Video obligatoire</h2>");
+	        }
+	        String _location = desc.getLocation();
+	        String _plus = ("<li><img height=\"200\" width=\"160\" src=\"" + _location);
+	        String _plus_1 = (_plus + ".jpg");
+	        String _plus_2 = (_plus_1 + "\"/></li>");
+	        s.append(_plus_2);
+	      } else {
+	        if ((videoseq instanceof OptionalVideoSeq)) {
+	          s.append("<h2>Video optionnelle</h2>");
+	          final VideoDescription desc_1 = ((OptionalVideoSeq) videoseq).getDescription();
+	          String _videoid_1 = desc_1.getVideoid();
+	          boolean _isNullOrEmpty_1 = StringExtensions.isNullOrEmpty(_videoid_1);
+	          boolean _not_1 = (!_isNullOrEmpty_1);
+	          if (_not_1) {
+	            String _location_1 = desc_1.getLocation();
+	            String _plus_3 = ("<li><img height=\"200\" width=\"160\" src=\"" + _location_1);
+	            String _plus_4 = (_plus_3 + ".jpg");
+	            String _plus_5 = (_plus_4 + "\"/></li>");
+	            s.append(_plus_5);
+	          }
+	        } else {
+	          final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
+	          String _videoid_2 = altvid.getVideoid();
+	          boolean _isNullOrEmpty_2 = StringExtensions.isNullOrEmpty(_videoid_2);
+	          boolean _not_2 = (!_isNullOrEmpty_2);
+	          if (_not_2) {
+	            s.append((("<li>" + "<h2>Videos alternatives</h2>") + "</li>"));
+	          }
+	          EList<VideoDescription> _videodescs = altvid.getVideodescs();
+	          int _size = _videodescs.size();
+	          boolean _greaterThan = (_size > 0);
+	          if (_greaterThan) {
+	            s.append("<ul>");
+	          }
+	          EList<VideoDescription> _videodescs_1 = altvid.getVideodescs();
+	          for (final VideoDescription vdesc : _videodescs_1) {
+	            String _videoid_3 = vdesc.getVideoid();
+	            boolean _isNullOrEmpty_3 = StringExtensions.isNullOrEmpty(_videoid_3);
+	            boolean _not_3 = (!_isNullOrEmpty_3);
+	            if (_not_3) {
+	              String _location_2 = vdesc.getLocation();
+	              String _plus_6 = ("<li><img height=\"200\" width=\"160\" src=\"" + _location_2);
+	              String _plus_7 = (_plus_6 + ".jpg");
+	              String _plus_8 = (_plus_7 + "\"/></li>");
+	              s.append(_plus_8);
+	            }
+	          }
+	          EList<VideoDescription> _videodescs_2 = altvid.getVideodescs();
+	          int _size_1 = _videodescs_2.size();
+	          boolean _greaterThan_1 = (_size_1 > 0);
+	          if (_greaterThan_1) {
+	            s.append("</ul>");
+	          }
+	        }
+	      }
+	    };
+	    _videoseqs.forEach(_function);
+	    s.append("</ul>");
+	    s.append("</html>");
+	    return s.toString();
+	  }
    
+  
+  public void videoGenToHTML(String file){
+	  URI _createURI = URI.createURI(file);
+	    VideoGeneratorModel videoGen = this.loadVideoGenerator(_createURI);
+	    String res=printToHTML(videoGen);
+	    try{
+	        PrintWriter writer = new PrintWriter("index.html", "UTF-8");
+	        writer.println(res);
+	        writer.flush();
+	        writer.close();
+	    } catch (IOException e) {
+	       // do something
+	    }
+  }
+  
   public String genID() {
     int _plusPlus = playlistTools.i++;
     return ("v" + Integer.valueOf(_plusPlus));

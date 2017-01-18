@@ -300,33 +300,40 @@ class VideoDemonstrator {
 		]
 	}
 
-	def void printToHTML(VideoGeneratorModel videoGen) {
+	def String printToHTML(VideoGeneratorModel videoGen) {
+		val s= new StringBuffer()
 		// var numSeq = 1
-		println("<ul>")
+		s.append("<html>")
+		s.append("<h1>Liste des videos disponibles </h1>")
+		s.append("<ul>")
 		videoGen.videoseqs.forEach [ videoseq |
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
 				if (!desc.videoid.isNullOrEmpty)
-					println("<li>" + desc.videoid + "</li>")
+					s.append("<h2>Video obligatoire</h2>")
+					s.append("<li><img height=\"200\" width=\"160\" src=\""+ desc.location +".jpg"+ "\"/></li>")
 			} else if (videoseq instanceof OptionalVideoSeq) {
+				s.append("<h2>Video optionnelle</h2>")
 				val desc = (videoseq as OptionalVideoSeq).description
 				if (!desc.videoid.isNullOrEmpty)
-					println("<li>" + desc.videoid + "</li>")
+					s.append("<li><img height=\"200\" width=\"160\" src=\""+ desc.location +".jpg"+ "\"/></li>")
 			} else {
 				val altvid = (videoseq as AlternativeVideoSeq)
 				if (!altvid.videoid.isNullOrEmpty)
-					println("<li>" + altvid.videoid + "</li>")
+					s.append("<li>" + "<h2>Videos alternatives</h2>" + "</li>")
 				if (altvid.videodescs.size > 0) // there are vid seq alternatives
-					println("<ul>")
+					s.append("<ul>")
 				for (vdesc : altvid.videodescs) {
 					if (!vdesc.videoid.isNullOrEmpty)
-						println("<li>" + vdesc.videoid + "</li>")
+						s.append("<li><img height=\"200\" width=\"160\" src=\""+ vdesc.location +".jpg"+ "\"/></li>")
 				}
 				if (altvid.videodescs.size > 0) // there are vid seq alternatives
-					println("</ul>")
+					s.append("</ul>")
 			}
 		]
-		println("</ul>")
+		s.append("</ul>")
+		s.append("</html>")
+		return s.toString()
 	}
 
 	static var i = 0;
