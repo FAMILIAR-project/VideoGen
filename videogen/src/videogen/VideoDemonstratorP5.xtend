@@ -19,9 +19,12 @@ import java.io.IOException
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import videogenPlayList.impl.VideogenPlayListFactoryImpl
-import videogenPlayList.MediaFile
+import java.util.List
+import java.util.ArrayList
 
-class VideoDemonstratorQ4 {
+class VideoDemonstratorP5 {
+	
+	
 	def loadVideoGenerator(URI uri) {
 		new VideoGenStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()
 		var res = new ResourceSetImpl().getResource(uri, true);
@@ -49,7 +52,6 @@ class VideoDemonstratorQ4 {
 		return Math.round(Double.parseDouble(outputJson)) - 1;
 	}
 	
-	
 	def static String createVignette(String path, String filename) {
 		var String cmdVignette = "ffmpeg -y -i " + path +
 			" -ss 00:00:02 -vframes 1 "+System.getProperty('user.dir')+"/Vignettes/" + filename + ".jpg"
@@ -61,11 +63,12 @@ class VideoDemonstratorQ4 {
 		return filename + ".jpg"
 	}
 	
+	
 	@Test
-	def TP3() {
+	def TP4() {
 		var videoGen = loadVideoGenerator(URI.createURI("fooVideos.videogen"))
 		var fact = new VideogenPlayListFactoryImpl()
-		var playlist= fact.createPlayList()	
+		var playlist = fact.createPlayList()
 		assertNotNull(videoGen)
 
 		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
@@ -74,46 +77,73 @@ class VideoDemonstratorQ4 {
 
 				println("Mandatory")
 				val fileLocation = (videoseq as MandatoryVideoSeq).description.location;
-				println (fileLocation)
 				var fileId = (videoseq as MandatoryVideoSeq).description.videoid;
-				println (fileId)
 				if(fileId.isNullOrEmpty) fileId = genID()
 				
-				var mediaFile = fact.createMediaFile()
-				mediaFile.location = fileLocation 
-				mediaFile.duration =  getDuration(fileLocation)
+				if (!vignettes.contains(fileLocation)) {
+					var mediaFile = fact.createMediaFile()
+					mediaFile.location = fileLocation 
+					mediaFile.duration =  getDuration(fileLocation)
 
-				vignette += "<img src = " + createVignette(fileLocation, fileId) + " width='130px' height=auto/><br/>"
+					vignette +=
+						"<p>"+ fileLocation +"</p><br/> 
+						<img src = " + createVignette(fileLocation, fileId) + " width='130px' height=auto/><br/>"
 
-				playlist.mediaFile.add(mediaFile)
+					playlist.mediaFile.add(mediaFile)
+					vignettes.add(fileLocation);
+				} else {
+					System.out.println("Mandatory: la vignette est deja presente  !! " + fileLocation );
+					vignette +="<p>Mandatory: la vignette est deja presente !!</p> "+ fileLocation +" <br/>"
+				}
 
 			} else if (videoseq instanceof OptionalVideoSeq) {
-				println("Optional")
+				println("Optionals")
+				// Random between 0-1 
 				val rand = new Random().nextInt(2);
-				// Random between 0-1
+	
 				if (rand == 0) {
 					val fileLocation = (videoseq as OptionalVideoSeq).description.location;
 					var fileId = (videoseq as OptionalVideoSeq).description.videoid;
 					if(fileId.isNullOrEmpty) fileId = genID()
 
-					var mediaFile = fact.createMediaFile()
-				mediaFile.location = fileLocation 
-				mediaFile.duration =  getDuration(fileLocation)
-					
-					vignette += "<img src=" + createVignette(fileLocation, fileId) + " width='130px' height=auto/><br/>"
-					playlist.mediaFile.add(mediaFile)
-				}
-			} else {
-				println("else alternative")
-				val size = (videoseq as AlternativeVideoSeq).videodescs.size;
-				var fileLocation = (videoseq as AlternativeVideoSeq).videodescs.get(new Random().nextInt(size)).
-					location;
+					if (!vignettes.contains(fileLocation)) {
+						var mediaFile = fact.createMediaFile()
+						mediaFile.location = fileLocation 
+						mediaFile.duration =  getDuration(fileLocation)
+						vignette +=
+							"<p>"+ fileLocation +"</p><br/><img src=" + createVignette(fileLocation, fileId) + " width='130px' height=auto/><br/>"
+							playlist.mediaFile.add(mediaFile)
+							vignettes.add(fileLocation)
+					} else {
+						vignette += "<p>Optionals: la vignette est deja presente " + fileLocation + " !!</p> <br/>"
+						System.out.println("Optionals: la vignette est deja presente" + fileLocation );
+					}
 
-				var mediaFile = fact.createMediaFile()
-				mediaFile.location = fileLocation 
-				mediaFile.duration =  getDuration(fileLocation)
-				vignette += "<img src=" + createVignette(fileLocation,"alternative") + " width='130px' height=auto/><br/>"
-				playlist.mediaFile.add(mediaFile)
+				}
+				
+			} else {
+				println("Alternative")
+				val size = (videoseq as AlternativeVideoSeq).videodescs.size;
+				val index = new Random().nextInt(size)
+				var fileLocation = (videoseq as AlternativeVideoSeq).videodescs.get(index).location;
+				var fileId = (videoseq as AlternativeVideoSeq).videodescs.get(index).videoid;
+				if(fileId.isNullOrEmpty) fileId = genID()
+				
+				if (!vignettes.contains(fileLocation)) {
+					var mediaFile = fact.createMediaFile()
+						mediaFile.location = fileLocation 
+						mediaFile.duration =  getDuration(fileLocation)
+					vignette +=
+						"<p>"+ fileLocation +"</p><br/><img src=" + createVignette(fileLocation, "alternative") + " width='130px' height=auto/><br/>"
+					playlist.mediaFile.add(mediaFile)
+					vignettes.add(fileLocation)
+
+				} else {
+					System.out.println("Alternatives : la vignette est deja presente  "+ fileLocation);
+					vignette += "<p>Alternatives : la vignette est deja presente !!</p> " + fileLocation + "<br/>"
+				}
+				
+			
 			}
 		}
 		// New file 
@@ -126,7 +156,6 @@ class VideoDemonstratorQ4 {
 			val bw = new BufferedWriter(fw);
 			bw.write("<!DOCTYPE html><html><body>");
 			bw.write("les vignettes");
-			bw.write("<br/>");
 			bw.write(vignette);
 			bw.write("</html></body>");
 			bw.close();
@@ -139,9 +168,13 @@ class VideoDemonstratorQ4 {
 	static var i = 0;
 	
 	String vignette = ""
-
+	List vignettes = new ArrayList<String>();
+	
 	def genID() {
 		"v" + i++
 	}
+
+	
+	
 	
 }
