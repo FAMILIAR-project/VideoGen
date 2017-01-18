@@ -5,22 +5,18 @@ import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.junit.Test
-import q8.VideoReparator
 import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated
-import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
+import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq
 import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq
 import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
-import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq
 import org.xtext.example.mydsl.videoGen.VideoDescription
-import java.nio.file.Paths
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.nio.charset.Charset
+import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
+import q8.VideoReparator
 
 /**
- * Generate ffmpeg
+ * Check VideoGenModel
  */
-public class VideoVerificator {
+public class VideoGenLoader {
 	
 	public VideoGeneratorModel videoGen
 	
@@ -52,6 +48,17 @@ public class VideoVerificator {
 		checkID(videoGen)
 		checkProbability(videoGen)
 		
+	}
+	
+	def VideoGeneratorModel load(String path){
+		// Loading
+		var videoReparator = new VideoReparator()
+		var videoGen =videoReparator.getRepaired(path)
+		
+		checkID(videoGen)
+		checkProbability(videoGen)
+		
+		videoGen
 	}
 	
 	def printWarning(String text){

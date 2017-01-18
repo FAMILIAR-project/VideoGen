@@ -41,13 +41,10 @@ public class SequenceGenerator {
   
   public double getDuration(final String location) {
     try {
-      String result = "";
       try {
-        Runtime r = Runtime.getRuntime();
         ProcessBuilder _processBuilder = new ProcessBuilder("ffmpeg", "-i", location);
         ProcessBuilder _redirectErrorStream = _processBuilder.redirectErrorStream(true);
         Process processDuration = _redirectErrorStream.start();
-        StringBuilder strBuild = new StringBuilder();
         InputStream _inputStream = processDuration.getInputStream();
         Charset _defaultCharset = Charset.defaultCharset();
         InputStreamReader _inputStreamReader = new InputStreamReader(_inputStream, _defaultCharset);

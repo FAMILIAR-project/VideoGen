@@ -20,14 +20,11 @@
         });
 
         getAccount();
-        VideoGen.regenerate().$promise.then(function(a){
-          vm.playlist=a.playlist;
-          console.log(a.a);
-        });
+
 
         vm.regenerate=function(){
-          VideoGen.regenerate().$promise.then(function(a){
-            vm.playlist=a.playlist;
+          VideoGen.regenerate().$promise.then(function(response){
+            vm.playlist=response.playlist;
           });
         }
 

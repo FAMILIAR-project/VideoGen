@@ -1,17 +1,17 @@
 package q12;
 
+import M3UPlaylist.Playlist;
+import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated;
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
-import q8.VideoReparator;
+import q11.VideoGenLoader;
 
-/**
- * Generate ffmpeg
- */
 @SuppressWarnings("all")
 public class VideoGenerator {
   /**
@@ -31,13 +31,18 @@ public class VideoGenerator {
     return _xblockexpression;
   }
   
-  public String generatePlaylistForFile(final String file) {
-    String _xblockexpression = null;
+  public List<String> generatePlaylistForFile(final String file) {
+    List<String> _xblockexpression = null;
     {
-      VideoReparator _videoReparator = new VideoReparator();
-      VideoGeneratorModel videoGen = _videoReparator.getRepaired(file);
-      q4.VideoGenerator _videoGenerator = new q4.VideoGenerator();
-      _xblockexpression = _videoGenerator.getPlaylist(videoGen);
+      VideoGenLoader _videoGenLoader = new VideoGenLoader();
+      VideoGeneratorModel videoGen = _videoGenLoader.load(file);
+      q3.VideoGenerator _videoGenerator = new q3.VideoGenerator();
+      Playlist playlistModel = _videoGenerator.generatePlaylist(videoGen);
+      q7.VideoGenerator _videoGenerator_1 = new q7.VideoGenerator();
+      List<String> playlistM3U = _videoGenerator_1.generateStringList(playlistModel);
+      int _size = playlistM3U.size();
+      InputOutput.<Integer>println(Integer.valueOf(_size));
+      _xblockexpression = playlistM3U;
     }
     return _xblockexpression;
   }

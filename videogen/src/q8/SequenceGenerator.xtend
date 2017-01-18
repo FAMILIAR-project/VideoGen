@@ -1,17 +1,15 @@
 package q8
 
-import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
-import java.util.ArrayList
-import org.xtext.example.mydsl.videoGen.VideoDescription
-import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
+import java.io.BufferedReader
+import java.io.File
+import java.io.IOException
+import java.io.InputStreamReader
+import java.nio.charset.Charset
 import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq
 import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq
-import java.util.Random
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.io.IOException
-import java.nio.charset.Charset
-import java.io.File
+import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
+import org.xtext.example.mydsl.videoGen.VideoDescription
+import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 
 /**
  * Sequence generator
@@ -39,14 +37,11 @@ class SequenceGenerator {
 	
 	
 	def double getDuration(String location){
-		var String result = "";
 		try {
-		    var Runtime r = Runtime.getRuntime();                    
 		
     		//var Process p = Runtime.getRuntime().exec("/usr/bin/ffprobe -i \""+location+"\" -show_format -v quiet | sed -n \'s/duration=//p\'") 
 		
 			var Process processDuration = new ProcessBuilder("ffmpeg", "-i", location).redirectErrorStream(true).start();
-			var StringBuilder strBuild = new StringBuilder();
 			
 			var BufferedReader processOutputReader = new BufferedReader(new InputStreamReader(processDuration.getInputStream(), Charset.defaultCharset()))
 			    var String line;

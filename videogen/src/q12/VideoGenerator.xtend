@@ -1,28 +1,13 @@
 package q12
 
-import java.util.HashMap 
+import java.util.List
 import org.eclipse.emf.common.util.URI
-import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.junit.Test
-import q8.VideoReparator
 import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
-import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq
-import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
-import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq
-import org.xtext.example.mydsl.videoGen.VideoDescription
-import java.nio.file.Paths
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.nio.charset.Charset
-import java.io.FileWriter
-import java.io.BufferedWriter
-import java.nio.file.Path
+import q8.VideoReparator
 
-/**
- * Generate ffmpeg
- */
+
 public class VideoGenerator {
 	
 	/**
@@ -34,10 +19,13 @@ public class VideoGenerator {
 		res.contents.get(0) as VideoGeneratorModel
 	}
 	
-	def String generatePlaylistForFile(String file){
-		var videoGen=(new VideoReparator()).getRepaired(file)
-		
-		(new q4.VideoGenerator()).getPlaylist(videoGen)
+	def List<String> generatePlaylistForFile(String file){
+		// Loading
+		var videoGen = (new q11.VideoGenLoader()).load(file)
+		var playlistModel=(new q3.VideoGenerator()).generatePlaylist(videoGen)		
+		var playlistM3U=(new q7.VideoGenerator()).generateStringList(playlistModel)
+		println(playlistM3U.size)
+		playlistM3U
 	}
 		
 }

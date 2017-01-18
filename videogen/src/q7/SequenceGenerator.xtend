@@ -1,18 +1,13 @@
 package q7
 
-import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
-import java.util.ArrayList
-import org.xtext.example.mydsl.videoGen.VideoDescription
-import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
-import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq
-import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq
-import java.util.Random
+
 import static org.junit.Assert.*;
 import M3UPlaylist.Playlist
 import M3UPlaylist.M3UPlaylistFactory
-import M3UPlaylist.Entry
 import org.eclipse.emf.common.util.Diagnostic
 import org.eclipse.emf.ecore.util.Diagnostician
+import java.util.List
+import java.util.ArrayList
 
 /**
  * Sequence generator
@@ -22,9 +17,9 @@ class SequenceGenerator {
 
 	// M3UPlaylist model
 	private Playlist playlist=M3UPlaylistFactory.eINSTANCE.createPlaylist()
-	// Final Sequence
-	private ArrayList<String> sequence=new ArrayList<String>()
+	
 	private String text=new String()
+	private List<String> sequence=new ArrayList<String>();
 	
 	/**
 	 * Constructor
@@ -36,35 +31,34 @@ class SequenceGenerator {
 	  	assertEquals("Invalid playlist model", Diagnostic.OK, validate.getSeverity());
 		
 		this.playlist=data
-		
 		buildPlaylist()
 	}
 	
 	def String getText(){
-		var String o=new String()
-		for(e:sequence){
-			o+=e+"\n"
-		}
-		o
+		text
 	}
-	
-	/**
-	 * Sequence getter
-	 */
-	def ArrayList<String> getSequence(){
+	def List<String> getSequence(){
 		sequence
 	}
 	
-	/**
-	 * Add location to the sequence
-	 */
-	def void appendVideo(String file){
-		sequence.add("file \""+file+"\"")
-	}
-	
 	def buildPlaylist(){
+		sequence.clear()
+		text+="#EXTM3U\n"
+		sequence.add("#EXTM3U")
 		for( e:playlist.entries){
-			appendVideo(e.path)
+			if(e.discontinuity){
+				text+="#EXT-X-DISCONTINUITY\n"
+				sequence.add("#EXT-X-DISCONTINUITY")
+				
+			}
+			if(e.duration!=-1){
+				text+="#EXTINF:"+e.duration+"\n"
+				sequence.add("#EXTINF:"+e.duration)
+				
+			}
+			text+=e.path+"\n"
+			sequence.add(e.path)
+			
 		}
 	}
 	

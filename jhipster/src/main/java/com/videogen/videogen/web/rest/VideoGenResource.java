@@ -41,7 +41,7 @@ public class VideoGenResource {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public Response regenerate() {
-        String playlist=(new q12.VideoGenerator()).generatePlaylistForFile(videoGenPath+"test.videogen");
+        List<String> playlist=(new q12.VideoGenerator()).generatePlaylistForFile(videoGenPath+"test.videogen");
         Response r=new Response();
         r.playlist=playlist;
         return r;

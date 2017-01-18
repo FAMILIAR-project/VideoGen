@@ -4,9 +4,9 @@ import org.junit.Test
 import M3UPlaylist.Playlist
 import M3UPlaylist.M3UPlaylistFactory
 import M3UPlaylist.Entry
-import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
+
 /**
- * Generate Simple playlist text
+ * Playlist To FFmpeg text
  */
 public class VideoGenerator {
 	
@@ -22,16 +22,10 @@ public class VideoGenerator {
 
 	}
 	
-	def String getPlaylist(VideoGeneratorModel playlist){
-		new SequenceGenerator((new q3.VideoGenerator()).getPlaylist(playlist)).getText()
-	}
-	
 	def Playlist getSample(){
 		var Playlist playlist=M3UPlaylistFactory.eINSTANCE.createPlaylist()
 		var Entry e1=M3UPlaylistFactory.eINSTANCE.createEntry()
 		e1.path = "p1"
-		e1.discontinuity = true;
-		e1.duration=1;
 		var Entry e2=M3UPlaylistFactory.eINSTANCE.createEntry()
 		e2.path = "p2"
 		

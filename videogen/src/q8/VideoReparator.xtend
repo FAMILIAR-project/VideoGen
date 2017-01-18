@@ -46,15 +46,7 @@ public class VideoReparator {
 	def void generate() {
 		
 		// Loading
-		var videoGen = loadVideoGenerator(URI.createURI("src/main/webapp/videogen/test.videogen")) 
-		assertNotNull(videoGen)
-			
-		// Repair id
-		repairId(videoGen)
-		
-		// Serializing
-		saveVideoGenerator(URI.createURI("foo2bis.xmi"), videoGen)
-		saveVideoGenerator(URI.createURI("foo2bis.videogen"), videoGen)
+		var videoGen = (new q11.VideoGenLoader()).load("foo2.videogen")
 		
 		// Build sequence
 		var finalVideo=(new SequenceGenerator(videoGen)).getRepairedModel()
@@ -62,7 +54,7 @@ public class VideoReparator {
 		repaired=finalVideo
 		
 		// Print sequence
-		/*finalVideo.videoseqs.forEach[videoseq | 
+		finalVideo.videoseqs.forEach[videoseq | 
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
 				printDesc(desc)			
@@ -79,7 +71,7 @@ public class VideoReparator {
 				}
 				
 			}
-		]*/
+		]
 	}
 	
 	def public getRepaired(String videoGenFile){
