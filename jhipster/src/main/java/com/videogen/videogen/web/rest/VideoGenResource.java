@@ -4,7 +4,7 @@ import com.codahale.metrics.annotation.Timed;
 import com.videogen.videogen.domain.User;
 import com.videogen.videogen.web.rest.vm.ManagedUserVM;
 
-import q10.VideoGenerator;
+//import q10.VideoGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,9 +41,9 @@ public class VideoGenResource {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public Response regenerate() {
-        List<String> playlist=(new q12.VideoGenerator()).generatePlaylistForFile(videoGenPath+"test.videogen");
+        /*List<String> playlist=(new q12.VideoGenerator()).generatePlaylistForFile(videoGenPath+"test.videogen");*/
         Response r=new Response();
-        r.playlist=playlist;
+       /* r.playlist=playlist;*/
         return r;
         
     }
