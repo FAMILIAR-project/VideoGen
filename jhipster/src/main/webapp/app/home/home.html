@@ -1,10 +1,18 @@
 <div ng-cloak>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4" ng-hide="vm.isAuthenticated()">
             <span class="hipster img-responsive img-rounded"></span>
         </div>
-        <div class="col-md-8">
-          <div ng-include src="'videogen/index.html'"></div>
+        <div class="col-md-12" ng-show="vm.isAuthenticated()">
+          <p>
+              Playlist :<br />
+              {{vm.playlist}}
+          </p>
+          <p><button ng-click="vm.regenerate()">Regenerate</button></p>
+
+        </div>
+        <div class="col-md-8" ng-hide="vm.isAuthenticated()">
+
 
             <h1 data-translate="home.title">Welcome, Java Hipster!</h1>
             <p class="lead" data-translate="home.subtitle">This is your homepage</p>

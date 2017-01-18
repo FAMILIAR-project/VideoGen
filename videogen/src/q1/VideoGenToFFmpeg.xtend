@@ -13,11 +13,12 @@ import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 import static org.junit.Assert.*;
 import java.util.ArrayList
 import org.xtext.example.mydsl.videoGen.VideoDescription
+import java.util.List
 
 /**
  * Generate ffmpeg
  */
-public class VideoGenerator {
+public class VideoGenToFFmpeg {
 	
 	/**
 	 * Load
@@ -61,6 +62,11 @@ public class VideoGenerator {
 		}	
 	}
 	
+	
+	def List<String> proceed(VideoGeneratorModel videoGen){
+		(new SequenceGenerator(videoGen)).getSequence()
+	}
+	 
 	
 	/**
 	 * Repair null id

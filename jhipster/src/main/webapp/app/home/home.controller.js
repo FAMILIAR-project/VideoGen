@@ -14,14 +14,22 @@
         vm.isAuthenticated = null;
         vm.login = LoginService.open;
         vm.register = register;
+        vm.playlist=null;
         $scope.$on('authenticationSuccess', function() {
             getAccount();
         });
 
         getAccount();
         VideoGen.regenerate().$promise.then(function(a){
-          console.log("Jean" + a);
+          vm.playlist=a.playlist;
+          console.log(a.a);
         });
+
+        vm.regenerate=function(){
+          VideoGen.regenerate().$promise.then(function(a){
+            vm.playlist=a.playlist;
+          });
+        }
 
         function getAccount() {
             Principal.identity().then(function(account) {

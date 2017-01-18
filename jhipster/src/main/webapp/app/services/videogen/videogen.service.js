@@ -9,7 +9,7 @@
 
     function VideoGen ($resource) {
         var service = $resource('api/videogen/:action',{},{
-            'regenerate': { method: 'POST', params:{action:"regenerate"}, isArray:true }
+            'regenerate': { method: 'POST', params:{action:"regenerate"}, isArray:false }
         });
 
         return service;

@@ -2,6 +2,7 @@ package q1;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -26,7 +27,7 @@ import q1.SequenceGenerator;
  * Generate ffmpeg
  */
 @SuppressWarnings("all")
-public class VideoGenerator {
+public class VideoGenToFFmpeg {
   /**
    * Load
    */
@@ -78,6 +79,11 @@ public class VideoGenerator {
     for (final String f : finalVideo) {
       InputOutput.<String>print((f + "\n"));
     }
+  }
+  
+  public List<String> proceed(final VideoGeneratorModel videoGen) {
+    SequenceGenerator _sequenceGenerator = new SequenceGenerator(videoGen);
+    return _sequenceGenerator.getSequence();
   }
   
   /**
@@ -133,7 +139,7 @@ public class VideoGenerator {
   private static int i = 0;
   
   public String genID() {
-    int _plusPlus = VideoGenerator.i++;
+    int _plusPlus = VideoGenToFFmpeg.i++;
     return ("v" + Integer.valueOf(_plusPlus));
   }
 }

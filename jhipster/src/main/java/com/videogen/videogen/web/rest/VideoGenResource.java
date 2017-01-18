@@ -6,6 +6,9 @@ import com.videogen.videogen.web.rest.vm.ManagedUserVM;
 
 import q10.VideoGenerator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -38,9 +41,9 @@ public class VideoGenResource {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public Response regenerate() {
-        //String playlist=(new q12.VideoGenerator()).generatePlaylistForFile(videoGenPath+"test.videogen");
+        String playlist=(new q12.VideoGenerator()).generatePlaylistForFile(videoGenPath+"test.videogen");
         Response r=new Response();
-        r.playlist="";
+        r.playlist=playlist;
         return r;
         
     }
@@ -48,7 +51,25 @@ public class VideoGenResource {
     
     class Response{
     	boolean done=false;
-    	String playlist="";
+    	List<String> playlist=new ArrayList<>();
+    	
+    	
+    	
+
+		public List<String> getPlaylist() {
+			return playlist;
+		}
+		public void setPlaylist(List<String> playlist) {
+			this.playlist = playlist;
+		}
+		public boolean isDone() {
+			return done;
+		}
+		public void setDone(boolean done) {
+			this.done = done;
+		}
+
+    	
     }
    
 }
