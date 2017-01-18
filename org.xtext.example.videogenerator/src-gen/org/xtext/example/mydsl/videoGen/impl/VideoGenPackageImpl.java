@@ -10,7 +10,11 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq;
+import org.xtext.example.mydsl.videoGen.BlackWhiteFilter;
+import org.xtext.example.mydsl.videoGen.Filter;
+import org.xtext.example.mydsl.videoGen.FlipFilter;
 import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq;
+import org.xtext.example.mydsl.videoGen.NegateFilter;
 import org.xtext.example.mydsl.videoGen.OptionalVideoSeq;
 import org.xtext.example.mydsl.videoGen.VideoDescription;
 import org.xtext.example.mydsl.videoGen.VideoGenFactory;
@@ -75,6 +79,34 @@ public class VideoGenPackageImpl extends EPackageImpl implements VideoGenPackage
    * @generated
    */
   private EClass videoDescriptionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass filterEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass blackWhiteFilterEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass negateFilterEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass flipFilterEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -364,6 +396,66 @@ public class VideoGenPackageImpl extends EPackageImpl implements VideoGenPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getVideoDescription_Filter()
+  {
+    return (EReference)videoDescriptionEClass.getEStructuralFeatures().get(6);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getFilter()
+  {
+    return filterEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getBlackWhiteFilter()
+  {
+    return blackWhiteFilterEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getNegateFilter()
+  {
+    return negateFilterEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getFlipFilter()
+  {
+    return flipFilterEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getFlipFilter_Orientation()
+  {
+    return (EAttribute)flipFilterEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public VideoGenFactory getVideoGenFactory()
   {
     return (VideoGenFactory)getEFactoryInstance();
@@ -417,6 +509,16 @@ public class VideoGenPackageImpl extends EPackageImpl implements VideoGenPackage
     createEAttribute(videoDescriptionEClass, VIDEO_DESCRIPTION__PROBABILITY);
     createEAttribute(videoDescriptionEClass, VIDEO_DESCRIPTION__SIZE);
     createEAttribute(videoDescriptionEClass, VIDEO_DESCRIPTION__DESCRIPTION);
+    createEReference(videoDescriptionEClass, VIDEO_DESCRIPTION__FILTER);
+
+    filterEClass = createEClass(FILTER);
+
+    blackWhiteFilterEClass = createEClass(BLACK_WHITE_FILTER);
+
+    negateFilterEClass = createEClass(NEGATE_FILTER);
+
+    flipFilterEClass = createEClass(FLIP_FILTER);
+    createEAttribute(flipFilterEClass, FLIP_FILTER__ORIENTATION);
   }
 
   /**
@@ -451,6 +553,9 @@ public class VideoGenPackageImpl extends EPackageImpl implements VideoGenPackage
     mandatoryVideoSeqEClass.getESuperTypes().add(this.getVideoSeq());
     optionalVideoSeqEClass.getESuperTypes().add(this.getVideoSeq());
     alternativeVideoSeqEClass.getESuperTypes().add(this.getVideoSeq());
+    blackWhiteFilterEClass.getESuperTypes().add(this.getFilter());
+    negateFilterEClass.getESuperTypes().add(this.getFilter());
+    flipFilterEClass.getESuperTypes().add(this.getFilter());
 
     // Initialize classes and features; add operations and parameters
     initEClass(videoGeneratorModelEClass, VideoGeneratorModel.class, "VideoGeneratorModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -481,6 +586,16 @@ public class VideoGenPackageImpl extends EPackageImpl implements VideoGenPackage
     initEAttribute(getVideoDescription_Probability(), ecorePackage.getEInt(), "probability", null, 0, 1, VideoDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getVideoDescription_Size(), ecorePackage.getEInt(), "size", null, 0, 1, VideoDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getVideoDescription_Description(), ecorePackage.getEString(), "description", null, 0, 1, VideoDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getVideoDescription_Filter(), this.getFilter(), null, "filter", null, 0, 1, VideoDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(filterEClass, Filter.class, "Filter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(blackWhiteFilterEClass, BlackWhiteFilter.class, "BlackWhiteFilter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(negateFilterEClass, NegateFilter.class, "NegateFilter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(flipFilterEClass, FlipFilter.class, "FlipFilter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getFlipFilter_Orientation(), ecorePackage.getEString(), "orientation", null, 0, 1, FlipFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

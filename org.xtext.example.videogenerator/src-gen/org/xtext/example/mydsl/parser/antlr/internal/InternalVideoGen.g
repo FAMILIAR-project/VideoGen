@@ -582,11 +582,224 @@ ruleVideoDescription returns [EObject current=null]
 	    }
 
 )
-))?this_RIGHT_BRACKET_12=RULE_RIGHT_BRACKET
+))?(	otherlv_12='filter' 
+    {
+    	newLeafNode(otherlv_12, grammarAccess.getVideoDescriptionAccess().getFilterKeyword_3_5_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getVideoDescriptionAccess().getFilterFilterParserRuleCall_3_5_1_0()); 
+	    }
+		lv_filter_13_0=ruleFilter		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getVideoDescriptionRule());
+	        }
+       		set(
+       			$current, 
+       			"filter",
+        		lv_filter_13_0, 
+        		"org.xtext.example.mydsl.VideoGen.Filter");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))?this_RIGHT_BRACKET_14=RULE_RIGHT_BRACKET
     { 
-    newLeafNode(this_RIGHT_BRACKET_12, grammarAccess.getVideoDescriptionAccess().getRIGHT_BRACKETTerminalRuleCall_3_5()); 
+    newLeafNode(this_RIGHT_BRACKET_14, grammarAccess.getVideoDescriptionAccess().getRIGHT_BRACKETTerminalRuleCall_3_6()); 
     }
 )?)
+;
+
+
+
+
+
+// Entry rule entryRuleFilter
+entryRuleFilter returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getFilterRule()); }
+	 iv_ruleFilter=ruleFilter 
+	 { $current=$iv_ruleFilter.current; } 
+	 EOF 
+;
+
+// Rule Filter
+ruleFilter returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+    { 
+        newCompositeNode(grammarAccess.getFilterAccess().getFlipFilterParserRuleCall_0()); 
+    }
+    this_FlipFilter_0=ruleFlipFilter
+    { 
+        $current = $this_FlipFilter_0.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getFilterAccess().getNegateFilterParserRuleCall_1()); 
+    }
+    this_NegateFilter_1=ruleNegateFilter
+    { 
+        $current = $this_NegateFilter_1.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getFilterAccess().getBlackWhiteFilterParserRuleCall_2()); 
+    }
+    this_BlackWhiteFilter_2=ruleBlackWhiteFilter
+    { 
+        $current = $this_BlackWhiteFilter_2.current; 
+        afterParserOrEnumRuleCall();
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleBlackWhiteFilter
+entryRuleBlackWhiteFilter returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getBlackWhiteFilterRule()); }
+	 iv_ruleBlackWhiteFilter=ruleBlackWhiteFilter 
+	 { $current=$iv_ruleBlackWhiteFilter.current; } 
+	 EOF 
+;
+
+// Rule BlackWhiteFilter
+ruleBlackWhiteFilter returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getBlackWhiteFilterAccess().getBlackWhiteFilterAction_0(),
+            $current);
+    }
+)	otherlv_1='b&w' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getBlackWhiteFilterAccess().getBWKeyword_1());
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleNegateFilter
+entryRuleNegateFilter returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getNegateFilterRule()); }
+	 iv_ruleNegateFilter=ruleNegateFilter 
+	 { $current=$iv_ruleNegateFilter.current; } 
+	 EOF 
+;
+
+// Rule NegateFilter
+ruleNegateFilter returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getNegateFilterAccess().getNegateFilterAction_0(),
+            $current);
+    }
+)	otherlv_1='negate' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getNegateFilterAccess().getNegateKeyword_1());
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleFlipFilter
+entryRuleFlipFilter returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getFlipFilterRule()); }
+	 iv_ruleFlipFilter=ruleFlipFilter 
+	 { $current=$iv_ruleFlipFilter.current; } 
+	 EOF 
+;
+
+// Rule FlipFilter
+ruleFlipFilter returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='flip' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getFlipFilterAccess().getFlipKeyword_0());
+    }
+(
+(
+(
+		lv_orientation_1_1=	'h' 
+    {
+        newLeafNode(lv_orientation_1_1, grammarAccess.getFlipFilterAccess().getOrientationHKeyword_1_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getFlipFilterRule());
+	        }
+       		setWithLastConsumed($current, "orientation", lv_orientation_1_1, null);
+	    }
+
+    |		lv_orientation_1_2=	'horizontal' 
+    {
+        newLeafNode(lv_orientation_1_2, grammarAccess.getFlipFilterAccess().getOrientationHorizontalKeyword_1_0_1());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getFlipFilterRule());
+	        }
+       		setWithLastConsumed($current, "orientation", lv_orientation_1_2, null);
+	    }
+
+    |		lv_orientation_1_3=	'v' 
+    {
+        newLeafNode(lv_orientation_1_3, grammarAccess.getFlipFilterAccess().getOrientationVKeyword_1_0_2());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getFlipFilterRule());
+	        }
+       		setWithLastConsumed($current, "orientation", lv_orientation_1_3, null);
+	    }
+
+    |		lv_orientation_1_4=	'vertical' 
+    {
+        newLeafNode(lv_orientation_1_4, grammarAccess.getFlipFilterAccess().getOrientationVerticalKeyword_1_0_3());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getFlipFilterRule());
+	        }
+       		setWithLastConsumed($current, "orientation", lv_orientation_1_4, null);
+	    }
+
+)
+
+)
+))
 ;
 
 

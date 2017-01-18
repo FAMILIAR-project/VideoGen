@@ -71,6 +71,10 @@ public class VideoGenFactoryImpl extends EFactoryImpl implements VideoGenFactory
       case VideoGenPackage.OPTIONAL_VIDEO_SEQ: return createOptionalVideoSeq();
       case VideoGenPackage.ALTERNATIVE_VIDEO_SEQ: return createAlternativeVideoSeq();
       case VideoGenPackage.VIDEO_DESCRIPTION: return createVideoDescription();
+      case VideoGenPackage.FILTER: return createFilter();
+      case VideoGenPackage.BLACK_WHITE_FILTER: return createBlackWhiteFilter();
+      case VideoGenPackage.NEGATE_FILTER: return createNegateFilter();
+      case VideoGenPackage.FLIP_FILTER: return createFlipFilter();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -151,6 +155,50 @@ public class VideoGenFactoryImpl extends EFactoryImpl implements VideoGenFactory
   {
     VideoDescriptionImpl videoDescription = new VideoDescriptionImpl();
     return videoDescription;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Filter createFilter()
+  {
+    FilterImpl filter = new FilterImpl();
+    return filter;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public BlackWhiteFilter createBlackWhiteFilter()
+  {
+    BlackWhiteFilterImpl blackWhiteFilter = new BlackWhiteFilterImpl();
+    return blackWhiteFilter;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NegateFilter createNegateFilter()
+  {
+    NegateFilterImpl negateFilter = new NegateFilterImpl();
+    return negateFilter;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FlipFilter createFlipFilter()
+  {
+    FlipFilterImpl flipFilter = new FlipFilterImpl();
+    return flipFilter;
   }
 
   /**
