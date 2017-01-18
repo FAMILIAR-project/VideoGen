@@ -24,35 +24,34 @@ class Vignette {
 	@Test
 	def void genVignette() {
 		// loading
-		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen"))
-		val fact = PlaylistFactoryImpl.eINSTANCE
-		val playlist = PlaylistFactoryImpl.eINSTANCE.createPlaylist as Playlist
+		var videoGen = loadVideoGenerator(URI.createURI("q9.videogen"))
 		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
-		val file = new PrintWriter("out.ffmpeg", "UTF-8")
 		videoGen.videoseqs.forEach [ videoseq |
 			var path = ""
 			var name = ""
 			if (videoseq instanceof MandatoryVideoSeq) {
 				path = videoseq.description.location
 				name = videoseq.description.videoid
+				createVignette(path, name)
 			} else if (videoseq instanceof OptionalVideoSeq) {
 				path = videoseq.description.location
 				name = videoseq.description.videoid
+				createVignette(path, name)
 			} else if (videoseq instanceof AlternativeVideoSeq) {
 				for (vdesc : videoseq.videodescs) {
 					path = vdesc.location
 					name = vdesc.videoid
+					createVignette(path, name)
 				}
 			}
-			println("path="+path)
-			println("name="+name)
-			var cmd = "ffmpeg -i "+path+" -ss 00:00:01.000 -vframes 1 "+name+".jpg -y";
-			println(cmd)
-		//	"ffmpeg -y -i" + path + "-r 1 -t 00:00:01 -ss 00:00:$2 -f image2 ./test/" + name + ".png"
-			var Process process = Runtime.runtime.exec(cmd)
-			process.waitFor()
 		]
-		// serializing
-		file.close()
+	}
+	def void createVignette(String path, String name) {
+		println("path=" + path)
+		println("name=" + name)
+		var cmd = "ffmpeg -i " + path + " -ss 00:00:01.000 -vframes 1 " + name + ".jpg -y";
+		println(cmd)
+		var Process process = Runtime.runtime.exec(cmd)
+		process.waitFor()
 	}
 }
