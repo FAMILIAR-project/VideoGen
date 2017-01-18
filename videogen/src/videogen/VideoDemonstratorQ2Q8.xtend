@@ -19,6 +19,7 @@ import videogenPlayList.impl.VideogenPlayListFactoryImpl
 import videogenPlayList.MediaFile
 import java.io.BufferedReader
 import java.io.InputStreamReader
+import java.util.concurrent.TimeUnit
 
 /*
  * Questions 2 - 8
@@ -41,7 +42,7 @@ class VideoDemonstratorQ2Q8 {
 		var Process process = Runtime.getRuntime().exec("C:\\Users\\Sandra\\Desktop\\ffmpeg-20161127-801b5c1-win64-static\\bin\\ffprobe -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 " + videoLocation );
 		
 		
-		process.waitFor();
+		process.waitFor(2000, TimeUnit.MILLISECONDS);
 
 		var BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 		var String line = "";
