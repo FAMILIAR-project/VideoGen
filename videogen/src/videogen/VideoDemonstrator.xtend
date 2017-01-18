@@ -12,7 +12,6 @@ import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 
 import static org.junit.Assert.*
-import org.xtext.example.mydsl.videoGen.impl.VideoSeqImpl
 import java.util.Random
 import java.io.File
 import java.io.BufferedWriter
