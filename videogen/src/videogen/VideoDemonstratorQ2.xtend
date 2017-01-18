@@ -1,5 +1,4 @@
 package videogen
-
 import java.util.HashMap
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
@@ -18,9 +17,11 @@ import java.io.File
 import java.io.BufferedWriter
 import java.io.FileWriter
 import java.io.IOException
+import videogenPlayList.VideogenPlayListFactory
+import videogenPlayList.impl.VideogenPlayListFactoryImpl
+import videogenPlayList.MediaFile
 
-class VideoDemonstrator {
-	
+class VideoDemonstratorQ2 {
 	def loadVideoGenerator(URI uri) {
 		new VideoGenStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()
 		var res = new ResourceSetImpl().getResource(uri, true);
@@ -33,23 +34,91 @@ class VideoDemonstrator {
 		rs.save(new HashMap());
 	}
 	
+
+	
 	@Test
+	def TestTp3Q2() {
+		var videoGen = loadVideoGenerator(URI.createURI("fooVideos.videogen"))
+		assertNotNull(videoGen)
+		val fact = new VideogenPlayListFactoryImpl()
+		var playlist = fact.createPlayList();
+		
+		for (videoseq : videoGen.videoseqs.toSet){
+			if (videoseq instanceof MandatoryVideoSeq) {
+				println("Mandatory")
+				
+				val desc = (videoseq as MandatoryVideoSeq).description.location;
+				var mediaFile = fact.createMediaFile()
+				mediaFile.location = desc
+				playlist.mediaFile.add(mediaFile)
+								
+			}
+			else if (videoseq instanceof OptionalVideoSeq) {
+				println("Optional")
+				val unsurDeux = new Random().nextInt(2);
+				
+				if(unsurDeux ==0){
+					val desc = (videoseq as OptionalVideoSeq).description.location;
+					var mediaFile = fact.createMediaFile()
+					mediaFile.location = desc
+					playlist.mediaFile.add(mediaFile)
+				}
+				
+					
+			}
+			else {
+				println("Alternative")
+				val altvidsize = (videoseq as AlternativeVideoSeq).videodescs.size;
+				val desc = (videoseq as AlternativeVideoSeq).videodescs.get(new Random().nextInt(altvidsize)).location;
+				var mediaFile = fact.createMediaFile()
+					mediaFile.location = desc
+					playlist.mediaFile.add(mediaFile)
+				
+			}
+			
+		}
+		try {
+			
+			val CPlaylist = new File("C:\\Users\\kaoutar\\git\\VideoGen\\videogen\\playlist.m3u");
+			if (!CPlaylist.exists()) {
+				CPlaylist.createNewFile();
+			}
+			println(CPlaylist.path);
+			
+			val fw = new FileWriter(CPlaylist.getAbsoluteFile());
+			val bw = new BufferedWriter(fw);
+			bw.write("#EXTM3U" + System.lineSeparator);
+			for (MediaFile mediafile : playlist.mediaFile){
+				bw.write("#EXTINF:-1, Example Artist - Example title" + System.lineSeparator + mediafile.location + System.lineSeparator );
+			}
+			bw.close();
+			
+		} catch (IOException e) {
+			e.printStackTrace
+		}
+	
+}			
+	/* 
+@Test
 	def test1() {
 		// loading
 		var videoGen = loadVideoGenerator(URI.createURI("fooVideos.videogen")) 
 		assertNotNull(videoGen)
-		//Condition prof
-		// assertEquals(7, videoGen.videoseqs.size)			
-		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
+		assertEquals(7, videoGen.videoseqs.size)
 		videoGen.videoseqs.forEach[videoseq | 
 			if (videoseq instanceof MandatoryVideoSeq) {
+				
 				val desc = (videoseq as MandatoryVideoSeq).description
-				if(desc.videoid.isNullOrEmpty)  desc.videoid = genID()  				
+				
+				if(desc.videoid.isNullOrEmpty)  desc.videoid = genID()  
+								
 			}
 			else if (videoseq instanceof OptionalVideoSeq) {
+				
 				val desc = (videoseq as OptionalVideoSeq).description
 				if(desc.videoid.isNullOrEmpty) desc.videoid = genID() 
 			}
+			
 			else {
 				val altvid = (videoseq as AlternativeVideoSeq)
 				if(altvid.videoid.isNullOrEmpty) altvid.videoid = genID()
@@ -62,10 +131,11 @@ class VideoDemonstrator {
 	saveVideoGenerator(URI.createURI("foo2bis.xmi"), videoGen)
 	saveVideoGenerator(URI.createURI("foo2bis.videogen"), videoGen)
 		
-	printToFFmpeg(videoGen)
+	printToM3u(videoGen)
 		 		
-	}
-	def void printToFFmpeg(VideoGeneratorModel videoGen) {
+	}*/	
+		 
+	def void printToM3u(VideoGeneratorModel videoGen){
 		//var numSeq = 1
 		
 			println("#this is a comment")
@@ -108,58 +178,11 @@ class VideoDemonstrator {
 						
 				
 			}
-			
 		]
+		println("</ul>") 
 		
-		// New file 
-		try {
-			println("je suis la ");
-			val ffmpeg = new File("C:\\Users\\kaoutar\\git\\VideoGen\\videogen\\ffmpeg.txt");
-			if (!ffmpeg.exists()) {
-				ffmpeg.createNewFile();
-			}
-			println(ffmpeg.path);
-			val fw = new FileWriter(ffmpeg.getAbsoluteFile());
-			val bw = new BufferedWriter(fw);
-			bw.write(playList);
-			bw.close();
-			
-		} catch (IOException e) {
-			e.printStackTrace
-		}
-	
 	}
-	/* 
-	def void printToHTML(VideoGeneratorModel videoGen) {
-		//var numSeq = 1
-		println("<ul>")
-		videoGen.videoseqs.forEach[videoseq | 
-			if (videoseq instanceof MandatoryVideoSeq) {
-				val desc = (videoseq as MandatoryVideoSeq).description
-				if(!desc.videoid.isNullOrEmpty)  
-					println ("<li>" + desc.videoid + "</li>")  				
-			}
-			else if (videoseq instanceof OptionalVideoSeq) {
-				val desc = (videoseq as OptionalVideoSeq).description
-				if(!desc.videoid.isNullOrEmpty) 
-					println ("<li>" + desc.videoid + "</li>") 
-			}
-			else {
-				val altvid = (videoseq as AlternativeVideoSeq)
-				if(!altvid.videoid.isNullOrEmpty) 
-					println ("<li>" + altvid.videoid + "</li>")
-				if (altvid.videodescs.size > 0) // there are vid seq alternatives
-					println ("<ul>")
-				for (vdesc : altvid.videodescs) {
-					if(!vdesc.videoid.isNullOrEmpty) 
-						println ("<li>" + vdesc.videoid + "</li>")
-				}
-				if (altvid.videodescs.size > 0) // there are vid seq alternatives
-					println ("</ul>")
-			}
-		]
-		println("</ul>")
-	}*/
+
 	
 	static var i = 0;
 	
@@ -168,6 +191,5 @@ class VideoDemonstrator {
 	def genID() {
 		"v" + i++
 	}
-	
 	
 }
