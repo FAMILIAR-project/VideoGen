@@ -16,7 +16,7 @@ public class Main {
 		//pst.videogenGenerator("foo2bis.videogen");
 		pst.genDuration("Videos/V6.mp4");
 		pst.concatFFMPEG();
-		pst.playlistToM3U(pst.videogenToPlaylistFull("foo2bis.videogen"));
+		pst.playlistToM3UExtended(pst.videogenToPlaylistFull("foo2bis.videogen"));
 	}
 
 }

@@ -125,6 +125,8 @@ public class playlistTools {
       final Consumer<MediaFile> _function = (MediaFile file) -> {
         try {
           String _path = file.getPath();
+          File f = new File(_path);
+          _path=f.getAbsolutePath();
           String _plus = (_path + "\n");
           fw.write(_plus);
           fw.flush();
@@ -149,8 +151,8 @@ public class playlistTools {
 	        try {        	
 	          String _path = file.getPath();
 	          int d= genDuration(_path);
-	          File f = new File("res.txt");
-	          
+	          File f = new File(_path);
+	          _path=f.getAbsolutePath();          
 	          fw.write("#EXTINF:" +d+", no-info\n");
 	          fw.flush();
 	          String _plus = (_path + "\n");
