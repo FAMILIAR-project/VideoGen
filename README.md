@@ -78,3 +78,7 @@ Taille minimum / maximum :
 * 0 / N pour les N optionals
 * +1 / +1 pour chauque alternative  
 
+Durée minimum / maximum : 
+
+On ajoute la durée les vidéos sélectionnées par le calcul de taille minimumum / maximum. 
+On pourrait créer un nouveau fichier xtend qui calculerait toutes ces métriques et qui les enregistrerait dans un CSV.
