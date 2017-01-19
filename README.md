@@ -51,3 +51,6 @@ Paramètres possibles :
 * **Début** : Moment de la vidéo, en sec, à partir duquel doit commencer le GIF
 * **Taille** : Taille du GIF en pixels
 * **Nom du GIF** : Nom du GIF généré
+
+
+<br><br>*TP réalisé par Gossan ADJA et Paul CHEMIN*
