@@ -25,12 +25,12 @@ Une fois les données établies, on renvoie le lien de la playlist .m3u créée 
 
 ## Question 14
 
-### Formaliser les exigences sous forme d’un feature model. L’idée est qu’à partir d’une configuration du feature model (eg mode crazy sans sauvegarde mais avec visualisation des vignettes) on déploie un nouveau site Web avec Jhipster. Vous utiliserez FAMILIAR et son DSL externe.
+#### Formaliser les exigences sous forme d’un feature model. L’idée est qu’à partir d’une configuration du feature model (eg mode crazy sans sauvegarde mais avec visualisation des vignettes) on déploie un nouveau site Web avec Jhipster. Vous utiliserez FAMILIAR et son DSL externe.
 
 * Le VideoGenerator possède deux modes : Aléatoire ,Composé ou Probabiliste
 * Le mode Composé (composition de vidéos à la demande de l'utilisateur) est lié soit à une vidéo Alternative, soit une vidéo Probabiliste
 
 ## Question 15
 
-### Démontrer que vous êtes d'ores et déjà capable de déployer un Jhipster / VideoGen en fonction de certaines configurations valides de votre feature model.
+#### Démontrer que vous êtes d'ores et déjà capable de déployer un Jhipster / VideoGen en fonction de certaines configurations valides de votre feature model.
 
