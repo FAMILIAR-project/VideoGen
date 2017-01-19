@@ -17,8 +17,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq;
 import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq;
 import org.xtext.example.mydsl.videoGen.OptionalVideoSeq;
+import org.xtext.example.mydsl.videoGen.VideoDescription;
 import org.xtext.example.mydsl.videoGen.VideoGenFactory;
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 import org.xtext.example.mydsl.videoGen.VideoSeq;
@@ -79,7 +81,22 @@ public class VideoGenResource {
     		vSeq.add(v);
 
     	}
-    	System.out.println("Jean");
+    	List<Multiple> multiple=data.getMultiple();
+    	for(Multiple s : multiple){
+    		EList<VideoSeq> vSeq=videoGen.getVideoseqs();
+    		AlternativeVideoSeq v=factory.eINSTANCE.createAlternativeVideoSeq();
+    		EList<VideoDescription> vDesc=v.getVideodescs();
+    		for(String sub: s.subTitles){
+    			VideoDescription newVDesc=factory.eINSTANCE.createVideoDescription();
+    			newVDesc.setLocation(sub);
+    			vDesc.add(newVDesc);
+    		}
+    		videoGen.getVideoseqs().add(v);
+    		
+
+    	}
+    	
+    	
     	File f=(new File(videoGenFile));
     	System.out.println(f.getAbsolutePath());
     	(new VideoGenLoader()).save(videoGen, f.getAbsolutePath());

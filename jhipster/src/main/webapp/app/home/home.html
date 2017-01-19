@@ -1,141 +1,100 @@
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Home</title>
-    <meta name="description" content="">
-    <meta name="google" value="notranslate">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/home.css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Home</title>
+  <meta name="description" content="">
+  <meta name="google" value="notranslate">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/home.css">
 
 </head>
 
 
-  <div class="container"ng-hide="vm.isAuthenticated()">
-
-      <!-- Main component for a primary marketing message or call to action -->
+<div ng-cloak>
 
 
-        <h1>Bienvenue sur notre site</h1>
-        <p></p>
-        <p>Attention vous pouvez pas continuer si vous êtes pas connecter!!</p>
-        <p>Si vous avez pas encore de compte utilisateur, veuillez vous inscrire pour profiter pleinement de notre site</p>
+  <div class="row"ng-hide="vm.isAuthenticated()">
+
+    <!-- Main component for a primary marketing message or call to action -->
 
 
+    <h1>Bienvenue sur notre site</h1>
+    <p></p>
+    <p>Attention vous pouvez pas continuer si vous êtes pas connecter!!</p>
+    <p>Si vous avez pas encore de compte utilisateur, veuillez vous inscrire pour profiter pleinement de notre site</p>
+  </div>
 
-    </div> <!-- /container -->
+  <div class="row " ng-show="vm.showGeneration()">
+    <h4>Playlist Generator</h4><br />
+    <form>
+      <div  ng-repeat="mand in vm.mandatory track by $index">
+        <div class="form-group">
+          <label for="email">Mandatory {{$index}}:</label>
+          <input type="text" class="form-control" ng-model="vm.mandatory[$index]">
+        </div>
+      </div>
 
-    <div ng-cloak>
-        <div class="row " ng-show="vm.isAuthenticated()">
-          <h4>Playlist Generator</h4><br />
-        <form>
-          <div  ng-repeat="mand in vm.mandatory track by $index">
+      <div ng-repeat="opt in vm.optional track by $index">
+        <div class="form-group">
+          <label for="email">Optional {{$index}}:</label>
+          <input type="text" class="form-control" ng-model="vm.optional[$index]">
+        </div>
+      </div>
+
+      <div class="panel"ng-repeat="opt in vm.multiple">
+        <div class="form-group">
+          <label for="email">Multiple :</label>
+          <input type="text" class="form-control" ng-model="opt.title">
+
+          <div ng-repeat="sub in opt.subTitles track by $index">
             <div class="form-group">
-              <label for="email">Mandatory {{$index}}:</label>
-              <input type="text" class="form-control" ng-model="vm.mandatory[$index]">
+              <label for="email">Sub Element {{$index}}:</label>
+              <input type="text" class="form-control" ng-model="opt.subTitles[$index]">
             </div>
           </div>
 
-          <div ng-repeat="opt in vm.optional track by $index">
-            <div class="form-group">
-              <label for="email">Optional {{$index}}:</label>
-              <input type="text" class="form-control" ng-model="vm.optional[$index]">
-            </div>
+          <button type="button" class="btn btn-default" ng-click="vm.addSubElement(opt)">Add Sub Element</button>
+
+        </div>
+      </div>
+
+
+
+      <div class="btn-group btn-group-justified" role="group" aria-label="...">
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-default" ng-click="vm.addMandatory()">Add Mandatory</button>
+        </div>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-default" ng-click="vm.addOptional()">Add Optional</button>
+        </div>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-default" ng-click="vm.addMultiple()">Add Multiple</button>
+        </div>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-success" ng-click="vm.generate()">Generate</button>
+        </div>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-info" ng-click="vm.doRegeneration=true">Use Last Generated</button>
+        </div>
+      </div>
+    </form>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-12" ng-show="vm.showGenerated()">
+      <p>    <u>Playlist :</u><br />
+        <div class="panel panel-default">
+          <div class="panel-body">
+
+            <p ng-repeat="line in vm.playlist">{{line}}</p>
           </div>
-
-          <div class="panel"ng-repeat="opt in vm.multiple">
-            <div class="form-group">
-              <label for="email">Multiple :</label>
-              <input type="text" class="form-control" ng-model="opt.title">
-
-                <div ng-repeat="sub in opt.subTitles track by $index">
-                  <div class="form-group">
-                    <label for="email">Sub Element {{$index}}:</label>
-                    <input type="text" class="form-control" ng-model="opt.subTitles[$index]">
-                  </div>
-                </div>
-
-                <button type="button" class="btn btn-default" ng-click="vm.addSubElement(opt)">Add Sub Element</button>
-
-            </div>
-            </div>
-
-
-
-       <div class="btn-group btn-group-justified" role="group" aria-label="...">
-         <div class="btn-group" role="group">
-           <button type="button" class="btn btn-default" ng-click="vm.addMandatory()">Add Mandatory</button>
-         </div>
-         <div class="btn-group" role="group">
-           <button type="button" class="btn btn-default" ng-click="vm.addOptional()">Add Optional</button>
-         </div>
-         <div class="btn-group" role="group">
-           <button type="button" class="btn btn-default" ng-click="vm.addMultiple()">Add Multiple</button>
-         </div>
-         <div class="btn-group" role="group">
-           <button type="button" class="btn btn-success" ng-click="vm.generate()">Generate</button>
-         </div>
-       </div>
-     </form>
-
- </div>
- </div>
-
-
-<!-- <div ng-cloak>
-    <div class="row">
-        <div class="col-md-4" ng-hide="vm.isAuthenticated()">
-            <span class="hipster img-responsive img-rounded"></span>
         </div>
-        <div class="col-md-12" ng-show="vm.isAuthenticated()">
-          <p>
-              Playlist :<br />
-              {{vm.playlist}}
-          </p>
-          <p><button ng-click="vm.regenerate()">Regenerate</button></p>
 
-        </div>
-        <div class="col-md-8" ng-hide="vm.isAuthenticated()">
-
-
-            <h1 data-translate="home.title">Welcome, Java jHipster!</h1>
-            <p class="lead" data-translate="home.subtitle">This is your homepage</p>
-
-            <div ng-switch="vm.isAuthenticated()">
-                <div class="alert alert-success" ng-switch-when="true" data-translate="home.logged.message" translate-values="{username: '{{vm.account.login}}'}">
-                    You are logged in as user "{{vm.account.login}}".
-                </div>
-
-                <div class="alert alert-warning" ng-switch-when="false" data-translate="global.messages.info.authenticated" translate-compile>
-                    If you want to <a class="alert-link" href="" ng-click="vm.login()">sign in</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").
-                </div>
-
-                <div class="alert alert-warning" ng-switch-when="false" data-translate="global.messages.info.register" translate-compile>
-                    You don't have an account yet? <a class="alert-link" ui-sref="register">Register a new account</a>
-                </div>
-            </div>
-
-            <p data-translate="home.question">
-                If you have any question on JHipster:
-            </p>
-
-            <ul>
-                <li><a href="http://jhipster.github.io/" target="_blank" data-translate="home.link.homepage">JHipster homepage</a></li>
-                <li><a href="http://stackoverflow.com/tags/jhipster/info" target="_blank" data-translate="home.link.stackoverflow">JHipster on Stack Overflow</a></li>
-                <li><a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank" data-translate="home.link.bugtracker">JHipster bug tracker</a></li>
-                <li><a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" data-translate="home.link.chat">JHipster public chat room</a></li>
-                <li><a href="https://twitter.com/java_hipster" target="_blank"  data-translate="home.link.follow">follow @java_hipster on Twitter</a></li>
-            </ul>
-
-            <p>
-             <span data-translate="home.like">If you like JHipster, don't forget to give us a star on </span>&nbsp;<a href="https://github.com/jhipster/generator-jhipster" target="_blank" data-translate="home.github">Github</a>!
-            </p>
-
-        </div>
+      </p>
+      <p><button ng-click="vm.regenerate()">Regenerate</button><button ng-click="vm.doRegeneration=false">Change Model</button></p>
     </div>
-
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-</div> -->
+  </div>
+</div>

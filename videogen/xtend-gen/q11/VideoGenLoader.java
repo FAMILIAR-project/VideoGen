@@ -48,6 +48,8 @@ public class VideoGenLoader {
    */
   public void saveVideoGenerator(final URI uri, final VideoGeneratorModel pollS) {
     try {
+      VideoGenStandaloneSetupGenerated _videoGenStandaloneSetupGenerated = new VideoGenStandaloneSetupGenerated();
+      _videoGenStandaloneSetupGenerated.createInjectorAndDoEMFRegistration();
       ResourceSetImpl _resourceSetImpl = new ResourceSetImpl();
       Resource rs = _resourceSetImpl.createResource(uri);
       EList<EObject> _contents = rs.getContents();

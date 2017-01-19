@@ -13,6 +13,7 @@ import org.xtext.example.mydsl.videoGen.VideoDescription
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 import q8.VideoReparator
 import java.nio.file.Paths
+import org.xtext.example.mydsl.videoGen.impl.VideoGenFactoryImpl
 
 /**
  * Check VideoGenModel
@@ -34,7 +35,8 @@ public class VideoGenLoader {
 	 * Save
 	 */
 	def saveVideoGenerator(URI uri, VideoGeneratorModel pollS) {
-		var Resource rs = new ResourceSetImpl().createResource(uri); 
+		new VideoGenStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()
+		var Resource rs = (new ResourceSetImpl()).createResource(uri); 
 		rs.getContents.add(pollS); 
 		rs.save(new HashMap());
 	}
