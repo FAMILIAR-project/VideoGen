@@ -122,7 +122,7 @@ class M3uRep {
 			content.append("#EXT-X-ENDLIST" + "\n")
 		}
 		// println(content.toString)
-		Operations.writeToFile("m3u", content.toString)
+		Operations.writeToFile("m3u.txt", content.toString)
 		content.toString
 	}
 

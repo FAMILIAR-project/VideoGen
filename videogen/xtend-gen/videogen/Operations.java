@@ -7,7 +7,7 @@ import org.eclipse.xtext.xbase.lib.Exceptions;
 public class Operations {
   public static void writeToFile(final String filename, final String content) {
     try {
-      final FileWriter writer = new FileWriter((filename + ".txt"));
+      final FileWriter writer = new FileWriter(filename);
       writer.write(content);
       writer.flush();
       writer.close();
@@ -18,8 +18,8 @@ public class Operations {
   
   public static void execCommandFFmpeg(final String path, final String name) {
     try {
-      String command = ((((("ffmpeg -i " + path) + " -vcodec mjpeg -vframes 1 -an -f rawvideo -s 640x360 -ss 3 ") + 
-        "resources/") + name) + ".jpg");
+      String command = (((("ffmpeg -i " + path) + " -vcodec mjpeg -vframes 1 -an -f rawvideo -s 640x360 -ss 3 ") + name) + 
+        ".jpg");
       Runtime _runtime = Runtime.getRuntime();
       Process p = _runtime.exec(command);
       p.waitFor();

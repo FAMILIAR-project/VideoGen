@@ -205,7 +205,7 @@ public class M3uRep {
         content.append(("#EXT-X-ENDLIST" + "\n"));
       }
       String _string = content.toString();
-      Operations.writeToFile("m3u", _string);
+      Operations.writeToFile("m3u.txt", _string);
       _xblockexpression = content.toString();
     }
     return _xblockexpression;

@@ -11,7 +11,6 @@ import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated
 import org.eclipse.emf.common.util.URI
 import org.xtext.example.mydsl.playlist.Playlist
 import org.xtext.example.mydsl.playlist.PlaylistFactory
-import org.xtext.example.mydsl.videoGen.impl.VideoSeqImpl
 
 class FFmpegRep {
 
@@ -68,18 +67,19 @@ class FFmpegRep {
 		playList
 	}
 
-// qst4
+	// qst4
 	def static playlistToFFMPEG(Playlist playlist) {
 		val content = new StringBuffer
 		playlist.videos.forEach [ video |
 			content.append('file \'' + video.path + "\'\n")
 		]
 
-		Operations.writeToFile("ffmpeg", content.toString)
+		Operations.writeToFile("ffmpeg.txt", content.toString)
 		println(content)
 		content.toString
 	}
 
+	// qst 9
 	def static void generateThumbnail(VideoGeneratorModel videoGen) {
 
 		for (videoseq : videoGen.videoseqs) {
@@ -87,13 +87,13 @@ class FFmpegRep {
 				val desc = (videoseq as MandatoryVideoSeq).description
 				// println(desc.location)
 				if (!desc.videoid.isNullOrEmpty) {
-					Operations.execCommandFFmpeg(desc.location, desc.videoid)
+					Operations.execCommandFFmpeg(desc.location, desc.location)
 				}
 			} else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
 				// println(desc.location)
 				if (!desc.videoid.isNullOrEmpty) {
-					Operations.execCommandFFmpeg(desc.location, desc.videoid)
+					Operations.execCommandFFmpeg(desc.location, desc.location)
 
 				}
 			} else {
@@ -102,7 +102,7 @@ class FFmpegRep {
 					for (vdesc : altvid.videodescs) {
 						if (!vdesc.videoid.isNullOrEmpty) {
 							// println(vdesc.location)
-							Operations.execCommandFFmpeg(vdesc.location, vdesc.videoid)
+							Operations.execCommandFFmpeg(vdesc.location, vdesc.location)
 						}
 					}
 				}
@@ -110,11 +110,51 @@ class FFmpegRep {
 		}
 	}
 
+	def static void generateWebPage(VideoGeneratorModel videoGen) {
+		val contentMondatory = new StringBuffer
+		val contentOptionals = new StringBuffer
+		val contentAlt = new StringBuffer
+		contentMondatory.append("<h3>Mondatory : </h3><ul></br>")
+		contentOptionals.append("<h3>Optionals : </h3><ul></br>")
+		contentAlt.append("<h3>Alternatives : </h3><ul></br>")
+		for (videoseq : videoGen.videoseqs) {
+			if (videoseq instanceof MandatoryVideoSeq) {
+				val desc = (videoseq as MandatoryVideoSeq).description
+				if (!desc.videoid.isNullOrEmpty) {
+					contentMondatory.append("<li><img src=\"" + desc.location + ".jpg\" alt=\"" + desc.location +
+						"\"/></li>")
+				}
+			} else if (videoseq instanceof OptionalVideoSeq) {
+				val desc = (videoseq as OptionalVideoSeq).description
+				if (!desc.videoid.isNullOrEmpty) {
+					contentOptionals.append("<li><img src=\"" + desc.location + ".jpg\" alt=\"" + desc.location +
+						"\"/></li>")
+				}
+			} else {
+				val altvid = (videoseq as AlternativeVideoSeq)
+				if (!altvid.videoid.isNullOrEmpty) {
+					for (vdesc : altvid.videodescs) {
+						if (!vdesc.videoid.isNullOrEmpty) {
+							contentAlt.append("<li><img src=\"" + vdesc.location + ".jpg\" alt=\"" + vdesc.location +
+								"\"/></li>")
+						}
+					}
+				}
+			}
+		}
+		contentMondatory.append("</ul></br></br>")
+		contentOptionals.append("</ul></br></br>")
+		contentAlt.append("</ul>")
+		var content = contentMondatory.toString + contentOptionals.toString + contentAlt.toString
+		Operations.writeToFile("webPage.html", content)
+	}
+
 	def static void main(String[] args) {
 		// var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen"))
 		var videoGen = loadVideoGenerator(URI.createURI("videos.videogen"))
 //		playlistToFFMPEG(videoToPlaylist(videoGen))
-		generateThumbnail(videoGen)
+//		generateThumbnail(videoGen)
+		generateWebPage(videoGen)
 	// printToHTML(videoGen)
 	}
 }
