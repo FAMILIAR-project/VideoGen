@@ -146,7 +146,9 @@ class IdmUtil {
 			if (videoseq instanceof OptionalVideoSeq) {
 				// test probability
 				var probability = videoseq.description.probability
-				assertFalse(probability < 0 && probability > 100 && probability + probabilitiesSum > 100)
+				assertFalse(probability < 0)
+				assertFalse(probability > 100)
+				assertFalse(probability + probabilitiesSum > 100)
 				probabilitiesSum += probability
 				
 				// test location
@@ -186,8 +188,7 @@ class IdmUtil {
 		   stringBuilder.append(line);
 		}
 		var resultString = stringBuilder.toString();
-		println(resultString)
-		
+
 		// parse to double
 		return Double.parseDouble(resultString)
 	}

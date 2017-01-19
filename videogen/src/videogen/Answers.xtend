@@ -11,7 +11,7 @@ import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 
 import static org.junit.Assert.*
 
-class VideoDemonstrator {
+class Answers {
 
 	@Test
 	def test1() {
@@ -82,7 +82,7 @@ class VideoDemonstrator {
 			}
 		}
 
-		IdmUtil.createFile("playlist-files-gen/quest2Ffmpeg.txt", ffmpegStr)
+		IdmUtil.createFile("quest_files_gen/quest2Ffmpeg.txt", ffmpegStr)
 	}
 	
 	@Test
@@ -104,7 +104,7 @@ class VideoDemonstrator {
 		}
 		
 		// create file
-		IdmUtil.createFile("playlist-files-gen/quest3.m3u", m3uString)
+		IdmUtil.createFile("quest_files_gen/quest3.m3u", m3uString)
 	}
 	
 	@Test
@@ -125,7 +125,7 @@ class VideoDemonstrator {
 		}
 		
 		// create file
-		IdmUtil.createFile("playlist-files-gen/quest4Ffmpeg.txt", ffmpegStr)
+		IdmUtil.createFile("quest_files_gen/quest4Ffmpeg.txt", ffmpegStr)
 	}
 	
 	@Test
@@ -148,7 +148,7 @@ class VideoDemonstrator {
 		}
 		
 		// create file
-		IdmUtil.createFile("playlist-files-gen/quest8.m3u", m3uString)
+		IdmUtil.createFile("quest_files_gen/quest8.m3u", m3uString)
 	}
 	
 	@Test
@@ -203,7 +203,7 @@ class VideoDemonstrator {
 		
 		html += "</html></body>"
 		// create file
-		IdmUtil.createFile("playlist-files-gen/quest9_10.html", html)
+		IdmUtil.createFile("quest_files_gen/quest9_10.html", html)
 	}
 	
 	@Test
@@ -293,7 +293,7 @@ class VideoDemonstrator {
 		
 		html += "</html></body>"
 		// create file
-		IdmUtil.createFile("playlist-files-gen/quest11.html", html)
+		IdmUtil.createFile("quest_files_gen/quest11.html", html)
 	}
 	
 	@Test
