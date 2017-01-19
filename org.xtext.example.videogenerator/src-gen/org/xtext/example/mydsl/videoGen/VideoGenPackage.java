@@ -316,13 +316,107 @@ public interface VideoGenPackage extends EPackage
   int VIDEO_DESCRIPTION__DESCRIPTION = 5;
 
   /**
+   * The feature id for the '<em><b>Filter</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VIDEO_DESCRIPTION__FILTER = 6;
+
+  /**
    * The number of structural features of the '<em>Video Description</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int VIDEO_DESCRIPTION_FEATURE_COUNT = 6;
+  int VIDEO_DESCRIPTION_FEATURE_COUNT = 7;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.videoGen.impl.FilterImpl <em>Filter</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.videoGen.impl.FilterImpl
+   * @see org.xtext.example.mydsl.videoGen.impl.VideoGenPackageImpl#getFilter()
+   * @generated
+   */
+  int FILTER = 7;
+
+  /**
+   * The number of structural features of the '<em>Filter</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FILTER_FEATURE_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.videoGen.impl.BlackWhiteFilterImpl <em>Black White Filter</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.videoGen.impl.BlackWhiteFilterImpl
+   * @see org.xtext.example.mydsl.videoGen.impl.VideoGenPackageImpl#getBlackWhiteFilter()
+   * @generated
+   */
+  int BLACK_WHITE_FILTER = 8;
+
+  /**
+   * The number of structural features of the '<em>Black White Filter</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BLACK_WHITE_FILTER_FEATURE_COUNT = FILTER_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.videoGen.impl.NegateFilterImpl <em>Negate Filter</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.videoGen.impl.NegateFilterImpl
+   * @see org.xtext.example.mydsl.videoGen.impl.VideoGenPackageImpl#getNegateFilter()
+   * @generated
+   */
+  int NEGATE_FILTER = 9;
+
+  /**
+   * The number of structural features of the '<em>Negate Filter</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEGATE_FILTER_FEATURE_COUNT = FILTER_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.videoGen.impl.FlipFilterImpl <em>Flip Filter</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.videoGen.impl.FlipFilterImpl
+   * @see org.xtext.example.mydsl.videoGen.impl.VideoGenPackageImpl#getFlipFilter()
+   * @generated
+   */
+  int FLIP_FILTER = 10;
+
+  /**
+   * The feature id for the '<em><b>Orientation</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FLIP_FILTER__ORIENTATION = FILTER_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Flip Filter</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FLIP_FILTER_FEATURE_COUNT = FILTER_FEATURE_COUNT + 1;
 
 
   /**
@@ -561,6 +655,68 @@ public interface VideoGenPackage extends EPackage
   EAttribute getVideoDescription_Description();
 
   /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.videoGen.VideoDescription#getFilter <em>Filter</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Filter</em>'.
+   * @see org.xtext.example.mydsl.videoGen.VideoDescription#getFilter()
+   * @see #getVideoDescription()
+   * @generated
+   */
+  EReference getVideoDescription_Filter();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.videoGen.Filter <em>Filter</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Filter</em>'.
+   * @see org.xtext.example.mydsl.videoGen.Filter
+   * @generated
+   */
+  EClass getFilter();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.videoGen.BlackWhiteFilter <em>Black White Filter</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Black White Filter</em>'.
+   * @see org.xtext.example.mydsl.videoGen.BlackWhiteFilter
+   * @generated
+   */
+  EClass getBlackWhiteFilter();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.videoGen.NegateFilter <em>Negate Filter</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Negate Filter</em>'.
+   * @see org.xtext.example.mydsl.videoGen.NegateFilter
+   * @generated
+   */
+  EClass getNegateFilter();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.videoGen.FlipFilter <em>Flip Filter</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Flip Filter</em>'.
+   * @see org.xtext.example.mydsl.videoGen.FlipFilter
+   * @generated
+   */
+  EClass getFlipFilter();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.videoGen.FlipFilter#getOrientation <em>Orientation</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Orientation</em>'.
+   * @see org.xtext.example.mydsl.videoGen.FlipFilter#getOrientation()
+   * @see #getFlipFilter()
+   * @generated
+   */
+  EAttribute getFlipFilter_Orientation();
+
+  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -772,6 +928,62 @@ public interface VideoGenPackage extends EPackage
      * @generated
      */
     EAttribute VIDEO_DESCRIPTION__DESCRIPTION = eINSTANCE.getVideoDescription_Description();
+
+    /**
+     * The meta object literal for the '<em><b>Filter</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference VIDEO_DESCRIPTION__FILTER = eINSTANCE.getVideoDescription_Filter();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.videoGen.impl.FilterImpl <em>Filter</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.videoGen.impl.FilterImpl
+     * @see org.xtext.example.mydsl.videoGen.impl.VideoGenPackageImpl#getFilter()
+     * @generated
+     */
+    EClass FILTER = eINSTANCE.getFilter();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.videoGen.impl.BlackWhiteFilterImpl <em>Black White Filter</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.videoGen.impl.BlackWhiteFilterImpl
+     * @see org.xtext.example.mydsl.videoGen.impl.VideoGenPackageImpl#getBlackWhiteFilter()
+     * @generated
+     */
+    EClass BLACK_WHITE_FILTER = eINSTANCE.getBlackWhiteFilter();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.videoGen.impl.NegateFilterImpl <em>Negate Filter</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.videoGen.impl.NegateFilterImpl
+     * @see org.xtext.example.mydsl.videoGen.impl.VideoGenPackageImpl#getNegateFilter()
+     * @generated
+     */
+    EClass NEGATE_FILTER = eINSTANCE.getNegateFilter();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.videoGen.impl.FlipFilterImpl <em>Flip Filter</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.videoGen.impl.FlipFilterImpl
+     * @see org.xtext.example.mydsl.videoGen.impl.VideoGenPackageImpl#getFlipFilter()
+     * @generated
+     */
+    EClass FLIP_FILTER = eINSTANCE.getFlipFilter();
+
+    /**
+     * The meta object literal for the '<em><b>Orientation</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FLIP_FILTER__ORIENTATION = eINSTANCE.getFlipFilter_Orientation();
 
   }
 

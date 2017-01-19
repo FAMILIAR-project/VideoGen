@@ -124,6 +124,37 @@ public class VideoGenSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case VideoGenPackage.FILTER:
+      {
+        Filter filter = (Filter)theEObject;
+        T result = caseFilter(filter);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case VideoGenPackage.BLACK_WHITE_FILTER:
+      {
+        BlackWhiteFilter blackWhiteFilter = (BlackWhiteFilter)theEObject;
+        T result = caseBlackWhiteFilter(blackWhiteFilter);
+        if (result == null) result = caseFilter(blackWhiteFilter);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case VideoGenPackage.NEGATE_FILTER:
+      {
+        NegateFilter negateFilter = (NegateFilter)theEObject;
+        T result = caseNegateFilter(negateFilter);
+        if (result == null) result = caseFilter(negateFilter);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case VideoGenPackage.FLIP_FILTER:
+      {
+        FlipFilter flipFilter = (FlipFilter)theEObject;
+        T result = caseFlipFilter(flipFilter);
+        if (result == null) result = caseFilter(flipFilter);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       default: return defaultCase(theEObject);
     }
   }
@@ -236,6 +267,70 @@ public class VideoGenSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseVideoDescription(VideoDescription object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Filter</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Filter</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFilter(Filter object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Black White Filter</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Black White Filter</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseBlackWhiteFilter(BlackWhiteFilter object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Negate Filter</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Negate Filter</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseNegateFilter(NegateFilter object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Flip Filter</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Flip Filter</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFlipFilter(FlipFilter object)
   {
     return null;
   }

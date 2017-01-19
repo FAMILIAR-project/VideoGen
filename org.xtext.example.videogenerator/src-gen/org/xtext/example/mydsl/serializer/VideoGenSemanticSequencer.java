@@ -16,7 +16,10 @@ import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequence
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import org.xtext.example.mydsl.services.VideoGenGrammarAccess;
 import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq;
+import org.xtext.example.mydsl.videoGen.BlackWhiteFilter;
+import org.xtext.example.mydsl.videoGen.FlipFilter;
 import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq;
+import org.xtext.example.mydsl.videoGen.NegateFilter;
 import org.xtext.example.mydsl.videoGen.OptionalVideoSeq;
 import org.xtext.example.mydsl.videoGen.VideoDescription;
 import org.xtext.example.mydsl.videoGen.VideoGenInformation;
@@ -40,8 +43,17 @@ public class VideoGenSemanticSequencer extends AbstractDelegatingSemanticSequenc
 			case VideoGenPackage.ALTERNATIVE_VIDEO_SEQ:
 				sequence_AlternativeVideoSeq(context, (AlternativeVideoSeq) semanticObject); 
 				return; 
+			case VideoGenPackage.BLACK_WHITE_FILTER:
+				sequence_BlackWhiteFilter(context, (BlackWhiteFilter) semanticObject); 
+				return; 
+			case VideoGenPackage.FLIP_FILTER:
+				sequence_FlipFilter(context, (FlipFilter) semanticObject); 
+				return; 
 			case VideoGenPackage.MANDATORY_VIDEO_SEQ:
 				sequence_MandatoryVideoSeq(context, (MandatoryVideoSeq) semanticObject); 
+				return; 
+			case VideoGenPackage.NEGATE_FILTER:
+				sequence_NegateFilter(context, (NegateFilter) semanticObject); 
 				return; 
 			case VideoGenPackage.OPTIONAL_VIDEO_SEQ:
 				sequence_OptionalVideoSeq(context, (OptionalVideoSeq) semanticObject); 
@@ -75,6 +87,32 @@ public class VideoGenSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	
 	/**
 	 * Contexts:
+	 *     Filter returns BlackWhiteFilter
+	 *     BlackWhiteFilter returns BlackWhiteFilter
+	 *
+	 * Constraint:
+	 *     {BlackWhiteFilter}
+	 */
+	protected void sequence_BlackWhiteFilter(ISerializationContext context, BlackWhiteFilter semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Filter returns FlipFilter
+	 *     FlipFilter returns FlipFilter
+	 *
+	 * Constraint:
+	 *     (orientation='h' | orientation='horizontal' | orientation='v' | orientation='vertical')
+	 */
+	protected void sequence_FlipFilter(ISerializationContext context, FlipFilter semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     VideoSeq returns MandatoryVideoSeq
 	 *     MandatoryVideoSeq returns MandatoryVideoSeq
 	 *
@@ -89,6 +127,19 @@ public class VideoGenSemanticSequencer extends AbstractDelegatingSemanticSequenc
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getMandatoryVideoSeqAccess().getDescriptionVideoDescriptionParserRuleCall_1_0(), semanticObject.getDescription());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Filter returns NegateFilter
+	 *     NegateFilter returns NegateFilter
+	 *
+	 * Constraint:
+	 *     {NegateFilter}
+	 */
+	protected void sequence_NegateFilter(ISerializationContext context, NegateFilter semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -122,7 +173,8 @@ public class VideoGenSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *         duration=INT? 
 	 *         probability=INT? 
 	 *         size=INT? 
-	 *         description=STRING?
+	 *         description=STRING? 
+	 *         filter=Filter?
 	 *     )
 	 */
 	protected void sequence_VideoDescription(ISerializationContext context, VideoDescription semanticObject) {

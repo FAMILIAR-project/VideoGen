@@ -27,8 +27,23 @@ VideoDescription : 'videoseq' (videoid=ID)? location=STRING
 	 ('probability' probability=INT)?
 	 ('size' size=INT)?
 	 ('description' description=STRING)? 
+	 ('filter' filter=Filter)?
 	RIGHT_BRACKET)?
 	
+;
+
+Filter : FlipFilter | NegateFilter | BlackWhiteFilter;
+
+BlackWhiteFilter: {BlackWhiteFilter}
+	'b&w'
+;
+
+NegateFilter: {NegateFilter}
+	'negate'
+;
+
+FlipFilter:
+	'flip' orientation=('h' | 'horizontal' | 'v' | 'vertical')
 ;
 
 terminal LEFT_BRACKET: '{' ; 

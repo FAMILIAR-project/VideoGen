@@ -110,6 +110,26 @@ public class VideoGenAdapterFactory extends AdapterFactoryImpl
         return createVideoDescriptionAdapter();
       }
       @Override
+      public Adapter caseFilter(Filter object)
+      {
+        return createFilterAdapter();
+      }
+      @Override
+      public Adapter caseBlackWhiteFilter(BlackWhiteFilter object)
+      {
+        return createBlackWhiteFilterAdapter();
+      }
+      @Override
+      public Adapter caseNegateFilter(NegateFilter object)
+      {
+        return createNegateFilterAdapter();
+      }
+      @Override
+      public Adapter caseFlipFilter(FlipFilter object)
+      {
+        return createFlipFilterAdapter();
+      }
+      @Override
       public Adapter defaultCase(EObject object)
       {
         return createEObjectAdapter();
@@ -232,6 +252,66 @@ public class VideoGenAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createVideoDescriptionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.videoGen.Filter <em>Filter</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.videoGen.Filter
+   * @generated
+   */
+  public Adapter createFilterAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.videoGen.BlackWhiteFilter <em>Black White Filter</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.videoGen.BlackWhiteFilter
+   * @generated
+   */
+  public Adapter createBlackWhiteFilterAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.videoGen.NegateFilter <em>Negate Filter</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.videoGen.NegateFilter
+   * @generated
+   */
+  public Adapter createNegateFilterAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.videoGen.FlipFilter <em>Flip Filter</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.videoGen.FlipFilter
+   * @generated
+   */
+  public Adapter createFlipFilterAdapter()
   {
     return null;
   }

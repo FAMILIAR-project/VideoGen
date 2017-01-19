@@ -34,5 +34,13 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="probability" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="filter" eType="#//Filter"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Filter"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BlackWhiteFilter" eSuperTypes="#//Filter"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NegateFilter" eSuperTypes="#//Filter"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FlipFilter" eSuperTypes="#//Filter">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="orientation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>
