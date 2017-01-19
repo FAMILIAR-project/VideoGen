@@ -75,7 +75,9 @@ public class ConvOverConf {
 			outputVidegen.write(videogen.toString());
 			outputVidegen.flush();
 			outputVidegen.close();
+			System.out.println("[SUCCES] Spécification VideoGen : " + output.getAbsolutePath());
 		} catch (IOException e) {
+			System.out.println("[ERROR] Spécification VideoGen");
 			e.printStackTrace();
 		}
 	}
