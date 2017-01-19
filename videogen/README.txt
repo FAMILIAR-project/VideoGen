@@ -35,6 +35,17 @@ Les vidéos sur lesquelles on fait nos tests sont un dossier à la racine :
                 |-------------------------|             |------------------------------------------------|  
 
 
+
+----------------------------
+Remarques sur la Question 2
+----------------------------  
+Pour cette question on a crée un nouveau projet pour la playlist où on a définit le méta_model de cette playlist:
+
+                |-------------------------| Emplacement |------------------------------------------------|
+                |     playlist.ecore      =============>projet idm Q2/projet idm Q2/src/playlist.ecore
+                |-------------------------|             |------------------------------------------------|  
+ 
+
 ----------------------------
 Réponse de la Question 6 
 ----------------------------
