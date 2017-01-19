@@ -21,10 +21,11 @@ public class Command {
 	}
 	
 	public void text(String location, String name, String sometext) throws IOException, InterruptedException{
-		String commandText = "ffmpeg -i " + location + " -vf drawtext=\"fontfile=/path/to/font.ttf: text=\'"+sometext+ "\': fontcolor=white: fontsize=24: box=1: boxcolor=black@0.5: boxborderw=5: x=(w-text_w)/2: y=(h-text_h)/2\" -codec:a copy "+ name+".mp4";
+		String commandText = "ffmpeg -i " + location + " -vf drawtext=fontfile=/path/to/font.ttf:text=\'"+sometext+ "\': fontcolor=white:fontsize=24:box=1:boxcolor=black@0.5:boxborderw=5:x=(w-text_w)/2:y=(h-text_h)/2 -codec:a copy "+ name+".mp4";
 		System.out.println(commandText);
 		Process p = Runtime.getRuntime().exec(commandText);
 		p.waitFor();
+		println(p.exitValue);
 	}
 
 }
