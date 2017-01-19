@@ -8,7 +8,19 @@ A configurable generator of generator of video variants
 
 `videogen` is a Java/Xtend project that uses the Xtext project and shows how to transform a VideoGen transformation. 
 
+---------------------------------------------------
+
+M2 MIAGE students: Kaoutar Bennouna & Pierre-A. Totaro
+
 Questions 1 to 13 OK with Junit test
+
+Some examples:
+
+![alt tag](videogen/4bis.PNG)
+
+![alt tag](videogen/4.PNG)
+
+![alt tag](videogen/5.PNG)
 
 
 Project 1: Text inside Video
