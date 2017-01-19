@@ -23,47 +23,37 @@ import videogen.EnhancedVideoGen;
 @RestController
 @RequestMapping("/api")
 public class VideoGen {
-	
+
 	Logger logger = LoggerFactory.getLogger(VideoGen.class);
-	
-	@RequestMapping(value = "video-gen",
-			method=RequestMethod.GET,
-			produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Playlist> getPlaylist()
-	{
+
+	@RequestMapping(value = "video-gen", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Playlist> getPlaylist() {
 		try {
-			String specification = Files.readLines(new File("mastaconcat.videogen"), Charsets.UTF_8).stream().collect(Collectors.joining());
-			return new ResponseEntity<Playlist>(EnhancedVideoGen.main(new String[] {specification}),
-					HttpStatus.OK);
+			String specification = Files.readLines(new File("mastaconcat.videogen"), Charsets.UTF_8).stream()
+					.collect(Collectors.joining());
+			return new ResponseEntity<Playlist>(EnhancedVideoGen.main(new String[] { specification }), HttpStatus.OK);
 		} catch (IOException e) {
 			logger.error(e.getMessage(), e);
 		}
-		
+
 		return new ResponseEntity<Playlist>(HttpStatus.INTERNAL_SERVER_ERROR);
-		
+
 	}
-	
-	@RequestMapping(value = "video-gen/specification",
-			method=RequestMethod.POST,
-			produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Playlist> getPlaylist(@RequestBody String specification)
-	{
-		return new ResponseEntity<Playlist>(EnhancedVideoGen.main(new String[] {specification}),
-				HttpStatus.OK);
+
+	@RequestMapping(value = "video-gen/specification", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Playlist> getPlaylist(@RequestBody String specification) {
+		return new ResponseEntity<Playlist>(EnhancedVideoGen.main(new String[] { specification }), HttpStatus.OK);
 	}
-	
-	@RequestMapping(value = "video-gen/configurateur",
-			method=RequestMethod.GET,
-			produces=MediaType.APPLICATION_XHTML_XML_VALUE)
-	public ResponseEntity<String> getConfigurateur(@RequestBody(required=false) String specification)
-	{
+
+	@RequestMapping(value = "video-gen/configurateur", method = RequestMethod.GET, produces = MediaType.APPLICATION_XHTML_XML_VALUE)
+	public ResponseEntity<String> getConfigurateur(@RequestBody(required = false) String specification) {
 		try {
-			specification = Files.readLines(new File("mastaconcat.videogen"), Charsets.UTF_8).stream().collect(Collectors.joining());
+			specification = Files.readLines(new File("mastaconcat.videogen"), Charsets.UTF_8).stream()
+					.collect(Collectors.joining());
 		} catch (IOException e) {
 			logger.error(e.getMessage(), e);
 		}
-		if(!(new File("videogen.css")).exists())
-		{
+		if (!(new File("videogen.css")).exists()) {
 			try {
 				Files.write(EnhancedVideoGen.getCssFile(), new File("videogen.css"), Charsets.UTF_8);
 			} catch (IOException e) {

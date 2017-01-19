@@ -109,7 +109,6 @@ class ConcatFFMPEG {
 		else{
 			println("Erreur dans l'écriture du résultat")
 			println(cmd)
-			val es = process.errorStream
 		}
 		return
 	}

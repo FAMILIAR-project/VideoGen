@@ -1,28 +1,31 @@
 package videogen
 
+import java.io.BufferedReader
+import java.io.ByteArrayInputStream
+import java.io.File
+import java.io.InputStreamReader
+import java.io.PrintWriter
 import java.nio.file.Files
 import java.nio.file.Paths
+import java.util.ArrayList
 import java.util.Collections
 import java.util.HashMap
+import java.util.List
 import java.util.Random
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated
 import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq
+import org.xtext.example.mydsl.videoGen.BlackWhiteFilter
+import org.xtext.example.mydsl.videoGen.FlipFilter
 import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq
+import org.xtext.example.mydsl.videoGen.NegateFilter
 import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
-import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
-import playlist.PlaylistFactory
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.io.File
-import java.io.PrintWriter
 import org.xtext.example.mydsl.videoGen.VideoDescription
-import java.util.ArrayList
-import java.util.List
+import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 import playlist.Playlist
-import java.io.ByteArrayInputStream
+import playlist.PlaylistFactory
 
 class EnhancedVideoGen {
 	def static loadVideoGenerator(String specification) {
@@ -62,6 +65,8 @@ class EnhancedVideoGen {
 
 		println("Création de la playlist...")
 		videoGen.videoseqs.forEach [ videoseq |
+			var String filtered = null
+			
 			if (videoseq instanceof MandatoryVideoSeq) {
 				// Test la présence d'un ID
 				if(videoseq.description.videoid.isNullOrEmpty) videoseq.description.videoid = genID()
@@ -76,6 +81,16 @@ class EnhancedVideoGen {
 				}
 				// Enregistrement d'une image pour la vidéo
 				mediafile.thumbnail = extractThumbnail(videoseq.description.location, videoseq.description.videoid)
+				
+				// enregistrement du filtre et remplacement de la vidéo s'il y en a un
+				val desc = (videoseq as MandatoryVideoSeq).description
+				if(desc.filter != null){
+					filtered = applyFilter(desc)
+				}
+				if(filtered != null){
+					mediafile.url = filtered
+				}
+				
 				// Ajout de la vidéo à la playlist
 				playlist.videos.add(mediafile)
 			}
@@ -90,6 +105,15 @@ class EnhancedVideoGen {
 						mediafile.duration = videoseq.description.duration
 					}
 					mediafile.thumbnail = extractThumbnail(videoseq.description.location, videoseq.description.videoid)
+					
+					val desc = (videoseq as OptionalVideoSeq).description
+					if(desc.filter != null){
+						filtered = applyFilter(desc)
+					}
+					if(filtered != null){
+						mediafile.url = filtered
+					}
+					
 					playlist.videos.add(mediafile)
 				}
 			}
@@ -112,6 +136,15 @@ class EnhancedVideoGen {
 					mediafile.duration = listAlt.get(quicesera).duration
 				}
 				mediafile.thumbnail = extractThumbnail(listAlt.get(quicesera).location, listAlt.get(quicesera).videoid)
+				
+				val desc = listAlt.get(quicesera)
+				if(desc.filter != null){
+					filtered = applyFilter(desc)
+				}
+				if(filtered != null){
+					mediafile.url = filtered
+				}
+				
 				playlist.videos.add(mediafile)
 			}
 		]
@@ -153,10 +186,11 @@ class EnhancedVideoGen {
 	 * @param name nom de l'image
 	 */
 	def private static extractThumbnail(String location, String name) {
-		var cmd = "ffmpeg -i %s -ss 00:00:01.000 -vframes 1 " + "thumbnails/%s.jpg -y"
+		val thumbnailsDir = "src/main/webapp/thumbnails"
+		var cmd = "ffmpeg -i %s -ss 00:00:01.000 -vframes 1 " + thumbnailsDir + "/%s.jpg -y"
 		cmd = String.format(cmd, location, name)
-		if (!Files.exists(Paths.get("thumbnails"))) {
-			Files.createDirectory(Paths.get("thumbnails"))
+		if (!Files.exists(Paths.get(thumbnailsDir))) {
+			Files.createDirectory(Paths.get(thumbnailsDir))
 		}
 		val process = Runtime.runtime.exec(String.format(cmd, location))
 		process.waitFor
@@ -412,6 +446,73 @@ padding : 0;
 		}
 
 		return error.code
+	}
+	
+	/**
+	 * A partir d'une VideoDescription, si elle contient un filtre : enregistre la vidéo avec le filtre
+	 * Retourne le chemin de la nouvelle vidéo
+	 * Retourne null en cas d'erreur ou si la vidéo n'a pas de filtre
+	 */
+	def static applyFilter(VideoDescription desc) {
+		val filter = desc.filter
+		if(filter != null){
+			val input = desc.location
+			val inputFile = new File(input)
+			if(!inputFile.exists){
+				return null
+			}
+			
+			val outputBasename = inputFile.name.substring(0, inputFile.name.lastIndexOf('.'))
+			val outputExtension = inputFile.name.substring(inputFile.name.lastIndexOf('.'))
+			
+			var String outputName = null
+			var String filtre = null
+			
+			if(filter instanceof FlipFilter){
+				val flip = filter as FlipFilter
+				if(flip.orientation.equalsIgnoreCase("h") 
+					|| flip.orientation.equalsIgnoreCase("horizontal")){
+					
+					outputName = outputBasename + "_hflip" + outputExtension
+					filtre = "-vf hflip"
+				
+				}else if(flip.orientation.equalsIgnoreCase("v") 
+					|| flip.orientation.equalsIgnoreCase("vertical")){
+					
+					outputName = outputBasename + "_hflip" + outputExtension
+					filtre = "-vf vflip"
+					
+				}
+			}else if(filter instanceof NegateFilter){
+				
+				outputName = outputBasename + "_negate" + outputExtension
+				filtre = "-vf negate"
+				
+			}else if(filter instanceof BlackWhiteFilter){
+				
+				outputName = outputBasename + "_bw" + outputExtension
+				filtre = "-vf hue=s=0"
+				
+			}
+			
+			if(outputName != null && filtre != null){
+				val filteredDir = new File(inputFile.parentFile, "filtered")
+				filteredDir.mkdirs
+				val outputPath = filteredDir.path + "/" + outputName
+				
+				if(!(new File(outputPath)).exists){
+					val cmd = "ffmpeg -i "+ input + " " + filtre + " " + outputPath
+					println("Applique le filtre sur : "+input)
+					println(cmd)
+					val process = Runtime.runtime.exec(cmd)
+					process.waitFor
+					println("Enregistré dans : "+outputPath)
+				}
+				
+				return outputPath
+			}
+		}
+		return null
 	}
 
 }
