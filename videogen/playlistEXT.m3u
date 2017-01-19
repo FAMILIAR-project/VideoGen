@@ -1,10 +1,10 @@
 #EXTM3U 
 #EXT-X-DISCONTINUITY
 #EXTINF:16.0
-Video/1.wmv
+2Video/1.wmv
 #EXT-X-DISCONTINUITY
 #EXTINF:20.0
-Video/2.wmv
+2Video/2.wmv
 #EXT-X-DISCONTINUITY
 #EXTINF:18.0
-Video/31.wmv
+2Video/31.wmv

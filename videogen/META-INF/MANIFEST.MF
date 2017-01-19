@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Videogen
-Bundle-SymbolicName: videogen
+Bundle-Name: VideoGenerator
+Bundle-SymbolicName: VideoGenerator
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: videogen.Activator
 Require-Bundle: org.eclipse.ui,

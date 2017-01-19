@@ -4,6 +4,8 @@ A configurable generator of generator of video variants
 
 See more on https://github.com/acherm/teaching-MDE1617
 
+See all features in src/videogen/VideoDemonstrator.xtend
+
 ## Feature Model - Question 14
 fmGen = FM (VideoGenerator: Mode; Mode: (Random|Probability|Configurator); Configurator: (WithRandom|WithProbability); ) 
 
@@ -18,4 +20,6 @@ Depending on the type of configuration, the Jhipster command start :
 - For the Probability Mode : a website with a generator button who generate playlist depending on the probability.
 - For the Configurator Mode : a website with a drop-down list to choose the random or the probability mode.
  
+
+## Project Add Text in video and generate GIF. Show in VideoDemonstrator.xtend
 
