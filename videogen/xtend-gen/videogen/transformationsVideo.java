@@ -928,7 +928,7 @@ public class transformationsVideo {
           this.creationVignette(desc, _divide, (desc + ".png"));
           InputOutput.<String>println(((("<li>" + "<img src=") + desc) + ".png/></li>"));
           writer.write(((("<li>" + "Mandatory<img src=") + desc) + ".png/></li>\n"));
-          writer2.write((("file \'" + desc) + "\'\n"));
+          writer2.write((("file \'src/main/webapp/" + desc) + "\'\n"));
         } else {
           if ((videoseq instanceof OptionalVideoSeq)) {
             VideoDescription _description_1 = ((OptionalVideoSeq) videoseq).getDescription();
@@ -942,7 +942,7 @@ public class transformationsVideo {
               this.creationVignette(desc_1, _divide_1, (desc_1 + ".png"));
               InputOutput.<String>println(((("<li>" + "<img src=") + desc_1) + ".png/></li>"));
               writer.write(((("<li>" + "Optional<img src=") + desc_1) + ".png/></li>\n"));
-              writer2.write((("file \'" + desc_1) + "\'\n"));
+              writer2.write((("file \'src/main/webapp/" + desc_1) + "\'\n"));
             }
           } else {
             final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
@@ -975,7 +975,7 @@ public class transformationsVideo {
             String _plus_5 = (_plus_4 + ".png/></li>\n");
             writer.write(_plus_5);
             String _location_5 = vaa.getLocation();
-            String _plus_6 = ("file \'" + _location_5);
+            String _plus_6 = ("file \'src/main/webapp/" + _location_5);
             String _plus_7 = (_plus_6 + "\'\n");
             writer2.write(_plus_7);
           }
@@ -988,7 +988,7 @@ public class transformationsVideo {
       writer.write("<ul>\n");
       writer.close();
       writer2.close();
-      String cmd = "ffmpeg -f concat -i ffmpegConcatFile -c copy output.mp4";
+      String cmd = "ffmpeg -f concat -i ffmpegConcatFile -c copy src/main/webapp/output.mp4";
       Runtime _runtime = Runtime.getRuntime();
       Process p = _runtime.exec(cmd);
       while (p.isAlive()) {

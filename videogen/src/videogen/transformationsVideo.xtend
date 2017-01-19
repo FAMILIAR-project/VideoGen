@@ -576,7 +576,7 @@ def void printToHTML() {
 				creationVignette(desc, calculDuree(desc).intValue / 2, desc + ".png")
 				println("<li>" + "<img src=" + desc + ".png/></li>")
 				writer.write("<li>" + "Mandatory<img src=" + desc + ".png/></li>\n")
-				writer2.write("file \'" + desc + "\'\n")
+				writer2.write("file \'src/main/webapp/" + desc + "\'\n")
 			} else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description.location
 				var proba = random.nextInt(2)
@@ -585,7 +585,7 @@ def void printToHTML() {
 					creationVignette(desc, calculDuree(desc).intValue / 2, desc + ".png")
 					println("<li>" + "<img src=" + desc + ".png/></li>")
 					writer.write("<li>" + "Optional<img src=" + desc + ".png/></li>\n")
-					writer2.write("file \'" + desc + "\'\n")
+					writer2.write("file \'src/main/webapp/" + desc + "\'\n")
 				}
 			} else {
 				val altvid = (videoseq as AlternativeVideoSeq)
@@ -598,7 +598,7 @@ def void printToHTML() {
 				creationVignette(vaa.location, calculDuree(vaa.location).intValue / 2, vaa.location + ".png")
 				println("<li>" + "<img src=" + vaa.location + ".png/></li>")
 				writer.write("<li>" + "Alternative<img src=" + vaa.location + ".png/></li>\n")
-				writer2.write("file \'" + vaa.location + "\'\n")
+				writer2.write("file \'src/main/webapp/" + vaa.location + "\'\n")
 			}
 			println("</ul>")
 			writer.write("</ul>\n")
@@ -608,7 +608,7 @@ def void printToHTML() {
 		writer.close()
 		writer2.close
 
-		var cmd = "ffmpeg -f concat -i ffmpegConcatFile -c copy output.mp4"
+		var cmd = "ffmpeg -f concat -i ffmpegConcatFile -c copy src/main/webapp/output.mp4"
 		var p = Runtime.runtime.exec(cmd)
 		while (p.alive)
 			if (!p.alive)

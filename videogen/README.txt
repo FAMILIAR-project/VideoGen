@@ -45,12 +45,28 @@ Pour cette question on a crée un nouveau projet pour la playlist où on a défi
                 |     playlist.ecore      =============>projet idm Q2/projet idm Q2/src/playlist.ecore
                 |-------------------------|             |------------------------------------------------|  
  
-
+ 
+ ----------------------------
+Réponse de la Question 5
 ----------------------------
-Réponse de la Question 6 
+
+-Recommandations: Il faut calculer et insérer la durée de la vidéo dans la transformation 
+ 
 ----------------------------
+Réponse de la Question 6
+----------------------------
+-Les bénéfices attendus lors du développement du métamodèle intermédiaire 
+de playlist est de pouvoir appliquer facilements des transformation de model
+ suplémentaire ainsi que des transformations model to text tout en restant conforme a
+la grammaire du début et il a été necessaire de rajouter un attribut duration au 
+MediaFile de Playlist.
+-Les difficultés rencontrées:maitrise de toutes les classes générées, et bien vérifier
+le nommage des variables lors de la création du fichier ecore. 
+-Recommandations:Il faut spécifier le plus d'informations suplémentaires utilies le plus
+tot possible, comme la durée des vidéos qui doit pouvoir etre fournie si on veux ne pas avoir a la calculer. 
 
-
+  
+     
 -------------------------------
 Remarques sur la Question 11Bis
 -------------------------------
@@ -62,7 +78,24 @@ notre gestion de ces données était grâce à Eclipse OCL qu'il faut installer(
 Des messages d’erreurs apparaissent dans l’éditeur lorsque l’utilisateur écrit une spécification VideoGen ne respectant pas les propriétés mentionnées ci-dessus.
 nous avons définis nos conditions dans le fichier : org.xtext.example.videogenerator/model/generated/VideoGen.ecore(clic droit ---> OCLinEcore Editor)
 
- 
+-------------------------------------------------------------------------
+Remarques sur la Question 12: génération aléatoire dynamique de variantes
+-------------------------------------------------------------------------
+
+-On a généré un nouveau projet jhipster nommé "video-gen-application", dans lequel 
+on a ajouté une entité nommée "generateur" qui permet d'afficher une page web contenant
+nos vignettes, un bouton pour générer une vidéo aléatoire et un bouton pour afficher 
+la vidéo correspondante.
+Lorsqu'on clique sur le bouton "Generate" on re-lance la génération d’une nouvelle 
+variante de vidéo et on recharge la nouvelle page.Et lorsqu'on clique sur le bouton "generateVideo", une vidéo qui concat 
+tous nos séquences séléctionnées aléatoirement.
+
+
+
+
+
+
+
 ------------------------------------------------------------------------
 Remarques sur l'Exercice SUP1 : Synthétiser une spécification VideoGen
 
