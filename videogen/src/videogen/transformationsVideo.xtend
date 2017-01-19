@@ -134,7 +134,7 @@ qui produit en sortie une liste compréhensible par ffmpeg
 		 //fermeture fichier
 		writer.close()
 	}
-	//Question 6 : voir README.Txt
+	//Question 6 : voir README.txt
 
 	/* Question 7:transformation qui prend en entrée une spécification VideoGen et qui
         assigne une valeur « durée » pour chaque séquence vidéo*/ 
