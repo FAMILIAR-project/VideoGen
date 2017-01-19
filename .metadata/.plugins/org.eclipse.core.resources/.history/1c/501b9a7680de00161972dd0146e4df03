@@ -97,13 +97,12 @@ class VideoDemonstrator {
 		saveVideoGenerator(URI.createURI("drole.xmi"), videoGen)
 		saveVideoGenerator(URI.createURI("drole.videogen"), videoGen)
 			
-		printToHTML(videoGen)
-		printToFileQ9(videoGen)	
-		printToWebVignette(videoGen)
-		printToGIF(videoGen)
+		//printToHTML(videoGen)
+		//printToFileQ9(videoGen)	
+		//printToWebVignette(videoGen)
+		//printToGIF(videoGen)
 		addText(videoGen)
-		printToFilter(videoGen)
-		printToDuration(videoGen)
+		//printToFilter(videoGen)
 		
 		
 	}

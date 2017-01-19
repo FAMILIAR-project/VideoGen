@@ -17,7 +17,6 @@ import java.io.FileWriter
 import java.util.Random
 import org.xtext.example.playlist.PlaylistStandaloneSetupGenerated
 import org.xtext.example.playlist.playlist.Playlist
-import java.util.Scanner
 
 class VideoDemonstrator {
 	
@@ -97,13 +96,12 @@ class VideoDemonstrator {
 		saveVideoGenerator(URI.createURI("drole.xmi"), videoGen)
 		saveVideoGenerator(URI.createURI("drole.videogen"), videoGen)
 			
-		printToHTML(videoGen)
-		printToFileQ9(videoGen)	
-		printToWebVignette(videoGen)
-		printToGIF(videoGen)
+		//printToHTML(videoGen)
+		//printToFileQ9(videoGen)	
+		//printToWebVignette(videoGen)
+		//printToGIF(videoGen)
 		addText(videoGen)
-		printToFilter(videoGen)
-		printToDuration(videoGen)
+		//printToFilter(videoGen)
 		
 		
 	}
@@ -504,71 +502,6 @@ class VideoDemonstrator {
 				}
 			
 			}
-	}
-	
-	
-def void printToDuration(VideoGeneratorModel videoGen) {
-		
-     	for(videoseq : videoGen.videoseqs){
-	
-			if (videoseq instanceof MandatoryVideoSeq){
-				val desc = (videoseq as MandatoryVideoSeq).description
-				if(!desc.videoid.isNullOrEmpty){ 
-					var commandDuration = "ffprobe -i " + desc.location +" -show_entries format=duration -v quiet -of csv=p=0";
-					var p = Runtime.getRuntime().exec(commandDuration);
-					p.waitFor();
-	       			var str = new Scanner(p.inputStream).useDelimiter("\\A")
-	       			if(str.hasNext())
-	       				println(str.next().trim)
-	       				
-				
-				}
-									
-			}else if (videoseq instanceof OptionalVideoSeq) {
-				val desc = (videoseq as OptionalVideoSeq).description
-				var rdm = new Random().nextInt(2)
-				//println(" ro " +rdm)
-				if(rdm == 1){
-					if(!desc.videoid.isNullOrEmpty) {
-						
-       					var commandDuration = "ffprobe -i " + desc.location +" -show_entries format=duration -v quiet -of csv=p=0";
-						println(commandDuration)
-						var p = Runtime.getRuntime().exec(commandDuration);
-						p.waitFor();
-	       				var str = new Scanner(p.inputStream).useDelimiter("\\A")
-	       				if(str.hasNext())
-	       					println(str.next().trim)
-						
-				     
-				   }
-					
-				}
-				}else {
-				
-					val altvid = (videoseq as AlternativeVideoSeq)
-					var random = new Random().nextInt(altvid.videodescs.size)
-					//print(" ra "+random+"\n")
-					var vdesc = altvid.videodescs.get(random);
-					
-				
-			      	if(!vdesc.videoid.isNullOrEmpty) {
-			      		
-			      		var commandDuration = "ffprobe -i " + vdesc.location +" -show_entries format=duration -v quiet -of csv=p=0";
-						var p = Runtime.getRuntime().exec(commandDuration);
-						p.waitFor();
-	       				var str = new Scanner(p.inputStream).useDelimiter("\\A")
-	       				if(str.hasNext())
-	       				
-	       					println(str.next().trim)
-						
-					}
-				
-				}
-			
-			}
-     
-				 
-			
 	}
 	
 	static var i = 0;
