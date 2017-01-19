@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.InputOutput;
-import org.junit.Test;
 import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated;
 import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq;
 import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq;
@@ -20,6 +19,8 @@ import org.xtext.example.mydsl.videoGen.VideoSeq;
 
 @SuppressWarnings("all")
 public class SiteWeb {
+  private String str = "";
+  
   public VideoGeneratorModel loadVideoGenerator(final URI uri) {
     VideoGeneratorModel _xblockexpression = null;
     {
@@ -34,72 +35,83 @@ public class SiteWeb {
     return _xblockexpression;
   }
   
-  @Test
-  public void genHtml() {
+  public void writeToFile(final String content, final String path) {
     try {
-      URI _createURI = URI.createURI("q10.videogen");
-      VideoGeneratorModel videoGen = this.loadVideoGenerator(_createURI);
-      final PrintWriter file = new PrintWriter("index.html", "UTF-8");
-      file.println("<html>");
-      EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
-      final Consumer<VideoSeq> _function = (VideoSeq videoseq) -> {
-        String path = "";
-        String name = "";
-        if ((videoseq instanceof MandatoryVideoSeq)) {
-          file.println("<h1>mandatory</h1>");
-          file.println("<br>");
-          VideoDescription _description = ((MandatoryVideoSeq)videoseq).getDescription();
-          String _location = _description.getLocation();
-          path = _location;
-          VideoDescription _description_1 = ((MandatoryVideoSeq)videoseq).getDescription();
-          String _videoid = _description_1.getVideoid();
-          name = _videoid;
+      final PrintWriter file = new PrintWriter((path + ".html"), "UTF-8");
+      file.print(content);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  public String genHtml(final String pathfile) {
+    URI _createURI = URI.createURI(pathfile);
+    VideoGeneratorModel videoGen = this.loadVideoGenerator(_createURI);
+    this.str = "\"";
+    EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
+    final Consumer<VideoSeq> _function = (VideoSeq videoseq) -> {
+      String path = "";
+      String name = "";
+      if ((videoseq instanceof MandatoryVideoSeq)) {
+        InputOutput.<String>println("<h1>mandatory</h1>");
+        String _str = this.str;
+        this.str = (_str + "<h1>mandatory</h1>");
+        String _str_1 = this.str;
+        this.str = (_str_1 + "<br>");
+        VideoDescription _description = ((MandatoryVideoSeq)videoseq).getDescription();
+        String _location = _description.getLocation();
+        path = _location;
+        VideoDescription _description_1 = ((MandatoryVideoSeq)videoseq).getDescription();
+        String _videoid = _description_1.getVideoid();
+        name = _videoid;
+        this.createVignette(path, name);
+        this.printInFile(name);
+      } else {
+        if ((videoseq instanceof OptionalVideoSeq)) {
+          String _str_2 = this.str;
+          this.str = (_str_2 + "<h1>optional</h1>");
+          String _str_3 = this.str;
+          this.str = (_str_3 + "<br>");
+          VideoDescription _description_2 = ((OptionalVideoSeq)videoseq).getDescription();
+          String _location_1 = _description_2.getLocation();
+          path = _location_1;
+          VideoDescription _description_3 = ((OptionalVideoSeq)videoseq).getDescription();
+          String _videoid_1 = _description_3.getVideoid();
+          name = _videoid_1;
           this.createVignette(path, name);
-          this.printInFile(file, name);
+          this.printInFile(name);
         } else {
-          if ((videoseq instanceof OptionalVideoSeq)) {
-            file.println("<h1>optional</h1>");
-            file.println("<br>");
-            VideoDescription _description_2 = ((OptionalVideoSeq)videoseq).getDescription();
-            String _location_1 = _description_2.getLocation();
-            path = _location_1;
-            VideoDescription _description_3 = ((OptionalVideoSeq)videoseq).getDescription();
-            String _videoid_1 = _description_3.getVideoid();
-            name = _videoid_1;
-            this.createVignette(path, name);
-            this.printInFile(file, name);
-          } else {
-            if ((videoseq instanceof AlternativeVideoSeq)) {
-              file.println("<h1>alternative</h1>");
-              file.println("<br>");
-              EList<VideoDescription> _videodescs = ((AlternativeVideoSeq)videoseq).getVideodescs();
-              for (final VideoDescription vdesc : _videodescs) {
-                {
-                  String _location_2 = vdesc.getLocation();
-                  path = _location_2;
-                  String _videoid_2 = vdesc.getVideoid();
-                  name = _videoid_2;
-                  this.createVignette(path, name);
-                  this.printInFile(file, name);
-                }
+          if ((videoseq instanceof AlternativeVideoSeq)) {
+            String _str_4 = this.str;
+            this.str = (_str_4 + "<h1>alternatives</h1>");
+            String _str_5 = this.str;
+            this.str = (_str_5 + "<br>");
+            EList<VideoDescription> _videodescs = ((AlternativeVideoSeq)videoseq).getVideodescs();
+            for (final VideoDescription vdesc : _videodescs) {
+              {
+                String _location_2 = vdesc.getLocation();
+                path = _location_2;
+                String _videoid_2 = vdesc.getVideoid();
+                name = _videoid_2;
+                this.createVignette(path, name);
+                this.printInFile(name);
               }
             }
           }
         }
-      };
-      _videoseqs.forEach(_function);
-      file.println("</html>");
-      file.close();
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
+      }
+    };
+    _videoseqs.forEach(_function);
+    String _str = this.str;
+    this.str = (_str + "\"");
+    return this.str;
   }
   
   public void createVignette(final String path, final String name) {
     try {
       InputOutput.<String>println(("path=" + path));
       InputOutput.<String>println(("name=" + name));
-      String cmd = (((("ffmpeg -i " + path) + " -ss 00:00:01.000 -vframes 1 ") + name) + ".jpg -y");
+      String cmd = ((((("ffmpeg -i " + path) + " -ss 00:00:01.000 -vframes 1 ") + "src/main/webapp/content/images/") + name) + ".jpg -y");
       InputOutput.<String>println(cmd);
       Runtime _runtime = Runtime.getRuntime();
       Process process = _runtime.exec(cmd);
@@ -109,8 +121,10 @@ public class SiteWeb {
     }
   }
   
-  public void printInFile(final PrintWriter file, final String name) {
-    file.println((("<img src=\'" + name) + ".jpg\'>"));
-    file.println("<br>");
+  public void printInFile(final String name) {
+    String _str = this.str;
+    this.str = (_str + (("<img src=\'content/images/" + name) + ".jpg\'>"));
+    String _str_1 = this.str;
+    this.str = (_str_1 + "<br>");
   }
 }
