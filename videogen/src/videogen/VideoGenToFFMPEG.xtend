@@ -13,23 +13,10 @@ import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 
 import static org.junit.Assert.*
 
-class VideoDemonstrator {
-	
-	def loadVideoGenerator(URI uri) {
-		new VideoGenStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()
-		var res = new ResourceSetImpl().getResource(uri, true);
-		res.contents.get(0) as VideoGeneratorModel
-	}
-	
-	def saveVideoGenerator(URI uri, VideoGeneratorModel pollS) {
-		var Resource rs = new ResourceSetImpl().createResource(uri); 
-		rs.getContents.add(pollS); 
-		rs.save(new HashMap());
-	}
+class VideoGenToFFMPEG {
 	
 	@Test
-	def test1() {
-		// loading
+	def generateFFMPEG(){
 		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
 		assertNotNull(videoGen)
 		assertEquals(7, videoGen.videoseqs.size)			
@@ -56,41 +43,22 @@ class VideoDemonstrator {
 	saveVideoGenerator(URI.createURI("foo2bis.videogen"), videoGen)
 		
 	//printToHTML(videoGen)	
-	modelToText(videoGen)
-}
-	
-	def void printToHTML(VideoGeneratorModel videoGen) {
-		//var numSeq = 1
-		println("<ul>")
-		videoGen.videoseqs.forEach[videoseq | 
-			if (videoseq instanceof MandatoryVideoSeq) {
-				val desc = (videoseq as MandatoryVideoSeq).description
-				if(!desc.videoid.isNullOrEmpty)  
-					println ("<li>" + desc.videoid + "</li>")  				
-			}
-			else if (videoseq instanceof OptionalVideoSeq) {
-				val desc = (videoseq as OptionalVideoSeq).description
-				if(!desc.videoid.isNullOrEmpty) 
-					println ("<li>" + desc.videoid + "</li>") 
-			}
-			else {
-				val altvid = (videoseq as AlternativeVideoSeq)
-				if(!altvid.videoid.isNullOrEmpty) 
-					println ("<li>" + altvid.videoid + "</li>")
-				if (altvid.videodescs.size > 0) // there are vid seq alternatives
-					println ("<ul>")
-				for (vdesc : altvid.videodescs) {
-					if(!vdesc.videoid.isNullOrEmpty) 
-						println ("<li>" + vdesc.videoid + "</li>")
-				}
-				if (altvid.videodescs.size > 0) // there are vid seq alternatives
-					println ("</ul>")
-			}
-		]
-		println("</ul>")
+	modelToTextFFMPEG(videoGen)
 	}
 	
-	def void modelToText(VideoGeneratorModel videoGen){
+	def loadVideoGenerator(URI uri) {
+		new VideoGenStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()
+		var res = new ResourceSetImpl().getResource(uri, true);
+		res.contents.get(0) as VideoGeneratorModel
+	}
+	
+	def saveVideoGenerator(URI uri, VideoGeneratorModel pollS) {
+		var Resource rs = new ResourceSetImpl().createResource(uri); 
+		rs.getContents.add(pollS); 
+		rs.save(new HashMap());
+	}
+	
+	def void modelToTextFFMPEG(VideoGeneratorModel videoGen){
 		videoGen.videoseqs.forEach[videoseq | 
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
@@ -108,9 +76,9 @@ class VideoDemonstrator {
 			}
 		]		
 	}
+	
 	static var i = 0;
 	def genID() {
 		"v" + i++
 	}
-	
 }
