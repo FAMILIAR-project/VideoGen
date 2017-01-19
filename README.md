@@ -35,7 +35,7 @@ ffmpeg -i C:/Users/kaoutar/git/VideoGen/videogen/videosTel/standbyme.mp4 -vf dra
 
 In Cmd console:
 
-![alt tag](videoven/videogen/textrep.PNG)
+![alt tag](videogen/textrep.PNG)
 
 So, UNRESOLVED BUG about bad path or unknown fonts
 
