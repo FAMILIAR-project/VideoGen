@@ -25,13 +25,13 @@ Technologies used for this project:
 -"Réponses aux questions.txt" File with all responses about IDM Student Project.  
 -"Q14 - Feature model.txt" Feature model for answer to question 14. 
  
--Example folder: output from some Xtend execution: 
-	-VignetteGenerated: Some pictures from videos samples created by xtend execution.
-	-fooRealAug.videogen: Model where we add duration option. 
-	-fooRealOutSub.videogen: Example with subtitle option in video gen model (project 2).
-	-page.html and WebSiteVignette.jpeg: Html page with vignette generate by xtend.
-	-script.txt and sequence.avi: Script ffmpeg create by xtend and video create with exection of this script.
-	-ExampleCalculMetriqueConsole.Jpeg and ExempleCsvMetrique.csv : Example of project 1 execution.
+-Example folder: output from some Xtend execution:  
+- VignetteGenerated: Some pictures from videos samples created by xtend execution.  
+- fooRealAug.videogen: Model where we add duration option.  
+- fooRealOutSub.videogen: Example with subtitle option in video gen model (project 2).  
+- page.html and WebSiteVignette.jpeg: Html page with vignette generate by xtend.  
+- script.txt and sequence.avi: Script ffmpeg create by xtend and video create with exection of this script.
+- ExampleCalculMetriqueConsole.Jpeg and ExempleCsvMetrique.csv : Example of project 1 execution.
 
 
 
