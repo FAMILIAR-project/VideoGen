@@ -1,4 +1,4 @@
-# VideoGen
+# VideoGen [Pull&Play]
 
 Ce dépôt contient toutes les dépendances nécessaires (librairie FFMPEG, les vidéos). Il suffit de le pull et d'exécuter les fichiers Xtend (videogen/src/videogen/*.xtend).  
 Les dossiers Gif et Thumbnails sont volontairement vides. Les fichiers résultats seront automatiquement créés grâce aux fichiers Xtend.
