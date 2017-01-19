@@ -31,7 +31,7 @@ class TransformateurFFmpeg {
 	
 	static var res = ""
 	
-	@Test
+	//@Test
 	def test1() {
 		// loading
 		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
@@ -63,7 +63,7 @@ class TransformateurFFmpeg {
 			
 	}
 	
-	@Test
+	//@Test
 	def m3uExt() {
 		// loading
 		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
@@ -97,7 +97,7 @@ class TransformateurFFmpeg {
 		
 	}
 	
-	@Test
+	//@Test
 	def vignettes() {
 		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
 		assertNotNull(videoGen)
@@ -124,6 +124,61 @@ class TransformateurFFmpeg {
 			}	
 		]
 	}
+	
+	@Test
+	def featureModel() {
+		// loading
+		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
+		assertNotNull(videoGen)
+		assertEquals(7, videoGen.videoseqs.size)			
+		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
+		
+		val alts = {}
+		res += "fmVideoGen = FM(VideoGen: "
+		
+		videoGen.videoseqs.forEach[videoseq | 
+			if (videoseq instanceof MandatoryVideoSeq) {
+				val desc = (videoseq as MandatoryVideoSeq).description.videoid
+				res += desc
+				res += " "
+			}
+			else if (videoseq instanceof OptionalVideoSeq) {
+				val desc = (videoseq as OptionalVideoSeq).description.videoid
+				res += "["
+				res += desc 
+				res += "] "
+			}
+			else {
+				var altvid = (videoseq as AlternativeVideoSeq).videoid
+				res += altvid
+				res += " "
+				
+				if (!altvid.isNullOrEmpty){
+					val altvidInt = Integer.parseInt(altvid) 
+					alts.set(altvidInt, (videoseq as AlternativeVideoSeq).videodescs)
+				}
+			}
+		]
+		res += "; "
+		
+		for(altvid : alts)
+		{ 
+			res += altvid
+			res += ": ("
+			for (vdesc : alts.get(altvid)) {
+				res += vdesc.videoid
+				res += "|"
+			}
+			res += "); "
+		}
+		
+		res += ")"
+		// serializing
+		saveVideoGenerator(URI.createURI("foo2bis.xmi"), videoGen)
+		saveVideoGenerator(URI.createURI("foo2bis.videogen"), videoGen)		
+		System.out.println(res) 		
+	}
+	
 	
 	static var i = 0;
 	def genID() {
