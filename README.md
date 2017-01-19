@@ -8,9 +8,25 @@ A configurable generator of generator of video variants
 
 `videogen` is a Java/Xtend project that uses the Xtext project and shows how to transform a VideoGen transformation. 
 
+## Motivation
+
+This project is here to randomly generate a new video with some samples videos. And we can add some options, like text on picture or gification. the objective is to create different output formats: ffmpeg or m3u.
+
+The project use DSL, the model-to-text concept or model-to-model concept (transormation).
+
+---------------------------------------------------
+
+## Technology
+
+- FFmpeg to transform videos by some scripts
+- Xtext to create grammar, generate meta-model
+- Xtend to use xtext grammar and models
+
 ---------------------------------------------------
 
 M2 MIAGE students: Kaoutar Bennouna & Pierre-A. Totaro
+
+##result 
 
 Questions 1 to 13 OK with Junit test
 
@@ -23,7 +39,7 @@ Some examples:
 ![alt tag](videogen/5.PNG)
 
 
-Project 1: Text inside Video
+## Project 1: Text inside Video
 
 result inside JUnit:
 ---------------------------
@@ -57,7 +73,7 @@ So, UNRESOLVED BUG about bad path or unknown fonts
 
 ----------------------------------
 
-Project 2: Gification
+## 2: Gification
 
 Result in JUnit console:
 
