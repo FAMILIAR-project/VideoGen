@@ -20,7 +20,7 @@ class Main {
 	    vv.playlistVignette(playlist);
  //		Test Question 10:
 	    var videoGen = vv.loadVideoGenerator(URI.createURI("foo1.videogen"))
-	    vv.printToHTML(videoGen);
+	    //vv.printToHTML(videoGen);
  //		Test Question 11:
 	    vv.verify
 //		Test Question 12:

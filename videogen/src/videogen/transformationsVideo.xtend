@@ -561,5 +561,57 @@ génère en sortie une page Web affichant les vignettes*/
 		writer.write(";)")
 		writer.close()
 	}
+	//Fonction Jhipster
+def void printToHTML() {
+		val writer = new PrintWriter("src/main/webapp/generatedPageHTMLvideogen.html")
+    var playlist = loadVideoGenerator(URI.createURI("foo1.videogen"))
+		writer.write(""+System.currentTimeMillis())
+		val writer2 = new PrintWriter("ffmpegConcatFile")
+		val random = new Random()
+		println("<ul>")
+		writer.write("<ul>\n")
+		playlist.videoseqs.forEach [ videoseq |
+			if (videoseq instanceof MandatoryVideoSeq) {
+				val desc = (videoseq as MandatoryVideoSeq).description.location
+				creationVignette(desc, calculDuree(desc).intValue / 2, desc + ".png")
+				println("<li>" + "<img src=" + desc + ".png/></li>")
+				writer.write("<li>" + "Mandatory<img src=" + desc + ".png/></li>\n")
+				writer2.write("file \'" + desc + "\'\n")
+			} else if (videoseq instanceof OptionalVideoSeq) {
+				val desc = (videoseq as OptionalVideoSeq).description.location
+				var proba = random.nextInt(2)
+				println("proba :" + proba)
+				if (proba == 1) {
+					creationVignette(desc, calculDuree(desc).intValue / 2, desc + ".png")
+					println("<li>" + "<img src=" + desc + ".png/></li>")
+					writer.write("<li>" + "Optional<img src=" + desc + ".png/></li>\n")
+					writer2.write("file \'" + desc + "\'\n")
+				}
+			} else {
+				val altvid = (videoseq as AlternativeVideoSeq)
 
+				if (altvid.videodescs.size > 0) // there are vid seq alternatives
+					println("<ul>")
+				writer.write("<ul>\n")
+				var proba = random.nextInt(altvid.videodescs.size)
+				val vaa = altvid.videodescs.get(proba)
+				creationVignette(vaa.location, calculDuree(vaa.location).intValue / 2, vaa.location + ".png")
+				println("<li>" + "<img src=" + vaa.location + ".png/></li>")
+				writer.write("<li>" + "Alternative<img src=" + vaa.location + ".png/></li>\n")
+				writer2.write("file \'" + vaa.location + "\'\n")
+			}
+			println("</ul>")
+			writer.write("</ul>\n")
+		]
+		println("</ul>")
+		writer.write("<ul>\n")
+		writer.close()
+		writer2.close
+
+		var cmd = "ffmpeg -f concat -i ffmpegConcatFile -c copy output.mp4"
+		var p = Runtime.runtime.exec(cmd)
+		while (p.alive)
+			if (!p.alive)
+				return
+	}
 }

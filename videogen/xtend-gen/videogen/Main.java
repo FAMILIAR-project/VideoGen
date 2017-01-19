@@ -18,7 +18,6 @@ public class Main {
     vv.playlistVignette(playlist);
     URI _createURI = URI.createURI("foo1.videogen");
     VideoGeneratorModel videoGen = vv.loadVideoGenerator(_createURI);
-    vv.printToHTML(videoGen);
     vv.verify();
     vv.printToHTMLWithRandom(videoGen);
     vv.createVideoGen();

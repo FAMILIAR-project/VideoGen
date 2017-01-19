@@ -10,14 +10,16 @@
     function GenerateurController ($scope, $state, Generateur) {
         var vm = this;
         
-        vm.generateurs = [];
+        $scope.loadAll = loadAll;
 
-        loadAll();
+      //  loadAll();
 
         function loadAll() {
+           console.log("click generate")
             Generateur.query(function(result) {
                 vm.generateurs = result;
             });
+          window.location.reload()
         }
     }
 })();

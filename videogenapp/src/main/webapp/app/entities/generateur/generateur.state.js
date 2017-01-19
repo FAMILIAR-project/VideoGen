@@ -18,7 +18,7 @@
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/generateur/generateurs.html',
+                    templateUrl: 'app/entities/generateur/PageHTMLvideogen.html',
                     controller: 'GenerateurController',
                     controllerAs: 'vm'
                 }

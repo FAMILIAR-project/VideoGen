@@ -1,0 +1,13 @@
+VideoGen {
+	mandatory videoseq v1 "./V1.mp4"
+	alternatives v2 {
+		videoseq v20 "./seq2.mp4"
+		videoseq v21 "./seq1.mp4"
+		videoseq v22 "./seq3.mp4"
+	}
+	alternatives v3 {
+		videoseq v30 "./seq2.mp4"
+		videoseq v31 "./seq1.mp4"
+	}
+	mandatory videoseq v4 "./V2.mp4"
+}

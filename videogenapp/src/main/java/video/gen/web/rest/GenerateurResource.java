@@ -92,6 +92,11 @@ public class GenerateurResource {
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public List<Generateur> getAllGenerateurs() {
+    	transformationsVideo vv=new transformationsVideo();
+		//Playlist playlist = vv.playlist();
+//VideoGeneratorModel videoGen = vv.loadVideoGenerator(URI.createURI("foo1.videogen")) ;
+	vv.printToHTML();
+// return ResponseEntity.ok().he
         log.debug("REST request to get all Generateurs");
         List<Generateur> generateurs = generateurRepository.findAll();
         return generateurs;
@@ -123,15 +128,15 @@ public class GenerateurResource {
      * @param id the id of the generateur to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @RequestMapping(value = "/generateurs/{id}",
+    @RequestMapping(value = "/generateurs/",
         method = RequestMethod.DELETE,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public void deleteGenerateur(@PathVariable Long id) {
-		transformationsVideo vv=new transformationsVideo()
+    public void deleteGenerateur() {
+		transformationsVideo vv=new transformationsVideo();
 				//Playlist playlist = vv.playlist();
-		VideoGeneratorModel videoGen = vv.loadVideoGenerator(URI.createURI("foo1.videogen")) ;
-			vv.printToHTML(videoGen);
+		//VideoGeneratorModel videoGen = vv.loadVideoGenerator(URI.createURI("foo1.videogen")) ;
+			vv.printToHTML();
        // return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("generateur", id.toString())).build();
     }
 
