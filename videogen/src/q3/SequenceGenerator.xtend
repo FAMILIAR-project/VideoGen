@@ -64,7 +64,10 @@ class SequenceGenerator {
 	def void buildAlternative(){
 		for(a: alts){
 			var  opt=getAnOptional(a)
-			appendVideo(opt.location)
+			if(opt!=null){
+				appendVideo(opt.location)
+				
+			}
 		}
 	}
 	

@@ -70,8 +70,11 @@ public class SequenceGenerator {
     for (final ArrayList<VideoDescription> a : this.alts) {
       {
         VideoDescription opt = this.getAnOptional(a);
-        String _location = opt.getLocation();
-        this.appendVideo(_location);
+        boolean _notEquals = (!Objects.equal(opt, null));
+        if (_notEquals) {
+          String _location = opt.getLocation();
+          this.appendVideo(_location);
+        }
       }
     }
   }
