@@ -108,11 +108,13 @@ class TransformateurFFmpeg {
 				val desc = (videoseq as MandatoryVideoSeq).description
 				var name = desc.location.substring(0, desc.location.lastIndexOf('.'))
 				var cmd = "ffmpeg -y -i " + desc.location + " -r 1 -t 00:00:01 -ss 00:00:$2 -f image2 vignettes/" + name + ".png"
+				Runtime.runtime.exec(cmd)
 			}
 			else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
 				var name = desc.location.substring(0, desc.location.lastIndexOf('.'))
-				var cmd = "ffmpeg -y -i " + desc.location + " -r 1 -t 00:00:01 -ss 00:00:$2 -f image2 vignettes/" + name + ".png" 
+				var cmd = "ffmpeg -y -i " + desc.location + " -r 1 -t 00:00:01 -ss 00:00:$2 -f image2 vignettes/" + name + ".png"
+				Runtime.runtime.exec(cmd) 
 			}
 			else {
 				val altvid = (videoseq as AlternativeVideoSeq)
@@ -120,6 +122,7 @@ class TransformateurFFmpeg {
 				for (vdesc : altvid.videodescs) {
 					var name = vdesc.location.substring(0, vdesc.location.lastIndexOf('.'))
 					var cmd = "ffmpeg -y -i " + vdesc.location + " -r 1 -t 00:00:01 -ss 00:00:$2 -f image2 vignettes/" + name + ".png"
+					Runtime.runtime.exec(cmd)
 				}
 			}	
 		]
