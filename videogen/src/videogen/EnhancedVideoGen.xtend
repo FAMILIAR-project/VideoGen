@@ -66,7 +66,7 @@ class EnhancedVideoGen {
 		println("Création de la playlist...")
 		videoGen.videoseqs.forEach [ videoseq |
 			var String filtered = null
-			
+
 			if (videoseq instanceof MandatoryVideoSeq) {
 				// Test la présence d'un ID
 				if(videoseq.description.videoid.isNullOrEmpty) videoseq.description.videoid = genID()
@@ -81,16 +81,16 @@ class EnhancedVideoGen {
 				}
 				// Enregistrement d'une image pour la vidéo
 				mediafile.thumbnail = extractThumbnail(videoseq.description.location, videoseq.description.videoid)
-				
+
 				// enregistrement du filtre et remplacement de la vidéo s'il y en a un
 				val desc = (videoseq as MandatoryVideoSeq).description
-				if(desc.filter != null){
+				if (desc.filter != null) {
 					filtered = applyFilter(desc)
 				}
-				if(filtered != null){
+				if (filtered != null) {
 					mediafile.url = filtered
 				}
-				
+
 				// Ajout de la vidéo à la playlist
 				playlist.videos.add(mediafile)
 			}
@@ -105,15 +105,15 @@ class EnhancedVideoGen {
 						mediafile.duration = videoseq.description.duration
 					}
 					mediafile.thumbnail = extractThumbnail(videoseq.description.location, videoseq.description.videoid)
-					
+
 					val desc = (videoseq as OptionalVideoSeq).description
-					if(desc.filter != null){
+					if (desc.filter != null) {
 						filtered = applyFilter(desc)
 					}
-					if(filtered != null){
+					if (filtered != null) {
 						mediafile.url = filtered
 					}
-					
+
 					playlist.videos.add(mediafile)
 				}
 			}
@@ -136,15 +136,15 @@ class EnhancedVideoGen {
 					mediafile.duration = listAlt.get(quicesera).duration
 				}
 				mediafile.thumbnail = extractThumbnail(listAlt.get(quicesera).location, listAlt.get(quicesera).videoid)
-				
+
 				val desc = listAlt.get(quicesera)
-				if(desc.filter != null){
+				if (desc.filter != null) {
 					filtered = applyFilter(desc)
 				}
-				if(filtered != null){
+				if (filtered != null) {
 					mediafile.url = filtered
 				}
-				
+
 				playlist.videos.add(mediafile)
 			}
 		]
@@ -259,28 +259,36 @@ class EnhancedVideoGen {
 		videoGen.videoseqs.forEach [ videoseq |
 			if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
-				if (!desc.videoid.isNullOrEmpty) {
-					builder.append("<div class=\"col-md-1\">")
-					builder.append("<div class=\"thumbnail\">")
-					builder.append(vidToHtmlExt(desc))
-					builder.append("</div></div>")
+				if (desc.videoid.isNullOrEmpty) {
+					desc.videoid = genID
 				}
+				builder.append("<div class=\"col-md-1\">")
+				builder.append("<div class=\"thumbnail\">")
+				builder.append(vidToHtmlExt(desc))
+				builder.append("</div></div>")
 			} else if (videoseq instanceof AlternativeVideoSeq) {
 
 				val altvid = (videoseq as AlternativeVideoSeq)
 				if (altvid.videodescs.size > 0) {
 					// there are vid seq alternatives
+					builder.append("<div>")
 					for (vdesc : altvid.videodescs) {
-						if (!vdesc.videoid.isNullOrEmpty) {
-							builder.append("<div class=\"col-md-" + altvid.videodescs.size + "\">")
-							builder.append("<div class=\"thumbnail\">");
-							builder.append(vidToHtmlExt(vdesc))
-							builder.append("</div></div>")
+						if (vdesc.videoid.isNullOrEmpty) {
+							vdesc.videoid = genID
 						}
+						builder.append("<div class=\"col-md-" + altvid.videodescs.size + "\">")
+						builder.append("<div class=\"thumbnail\">");
+						builder.append(vidToHtmlExt(vdesc))
+						builder.append("</div></div>")
+
 					}
+					builder.append("</div>")
 				}
 			} else {
 				val vid = (videoseq as MandatoryVideoSeq)
+				if (vid.description.videoid.isNullOrEmpty) {
+					vid.description.videoid = genID
+				}
 				extractThumbnail(vid.description.location, vid.description.videoid)
 			}
 		]
@@ -463,7 +471,7 @@ padding : 0;
 
 		return error.code
 	}
-	
+
 	/**
 	 * A partir d'une VideoDescription, si elle contient un filtre : enregistre la vidéo avec le filtre
 	 * Retourne le chemin de la nouvelle vidéo
@@ -471,60 +479,58 @@ padding : 0;
 	 */
 	def static applyFilter(VideoDescription desc) {
 		val filter = desc.filter
-		if(filter != null){
+		if (filter != null) {
 			val input = desc.location
 			val inputFile = new File(input)
-			if(!inputFile.exists){
+			if (!inputFile.exists) {
 				return null
 			}
-			
+
 			val outputBasename = inputFile.name.substring(0, inputFile.name.lastIndexOf('.'))
 			val outputExtension = inputFile.name.substring(inputFile.name.lastIndexOf('.'))
-			
+
 			var String outputName = null
 			var String filtre = null
-			
-			if(filter instanceof FlipFilter){
+
+			if (filter instanceof FlipFilter) {
 				val flip = filter as FlipFilter
-				if(flip.orientation.equalsIgnoreCase("h") 
-					|| flip.orientation.equalsIgnoreCase("horizontal")){
-					
+				if (flip.orientation.equalsIgnoreCase("h") || flip.orientation.equalsIgnoreCase("horizontal")) {
+
 					outputName = outputBasename + "_hflip" + outputExtension
 					filtre = "-vf hflip"
-				
-				}else if(flip.orientation.equalsIgnoreCase("v") 
-					|| flip.orientation.equalsIgnoreCase("vertical")){
-					
+
+				} else if (flip.orientation.equalsIgnoreCase("v") || flip.orientation.equalsIgnoreCase("vertical")) {
+
 					outputName = outputBasename + "_hflip" + outputExtension
 					filtre = "-vf vflip"
-					
+
 				}
-			}else if(filter instanceof NegateFilter){
-				
+			} else if (filter instanceof NegateFilter) {
+
 				outputName = outputBasename + "_negate" + outputExtension
 				filtre = "-vf negate"
-				
-			}else if(filter instanceof BlackWhiteFilter){
-				
+
+			} else if (filter instanceof BlackWhiteFilter) {
+
 				outputName = outputBasename + "_bw" + outputExtension
 				filtre = "-vf hue=s=0"
-				
+
 			}
-			
-			if(outputName != null && filtre != null){
+
+			if (outputName != null && filtre != null) {
 				val filteredDir = new File(inputFile.parentFile, "filtered")
 				filteredDir.mkdirs
 				val outputPath = filteredDir.path + "/" + outputName
-				
-				if(!(new File(outputPath)).exists){
-					val cmd = "ffmpeg -i "+ input + " " + filtre + " " + outputPath
-					println("Applique le filtre sur : "+input)
+
+				if (!(new File(outputPath)).exists) {
+					val cmd = "ffmpeg -i " + input + " " + filtre + " " + outputPath
+					println("Applique le filtre sur : " + input)
 					println(cmd)
 					val process = Runtime.runtime.exec(cmd)
 					process.waitFor
-					println("Enregistré dans : "+outputPath)
+					println("Enregistré dans : " + outputPath)
 				}
-				
+
 				return outputPath
 			}
 		}
