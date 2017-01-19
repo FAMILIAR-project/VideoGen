@@ -1,3 +1,6 @@
+PITON Stephen       M2GLA
+EL GHZIZAL Yousra   M2GLA
+
 ----------------------
 Notre Architecture
 ----------------------
@@ -65,8 +68,7 @@ le nommage des variables lors de la création du fichier ecore.
 -Recommandations:Il faut spécifier le plus d'informations suplémentaires utilies le plus
 tot possible, comme la durée des vidéos qui doit pouvoir etre fournie si on veux ne pas avoir a la calculer. 
 
-  
-     
+      
 -------------------------------
 Remarques sur la Question 11Bis
 -------------------------------
@@ -89,11 +91,6 @@ la vidéo correspondante.
 Lorsqu'on clique sur le bouton "Generate" on re-lance la génération d’une nouvelle 
 variante de vidéo et on recharge la nouvelle page.Et lorsqu'on clique sur le bouton "generateVideo", une vidéo qui concat 
 tous nos séquences séléctionnées aléatoirement.
-
-
-
-
-
 
 
 ------------------------------------------------------------------------
