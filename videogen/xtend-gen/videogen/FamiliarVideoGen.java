@@ -1,7 +1,6 @@
 package videogen;
 
 import com.google.common.base.Objects;
-import fr.unice.polytech.modalis.familiar.fm.basic.FMLFeatureModelReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.function.Consumer;
@@ -23,8 +22,6 @@ import org.xtext.example.mydsl.videoGen.VideoSeq;
 
 @SuppressWarnings("all")
 public class FamiliarVideoGen {
-  private FMLFeatureModelReader myvar = new FMLFeatureModelReader();
-  
   private String res = "";
   
   private ArrayList<String> alternativeList = new ArrayList<String>();

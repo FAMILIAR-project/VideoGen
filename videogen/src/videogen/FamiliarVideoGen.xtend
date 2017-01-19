@@ -12,11 +12,9 @@ import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 
 import static org.junit.Assert.*
-import fr.unice.polytech.modalis.familiar.fm.basic.FMLFeatureModelReader
 
 class FamiliarVideoGen {
 
-	var myvar = new FMLFeatureModelReader()
 	var res = ""
 	var alternativeList = new ArrayList<String>();
 
