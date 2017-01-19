@@ -75,7 +75,7 @@ Remarques sur la Question 11Bis
 Pour cette question, on a gérée l’interprétation de certaines données:
 ● Les identifieurs doivent être uniques
 ● Les localisations des videos seq doivent être uniques
-● Les probabilités doivent être cohérentes (une probabilité d’une séquence vidéo
+● Les probabilités doivent être cohérentes (une probabilité d’une séquence vidéo)
 notre gestion de ces données était grâce à Eclipse OCL qu'il faut installer(help--->Eclipse Marketplace--->install Eclipse OCL)
 Des messages d’erreurs apparaissent dans l’éditeur lorsque l’utilisateur écrit une spécification VideoGen ne respectant pas les propriétés mentionnées ci-dessus.
 nous avons définis nos conditions dans le fichier : org.xtext.example.videogenerator/model/generated/VideoGen.ecore(clic droit ---> OCLinEcore Editor)
