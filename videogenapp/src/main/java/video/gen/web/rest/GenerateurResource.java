@@ -7,7 +7,7 @@ import video.gen.domain.Generateur;
 
 import video.gen.repository.GenerateurRepository;
 import video.gen.web.rest.util.HeaderUtil;
-import videogen.transformModelToText;
+import videogen.transformationsVideo;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -128,7 +128,7 @@ public class GenerateurResource {
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public void deleteGenerateur(@PathVariable Long id) {
-		transformModelToText vv=new transformModelToText();
+		transformationsVideo vv=new transformationsVideo()
 				//Playlist playlist = vv.playlist();
 		VideoGeneratorModel videoGen = vv.loadVideoGenerator(URI.createURI("foo1.videogen")) ;
 			vv.printToHTML(videoGen);
