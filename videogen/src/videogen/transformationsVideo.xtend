@@ -271,6 +271,7 @@ génère en sortie une page Web affichant les vignettes*/
  * Question 11 : transformation qui prend en entrée une spécification VideoGen et qui
     vérifie:
     * L'unicité des ID
+    * L'unicité des localisations des videos seq 
     * une probabilité d’une séquence vidéo “optionnelle” ne peut dépasser 1 (100%); 
     * la somme des probabilités ne doit pas dépasser 100% pour les séquences video “alternatif”
  */
