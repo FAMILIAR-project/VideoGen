@@ -40,11 +40,9 @@ class VideoDemonstrator {
 	
 	@Test
 	def test1() {
-		// loading
 		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
 		assertNotNull(videoGen)
-		assertEquals(7, videoGen.videoseqs.size)			
-		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
+		assertEquals(7, videoGen.videoseqs.size)
 		videoGen.videoseqs.forEach[videoseq | 
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
@@ -66,17 +64,17 @@ class VideoDemonstrator {
 		saveVideoGenerator(URI.createURI("foo2bis.xmi"), videoGen)
 		saveVideoGenerator(URI.createURI("foo2bis.videogen"), videoGen)
 			
-		//printToHTML(videoGen)
+		printToHTML(videoGen)
 		printToFile(videoGen)	
 	}
 	
 	@Test
 	def test3() {
-		// loading
+
 		var videoGen = loadVideoGenerator(URI.createURI("drole.videogen")) 
 		assertNotNull(videoGen)
 		assertEquals(4, videoGen.videoseqs.size)			
-		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
+
 		videoGen.videoseqs.forEach[videoseq | 
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
@@ -103,23 +101,25 @@ class VideoDemonstrator {
 		//printToWebVignette(videoGen)
 		//printToGIF(videoGen)
 		addText(videoGen)
+		//printToFilter(videoGen)
+		
+		
 	}
 	
 	@Test
 	def test2() {
-		// loading
+
 		var playlist = loadPlaylist(URI.createURI("test.playlist")) 
 		assertNotNull(playlist)
 		assertEquals(2, playlist.videos.size)			
-		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
 		
 		printToM3U(playlist)
-		//printToFileQ4(playlist)	
+		printToFileQ4(playlist)	
 	}
 	
 	
 	def void printToHTML(VideoGeneratorModel videoGen) {
-		//var numSeq = 1
+
 		println("<ul>")
 		videoGen.videoseqs.forEach[videoseq | 
 			if (videoseq instanceof MandatoryVideoSeq) {
@@ -136,13 +136,13 @@ class VideoDemonstrator {
 				val altvid = (videoseq as AlternativeVideoSeq)
 				if(!altvid.videoid.isNullOrEmpty) 
 					println ("<li>" + altvid.videoid + "</li>")
-				if (altvid.videodescs.size > 0) // there are vid seq alternatives
+				if (altvid.videodescs.size > 0) 
 					println ("<ul>")
 				for (vdesc : altvid.videodescs) {
 					if(!vdesc.videoid.isNullOrEmpty) 
 						println ("<li>" + vdesc.videoid + "</li>")
 				}
-				if (altvid.videodescs.size > 0) // there are vid seq alternatives
+				if (altvid.videodescs.size > 0) 
 					println ("</ul>")
 			}
 		]
@@ -167,12 +167,12 @@ class VideoDemonstrator {
 			}else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
 				var rdm = new Random().nextInt(2)
-				//println(" ro " +rdm)
+
 				if(rdm == 1){
 					if(!desc.videoid.isNullOrEmpty) {
 						fileWriter.write("file '"+desc.location+"' \n")
 						fileWriter.flush();
-				      	//fileWriter.close()
+
 				     
 				   }
 					
@@ -181,7 +181,6 @@ class VideoDemonstrator {
 				
 					val altvid = (videoseq as AlternativeVideoSeq)
 					var random = new Random().nextInt(altvid.videodescs.size)
-					//print(" ra "+random+"\n")
 					var vdesc = altvid.videodescs.get(random);
 					
 				
@@ -215,7 +214,7 @@ class VideoDemonstrator {
 			}else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
 				var rdm = new Random().nextInt(2)
-				//println(" ro " +rdm)
+
 				if(rdm == 1){
 					if(!desc.videoid.isNullOrEmpty) {
 						
@@ -229,7 +228,7 @@ class VideoDemonstrator {
 				
 					val altvid = (videoseq as AlternativeVideoSeq)
 					var random = new Random().nextInt(altvid.videodescs.size)
-					//print(" ra "+random+"\n")
+
 					var vdesc = altvid.videodescs.get(random);
 					
 				
@@ -263,7 +262,7 @@ class VideoDemonstrator {
 			}else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
 				var rdm = new Random().nextInt(2)
-				//println(" ro " +rdm)
+
 				if(rdm == 1){
 					if(!desc.videoid.isNullOrEmpty) {
 						
@@ -277,13 +276,61 @@ class VideoDemonstrator {
 				
 					val altvid = (videoseq as AlternativeVideoSeq)
 					var random = new Random().nextInt(altvid.videodescs.size)
-					//print(" ra "+random+"\n")
+
 					var vdesc = altvid.videodescs.get(random);
 					
 				
 			      	if(!vdesc.videoid.isNullOrEmpty) {
 			      		
 			      		vi.gif(vdesc.location,vdesc.videoid)
+						
+					}
+				
+				}
+			
+			}
+	}
+	
+	def void printToFilter(VideoGeneratorModel videoGen) {
+		
+     	var vi = new Command
+     	
+		
+		for(videoseq : videoGen.videoseqs){
+	
+			if (videoseq instanceof MandatoryVideoSeq){
+				val desc = (videoseq as MandatoryVideoSeq).description
+				if(!desc.videoid.isNullOrEmpty){ 
+					println(desc.location+" "+desc.videoid)
+					vi.filter(desc.location,desc.videoid)
+					
+				
+				}
+									
+			}else if (videoseq instanceof OptionalVideoSeq) {
+				val desc = (videoseq as OptionalVideoSeq).description
+				var rdm = new Random().nextInt(2)
+
+				if(rdm == 1){
+					if(!desc.videoid.isNullOrEmpty) {
+						
+       					vi.filter(desc.location,desc.videoid)
+						
+				     
+				   }
+					
+				}
+				}else {
+				
+					val altvid = (videoseq as AlternativeVideoSeq)
+					var random = new Random().nextInt(altvid.videodescs.size)
+
+					var vdesc = altvid.videodescs.get(random);
+					
+				
+			      	if(!vdesc.videoid.isNullOrEmpty) {
+			      		
+			      		vi.filter(vdesc.location,vdesc.videoid)
 						
 					}
 				
@@ -321,7 +368,7 @@ class VideoDemonstrator {
 	
 	
 	def void printToWebVignette(VideoGeneratorModel videoGen) {
-		//var numSeq = 1
+
 		var file = new File("Q10.html")
      	var fileWriter = new FileWriter(file)
      	var vignette = new Command
@@ -341,7 +388,7 @@ class VideoDemonstrator {
 			else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
 				var rdm = new Random().nextInt(2)
-				//println(" ro " +rdm)
+
 				if(rdm == 1){
 					if(!desc.videoid.isNullOrEmpty){
 						println(rdm)
@@ -407,20 +454,19 @@ class VideoDemonstrator {
 		}
 	}
 	
+	
 	def void addText(VideoGeneratorModel videoGen) {
 		
      	var vi = new Command
      	
-		
+
+
 		for(videoseq : videoGen.videoseqs){
 	
 			if (videoseq instanceof MandatoryVideoSeq){
 				val desc = (videoseq as MandatoryVideoSeq).description
 				if(!desc.videoid.isNullOrEmpty){ 
 				
-					println(desc.text)
-					println("loc "+desc.location)
-					println("name "+desc.videoid)
 					
 					
 					vi.text(desc.location, desc.videoid, desc.text)
@@ -428,10 +474,9 @@ class VideoDemonstrator {
 				
 				}
 									
-			}/*else if (videoseq instanceof OptionalVideoSeq) {
+			}else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
 				var rdm = new Random().nextInt(2)
-				//println(" ro " +rdm)
 				if(rdm == 1){
 					if(!desc.videoid.isNullOrEmpty) {
 						
@@ -445,7 +490,6 @@ class VideoDemonstrator {
 				
 					val altvid = (videoseq as AlternativeVideoSeq)
 					var random = new Random().nextInt(altvid.videodescs.size)
-					//print(" ra "+random+"\n")
 					var vdesc = altvid.videodescs.get(random);
 					
 				
@@ -455,7 +499,7 @@ class VideoDemonstrator {
 						
 					}
 				
-				}*/
+				}
 			
 			}
 	}
