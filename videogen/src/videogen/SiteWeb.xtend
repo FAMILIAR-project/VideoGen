@@ -24,6 +24,12 @@ class SiteWeb {
 		file.print(content)
 	}
 
+	@Test
+	def void testFile() {
+		var str = genHtml("q10.videogen")
+		writeToFile(str, "index.html")
+	}
+
 	def String genHtml(String pathfile) {
 		// loading
 		var videoGen = loadVideoGenerator(URI.createURI(pathfile))
@@ -60,7 +66,7 @@ class SiteWeb {
 			}
 
 		]
-		str+="\""
+		str += "\""
 		// serializing
 		return str;
 	}
@@ -68,7 +74,8 @@ class SiteWeb {
 	def void createVignette(String path, String name) {
 		println("path=" + path)
 		println("name=" + name)
-		var cmd = "ffmpeg -i " + path + " -ss 00:00:01.000 -vframes 1 " + "src/main/webapp/content/images/"+name + ".jpg -y";
+		var cmd = "ffmpeg -i " + path + " -ss 00:00:01.000 -vframes 1 " + "src/main/webapp/content/images/" + name +
+			".jpg -y";
 		println(cmd)
 		var Process process = Runtime.runtime.exec(cmd)
 		process.waitFor()

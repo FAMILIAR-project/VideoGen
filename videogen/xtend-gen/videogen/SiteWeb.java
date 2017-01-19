@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.InputOutput;
+import org.junit.Test;
 import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated;
 import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq;
 import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq;
@@ -42,6 +43,12 @@ public class SiteWeb {
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
+  }
+  
+  @Test
+  public void testFile() {
+    String str = this.genHtml("q10.videogen");
+    this.writeToFile(str, "index.html");
   }
   
   public String genHtml(final String pathfile) {
@@ -111,7 +118,8 @@ public class SiteWeb {
     try {
       InputOutput.<String>println(("path=" + path));
       InputOutput.<String>println(("name=" + name));
-      String cmd = ((((("ffmpeg -i " + path) + " -ss 00:00:01.000 -vframes 1 ") + "src/main/webapp/content/images/") + name) + ".jpg -y");
+      String cmd = ((((("ffmpeg -i " + path) + " -ss 00:00:01.000 -vframes 1 ") + "src/main/webapp/content/images/") + name) + 
+        ".jpg -y");
       InputOutput.<String>println(cmd);
       Runtime _runtime = Runtime.getRuntime();
       Process process = _runtime.exec(cmd);

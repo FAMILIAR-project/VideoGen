@@ -20,3 +20,10 @@ The method is the method "CheckSpecs" from the file Specifications.extend.
 ##Familiar
 
 The project supports the generation of familiar files from a videogen file. The method `toFamiliar(String input, String output)` takes a file from the specified input location and generate a videogen file with the specified output name. All videos and alternative list must have a id or else the generator will throw a nullPointerException.
+
+
+## Web app
+Launch the fr.istic.idm.VideoGenApp.java to launch the wepapp
+Them open a browser and go to http://127.0.0.1:8080
+Sign in by using login: admin pwd: admin
+The generate button trigger the generation of the vignettes for the q10.videogen in the folder src/main/resources/videogen
