@@ -1,0 +1,12 @@
+#EXT-X-DISCONTINUITY
+#EXTINF:3.9, vid1Mandatory
+/home/paul/Vidéos/idm/inserted_text/video1_subtitle.mp4
+
+#EXT-X-DISCONTINUITY
+#EXTINF:44.2, vid31
+/home/paul/Vidéos/idm/inserted_text/video3_subtitle.mp4
+
+#EXT-X-DISCONTINUITY
+#EXTINF:5.533333, vid4Mandatory
+/home/paul/Vidéos/idm/inserted_text/video6_subtitle.mp4
+

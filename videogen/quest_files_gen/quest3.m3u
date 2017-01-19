@@ -1,0 +1,12 @@
+#EXTINF:-1, vid1Mandatory
+/home/paul/Vidéos/idm/video1.mp4
+
+#EXTINF:-1, vid2Optional
+/home/paul/Vidéos/idm/video2.mp4
+
+#EXTINF:-1, vid33
+/home/paul/Vidéos/idm/video5.mp4
+
+#EXTINF:-1, vid4Mandatory
+/home/paul/Vidéos/idm/video6.mp4
+

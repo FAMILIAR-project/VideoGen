@@ -1,0 +1,17 @@
+VideoGen {
+	
+	mandatory videoseq vid1Mandatory "/home/paul/Vidéos/idm/video1.mp4" 
+	optional videoseq vid2Optional "/home/paul/Vidéos/idm/video2.mp4" {
+		probability 25
+	}
+	alternatives vid3Alternatives {
+		videoseq vid31 "/home/paul/Vidéos/idm/video3.mp4" 
+		videoseq vid32 "/home/paul/Vidéos/idm/video4.mp4"
+		videoseq vid33 "/home/paul/Vidéos/idm/video5.mp4"
+	}
+	optional videoseq vid2Optional "/home/paul/Vidéos/idm/video6.mp4" {
+		probability 80
+	}
+	mandatory videoseq vid4Mandatory "/home/paul/Vidéos/idm/video7.mp4"
+
+}
