@@ -22,6 +22,9 @@ import videogenPlaylist.VideogenPlaylistPackage;
  * <ul>
  *   <li>{@link videogenPlaylist.impl.MediaFileImpl#getPath <em>Path</em>}</li>
  *   <li>{@link videogenPlaylist.impl.MediaFileImpl#getDuration <em>Duration</em>}</li>
+ *   <li>{@link videogenPlaylist.impl.MediaFileImpl#getText <em>Text</em>}</li>
+ *   <li>{@link videogenPlaylist.impl.MediaFileImpl#getXAxis <em>XAxis</em>}</li>
+ *   <li>{@link videogenPlaylist.impl.MediaFileImpl#getYAxis <em>YAxis</em>}</li>
  * </ul>
  *
  * @generated
@@ -66,6 +69,66 @@ public class MediaFileImpl extends MinimalEObjectImpl.Container implements Media
 	 * @ordered
 	 */
 	protected double duration = DURATION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getText() <em>Text</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getText()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String TEXT_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getText() <em>Text</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getText()
+	 * @generated
+	 * @ordered
+	 */
+	protected String text = TEXT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getXAxis() <em>XAxis</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getXAxis()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String XAXIS_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getXAxis() <em>XAxis</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getXAxis()
+	 * @generated
+	 * @ordered
+	 */
+	protected String xAxis = XAXIS_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getYAxis() <em>YAxis</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getYAxis()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String YAXIS_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getYAxis() <em>YAxis</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getYAxis()
+	 * @generated
+	 * @ordered
+	 */
+	protected String yAxis = YAXIS_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -133,6 +196,69 @@ public class MediaFileImpl extends MinimalEObjectImpl.Container implements Media
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getText() {
+		return text;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setText(String newText) {
+		String oldText = text;
+		text = newText;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VideogenPlaylistPackage.MEDIA_FILE__TEXT, oldText, text));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getXAxis() {
+		return xAxis;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setXAxis(String newXAxis) {
+		String oldXAxis = xAxis;
+		xAxis = newXAxis;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VideogenPlaylistPackage.MEDIA_FILE__XAXIS, oldXAxis, xAxis));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getYAxis() {
+		return yAxis;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setYAxis(String newYAxis) {
+		String oldYAxis = yAxis;
+		yAxis = newYAxis;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VideogenPlaylistPackage.MEDIA_FILE__YAXIS, oldYAxis, yAxis));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -140,6 +266,12 @@ public class MediaFileImpl extends MinimalEObjectImpl.Container implements Media
 				return getPath();
 			case VideogenPlaylistPackage.MEDIA_FILE__DURATION:
 				return getDuration();
+			case VideogenPlaylistPackage.MEDIA_FILE__TEXT:
+				return getText();
+			case VideogenPlaylistPackage.MEDIA_FILE__XAXIS:
+				return getXAxis();
+			case VideogenPlaylistPackage.MEDIA_FILE__YAXIS:
+				return getYAxis();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -157,6 +289,15 @@ public class MediaFileImpl extends MinimalEObjectImpl.Container implements Media
 				return;
 			case VideogenPlaylistPackage.MEDIA_FILE__DURATION:
 				setDuration((Double)newValue);
+				return;
+			case VideogenPlaylistPackage.MEDIA_FILE__TEXT:
+				setText((String)newValue);
+				return;
+			case VideogenPlaylistPackage.MEDIA_FILE__XAXIS:
+				setXAxis((String)newValue);
+				return;
+			case VideogenPlaylistPackage.MEDIA_FILE__YAXIS:
+				setYAxis((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -176,6 +317,15 @@ public class MediaFileImpl extends MinimalEObjectImpl.Container implements Media
 			case VideogenPlaylistPackage.MEDIA_FILE__DURATION:
 				setDuration(DURATION_EDEFAULT);
 				return;
+			case VideogenPlaylistPackage.MEDIA_FILE__TEXT:
+				setText(TEXT_EDEFAULT);
+				return;
+			case VideogenPlaylistPackage.MEDIA_FILE__XAXIS:
+				setXAxis(XAXIS_EDEFAULT);
+				return;
+			case VideogenPlaylistPackage.MEDIA_FILE__YAXIS:
+				setYAxis(YAXIS_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -192,6 +342,12 @@ public class MediaFileImpl extends MinimalEObjectImpl.Container implements Media
 				return PATH_EDEFAULT == null ? path != null : !PATH_EDEFAULT.equals(path);
 			case VideogenPlaylistPackage.MEDIA_FILE__DURATION:
 				return duration != DURATION_EDEFAULT;
+			case VideogenPlaylistPackage.MEDIA_FILE__TEXT:
+				return TEXT_EDEFAULT == null ? text != null : !TEXT_EDEFAULT.equals(text);
+			case VideogenPlaylistPackage.MEDIA_FILE__XAXIS:
+				return XAXIS_EDEFAULT == null ? xAxis != null : !XAXIS_EDEFAULT.equals(xAxis);
+			case VideogenPlaylistPackage.MEDIA_FILE__YAXIS:
+				return YAXIS_EDEFAULT == null ? yAxis != null : !YAXIS_EDEFAULT.equals(yAxis);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -210,6 +366,12 @@ public class MediaFileImpl extends MinimalEObjectImpl.Container implements Media
 		result.append(path);
 		result.append(", duration: ");
 		result.append(duration);
+		result.append(", text: ");
+		result.append(text);
+		result.append(", xAxis: ");
+		result.append(xAxis);
+		result.append(", yAxis: ");
+		result.append(yAxis);
 		result.append(')');
 		return result.toString();
 	}

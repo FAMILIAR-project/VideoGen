@@ -146,6 +146,33 @@ public class VideogenPlaylistPackageImpl extends EPackageImpl implements Videoge
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getMediaFile_Text() {
+		return (EAttribute)mediaFileEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMediaFile_XAxis() {
+		return (EAttribute)mediaFileEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMediaFile_YAxis() {
+		return (EAttribute)mediaFileEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public VideogenPlaylistFactory getVideogenPlaylistFactory() {
 		return (VideogenPlaylistFactory)getEFactoryInstance();
 	}
@@ -175,6 +202,9 @@ public class VideogenPlaylistPackageImpl extends EPackageImpl implements Videoge
 		mediaFileEClass = createEClass(MEDIA_FILE);
 		createEAttribute(mediaFileEClass, MEDIA_FILE__PATH);
 		createEAttribute(mediaFileEClass, MEDIA_FILE__DURATION);
+		createEAttribute(mediaFileEClass, MEDIA_FILE__TEXT);
+		createEAttribute(mediaFileEClass, MEDIA_FILE__XAXIS);
+		createEAttribute(mediaFileEClass, MEDIA_FILE__YAXIS);
 	}
 
 	/**
@@ -213,6 +243,9 @@ public class VideogenPlaylistPackageImpl extends EPackageImpl implements Videoge
 		initEClass(mediaFileEClass, MediaFile.class, "MediaFile", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getMediaFile_Path(), ecorePackage.getEString(), "path", null, 0, 1, MediaFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMediaFile_Duration(), ecorePackage.getEDouble(), "duration", null, 0, 1, MediaFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMediaFile_Text(), ecorePackage.getEString(), "text", null, 0, 1, MediaFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMediaFile_XAxis(), ecorePackage.getEString(), "xAxis", null, 0, 1, MediaFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMediaFile_YAxis(), ecorePackage.getEString(), "yAxis", null, 0, 1, MediaFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

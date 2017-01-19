@@ -1,0 +1,9 @@
+#EXTM3U 
+#EXTINF:6.0, Example Artist - Example title 
+videos/adam-2.webm
+#EXTINF:8.0, Example Artist - Example title 
+videos/bear-2.webm
+#EXTINF:5.0, Example Artist - Example title 
+videos/jerry-2.webm
+#EXTINF:18.0, Example Artist - Example title 
+videos/rockMiaou-2.webm

@@ -122,13 +122,40 @@ public interface VideogenPlaylistPackage extends EPackage {
 	int MEDIA_FILE__DURATION = 1;
 
 	/**
+	 * The feature id for the '<em><b>Text</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEDIA_FILE__TEXT = 2;
+
+	/**
+	 * The feature id for the '<em><b>XAxis</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEDIA_FILE__XAXIS = 3;
+
+	/**
+	 * The feature id for the '<em><b>YAxis</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEDIA_FILE__YAXIS = 4;
+
+	/**
 	 * The number of structural features of the '<em>Media File</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MEDIA_FILE_FEATURE_COUNT = 2;
+	int MEDIA_FILE_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Media File</em>' class.
@@ -192,6 +219,39 @@ public interface VideogenPlaylistPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getMediaFile_Duration();
+
+	/**
+	 * Returns the meta object for the attribute '{@link videogenPlaylist.MediaFile#getText <em>Text</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Text</em>'.
+	 * @see videogenPlaylist.MediaFile#getText()
+	 * @see #getMediaFile()
+	 * @generated
+	 */
+	EAttribute getMediaFile_Text();
+
+	/**
+	 * Returns the meta object for the attribute '{@link videogenPlaylist.MediaFile#getXAxis <em>XAxis</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>XAxis</em>'.
+	 * @see videogenPlaylist.MediaFile#getXAxis()
+	 * @see #getMediaFile()
+	 * @generated
+	 */
+	EAttribute getMediaFile_XAxis();
+
+	/**
+	 * Returns the meta object for the attribute '{@link videogenPlaylist.MediaFile#getYAxis <em>YAxis</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>YAxis</em>'.
+	 * @see videogenPlaylist.MediaFile#getYAxis()
+	 * @see #getMediaFile()
+	 * @generated
+	 */
+	EAttribute getMediaFile_YAxis();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -259,6 +319,30 @@ public interface VideogenPlaylistPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MEDIA_FILE__DURATION = eINSTANCE.getMediaFile_Duration();
+
+		/**
+		 * The meta object literal for the '<em><b>Text</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MEDIA_FILE__TEXT = eINSTANCE.getMediaFile_Text();
+
+		/**
+		 * The meta object literal for the '<em><b>XAxis</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MEDIA_FILE__XAXIS = eINSTANCE.getMediaFile_XAxis();
+
+		/**
+		 * The meta object literal for the '<em><b>YAxis</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MEDIA_FILE__YAXIS = eINSTANCE.getMediaFile_YAxis();
 
 	}
 
