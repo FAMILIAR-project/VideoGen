@@ -1,23 +1,32 @@
 VideoGen {
-	
-	mandatory videoseq v1 "v1.mp4" 
-	optional videoseq v2 "v2.mp4" {
-		probability 25
+
+	mandatory videoseq v1 "/home/guillaume/Bureau/IDM/CoC/v1/v1.mp4"
+
+	alternatives v2 {
+		videoseq "/home/guillaume/Bureau/IDM/CoC/v2/v3.mp4"
+		videoseq "/home/guillaume/Bureau/IDM/CoC/v2/v2.mp4"
 	}
-	alternatives v3 {
-		videoseq v30 "v3.mp4" 
-		videoseq v31 "v4.mp4"
-		videoseq v32 "v5.mp4"
-	}
-	
+
+	mandatory videoseq v3 "/home/guillaume/Bureau/IDM/CoC/v3/v4.mp4"
+
 	alternatives v4 {
-		videoseq v41 "v6.mp4"
-		videoseq v42 "v7.mp4"
+		videoseq "/home/guillaume/Bureau/IDM/CoC/v4/v5.mp4"
+		videoseq "/home/guillaume/Bureau/IDM/CoC/v4/v6.mp4"
+		videoseq "/home/guillaume/Bureau/IDM/CoC/v4/v7.mp4"
 	}
-	mandatory videoseq v5 "v8.mp4"
-	
-	optional videoseq v8 "v9.mp4"
-	alternatives v9 {
-		videoseq v81 "v10.mp4"
+
+	mandatory videoseq v5 "/home/guillaume/Bureau/IDM/CoC/v5/v1.mp4"
+
+	alternatives v6 {
+		videoseq "/home/guillaume/Bureau/IDM/CoC/v6/v3.mp4"
+		videoseq "/home/guillaume/Bureau/IDM/CoC/v6/v2.mp4"
 	}
+
+	alternatives v7 {
+		videoseq "/home/guillaume/Bureau/IDM/CoC/v7/v5.mp4"
+		videoseq "/home/guillaume/Bureau/IDM/CoC/v7/v6.mp4"
+		videoseq "/home/guillaume/Bureau/IDM/CoC/v7/v7.mp4"
+	}
+
+	mandatory videoseq v8 "/home/guillaume/Bureau/IDM/CoC/v8/v4.mp4"
 }
