@@ -10,7 +10,19 @@ A configurable generator of generator of video variants
 
 
 ## Fichiers et Dossiers
+Réponses aux questions du TP : 
+* **_videogen/src/videogen/Answers.xtend_** : Transformations xtend permettant de répondre aux questions
+* **_videogen/src/videogen/IdmUtil.xtend_** : Méthodes statiques communes à plusieurs fichiers xtend permettant par exemple de charger un modéle de `VideoGen`, créer un fichier, de vérifier un modèle de `VideoGen`
+* **_videogen/quest_rep_files_** : Dossier qui ontient les fichiers (ffmpeg, m3u) générés par les transformations xtend
+* **_videogen/videos.videogen, videogen/videos.videogen-fail-location.videogen, videogen/videos.videogen-fail-proba.videogen_** : les fichiers videogen utilisés pour les transformations xtend
+* **_videogen/vignettes_** : Dossier qui contient les vignettes générées à partir des vidéos, ainsi que les fichiers html
 
+<br>Exercices complémentaires : 
+
+* **_videogen/src/videogen/InsertText.xtend_** : Transformations xtend permettant d'insérer du texte dans une vidéo
+* **_videogen/inserted_text_** : Dossier contenant les vidéos avec le texte inséré
+* **_videogen/src/videogen/Gification.xtend_** : Transformations xtend permettant de créer des gif à partir de vidéos
+* **_videogen/gification_** : Dossier contenant les gifs et le fichier ffmpeg générés
 
 
 ## Question 14
