@@ -33,10 +33,13 @@ Une fois les données établies, on renvoie le lien de la playlist .m3u créée 
 
 #### Formaliser les exigences sous forme d’un feature model. L’idée est qu’à partir d’une configuration du feature model (eg mode crazy sans sauvegarde mais avec visualisation des vignettes) on déploie un nouveau site Web avec Jhipster. Vous utiliserez FAMILIAR et son DSL externe.
 
-* Le VideoGenerator possède deux modes : Aléatoire ,Composé ou Probabiliste
+* Le VideoGenerator possède deux modes : Aléatoire, Composé ou Probabiliste
 * Le mode Composé (composition de vidéos à la demande de l'utilisateur) est lié soit à une vidéo Alternative, soit une vidéo Probabiliste
 
 ## Question 15
 
 #### Démontrer que vous êtes d'ores et déjà capable de déployer un Jhipster / VideoGen en fonction de certaines configurations valides de votre feature model.
 
+Nous avons créé un fichier Xtend qui vérifie que la configuration envoyée par l'utilisateur est valide (pas de vidéos dupliquées, pas d'ID dupliqués, les sommes de probabilité supérieures à 100 ...).  
+En cas d'erreur, un message est envoyé à l'utilisateur pas le biais d'une AlertBox.  
+Dans les cas valides, la playlist ainsi créée est jouée par le lecteur vidéo.
