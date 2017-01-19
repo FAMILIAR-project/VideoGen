@@ -64,7 +64,7 @@ class TransformateurFFmpeg {
 	}
 	
 	@Test
-	def test2() {
+	def m3uExt() {
 		// loading
 		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
 		assertNotNull(videoGen)
@@ -97,6 +97,33 @@ class TransformateurFFmpeg {
 		
 	}
 	
+	@Test
+	def vignettes() {
+		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
+		assertNotNull(videoGen)
+		assertEquals(7, videoGen.videoseqs.size)		
+				
+		videoGen.videoseqs.forEach[videoseq |
+			if (videoseq instanceof MandatoryVideoSeq) {
+				val desc = (videoseq as MandatoryVideoSeq).description
+				var name = desc.location.substring(0, desc.location.lastIndexOf('.'))
+				var cmd = "ffmpeg -y -i " + desc.location + " -r 1 -t 00:00:01 -ss 00:00:$2 -f image2 vignettes/" + name + ".png"
+			}
+			else if (videoseq instanceof OptionalVideoSeq) {
+				val desc = (videoseq as OptionalVideoSeq).description
+				var name = desc.location.substring(0, desc.location.lastIndexOf('.'))
+				var cmd = "ffmpeg -y -i " + desc.location + " -r 1 -t 00:00:01 -ss 00:00:$2 -f image2 vignettes/" + name + ".png" 
+			}
+			else {
+				val altvid = (videoseq as AlternativeVideoSeq)
+				if(altvid.videoid.isNullOrEmpty) altvid.videoid = genID()
+				for (vdesc : altvid.videodescs) {
+					var name = vdesc.location.substring(0, vdesc.location.lastIndexOf('.'))
+					var cmd = "ffmpeg -y -i " + vdesc.location + " -r 1 -t 00:00:01 -ss 00:00:$2 -f image2 vignettes/" + name + ".png"
+				}
+			}	
+		]
+	}
 	
 	static var i = 0;
 	def genID() {
