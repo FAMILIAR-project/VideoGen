@@ -13,10 +13,7 @@ class SpecificationGenerator {
 	//Question subsidiaire : Synthétiser une spécification VideoGen
 	def saveVideoGenerator(URI uri, VideoGeneratorModel pollS) {
 		new VideoGenStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()
-		var Resource rs = new ResourceSetImpl().createResource(uri);
-		//println(pollS)
-		//println(uri)
-		//println(rs.getContents) 
+		var Resource rs = new ResourceSetImpl().createResource(uri); 
 		rs.getContents.add(pollS); 
 		rs.save(new HashMap());
 	}
@@ -24,18 +21,15 @@ class SpecificationGenerator {
 	def generateSpecification(String folder,URI specifname){
 		var subFolders = new File(folder).listFiles();
 		var videogen = VideoGenFactory.eINSTANCE.createVideoGeneratorModel
-		//var videoseqs = VideoGenFactory.eINSTANCE.c
 		for (sfolder : subFolders){
 			if (sfolder.isFile()){
 				println("Warning : we didn't expect a file ("+sfolder.getName+") at this level")
 			}else{
 				var id = sfolder.getName
-				//println(id)
 				var listOfFiles = sfolder.listFiles()
 				if (listOfFiles.length==1){
 					var manda = VideoGenFactory.eINSTANCE.createMandatoryVideoSeq
 					var desc = VideoGenFactory.eINSTANCE.createVideoDescription
-					println(listOfFiles.get(0).getName.toString.split("\\.").get(0))
 					desc.videoid = "m"+listOfFiles.get(0).getName.split("\\.").get(0)
 					desc.location = listOfFiles.get(0).getPath
 					manda.description = desc
@@ -50,8 +44,6 @@ class SpecificationGenerator {
 					for (file : listOfFiles){
 						if (file.isFile()){
 							//pour le moment, pas de vérification que le fichier soit valide
-							//var aid = file.getName
-							//println(aid.split(".").length)
 							var aid = "av"+file.getName.split("\\.").get(0)
 							var alocation = file.getPath
 							var videodesc = VideoGenFactory.eINSTANCE.createVideoDescription
@@ -66,7 +58,6 @@ class SpecificationGenerator {
 				}
 			}
 		}
-		//println(videogen.toString)
 		saveVideoGenerator(specifname,videogen)
 	}
 	
