@@ -83,62 +83,6 @@ public class VideoDemonstratorGification {
     }
   }
   
-  public static String creerGif(final String duration, final String start, final String size, final String path, final String filename) {
-    try {
-      String cmdGif = "ffmpeg -v warning ";
-      boolean _notEquals = (!Objects.equal(duration, null));
-      if (_notEquals) {
-        String _cmdGif = cmdGif;
-        cmdGif = (_cmdGif + (("-t " + duration) + " "));
-      }
-      boolean _notEquals_1 = (!Objects.equal(start, null));
-      if (_notEquals_1) {
-        String _cmdGif_1 = cmdGif;
-        cmdGif = (_cmdGif_1 + ((" -ss " + start) + " "));
-      }
-      String _cmdGif_2 = cmdGif;
-      cmdGif = (_cmdGif_2 + (("-i " + path) + " "));
-      boolean _notEquals_2 = (!Objects.equal(size, null));
-      if (_notEquals_2) {
-        String _cmdGif_3 = cmdGif;
-        cmdGif = (_cmdGif_3 + (("-vf scale=" + size) + ":-1 "));
-      } else {
-        String _cmdGif_4 = cmdGif;
-        cmdGif = (_cmdGif_4 + "-vf scale=300:-1 ");
-      }
-      String _cmdGif_5 = cmdGif;
-      cmdGif = (_cmdGif_5 + (("-gifflags +transdiff -y " + filename) + ".gif"));
-      Runtime _runtime = Runtime.getRuntime();
-      Process process = _runtime.exec(cmdGif);
-      process.waitFor();
-      return (filename + ".gif");
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
-  }
-  
-  public static void deleteFile(final String path) {
-    try {
-      String cmdDelete = ("rm " + path);
-      Runtime _runtime = Runtime.getRuntime();
-      Process process = _runtime.exec(cmdDelete);
-      process.waitFor();
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
-  }
-  
-  public static void concat(final String playlist) {
-    try {
-      String cmdConcatener = (("ffmpeg -f concat -safe 0 -i " + playlist) + " -c copy /videoconcat.m3u");
-      Runtime _runtime = Runtime.getRuntime();
-      Process process = _runtime.exec(cmdConcatener);
-      process.waitFor();
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
-  }
-  
   @Test
   public void testGification() {
     URI _createURI = URI.createURI("fooVideos.videogen");
@@ -238,6 +182,62 @@ public class VideoDemonstratorGification {
       } else {
         throw Exceptions.sneakyThrow(_t);
       }
+    }
+  }
+  
+  public static String creerGif(final String duration, final String start, final String size, final String path, final String filename) {
+    try {
+      String cmdGif = "ffmpeg -v warning ";
+      boolean _notEquals = (!Objects.equal(duration, null));
+      if (_notEquals) {
+        String _cmdGif = cmdGif;
+        cmdGif = (_cmdGif + (("-t " + duration) + " "));
+      }
+      boolean _notEquals_1 = (!Objects.equal(start, null));
+      if (_notEquals_1) {
+        String _cmdGif_1 = cmdGif;
+        cmdGif = (_cmdGif_1 + ((" -ss " + start) + " "));
+      }
+      String _cmdGif_2 = cmdGif;
+      cmdGif = (_cmdGif_2 + (("-i " + path) + " "));
+      boolean _notEquals_2 = (!Objects.equal(size, null));
+      if (_notEquals_2) {
+        String _cmdGif_3 = cmdGif;
+        cmdGif = (_cmdGif_3 + (("-vf scale=" + size) + ":-1 "));
+      } else {
+        String _cmdGif_4 = cmdGif;
+        cmdGif = (_cmdGif_4 + "-vf scale=300:-1 ");
+      }
+      String _cmdGif_5 = cmdGif;
+      cmdGif = (_cmdGif_5 + (("-gifflags +transdiff -y " + filename) + ".gif"));
+      Runtime _runtime = Runtime.getRuntime();
+      Process process = _runtime.exec(cmdGif);
+      process.waitFor();
+      return (filename + ".gif");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  public static void deleteFile(final String path) {
+    try {
+      String cmdDelete = ("rm " + path);
+      Runtime _runtime = Runtime.getRuntime();
+      Process process = _runtime.exec(cmdDelete);
+      process.waitFor();
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  public static void concat(final String playlist) {
+    try {
+      String cmdConcatener = (("ffmpeg -f concat -safe 0 -i " + playlist) + " -c copy /videoconcat.m3u");
+      Runtime _runtime = Runtime.getRuntime();
+      Process process = _runtime.exec(cmdConcatener);
+      process.waitFor();
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
     }
   }
 }

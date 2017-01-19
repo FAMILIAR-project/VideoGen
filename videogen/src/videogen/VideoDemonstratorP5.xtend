@@ -24,6 +24,14 @@ import java.util.ArrayList
 
 class VideoDemonstratorP5 {
 	
+	static var i = 0;
+	
+	String vignette = ""
+	List vignettes = new ArrayList<String>();
+	
+	def genID() {
+		"v" + i++
+	}
 	
 	def loadVideoGenerator(URI uri) {
 		new VideoGenStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()
@@ -36,33 +44,6 @@ class VideoDemonstratorP5 {
 		rs.getContents.add(pollS); 
 		rs.save(new HashMap());
 	}
-	
-	def static double getDuration(String videoLocation) {
-		var Process process = Runtime.getRuntime().exec(
-			"C:\\Users\\kaoutar\\Downloads\\ffmpeg-20161204-1f5630a-win64-static\\bin\\ffprobe -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 " + videoLocation);
-
-		process.waitFor();
-
-		var BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-		var String line = "";
-		var String outputJson = "";
-		while ((line = reader.readLine()) != null) {
-			outputJson = outputJson + line;
-		}
-		return Math.round(Double.parseDouble(outputJson)) - 1;
-	}
-	
-	def static String createVignette(String path, String filename) {
-		var String cmdVignette = "ffmpeg -y -i " + path +
-			" -ss 00:00:02 -vframes 1 "+System.getProperty('user.dir')+"/Vignettes/" + filename + ".jpg"
-		println(cmdVignette)
-
-		var Process process = Runtime.getRuntime().exec(cmdVignette);
-		process.waitFor();
-
-		return filename + ".jpg"
-	}
-	
 	
 	@Test
 	def TP4() {
@@ -164,17 +145,32 @@ class VideoDemonstratorP5 {
 			e.printStackTrace
 		}
 	}
+	
+	def static double getDuration(String videoLocation) {
+		var Process process = Runtime.getRuntime().exec(
+			"C:\\Users\\kaoutar\\Downloads\\ffmpeg-20161204-1f5630a-win64-static\\bin\\ffprobe -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 " + videoLocation);
 
-	static var i = 0;
-	
-	String vignette = ""
-	List vignettes = new ArrayList<String>();
-	
-	def genID() {
-		"v" + i++
+		process.waitFor();
+
+		var BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+		var String line = "";
+		var String outputJson = "";
+		while ((line = reader.readLine()) != null) {
+			outputJson = outputJson + line;
+		}
+		return Math.round(Double.parseDouble(outputJson)) - 1;
 	}
+	
+	def static String createVignette(String path, String filename) {
+		var String cmdVignette = "ffmpeg -y -i " + path +
+			" -ss 00:00:02 -vframes 1 "+System.getProperty('user.dir')+"/Vignettes/" + filename + ".jpg"
+		println(cmdVignette)
 
+		var Process process = Runtime.getRuntime().exec(cmdVignette);
+		process.waitFor();
+
+		return filename + ".jpg"
+	}
 	
-	
-	
+
 }

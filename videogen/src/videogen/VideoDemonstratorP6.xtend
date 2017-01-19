@@ -24,6 +24,38 @@ import java.util.List
 import java.util.ArrayList
 
 class VideoDemonstratorP6 {
+	
+	static var i = 0;
+	
+	String vignette = ""
+	List vignettes = new ArrayList<String>();
+	List vignettes2 = new ArrayList<String>();
+	
+	
+	def genID() {
+		"v" + i++
+	}
+	
+	def printHtmlFile(String vignette){
+		
+		try {
+			val ffmpeg = new File("/Users/kaoutar/git/VideoGen/videogen/Vignettes/vignette.html");
+			if (!ffmpeg.exists()) {
+				ffmpeg.createNewFile();
+			}
+			val fw = new FileWriter(ffmpeg.getAbsoluteFile());
+			val bw = new BufferedWriter(fw);
+			bw.write("<!DOCTYPE html><html><body>");
+			bw.write("les vignettes");
+			bw.write(vignette);
+			bw.write("</html></body>");
+			bw.close();
+			
+		} catch (IOException e) {
+			e.printStackTrace
+		}
+	}
+		
 	def loadVideoGenerator(URI uri) {
 		new VideoGenStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()
 		var res = new ResourceSetImpl().getResource(uri, true);
@@ -68,8 +100,6 @@ class VideoDemonstratorP6 {
 		var fact = new VideogenPlayListFactoryImpl()
 		var playlist = fact.createPlayList()
 		assertNotNull(videoGen)
-
-		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
 		for (videoseq : videoGen.videoseqs.toSet) {
 			if (videoseq instanceof MandatoryVideoSeq) {
 
@@ -100,7 +130,6 @@ class VideoDemonstratorP6 {
 
 			} else if (videoseq instanceof OptionalVideoSeq) {
 				println("Optionals")
-				// Random between 0-1 
 				val rand = new Random().nextInt(2);
 	
 				if (rand == 0) {
@@ -150,48 +179,12 @@ class VideoDemonstratorP6 {
 					System.out.println("Alternatives : la vignette est deja presente  "+ fileLocation);
 					vignette += "<p>Alternatives : la vignette est deja presente !!</p> " + fileLocation + "<br/>"
 				}
-				
-			
 			}
 		}
-		
-	
 		printHtmlFile(vignette);
-		// New file 
 }
 
-static var i = 0;
-	
-	String vignette = ""
-	List vignettes = new ArrayList<String>();
-	List vignettes2 = new ArrayList<String>();
-	
-	
-	def genID() {
-		"v" + i++
-	}
-	
-	def printHtmlFile(String vignette){
-		
-		try {
-			val ffmpeg = new File("/Users/kaoutar/git/VideoGen/videogen/Vignettes/vignette.html");
-			if (!ffmpeg.exists()) {
-				ffmpeg.createNewFile();
-			}
-			val fw = new FileWriter(ffmpeg.getAbsoluteFile());
-			val bw = new BufferedWriter(fw);
-			bw.write("<!DOCTYPE html><html><body>");
-			bw.write("les vignettes");
-			bw.write(vignette);
-			bw.write("</html></body>");
-			bw.close();
-			
-		} catch (IOException e) {
-			e.printStackTrace
-		}
-		
-		
-		}
+
 		
 }
 

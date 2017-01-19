@@ -34,6 +34,15 @@ import videogenPlayList.impl.VideogenPlayListFactoryImpl;
 
 @SuppressWarnings("all")
 public class VideoDemonstratorInsertText {
+  private static int i = 0;
+  
+  private File ffmpeg;
+  
+  public static String genID() {
+    int _plusPlus = VideoDemonstratorInsertText.i++;
+    return ("" + Integer.valueOf(_plusPlus));
+  }
+  
   public VideoGeneratorModel loadVideoGenerator(final URI uri) {
     VideoGeneratorModel _xblockexpression = null;
     {
@@ -78,34 +87,6 @@ public class VideoDemonstratorInsertText {
       double _parseDouble = Double.parseDouble(outputJson);
       long _round = Math.round(_parseDouble);
       return (_round - 1);
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
-  }
-  
-  public static String insererTextToVideo(final String videoLocation, final String text) {
-    try {
-      System.out.println("debut");
-      String[] name = videoLocation.split("\\.(?=[^\\.]+$)");
-      String _get = name[0];
-      String _plus = ((((("ffmpeg -i " + videoLocation) + " -vf drawtext=\'fontsize=15:fontfile=FreeSerif.ttf:text=") + text) + ":y=100:x=100\' -codec:a copy ") + _get);
-      String cmd = (_plus + "-2.mp4");
-      InputOutput.<String>println(cmd);
-      Runtime _runtime = Runtime.getRuntime();
-      Process process = _runtime.exec(cmd);
-      process.waitFor();
-      InputStream _inputStream = process.getInputStream();
-      InputStreamReader _inputStreamReader = new InputStreamReader(_inputStream);
-      BufferedReader reader = new BufferedReader(_inputStreamReader);
-      String line = "";
-      String outputJson = "";
-      while ((!Objects.equal((line = reader.readLine()), null))) {
-        outputJson = (outputJson + line);
-      }
-      String _string = outputJson.toString();
-      System.out.println(_string);
-      String _get_1 = name[0];
-      return (_get_1 + "-2.mp4");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -218,12 +199,31 @@ public class VideoDemonstratorInsertText {
     }
   }
   
-  private static int i = 0;
-  
-  private File ffmpeg;
-  
-  public static String genID() {
-    int _plusPlus = VideoDemonstratorInsertText.i++;
-    return ("" + Integer.valueOf(_plusPlus));
+  public static String insererTextToVideo(final String videoLocation, final String text) {
+    try {
+      System.out.println("debut");
+      String[] name = videoLocation.split("\\.(?=[^\\.]+$)");
+      String _get = name[0];
+      String _plus = ((((("ffmpeg -i " + videoLocation) + " -vf drawtext=\'fontsize=15:fontfile=FreeSerif.ttf:text=") + text) + ":y=100:x=100\' -codec:a copy ") + _get);
+      String cmd = (_plus + "-2.mp4");
+      InputOutput.<String>println(cmd);
+      Runtime _runtime = Runtime.getRuntime();
+      Process process = _runtime.exec(cmd);
+      process.waitFor();
+      InputStream _inputStream = process.getInputStream();
+      InputStreamReader _inputStreamReader = new InputStreamReader(_inputStream);
+      BufferedReader reader = new BufferedReader(_inputStreamReader);
+      String line = "";
+      String outputJson = "";
+      while ((!Objects.equal((line = reader.readLine()), null))) {
+        outputJson = (outputJson + line);
+      }
+      String _string = outputJson.toString();
+      System.out.println(_string);
+      String _get_1 = name[0];
+      return (_get_1 + "-2.mp4");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 }

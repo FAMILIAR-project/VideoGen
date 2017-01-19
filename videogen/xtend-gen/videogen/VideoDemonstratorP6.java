@@ -37,6 +37,45 @@ import videogenPlayList.impl.VideogenPlayListFactoryImpl;
 
 @SuppressWarnings("all")
 public class VideoDemonstratorP6 {
+  private static int i = 0;
+  
+  private String vignette = "";
+  
+  private List vignettes = new ArrayList<String>();
+  
+  private List vignettes2 = new ArrayList<String>();
+  
+  public String genID() {
+    int _plusPlus = VideoDemonstratorP6.i++;
+    return ("v" + Integer.valueOf(_plusPlus));
+  }
+  
+  public void printHtmlFile(final String vignette) {
+    try {
+      final File ffmpeg = new File("/Users/kaoutar/git/VideoGen/videogen/Vignettes/vignette.html");
+      boolean _exists = ffmpeg.exists();
+      boolean _not = (!_exists);
+      if (_not) {
+        ffmpeg.createNewFile();
+      }
+      File _absoluteFile = ffmpeg.getAbsoluteFile();
+      final FileWriter fw = new FileWriter(_absoluteFile);
+      final BufferedWriter bw = new BufferedWriter(fw);
+      bw.write("<!DOCTYPE html><html><body>");
+      bw.write("les vignettes");
+      bw.write(vignette);
+      bw.write("</html></body>");
+      bw.close();
+    } catch (final Throwable _t) {
+      if (_t instanceof IOException) {
+        final IOException e = (IOException)_t;
+        e.printStackTrace();
+      } else {
+        throw Exceptions.sneakyThrow(_t);
+      }
+    }
+  }
+  
   public VideoGeneratorModel loadVideoGenerator(final URI uri) {
     VideoGeneratorModel _xblockexpression = null;
     {
@@ -225,44 +264,5 @@ public class VideoDemonstratorP6 {
       }
     }
     this.printHtmlFile(this.vignette);
-  }
-  
-  private static int i = 0;
-  
-  private String vignette = "";
-  
-  private List vignettes = new ArrayList<String>();
-  
-  private List vignettes2 = new ArrayList<String>();
-  
-  public String genID() {
-    int _plusPlus = VideoDemonstratorP6.i++;
-    return ("v" + Integer.valueOf(_plusPlus));
-  }
-  
-  public void printHtmlFile(final String vignette) {
-    try {
-      final File ffmpeg = new File("/Users/kaoutar/git/VideoGen/videogen/Vignettes/vignette.html");
-      boolean _exists = ffmpeg.exists();
-      boolean _not = (!_exists);
-      if (_not) {
-        ffmpeg.createNewFile();
-      }
-      File _absoluteFile = ffmpeg.getAbsoluteFile();
-      final FileWriter fw = new FileWriter(_absoluteFile);
-      final BufferedWriter bw = new BufferedWriter(fw);
-      bw.write("<!DOCTYPE html><html><body>");
-      bw.write("les vignettes");
-      bw.write(vignette);
-      bw.write("</html></body>");
-      bw.close();
-    } catch (final Throwable _t) {
-      if (_t instanceof IOException) {
-        final IOException e = (IOException)_t;
-        e.printStackTrace();
-      } else {
-        throw Exceptions.sneakyThrow(_t);
-      }
-    }
   }
 }

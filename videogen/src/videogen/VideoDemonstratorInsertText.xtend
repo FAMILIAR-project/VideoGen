@@ -22,6 +22,15 @@ import videogenPlayList.impl.VideogenPlayListFactoryImpl
 import videogenPlayList.MediaFile
 
 class VideoDemonstratorInsertText {
+	
+	static var i = 0;
+	
+	File ffmpeg
+	
+	def static genID() {
+		"" + i++
+	}
+	
 	def loadVideoGenerator(URI uri) {
 		new VideoGenStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()
 		var res = new ResourceSetImpl().getResource(uri, true);
@@ -49,29 +58,6 @@ class VideoDemonstratorInsertText {
 		return Math.round(Double.parseDouble(outputJson)) - 1;
 	}
 	
-	def static String insererTextToVideo(String videoLocation, String text){
-		System.out.println("debut")
-		
-		var String[] name = videoLocation.split("\\.(?=[^\\.]+$)");
-	    
-		var cmd = "ffmpeg -i "+ videoLocation +" -vf drawtext='fontsize=15:fontfile=FreeSerif.ttf:text="+text+":y=100:x=100' -codec:a copy " + name.get(0) + "-2.mp4"	    
-   		println(cmd)
-
-		var Process process = Runtime.getRuntime().exec(cmd);
-		process.waitFor();
-		
-		
-		var BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-		var String line = "";
-		var String outputJson = "";
-	    while ((line = reader.readLine()) != null) {
-	        outputJson = outputJson + line;
-	    }
-	    System.out.println(outputJson.toString())
-	    
-	   return name.get(0) + '-2.mp4'
-	}
-	
 	
 	@Test
 	def testInsertText() {
@@ -80,8 +66,6 @@ class VideoDemonstratorInsertText {
 		var playlist = fact.createPlayList()
 		
 		assertNotNull(videoGen)
-				
-		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
 		for(videoseq : videoGen.videoseqs.toSet) {
 			if (videoseq instanceof MandatoryVideoSeq) {
 				
@@ -156,11 +140,28 @@ class VideoDemonstratorInsertText {
 		
 	}
 	
-	static var i = 0;
-	
-	File ffmpeg
-	
-	def static genID() {
-		"" + i++
+	def static String insererTextToVideo(String videoLocation, String text){
+		System.out.println("debut")
+		
+		var String[] name = videoLocation.split("\\.(?=[^\\.]+$)");
+	    
+		var cmd = "ffmpeg -i "+ videoLocation +" -vf drawtext='fontsize=15:fontfile=FreeSerif.ttf:text="+text+":y=100:x=100' -codec:a copy " + name.get(0) + "-2.mp4"	    
+   		println(cmd)
+
+		var Process process = Runtime.getRuntime().exec(cmd);
+		process.waitFor();
+		
+		
+		var BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+		var String line = "";
+		var String outputJson = "";
+	    while ((line = reader.readLine()) != null) {
+	        outputJson = outputJson + line;
+	    }
+	    System.out.println(outputJson.toString())
+	    
+	   return name.get(0) + '-2.mp4'
 	}
+	
+	
 }

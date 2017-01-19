@@ -22,6 +22,15 @@ import videogenPlayList.impl.VideogenPlayListFactoryImpl
 import videogenPlayList.MediaFile
 
 class VideoDemonstratorQ4 {
+	
+	static var i = 0;
+	
+	String vignette = ""
+
+	def genID() {
+		"v" + i++
+	}
+	
 	def loadVideoGenerator(URI uri) {
 		new VideoGenStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()
 		var res = new ResourceSetImpl().getResource(uri, true);
@@ -34,32 +43,7 @@ class VideoDemonstratorQ4 {
 		rs.save(new HashMap());
 	}
 	
-	def static double getDuration(String videoLocation) {
-		var Process process = Runtime.getRuntime().exec(
-			"C:\\Users\\kaoutar\\Downloads\\ffmpeg-20161204-1f5630a-win64-static\\bin\\ffprobe -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 " + videoLocation);
-
-		process.waitFor();
-
-		var BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-		var String line = "";
-		var String outputJson = "";
-		while ((line = reader.readLine()) != null) {
-			outputJson = outputJson + line;
-		}
-		return Math.round(Double.parseDouble(outputJson)) - 1;
-	}
 	
-	
-	def static String createVignette(String path, String filename) {
-		var String cmdVignette = "ffmpeg -y -i " + path +
-			" -ss 00:00:02 -vframes 1 "+System.getProperty('user.dir')+"/Vignettes/" + filename + ".jpg"
-		println(cmdVignette)
-
-		var Process process = Runtime.getRuntime().exec(cmdVignette);
-		process.waitFor();
-
-		return filename + ".jpg"
-	}
 	
 	@Test
 	def TP3() {
@@ -67,8 +51,6 @@ class VideoDemonstratorQ4 {
 		var fact = new VideogenPlayListFactoryImpl()
 		var playlist= fact.createPlayList()	
 		assertNotNull(videoGen)
-
-		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
 		for (videoseq : videoGen.videoseqs.toSet) {
 			if (videoseq instanceof MandatoryVideoSeq) {
 
@@ -116,7 +98,6 @@ class VideoDemonstratorQ4 {
 				playlist.mediaFile.add(mediaFile)
 			}
 		}
-		// New file 
 		try {
 			val ffmpeg = new File("/Users/kaoutar/git/VideoGen/videogen/Vignettes/vignette.html");
 			if (!ffmpeg.exists()) {
@@ -135,13 +116,34 @@ class VideoDemonstratorQ4 {
 			e.printStackTrace
 		}
 	}
-
-	static var i = 0;
 	
-	String vignette = ""
+	def static double getDuration(String videoLocation) {
+		var Process process = Runtime.getRuntime().exec(
+			"C:\\Users\\kaoutar\\Downloads\\ffmpeg-20161204-1f5630a-win64-static\\bin\\ffprobe -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 " + videoLocation);
 
-	def genID() {
-		"v" + i++
+		process.waitFor();
+
+		var BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+		var String line = "";
+		var String outputJson = "";
+		while ((line = reader.readLine()) != null) {
+			outputJson = outputJson + line;
+		}
+		return Math.round(Double.parseDouble(outputJson)) - 1;
 	}
+	
+	
+	def static String createVignette(String path, String filename) {
+		var String cmdVignette = "ffmpeg -y -i " + path +
+			" -ss 00:00:02 -vframes 1 "+System.getProperty('user.dir')+"/Vignettes/" + filename + ".jpg"
+		println(cmdVignette)
+
+		var Process process = Runtime.getRuntime().exec(cmdVignette);
+		process.waitFor();
+
+		return filename + ".jpg"
+	}
+
+	
 	
 }

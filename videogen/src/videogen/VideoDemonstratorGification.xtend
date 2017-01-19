@@ -51,60 +51,12 @@ class VideoDemonstratorGification {
 		return Math.round(Double.parseDouble(outputJson)) - 1;
 	}
 	
-	def static String creerGif(String duration, String start, String size, String path, String filename) {
-		var String cmdGif = "ffmpeg -v warning "
-		
-		// Durée du gif en seconde
-		if (duration != null) {
-			cmdGif += "-t " + duration + " "
-		}
-		
-		// Début du gif en seconde
-		if (start != null) {
-			cmdGif += " -ss " + start + " "	
-		}
-		
-		// Chemin de la video
-		cmdGif += "-i " + path + " "
-		
-		// Taille
-		if (size != null) {
-			cmdGif += "-vf scale=" + size + ":-1 "
-		} else {
-			cmdGif += "-vf scale=300:-1 "
-		}
-		
-		cmdGif += "-gifflags +transdiff -y " + filename + ".gif"
-
-		var Process process = Runtime.getRuntime().exec(cmdGif);
-		process.waitFor();
-
-		return filename + ".gif"
-	}
-	
-	def static void deleteFile(String path) {
-		var String cmdDelete = "rm " + path
-		
-		var Process process = Runtime.getRuntime().exec(cmdDelete);
-		process.waitFor();
-	}
-	
-	// Concatene une liste de vidéo
-	def static void concat(String playlist) {
-		var String cmdConcatener = "ffmpeg -f concat -safe 0 -i " + playlist + " -c copy /videoconcat.m3u"
-		
-		var Process process = Runtime.getRuntime().exec(cmdConcatener);
-		process.waitFor();
-	}
-	
 	@Test
 	def testGification() {
 		var videoGen = loadVideoGenerator(URI.createURI("fooVideos.videogen")) 
 		var fact = new VideogenPlayListFactoryImpl()
 		var playlist = fact.createPlayList()
 		assertNotNull(videoGen)	
-				
-		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
 		for(videoseq : videoGen.videoseqs.toSet) {
 			if (videoseq instanceof MandatoryVideoSeq) {
 				
@@ -142,16 +94,13 @@ class VideoDemonstratorGification {
 				playlist.mediaFile.add(mediafile)
 			}
 		}
-				
-		// New file 
+		
 		try {
 			val path = "/"
 			val pl = new File(path + "playlist.txt");
 			if (!pl.exists()) {
 				pl.createNewFile();
 			}
-			
-			// Ecrit le fichier
 			val fw = new FileWriter(pl.getAbsoluteFile());
 			val bw = new BufferedWriter(fw);
 			var totalDuration = 0.0;
@@ -159,12 +108,8 @@ class VideoDemonstratorGification {
 				bw.write('file ' + mediafile.location + System.lineSeparator());
 				totalDuration = totalDuration + mediafile.duration
 				println(mediafile.location + "(" + mediafile.duration +")s")
-				
-				
 			}
 			bw.close();
-			
-			// Concatene
 			concat(path + "playlist.txt");
 			println(" concat done")
 			deleteFile(path + "playlist.txt")
@@ -176,6 +121,47 @@ class VideoDemonstratorGification {
 		} catch (IOException e) {
 			e.printStackTrace
 		}
+	}
+	
+	def static String creerGif(String duration, String start, String size, String path, String filename) {
+		var String cmdGif = "ffmpeg -v warning "
+		
+		if (duration != null) {
+			cmdGif += "-t " + duration + " "
+		}
+		
+		if (start != null) {
+			cmdGif += " -ss " + start + " "	
+		}
+		
+		cmdGif += "-i " + path + " "
+		
+		if (size != null) {
+			cmdGif += "-vf scale=" + size + ":-1 "
+		} else {
+			cmdGif += "-vf scale=300:-1 "
+		}
+		
+		cmdGif += "-gifflags +transdiff -y " + filename + ".gif"
+
+		var Process process = Runtime.getRuntime().exec(cmdGif);
+		process.waitFor();
+
+		return filename + ".gif"
+	}
+	
+	def static void deleteFile(String path) {
+		var String cmdDelete = "rm " + path
+		
+		var Process process = Runtime.getRuntime().exec(cmdDelete);
+		process.waitFor();
+	}
+	
+	def static void concat(String playlist) {
+		var String cmdConcatener = "ffmpeg -f concat -safe 0 -i " + playlist + " -c copy /videoconcat.m3u"
+		
+		var Process process = Runtime.getRuntime().exec(cmdConcatener);
+		process.waitFor();
 	}
 	
 }

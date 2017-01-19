@@ -37,6 +37,17 @@ import videogenPlayList.impl.VideogenPlayListFactoryImpl;
 
 @SuppressWarnings("all")
 public class VideoDemonstratorP5 {
+  private static int i = 0;
+  
+  private String vignette = "";
+  
+  private List vignettes = new ArrayList<String>();
+  
+  public String genID() {
+    int _plusPlus = VideoDemonstratorP5.i++;
+    return ("v" + Integer.valueOf(_plusPlus));
+  }
+  
   public VideoGeneratorModel loadVideoGenerator(final URI uri) {
     VideoGeneratorModel _xblockexpression = null;
     {
@@ -59,46 +70,6 @@ public class VideoDemonstratorP5 {
       _contents.add(pollS);
       HashMap<Object, Object> _hashMap = new HashMap<Object, Object>();
       rs.save(_hashMap);
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
-  }
-  
-  public static double getDuration(final String videoLocation) {
-    try {
-      Runtime _runtime = Runtime.getRuntime();
-      Process process = _runtime.exec(
-        ("C:\\Users\\kaoutar\\Downloads\\ffmpeg-20161204-1f5630a-win64-static\\bin\\ffprobe -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 " + videoLocation));
-      process.waitFor();
-      InputStream _inputStream = process.getInputStream();
-      InputStreamReader _inputStreamReader = new InputStreamReader(_inputStream);
-      BufferedReader reader = new BufferedReader(_inputStreamReader);
-      String line = "";
-      String outputJson = "";
-      while ((!Objects.equal((line = reader.readLine()), null))) {
-        outputJson = (outputJson + line);
-      }
-      double _parseDouble = Double.parseDouble(outputJson);
-      long _round = Math.round(_parseDouble);
-      return (_round - 1);
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
-  }
-  
-  public static String createVignette(final String path, final String filename) {
-    try {
-      String _property = System.getProperty("user.dir");
-      String _plus = ((("ffmpeg -y -i " + path) + 
-        " -ss 00:00:02 -vframes 1 ") + _property);
-      String _plus_1 = (_plus + "/Vignettes/");
-      String _plus_2 = (_plus_1 + filename);
-      String cmdVignette = (_plus_2 + ".jpg");
-      InputOutput.<String>println(cmdVignette);
-      Runtime _runtime = Runtime.getRuntime();
-      Process process = _runtime.exec(cmdVignette);
-      process.waitFor();
-      return (filename + ".jpg");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -246,14 +217,43 @@ public class VideoDemonstratorP5 {
     }
   }
   
-  private static int i = 0;
+  public static double getDuration(final String videoLocation) {
+    try {
+      Runtime _runtime = Runtime.getRuntime();
+      Process process = _runtime.exec(
+        ("C:\\Users\\kaoutar\\Downloads\\ffmpeg-20161204-1f5630a-win64-static\\bin\\ffprobe -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 " + videoLocation));
+      process.waitFor();
+      InputStream _inputStream = process.getInputStream();
+      InputStreamReader _inputStreamReader = new InputStreamReader(_inputStream);
+      BufferedReader reader = new BufferedReader(_inputStreamReader);
+      String line = "";
+      String outputJson = "";
+      while ((!Objects.equal((line = reader.readLine()), null))) {
+        outputJson = (outputJson + line);
+      }
+      double _parseDouble = Double.parseDouble(outputJson);
+      long _round = Math.round(_parseDouble);
+      return (_round - 1);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
   
-  private String vignette = "";
-  
-  private List vignettes = new ArrayList<String>();
-  
-  public String genID() {
-    int _plusPlus = VideoDemonstratorP5.i++;
-    return ("v" + Integer.valueOf(_plusPlus));
+  public static String createVignette(final String path, final String filename) {
+    try {
+      String _property = System.getProperty("user.dir");
+      String _plus = ((("ffmpeg -y -i " + path) + 
+        " -ss 00:00:02 -vframes 1 ") + _property);
+      String _plus_1 = (_plus + "/Vignettes/");
+      String _plus_2 = (_plus_1 + filename);
+      String cmdVignette = (_plus_2 + ".jpg");
+      InputOutput.<String>println(cmdVignette);
+      Runtime _runtime = Runtime.getRuntime();
+      Process process = _runtime.exec(cmdVignette);
+      process.waitFor();
+      return (filename + ".jpg");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 }

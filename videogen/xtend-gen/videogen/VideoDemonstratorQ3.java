@@ -36,52 +36,11 @@ import videogenPlayList.impl.VideogenPlayListFactoryImpl;
 
 @SuppressWarnings("all")
 public class VideoDemonstratorQ3 {
-  public VideoGeneratorModel loadVideoGenerator(final URI uri) {
-    VideoGeneratorModel _xblockexpression = null;
-    {
-      VideoGenStandaloneSetupGenerated _videoGenStandaloneSetupGenerated = new VideoGenStandaloneSetupGenerated();
-      _videoGenStandaloneSetupGenerated.createInjectorAndDoEMFRegistration();
-      ResourceSetImpl _resourceSetImpl = new ResourceSetImpl();
-      Resource res = _resourceSetImpl.getResource(uri, true);
-      EList<EObject> _contents = res.getContents();
-      EObject _get = _contents.get(0);
-      _xblockexpression = ((VideoGeneratorModel) _get);
-    }
-    return _xblockexpression;
-  }
+  private static int i = 0;
   
-  public void saveVideoGenerator(final URI uri, final VideoGeneratorModel pollS) {
-    try {
-      ResourceSetImpl _resourceSetImpl = new ResourceSetImpl();
-      Resource rs = _resourceSetImpl.createResource(uri);
-      EList<EObject> _contents = rs.getContents();
-      _contents.add(pollS);
-      HashMap<Object, Object> _hashMap = new HashMap<Object, Object>();
-      rs.save(_hashMap);
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
-  }
-  
-  public static double getDuration(final String videoLocation) {
-    try {
-      Runtime _runtime = Runtime.getRuntime();
-      Process process = _runtime.exec(("C:\\Users\\kaoutar\\Downloads\\ffmpeg-20161204-1f5630a-win64-static\\bin\\ffprobe -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 " + videoLocation));
-      process.waitFor();
-      InputStream _inputStream = process.getInputStream();
-      InputStreamReader _inputStreamReader = new InputStreamReader(_inputStream);
-      BufferedReader reader = new BufferedReader(_inputStreamReader);
-      String line = "";
-      String outputJson = "";
-      while ((!Objects.equal((line = reader.readLine()), null))) {
-        outputJson = (outputJson + line);
-      }
-      double _parseDouble = Double.parseDouble(outputJson);
-      long _round = Math.round(_parseDouble);
-      return (_round - 1);
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
+  public String genID() {
+    int _plusPlus = VideoDemonstratorQ3.i++;
+    return ("v" + Integer.valueOf(_plusPlus));
   }
   
   @Test
@@ -304,10 +263,51 @@ public class VideoDemonstratorQ3 {
     }
   }
   
-  private static int i = 0;
+  public VideoGeneratorModel loadVideoGenerator(final URI uri) {
+    VideoGeneratorModel _xblockexpression = null;
+    {
+      VideoGenStandaloneSetupGenerated _videoGenStandaloneSetupGenerated = new VideoGenStandaloneSetupGenerated();
+      _videoGenStandaloneSetupGenerated.createInjectorAndDoEMFRegistration();
+      ResourceSetImpl _resourceSetImpl = new ResourceSetImpl();
+      Resource res = _resourceSetImpl.getResource(uri, true);
+      EList<EObject> _contents = res.getContents();
+      EObject _get = _contents.get(0);
+      _xblockexpression = ((VideoGeneratorModel) _get);
+    }
+    return _xblockexpression;
+  }
   
-  public String genID() {
-    int _plusPlus = VideoDemonstratorQ3.i++;
-    return ("v" + Integer.valueOf(_plusPlus));
+  public void saveVideoGenerator(final URI uri, final VideoGeneratorModel pollS) {
+    try {
+      ResourceSetImpl _resourceSetImpl = new ResourceSetImpl();
+      Resource rs = _resourceSetImpl.createResource(uri);
+      EList<EObject> _contents = rs.getContents();
+      _contents.add(pollS);
+      HashMap<Object, Object> _hashMap = new HashMap<Object, Object>();
+      rs.save(_hashMap);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  public static double getDuration(final String videoLocation) {
+    try {
+      Runtime _runtime = Runtime.getRuntime();
+      Process process = _runtime.exec(("C:\\Users\\kaoutar\\Downloads\\ffmpeg-20161204-1f5630a-win64-static\\bin\\ffprobe -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 " + videoLocation));
+      process.waitFor();
+      InputStream _inputStream = process.getInputStream();
+      InputStreamReader _inputStreamReader = new InputStreamReader(_inputStream);
+      BufferedReader reader = new BufferedReader(_inputStreamReader);
+      String line = "";
+      String outputJson = "";
+      while ((!Objects.equal((line = reader.readLine()), null))) {
+        outputJson = (outputJson + line);
+      }
+      double _parseDouble = Double.parseDouble(outputJson);
+      long _round = Math.round(_parseDouble);
+      return (_round - 1);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 }

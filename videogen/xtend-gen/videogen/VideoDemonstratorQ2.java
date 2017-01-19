@@ -32,31 +32,13 @@ import videogenPlayList.impl.VideogenPlayListFactoryImpl;
 
 @SuppressWarnings("all")
 public class VideoDemonstratorQ2 {
-  public VideoGeneratorModel loadVideoGenerator(final URI uri) {
-    VideoGeneratorModel _xblockexpression = null;
-    {
-      VideoGenStandaloneSetupGenerated _videoGenStandaloneSetupGenerated = new VideoGenStandaloneSetupGenerated();
-      _videoGenStandaloneSetupGenerated.createInjectorAndDoEMFRegistration();
-      ResourceSetImpl _resourceSetImpl = new ResourceSetImpl();
-      Resource res = _resourceSetImpl.getResource(uri, true);
-      EList<EObject> _contents = res.getContents();
-      EObject _get = _contents.get(0);
-      _xblockexpression = ((VideoGeneratorModel) _get);
-    }
-    return _xblockexpression;
-  }
+  private static int i = 0;
   
-  public void saveVideoGenerator(final URI uri, final VideoGeneratorModel pollS) {
-    try {
-      ResourceSetImpl _resourceSetImpl = new ResourceSetImpl();
-      Resource rs = _resourceSetImpl.createResource(uri);
-      EList<EObject> _contents = rs.getContents();
-      _contents.add(pollS);
-      HashMap<Object, Object> _hashMap = new HashMap<Object, Object>();
-      rs.save(_hashMap);
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
+  private String playList = "";
+  
+  public String genID() {
+    int _plusPlus = VideoDemonstratorQ2.i++;
+    return ("v" + Integer.valueOf(_plusPlus));
   }
   
   @Test
@@ -142,43 +124,6 @@ public class VideoDemonstratorQ2 {
     }
   }
   
-  /**
-   * @Test
-   * def test1() {
-   * // loading
-   * var videoGen = loadVideoGenerator(URI.createURI("fooVideos.videogen"))
-   * assertNotNull(videoGen)
-   * assertEquals(7, videoGen.videoseqs.size)
-   * videoGen.videoseqs.forEach[videoseq |
-   * if (videoseq instanceof MandatoryVideoSeq) {
-   * 
-   * val desc = (videoseq as MandatoryVideoSeq).description
-   * 
-   * if(desc.videoid.isNullOrEmpty)  desc.videoid = genID()
-   * 
-   * }
-   * else if (videoseq instanceof OptionalVideoSeq) {
-   * 
-   * val desc = (videoseq as OptionalVideoSeq).description
-   * if(desc.videoid.isNullOrEmpty) desc.videoid = genID()
-   * }
-   * 
-   * else {
-   * val altvid = (videoseq as AlternativeVideoSeq)
-   * if(altvid.videoid.isNullOrEmpty) altvid.videoid = genID()
-   * for (vdesc : altvid.videodescs) {
-   * if(vdesc.videoid.isNullOrEmpty) vdesc.videoid = genID()
-   * }
-   * }
-   * ]
-   * // serializing
-   * saveVideoGenerator(URI.createURI("foo2bis.xmi"), videoGen)
-   * saveVideoGenerator(URI.createURI("foo2bis.videogen"), videoGen)
-   * 
-   * printToM3u(videoGen)
-   * 
-   * }
-   */
   public void printToM3u(final VideoGeneratorModel videoGen) {
     InputOutput.<String>println("#this is a comment");
     EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
@@ -260,12 +205,30 @@ public class VideoDemonstratorQ2 {
     InputOutput.<String>println("</ul>");
   }
   
-  private static int i = 0;
+  public VideoGeneratorModel loadVideoGenerator(final URI uri) {
+    VideoGeneratorModel _xblockexpression = null;
+    {
+      VideoGenStandaloneSetupGenerated _videoGenStandaloneSetupGenerated = new VideoGenStandaloneSetupGenerated();
+      _videoGenStandaloneSetupGenerated.createInjectorAndDoEMFRegistration();
+      ResourceSetImpl _resourceSetImpl = new ResourceSetImpl();
+      Resource res = _resourceSetImpl.getResource(uri, true);
+      EList<EObject> _contents = res.getContents();
+      EObject _get = _contents.get(0);
+      _xblockexpression = ((VideoGeneratorModel) _get);
+    }
+    return _xblockexpression;
+  }
   
-  private String playList = "";
-  
-  public String genID() {
-    int _plusPlus = VideoDemonstratorQ2.i++;
-    return ("v" + Integer.valueOf(_plusPlus));
+  public void saveVideoGenerator(final URI uri, final VideoGeneratorModel pollS) {
+    try {
+      ResourceSetImpl _resourceSetImpl = new ResourceSetImpl();
+      Resource rs = _resourceSetImpl.createResource(uri);
+      EList<EObject> _contents = rs.getContents();
+      _contents.add(pollS);
+      HashMap<Object, Object> _hashMap = new HashMap<Object, Object>();
+      rs.save(_hashMap);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 }

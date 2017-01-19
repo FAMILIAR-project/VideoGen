@@ -23,31 +23,13 @@ import videogenPlayList.MediaFile
 
 class VideoDemonstratorQ3 {
 	
-	def loadVideoGenerator(URI uri) {
-		new VideoGenStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()
-		var res = new ResourceSetImpl().getResource(uri, true);
-		res.contents.get(0) as VideoGeneratorModel
-	}
-	
-	def saveVideoGenerator(URI uri, VideoGeneratorModel pollS) {
-		var Resource rs = new ResourceSetImpl().createResource(uri); 
-		rs.getContents.add(pollS); 
-		rs.save(new HashMap());
-	}
-	
-	def static double getDuration(String videoLocation){
-		var Process process = Runtime.getRuntime().exec("C:\\Users\\kaoutar\\Downloads\\ffmpeg-20161204-1f5630a-win64-static\\bin\\ffprobe -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 " + videoLocation );
-		
-		process.waitFor();
+	static var i = 0;
 
-		var BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-		var String line = "";
-		var String outputJson = "";
-	    while ((line = reader.readLine()) != null) {
-	        outputJson = outputJson + line;
-	    }
-		return Math.round(Double.parseDouble(outputJson))-1;
+	def genID() {
+		"v" + i++
 	}
+	
+	
 	@Test
 	def TpQ3() {
 		var videoGen = loadVideoGenerator(URI.createURI("fooVideos.videogen")) 
@@ -93,7 +75,6 @@ class VideoDemonstratorQ3 {
 			}
 		}
 				
-		// New file 
 		try {
 			val pl = new File("C:\\Users\\kaoutar\\git\\VideoGen\\videogen\\playlistq3.m3u");
 			if (!pl.exists()) {
@@ -120,8 +101,6 @@ class VideoDemonstratorQ3 {
 		// loading
 		var videoGen = loadVideoGenerator(URI.createURI("fooVideos.videogen"))
 		assertNotNull(videoGen)
-		// assertEquals(7, videoGen.videoseqs.size)			
-		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
 		videoGen.videoseqs.forEach [ videoseq |
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
@@ -137,12 +116,8 @@ class VideoDemonstratorQ3 {
 				}
 			}
 		]
-		// serializing
 		saveVideoGenerator(URI.createURI("foo2bis.xmi"), videoGen)
 		saveVideoGenerator(URI.createURI("foo2bis.videogen"), videoGen)
-
-		//printToM3u(videoGen)
-
 	}
 	def void printToM3u(VideoGeneratorModel videoGen) {
 			
@@ -168,8 +143,6 @@ class VideoDemonstratorQ3 {
 					mediaFile.location = desc
 					playlist.mediaFile.add(mediaFile)
 				}
-
-			// **********************
 			} else {
 				println("Alternative")
 				val altvidsize = (videoseq as AlternativeVideoSeq).videodescs.size;
@@ -177,14 +150,9 @@ class VideoDemonstratorQ3 {
 				var mediaFile = fact.createMediaFile()
 					mediaFile.location = desc
 					playlist.mediaFile.add(mediaFile)
-				
 			}
-
-			
-
 		}
 		try {
-			
 			val CPlaylist = new File("C:\\Users\\kaoutar\\git\\VideoGen\\videogen\\playlistq3.m3u");
 			if (!CPlaylist.exists()) {
 				CPlaylist.createNewFile();
@@ -205,10 +173,32 @@ class VideoDemonstratorQ3 {
 		
 		
 	}
-
-	static var i = 0;
-
-	def genID() {
-		"v" + i++
+	
+	def loadVideoGenerator(URI uri) {
+		new VideoGenStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()
+		var res = new ResourceSetImpl().getResource(uri, true);
+		res.contents.get(0) as VideoGeneratorModel
 	}
+	
+	def saveVideoGenerator(URI uri, VideoGeneratorModel pollS) {
+		var Resource rs = new ResourceSetImpl().createResource(uri); 
+		rs.getContents.add(pollS); 
+		rs.save(new HashMap());
+	}
+	
+	def static double getDuration(String videoLocation){
+		var Process process = Runtime.getRuntime().exec("C:\\Users\\kaoutar\\Downloads\\ffmpeg-20161204-1f5630a-win64-static\\bin\\ffprobe -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 " + videoLocation );
+		
+		process.waitFor();
+
+		var BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+		var String line = "";
+		var String outputJson = "";
+	    while ((line = reader.readLine()) != null) {
+	        outputJson = outputJson + line;
+	    }
+		return Math.round(Double.parseDouble(outputJson))-1;
+	}
+
+	
 }
