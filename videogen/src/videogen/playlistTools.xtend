@@ -935,6 +935,7 @@ import java.util.List
 							s.append("\n mandatory videoseq vid"+cpt+" \""+mp4Path.toString()+"\"")
 						}
 					}
+					//CECI EST UN COMPTEUR...... MERDE!!! -_-
 					val sb = new StringBuffer()
 					children.forEach[child |
 						var path=child.getPath()
