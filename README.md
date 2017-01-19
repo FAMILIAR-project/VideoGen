@@ -6,7 +6,9 @@ A configurable generator of generator of video variants
 
 `org.xtext.example.videogenerator.*` are Xtext projects with the grammar and an extension to "tune" the IDE behavior (checking of unique IDs on the fly). 
 
-`videogen` is a Java/Xtend project that uses the Xtext project and shows how to transform a VideoGen transformation.  
+`videogen` is a Java/Xtend project that uses the Xtext project and shows how to transform a VideoGen transformation. 
+
+Questions 1 to 13 OK with Junit test
 
 
 Project 1: Text inside Video
@@ -32,6 +34,7 @@ debut
 ffmpeg -i C:/Users/kaoutar/git/VideoGen/videogen/videosTel/standbyme.mp4 -vf drawtext='fontsize=15:fontfile=FreeSerif.ttf:text=Alternative:y=100:x=100' -codec:a copy C:/Users/kaoutar/git/VideoGen/videogen/videosTel/standbyme-2.mp4
 
 -------------------------------------------------------------------
+New files are created without any content (size=0 ko)
 
 In Cmd console:
 
@@ -47,6 +50,8 @@ Project 2: Gification
 Result in JUnit console:
 
 ![alt tag](videogen/Capture.PNG)
+
+So, UNRESOLVED BUG
 
 
 
