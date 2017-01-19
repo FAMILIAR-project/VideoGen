@@ -1,16 +1,7 @@
 # VideoGen [Pull&Play]
 
 Ce dépôt contient toutes les dépendances nécessaires (librairie FFMPEG, les vidéos). Il suffit de le pull et d'exécuter les fichiers Xtend (videogen/src/videogen/*.xtend).  
-Les dossiers Gif et Thumbnails sont volontairement vides. Les fichiers résultats seront automatiquement créés grâce aux fichiers Xtend.
-
-
-A configurable generator of generator of video variants 
-
-## Project structure
-
-`org.xtext.example.videogenerator.*` are Xtext projects with the grammar and an extension to "tune" the IDE behavior (checking of unique IDs on the fly). 
-
-`videogen` is a Java/Xtend project that uses the Xtext project and shows how to transform a VideoGen transformation.  
+Les dossiers Gif et Thumbnails sont volontairement vides. Les fichiers résultats seront automatiquement créés grâce aux fichiers Xtend. 
 
 # Réponses aux questions
 
@@ -43,3 +34,47 @@ Une fois les données établies, on renvoie le lien de la playlist .m3u créée 
 Nous avons créé un fichier Xtend qui vérifie que la configuration envoyée par l'utilisateur est valide (pas de vidéos dupliquées, pas d'ID dupliqués, les sommes de probabilité supérieures à 100 ...).  
 En cas d'erreur, un message est envoyé à l'utilisateur pas le biais d'une AlertBox.  
 Dans les cas valides, la playlist ainsi créée est jouée par le lecteur vidéo.
+
+## Question "Calcul des métriques"
+
+### A partir d’une spécification VideoGen, on veut calculer: Nombre total de variantes possibles, Taille min/max/moyenne des variantes, Durée min/max/moyenne des variantes
+
+Nombre total de variantes : 
+
+Les mandatory n'ont pas d'impact sur le nombre total de variantes.
+Les optionals ont un impact de 2^n où n est le nombre d'optionals.
+Les alternatives multiplient le nombre total par leur nombre d'éléments dans un bloc alternative.
+
+   mandatory videoseq v1 "V1/v1.mp4" 
+    optional videoseq v2 "v2folder/v2.mp4" {
+        probability 25
+    }
+    alternatives v3 {
+        videoseq v30 "v3/seq1.mp4" {
+            duration 12
+            probability 25
+            description "a"
+        }
+        videoseq v31 "v3/seq2.mp4"
+        videoseq v32 "v3/seq3.mp4"
+    }
+
+    alternatives v4 {
+        videoseq v41 "v4/seq1.mp4"
+        videoseq v42 "v4/seq2.mp4"
+    }
+    mandatory videoseq v5 "v5.mp4"
+
+    optional videoseq v8 "v8.avi"
+    alternatives v9 {
+        videoseq v81 "V81.avi"
+    }
+    
+Ici on a ( 2^4 ) * 3 * 2 * 1 = 24 possiblités !  
+
+Taille minimum / maximum : 
+
+* +1 / +1 pour chaque mandatory  
+* 0 / N pour les N optionals
+* +1 / +1 pour chauque alternative  
+
