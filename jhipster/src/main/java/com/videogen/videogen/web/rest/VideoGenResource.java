@@ -1,8 +1,10 @@
 package com.videogen.videogen.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import com.videogen.videogen.domain.User;
-import com.videogen.videogen.web.rest.vm.ManagedUserVM;
+
+import q11.VideoGenLoader;
+
+import java.io.File;
 
 //import q10.VideoGenerator;
 
@@ -10,15 +12,18 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.validation.Valid;
-
+import org.eclipse.emf.common.util.EList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq;
+import org.xtext.example.mydsl.videoGen.OptionalVideoSeq;
+import org.xtext.example.mydsl.videoGen.VideoGenFactory;
+import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
+import org.xtext.example.mydsl.videoGen.VideoSeq;
+import org.xtext.example.mydsl.videoGen.impl.MandatoryVideoSeqImpl;
+import org.xtext.example.mydsl.videoGen.impl.VideoGenFactoryImpl;
 
 /**
  * REST controller for managing the current user's account.
@@ -32,24 +37,54 @@ public class VideoGenResource {
     private String videoGenPath="src/main/webapp/videogen/";
     private String videoGenFile=Paths.get(videoGenPath,"test.videogen").toString();
 
-    /**
-     * POST  /register : register the user.
-     *
-     * @param managedUserVM the managed user View Model
-     * @return the ResponseEntity with status 201 (Created) if the user is registered or 400 (Bad Request) if the login or e-mail is already in use
-     */
+   
     @RequestMapping(value = "/regenerate",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public Response regenerate() {
 
-      /*  List<String> playlist=(new q12.VideoGenerator()).generatePlaylistForFile(videoGenFile);*/œ
+       List<String> playlist=(new q12.VideoGenerator()).generatePlaylistForFile(videoGenFile);
 
         Response r=new Response();
-       /* r.playlist=playlist;*/
+       r.playlist=playlist;
         return r;
 
+    }
+    
+    @RequestMapping(value = "/generate",
+            method = RequestMethod.POST,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public void generate(@RequestBody PostData data) {
+    	VideoGenFactory factory=new VideoGenFactoryImpl();
+    	VideoGeneratorModel videoGen=factory.eINSTANCE.createVideoGeneratorModel();
+    	
+    	List<String> mandatory=data.getMandatory();
+    	for(String s : mandatory){
+    		EList<VideoSeq> vSeq=videoGen.getVideoseqs();
+    		MandatoryVideoSeq v=factory.eINSTANCE.createMandatoryVideoSeq();
+    		v.setDescription(factory.eINSTANCE.createVideoDescription());
+    		v.getDescription().setLocation(s);
+    		vSeq.add(v);
+
+    	}
+    	
+    	List<String> optional=data.getOptional();
+    	for(String s : optional){
+    		EList<VideoSeq> vSeq=videoGen.getVideoseqs();
+    		OptionalVideoSeq v=factory.eINSTANCE.createOptionalVideoSeq();
+    		v.setDescription(factory.eINSTANCE.createVideoDescription());
+    		v.getDescription().setLocation(s);
+    		vSeq.add(v);
+
+    	}
+    	System.out.println("Jean");
+    	File f=(new File(videoGenFile));
+    	System.out.println(f.getAbsolutePath());
+    	(new VideoGenLoader()).save(videoGen, f.getAbsolutePath());
+    	
+    	
     }
 
 
@@ -74,6 +109,68 @@ public class VideoGenResource {
 		}
 
 
+    }
+    
+
+    private static class PostData{
+    	List<String> mandatory=new ArrayList<>();
+
+    	List<String> optional=new ArrayList<>();
+
+    	List<Multiple> multiple=new ArrayList<>();
+
+    	public PostData(){
+    		
+    	}
+    	
+		public List<String> getMandatory() {
+			return mandatory;
+		}
+
+		public void setMandatory(List<String> mandatory) {
+			this.mandatory = mandatory;
+		}
+
+		public List<String> getOptional() {
+			return optional;
+		}
+
+		public void setOptional(List<String> optional) {
+			this.optional = optional;
+		}
+
+		public List<Multiple> getMultiple() {
+			return multiple;
+		}
+
+		public void setMultiple(List<Multiple> multiple) {
+			this.multiple = multiple;
+		}
+    	
+
+
+    }
+    
+    private static class Multiple{
+    	String title;
+    	List<String> subTitles=new ArrayList<>();
+    	
+    	public Multiple(){
+    		
+    	}
+		public String getTitle() {
+			return title;
+		}
+		public void setTitle(String title) {
+			this.title = title;
+		}
+		public List<String> getSubTitles() {
+			return subTitles;
+		}
+		public void setSubTitles(List<String> subTitles) {
+			this.subTitles = subTitles;
+		}
+    	
     }
 
 }

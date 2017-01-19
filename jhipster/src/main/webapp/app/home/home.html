@@ -12,7 +12,7 @@
 </head>
 
 
-  <div class="container">
+  <div class="container"ng-hide="vm.isAuthenticated()">
 
       <!-- Main component for a primary marketing message or call to action -->
 
@@ -26,6 +26,61 @@
 
     </div> <!-- /container -->
 
+    <div ng-cloak>
+        <div class="row " ng-show="vm.isAuthenticated()">
+          <h4>Playlist Generator</h4><br />
+        <form>
+          <div  ng-repeat="mand in vm.mandatory track by $index">
+            <div class="form-group">
+              <label for="email">Mandatory {{$index}}:</label>
+              <input type="text" class="form-control" ng-model="vm.mandatory[$index]">
+            </div>
+          </div>
+
+          <div ng-repeat="opt in vm.optional track by $index">
+            <div class="form-group">
+              <label for="email">Optional {{$index}}:</label>
+              <input type="text" class="form-control" ng-model="vm.optional[$index]">
+            </div>
+          </div>
+
+          <div class="panel"ng-repeat="opt in vm.multiple">
+            <div class="form-group">
+              <label for="email">Multiple :</label>
+              <input type="text" class="form-control" ng-model="opt.title">
+
+                <div ng-repeat="sub in opt.subTitles track by $index">
+                  <div class="form-group">
+                    <label for="email">Sub Element {{$index}}:</label>
+                    <input type="text" class="form-control" ng-model="opt.subTitles[$index]">
+                  </div>
+                </div>
+
+                <button type="button" class="btn btn-default" ng-click="vm.addSubElement(opt)">Add Sub Element</button>
+
+            </div>
+            </div>
+
+
+
+       <div class="btn-group btn-group-justified" role="group" aria-label="...">
+         <div class="btn-group" role="group">
+           <button type="button" class="btn btn-default" ng-click="vm.addMandatory()">Add Mandatory</button>
+         </div>
+         <div class="btn-group" role="group">
+           <button type="button" class="btn btn-default" ng-click="vm.addOptional()">Add Optional</button>
+         </div>
+         <div class="btn-group" role="group">
+           <button type="button" class="btn btn-default" ng-click="vm.addMultiple()">Add Multiple</button>
+         </div>
+         <div class="btn-group" role="group">
+           <button type="button" class="btn btn-success" ng-click="vm.generate()">Generate</button>
+         </div>
+       </div>
+     </form>
+
+ </div>
+ </div>
 
 
 <!-- <div ng-cloak>

@@ -79,6 +79,11 @@ public class VideoGenLoader {
     return _xblockexpression;
   }
   
+  public void save(final VideoGeneratorModel videoGen, final String path) {
+    URI _createURI = URI.createURI(path);
+    this.saveVideoGenerator(_createURI, videoGen);
+  }
+  
   public String printWarning(final String text) {
     return InputOutput.<String>println(("Warning : " + text));
   }

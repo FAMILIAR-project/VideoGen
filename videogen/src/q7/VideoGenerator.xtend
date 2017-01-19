@@ -1,10 +1,9 @@
 package q7
 
 import org.junit.Test
-import M3UPlaylist.Playlist
+import M3UPlaylist.Playlist;
 import M3UPlaylist.M3UPlaylistFactory
 import M3UPlaylist.Entry
-import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 import java.util.List
 
 /**

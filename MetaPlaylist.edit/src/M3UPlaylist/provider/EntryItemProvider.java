@@ -3,17 +3,12 @@
 package M3UPlaylist.provider;
 
 
-import M3UPlaylist.Entry;
-import M3UPlaylist.M3UPlaylistPackage;
-
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -24,6 +19,9 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import M3UPlaylist.Entry;
+import M3UPlaylist.M3UPlaylistPackage;
 
 /**
  * This is the item provider adapter for a {@link M3UPlaylist.Entry} object.
@@ -61,6 +59,8 @@ public class EntryItemProvider
 			super.getPropertyDescriptors(object);
 
 			addPathPropertyDescriptor(object);
+			addDiscontinuityPropertyDescriptor(object);
+			addDurationPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -79,6 +79,50 @@ public class EntryItemProvider
 				 getString("_UI_Entry_path_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Entry_path_feature", "_UI_Entry_type"),
 				 M3UPlaylistPackage.Literals.ENTRY__PATH,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Discontinuity feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDiscontinuityPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Entry_discontinuity_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Entry_discontinuity_feature", "_UI_Entry_type"),
+				 M3UPlaylistPackage.Literals.ENTRY__DISCONTINUITY,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Duration feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDurationPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Entry_duration_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Entry_duration_feature", "_UI_Entry_type"),
+				 M3UPlaylistPackage.Literals.ENTRY__DURATION,
 				 true,
 				 false,
 				 false,
@@ -126,6 +170,8 @@ public class EntryItemProvider
 
 		switch (notification.getFeatureID(Entry.class)) {
 			case M3UPlaylistPackage.ENTRY__PATH:
+			case M3UPlaylistPackage.ENTRY__DISCONTINUITY:
+			case M3UPlaylistPackage.ENTRY__DURATION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

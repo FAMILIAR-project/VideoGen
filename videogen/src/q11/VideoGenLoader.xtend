@@ -12,6 +12,7 @@ import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import org.xtext.example.mydsl.videoGen.VideoDescription
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 import q8.VideoReparator
+import java.nio.file.Paths
 
 /**
  * Check VideoGenModel
@@ -61,9 +62,15 @@ public class VideoGenLoader {
 		videoGen
 	}
 	
+	def save(VideoGeneratorModel videoGen, String path){
+		saveVideoGenerator(URI.createURI(path),videoGen)
+	}
+
 	def printWarning(String text){
 		println("Warning : " + text)
 	}
+	
+	
 	
 	def boolean checkID(VideoGeneratorModel videoGen){
 		for(videoseq : videoGen.videoseqs) {
