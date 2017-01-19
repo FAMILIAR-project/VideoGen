@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1>VideoGen</h1>
+    <div>
+        <div id="videogen-controls">
+            Mode :
+            <select>
+                <option>Random</option>
+                <option>Probability</option>
+                <option>Configurator</option>
+                <option>Crazy Assemble</option>
+            </select>
+            <button>Load</button>
+            <button ng-click="generate()" style="color:red;">Generate !</button>
+            <br>
+            <button>Metrics</button>
+            <br>
+        </div>
+        <div id="videogen-callbacks">
+
+        </div>
+        <div id="videogen-editor">
+            <textarea id="videogen-code"> {{m3u}} </textarea>
+        </div>
+    </div>
+</body>
+</html>

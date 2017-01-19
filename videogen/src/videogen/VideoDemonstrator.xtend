@@ -55,10 +55,9 @@ class VideoDemonstrator {
 	saveVideoGenerator(URI.createURI("foo2bis.xmi"), videoGen)
 	saveVideoGenerator(URI.createURI("foo2bis.videogen"), videoGen)
 		
-	printToHTML(videoGen)
-		 
-			
-	}
+	//printToHTML(videoGen)	
+	modelToText(videoGen)
+}
 	
 	def void printToHTML(VideoGeneratorModel videoGen) {
 		//var numSeq = 1
@@ -91,6 +90,24 @@ class VideoDemonstrator {
 		println("</ul>")
 	}
 	
+	def void modelToText(VideoGeneratorModel videoGen){
+		videoGen.videoseqs.forEach[videoseq | 
+			if (videoseq instanceof MandatoryVideoSeq) {
+				val desc = (videoseq as MandatoryVideoSeq).description
+				println("file '"+desc.location+"'")
+			}
+			else if (videoseq instanceof OptionalVideoSeq) {
+				val desc = (videoseq as OptionalVideoSeq).description
+				if(Math.random()*1>0.5) 
+					println("file '"+desc.location+"'")
+			}
+			else{
+				val altvid = (videoseq as AlternativeVideoSeq)
+				if (altvid.videodescs.size > 0) // there are vid seq alternatives
+					println("file '"+altvid.videodescs.get((Math.random()*altvid.videodescs.size) as int).location+"'")
+			}
+		]		
+	}
 	static var i = 0;
 	def genID() {
 		"v" + i++
