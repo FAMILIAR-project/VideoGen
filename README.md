@@ -43,8 +43,9 @@ Nombre total de variantes :
 
 Les mandatory n'ont pas d'impact sur le nombre total de variantes.
 Les optionals ont un impact de 2^n où n est le nombre d'optionals.
-Les alternatives multiplient le nombre total par leur nombre d'éléments dans un bloc alternative.
+Les alternatives multiplient le nombre total par leur nombre d'éléments dans un bloc alternative.  
 
+```
    mandatory videoseq v1 "V1/v1.mp4" 
     optional videoseq v2 "v2folder/v2.mp4" {
         probability 25
@@ -58,18 +59,17 @@ Les alternatives multiplient le nombre total par leur nombre d'éléments dans u
         videoseq v31 "v3/seq2.mp4"
         videoseq v32 "v3/seq3.mp4"
     }
-
     alternatives v4 {
         videoseq v41 "v4/seq1.mp4"
         videoseq v42 "v4/seq2.mp4"
     }
     mandatory videoseq v5 "v5.mp4"
-
     optional videoseq v8 "v8.avi"
     alternatives v9 {
         videoseq v81 "V81.avi"
     }
-    
+```
+
 Ici on a ( 2^4 ) * 3 * 2 * 1 = 24 possiblités !  
 
 Taille minimum / maximum : 
