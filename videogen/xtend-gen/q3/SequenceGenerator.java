@@ -3,6 +3,7 @@ package q3;
 import M3UPlaylist.Entry;
 import M3UPlaylist.M3UPlaylistFactory;
 import M3UPlaylist.Playlist;
+import com.google.common.base.Objects;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.function.Consumer;
@@ -38,9 +39,10 @@ public class SequenceGenerator {
     this.data = data;
     this.buildArray();
     this.buildMandatory();
-    ArrayList<VideoDescription> currentOpts = this.getAnOptional(this.opts);
-    for (final VideoDescription o : currentOpts) {
-      String _location = o.getLocation();
+    VideoDescription currentOpt = this.getAnOptional(this.opts);
+    boolean _notEquals = (!Objects.equal(currentOpt, null));
+    if (_notEquals) {
+      String _location = currentOpt.getLocation();
       this.appendVideo(_location);
     }
     this.buildAlternative();
@@ -67,11 +69,9 @@ public class SequenceGenerator {
   public void buildAlternative() {
     for (final ArrayList<VideoDescription> a : this.alts) {
       {
-        ArrayList<VideoDescription> opt = this.getAnOptional(a);
-        for (final VideoDescription o : opt) {
-          String _location = o.getLocation();
-          this.appendVideo(_location);
-        }
+        VideoDescription opt = this.getAnOptional(a);
+        String _location = opt.getLocation();
+        this.appendVideo(_location);
       }
     }
   }
@@ -89,31 +89,27 @@ public class SequenceGenerator {
   /**
    * Get optionnal sequence entries
    */
-  public ArrayList<VideoDescription> getAnOptional(final ArrayList<VideoDescription> opts) {
-    ArrayList<VideoDescription> _xblockexpression = null;
-    {
-      ArrayList<VideoDescription> finalOpts = new ArrayList<VideoDescription>();
-      for (final VideoDescription o : opts) {
-        int _probability = o.getProbability();
-        boolean _notEquals = (_probability != 0);
-        if (_notEquals) {
-          int _random = this.random(1, 100);
-          int _probability_1 = o.getProbability();
-          boolean _lessEqualsThan = (_random <= _probability_1);
-          if (_lessEqualsThan) {
-            finalOpts.add(o);
-          }
-        } else {
-          int _random_1 = this.random(1, 100);
-          boolean _lessEqualsThan_1 = (_random_1 <= 50);
-          if (_lessEqualsThan_1) {
-            finalOpts.add(o);
-          }
+  public VideoDescription getAnOptional(final ArrayList<VideoDescription> opts) {
+    ArrayList<VideoDescription> finalOpts = new ArrayList<VideoDescription>();
+    for (final VideoDescription o : opts) {
+      int _probability = o.getProbability();
+      boolean _notEquals = (_probability != 0);
+      if (_notEquals) {
+        int _random = this.random(1, 100);
+        int _probability_1 = o.getProbability();
+        boolean _lessEqualsThan = (_random <= _probability_1);
+        if (_lessEqualsThan) {
+          return o;
+        }
+      } else {
+        int _random_1 = this.random(1, 100);
+        boolean _lessEqualsThan_1 = (_random_1 <= 50);
+        if (_lessEqualsThan_1) {
+          return o;
         }
       }
-      _xblockexpression = finalOpts;
     }
-    return _xblockexpression;
+    return null;
   }
   
   /**

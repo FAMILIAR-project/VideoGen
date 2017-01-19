@@ -38,9 +38,9 @@ class SequenceGenerator {
 		buildArray() // Build array from data
 		buildMandatory() // Build mandatory
 		// Build optional
-		var currentOpts=getAnOptional(opts)
-		for(o:currentOpts){
-			appendVideo(o.location)
+		var currentOpt=getAnOptional(opts)
+		if(currentOpt!=null){
+			appendVideo(currentOpt.location)
 		}
 		buildAlternative() // Build alternative
 		
@@ -64,9 +64,7 @@ class SequenceGenerator {
 	def void buildAlternative(){
 		for(a: alts){
 			var  opt=getAnOptional(a)
-			for(o:opt){
-				appendVideo(o.location)
-			}
+			appendVideo(opt.location)
 		}
 	}
 	
@@ -82,22 +80,22 @@ class SequenceGenerator {
 	/**
 	 * Get optionnal sequence entries
 	 */
-	def ArrayList<VideoDescription> getAnOptional(ArrayList<VideoDescription> opts){
+	def VideoDescription getAnOptional(ArrayList<VideoDescription> opts){
 		var ArrayList<VideoDescription> finalOpts=new ArrayList<VideoDescription>()
 		for(o:opts){
 			if(o.probability!=0){
 				if(random(1,100)<=o.probability){
-					finalOpts.add(o)
+					return o;
 				}
 			}
 			else{
 				if(random(1,100)<=50){
-					finalOpts.add(o)
+					return o;
 				}
 				
 			}
 		}
-		finalOpts
+		return null;
 		
 	}
 	
