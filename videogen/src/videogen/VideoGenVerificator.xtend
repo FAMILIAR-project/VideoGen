@@ -15,7 +15,7 @@ class VideoGenVerificator {
 	
 	def static void main(String[] args) {
 		val vc = new VideoGenVerificator
-		val filename = URI.createURI("foo3.videogen")
+		val filename = URI.createURI("vdg.videogen")
 		vc.verifieVideoGen(filename)
 	}
 	

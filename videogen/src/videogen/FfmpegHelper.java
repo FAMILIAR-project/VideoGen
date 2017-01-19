@@ -21,10 +21,11 @@ public class FfmpegHelper {
 		return (int)duration;
 	}
 	
-	public void generateVignette(String path) throws InterruptedException, IOException{
-		String imgName = path.substring(0, path.lastIndexOf('.'));
+	public void generateVignette(String pathVideo) throws InterruptedException, IOException{
+		String pathVignette = pathVideo.substring(0, pathVideo.lastIndexOf('.'));
 
-		String cmd = "ffmpeg -i " + "videos/" +path + " -ss 00:00:01.000 -vframes 1 " + "videos/"+ imgName + ".jpg -y";
+		String cmd = "ffmpeg -i " + pathVideo + " -ss 00:00:01.000 -vframes 1 " + pathVignette + ".jpg -y";
+		System.out.println(cmd);
 		Process process = Runtime.getRuntime().exec(cmd);
 		process.waitFor();
 	}

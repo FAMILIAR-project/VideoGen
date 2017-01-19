@@ -39,40 +39,8 @@ class VideoDemonstrator {
 	}
 	
 	@Test
-	def test1() {
-		println("TEST")
-		// loading
-		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
-		assertNotNull(videoGen)
-		assertEquals(7, videoGen.videoseqs.size)			
-		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
-		videoGen.videoseqs.forEach[videoseq | 
-			if (videoseq instanceof MandatoryVideoSeq) {
-				val desc = (videoseq as MandatoryVideoSeq).description
-				if(desc.videoid.isNullOrEmpty)  desc.videoid = genID()  				
-			}
-			else if (videoseq instanceof OptionalVideoSeq) {
-				val desc = (videoseq as OptionalVideoSeq).description
-				if(desc.videoid.isNullOrEmpty) desc.videoid = genID() 
-			}
-			else {
-				val altvid = (videoseq as AlternativeVideoSeq)
-				if(altvid.videoid.isNullOrEmpty) altvid.videoid = genID()
-				for (vdesc : altvid.videodescs) {
-					if(vdesc.videoid.isNullOrEmpty) vdesc.videoid = genID()
-				}
-			}
-		]
-	// serializing
-	saveVideoGenerator(URI.createURI("foo2bis.xmi"), videoGen)
-	saveVideoGenerator(URI.createURI("foo2bis.videogen"), videoGen)
-		
-	printToHTML(videoGen)
-	}
-	
-	@Test
 	def void modelToTextToFile(){
-		val filename = "foo3"
+		val filename = "vdgtest"
 		var videoGen = loadVideoGenerator(URI.createURI(filename + ".videogen")) 
 		assertNotNull(videoGen)
 		val generatedFile = new FileWriter(filename + ".txt")
@@ -80,11 +48,9 @@ class VideoDemonstrator {
 		modelToText(videoGen,generatedFile)
 	}
 	
-	
-
 	@Test
 	def void modelToModelToTxt(){
-		val filename = "foo3"
+		val filename = "vdgtest"
 		var videoGen = loadVideoGenerator(URI.createURI(filename + ".videogen")) 
 		assertNotNull(videoGen)
 		val playlist = modelToModel(videoGen, filename);
@@ -93,7 +59,7 @@ class VideoDemonstrator {
 	
 	@Test
 	def void modelToModelToM3U(){
-		val filename = "foo3"
+		val filename = "vdgtest"
 		var videoGen = loadVideoGenerator(URI.createURI(filename + ".videogen")) 
 		assertNotNull(videoGen)
 		val playlist = modelToModel(videoGen, filename);
@@ -102,7 +68,7 @@ class VideoDemonstrator {
 	
 	@Test
 	def void modelToModelToM3UExtended(){
-		val filename = "foo3"
+		val filename = "vdgtest"
 		var videoGen = loadVideoGenerator(URI.createURI(filename + ".videogen")) 
 		assertNotNull(videoGen)
 		val playlist = modelToModel(videoGen, filename);
@@ -111,9 +77,9 @@ class VideoDemonstrator {
 	
 	@Test 
 	def void verifieVideoGen(){
-		val filename = URI.createURI("foo3.videogen")
+		val filename = URI.createURI("vdgtest.videogen")
 		val VideoGenVerificator verificator = new VideoGenVerificator()
-		println("\nVérification de la specification Videogen : "+ filename + ".videogen")
+		println("\nVérification de la specification Videogen : "+ filename)
 		verificator.verifieVideoGen(filename);
 	}
 	
@@ -157,8 +123,8 @@ class VideoDemonstrator {
 			}
 		]
 	// serializing
-	saveVideoGenerator(URI.createURI("Fichier3bis.xmi"), videoGen)
-	saveVideoGenerator(URI.createURI("Fichier3bis.videogen"), videoGen)
+	saveVideoGenerator(URI.createURI("vdgtest.xmi"), videoGen)
+	saveVideoGenerator(URI.createURI("vdgtest.videogen"), videoGen)
 		
 	file.close
 	}
@@ -239,8 +205,8 @@ class VideoDemonstrator {
 			}
 		]
 	// serializing
-	saveVideoGenerator(URI.createURI("Fichier3bis.xmi"), videoGen)
-	saveVideoGenerator(URI.createURI("Fichier3bis.videogen"), videoGen)
+	saveVideoGenerator(URI.createURI("vdgtest.xmi"), videoGen)
+	saveVideoGenerator(URI.createURI("vdgtest.videogen"), videoGen)
 	
 	return playlist;
 		
@@ -291,9 +257,6 @@ class VideoDemonstrator {
 		f.write("#EXT-X-ENDLIST")
 		f.close()
 	}
-	
-	
-
 	
 	/* HTML */
 	//Q10
