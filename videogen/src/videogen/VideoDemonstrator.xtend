@@ -108,7 +108,7 @@ class VideoDemonstrator {
 		//Creation d une instance de Playlist
 		val playlist = videogen2playlist(videoGen)
 		val strPlaylist = playlist2text(playlist)
-		val pw = new PrintWriter(new File("foo1.m3u"))
+		val pw = new PrintWriter(new File("question3.m3u"))
 		pw.println(strPlaylist)
 		pw.close();
 	}
@@ -162,10 +162,9 @@ class VideoDemonstrator {
 		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
 		assertNotNull(videoGen)
 		assertEquals(7, videoGen.videoseqs.size)
-		val pw = new PrintWriter(new File("foo2.txt"))
+		val pw = new PrintWriter(new File("question3.txt"))
 		pw.println("#Ceci est un commentaire")
 					
-		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
 		videoGen.videoseqs.forEach[videoseq | 
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
@@ -190,47 +189,157 @@ class VideoDemonstrator {
 	@Test
 	def testQ7() {
 		// loading
-		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
+		var videoGen = loadVideoGenerator(URI.createURI("test.videogen")) 
 		assertNotNull(videoGen)
-		assertEquals(7, videoGen.videoseqs.size)
-		val pw = new PrintWriter(new File("foo2.txt"))
+		assertEquals(2, videoGen.videoseqs.size)
+		val pw = new PrintWriter(new File("question7.txt"))
 		pw.println("#Ceci est un commentaire")
 					
-		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
 		videoGen.videoseqs.forEach[videoseq | 
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
-				pw.println("file '" + desc.location + "'");
+				val duration = computeDuration(desc.location)
+				desc.duration = duration as int				
+			}
+			else if (videoseq instanceof OptionalVideoSeq) {
+				val desc = (videoseq as OptionalVideoSeq).description
+				val duration = computeDuration(desc.location)
+				desc.duration = duration as int
+			}
+			else {
+				val altvid = (videoseq as AlternativeVideoSeq)
+				for (vdesc : altvid.videodescs){
+					val duration = computeDuration(vdesc.location)
+					vdesc.duration = duration as int
+				}
+			}
+		]
+	}
+		
+	//Question 7-1
+	def computeDuration(String location){
+		var cmd = "/usr/bin/ffprobe ffprobe -i "+location+
+		 " -show_entries format=duration -v quiet -of csv=\"p=0\""
+
+		var Process process = Runtime.getRuntime().exec(cmd)
+		process.wait()
+		val str = convertStreamToString(process.inputStream)
+		Double::parseDouble(str.trim())
+	}
+	
+	//Question 7-2
+	def static String convertStreamToString(InputStream is){
+		val scanner = new Scanner(is).useDelimiter("\\A");
+		if(scanner.hasNext()) {scanner.next;}
+		else "";	
+	}
+	
+	
+	@Test
+	def testQ8() {
+		// loading
+		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
+		assertNotNull(videoGen)
+		assertEquals(7, videoGen.videoseqs.size)
+		val pw = new PrintWriter(new File("question8.m3u"))
+		pw.println("#EXTM3U")
+					
+		videoGen.videoseqs.forEach[videoseq | 
+			if (videoseq instanceof MandatoryVideoSeq) {
+				val desc = (videoseq as MandatoryVideoSeq).description
+				pw.println("#EXT-X-DISCONTINUITY")
+				pw.println("")
+				pw.println("#EXTINF:" + desc.duration)
+				pw.println(desc.location)
 			}
 			else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
 				var coin = new Random().nextInt(1)
-				if(coin == 1) pw.println("file '" + desc.location + "'")
+				if(coin == 1) {
+					pw.println("#EXT-X-DISCONTINUITY")
+					pw.println("")
+					pw.println("#EXTINF:" + desc.duration)
+					pw.println(desc.location)
+				}
 			}
 			else {
 				val altvid = (videoseq as AlternativeVideoSeq)
 				var coin = new Random().nextInt(altvid.videodescs.size)
 				var desc = altvid.videodescs.get(coin)
-				pw.println("file '" + desc.location + "'")
+				pw.println("#EXT-X-DISCONTINUITY")
+				pw.println("")
+				pw.println("#EXTINF:" + desc.duration)
+				pw.println(desc.location)
 			}
 		]
+		pw.println("#EXT-X-ENDLIST")
 		pw.close();
 
 	}
-		
-	//Question 8
-	def getDuration(String path){
-		var command = ""
-		var process = Runtime.runtime.exec(command)
-		process.waitFor()
-		val str = convertStreamToString(process.inputStream);
-		Double::parseDouble(str.trim);
+	
+	@Test
+	def testQ9() {
+		// loading
+		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
+		assertNotNull(videoGen)
+		assertEquals(7, videoGen.videoseqs.size)					
+		videoGen.videoseqs.forEach[videoseq | 
+			if (videoseq instanceof MandatoryVideoSeq) {
+				val desc = (videoseq as MandatoryVideoSeq).description
+				generateVignettes(desc.location, desc.videoid)
+			}
+			else if (videoseq instanceof OptionalVideoSeq) {
+				val desc = (videoseq as OptionalVideoSeq).description
+				generateVignettes(desc.location, desc.videoid)
+			}
+			else {
+				val altvid = (videoseq as AlternativeVideoSeq)
+				for (vdesc : altvid.videodescs){
+					generateVignettes(vdesc.location, vdesc.videoid)
+				}
+			}
+		]
+	}
+	//Question 9-1
+	def generateVignettes(String location, String name){
+		var cmd = "/usr/bin/ffmpeg -y -i " +location+ " -r 1 -t 00:00:01 -ss 00:00:$2 -f image2 " +
+		"images/" +name+".png"
+		var Process process = Runtime.getRuntime().exec(cmd)
+		process.wait()
 	}
 	
-	def static String convertStreamToString(InputStream is){
-		val scanner = new Scanner(is).useDelimiter("\\A");
-		if(scanner.hasNext()) {scanner.next;}
-		else "";	
+	
+	@Test
+	def testQ10() {
+		// loading
+		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
+		assertNotNull(videoGen)
+		assertEquals(7, videoGen.videoseqs.size)
+		val pw = new PrintWriter(new File("question10.html"))
+		pw.println("<html>Question 10</html>")
+		pw.println("<h1>Question 10</h1>")
+					
+		videoGen.videoseqs.forEach[videoseq | 
+			if (videoseq instanceof MandatoryVideoSeq) {
+				val desc = (videoseq as MandatoryVideoSeq).description
+				generateVignettes(desc.location, desc.videoid)
+				pw.println("<img src='" + desc.location + "' />");
+			}
+			else if (videoseq instanceof OptionalVideoSeq) {
+				val desc = (videoseq as OptionalVideoSeq).description
+				generateVignettes(desc.location, desc.videoid)
+				pw.println("<img src='" + desc.location + "' />");
+			}
+			else {
+				val altvid = (videoseq as AlternativeVideoSeq)
+				for (vdesc : altvid.videodescs){
+					generateVignettes(vdesc.location, vdesc.videoid)
+					pw.println("<img src='" + vdesc.location + "' />");
+				}
+			}
+		]
+		pw.println("</html>")
+		pw.close();
 	}
 	
 	def void printToHTML(VideoGeneratorModel videoGen) {
