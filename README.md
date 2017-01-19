@@ -9,9 +9,10 @@ A configurable generator of generator of video variants
 `videogen` is a Java/Xtend project that uses the Xtext project and shows how to transform a VideoGen transformation.  
 
 
-Text inside Video:
+Project 1: Text inside Video
 
 result inside JUnit:
+---------------------------
 Mandatory
 debut
 ffmpeg -i C:/Users/kaoutar/git/VideoGen/videogen/videosTel/nancyagram.mp4 -vf drawtext='fontsize=15:fontfile=FreeSerif.ttf:text=Mandatory:y=100:x=100' -codec:a copy C:/Users/kaoutar/git/VideoGen/videogen/videosTel/nancyagram-2.mp4
@@ -30,10 +31,13 @@ Alternatives
 debut
 ffmpeg -i C:/Users/kaoutar/git/VideoGen/videogen/videosTel/standbyme.mp4 -vf drawtext='fontsize=15:fontfile=FreeSerif.ttf:text=Alternative:y=100:x=100' -codec:a copy C:/Users/kaoutar/git/VideoGen/videogen/videosTel/standbyme-2.mp4
 
+-------------------------------------------------------------------
 
 In Cmd console:
 
 ![alt tag](https://github.com/kaouthare/VideoGen/tree/master/videogen/textrep.png)
+
+So, UNRESOLVED BUG about bad path or unknown fonts
 
 
 
