@@ -1,5 +1,6 @@
 package videogen;
 
+import java.io.BufferedReader;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.function.Consumer;
@@ -146,6 +147,56 @@ public class FFmpegRep {
     return _xblockexpression;
   }
   
+  public static void generateDuration(final VideoGeneratorModel videoGen) {
+    EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
+    for (final VideoSeq videoseq : _videoseqs) {
+      if ((videoseq instanceof MandatoryVideoSeq)) {
+        final VideoDescription desc = ((MandatoryVideoSeq) videoseq).getDescription();
+        String _videoid = desc.getVideoid();
+        boolean _isNullOrEmpty = StringExtensions.isNullOrEmpty(_videoid);
+        boolean _not = (!_isNullOrEmpty);
+        if (_not) {
+          String _location = desc.getLocation();
+          Process i = Operations.commandFFmpegToGenerateDuration(_location);
+          BufferedReader buffer = Operations.getOutput(i);
+          Operations.displayBuffer(buffer);
+        }
+      } else {
+        if ((videoseq instanceof OptionalVideoSeq)) {
+          final VideoDescription desc_1 = ((OptionalVideoSeq) videoseq).getDescription();
+          String _videoid_1 = desc_1.getVideoid();
+          boolean _isNullOrEmpty_1 = StringExtensions.isNullOrEmpty(_videoid_1);
+          boolean _not_1 = (!_isNullOrEmpty_1);
+          if (_not_1) {
+            String _location_1 = desc_1.getLocation();
+            Process i_1 = Operations.commandFFmpegToGenerateDuration(_location_1);
+            BufferedReader buffer_1 = Operations.getOutput(i_1);
+            Operations.displayBuffer(buffer_1);
+          }
+        } else {
+          final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
+          String _videoid_2 = altvid.getVideoid();
+          boolean _isNullOrEmpty_2 = StringExtensions.isNullOrEmpty(_videoid_2);
+          boolean _not_2 = (!_isNullOrEmpty_2);
+          if (_not_2) {
+            EList<VideoDescription> _videodescs = altvid.getVideodescs();
+            for (final VideoDescription vdesc : _videodescs) {
+              String _videoid_3 = vdesc.getVideoid();
+              boolean _isNullOrEmpty_3 = StringExtensions.isNullOrEmpty(_videoid_3);
+              boolean _not_3 = (!_isNullOrEmpty_3);
+              if (_not_3) {
+                String _location_2 = vdesc.getLocation();
+                Process i_2 = Operations.commandFFmpegToGenerateDuration(_location_2);
+                BufferedReader buffer_2 = Operations.getOutput(i_2);
+                Operations.displayBuffer(buffer_2);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
   public static void generateThumbnail(final VideoGeneratorModel videoGen) {
     EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
     for (final VideoSeq videoseq : _videoseqs) {
@@ -157,7 +208,7 @@ public class FFmpegRep {
         if (_not) {
           String _location = desc.getLocation();
           String _location_1 = desc.getLocation();
-          Operations.execCommandFFmpeg(_location, _location_1);
+          Operations.commandFFmpegToGenerateImage(_location, _location_1);
         }
       } else {
         if ((videoseq instanceof OptionalVideoSeq)) {
@@ -168,7 +219,7 @@ public class FFmpegRep {
           if (_not_1) {
             String _location_2 = desc_1.getLocation();
             String _location_3 = desc_1.getLocation();
-            Operations.execCommandFFmpeg(_location_2, _location_3);
+            Operations.commandFFmpegToGenerateImage(_location_2, _location_3);
           }
         } else {
           final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
@@ -184,7 +235,7 @@ public class FFmpegRep {
               if (_not_3) {
                 String _location_4 = vdesc.getLocation();
                 String _location_5 = vdesc.getLocation();
-                Operations.execCommandFFmpeg(_location_4, _location_5);
+                Operations.commandFFmpegToGenerateImage(_location_4, _location_5);
               }
             }
           }
@@ -197,9 +248,11 @@ public class FFmpegRep {
     final StringBuffer contentMondatory = new StringBuffer();
     final StringBuffer contentOptionals = new StringBuffer();
     final StringBuffer contentAlt = new StringBuffer();
-    contentMondatory.append("<h3>Mondatory : </h3><ul></br>");
-    contentOptionals.append("<h3>Optionals : </h3><ul></br>");
-    contentAlt.append("<h3>Alternatives : </h3><ul></br>");
+    contentMondatory.append(
+      " <div style=\"display:inline-block; vertical-align:top;\" ><h3>Mondatory : </h3><ul></br>");
+    contentOptionals.append(
+      "<div style=\"display:inline-block; vertical-align:top; \"><h3>Optionals : </h3><ul></br>");
+    contentAlt.append("<div style=\"display:inline-block; vertical-align:top;\"><h3>Alternatives : </h3><ul></br>");
     EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
     for (final VideoSeq videoseq : _videoseqs) {
       if ((videoseq instanceof MandatoryVideoSeq)) {
@@ -210,11 +263,10 @@ public class FFmpegRep {
         if (_not) {
           String _location = desc.getLocation();
           String _plus = ("<li><img src=\"" + _location);
-          String _plus_1 = (_plus + ".jpg\" alt=\"");
+          String _plus_1 = (_plus + ".jpg\" width= \"200\" height=\"200\" alt=\"");
           String _location_1 = desc.getLocation();
           String _plus_2 = (_plus_1 + _location_1);
-          String _plus_3 = (_plus_2 + 
-            "\"/></li>");
+          String _plus_3 = (_plus_2 + "\"/></li>");
           contentMondatory.append(_plus_3);
         }
       } else {
@@ -226,11 +278,10 @@ public class FFmpegRep {
           if (_not_1) {
             String _location_2 = desc_1.getLocation();
             String _plus_4 = ("<li><img src=\"" + _location_2);
-            String _plus_5 = (_plus_4 + ".jpg\" alt=\"");
+            String _plus_5 = (_plus_4 + ".jpg\" width= \"200\" height=\"200\"  alt=\"");
             String _location_3 = desc_1.getLocation();
             String _plus_6 = (_plus_5 + _location_3);
-            String _plus_7 = (_plus_6 + 
-              "\"/></li>");
+            String _plus_7 = (_plus_6 + "\"/></li>");
             contentOptionals.append(_plus_7);
           }
         } else {
@@ -247,11 +298,10 @@ public class FFmpegRep {
               if (_not_3) {
                 String _location_4 = vdesc.getLocation();
                 String _plus_8 = ("<li><img src=\"" + _location_4);
-                String _plus_9 = (_plus_8 + ".jpg\" alt=\"");
+                String _plus_9 = (_plus_8 + ".jpg\" width= \"200\" height=\"200\"  alt=\"");
                 String _location_5 = vdesc.getLocation();
                 String _plus_10 = (_plus_9 + _location_5);
-                String _plus_11 = (_plus_10 + 
-                  "\"/></li>");
+                String _plus_11 = (_plus_10 + "\"/></li>");
                 contentAlt.append(_plus_11);
               }
             }
@@ -259,9 +309,9 @@ public class FFmpegRep {
         }
       }
     }
-    contentMondatory.append("</ul></br></br>");
-    contentOptionals.append("</ul></br></br>");
-    contentAlt.append("</ul>");
+    contentMondatory.append("</ul></div>");
+    contentOptionals.append("</ul></div>");
+    contentAlt.append("</ul></div>");
     String _string = contentMondatory.toString();
     String _string_1 = contentOptionals.toString();
     String _plus_12 = (_string + _string_1);
@@ -273,6 +323,6 @@ public class FFmpegRep {
   public static void main(final String[] args) {
     URI _createURI = URI.createURI("videos.videogen");
     VideoGeneratorModel videoGen = FFmpegRep.loadVideoGenerator(_createURI);
-    FFmpegRep.generateWebPage(videoGen);
+    FFmpegRep.generateDuration(videoGen);
   }
 }
