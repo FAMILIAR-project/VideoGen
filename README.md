@@ -46,7 +46,7 @@ Project 2: Gification
 
 Result in JUnit console:
 
-![alt tag](videogen/capture.PNG)
+![alt tag](videogen/Capture.PNG)
 
 
 
