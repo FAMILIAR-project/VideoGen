@@ -15,7 +15,7 @@ class FFMPEGHelpere {
     def void executeCmdGIF(String input, String outputname){
     			
 	var command = "ffmpeg -i "+input+" "+outputname+".gif"
-	println(command)
+
         var p = Runtime.runtime.exec(command)
         p.waitFor
 	}
@@ -28,7 +28,17 @@ class FFMPEGHelpere {
 	var command ="ffmpeg -i "+path+" -vf drawtext=fontfile=/path/to/font.ttf:text=\'"+ t
 	+"\':fontcolor=white:fontsize=24:box=1:boxcolor=black@0.5:boxborderw=5:x=(w-text_w)/2:y=(h-text_h)/2 -codec:a copy "+path+outputname+".mp4"
        
-       println(command)
+        var p = Runtime.runtime.exec(command)
+        p.waitFor
+	}
+	
+		def void executeCmdFilterBlackAndWith(String input, String output){
+	    	
+	    	var f = new File(input)
+	    	var path = f.absolutePath
+	    			
+	     var command = "ffmpeg -i "+ path+" -vf hue=s=0 -c:a copy "+path+output+".mp4"
+       
         var p = Runtime.runtime.exec(command)
         p.waitFor
 	}

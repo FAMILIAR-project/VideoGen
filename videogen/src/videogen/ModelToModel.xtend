@@ -318,9 +318,49 @@ def static void incrustText(){
 	
 }
 
+def static void filterBlackAndWith(){
+	
+		
+		var ffmpeg = new FFMPEGHelpere()
+	
+		// loading
+		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
+			
+		for(videoseq : videoGen.videoseqs){
+			if (videoseq instanceof MandatoryVideoSeq) {
+			val desc = (videoseq as MandatoryVideoSeq).description
+				
+				ffmpeg.executeCmdFilterBlackAndWith(desc.location.toString,"fil1")
+				
+			  
+				}
+			
+			else if (videoseq instanceof OptionalVideoSeq) {
+				val desc = (videoseq as OptionalVideoSeq).description
+
+	    	  ffmpeg.executeCmdFilterBlackAndWith(desc.location.toString,"fil2")
+
+					
+			}
+			else {
+				val altvid = (videoseq as AlternativeVideoSeq)
+
+				for (vdesc : altvid.videodescs) {
+	
+				ffmpeg.executeCmdFilterBlackAndWith(vdesc.location.toString,"fil3")
+	
+			
+			}
+			
+			}
+}
+	
+}
+
+
 def public static void main(String[] args){
 	
-	incrustText()
+	filterBlackAndWith()
 	
 	 //printWebPage()
 	  

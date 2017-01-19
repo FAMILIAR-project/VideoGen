@@ -353,7 +353,37 @@ public class ModelToModel {
     }
   }
   
+  public static void filterBlackAndWith() {
+    FFMPEGHelpere ffmpeg = new FFMPEGHelpere();
+    URI _createURI = URI.createURI("foo2.videogen");
+    VideoGeneratorModel videoGen = ModelToModel.loadVideoGenerator(_createURI);
+    EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
+    for (final VideoSeq videoseq : _videoseqs) {
+      if ((videoseq instanceof MandatoryVideoSeq)) {
+        final VideoDescription desc = ((MandatoryVideoSeq) videoseq).getDescription();
+        String _location = desc.getLocation();
+        String _string = _location.toString();
+        ffmpeg.executeCmdFilterBlackAndWith(_string, "fil1");
+      } else {
+        if ((videoseq instanceof OptionalVideoSeq)) {
+          final VideoDescription desc_1 = ((OptionalVideoSeq) videoseq).getDescription();
+          String _location_1 = desc_1.getLocation();
+          String _string_1 = _location_1.toString();
+          ffmpeg.executeCmdFilterBlackAndWith(_string_1, "fil2");
+        } else {
+          final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
+          EList<VideoDescription> _videodescs = altvid.getVideodescs();
+          for (final VideoDescription vdesc : _videodescs) {
+            String _location_2 = vdesc.getLocation();
+            String _string_2 = _location_2.toString();
+            ffmpeg.executeCmdFilterBlackAndWith(_string_2, "fil3");
+          }
+        }
+      }
+    }
+  }
+  
   public static void main(final String[] args) {
-    ModelToModel.incrustText();
+    ModelToModel.filterBlackAndWith();
   }
 }

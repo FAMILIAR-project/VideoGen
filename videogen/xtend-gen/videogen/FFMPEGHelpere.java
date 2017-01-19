@@ -2,7 +2,6 @@ package videogen;
 
 import java.io.File;
 import org.eclipse.xtext.xbase.lib.Exceptions;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class FFMPEGHelpere {
@@ -20,7 +19,6 @@ public class FFMPEGHelpere {
   public void executeCmdGIF(final String input, final String outputname) {
     try {
       String command = (((("ffmpeg -i " + input) + " ") + outputname) + ".gif");
-      InputOutput.<String>println(command);
       Runtime _runtime = Runtime.getRuntime();
       Process p = _runtime.exec(command);
       p.waitFor();
@@ -34,7 +32,19 @@ public class FFMPEGHelpere {
       File f = new File(input);
       String path = f.getAbsolutePath();
       String command = ((((((("ffmpeg -i " + path) + " -vf drawtext=fontfile=/path/to/font.ttf:text=\'") + t) + "\':fontcolor=white:fontsize=24:box=1:boxcolor=black@0.5:boxborderw=5:x=(w-text_w)/2:y=(h-text_h)/2 -codec:a copy ") + path) + outputname) + ".mp4");
-      InputOutput.<String>println(command);
+      Runtime _runtime = Runtime.getRuntime();
+      Process p = _runtime.exec(command);
+      p.waitFor();
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  public void executeCmdFilterBlackAndWith(final String input, final String output) {
+    try {
+      File f = new File(input);
+      String path = f.getAbsolutePath();
+      String command = ((((("ffmpeg -i " + path) + " -vf hue=s=0 -c:a copy ") + path) + output) + ".mp4");
       Runtime _runtime = Runtime.getRuntime();
       Process p = _runtime.exec(command);
       p.waitFor();
