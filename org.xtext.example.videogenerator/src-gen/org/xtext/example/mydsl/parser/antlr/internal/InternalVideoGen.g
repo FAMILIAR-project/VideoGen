@@ -538,15 +538,59 @@ ruleVideoDescription returns [EObject current=null]
 	    }
 
 )
-))?(	otherlv_8='size' 
+))?(	otherlv_8='textIncrust' 
     {
-    	newLeafNode(otherlv_8, grammarAccess.getVideoDescriptionAccess().getSizeKeyword_3_3_0());
+    	newLeafNode(otherlv_8, grammarAccess.getVideoDescriptionAccess().getTextIncrustKeyword_3_3_0());
     }
 (
 (
-		lv_size_9_0=RULE_INT
+		lv_textIncrust_9_0=RULE_STRING
 		{
-			newLeafNode(lv_size_9_0, grammarAccess.getVideoDescriptionAccess().getSizeINTTerminalRuleCall_3_3_1_0()); 
+			newLeafNode(lv_textIncrust_9_0, grammarAccess.getVideoDescriptionAccess().getTextIncrustSTRINGTerminalRuleCall_3_3_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getVideoDescriptionRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"textIncrust",
+        		lv_textIncrust_9_0, 
+        		"org.eclipse.xtext.common.Terminals.STRING");
+	    }
+
+)
+))?(	otherlv_10='filter' 
+    {
+    	newLeafNode(otherlv_10, grammarAccess.getVideoDescriptionAccess().getFilterKeyword_3_4_0());
+    }
+(
+(
+		lv_filter_11_0=RULE_STRING
+		{
+			newLeafNode(lv_filter_11_0, grammarAccess.getVideoDescriptionAccess().getFilterSTRINGTerminalRuleCall_3_4_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getVideoDescriptionRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"filter",
+        		lv_filter_11_0, 
+        		"org.eclipse.xtext.common.Terminals.STRING");
+	    }
+
+)
+))?(	otherlv_12='size' 
+    {
+    	newLeafNode(otherlv_12, grammarAccess.getVideoDescriptionAccess().getSizeKeyword_3_5_0());
+    }
+(
+(
+		lv_size_13_0=RULE_INT
+		{
+			newLeafNode(lv_size_13_0, grammarAccess.getVideoDescriptionAccess().getSizeINTTerminalRuleCall_3_5_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -555,20 +599,20 @@ ruleVideoDescription returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"size",
-        		lv_size_9_0, 
+        		lv_size_13_0, 
         		"org.eclipse.xtext.common.Terminals.INT");
 	    }
 
 )
-))?(	otherlv_10='description' 
+))?(	otherlv_14='description' 
     {
-    	newLeafNode(otherlv_10, grammarAccess.getVideoDescriptionAccess().getDescriptionKeyword_3_4_0());
+    	newLeafNode(otherlv_14, grammarAccess.getVideoDescriptionAccess().getDescriptionKeyword_3_6_0());
     }
 (
 (
-		lv_description_11_0=RULE_STRING
+		lv_description_15_0=RULE_STRING
 		{
-			newLeafNode(lv_description_11_0, grammarAccess.getVideoDescriptionAccess().getDescriptionSTRINGTerminalRuleCall_3_4_1_0()); 
+			newLeafNode(lv_description_15_0, grammarAccess.getVideoDescriptionAccess().getDescriptionSTRINGTerminalRuleCall_3_6_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -577,14 +621,14 @@ ruleVideoDescription returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"description",
-        		lv_description_11_0, 
+        		lv_description_15_0, 
         		"org.eclipse.xtext.common.Terminals.STRING");
 	    }
 
 )
-))?this_RIGHT_BRACKET_12=RULE_RIGHT_BRACKET
+))?this_RIGHT_BRACKET_16=RULE_RIGHT_BRACKET
     { 
-    newLeafNode(this_RIGHT_BRACKET_12, grammarAccess.getVideoDescriptionAccess().getRIGHT_BRACKETTerminalRuleCall_3_5()); 
+    newLeafNode(this_RIGHT_BRACKET_16, grammarAccess.getVideoDescriptionAccess().getRIGHT_BRACKETTerminalRuleCall_3_7()); 
     }
 )?)
 ;

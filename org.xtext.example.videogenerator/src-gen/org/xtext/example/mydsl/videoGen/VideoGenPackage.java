@@ -298,13 +298,31 @@ public interface VideoGenPackage extends EPackage
   int VIDEO_DESCRIPTION__PROBABILITY = 3;
 
   /**
+   * The feature id for the '<em><b>Text Incrust</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VIDEO_DESCRIPTION__TEXT_INCRUST = 4;
+
+  /**
+   * The feature id for the '<em><b>Filter</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VIDEO_DESCRIPTION__FILTER = 5;
+
+  /**
    * The feature id for the '<em><b>Size</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int VIDEO_DESCRIPTION__SIZE = 4;
+  int VIDEO_DESCRIPTION__SIZE = 6;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -313,7 +331,7 @@ public interface VideoGenPackage extends EPackage
    * @generated
    * @ordered
    */
-  int VIDEO_DESCRIPTION__DESCRIPTION = 5;
+  int VIDEO_DESCRIPTION__DESCRIPTION = 7;
 
   /**
    * The number of structural features of the '<em>Video Description</em>' class.
@@ -322,7 +340,7 @@ public interface VideoGenPackage extends EPackage
    * @generated
    * @ordered
    */
-  int VIDEO_DESCRIPTION_FEATURE_COUNT = 6;
+  int VIDEO_DESCRIPTION_FEATURE_COUNT = 8;
 
 
   /**
@@ -537,6 +555,28 @@ public interface VideoGenPackage extends EPackage
    * @generated
    */
   EAttribute getVideoDescription_Probability();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.videoGen.VideoDescription#getTextIncrust <em>Text Incrust</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Text Incrust</em>'.
+   * @see org.xtext.example.mydsl.videoGen.VideoDescription#getTextIncrust()
+   * @see #getVideoDescription()
+   * @generated
+   */
+  EAttribute getVideoDescription_TextIncrust();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.videoGen.VideoDescription#getFilter <em>Filter</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Filter</em>'.
+   * @see org.xtext.example.mydsl.videoGen.VideoDescription#getFilter()
+   * @see #getVideoDescription()
+   * @generated
+   */
+  EAttribute getVideoDescription_Filter();
 
   /**
    * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.videoGen.VideoDescription#getSize <em>Size</em>}'.
@@ -756,6 +796,22 @@ public interface VideoGenPackage extends EPackage
      * @generated
      */
     EAttribute VIDEO_DESCRIPTION__PROBABILITY = eINSTANCE.getVideoDescription_Probability();
+
+    /**
+     * The meta object literal for the '<em><b>Text Incrust</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute VIDEO_DESCRIPTION__TEXT_INCRUST = eINSTANCE.getVideoDescription_TextIncrust();
+
+    /**
+     * The meta object literal for the '<em><b>Filter</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute VIDEO_DESCRIPTION__FILTER = eINSTANCE.getVideoDescription_Filter();
 
     /**
      * The meta object literal for the '<em><b>Size</b></em>' attribute feature.

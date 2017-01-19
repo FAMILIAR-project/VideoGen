@@ -24,6 +24,8 @@ import org.xtext.example.mydsl.videoGen.VideoGenPackage;
  *   <li>{@link org.xtext.example.mydsl.videoGen.impl.VideoDescriptionImpl#getLocation <em>Location</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.videoGen.impl.VideoDescriptionImpl#getDuration <em>Duration</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.videoGen.impl.VideoDescriptionImpl#getProbability <em>Probability</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.videoGen.impl.VideoDescriptionImpl#getTextIncrust <em>Text Incrust</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.videoGen.impl.VideoDescriptionImpl#getFilter <em>Filter</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.videoGen.impl.VideoDescriptionImpl#getSize <em>Size</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.videoGen.impl.VideoDescriptionImpl#getDescription <em>Description</em>}</li>
  * </ul>
@@ -111,6 +113,46 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
    * @ordered
    */
   protected int probability = PROBABILITY_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getTextIncrust() <em>Text Incrust</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTextIncrust()
+   * @generated
+   * @ordered
+   */
+  protected static final String TEXT_INCRUST_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getTextIncrust() <em>Text Incrust</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTextIncrust()
+   * @generated
+   * @ordered
+   */
+  protected String textIncrust = TEXT_INCRUST_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getFilter() <em>Filter</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getFilter()
+   * @generated
+   * @ordered
+   */
+  protected static final String FILTER_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getFilter() <em>Filter</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getFilter()
+   * @generated
+   * @ordered
+   */
+  protected String filter = FILTER_EDEFAULT;
 
   /**
    * The default value of the '{@link #getSize() <em>Size</em>}' attribute.
@@ -270,6 +312,52 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getTextIncrust()
+  {
+    return textIncrust;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setTextIncrust(String newTextIncrust)
+  {
+    String oldTextIncrust = textIncrust;
+    textIncrust = newTextIncrust;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, VideoGenPackage.VIDEO_DESCRIPTION__TEXT_INCRUST, oldTextIncrust, textIncrust));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getFilter()
+  {
+    return filter;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setFilter(String newFilter)
+  {
+    String oldFilter = filter;
+    filter = newFilter;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, VideoGenPackage.VIDEO_DESCRIPTION__FILTER, oldFilter, filter));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public int getSize()
   {
     return size;
@@ -329,6 +417,10 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
         return getDuration();
       case VideoGenPackage.VIDEO_DESCRIPTION__PROBABILITY:
         return getProbability();
+      case VideoGenPackage.VIDEO_DESCRIPTION__TEXT_INCRUST:
+        return getTextIncrust();
+      case VideoGenPackage.VIDEO_DESCRIPTION__FILTER:
+        return getFilter();
       case VideoGenPackage.VIDEO_DESCRIPTION__SIZE:
         return getSize();
       case VideoGenPackage.VIDEO_DESCRIPTION__DESCRIPTION:
@@ -358,6 +450,12 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
         return;
       case VideoGenPackage.VIDEO_DESCRIPTION__PROBABILITY:
         setProbability((Integer)newValue);
+        return;
+      case VideoGenPackage.VIDEO_DESCRIPTION__TEXT_INCRUST:
+        setTextIncrust((String)newValue);
+        return;
+      case VideoGenPackage.VIDEO_DESCRIPTION__FILTER:
+        setFilter((String)newValue);
         return;
       case VideoGenPackage.VIDEO_DESCRIPTION__SIZE:
         setSize((Integer)newValue);
@@ -391,6 +489,12 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
       case VideoGenPackage.VIDEO_DESCRIPTION__PROBABILITY:
         setProbability(PROBABILITY_EDEFAULT);
         return;
+      case VideoGenPackage.VIDEO_DESCRIPTION__TEXT_INCRUST:
+        setTextIncrust(TEXT_INCRUST_EDEFAULT);
+        return;
+      case VideoGenPackage.VIDEO_DESCRIPTION__FILTER:
+        setFilter(FILTER_EDEFAULT);
+        return;
       case VideoGenPackage.VIDEO_DESCRIPTION__SIZE:
         setSize(SIZE_EDEFAULT);
         return;
@@ -419,6 +523,10 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
         return duration != DURATION_EDEFAULT;
       case VideoGenPackage.VIDEO_DESCRIPTION__PROBABILITY:
         return probability != PROBABILITY_EDEFAULT;
+      case VideoGenPackage.VIDEO_DESCRIPTION__TEXT_INCRUST:
+        return TEXT_INCRUST_EDEFAULT == null ? textIncrust != null : !TEXT_INCRUST_EDEFAULT.equals(textIncrust);
+      case VideoGenPackage.VIDEO_DESCRIPTION__FILTER:
+        return FILTER_EDEFAULT == null ? filter != null : !FILTER_EDEFAULT.equals(filter);
       case VideoGenPackage.VIDEO_DESCRIPTION__SIZE:
         return size != SIZE_EDEFAULT;
       case VideoGenPackage.VIDEO_DESCRIPTION__DESCRIPTION:
@@ -446,6 +554,10 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
     result.append(duration);
     result.append(", probability: ");
     result.append(probability);
+    result.append(", textIncrust: ");
+    result.append(textIncrust);
+    result.append(", filter: ");
+    result.append(filter);
     result.append(", size: ");
     result.append(size);
     result.append(", description: ");

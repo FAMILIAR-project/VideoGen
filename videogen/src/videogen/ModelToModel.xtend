@@ -266,7 +266,6 @@ def static void generateGIF(){
 
 				for (vdesc : altvid.videodescs) {
 					
-				
 				ffmpeg.executeCmdGIF(vdesc.location.toString,vdesc.location)
 	
 			
@@ -276,10 +275,55 @@ def static void generateGIF(){
 }
 }
 
+def static void incrustText(){
+	
+		
+		var ffmpeg = new FFMPEGHelpere()
+	
+		// loading
+		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
+			
+		for(videoseq : videoGen.videoseqs){
+			if (videoseq instanceof MandatoryVideoSeq) {
+			val desc = (videoseq as MandatoryVideoSeq).description
+				
+				if(!desc.textIncrust.isNullOrEmpty)
+				ffmpeg.executeCmdIncrustText(desc.location.toString,"incr1",desc.textIncrust)
+				
+			  
+				}
+			
+			else if (videoseq instanceof OptionalVideoSeq) {
+				val desc = (videoseq as OptionalVideoSeq).description
+				
+
+               if(!desc.textIncrust.isNullOrEmpty)
+	    	   ffmpeg.executeCmdIncrustText(desc.location.toString,"incr4",desc.textIncrust)
+
+					
+			}
+			else {
+				val altvid = (videoseq as AlternativeVideoSeq)
+
+				for (vdesc : altvid.videodescs) {
+				
+				if(!vdesc.textIncrust.isNullOrEmpty)	
+				ffmpeg.executeCmdIncrustText(vdesc.location.toString,"incr3",vdesc.textIncrust)
+	
+			
+			}
+			
+			}
+}
+	
+}
+
 def public static void main(String[] args){
 	
+	incrustText()
+	
 	 //printWebPage()
-	 
-	 generateGIF()
+	  
+	// generateGIF()
 }
 }

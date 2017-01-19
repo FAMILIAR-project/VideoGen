@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.xtext.xbase.lib.Exceptions;
+import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated;
 import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq;
 import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq;
@@ -304,7 +305,55 @@ public class ModelToModel {
     }
   }
   
+  public static void incrustText() {
+    FFMPEGHelpere ffmpeg = new FFMPEGHelpere();
+    URI _createURI = URI.createURI("foo2.videogen");
+    VideoGeneratorModel videoGen = ModelToModel.loadVideoGenerator(_createURI);
+    EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
+    for (final VideoSeq videoseq : _videoseqs) {
+      if ((videoseq instanceof MandatoryVideoSeq)) {
+        final VideoDescription desc = ((MandatoryVideoSeq) videoseq).getDescription();
+        String _textIncrust = desc.getTextIncrust();
+        boolean _isNullOrEmpty = StringExtensions.isNullOrEmpty(_textIncrust);
+        boolean _not = (!_isNullOrEmpty);
+        if (_not) {
+          String _location = desc.getLocation();
+          String _string = _location.toString();
+          String _textIncrust_1 = desc.getTextIncrust();
+          ffmpeg.executeCmdIncrustText(_string, "incr1", _textIncrust_1);
+        }
+      } else {
+        if ((videoseq instanceof OptionalVideoSeq)) {
+          final VideoDescription desc_1 = ((OptionalVideoSeq) videoseq).getDescription();
+          String _textIncrust_2 = desc_1.getTextIncrust();
+          boolean _isNullOrEmpty_1 = StringExtensions.isNullOrEmpty(_textIncrust_2);
+          boolean _not_1 = (!_isNullOrEmpty_1);
+          if (_not_1) {
+            String _location_1 = desc_1.getLocation();
+            String _string_1 = _location_1.toString();
+            String _textIncrust_3 = desc_1.getTextIncrust();
+            ffmpeg.executeCmdIncrustText(_string_1, "incr4", _textIncrust_3);
+          }
+        } else {
+          final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
+          EList<VideoDescription> _videodescs = altvid.getVideodescs();
+          for (final VideoDescription vdesc : _videodescs) {
+            String _textIncrust_4 = vdesc.getTextIncrust();
+            boolean _isNullOrEmpty_2 = StringExtensions.isNullOrEmpty(_textIncrust_4);
+            boolean _not_2 = (!_isNullOrEmpty_2);
+            if (_not_2) {
+              String _location_2 = vdesc.getLocation();
+              String _string_2 = _location_2.toString();
+              String _textIncrust_5 = vdesc.getTextIncrust();
+              ffmpeg.executeCmdIncrustText(_string_2, "incr3", _textIncrust_5);
+            }
+          }
+        }
+      }
+    }
+  }
+  
   public static void main(final String[] args) {
-    ModelToModel.generateGIF();
+    ModelToModel.incrustText();
   }
 }
