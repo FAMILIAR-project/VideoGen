@@ -40,4 +40,15 @@ In Cmd console:
 So, UNRESOLVED BUG about bad path or unknown fonts
 
 
+----------------------------------
+
+Project 2: Gification
+
+Result in JUnit console:
+
+![alt tag](videogen/bug.PNG)
+
+
+
+
 
