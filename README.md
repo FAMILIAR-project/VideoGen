@@ -30,7 +30,7 @@ A configurable generator of generator of video variants
 
 ## Question 15
 
-Les modes Random et Configurator de notre feature model sont déjà disponibles grâce aux questions 12 et 13 (même si ce n'est pas fait dans notre tp). Nous avons des transformations xtend qui décrivent et implémentent nos modes. Et avec Jhipster nous avons un site web qui permet d'appeler et d'exécuter ces modes via une interface graphique.<br>
+Les modes Random et Configurator de notre feature model sont déjà disponibles grâce aux questions 12 et 13 (même si ce n'est pas fait dans notre tp). Nous avons des transformations xtend qui décrivent et implémentent nos modes. Et avec Jhipster nous avons un site web qui permet d'appeler et d'exécuter ces modes via une interface graphique.<br><br>
 Pour implémenter les autres modes il faudrait donc écrire des transformations xtend, puis ensuite enrichier notre site web pour permettre d'exécuter ces nouveaux modes en faisant appel à ces transformations xtend.
 
 ## Exercice : Insérer du texte dans une vidéo
