@@ -318,7 +318,7 @@ def static void incrustText(){
 	
 }
 
-def static void filterBlackAndWith(){
+def static void filters(){
 	
 		
 		var ffmpeg = new FFMPEGHelpere()
@@ -329,17 +329,33 @@ def static void filterBlackAndWith(){
 		for(videoseq : videoGen.videoseqs){
 			if (videoseq instanceof MandatoryVideoSeq) {
 			val desc = (videoseq as MandatoryVideoSeq).description
+				if((!desc.filter.isNullOrEmpty) &&("blackandwhite".equals(desc.filter)) )
+				{
+				  ffmpeg.executeCmdFilterBlackAndWhite(desc.location.toString,"blkw1")
+				  
+				}
 				
-				ffmpeg.executeCmdFilterBlackAndWith(desc.location.toString,"fil1")
-				
-			  
+				if((!desc.filter.isNullOrEmpty) &&("lighter".equals(desc.filter)) )
+				{
+	
+				ffmpeg.executeCmdFilterLighter(desc.location.toString,"lgtr1")}
+	
 				}
 			
 			else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
 
-	    	  ffmpeg.executeCmdFilterBlackAndWith(desc.location.toString,"fil2")
-
+				if((!desc.filter.isNullOrEmpty) &&("blackandwhite".equals(desc.filter)) )
+				{
+				  ffmpeg.executeCmdFilterBlackAndWhite(desc.location.toString,"blkw1")
+				  
+				}
+				
+				if((!desc.filter.isNullOrEmpty) &&("lighter".equals(desc.filter)) )
+				{
+	
+				ffmpeg.executeCmdFilterLighter(desc.location.toString,"lgtr1")}
+	
 					
 			}
 			else {
@@ -347,10 +363,19 @@ def static void filterBlackAndWith(){
 
 				for (vdesc : altvid.videodescs) {
 	
-				ffmpeg.executeCmdFilterBlackAndWith(vdesc.location.toString,"fil3")
+				if((!vdesc.filter.isNullOrEmpty) &&("blackandwhite".equals(vdesc.filter)) )
+				{
+				  ffmpeg.executeCmdFilterBlackAndWhite(vdesc.location.toString,"blkw1")
+				  
+				}
+				
+				if((!vdesc.filter.isNullOrEmpty) &&("lighter".equals(vdesc.filter)) )
+				{
 	
+				ffmpeg.executeCmdFilterLighter(vdesc.location.toString,"lgtr1")}
+	
+				}
 			
-			}
 			
 			}
 }
@@ -360,7 +385,7 @@ def static void filterBlackAndWith(){
 
 def public static void main(String[] args){
 	
-	filterBlackAndWith()
+	filters()
 	
 	 //printWebPage()
 	  

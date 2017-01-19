@@ -2,12 +2,14 @@ VideoGen {
 	
 	mandatory videoseq "videos/v1.mp4" {
 	
-	textIncrust "text"
+	textIncrust "text mandatory"
+	filter "lighter"
 	
 	}
 	optional videoseq "videos/v2.mp4" {
 		probability 25
-		textIncrust "text"
+		textIncrust "text optional"
+		filter "blackandwhite"
 	}
 	alternatives vid3 {
 		videoseq "videos/v3.mp4"

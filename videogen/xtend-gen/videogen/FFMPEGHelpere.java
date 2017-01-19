@@ -40,11 +40,24 @@ public class FFMPEGHelpere {
     }
   }
   
-  public void executeCmdFilterBlackAndWith(final String input, final String output) {
+  public void executeCmdFilterBlackAndWhite(final String input, final String output) {
     try {
       File f = new File(input);
       String path = f.getAbsolutePath();
       String command = ((((("ffmpeg -i " + path) + " -vf hue=s=0 -c:a copy ") + path) + output) + ".mp4");
+      Runtime _runtime = Runtime.getRuntime();
+      Process p = _runtime.exec(command);
+      p.waitFor();
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  public void executeCmdFilterLighter(final String input, final String output) {
+    try {
+      File f = new File(input);
+      String path = f.getAbsolutePath();
+      String command = ((((("ffmpeg -i " + path) + " -vf curves=preset=lighter -c:a copy ") + path) + output) + ".mp4");
       Runtime _runtime = Runtime.getRuntime();
       Process p = _runtime.exec(command);
       p.waitFor();

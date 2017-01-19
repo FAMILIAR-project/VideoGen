@@ -32,12 +32,22 @@ class FFMPEGHelpere {
         p.waitFor
 	}
 	
-		def void executeCmdFilterBlackAndWith(String input, String output){
+	def void executeCmdFilterBlackAndWhite(String input, String output){
 	    	
 	    	var f = new File(input)
 	    	var path = f.absolutePath
 	    			
 	     var command = "ffmpeg -i "+ path+" -vf hue=s=0 -c:a copy "+path+output+".mp4"
+       
+        var p = Runtime.runtime.exec(command)
+        p.waitFor
+	}
+	
+	def void executeCmdFilterLighter(String input, String output){
+	    	
+	    	var f = new File(input)
+	    	var path = f.absolutePath   			
+	    var command = "ffmpeg -i "+ path+" -vf curves=preset=lighter -c:a copy "+path+output+".mp4"
        
         var p = Runtime.runtime.exec(command)
         p.waitFor

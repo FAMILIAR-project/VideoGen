@@ -353,7 +353,7 @@ public class ModelToModel {
     }
   }
   
-  public static void filterBlackAndWith() {
+  public static void filters() {
     FFMPEGHelpere ffmpeg = new FFMPEGHelpere();
     URI _createURI = URI.createURI("foo2.videogen");
     VideoGeneratorModel videoGen = ModelToModel.loadVideoGenerator(_createURI);
@@ -361,22 +361,45 @@ public class ModelToModel {
     for (final VideoSeq videoseq : _videoseqs) {
       if ((videoseq instanceof MandatoryVideoSeq)) {
         final VideoDescription desc = ((MandatoryVideoSeq) videoseq).getDescription();
-        String _location = desc.getLocation();
-        String _string = _location.toString();
-        ffmpeg.executeCmdFilterBlackAndWith(_string, "fil1");
+        if (((!StringExtensions.isNullOrEmpty(desc.getFilter())) && "blackandwhite".equals(desc.getFilter()))) {
+          String _location = desc.getLocation();
+          String _string = _location.toString();
+          ffmpeg.executeCmdFilterBlackAndWhite(_string, "blkw1");
+        }
+        if (((!StringExtensions.isNullOrEmpty(desc.getFilter())) && "lighter".equals(desc.getFilter()))) {
+          String _location_1 = desc.getLocation();
+          String _string_1 = _location_1.toString();
+          ffmpeg.executeCmdFilterLighter(_string_1, "lgtr1");
+        }
       } else {
         if ((videoseq instanceof OptionalVideoSeq)) {
           final VideoDescription desc_1 = ((OptionalVideoSeq) videoseq).getDescription();
-          String _location_1 = desc_1.getLocation();
-          String _string_1 = _location_1.toString();
-          ffmpeg.executeCmdFilterBlackAndWith(_string_1, "fil2");
+          if (((!StringExtensions.isNullOrEmpty(desc_1.getFilter())) && "blackandwhite".equals(desc_1.getFilter()))) {
+            String _location_2 = desc_1.getLocation();
+            String _string_2 = _location_2.toString();
+            ffmpeg.executeCmdFilterBlackAndWhite(_string_2, "blkw1");
+          }
+          if (((!StringExtensions.isNullOrEmpty(desc_1.getFilter())) && "lighter".equals(desc_1.getFilter()))) {
+            String _location_3 = desc_1.getLocation();
+            String _string_3 = _location_3.toString();
+            ffmpeg.executeCmdFilterLighter(_string_3, "lgtr1");
+          }
         } else {
           final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
           EList<VideoDescription> _videodescs = altvid.getVideodescs();
           for (final VideoDescription vdesc : _videodescs) {
-            String _location_2 = vdesc.getLocation();
-            String _string_2 = _location_2.toString();
-            ffmpeg.executeCmdFilterBlackAndWith(_string_2, "fil3");
+            {
+              if (((!StringExtensions.isNullOrEmpty(vdesc.getFilter())) && "blackandwhite".equals(vdesc.getFilter()))) {
+                String _location_4 = vdesc.getLocation();
+                String _string_4 = _location_4.toString();
+                ffmpeg.executeCmdFilterBlackAndWhite(_string_4, "blkw1");
+              }
+              if (((!StringExtensions.isNullOrEmpty(vdesc.getFilter())) && "lighter".equals(vdesc.getFilter()))) {
+                String _location_5 = vdesc.getLocation();
+                String _string_5 = _location_5.toString();
+                ffmpeg.executeCmdFilterLighter(_string_5, "lgtr1");
+              }
+            }
           }
         }
       }
@@ -384,6 +407,6 @@ public class ModelToModel {
   }
   
   public static void main(final String[] args) {
-    ModelToModel.filterBlackAndWith();
+    ModelToModel.filters();
   }
 }
