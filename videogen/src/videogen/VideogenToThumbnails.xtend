@@ -43,7 +43,7 @@ class VideogenToThumbnails {
 
 	def static String createThumbnail(String path, String filename) {
 			
-		var String cmdThumbnail = "C:\\Users\\Robin\\Desktop\\ffmpeg-3.2.2-win64-static\\bin\\ffmpeg -i " + path + " -ss 00:00:01.000 -vframes 1 thumbnails/" + filename + "1.png"
+		var String cmdThumbnail = "lib\\ffmpeg-3.2.2-win64-static\\bin\\ffmpeg -i createdPlaylists/" + path + " -ss 00:00:01.000 -vframes 1 thumbnails/" + filename + "1.png"
 			
 		var Process process = Runtime.getRuntime().exec(cmdThumbnail);
 		process.waitFor(2000, TimeUnit.MILLISECONDS);

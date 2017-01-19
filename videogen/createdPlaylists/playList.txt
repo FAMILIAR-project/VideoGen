@@ -1,5 +1,4 @@
 # this is a comment 
-file 'C:/Users/Robin/Desktop/videos/adam.webm'
-file 'C:/Users/Robin/Desktop/videos/bear.webm'
-file 'C:/Users/Robin/Desktop/videos/jerry.webm'
-file 'C:/Users/Robin/Desktop/videos/papapap.webm'
+file 'videos/adam.webm'
+file 'videos/bear.webm'
+file 'videos/code.webm'

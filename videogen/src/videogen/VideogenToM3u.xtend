@@ -40,10 +40,9 @@ class VideogenToM3u {
 	}
 	
 	def static double getDuration(String videoLocation){
-		var Process process = Runtime.getRuntime().exec("C:\\Users\\Robin\\Desktop\\ffmpeg-3.2.2-win64-static\\bin\\ffprobe -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 " + videoLocation );
-		
+		var Process process = Runtime.getRuntime().exec("lib\\ffmpeg-3.2.2-win64-static\\bin\\ffprobe -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 createdPlaylists/" + videoLocation );
 		process.waitFor(2000, TimeUnit.MILLISECONDS);
-
+		println(videoLocation)
 		var BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 		var String line = "";
 		var String outputJson = "";

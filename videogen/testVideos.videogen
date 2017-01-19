@@ -1,19 +1,19 @@
 VideoGen {
-	mandatory videoseq v1 "C:/Users/Robin/Desktop/videos/adam.webm" 
-	mandatory videoseq v2 "C:/Users/Robin/Desktop/videos/bear.webm" 
+	mandatory videoseq v1 "videos/adam.webm" 
+	mandatory videoseq v2 "videos/bear.webm" 
 
-	optional videoseq v3 "C:/Users/Robin/Desktop/videos/jerry.webm"
-	optional videoseq v4 "C:/Users/Robin/Desktop/videos/miamiDog.webm"{
+	optional videoseq v3 "videos/jerry.webm"
+	optional videoseq v4 "videos/miamiDog.webm"{
 		probability 25
 	}
 
 	alternatives v5 {
-		videoseq v51 "C:/Users/Robin/Desktop/videos/papapap.webm" {
+		videoseq v51 "videos/papapap.webm" {
 			duration 12
 			probability 25
 			description "a"
 		}
-		videoseq v52 "C:/Users/Robin/Desktop/videos/code.webm"
-		videoseq v53 "C:/Users/Robin/Desktop/videos/rockMiaou.webm"
+		videoseq v52 "videos/code.webm"
+		videoseq v53 "videos/rockMiaou.webm"
 	}
 }

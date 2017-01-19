@@ -62,7 +62,7 @@ public class VideogenToThumbnails {
   
   public static String createThumbnail(final String path, final String filename) {
     try {
-      String cmdThumbnail = (((("C:\\Users\\Robin\\Desktop\\ffmpeg-3.2.2-win64-static\\bin\\ffmpeg -i " + path) + " -ss 00:00:01.000 -vframes 1 thumbnails/") + filename) + "1.png");
+      String cmdThumbnail = (((("lib\\ffmpeg-3.2.2-win64-static\\bin\\ffmpeg -i createdPlaylists/" + path) + " -ss 00:00:01.000 -vframes 1 thumbnails/") + filename) + "1.png");
       Runtime _runtime = Runtime.getRuntime();
       Process process = _runtime.exec(cmdThumbnail);
       process.waitFor(2000, TimeUnit.MILLISECONDS);
