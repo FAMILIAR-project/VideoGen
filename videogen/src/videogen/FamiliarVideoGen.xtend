@@ -1,19 +1,22 @@
 package videogen
 
+import java.io.PrintWriter
+import java.util.ArrayList
+import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
+import org.junit.Test
 import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated
 import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq
 import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq
 import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
-import org.eclipse.emf.common.util.URI
-import org.junit.Test
+
 import static org.junit.Assert.*
-import java.util.ArrayList
-import java.io.PrintWriter
+import fr.unice.polytech.modalis.familiar.fm.basic.FMLFeatureModelReader
 
 class FamiliarVideoGen {
 
+	var myvar = new FMLFeatureModelReader()
 	var res = ""
 	var alternativeList = new ArrayList<String>();
 
@@ -56,14 +59,15 @@ class FamiliarVideoGen {
 
 				val altvid = (videoseq as AlternativeVideoSeq)
 
-				var tmp = (videoseq as AlternativeVideoSeq).videoid + ": "
+				var tmp = (videoseq as AlternativeVideoSeq).videoid + ": ("
 				for (vdesc : altvid.videodescs) {
 					if (vdesc.videoid == null) {
 					throw new NullPointerException("all videos must have a identifier to generate a fml file");
 					}
-					tmp += vdesc.videoid + " "
+					tmp += vdesc.videoid + "|"
 				}
-				tmp += ";\n"
+				tmp = tmp.substring(0, tmp.length()-1);
+				tmp += ");\n"
 				alternativeList.add(tmp)
 			}
 		]
@@ -72,7 +76,7 @@ class FamiliarVideoGen {
 			res += entry
 		}
 		res += ")"
-
+		
 		// serializing
 		val file = new PrintWriter(output, "UTF-8")
 		file.println(res);

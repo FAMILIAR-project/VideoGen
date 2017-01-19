@@ -1,6 +1,7 @@
 package videogen;
 
 import com.google.common.base.Objects;
+import fr.unice.polytech.modalis.familiar.fm.basic.FMLFeatureModelReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.function.Consumer;
@@ -22,6 +23,8 @@ import org.xtext.example.mydsl.videoGen.VideoSeq;
 
 @SuppressWarnings("all")
 public class FamiliarVideoGen {
+  private FMLFeatureModelReader myvar = new FMLFeatureModelReader();
+  
   private String res = "";
   
   private ArrayList<String> alternativeList = new ArrayList<String>();
@@ -93,7 +96,7 @@ public class FamiliarVideoGen {
             this.res = (_res_2 + _plus_3);
             final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
             String _videoid_6 = ((AlternativeVideoSeq) videoseq).getVideoid();
-            String tmp = (_videoid_6 + ": ");
+            String tmp = (_videoid_6 + ": (");
             EList<VideoDescription> _videodescs = altvid.getVideodescs();
             for (final VideoDescription vdesc : _videodescs) {
               {
@@ -104,12 +107,16 @@ public class FamiliarVideoGen {
                 }
                 String _tmp = tmp;
                 String _videoid_8 = vdesc.getVideoid();
-                String _plus_4 = (_videoid_8 + " ");
+                String _plus_4 = (_videoid_8 + "|");
                 tmp = (_tmp + _plus_4);
               }
             }
+            int _length = tmp.length();
+            int _minus = (_length - 1);
+            String _substring = tmp.substring(0, _minus);
+            tmp = _substring;
             String _tmp = tmp;
-            tmp = (_tmp + ";\n");
+            tmp = (_tmp + ");\n");
             this.alternativeList.add(tmp);
           }
         }
