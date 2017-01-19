@@ -12,12 +12,12 @@
 
 spring:
     application:
-        name: VideoGenWebSite
+        name: VideoGenWebApp
     jackson:
         serialization.write_dates_as_timestamps: false
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:h2:mem:VideoGenWebSite;DB_CLOSE_DELAY=-1
+        url: jdbc:h2:mem:VideoGenWebApp;DB_CLOSE_DELAY=-1
         name:
         username:
         password:
@@ -64,14 +64,16 @@ jhipster:
         maxPoolSize: 50
         queueCapacity: 10000
     security:
-        rememberMe:
-            # security key (this key should be unique for your application, and kept secret)
-            key: ef95b1a5f62746b47904d16af26a13063a05be40
+        authentication:
+            jwt:
+                secret: ec3de2649bf72a1325ad39f4dbec83c86be572e7
+                # Token is valid 24 hours
+                tokenValidityInSeconds: 86400
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
     swagger:
-        title: VideoGenWebSite API
-        description: VideoGenWebSite API documentation
+        title: VideoGenWebApp API
+        description: VideoGenWebApp API documentation
         version: 0.0.1
         termsOfServiceUrl:
         contactName:

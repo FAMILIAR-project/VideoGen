@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('videoGenWebSiteApp')
+        .module('videoGenWebApp')
         .config(stateConfig);
 
     stateConfig.$inject = ['$stateProvider'];
@@ -12,7 +12,7 @@
             parent: 'account',
             url: '/password',
             data: {
-                authorities: ['ROLE_USER'],
+                authorities: [],
                 pageTitle: 'Password'
             },
             views: {

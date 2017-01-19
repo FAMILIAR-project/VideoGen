@@ -21,9 +21,9 @@ spring:
         serialization.indent_output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:h2:file:./target/h2db/db/videogenwebsite;DB_CLOSE_DELAY=-1
+        url: jdbc:h2:file:./target/h2db/db/videogenwebapp;DB_CLOSE_DELAY=-1
         name:
-        username: VideoGenWebSite
+        username: VideoGenWebApp
         password:
     h2:
         console:
@@ -58,11 +58,13 @@ server:
 
 jhipster:
     security:
-        rememberMe:
-            # security key (this key should be unique for your application, and kept secret)
-            key: ef95b1a5f62746b47904d16af26a13063a05be40
+        authentication:
+            jwt:
+                secret: my-secret-token-to-change-in-production
+                # Token is valid 24 hours
+                tokenValidityInSeconds: 86400
     mail: # specific JHipster mail property, for standard properties see MailProperties
-        from: VideoGenWebSite@localhost
+        from: VideoGenWebApp@localhost
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
         spark:
@@ -73,7 +75,7 @@ jhipster:
             enabled: false
             host: localhost
             port: 2003
-            prefix: VideoGenWebSite
+            prefix: VideoGenWebApp
         logs: # Reports Dropwizard metrics in the logs
             enabled: false
             reportFrequency: 60 # in seconds

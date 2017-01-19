@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('videoGenWebSiteApp')
+    angular.module('videoGenWebApp')
         .controller('HealthModalController', HealthModalController);
 
     HealthModalController.$inject = ['$uibModalInstance', 'currentHealth', 'baseName', 'subSystemName'];

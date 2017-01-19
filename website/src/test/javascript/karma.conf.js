@@ -26,8 +26,6 @@ module.exports = function (config) {
             'src/main/webapp/bower_components/jquery/dist/jquery.js',
             'src/main/webapp/bower_components/json3/lib/json3.js',
             'src/main/webapp/bower_components/messageformat/messageformat.js',
-            'src/main/webapp/bower_components/sockjs-client/dist/sockjs.js',
-            'src/main/webapp/bower_components/stomp-websocket/lib/stomp.min.js',
             'src/main/webapp/bower_components/angular/angular.js',
             'src/main/webapp/bower_components/angular-aria/angular-aria.js',
             'src/main/webapp/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
@@ -49,12 +47,12 @@ module.exports = function (config) {
             'src/main/webapp/app/**/*.+(js|html)',
             'src/test/javascript/spec/helpers/module.js',
             'src/test/javascript/spec/helpers/httpBackend.js',
-            'src/test/javascript/**/!(karma.conf|protractor.conf).js'
+            'src/test/javascript/**/!(karma.conf).js'
         ],
 
 
         // list of files / patterns to exclude
-        exclude: ['src/test/javascript/e2e/**'],
+        exclude: [],
 
         preprocessors: {
             './**/*.js': sourcePreprocessors

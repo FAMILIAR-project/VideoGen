@@ -2,7 +2,7 @@
 
 describe('Controller Tests', function () {
 
-    beforeEach(module('videoGenWebSiteApp'));
+    beforeEach(module('videoGenWebApp'));
 
     describe('LoginController', function () {
         var $scope, authService;

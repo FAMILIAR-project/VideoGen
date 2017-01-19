@@ -19,7 +19,7 @@ spring:
             enabled: false
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:mysql://localhost:3306/VideoGenWebSite?useUnicode=true&characterEncoding=utf8&useSSL=false
+        url: jdbc:mysql://localhost:3306/VideoGenWebApp?useUnicode=true&characterEncoding=utf8&useSSL=false
         name:
         username: root
         password:
@@ -64,11 +64,13 @@ jhipster:
         cache: # Used by the CachingHttpHeadersFilter
             timeToLiveInDays: 1461
     security:
-        rememberMe:
-            # security key (this key should be unique for your application, and kept secret)
-            key: ef95b1a5f62746b47904d16af26a13063a05be40
+        authentication:
+            jwt:
+                secret: ec3de2649bf72a1325ad39f4dbec83c86be572e7
+                # Token is valid 24 hours
+                tokenValidityInSeconds: 86400
     mail: # specific JHipster mail property, for standard properties see MailProperties
-        from: VideoGenWebSite@localhost
+        from: VideoGenWebApp@localhost
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
         spark:
@@ -79,7 +81,7 @@ jhipster:
             enabled: false
             host: localhost
             port: 2003
-            prefix: VideoGenWebSite
+            prefix: VideoGenWebApp
         logs: # Reports Dropwizard metrics in the logs
             enabled: false
             reportFrequency: 60 # in seconds

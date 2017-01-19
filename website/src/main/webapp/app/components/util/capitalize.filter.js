@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('videoGenWebSiteApp')
+        .module('videoGenWebApp')
         .filter('capitalize', capitalize);
 
     function capitalize() {

@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('videoGenWebSiteApp')
+        .module('videoGenWebApp')
         .factory('Account', Account);
 
     Account.$inject = ['$resource'];

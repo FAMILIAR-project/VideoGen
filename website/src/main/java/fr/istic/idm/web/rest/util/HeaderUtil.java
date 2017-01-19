@@ -13,8 +13,8 @@ public class HeaderUtil {
 
     public static HttpHeaders createAlert(String message, String param) {
         HttpHeaders headers = new HttpHeaders();
-        headers.add("X-videoGenWebSiteApp-alert", message);
-        headers.add("X-videoGenWebSiteApp-params", param);
+        headers.add("X-videoGenWebApp-alert", message);
+        headers.add("X-videoGenWebApp-params", param);
         return headers;
     }
 
@@ -33,8 +33,8 @@ public class HeaderUtil {
     public static HttpHeaders createFailureAlert(String entityName, String errorKey, String defaultMessage) {
         log.error("Entity creation failed, {}", defaultMessage);
         HttpHeaders headers = new HttpHeaders();
-        headers.add("X-videoGenWebSiteApp-error", defaultMessage);
-        headers.add("X-videoGenWebSiteApp-params", entityName);
+        headers.add("X-videoGenWebApp-error", defaultMessage);
+        headers.add("X-videoGenWebApp-params", entityName);
         return headers;
     }
 }

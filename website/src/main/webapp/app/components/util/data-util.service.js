@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('videoGenWebSiteApp')
+        .module('videoGenWebApp')
         .factory('DataUtils', DataUtils);
 
     DataUtils.$inject = ['$window'];

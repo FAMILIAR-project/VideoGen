@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('videoGenWebSiteApp')
+        .module('videoGenWebApp')
         .factory('notificationInterceptor', notificationInterceptor);
 
     notificationInterceptor.$inject = ['$q', 'AlertService'];
@@ -15,9 +15,9 @@
         return service;
 
         function response (response) {
-            var alertKey = response.headers('X-videoGenWebSiteApp-alert');
+            var alertKey = response.headers('X-videoGenWebApp-alert');
             if (angular.isString(alertKey)) {
-                AlertService.success(alertKey, { param : response.headers('X-videoGenWebSiteApp-params')});
+                AlertService.success(alertKey, { param : response.headers('X-videoGenWebApp-params')});
             }
             return response;
         }

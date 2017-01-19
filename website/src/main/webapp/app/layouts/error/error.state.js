@@ -1,38 +1,34 @@
 (function() {
-    'use strict';
+	'use strict';
 
-    angular
-        .module('videoGenWebSiteApp')
-        .config(stateConfig);
+	angular.module('videoGenWebApp').config(stateConfig);
 
-    stateConfig.$inject = ['$stateProvider'];
+	stateConfig.$inject = [ '$stateProvider' ];
 
-    function stateConfig($stateProvider) {
-        $stateProvider
-            .state('error', {
-                parent: 'app',
-                url: '/error',
-                data: {
-                    authorities: [],
-                    pageTitle: 'Error page!'
-                },
-                views: {
-                    'content@': {
-                        templateUrl: 'app/layouts/error/error.html'
-                    }
-                }
-            })
-            .state('accessdenied', {
-                parent: 'app',
-                url: '/accessdenied',
-                data: {
-                    authorities: []
-                },
-                views: {
-                    'content@': {
-                        templateUrl: 'app/layouts/error/accessdenied.html'
-                    }
-                }
-            });
-    }
+	function stateConfig($stateProvider) {
+		$stateProvider.state('error', {
+			parent : 'app',
+			url : '/error',
+			data : {
+				authorities : [],
+				pageTitle : 'Error page!'
+			},
+			views : {
+				'content@' : {
+					templateUrl : 'app/layouts/error/error.html'
+				}
+			}
+		}).state('accessdenied', {
+			parent : 'app',
+			url : '/accessdenied',
+			data : {
+				authorities : []
+			},
+			views : {
+				'content@' : {
+					templateUrl : 'app/layouts/error/accessdenied.html'
+				}
+			}
+		});
+	}
 })();

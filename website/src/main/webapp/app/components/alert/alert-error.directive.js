@@ -11,7 +11,7 @@
     };
 
     angular
-        .module('videoGenWebSiteApp')
+        .module('videoGenWebApp')
         .component('jhiAlertError', jhiAlertError);
 
     jhiAlertErrorController.$inject = ['$scope', 'AlertService', '$rootScope'];
@@ -36,7 +36,7 @@
             );
         }
 
-        var cleanHttpErrorListener = $rootScope.$on('videoGenWebSiteApp.httpError', function (event, httpResponse) {
+        var cleanHttpErrorListener = $rootScope.$on('videoGenWebApp.httpError', function (event, httpResponse) {
             var i;
             event.stopPropagation();
             switch (httpResponse.status) {
@@ -46,8 +46,8 @@
                 break;
 
             case 400:
-                var errorHeader = httpResponse.headers('X-videoGenWebSiteApp-error');
-                var entityKey = httpResponse.headers('X-videoGenWebSiteApp-params');
+                var errorHeader = httpResponse.headers('X-videoGenWebApp-error');
+                var entityKey = httpResponse.headers('X-videoGenWebApp-params');
                 if (errorHeader) {
                     var entityName = entityKey;
                     addErrorAlert(errorHeader, errorHeader, {entityName: entityName});

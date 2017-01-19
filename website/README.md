@@ -1,4 +1,4 @@
-# VideoGenWebSite
+# VideoGenWebApp
 
 This application was generated using JHipster, you can find documentation and help at [https://jhipster.github.io](https://jhipster.github.io).
 
@@ -31,7 +31,7 @@ Add the `-h` flag on any command to see how you can use it. For example, `bower 
 
 ## Building for production
 
-To optimize the VideoGenWebSite client for production, run:
+To optimize the VideoGenWebApp client for production, run:
 
     ./mvnw -Pprod clean package
 
@@ -50,37 +50,23 @@ Unit tests are run by [Karma][] and written with [Jasmine][]. They're located in
 
     gulp test
 
-UI end-to-end tests are powered by [Protractor][], which is built on top of WebDriverJS. They're located in `src/test/javascript/e2e`
-and can be run by starting Spring Boot in one terminal (`./mvnw spring-boot:run`) and running the tests (`gulp itest`) in a second one.
-
-Performance tests are run by [Gatling]() and written in Scala. They're located in `src/test/gatling` and can be run with:
-
-    ./mvnw gatling:execute
 
     
 ## Continuous Integration
 
 To setup this project in Jenkins, use the following configuration:
 
-* Project name: `VideoGenWebSite`
+* Project name: `VideoGenWebApp`
 * Source Code Management
-    * Git Repository: `git@github.com:xxxx/VideoGenWebSite.git`
+    * Git Repository: `git@github.com:xxxx/VideoGenWebApp.git`
     * Branches to build: `*/master`
     * Additional Behaviours: `Wipe out repository & force clone`
 * Build Triggers
     * Poll SCM / Schedule: `H/5 * * * *`
 * Build
     * Invoke Maven / Tasks: `-Pprod clean package`
-    * Execute Shell / Command:
-        ````
-        ./mvnw spring-boot:run &
-        bootPid=$!
-        sleep 30s
-        gulp itest
-        kill $bootPid
-        ````
 * Post-build Actions
-    * Publish JUnit test result report / Test Report XMLs: `build/test-results/*.xml,build/reports/e2e/*.xml`
+    * Publish JUnit test result report / Test Report XMLs: `build/test-results/*.xml`
 
 [JHipster]: https://jhipster.github.io/
 [Gatling]: http://gatling.io/

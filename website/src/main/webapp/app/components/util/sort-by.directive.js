@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('videoGenWebSiteApp')
+        .module('videoGenWebApp')
         .directive('jhSortBy', jhSortBy);
 
     function jhSortBy() {

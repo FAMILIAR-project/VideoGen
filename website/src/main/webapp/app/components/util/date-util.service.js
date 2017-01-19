@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('videoGenWebSiteApp')
+        .module('videoGenWebApp')
         .factory('DateUtils', DateUtils);
 
     DateUtils.$inject = ['$filter'];

@@ -15,6 +15,6 @@
     };
 
     angular
-        .module('videoGenWebSiteApp')
+        .module('videoGenWebApp')
         .component('jhiItemCount', jhiItemCount);
 })();

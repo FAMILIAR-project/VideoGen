@@ -1,28 +1,26 @@
 {
   "generator-jhipster": {
     "jhipsterVersion": "3.7.0",
-    "baseName": "VideoGenWebSite",
+    "baseName": "VideoGenWebApp",
     "packageName": "fr.istic.idm",
     "packageFolder": "fr/istic/idm",
     "serverPort": "8080",
-    "authenticationType": "session",
+    "authenticationType": "jwt",
     "hibernateCache": "no",
     "clusteredHttpSession": "no",
-    "websocket": "spring-websocket",
+    "websocket": "no",
     "databaseType": "sql",
     "devDatabaseType": "h2Disk",
     "prodDatabaseType": "mysql",
     "searchEngine": "no",
     "buildTool": "maven",
     "enableSocialSignIn": false,
-    "rememberMeKey": "ef95b1a5f62746b47904d16af26a13063a05be40",
+    "jwtSecretKey": "ec3de2649bf72a1325ad39f4dbec83c86be572e7",
     "useSass": false,
     "applicationType": "monolith",
-    "testFrameworks": [
-      "gatling",
-      "protractor"
-    ],
+    "testFrameworks": [],
     "jhiPrefix": "jhi",
+    "skipUserManagement": true,
     "enableTranslation": false
   }
 }

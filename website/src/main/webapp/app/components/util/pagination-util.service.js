@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('videoGenWebSiteApp')
+        .module('videoGenWebApp')
         .factory('PaginationUtil', PaginationUtil);
 
     function PaginationUtil () {

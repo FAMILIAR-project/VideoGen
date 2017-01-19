@@ -11,7 +11,7 @@
     };
 
     angular
-        .module('videoGenWebSiteApp')
+        .module('videoGenWebApp')
         .component('jhiAlert', jhiAlert);
 
     jhiAlertController.$inject = ['$scope', 'AlertService'];

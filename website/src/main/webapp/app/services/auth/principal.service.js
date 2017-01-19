@@ -2,12 +2,12 @@
     'use strict';
 
     angular
-        .module('videoGenWebSiteApp')
+        .module('videoGenWebApp')
         .factory('Principal', Principal);
 
-    Principal.$inject = ['$q', 'Account', 'JhiTrackerService'];
+    Principal.$inject = ['$q', 'Account'];
 
-    function Principal ($q, Account, JhiTrackerService) {
+    function Principal ($q, Account) {
         var _identity,
             _authenticated = false;
 
@@ -79,7 +79,6 @@
                 _identity = account.data;
                 _authenticated = true;
                 deferred.resolve(_identity);
-                JhiTrackerService.connect();
             }
 
             function getAccountCatch () {

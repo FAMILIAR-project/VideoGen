@@ -1,14 +1,14 @@
 version: '2'
 services:
-    videogenwebsite-mysql:
-        container_name: videogenwebsite-mysql
+    videogenwebapp-mysql:
+        container_name: videogenwebapp-mysql
         image: mysql:5.7.15
         # volumes:
-        #     - ~/volumes/jhipster/VideoGenWebSite/mysql/:/var/lib/mysql/
+        #     - ~/volumes/jhipster/VideoGenWebApp/mysql/:/var/lib/mysql/
         environment:
             - MYSQL_USER=root
             - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-            - MYSQL_DATABASE=videogenwebsite
+            - MYSQL_DATABASE=videogenwebapp
         ports:
             - 3306:3306
         command: mysqld --lower_case_table_names=1 --skip-ssl

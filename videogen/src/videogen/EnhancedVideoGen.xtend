@@ -21,6 +21,7 @@ import java.io.PrintWriter
 import org.xtext.example.mydsl.videoGen.VideoDescription
 import java.util.ArrayList
 import java.util.List
+import playlist.Playlist
 
 class EnhancedVideoGen {
 	def static loadVideoGenerator(URI uri) {
@@ -43,7 +44,7 @@ class EnhancedVideoGen {
  * sauvegarde la playlist en m3u
  * ecrit la page HTML de la playlist
  */
-	def static main(String[] args) {
+	def static Playlist main(String[] args) {
 		var videoGen = loadVideoGenerator(URI.createURI("mastaconcat.videogen"))
 		val rand = new Random()
 		val playlist = PlaylistFactory.eINSTANCE.createPlaylist
@@ -52,7 +53,7 @@ class EnhancedVideoGen {
 		val codeErreur = verifInfo(videoGen)
 		if(codeErreur == 2){
 			println("Annulation de la génération")
-			return;
+			return playlist;
 		}
 		
 		println("Création de la playlist...")
@@ -122,7 +123,7 @@ class EnhancedVideoGen {
 		println("Ecriture de videogen.html ...")
 		printToHTML(videoGen, "videogen.html")
 
-		return
+		return playlist
 	}
 
 /**
