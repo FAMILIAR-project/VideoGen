@@ -34,6 +34,8 @@ import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import org.xtext.example.mydsl.videoGen.VideoDescription
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 import org.xtext.example.mydsl.videoGen.VideoSeq
+import java.util.LinkedList
+import java.util.List
 
 @SuppressWarnings("all") class playlistTools {
 	static int i = 0
@@ -482,14 +484,14 @@ import org.xtext.example.mydsl.videoGen.VideoSeq
 				Assert::assertEquals(7, _size)
 				var EList<VideoSeq> _videoseqs_1 = videoGen.getVideoseqs()
 				
-				fw.write("fmVideoGen = FM(VideoGen: ")
+				fw.write("fmVideoGen = FM (VideoGen: ")
 				fw.flush()
 				val Consumer<VideoSeq> _function = [VideoSeq videoseq |
 					{
 						if ((videoseq instanceof MandatoryVideoSeq)) {
 							val VideoDescription desc = ((videoseq as MandatoryVideoSeq)).getDescription()
 							var String _videoid = desc.getVideoid()
-							fw.write(_videoid)
+							fw.write(" "+_videoid+" ")
 							fw.flush()
 						} else {
 							if ((videoseq instanceof OptionalVideoSeq)) {
@@ -502,22 +504,48 @@ import org.xtext.example.mydsl.videoGen.VideoSeq
 							} else {
 								val AlternativeVideoSeq altvid = ((videoseq as AlternativeVideoSeq))
 								var String _videoid_2 = altvid.getVideoid()
-								fw.write(_videoid_2+";"+_videoid_2+": (")
+								fw.write(" "+_videoid_2+" ")
 								fw.flush()
-								var EList<VideoDescription> _videodescs = altvid.getVideodescs()
-								var s = ""
-								for (VideoDescription vdesc : _videodescs) {
-									var String _videoid_3 = vdesc.getVideoid()
-									s+=_videoid_3+"|"
-								}
-								s=s.substring(0,s.length-1)
-								fw.write(s+"); ")
-								fw.flush()
+								
 							}
 						}
 					}
 				]
 				_videoseqs_1.forEach(_function)
+				
+				
+				fw.write("; ")
+				fw.flush()
+				
+				val Consumer<VideoSeq> _function1 = [VideoSeq videoseq |
+					{
+						
+							if ((videoseq instanceof AlternativeVideoSeq)) {
+								val AlternativeVideoSeq altvid = ((videoseq as AlternativeVideoSeq))
+								var String _videoid_2 = altvid.getVideoid()
+								
+								fw.write(_videoid_2+": (")
+								fw.flush()
+								
+								var EList<VideoDescription> _videodescs = altvid.getVideodescs()
+								var s = ""
+								for (VideoDescription vdesc : _videodescs) {
+									var String _videoid_3 = vdesc.getVideoid()
+									s+=_videoid_3+" | "
+								}
+								s=s.substring(0,s.length-2)
+								fw.write(s+"); ")
+								fw.flush()
+								
+								
+								
+							}
+					}
+					
+				]
+				_videoseqs_1.forEach(_function1)
+				
+				
 				fw.write(")")
 				fw.flush()
 				fw.close()
@@ -851,11 +879,88 @@ import org.xtext.example.mydsl.videoGen.VideoSeq
 
 			}
 
-			def void videogenGenerator(String file) {
+			def int mp4Count(File[] files){
+				val sb = new StringBuffer()
+				files.forEach[file|				
+					if(!file.isDirectory() && file.getPath().contains("mp4") && !file.getPath().contains("jpg"))
+						sb.append("i")
+				]
+				return sb.length
+			}
+
+			def void videoGenFromFolder(String folder){
+				val fw = new FileWriter("out.videogen")
+				var res = videogenGenerator(folder,0)
+				fw.write("VideoGen { \n")
+				fw.flush()
+				fw.write(res)
+				fw.flush()
+				fw.write("\n}")
+				fw.flush()
+				fw.close()
+				
+			}
+
+			def String videogenGenerator(String file,int cpt) {
 				var URI _createURI = URI::createURI(file)
 				var File f = new File(file)
-				System::out.println(f.isDirectory())
+				
+				if(f.isDirectory()){
+					val s = new StringBuffer()
+					val childr = f.listFiles()
+					var children = childr.toList()				
+					var alt = false;
+					val mp4s = mp4Count(childr)
+					if(childr.length==1){
+						if(!children.get(0).isDirectory() && mp4s==1)
+							s.append("\n mandatory videoseq vid"+cpt)
+					}
+					else{
+						val ss = new StringBuffer()
+						val mp4Path = new StringBuffer()
+						children.forEach[child |
+							if(child.isDirectory()){
+								ss.append("1")
+							}
+							else
+								ss.append("2")
+								if(child.getPath().contains("mp4")&& !child.getPath().contains("jpg"))
+									mp4Path.append(child.getPath())
+						]
+						if(ss.toString().contains("2") && mp4s>1){
+							s.append("\n alternatives vid"+cpt+"{")
+							alt = true;
+						}
+						else{
+							s.append("\n mandatory videoseq vid"+cpt+" \""+mp4Path.toString()+"\"")
+						}
+					}
+					val sb = new StringBuffer()
+					children.forEach[child |
+						var path=child.getPath()
+						
+						if(!child.isDirectory()){
+							if(path.contains(".mp4") && !path.contains(".jpg")&&mp4s>1){
+								s.append("\n videoseq v"+cpt+""+sb.length()+" \""+path+"\"")
+								sb.append("i")
+							}				
+						}
+						else{		
+							s.append(videogenGenerator(path,cpt+1))		
+						}
+						
+					]
+					if(alt)
+						s.append("\n }")
+						
+					return s.toString()
+				}
+				else return ""
 			}
+
+			
+
+
 
 			def String genID() {
 				var int _plusPlus = playlistTools::i++
