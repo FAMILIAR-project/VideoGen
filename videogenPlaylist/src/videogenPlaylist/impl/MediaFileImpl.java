@@ -21,6 +21,7 @@ import videogenPlaylist.VideogenPlaylistPackage;
  * </p>
  * <ul>
  *   <li>{@link videogenPlaylist.impl.MediaFileImpl#getPath <em>Path</em>}</li>
+ *   <li>{@link videogenPlaylist.impl.MediaFileImpl#getDuration <em>Duration</em>}</li>
  * </ul>
  *
  * @generated
@@ -45,6 +46,26 @@ public class MediaFileImpl extends MinimalEObjectImpl.Container implements Media
 	 * @ordered
 	 */
 	protected String path = PATH_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDuration() <em>Duration</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDuration()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final double DURATION_EDEFAULT = 0.0;
+
+	/**
+	 * The cached value of the '{@link #getDuration() <em>Duration</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDuration()
+	 * @generated
+	 * @ordered
+	 */
+	protected double duration = DURATION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -91,11 +112,34 @@ public class MediaFileImpl extends MinimalEObjectImpl.Container implements Media
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public double getDuration() {
+		return duration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDuration(double newDuration) {
+		double oldDuration = duration;
+		duration = newDuration;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VideogenPlaylistPackage.MEDIA_FILE__DURATION, oldDuration, duration));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case VideogenPlaylistPackage.MEDIA_FILE__PATH:
 				return getPath();
+			case VideogenPlaylistPackage.MEDIA_FILE__DURATION:
+				return getDuration();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -110,6 +154,9 @@ public class MediaFileImpl extends MinimalEObjectImpl.Container implements Media
 		switch (featureID) {
 			case VideogenPlaylistPackage.MEDIA_FILE__PATH:
 				setPath((String)newValue);
+				return;
+			case VideogenPlaylistPackage.MEDIA_FILE__DURATION:
+				setDuration((Double)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -126,6 +173,9 @@ public class MediaFileImpl extends MinimalEObjectImpl.Container implements Media
 			case VideogenPlaylistPackage.MEDIA_FILE__PATH:
 				setPath(PATH_EDEFAULT);
 				return;
+			case VideogenPlaylistPackage.MEDIA_FILE__DURATION:
+				setDuration(DURATION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -140,6 +190,8 @@ public class MediaFileImpl extends MinimalEObjectImpl.Container implements Media
 		switch (featureID) {
 			case VideogenPlaylistPackage.MEDIA_FILE__PATH:
 				return PATH_EDEFAULT == null ? path != null : !PATH_EDEFAULT.equals(path);
+			case VideogenPlaylistPackage.MEDIA_FILE__DURATION:
+				return duration != DURATION_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -156,6 +208,8 @@ public class MediaFileImpl extends MinimalEObjectImpl.Container implements Media
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (path: ");
 		result.append(path);
+		result.append(", duration: ");
+		result.append(duration);
 		result.append(')');
 		return result.toString();
 	}

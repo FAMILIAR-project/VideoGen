@@ -113,13 +113,22 @@ public interface VideogenPlaylistPackage extends EPackage {
 	int MEDIA_FILE__PATH = 0;
 
 	/**
+	 * The feature id for the '<em><b>Duration</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEDIA_FILE__DURATION = 1;
+
+	/**
 	 * The number of structural features of the '<em>Media File</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MEDIA_FILE_FEATURE_COUNT = 1;
+	int MEDIA_FILE_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Media File</em>' class.
@@ -172,6 +181,17 @@ public interface VideogenPlaylistPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getMediaFile_Path();
+
+	/**
+	 * Returns the meta object for the attribute '{@link videogenPlaylist.MediaFile#getDuration <em>Duration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Duration</em>'.
+	 * @see videogenPlaylist.MediaFile#getDuration()
+	 * @see #getMediaFile()
+	 * @generated
+	 */
+	EAttribute getMediaFile_Duration();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -231,6 +251,14 @@ public interface VideogenPlaylistPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MEDIA_FILE__PATH = eINSTANCE.getMediaFile_Path();
+
+		/**
+		 * The meta object literal for the '<em><b>Duration</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MEDIA_FILE__DURATION = eINSTANCE.getMediaFile_Duration();
 
 	}
 

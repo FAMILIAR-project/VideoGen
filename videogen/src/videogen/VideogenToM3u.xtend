@@ -40,7 +40,7 @@ class VideogenToM3u {
 	}
 	
 	def static double getDuration(String videoLocation){
-		var Process process = Runtime.getRuntime().exec("C:\\Program Files (x86)\\VideoLAN\\VLC\\vlc.exe " + videoLocation );
+		var Process process = Runtime.getRuntime().exec("C:\\Users\\Robin\\Desktop\\ffmpeg-3.2.2-win64-static\\bin\\ffprobe -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 " + videoLocation );
 		
 		process.waitFor(2000, TimeUnit.MILLISECONDS);
 
@@ -97,6 +97,7 @@ class VideogenToM3u {
 				val desc = (video as MandatoryVideoSeq).description;
 				if (!desc.videoid.isNullOrEmpty)
 					file.path= desc.location
+					file.duration = getDuration(desc.location)
 					playlist.mediaFile.add(file);
 					
 			// optional		
@@ -106,6 +107,7 @@ class VideogenToM3u {
 				if (new Random().nextInt(2) == 0) {
 					if (!desc.videoid.isNullOrEmpty)
 						file.path= desc.location
+						file.duration = getDuration(desc.location)
 						playlist.mediaFile.add(file);
 						
 				}
@@ -116,6 +118,7 @@ class VideogenToM3u {
 				val i = (new Random().nextInt(nbAltVids))
 				
 				file.path= altvid.videodescs.get(i).location
+				file.duration = getDuration(altvid.videodescs.get(i).location)
 				playlist.mediaFile.add(file);
 			}
 				
@@ -130,9 +133,11 @@ class VideogenToM3u {
 	
 		writer.write("#EXTM3U \n");
 		for(MediaFile md : playlist.mediaFile){
-			writer.write("#EXTINF: (add duration), Sample artist - Sample title \n");
+			writer.write("#EXT-X-DISCONTINUITY \n");
+			writer.write("#EXTINF: " + md.duration + ", Sample artist - Sample title \n");
 			writer.write(md.path + "\n")
 		}
+		writer.write("#EXT-X-ENDLIST");
 		writer.close();
 	}
 

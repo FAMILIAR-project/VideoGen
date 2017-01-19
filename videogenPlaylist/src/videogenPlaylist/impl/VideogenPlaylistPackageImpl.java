@@ -137,6 +137,15 @@ public class VideogenPlaylistPackageImpl extends EPackageImpl implements Videoge
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getMediaFile_Duration() {
+		return (EAttribute)mediaFileEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public VideogenPlaylistFactory getVideogenPlaylistFactory() {
 		return (VideogenPlaylistFactory)getEFactoryInstance();
 	}
@@ -165,6 +174,7 @@ public class VideogenPlaylistPackageImpl extends EPackageImpl implements Videoge
 
 		mediaFileEClass = createEClass(MEDIA_FILE);
 		createEAttribute(mediaFileEClass, MEDIA_FILE__PATH);
+		createEAttribute(mediaFileEClass, MEDIA_FILE__DURATION);
 	}
 
 	/**
@@ -202,6 +212,7 @@ public class VideogenPlaylistPackageImpl extends EPackageImpl implements Videoge
 
 		initEClass(mediaFileEClass, MediaFile.class, "MediaFile", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getMediaFile_Path(), ecorePackage.getEString(), "path", null, 0, 1, MediaFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMediaFile_Duration(), ecorePackage.getEDouble(), "duration", null, 0, 1, MediaFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link videogenPlaylist.MediaFile#getPath <em>Path</em>}</li>
+ *   <li>{@link videogenPlaylist.MediaFile#getDuration <em>Duration</em>}</li>
  * </ul>
  *
  * @see videogenPlaylist.VideogenPlaylistPackage#getMediaFile()
@@ -46,5 +47,31 @@ public interface MediaFile extends EObject {
 	 * @generated
 	 */
 	void setPath(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Duration</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Duration</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Duration</em>' attribute.
+	 * @see #setDuration(double)
+	 * @see videogenPlaylist.VideogenPlaylistPackage#getMediaFile_Duration()
+	 * @model
+	 * @generated
+	 */
+	double getDuration();
+
+	/**
+	 * Sets the value of the '{@link videogenPlaylist.MediaFile#getDuration <em>Duration</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Duration</em>' attribute.
+	 * @see #getDuration()
+	 * @generated
+	 */
+	void setDuration(double value);
 
 } // MediaFile

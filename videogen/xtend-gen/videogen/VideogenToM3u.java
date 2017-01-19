@@ -65,7 +65,7 @@ public class VideogenToM3u {
   public static double getDuration(final String videoLocation) {
     try {
       Runtime _runtime = Runtime.getRuntime();
-      Process process = _runtime.exec(("C:\\Program Files (x86)\\VideoLAN\\VLC\\vlc.exe " + videoLocation));
+      Process process = _runtime.exec(("C:\\Users\\Robin\\Desktop\\ffmpeg-3.2.2-win64-static\\bin\\ffprobe -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 " + videoLocation));
       process.waitFor(2000, TimeUnit.MILLISECONDS);
       InputStream _inputStream = process.getInputStream();
       InputStreamReader _inputStreamReader = new InputStreamReader(_inputStream);
@@ -152,6 +152,9 @@ public class VideogenToM3u {
               String _location = desc.getLocation();
               file.setPath(_location);
             }
+            String _location_1 = desc.getLocation();
+            double _duration = VideogenToM3u.getDuration(_location_1);
+            file.setDuration(_duration);
             EList<MediaFile> _mediaFile = playlist.getMediaFile();
             _mediaFile.add(file);
           } else {
@@ -165,9 +168,12 @@ public class VideogenToM3u {
                 boolean _isNullOrEmpty_1 = StringExtensions.isNullOrEmpty(_videoid_1);
                 boolean _not_1 = (!_isNullOrEmpty_1);
                 if (_not_1) {
-                  String _location_1 = desc_1.getLocation();
-                  file.setPath(_location_1);
+                  String _location_2 = desc_1.getLocation();
+                  file.setPath(_location_2);
                 }
+                String _location_3 = desc_1.getLocation();
+                double _duration_1 = VideogenToM3u.getDuration(_location_3);
+                file.setDuration(_duration_1);
                 EList<MediaFile> _mediaFile_1 = playlist.getMediaFile();
                 _mediaFile_1.add(file);
               }
@@ -179,8 +185,13 @@ public class VideogenToM3u {
               final int i = _random_1.nextInt(nbAltVids);
               EList<VideoDescription> _videodescs_1 = altvid.getVideodescs();
               VideoDescription _get = _videodescs_1.get(i);
-              String _location_2 = _get.getLocation();
-              file.setPath(_location_2);
+              String _location_4 = _get.getLocation();
+              file.setPath(_location_4);
+              EList<VideoDescription> _videodescs_2 = altvid.getVideodescs();
+              VideoDescription _get_1 = _videodescs_2.get(i);
+              String _location_5 = _get_1.getLocation();
+              double _duration_2 = VideogenToM3u.getDuration(_location_5);
+              file.setDuration(_duration_2);
               EList<MediaFile> _mediaFile_2 = playlist.getMediaFile();
               _mediaFile_2.add(file);
             }
@@ -198,12 +209,17 @@ public class VideogenToM3u {
       EList<MediaFile> _mediaFile = playlist.getMediaFile();
       for (final MediaFile md : _mediaFile) {
         {
-          writer.write("#EXTINF: (add duration), Sample artist - Sample title \n");
+          writer.write("#EXT-X-DISCONTINUITY \n");
+          double _duration = md.getDuration();
+          String _plus = ("#EXTINF: " + Double.valueOf(_duration));
+          String _plus_1 = (_plus + ", Sample artist - Sample title \n");
+          writer.write(_plus_1);
           String _path = md.getPath();
-          String _plus = (_path + "\n");
-          writer.write(_plus);
+          String _plus_2 = (_path + "\n");
+          writer.write(_plus_2);
         }
       }
+      writer.write("#EXT-X-ENDLIST");
       writer.close();
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);

@@ -1,6 +1,0 @@
-# this is a comment 
-file 'V1/v1.mp4'
-file 'v3/seq3.mp4'
-file 'v4/seq2.mp4'
-file 'v5.mp4'
-file 'V81.avi'
