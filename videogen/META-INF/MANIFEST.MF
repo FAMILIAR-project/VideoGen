@@ -11,7 +11,11 @@ Require-Bundle: org.eclipse.ui,
  com.google.guava,
  org.eclipse.xtext.xbase.lib,
  org.eclipse.xtend.lib,
- org.eclipse.xtend.lib.macro
+ org.eclipse.xtend.lib.macro,
+ playlist;bundle-version="0.1.0",
+ playlist.edit;bundle-version="1.0.0",
+ playlist.editor;bundle-version="1.0.0",
+ playlist.tests;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 
