@@ -27,3 +27,8 @@ Launch the fr.istic.idm.VideoGenApp.java to launch the wepapp
 Them open a browser and go to http://127.0.0.1:8080
 Sign in by using login: admin pwd: admin
 The generate button trigger the generation of the vignettes for the q10.videogen in the folder src/main/resources/videogen
+file of interest:
+fr.istic.idm.web.rest.GenerateResource
+src/main/resources/videogen
+src/main/webapp/content/images
+src/main/webapp/home
