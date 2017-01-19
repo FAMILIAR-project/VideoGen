@@ -12,8 +12,21 @@ import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 
 import static org.junit.Assert.*
+import java.util.Random
+import java.io.File
+import java.io.BufferedWriter
+import java.io.FileWriter
+import java.io.IOException
 
 class VideoDemonstrator {
+	
+	static var i = 0;
+	
+	String playList = ""
+	
+	def genID() {
+		"v" + i++
+	}
 	
 	def loadVideoGenerator(URI uri) {
 		new VideoGenStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()
@@ -29,11 +42,8 @@ class VideoDemonstrator {
 	
 	@Test
 	def test1() {
-		// loading
-		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
+		var videoGen = loadVideoGenerator(URI.createURI("fooVideos.videogen")) 
 		assertNotNull(videoGen)
-		assertEquals(7, videoGen.videoseqs.size)			
-		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
 		videoGen.videoseqs.forEach[videoseq | 
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
@@ -51,49 +61,58 @@ class VideoDemonstrator {
 				}
 			}
 		]
-	// serializing
 	saveVideoGenerator(URI.createURI("foo2bis.xmi"), videoGen)
 	saveVideoGenerator(URI.createURI("foo2bis.videogen"), videoGen)
 		
-	printToHTML(videoGen)
-		 
-			
+	printToFFmpeg(videoGen)
+		 		
 	}
-	
-	def void printToHTML(VideoGeneratorModel videoGen) {
-		//var numSeq = 1
-		println("<ul>")
+	def void printToFFmpeg(VideoGeneratorModel videoGen) {
+			println("#this is a comment")
 		videoGen.videoseqs.forEach[videoseq | 
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
 				if(!desc.videoid.isNullOrEmpty)  
-					println ("<li>" + desc.videoid + "</li>")  				
+				playList += 'file \'' + desc.location + '\''+ System.lineSeparator();
 			}
 			else if (videoseq instanceof OptionalVideoSeq) {
+				val unsurDeux = new Random().nextInt(2);
 				val desc = (videoseq as OptionalVideoSeq).description
-				if(!desc.videoid.isNullOrEmpty) 
-					println ("<li>" + desc.videoid + "</li>") 
+				if(unsurDeux ==0)
+					playList += 'file \'' + desc.location + '\''+ System.lineSeparator();
 			}
 			else {
 				val altvid = (videoseq as AlternativeVideoSeq)
+				val nbrFichier = altvid.videodescs.size;
+				val numFichier = new Random().nextInt(nbrFichier);
 				if(!altvid.videoid.isNullOrEmpty) 
-					println ("<li>" + altvid.videoid + "</li>")
-				if (altvid.videodescs.size > 0) // there are vid seq alternatives
-					println ("<ul>")
-				for (vdesc : altvid.videodescs) {
-					if(!vdesc.videoid.isNullOrEmpty) 
-						println ("<li>" + vdesc.videoid + "</li>")
-				}
-				if (altvid.videodescs.size > 0) // there are vid seq alternatives
-					println ("</ul>")
-			}
-		]
-		println("</ul>")
-	}
+				playList += 'file \'' + altvid.videodescs.get(numFichier).location + '\''+ System.lineSeparator();
+				if (altvid.videodescs.size > 0)
+					println ("file")
 	
-	static var i = 0;
-	def genID() {
-		"v" + i++
+					if(!altvid.videodescs.get(numFichier).videoid.isNullOrEmpty) 
+					playList += 'file \'' + altvid.videodescs.get(numFichier).location + '\''+ System.lineSeparator();
+						
+				
+			}
+			
+		] 
+		try {
+			println("je suis la ");
+			val ffmpeg = new File("C:\\Users\\kaoutar\\git\\VideoGen\\videogen\\ffmpeg.txt");
+			if (!ffmpeg.exists()) {
+				ffmpeg.createNewFile();
+			}
+			println(ffmpeg.path);
+			val fw = new FileWriter(ffmpeg.getAbsoluteFile());
+			val bw = new BufferedWriter(fw);
+			bw.write(playList);
+			bw.close();
+			
+		} catch (IOException e) {
+			e.printStackTrace
+		}
+	
 	}
 	
 }

@@ -1,0 +1,4 @@
+file 'C:/Users/kaoutar/git/VideoGen/videogen/videosTel/nancyagram.mp4'
+file 'C:/Users/kaoutar/git/VideoGen/videogen/videosTel/standbyme.mp4'
+file 'C:/Users/kaoutar/git/VideoGen/videogen/videosTel/standbyme.mp4'
+file 'C:/Users/kaoutar/git/VideoGen/videogen/videosTel/standbyme.mp4'
