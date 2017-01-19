@@ -1,3 +1,6 @@
+#Graviou Thomas
+#Maxime Tissier
+
 # VideoGen
 
 A configurable generator of generator of video variants 
