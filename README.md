@@ -16,6 +16,9 @@ A configurable generator of generator of video variants
 * **_videogen/videos.videogen, videogen/videos.videogen-fail-location.videogen, videogen/videos.videogen-fail-proba.videogen_** : les fichiers videogen utilisés pour les transformations xtend
 * **_videogen/vignettes_** : Dossier qui contient les vignettes générées à partir des vidéos, ainsi que les fichiers html
 
+### Model Ecore playlist
+https://github.com/pchmn/playlist_model
+
 ## Question 14
 
 `fmGen = FM (VideoGenerator: Mode ; Mode: (Random|Probability|Configurator|Crazy); Random: WithRandom; Probability:                      WithProbability; Configurator: (Basic|Hybrid); Basic: WithConfig; Hybrid: WithConfig (WithRandom|WithProbability);              Crazy: WithRandom [WithProbability] [WithConfig];)`
