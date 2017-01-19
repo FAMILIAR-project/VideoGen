@@ -255,29 +255,35 @@ class EnhancedVideoGen {
 
 		// val cssPath = new File(output.parent, "videogen.css").path
 		// saveCssFile(cssPath)
-		builder.append("<ul>")
 		var videoGen = loadVideoGenerator(specification)
 		videoGen.videoseqs.forEach [ videoseq |
 			if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
-				if (!desc.videoid.isNullOrEmpty)
-					builder.append(vidToHtml(desc))
-			} else {
-				val altvid = (videoseq as AlternativeVideoSeq)
-//				if(!altvid.videoid.isNullOrEmpty) 
-//					builder.append ("<li>" + altvid.videoid + "</li>")
-				if (altvid.videodescs.size > 0) // there are vid seq alternatives
-					builder.append("<ul id=\"alternatives\">")
-				for (vdesc : altvid.videodescs) {
-					if (!vdesc.videoid.isNullOrEmpty)
-						builder.append(vidToHtml(vdesc))
+				if (!desc.videoid.isNullOrEmpty) {
+					builder.append("<div class=\"col-md-1\">")
+					builder.append("<div class=\"thumbnail\">")
+					builder.append(vidToHtmlExt(desc))
+					builder.append("</div></div>")
 				}
-				if (altvid.videodescs.size > 0) // there are vid seq alternatives
-					builder.append("</ul>")
+			} else if (videoseq instanceof AlternativeVideoSeq) {
+
+				val altvid = (videoseq as AlternativeVideoSeq)
+				if (altvid.videodescs.size > 0) {
+					// there are vid seq alternatives
+					for (vdesc : altvid.videodescs) {
+						if (!vdesc.videoid.isNullOrEmpty) {
+							builder.append("<div class=\"col-md-" + altvid.videodescs.size + "\">")
+							builder.append("<div class=\"thumbnail\">");
+							builder.append(vidToHtmlExt(vdesc))
+							builder.append("</div></div>")
+						}
+					}
+				}
+			} else {
+				val vid = (videoseq as MandatoryVideoSeq)
+				extractThumbnail(vid.description.location, vid.description.videoid)
 			}
 		]
-		builder.append("</ul>")
-		
 		builder.toString
 	}
 
@@ -302,7 +308,7 @@ padding : 0;
 		pw.flush
 		pw.close
 	}
-	
+
 	def static String getCssFile() {
 		"ul#alternatives li { 
 display : inline;
@@ -329,6 +335,14 @@ padding : 0;
 		result.append("<img src=\"" + thumbnail + "\" alt=\"" + id + "\" width=\"100\" height=\"100\">")
 		result.append("</li>")
 
+		result.toString
+	}
+
+	def private static String vidToHtmlExt(VideoDescription vdesc) {
+		val result = new StringBuilder
+		val thumbnail = extractThumbnail(vdesc.location, vdesc.videoid)
+		val id = vdesc.videoid
+		result.append("<img src=\"" + thumbnail + "\" alt=\"" + id + "\"/>")
 		result.toString
 	}
 
@@ -380,8 +394,10 @@ padding : 0;
 							String.
 								format(
 									"La vidéo optionnelle %s peut être remplacée par une vidéo obligatoire (probabilité de %d%%)",
-									if(videoseq.description.videoid.isNullOrEmpty) "???" else videoseq.description.
-										videoid,
+									if (videoseq.description.videoid.isNullOrEmpty)
+										"???"
+									else
+										videoseq.description.videoid,
 									proba
 								)
 						)

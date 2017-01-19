@@ -5,11 +5,13 @@
         .module('videoGenWebApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope', 'Principal','LoginService','$state', 'VideoGenService'];
+    HomeController.$inject = ['$scope', 'Principal','LoginService','$state', 'VideoGenService', '$http', '$sce'];
 
-    function HomeController ($scope, Principal, LoginService, $state, VideoGenService) {
+    function HomeController ($scope, Principal, LoginService, $state, VideoGenService, $http, $sce) {
         var vm = this;
 
+        $http.get("api/video-gen/configurateur")
+        .then(function(response){ vm.configurateur=$sce.trustAsHtml(response.data); });
         vm.account = null;
         vm.isAuthenticated = null;
         vm.playlist = null;
