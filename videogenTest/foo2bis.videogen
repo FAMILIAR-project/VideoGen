@@ -19,5 +19,6 @@ VideoGen {
 	optional videoseq vid8 "Videos/old/sea/V7.mp4"
 	alternatives vid9 {
 		videoseq vid81 "Videos/random/V1.mp4"
+		videoseq vid82 "Videos/random/V3.mp4"
 	}
 }
