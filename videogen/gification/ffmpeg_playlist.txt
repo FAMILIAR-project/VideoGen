@@ -1,0 +1,3 @@
+file '/home/paul/Vidéos/idm/video1.mp4'
+file '/home/paul/Vidéos/idm/video4.mp4'
+file '/home/paul/Vidéos/idm/video6.mp4'
