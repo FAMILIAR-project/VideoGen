@@ -182,6 +182,55 @@ class ModelToModel {
 			
 	}
 	
+	
+def static printDurationOfVideos() {
+			
+		var ffmpeg = new FFMPEGHelpere()
+     			
+		// loading
+		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
+	
+			
+		for(videoseq : videoGen.videoseqs){
+			if (videoseq instanceof MandatoryVideoSeq) {
+			val desc = (videoseq as MandatoryVideoSeq).description
+				
+	     	var temps =	ffmpeg.executeCmdGetDuration(desc.location)
+	     	
+	         	println(temps)
+	
+			  
+				}
+			
+			else if (videoseq instanceof OptionalVideoSeq) {
+				val desc = (videoseq as OptionalVideoSeq).description
+				
+					var temps =	ffmpeg.executeCmdGetDuration(desc.location)
+	     	
+	             	println(temps)
+				
+			}
+			else {
+				val altvid = (videoseq as AlternativeVideoSeq)
+				 
+				for (vdesc : altvid.videodescs) {
+					
+					var temps =	ffmpeg.executeCmdGetDuration(vdesc.location)
+	     	
+	         	   println(temps)
+				
+	
+			
+			}
+			
+			}
+			
+			
+	}
+	
+}
+	
+	
 def static printWebPage() {
 			
 		var ffmpeg = new FFMPEGHelpere()
@@ -385,7 +434,7 @@ def static void filters(){
 
 def public static void main(String[] args){
 	
-	filters()
+	printDurationOfVideos()
 	
 	 //printWebPage()
 	  

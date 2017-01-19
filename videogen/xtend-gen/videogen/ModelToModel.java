@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.xtext.xbase.lib.Exceptions;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated;
 import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq;
@@ -199,6 +200,38 @@ public class ModelToModel {
       filewriter.close();
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  public static void printDurationOfVideos() {
+    FFMPEGHelpere ffmpeg = new FFMPEGHelpere();
+    URI _createURI = URI.createURI("foo2.videogen");
+    VideoGeneratorModel videoGen = ModelToModel.loadVideoGenerator(_createURI);
+    EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
+    for (final VideoSeq videoseq : _videoseqs) {
+      if ((videoseq instanceof MandatoryVideoSeq)) {
+        final VideoDescription desc = ((MandatoryVideoSeq) videoseq).getDescription();
+        String _location = desc.getLocation();
+        String temps = ffmpeg.executeCmdGetDuration(_location);
+        InputOutput.<String>println(temps);
+      } else {
+        if ((videoseq instanceof OptionalVideoSeq)) {
+          final VideoDescription desc_1 = ((OptionalVideoSeq) videoseq).getDescription();
+          String _location_1 = desc_1.getLocation();
+          String temps_1 = ffmpeg.executeCmdGetDuration(_location_1);
+          InputOutput.<String>println(temps_1);
+        } else {
+          final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
+          EList<VideoDescription> _videodescs = altvid.getVideodescs();
+          for (final VideoDescription vdesc : _videodescs) {
+            {
+              String _location_2 = vdesc.getLocation();
+              String temps_2 = ffmpeg.executeCmdGetDuration(_location_2);
+              InputOutput.<String>println(temps_2);
+            }
+          }
+        }
+      }
     }
   }
   
@@ -407,6 +440,6 @@ public class ModelToModel {
   }
   
   public static void main(final String[] args) {
-    ModelToModel.filters();
+    ModelToModel.printDurationOfVideos();
   }
 }

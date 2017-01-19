@@ -2,6 +2,7 @@ package videogen
 
 import java.nio.file.Paths
 import java.io.File
+import java.util.Scanner
 
 class FFMPEGHelpere {
 	
@@ -52,6 +53,17 @@ class FFMPEGHelpere {
         var p = Runtime.runtime.exec(command)
         p.waitFor
 	}
-	
+
+	def executeCmdGetDuration(String input){
+	    	
+	   	var f = new File(input)
+	   	var path = f.absolutePath   			
+	     var command = "ffprobe -i "+path+" -show_entries format=duration -v quiet -of csv=p=0"
+        var p = Runtime.runtime.exec(command)
+        p.waitFor
+        var str = new Scanner(p.inputStream).useDelimiter("\\A")
+        if(str.hasNext())
+         str.next().trim
+	}	
 	
 }
