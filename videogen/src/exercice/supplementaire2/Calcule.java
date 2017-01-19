@@ -1,6 +1,9 @@
 package exercice.supplementaire2;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import videogen.ProcessFFMPEG;
 
 public class Calcule {
 	
@@ -13,7 +16,19 @@ public class Calcule {
 		}
 		return res;
 	}
-	
+	public static void generateDuration(List<SequenceVideo> seqs) {
+		
+		for (SequenceVideo seq : seqs) {
+			int duration = 0;
+			for (String variante : seq.getVariantes()) {
+				 try {
+						duration = duration + Integer.valueOf(ProcessFFMPEG.getDuration(variante));
+					}
+					catch(Exception e) {}
+			}
+			seq.setDuree(String.valueOf(duration));
+		}
+	}
 	public static int maxSequence(ArrayList<SequenceVideo> videos) {
 		int res = 0;
 		for(SequenceVideo seq : videos) {

@@ -48,6 +48,7 @@ public class VideoGenAllSequence {
       URI _createURI = URI.createURI("foo2bis2.videogen");
       VideoGeneratorModel videoGen = this.loadVideoGenerator(_createURI);
       final ArrayList<SequenceVideo> res = this.generateSeqs(videoGen);
+      Calcule.generateDuration(res);
       int _length = ((Object[])Conversions.unwrapArray(res, Object.class)).length;
       String _plus = ("nombre de variantes : " + Integer.valueOf(_length));
       InputOutput.<String>println(_plus);
@@ -71,6 +72,9 @@ public class VideoGenAllSequence {
           writer.print(",");
         };
         _variantes.forEach(_function_1);
+        String _duree = sq.getDuree();
+        writer.print(_duree);
+        writer.print(",");
         writer.println();
       };
       res.forEach(_function);

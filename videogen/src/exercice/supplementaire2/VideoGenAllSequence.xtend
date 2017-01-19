@@ -24,6 +24,7 @@ class VideoGenAllSequence {
 	def void generateAllSequences() {
 		var videoGen = loadVideoGenerator(URI.createURI("foo2bis2.videogen")) 
 		val res = generateSeqs(videoGen)
+		Calcule.generateDuration(res)
 		println("nombre de variantes : " + res.length)
 		println("taille min de variantes : " + Calcule.minSequence(res))
 		println("taille max de variantes : " + Calcule.maxSequence(res))
@@ -36,6 +37,8 @@ class VideoGenAllSequence {
 		 		writer.print(ss)
 		 		writer.print(",")
 		 	]
+		 	writer.print(sq.duree)
+		 	writer.print(",")
 		 	writer.println()
 		 ]
 		 writer.close
