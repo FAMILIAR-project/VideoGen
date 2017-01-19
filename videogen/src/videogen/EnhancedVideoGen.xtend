@@ -22,11 +22,15 @@ import org.xtext.example.mydsl.videoGen.VideoDescription
 import java.util.ArrayList
 import java.util.List
 import playlist.Playlist
+import java.io.ByteArrayInputStream
 
 class EnhancedVideoGen {
-	def static loadVideoGenerator(URI uri) {
+	def static loadVideoGenerator(String specification) {
 		new VideoGenStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()
-		var res = new ResourceSetImpl().getResource(uri, true);
+		var resSet = new ResourceSetImpl()
+		var res = resSet.createResource(URI.createURI("dummy:/example.videogen"));
+		var in = new ByteArrayInputStream(specification.getBytes());
+		res.load(in, resSet.loadOptions)
 		res.contents.get(0) as VideoGeneratorModel
 	}
 
@@ -36,48 +40,48 @@ class EnhancedVideoGen {
 		rs.save(new HashMap());
 	}
 
-/**
- * A partir d'un fichier videogen
- * vérifie la cohérence des informations
- * crée une playlist
- * enregistre les images des vidéos choisies
- * sauvegarde la playlist en m3u
- * ecrit la page HTML de la playlist
- */
+	/**
+	 * A partir d'un fichier videogen
+	 * vérifie la cohérence des informations
+	 * crée une playlist
+	 * enregistre les images des vidéos choisies
+	 * sauvegarde la playlist en m3u
+	 * ecrit la page HTML de la playlist
+	 */
 	def static Playlist main(String[] args) {
-		var videoGen = loadVideoGenerator(URI.createURI("mastaconcat.videogen"))
+		var videoGen = loadVideoGenerator(args.get(0))
 		val rand = new Random()
 		val playlist = PlaylistFactory.eINSTANCE.createPlaylist
-		
+
 		println("Vérification des informations ...")
 		val codeErreur = verifInfo(videoGen)
-		if(codeErreur == 2){
+		if (codeErreur == 2) {
 			println("Annulation de la génération")
 			return playlist;
 		}
-		
+
 		println("Création de la playlist...")
 		videoGen.videoseqs.forEach [ videoseq |
 			if (videoseq instanceof MandatoryVideoSeq) {
-				//Test la présence d'un ID
-				if (videoseq.description.videoid.isNullOrEmpty) videoseq.description.videoid = genID()
-				//Création d'une vidéo
+				// Test la présence d'un ID
+				if(videoseq.description.videoid.isNullOrEmpty) videoseq.description.videoid = genID()
+				// Création d'une vidéo
 				val mediafile = PlaylistFactory.eINSTANCE.createVideo
 				mediafile.url = videoseq.description.location
 				if (videoseq.description.duration == 0) {
-					//Génération de la durée si non indiquée
+					// Génération de la durée si non indiquée
 					mediafile.duration = extractDuration(videoseq.description.location).intValue
 				} else {
 					mediafile.duration = videoseq.description.duration
 				}
-				//Enregistrement d'une image pour la vidéo
+				// Enregistrement d'une image pour la vidéo
 				mediafile.thumbnail = extractThumbnail(videoseq.description.location, videoseq.description.videoid)
-				//Ajout de la vidéo à la playlist
+				// Ajout de la vidéo à la playlist
 				playlist.videos.add(mediafile)
 			}
 			if (videoseq instanceof OptionalVideoSeq) {
-				if (videoseq.description.videoid.isNullOrEmpty) videoseq.description.videoid = genID()
-				if (rand.nextInt(2) == 1) { //50%
+				if(videoseq.description.videoid.isNullOrEmpty) videoseq.description.videoid = genID()
+				if (rand.nextInt(2) == 1) { // 50%
 					val mediafile = PlaylistFactory.eINSTANCE.createVideo
 					mediafile.url = videoseq.description.location
 					if (videoseq.description.duration == 0) {
@@ -90,16 +94,16 @@ class EnhancedVideoGen {
 				}
 			}
 			if (videoseq instanceof AlternativeVideoSeq) {
-				
+
 				if(videoseq.videoid.isNullOrEmpty) videoseq.videoid = genID
-				
+
 				val listAlt = (videoseq as AlternativeVideoSeq).videodescs
-				
-				listAlt.forEach[alt |
+
+				listAlt.forEach [ alt |
 					if(alt.videoid.isNullOrEmpty) alt.videoid = genID
 				]
-				
-				val quicesera = rand.nextInt(listAlt.size) //Equiprobabilite
+
+				val quicesera = rand.nextInt(listAlt.size) // Equiprobabilite
 				val mediafile = PlaylistFactory.eINSTANCE.createVideo
 				mediafile.url = listAlt.get(quicesera).location
 				if (listAlt.get(quicesera).duration == 0) {
@@ -111,25 +115,26 @@ class EnhancedVideoGen {
 				playlist.videos.add(mediafile)
 			}
 		]
-		
-		//Ecriture de la playlist en M3U
+
+		// Ecriture de la playlist en M3U
 		println("Ecriture de play.m3u ...")
 		Files.write(
 			Paths.get("play.m3u"),
 			Collections.singletonList(PlaylistToText.playlistToText(playlist, "m3u"))
 		)
-		
-		//Ecriture de la page HTML
+		playlist.url = "play.m3u"
+
+		// Ecriture de la page HTML
 		println("Ecriture de videogen.html ...")
 		printToHTML(videoGen, "videogen.html")
 
 		return playlist
 	}
 
-/**
- * Retourne la durée d'une vidéo
- * @param location Chemin de la vidéo
- */
+	/**
+	 * Retourne la durée d'une vidéo
+	 * @param location Chemin de la vidéo
+	 */
 	def private static extractDuration(String location) {
 		val cmd = "ffprobe -v error -select_streams v:0 -show_entries stream=duration -of " +
 			"default=noprint_wrappers=1:nokey=1 %s"
@@ -142,68 +147,66 @@ class EnhancedVideoGen {
 		return Double::parseDouble(value)
 	}
 
-/**
- * Sauvegarde une image JPG correspondant à une vidéo
- * @param location Chemin de la vidéo
- * @param name nom de l'image
- */
+	/**
+	 * Sauvegarde une image JPG correspondant à une vidéo
+	 * @param location Chemin de la vidéo
+	 * @param name nom de l'image
+	 */
 	def private static extractThumbnail(String location, String name) {
 		var cmd = "ffmpeg -i %s -ss 00:00:01.000 -vframes 1 " + "thumbnails/%s.jpg -y"
 		cmd = String.format(cmd, location, name)
-		if(!Files.exists(Paths.get("thumbnails")))
-		{
+		if (!Files.exists(Paths.get("thumbnails"))) {
 			Files.createDirectory(Paths.get("thumbnails"))
 		}
 		val process = Runtime.runtime.exec(String.format(cmd, location))
 		process.waitFor
 		return String.format("thumbnails/%s.jpg", name)
 	}
-	
+
 	private static int i = 0;
+
 	def private static genID() {
 		"_autogenerated" + i++
 	}
-	
+
 	/**
 	 * Ecrit le fichier HTML d'un videoGen
 	 */
 	def static void printToHTML(VideoGeneratorModel videoGen, String outputPath) {
 		val output = new File(outputPath)
 		val pw = new PrintWriter(output)
-		
+
 		val cssPath = new File(output.parent, "videogen.css").path
 		saveCssFile(cssPath)
-		
+
 		pw.println("<!DOCTYPE html>")
 		pw.println("<html>")
 		pw.println("<head>")
-		pw.println("<link rel=\"stylesheet\" type=\"text/css\" href=\""+cssPath+"\">")
+		pw.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"" + cssPath + "\">")
 		pw.println("</head>")
 		pw.println("<body>")
 		pw.println("<ul>")
-		videoGen.videoseqs.forEach[videoseq | 
+		videoGen.videoseqs.forEach [ videoseq |
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
-				if(!desc.videoid.isNullOrEmpty)  
-					pw.println (vidToHtml(desc))  				
-			}
-			else if (videoseq instanceof OptionalVideoSeq) {
+				if (!desc.videoid.isNullOrEmpty)
+					pw.println(vidToHtml(desc))
+			} else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
-				if(!desc.videoid.isNullOrEmpty) 
-					pw.println (vidToHtml(desc)) 
-			}
-			else {
+				if (!desc.videoid.isNullOrEmpty)
+					pw.println(vidToHtml(desc))
+			} else {
 				val altvid = (videoseq as AlternativeVideoSeq)
 //				if(!altvid.videoid.isNullOrEmpty) 
 //					pw.println ("<li>" + altvid.videoid + "</li>")
 				if (altvid.videodescs.size > 0) // there are vid seq alternatives
-					pw.println ("<ul id=\"alternatives\">")
+					pw.println("<ul id=\"alternatives\">")
 				for (vdesc : altvid.videodescs) {
-					if(!vdesc.videoid.isNullOrEmpty) 
-						pw.println (vidToHtml(vdesc))
+					if (!vdesc.videoid.isNullOrEmpty)
+						pw.println(vidToHtml(vdesc))
 				}
 				if (altvid.videodescs.size > 0) // there are vid seq alternatives
-					pw.println ("</ul>")
+					pw.println("</ul>")
 			}
 		]
 		pw.println("</ul>")
@@ -212,16 +215,46 @@ class EnhancedVideoGen {
 		pw.flush
 		pw.close
 	}
-	
+
+	def static String printToHTMLext(String specification) {
+		val StringBuilder builder = new StringBuilder()
+
+		// val cssPath = new File(output.parent, "videogen.css").path
+		// saveCssFile(cssPath)
+		builder.append("<ul>")
+		var videoGen = loadVideoGenerator(specification)
+		videoGen.videoseqs.forEach [ videoseq |
+			if (videoseq instanceof OptionalVideoSeq) {
+				val desc = (videoseq as OptionalVideoSeq).description
+				if (!desc.videoid.isNullOrEmpty)
+					builder.append(vidToHtml(desc))
+			} else {
+				val altvid = (videoseq as AlternativeVideoSeq)
+//				if(!altvid.videoid.isNullOrEmpty) 
+//					builder.append ("<li>" + altvid.videoid + "</li>")
+				if (altvid.videodescs.size > 0) // there are vid seq alternatives
+					builder.append("<ul id=\"alternatives\">")
+				for (vdesc : altvid.videodescs) {
+					if (!vdesc.videoid.isNullOrEmpty)
+						builder.append(vidToHtml(vdesc))
+				}
+				if (altvid.videodescs.size > 0) // there are vid seq alternatives
+					builder.append("</ul>")
+			}
+		]
+		builder.append("</ul>")
+		
+		builder.toString
+	}
+
 	/**
 	 * Ecrit le fichier CSS utilisé par la page HTML
 	 */
 	def private static saveCssFile(String outputPath) {
 		val output = new File(outputPath)
 		val pw = new PrintWriter(output)
-		
-		pw.println(
-		"ul#alternatives li { 
+
+		pw.println("ul#alternatives li { 
 display : inline;
 }
 ul{
@@ -231,29 +264,40 @@ padding : 0;
 il{
 padding : 0;
 }")
-		
+
 		pw.flush
 		pw.close
 	}
 	
+	def static String getCssFile() {
+		"ul#alternatives li { 
+display : inline;
+}
+ul{
+list-style-type : none;
+padding : 0;
+}
+il{
+padding : 0;
+}"
+	}
+
 	/**
 	 * Retourne la chaîne de caractères HTML correspondant à une vidéo
 	 * Et enregistre une image pour la vidéo
 	 */
-	def private static String vidToHtml(VideoDescription vdesc){
+	def private static String vidToHtml(VideoDescription vdesc) {
 		val result = new StringBuilder
 		val thumbnail = extractThumbnail(vdesc.location, vdesc.videoid)
 		val id = vdesc.videoid
-		
+
 		result.append("<li>")
-		result.append("<img src=\""+thumbnail+"\" alt=\""+id+"\" width=\"100\" height=\"100\">")
+		result.append("<img src=\"" + thumbnail + "\" alt=\"" + id + "\" width=\"100\" height=\"100\">")
 		result.append("</li>")
 
 		result.toString
 	}
-	
-	
-	
+
 	/**
 	 * Vérifie les informations du modèle videoGen :
 	 * 
@@ -271,18 +315,18 @@ padding : 0;
 	def static verifInfo(VideoGeneratorModel videoGen) {
 		val List<String> identifiers = new ArrayList
 		val List<String> locations = new ArrayList
-		
+
 		val error = new ErrorManager
-		
-		//Génération
-		videoGen.videoseqs.forEach[videoseq |
-			if(videoseq instanceof MandatoryVideoSeq){
-				if(!videoseq.description.videoid.isNullOrEmpty){
+
+		// Génération
+		videoGen.videoseqs.forEach [ videoseq |
+			if (videoseq instanceof MandatoryVideoSeq) {
+				if (!videoseq.description.videoid.isNullOrEmpty) {
 					identifiers.add(videoseq.description.videoid)
 				}
 				locations.add(videoseq.description.location)
 				val proba = videoseq.description.probability
-				if(proba != 0){
+				if (proba != 0) {
 					error.warning(
 						String.format(
 							"La probabilité de la vidéo obligatoire %s est inutile et sera ignorée",
@@ -290,35 +334,37 @@ padding : 0;
 						)
 					)
 				}
-			}else if(videoseq instanceof OptionalVideoSeq){
-				if(!videoseq.description.videoid.isNullOrEmpty){
+			} else if (videoseq instanceof OptionalVideoSeq) {
+				if (!videoseq.description.videoid.isNullOrEmpty) {
 					identifiers.add(videoseq.description.videoid)
 				}
 				locations.add(videoseq.description.location)
-				if(videoseq.description.probability != 0){
+				if (videoseq.description.probability != 0) {
 					val proba = videoseq.description.probability
-					if(proba >= 100){
+					if (proba >= 100) {
 						error.warning(
-							String.format(
-								"La vidéo optionnelle %s peut être remplacée par une vidéo obligatoire (probabilité de %d%%)",
-								if (videoseq.description.videoid.isNullOrEmpty) "???" else videoseq.description.videoid,
-								proba
-							)
+							String.
+								format(
+									"La vidéo optionnelle %s peut être remplacée par une vidéo obligatoire (probabilité de %d%%)",
+									if(videoseq.description.videoid.isNullOrEmpty) "???" else videoseq.description.
+										videoid,
+									proba
+								)
 						)
 					}
 				}
-			}else if(videoseq instanceof AlternativeVideoSeq){
-				videoseq.videodescs.forEach[desc |
-					if(!desc.videoid.nullOrEmpty){
+			} else if (videoseq instanceof AlternativeVideoSeq) {
+				videoseq.videodescs.forEach [ desc |
+					if (!desc.videoid.nullOrEmpty) {
 						identifiers.add(desc.videoid)
 					}
 					locations.add(desc.location)
 				]
-				
-				val probaTotale = videoseq.videodescs.fold(0)[acc, desc | acc + desc.probability]
-				val oneEmpty = videoseq.videodescs.exists[desc | desc.probability == 0]
-				
-				if(probaTotale > 100){
+
+				val probaTotale = videoseq.videodescs.fold(0)[acc, desc|acc + desc.probability]
+				val oneEmpty = videoseq.videodescs.exists[desc|desc.probability == 0]
+
+				if (probaTotale > 100) {
 					error.error(
 						String.format(
 							"La somme des probabilités de l'alternative %s est trop élevée : %d%%",
@@ -327,7 +373,7 @@ padding : 0;
 						)
 					)
 				}
-				if(probaTotale < 100 && !oneEmpty){
+				if (probaTotale < 100 && !oneEmpty) {
 					error.error(
 						String.format(
 							"La somme des probabilités de l'alternative %s est trop faible : %d%%",
@@ -336,7 +382,7 @@ padding : 0;
 						)
 					)
 				}
-				if(probaTotale == 100 && oneEmpty){
+				if (probaTotale == 100 && oneEmpty) {
 					error.warning(
 						String.format(
 							"Certaines vidéos de l'alternative %s ne seront jamais utilisées",
@@ -346,25 +392,25 @@ padding : 0;
 				}
 			}
 		]
-		
-		//Vérification identifiants uniques
-		while(identifiers.size > 0){
+
+		// Vérification identifiants uniques
+		while (identifiers.size > 0) {
 			val id = identifiers.get(0)
 			identifiers.remove(0)
-			if(identifiers.contains(id)){
-				error.error("L'identifiant n'est pas unique : "+id)
+			if (identifiers.contains(id)) {
+				error.error("L'identifiant n'est pas unique : " + id)
 			}
 		}
-		
-		//Vérifications "locations"
-		while(locations.size > 0){
+
+		// Vérifications "locations"
+		while (locations.size > 0) {
 			val location = locations.get(0)
 			locations.remove(0)
-			if(locations.contains(location)){
-				error.warning("La vidéo est utilisée plusieurs fois : "+location)
+			if (locations.contains(location)) {
+				error.warning("La vidéo est utilisée plusieurs fois : " + location)
 			}
 		}
-		
+
 		return error.code
 	}
 

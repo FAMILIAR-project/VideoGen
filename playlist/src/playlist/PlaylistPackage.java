@@ -76,13 +76,22 @@ public interface PlaylistPackage extends EPackage {
 	int PLAYLIST__VIDEOS = 0;
 
 	/**
+	 * The feature id for the '<em><b>Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLAYLIST__URL = 1;
+
+	/**
 	 * The number of structural features of the '<em>Playlist</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLAYLIST_FEATURE_COUNT = 1;
+	int PLAYLIST_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Playlist</em>' class.
@@ -171,6 +180,17 @@ public interface PlaylistPackage extends EPackage {
 	EReference getPlaylist_Videos();
 
 	/**
+	 * Returns the meta object for the attribute '{@link playlist.Playlist#getUrl <em>Url</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Url</em>'.
+	 * @see playlist.Playlist#getUrl()
+	 * @see #getPlaylist()
+	 * @generated
+	 */
+	EAttribute getPlaylist_Url();
+
+	/**
 	 * Returns the meta object for class '{@link playlist.Video <em>Video</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -253,6 +273,14 @@ public interface PlaylistPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PLAYLIST__VIDEOS = eINSTANCE.getPlaylist_Videos();
+
+		/**
+		 * The meta object literal for the '<em><b>Url</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLAYLIST__URL = eINSTANCE.getPlaylist_Url();
 
 		/**
 		 * The meta object literal for the '{@link playlist.impl.VideoImpl <em>Video</em>}' class.

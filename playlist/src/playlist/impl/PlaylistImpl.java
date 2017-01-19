@@ -4,6 +4,7 @@ package playlist.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -11,6 +12,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -29,6 +31,7 @@ import playlist.Video;
  * </p>
  * <ul>
  *   <li>{@link playlist.impl.PlaylistImpl#getVideos <em>Videos</em>}</li>
+ *   <li>{@link playlist.impl.PlaylistImpl#getUrl <em>Url</em>}</li>
  * </ul>
  *
  * @generated
@@ -43,6 +46,25 @@ public class PlaylistImpl extends MinimalEObjectImpl.Container implements Playli
 	 * @ordered
 	 */
 	protected EList<Video> videos;
+
+	/**
+	 * The default value of the '{@link #getUrl() <em>Url</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUrl()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String URL_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getUrl() <em>Url</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUrl()
+	 * @generated
+	 * @ordered
+	 */
+	protected String url = URL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -80,6 +102,27 @@ public class PlaylistImpl extends MinimalEObjectImpl.Container implements Playli
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getUrl() {
+		return url;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUrl(String newUrl) {
+		String oldUrl = url;
+		url = newUrl;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PlaylistPackage.PLAYLIST__URL, oldUrl, url));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -99,6 +142,8 @@ public class PlaylistImpl extends MinimalEObjectImpl.Container implements Playli
 		switch (featureID) {
 			case PlaylistPackage.PLAYLIST__VIDEOS:
 				return getVideos();
+			case PlaylistPackage.PLAYLIST__URL:
+				return getUrl();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -116,6 +161,9 @@ public class PlaylistImpl extends MinimalEObjectImpl.Container implements Playli
 				getVideos().clear();
 				getVideos().addAll((Collection<? extends Video>)newValue);
 				return;
+			case PlaylistPackage.PLAYLIST__URL:
+				setUrl((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -131,6 +179,9 @@ public class PlaylistImpl extends MinimalEObjectImpl.Container implements Playli
 			case PlaylistPackage.PLAYLIST__VIDEOS:
 				getVideos().clear();
 				return;
+			case PlaylistPackage.PLAYLIST__URL:
+				setUrl(URL_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -145,8 +196,26 @@ public class PlaylistImpl extends MinimalEObjectImpl.Container implements Playli
 		switch (featureID) {
 			case PlaylistPackage.PLAYLIST__VIDEOS:
 				return videos != null && !videos.isEmpty();
+			case PlaylistPackage.PLAYLIST__URL:
+				return URL_EDEFAULT == null ? url != null : !URL_EDEFAULT.equals(url);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (url: ");
+		result.append(url);
+		result.append(')');
+		return result.toString();
 	}
 
 } //PlaylistImpl
