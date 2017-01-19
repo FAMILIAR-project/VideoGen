@@ -235,9 +235,51 @@ def static printWebPage() {
             filewriter.close 
 			
 	}
+	
+
+def static void generateGIF(){
+	
+		var ffmpeg = new FFMPEGHelpere()
+	
+		// loading
+		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
+			
+		for(videoseq : videoGen.videoseqs){
+			if (videoseq instanceof MandatoryVideoSeq) {
+			val desc = (videoseq as MandatoryVideoSeq).description
+				
+				ffmpeg.executeCmdGIF(desc.location.toString,desc.location)
+				
+			  
+				}
+			
+			else if (videoseq instanceof OptionalVideoSeq) {
+				val desc = (videoseq as OptionalVideoSeq).description
+				
+
+	    	ffmpeg.executeCmdGIF(desc.location.toString,desc.location)
+
+					
+			}
+			else {
+				val altvid = (videoseq as AlternativeVideoSeq)
+
+				for (vdesc : altvid.videodescs) {
+					
+				
+				ffmpeg.executeCmdGIF(vdesc.location.toString,vdesc.location)
+	
+			
+			}
+			
+			}
+}
+}
 
 def public static void main(String[] args){
 	
-	 printWebPage()
+	 //printWebPage()
+	 
+	 generateGIF()
 }
 }

@@ -14,4 +14,15 @@ public class FFMPEGHelpere {
       throw Exceptions.sneakyThrow(_e);
     }
   }
+  
+  public void executeCmdGIF(final String input, final String outputname) {
+    try {
+      String command = (((("ffmpeg -i " + input) + " ") + outputname) + ".gif");
+      Runtime _runtime = Runtime.getRuntime();
+      Process p = _runtime.exec(command);
+      p.waitFor();
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
 }

@@ -271,7 +271,40 @@ public class ModelToModel {
     }
   }
   
+  public static void generateGIF() {
+    FFMPEGHelpere ffmpeg = new FFMPEGHelpere();
+    URI _createURI = URI.createURI("foo2.videogen");
+    VideoGeneratorModel videoGen = ModelToModel.loadVideoGenerator(_createURI);
+    EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
+    for (final VideoSeq videoseq : _videoseqs) {
+      if ((videoseq instanceof MandatoryVideoSeq)) {
+        final VideoDescription desc = ((MandatoryVideoSeq) videoseq).getDescription();
+        String _location = desc.getLocation();
+        String _string = _location.toString();
+        String _location_1 = desc.getLocation();
+        ffmpeg.executeCmdGIF(_string, _location_1);
+      } else {
+        if ((videoseq instanceof OptionalVideoSeq)) {
+          final VideoDescription desc_1 = ((OptionalVideoSeq) videoseq).getDescription();
+          String _location_2 = desc_1.getLocation();
+          String _string_1 = _location_2.toString();
+          String _location_3 = desc_1.getLocation();
+          ffmpeg.executeCmdGIF(_string_1, _location_3);
+        } else {
+          final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
+          EList<VideoDescription> _videodescs = altvid.getVideodescs();
+          for (final VideoDescription vdesc : _videodescs) {
+            String _location_4 = vdesc.getLocation();
+            String _string_2 = _location_4.toString();
+            String _location_5 = vdesc.getLocation();
+            ffmpeg.executeCmdGIF(_string_2, _location_5);
+          }
+        }
+      }
+    }
+  }
+  
   public static void main(final String[] args) {
-    ModelToModel.printWebPage();
+    ModelToModel.generateGIF();
   }
 }

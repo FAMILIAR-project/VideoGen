@@ -9,4 +9,13 @@ class FFMPEGHelpere {
         p.waitFor
 	}
 	
+    def void executeCmdGIF(String input, String outputname){
+    			
+	// var command = "ffmpeg -i screenshot/"+input+outputname+".gif"
+	var command = "ffmpeg -i "+input+" "+outputname+".gif"
+        var p = Runtime.runtime.exec(command)
+        p.waitFor
+	}
+	
+	
 }
