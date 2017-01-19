@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.xtext.xbase.lib.Exceptions;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.junit.Assert;
 import org.junit.Test;
@@ -68,7 +67,6 @@ public class VideogenToM3u {
       Runtime _runtime = Runtime.getRuntime();
       Process process = _runtime.exec(("lib\\ffmpeg-3.2.2-win64-static\\bin\\ffprobe -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 createdPlaylists/" + videoLocation));
       process.waitFor(2000, TimeUnit.MILLISECONDS);
-      InputOutput.<String>println(videoLocation);
       InputStream _inputStream = process.getInputStream();
       InputStreamReader _inputStreamReader = new InputStreamReader(_inputStream);
       BufferedReader reader = new BufferedReader(_inputStreamReader);

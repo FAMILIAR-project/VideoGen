@@ -1,4 +1,6 @@
 # this is a comment 
 file 'videos/adam.webm'
 file 'videos/bear.webm'
-file 'videos/code.webm'
+file 'videos/jerry.webm'
+file 'videos/miamiDog.webm'
+file 'videos/rockMiaou.webm'

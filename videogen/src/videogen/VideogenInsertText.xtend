@@ -61,7 +61,6 @@ class VideogenInsertText {
 		var cmd = "lib\\ffmpeg-3.2.2-win64-static\\bin\\ffmpeg -i " + rootPath + videoLocation+" -vf drawtext='fontfile=" + rootPath + pathFontFile + ":text="+text+":fontcolor=white:fontsize=44:box=1:boxcolor=black@0.5:boxborderw=5:x="+positionX+":y="+positionY+"' -codec:a copy " + rootPath + name.get(0) + "-2.webm"
 	    	 		
 		var Process process = Runtime.getRuntime().exec(cmd);
-		println(cmd)
 		process.waitFor(2000, TimeUnit.MILLISECONDS);
 		
 	   return name.get(0) + '-2.webm'

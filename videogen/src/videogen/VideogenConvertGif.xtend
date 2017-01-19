@@ -53,8 +53,6 @@ class VideogenConvertGif {
 		var String[] name = videoLocation.split("/");
 
 		var cmd = "lib\\ffmpeg-3.2.2-win64-static\\bin\\ffmpeg -i " + rootPath + videoLocation + " -ss 00:00:00.000 -pix_fmt rgb24 -r 10 -s "+tailleW+"x"+tailleH+" -t 00:00:10.000 gif/"+name.get(name.length-1)+".gif"
-	    
-	    println("Commande : " + cmd);
 		
 		var Process process = Runtime.getRuntime().exec(cmd);
 		
@@ -67,15 +65,11 @@ class VideogenConvertGif {
 		
 		var cmdPalette = "lib\\ffmpeg-3.2.2-win64-static\\bin\\ffmpeg -y -ss 0 -t 3 -i " + rootPath + videoLocation+" -vf fps=10,scale="+taille+":-1:flags=lanczos,palettegen gif/"+name.get(name.length-1)+".png"
 	 	 
-	 	println("Commande palette: " + cmdPalette);
-	 	 
 	 	var Process processPalette = Runtime.getRuntime().exec(cmdPalette);
 		
 		processPalette.waitFor(2000, TimeUnit.MILLISECONDS);
 		
 		var cmdGif = "lib\\ffmpeg-3.2.2-win64-static\\bin\\ffmpeg -ss 0 -t 3 -i " + rootPath + videoLocation+" -i gif/"+name.get(name.length-1)+".png -filter_complex \"fps=10,scale="+taille+":-1:flags=lanczos[x];[x][1:v]paletteuse\" gif/"+name.get(name.length-1)+".gif"
-	    
-	    println("Commande gif: " + cmdGif);
 		
 		var Process processGif = Runtime.getRuntime().exec(cmdGif);
 		

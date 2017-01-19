@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.xtext.xbase.lib.Exceptions;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.junit.Assert;
 import org.junit.Test;
@@ -94,7 +93,6 @@ public class VideogenInsertText {
       String cmd = (_plus + "-2.webm");
       Runtime _runtime = Runtime.getRuntime();
       Process process = _runtime.exec(cmd);
-      InputOutput.<String>println(cmd);
       process.waitFor(2000, TimeUnit.MILLISECONDS);
       String _get_1 = name[0];
       return (_get_1 + "-2.webm");

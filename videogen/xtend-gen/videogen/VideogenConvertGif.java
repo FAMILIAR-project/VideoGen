@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.xtext.xbase.lib.Exceptions;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.junit.Assert;
 import org.junit.Test;
@@ -90,7 +89,6 @@ public class VideogenConvertGif {
         String _get = name[_minus];
         String _plus = (((((((("lib\\ffmpeg-3.2.2-win64-static\\bin\\ffmpeg -i " + VideogenConvertGif.rootPath) + videoLocation) + " -ss 00:00:00.000 -pix_fmt rgb24 -r 10 -s ") + tailleW) + "x") + tailleH) + " -t 00:00:10.000 gif/") + _get);
         String cmd = (_plus + ".gif");
-        InputOutput.<String>println(("Commande : " + cmd));
         Runtime _runtime = Runtime.getRuntime();
         Process process = _runtime.exec(cmd);
         _xblockexpression = process.waitFor(2000, TimeUnit.MILLISECONDS);
@@ -111,7 +109,6 @@ public class VideogenConvertGif {
         String _get = name[_minus];
         String _plus = (((((("lib\\ffmpeg-3.2.2-win64-static\\bin\\ffmpeg -y -ss 0 -t 3 -i " + VideogenConvertGif.rootPath) + videoLocation) + " -vf fps=10,scale=") + taille) + ":-1:flags=lanczos,palettegen gif/") + _get);
         String cmdPalette = (_plus + ".png");
-        InputOutput.<String>println(("Commande palette: " + cmdPalette));
         Runtime _runtime = Runtime.getRuntime();
         Process processPalette = _runtime.exec(cmdPalette);
         processPalette.waitFor(2000, TimeUnit.MILLISECONDS);
@@ -127,7 +124,6 @@ public class VideogenConvertGif {
         String _get_2 = name[_minus_2];
         String _plus_5 = (_plus_4 + _get_2);
         String cmdGif = (_plus_5 + ".gif");
-        InputOutput.<String>println(("Commande gif: " + cmdGif));
         Runtime _runtime_1 = Runtime.getRuntime();
         Process processGif = _runtime_1.exec(cmdGif);
         _xblockexpression = processGif.waitFor(2000, TimeUnit.MILLISECONDS);
