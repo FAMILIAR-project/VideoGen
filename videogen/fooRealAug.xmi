@@ -6,8 +6,9 @@
   <videoseqs xsi:type="videoGen:OptionalVideoSeq">
     <description videoid="v2" location="Sample/V2.mp4" duration="24"/>
   </videoseqs>
-  <videoseqs xsi:type="videoGen:AlternativeVideoSeq" videoid="v3">
+  <videoseqs xsi:type="videoGen:AlternativeVideoSeq" videoid="v30">
     <videodescs videoid="v31" location="Sample/V3.mp4" duration="33"/>
     <videodescs videoid="v32" location="Sample/V4.mp4" duration="22"/>
+    <videodescs videoid="v33" location="Sample/V5.mp4" duration="16"/>
   </videoseqs>
 </videoGen:VideoGeneratorModel>
