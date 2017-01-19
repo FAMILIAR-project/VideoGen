@@ -1,5 +1,9 @@
 # VideoGen
 
+Ce dépôt contient toutes les dépendances nécessaires (librairie FFMPEG, les vidéos). Il suffit de le pull et d'exécuter les fichiers Xtend (videogen/src/videogen/*.xtend).  
+Les dossiers Gif et Thumbnails sont volontairement vides. Les fichiers résultats seront automatiquement créés grâce aux fichiers Xtend.
+
+
 A configurable generator of generator of video variants 
 
 ## Project structure
@@ -7,6 +11,8 @@ A configurable generator of generator of video variants
 `org.xtext.example.videogenerator.*` are Xtext projects with the grammar and an extension to "tune" the IDE behavior (checking of unique IDs on the fly). 
 
 `videogen` is a Java/Xtend project that uses the Xtext project and shows how to transform a VideoGen transformation.  
+
+# Réponses aux questions
 
 ## Question 12
 
