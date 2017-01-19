@@ -1,9 +1,14 @@
 package videogen;
 
+import com.google.common.base.Objects;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -21,9 +26,15 @@ import org.xtext.example.mydsl.videoGen.OptionalVideoSeq;
 import org.xtext.example.mydsl.videoGen.VideoDescription;
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 import org.xtext.example.mydsl.videoGen.VideoSeq;
+import videogenPlaylist.MediaFile;
+import videogenPlaylist.Playlist;
+import videogenPlaylist.impl.VideogenPlaylistFactoryImpl;
 
+/**
+ * Questions 2
+ */
 @SuppressWarnings("all")
-public class VideogenToFfmpeg {
+public class VideogenToM3u {
   public VideoGeneratorModel loadVideoGenerator(final URI uri) {
     VideoGeneratorModel _xblockexpression = null;
     {
@@ -46,6 +57,27 @@ public class VideogenToFfmpeg {
       _contents.add(pollS);
       HashMap<Object, Object> _hashMap = new HashMap<Object, Object>();
       rs.save(_hashMap);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  public static double getDuration(final String videoLocation) {
+    try {
+      Runtime _runtime = Runtime.getRuntime();
+      Process process = _runtime.exec(("C:\\Program Files (x86)\\VideoLAN\\VLC\\vlc.exe " + videoLocation));
+      process.waitFor(2000, TimeUnit.MILLISECONDS);
+      InputStream _inputStream = process.getInputStream();
+      InputStreamReader _inputStreamReader = new InputStreamReader(_inputStream);
+      BufferedReader reader = new BufferedReader(_inputStreamReader);
+      String line = "";
+      String outputJson = "";
+      while ((!Objects.equal((line = reader.readLine()), null))) {
+        outputJson = (outputJson + line);
+      }
+      double _parseDouble = Double.parseDouble(outputJson);
+      long _round = Math.round(_parseDouble);
+      return (_round - 1);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -96,74 +128,82 @@ public class VideogenToFfmpeg {
       }
     };
     _videoseqs.forEach(_function);
-    URI _createURI_1 = URI.createURI("testVideosQ1bis.xmi");
+    URI _createURI_1 = URI.createURI("fooQ1bis.xmi");
     this.saveVideoGenerator(_createURI_1, videoGen);
-    URI _createURI_2 = URI.createURI("testVideosQ1bis.videogen");
+    URI _createURI_2 = URI.createURI("fooQ1bis.videogen");
     this.saveVideoGenerator(_createURI_2, videoGen);
-    this.toFFmpeg(videoGen);
+    this.toM3u(videoGen);
   }
   
-  public void toFFmpeg(final VideoGeneratorModel videoGen) {
+  public void toM3u(final VideoGeneratorModel videoGen) {
     try {
-      String content = "";
-      final File file = new File("createdPlaylists/playList.txt");
+      VideogenPlaylistFactoryImpl factory = new VideogenPlaylistFactoryImpl();
+      Playlist playlist = factory.createPlaylist();
+      EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
+      for (final VideoSeq video : _videoseqs) {
+        {
+          MediaFile file = factory.createMediaFile();
+          if ((video instanceof MandatoryVideoSeq)) {
+            final VideoDescription desc = ((MandatoryVideoSeq) video).getDescription();
+            String _videoid = desc.getVideoid();
+            boolean _isNullOrEmpty = StringExtensions.isNullOrEmpty(_videoid);
+            boolean _not = (!_isNullOrEmpty);
+            if (_not) {
+              String _location = desc.getLocation();
+              file.setPath(_location);
+            }
+            EList<MediaFile> _mediaFile = playlist.getMediaFile();
+            _mediaFile.add(file);
+          } else {
+            if ((video instanceof OptionalVideoSeq)) {
+              final VideoDescription desc_1 = ((OptionalVideoSeq) video).getDescription();
+              Random _random = new Random();
+              int _nextInt = _random.nextInt(2);
+              boolean _equals = (_nextInt == 0);
+              if (_equals) {
+                String _videoid_1 = desc_1.getVideoid();
+                boolean _isNullOrEmpty_1 = StringExtensions.isNullOrEmpty(_videoid_1);
+                boolean _not_1 = (!_isNullOrEmpty_1);
+                if (_not_1) {
+                  String _location_1 = desc_1.getLocation();
+                  file.setPath(_location_1);
+                }
+                EList<MediaFile> _mediaFile_1 = playlist.getMediaFile();
+                _mediaFile_1.add(file);
+              }
+            } else {
+              final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) video);
+              EList<VideoDescription> _videodescs = altvid.getVideodescs();
+              final int nbAltVids = _videodescs.size();
+              Random _random_1 = new Random();
+              final int i = _random_1.nextInt(nbAltVids);
+              EList<VideoDescription> _videodescs_1 = altvid.getVideodescs();
+              VideoDescription _get = _videodescs_1.get(i);
+              String _location_2 = _get.getLocation();
+              file.setPath(_location_2);
+              EList<MediaFile> _mediaFile_2 = playlist.getMediaFile();
+              _mediaFile_2.add(file);
+            }
+          }
+        }
+      }
+      final File file = new File("createdPlaylists/playlist.m3u");
       boolean _exists = file.exists();
       boolean _not = (!_exists);
       if (_not) {
         file.createNewFile();
       }
       final FileWriter writer = new FileWriter(file);
-      String _content = content;
-      content = (_content + "# this is a comment \n");
-      EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
-      for (final VideoSeq video : _videoseqs) {
-        if ((video instanceof MandatoryVideoSeq)) {
-          final VideoDescription desc = ((MandatoryVideoSeq) video).getDescription();
-          String _videoid = desc.getVideoid();
-          boolean _isNullOrEmpty = StringExtensions.isNullOrEmpty(_videoid);
-          boolean _not_1 = (!_isNullOrEmpty);
-          if (_not_1) {
-            String _content_1 = content;
-            String _location = desc.getLocation();
-            String _plus = ("file \'" + _location);
-            String _plus_1 = (_plus + "\'\n");
-            content = (_content_1 + _plus_1);
-          }
-        } else {
-          if ((video instanceof OptionalVideoSeq)) {
-            Random _random = new Random();
-            int _nextInt = _random.nextInt(2);
-            boolean _equals = (_nextInt == 0);
-            if (_equals) {
-              final VideoDescription desc_1 = ((OptionalVideoSeq) video).getDescription();
-              String _videoid_1 = desc_1.getVideoid();
-              boolean _isNullOrEmpty_1 = StringExtensions.isNullOrEmpty(_videoid_1);
-              boolean _not_2 = (!_isNullOrEmpty_1);
-              if (_not_2) {
-                String _content_2 = content;
-                String _location_1 = desc_1.getLocation();
-                String _plus_2 = ("file \'" + _location_1);
-                String _plus_3 = (_plus_2 + "\'\n");
-                content = (_content_2 + _plus_3);
-              }
-            }
-          } else {
-            final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) video);
-            EList<VideoDescription> _videodescs = altvid.getVideodescs();
-            final int nbAltVids = _videodescs.size();
-            Random _random_1 = new Random();
-            final int i = _random_1.nextInt(nbAltVids);
-            String _content_3 = content;
-            EList<VideoDescription> _videodescs_1 = altvid.getVideodescs();
-            VideoDescription _get = _videodescs_1.get(i);
-            String _location_2 = _get.getLocation();
-            String _plus_4 = ("file \'" + _location_2);
-            String _plus_5 = (_plus_4 + "\'\n");
-            content = (_content_3 + _plus_5);
-          }
+      writer.write("#EXTM3U \n");
+      EList<MediaFile> _mediaFile = playlist.getMediaFile();
+      for (final MediaFile md : _mediaFile) {
+        {
+          writer.write("#EXTINF: (add duration), Sample artist - Sample title \n");
+          String _path = md.getPath();
+          String _plus = (_path + "\n");
+          writer.write(_plus);
         }
       }
-      writer.write(content);
       writer.close();
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
@@ -173,7 +213,7 @@ public class VideogenToFfmpeg {
   private static int i = 0;
   
   public String genID() {
-    int _plusPlus = VideogenToFfmpeg.i++;
+    int _plusPlus = VideogenToM3u.i++;
     return ("v" + Integer.valueOf(_plusPlus));
   }
 }

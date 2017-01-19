@@ -15,9 +15,17 @@ import static org.junit.Assert.*
 import java.util.Random
 import java.io.File
 import java.io.FileWriter
+import videogenPlaylist.impl.VideogenPlaylistFactoryImpl
+import videogenPlaylist.MediaFile
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.util.concurrent.TimeUnit
 import org.xtext.example.mydsl.videoGen.VideoSeq
 
-class VideogenToFfmpeg {
+/*
+ * Questions 2
+ */
+class VideogenToM3u {
 
 	def loadVideoGenerator(URI uri) {
 		new VideoGenStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()
@@ -29,6 +37,20 @@ class VideogenToFfmpeg {
 		var Resource rs = new ResourceSetImpl().createResource(uri);
 		rs.getContents.add(pollS);
 		rs.save(new HashMap());
+	}
+	
+	def static double getDuration(String videoLocation){
+		var Process process = Runtime.getRuntime().exec("C:\\Program Files (x86)\\VideoLAN\\VLC\\vlc.exe " + videoLocation );
+		
+		process.waitFor(2000, TimeUnit.MILLISECONDS);
+
+		var BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+		var String line = "";
+		var String outputJson = "";
+	    while ((line = reader.readLine()) != null) {
+	        outputJson = outputJson + line;
+	    }
+		return Math.round(Double.parseDouble(outputJson))-1;
 	}
 
 	@Test
@@ -55,54 +77,62 @@ class VideogenToFfmpeg {
 		]
 		
 		// serializing
-		saveVideoGenerator(URI.createURI("testVideosQ1bis.xmi"), videoGen)
-		saveVideoGenerator(URI.createURI("testVideosQ1bis.videogen"), videoGen)
+		saveVideoGenerator(URI.createURI("fooQ1bis.xmi"), videoGen)
+		saveVideoGenerator(URI.createURI("fooQ1bis.videogen"), videoGen)
 
-		toFFmpeg(videoGen)
+		toM3u(videoGen)
 
 	}
 
-	def void toFFmpeg(VideoGeneratorModel videoGen) {
-		var content = "";
-		val file = new File("createdPlaylists/playList.txt");
+	def void toM3u(VideoGeneratorModel videoGen) {
+			
+		var factory = new VideogenPlaylistFactoryImpl()
+		var playlist= factory.createPlaylist()
+		
+		for (VideoSeq video : videoGen.videoseqs) {
+			var file = factory.createMediaFile()
+			
+			// mandatory
+			if (video instanceof MandatoryVideoSeq) {
+				val desc = (video as MandatoryVideoSeq).description;
+				if (!desc.videoid.isNullOrEmpty)
+					file.path= desc.location
+					playlist.mediaFile.add(file);
+					
+			// optional		
+			} else if (video instanceof OptionalVideoSeq) {
+				val desc = (video as OptionalVideoSeq).description
+
+				if (new Random().nextInt(2) == 0) {
+					if (!desc.videoid.isNullOrEmpty)
+						file.path= desc.location
+						playlist.mediaFile.add(file);
+						
+				}
+			// alternative
+			} else {
+				val altvid = (video as AlternativeVideoSeq)
+				val nbAltVids = altvid.videodescs.size
+				val i = (new Random().nextInt(nbAltVids))
+				
+				file.path= altvid.videodescs.get(i).location
+				playlist.mediaFile.add(file);
+			}
+				
+		}
+		
+		val file = new File("createdPlaylists/playlist.m3u");
 		if (!file.exists()) {
 			file.createNewFile();
 		}
 
 		val writer = new FileWriter(file);
-
-		content += "# this is a comment \n";
-
-		for (VideoSeq video : videoGen.videoseqs) {
-			// mandatory
-			if (video instanceof MandatoryVideoSeq) {
-				val desc = (video as MandatoryVideoSeq).description;
-				if (!desc.videoid.isNullOrEmpty)
-					content += "file '" + desc.location + "'\n";
-					
-			// optional		
-			} else if (video instanceof OptionalVideoSeq) {
-				// 50% chance
-				if (new Random().nextInt(2) == 0) {
-					val desc = (video as OptionalVideoSeq).description
-					if (!desc.videoid.isNullOrEmpty)
-						content += "file '" + desc.location + "'\n";
-				}
-
-			// alternative
-			} else {
-				val altvid = (video as AlternativeVideoSeq)
-
-					// choose video with same probability
-					val nbAltVids = altvid.videodescs.size
-					val i = (new Random().nextInt(nbAltVids))
-					content += "file '" + altvid.videodescs.get(i).location + "'\n"
-
-			}
+	
+		writer.write("#EXTM3U \n");
+		for(MediaFile md : playlist.mediaFile){
+			writer.write("#EXTINF: (add duration), Sample artist - Sample title \n");
+			writer.write(md.path + "\n")
 		}
-		
-		// println(content)
-		writer.write(content);
 		writer.close();
 	}
 
@@ -111,5 +141,5 @@ class VideogenToFfmpeg {
 	def genID() {
 		"v" + i++
 	}
-
+	
 }
