@@ -19,7 +19,7 @@ Xtend transformation: https://github.com/RomainG93/VideoGen/blob/master/videogen
 Playlist Project: The Playlist project was created in a different folder from this project so it has been added manually here:
 https://github.com/RomainG93/VideoGen/tree/master/Instruction/playlist
 
-VideoGen model: Available here: https://github.com/RomainG93/VideoGen/blob/master/videogen/web/data/test1.videogen
+VideoGen model: https://github.com/RomainG93/VideoGen/blob/master/videogen/web/data/test1.videogen
 
 Back-end VideoGen routes: https://github.com/RomainG93/VideoGen/blob/master/videogen/web/src/main/java/com/istic/videogen/web/rest/VideogenResource.java
 
