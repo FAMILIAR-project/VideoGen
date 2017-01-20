@@ -5,7 +5,7 @@ A configurable generator of generator of video variants
 ## Note
 The project is calling FFMPEG in some Xtend transformations as follow: "val pb = new ProcessBuilder("CMD", "/C", cmd)".
 It is not sure if the project will work on any other OS than Windows since the code specifically calls the CMD.
-As of today, it has only be tested on Windows.
+As of today, it has only be tested on Windows.<br />
 The questions about Familiar (Q14-15) have not been made.
 
 ## Location
