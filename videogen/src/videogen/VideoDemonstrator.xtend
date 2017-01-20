@@ -18,6 +18,8 @@ import java.io.FileReader
 import java.util.Random
 import playlist.Playlist
 import playlist.PlaylistFactory
+import java.io.InputStream
+import java.util.Scanner
 
 class VideoDemonstrator {
 	
@@ -176,6 +178,249 @@ class VideoDemonstrator {
 		 convertPlaylistIntoFormat(playlist, "m3u")
 			
 	}
+	
+	
+		@Test
+		def test7() {
+		// loading
+		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
+		// Model to model
+		
+		val playlist = PlaylistFactory.eINSTANCE.createPlaylist()
+		
+		
+       //val outputFile = new File("outagain.txt"); 
+       
+       // val out = new FileWriter(outputFile); 			
+		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
+		videoGen.videoseqs.forEach[videoseq | 
+			
+			if (videoseq instanceof MandatoryVideoSeq) {
+				val desc = (videoseq as MandatoryVideoSeq).description
+			
+				
+				val duration = computeDuration(desc.location)
+				desc.duration = duration as int
+				 				
+			}
+			else if (videoseq instanceof OptionalVideoSeq) {
+				val optional = new Random(1)
+				if(optional.nextInt()==1)
+				{
+					val desc = (videoseq as OptionalVideoSeq).description
+				val duration = computeDuration(desc.location)
+				desc.duration = duration as int
+				
+				}
+				
+			}
+			
+			else {
+				val altvid = videoseq as AlternativeVideoSeq
+				for (vdesc : altvid.videodescs){
+				val duration = computeDuration(vdesc.location)
+				vdesc.duration = duration as int
+				}
+				}
+				
+				 				
+			]
+			//out.close
+	
+			
+	}
+	
+	@Test
+		def test8() {
+		// loading
+		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
+		// Model to model
+		
+		val playlist = PlaylistFactory.eINSTANCE.createPlaylist()
+		
+		
+       val outputFile = new File("outagain8.txt"); 
+       
+        val out = new FileWriter(outputFile);
+        out.write("#EXTM3U") 			
+		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
+		videoGen.videoseqs.forEach[videoseq | 
+			
+			if (videoseq instanceof MandatoryVideoSeq) {
+				val desc = (videoseq as MandatoryVideoSeq).description
+			
+				
+				val duration = computeDuration(desc.location)
+				out.write("#EXT-X-DISCONTINUITY \n #EXTINF:"+duration+"\n"+desc.location)
+				desc.duration = duration as int
+				 				
+			}
+			else if (videoseq instanceof OptionalVideoSeq) {
+				val optional = new Random(1)
+				if(optional.nextInt()==1)
+				{
+					val desc = (videoseq as OptionalVideoSeq).description
+				val duration = computeDuration(desc.location)
+				out.write("#EXT-X-DISCONTINUITY \n #EXTINF:"+duration+"\n"+desc.location)
+				desc.duration = duration as int
+				
+				}
+				
+			}
+			
+			else {
+				val altvid = videoseq as AlternativeVideoSeq
+				for (vdesc : altvid.videodescs){
+				val duration = computeDuration(vdesc.location)
+				out.write("#EXT-X-DISCONTINUITY \n #EXTINF:"+duration+"\n"+vdesc.location)
+				vdesc.duration = duration as int
+				}
+				}
+				
+				
+				
+				 				
+			]
+			out.write("#EXT-X-ENDLIST")
+			out.close
+	
+			
+	}
+	
+	
+	def generateVignettes(String location, String name){
+		var cmd = "/usr/bin/ffmpeg -y -i " +location+ " -r 1 -t 00:00:01 -ss 00:00:$2 -f image2 images/" +name+".png"
+
+		var Process process = Runtime.getRuntime().exec(cmd)
+		process.wait()
+	}
+		def computeDuration(String location){
+		var cmd = "/usr/bin/ffprobe ffprobe -i "+location+
+		 " -show_entries format=duration -v quiet -of csv=\"p=0\""
+
+		var Process process = Runtime.getRuntime().exec(cmd)
+		process.wait()
+		val str = convertStreamToString(process.inputStream)
+		Double::parseDouble(str.trim())
+	}
+	
+	@Test
+		def test9() {
+		// loading
+		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
+		// Model to model
+		
+		val playlist = PlaylistFactory.eINSTANCE.createPlaylist()
+		
+		
+       //val outputFile = new File("outagain.txt"); 
+       
+       // val out = new FileWriter(outputFile); 			
+		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
+		videoGen.videoseqs.forEach[videoseq | 
+			
+			if (videoseq instanceof MandatoryVideoSeq) {
+				val desc = (videoseq as MandatoryVideoSeq).description
+			
+				
+				val duration = computeDuration(desc.location)
+				generateVignettes( desc.location, desc.description)
+				desc.duration = duration as int
+				 				
+			}
+			else if (videoseq instanceof OptionalVideoSeq) {
+				val optional = new Random(1)
+				if(optional.nextInt()==1)
+				{
+					val desc = (videoseq as OptionalVideoSeq).description
+				val duration = computeDuration(desc.location)
+				generateVignettes( desc.location, desc.description)
+				desc.duration = duration as int
+				
+				}
+				
+			}
+			
+			else {
+				val altvid = videoseq as AlternativeVideoSeq
+				for (vdesc : altvid.videodescs){
+				val duration = computeDuration(vdesc.location)
+				generateVignettes( vdesc.location, vdesc.description)
+				vdesc.duration = duration as int
+				}
+				}
+				
+				 				
+			]
+			//out.close
+	
+			
+	}
+	
+	@Test
+		def test10() {
+		// loading
+		var videoGen = loadVideoGenerator(URI.createURI("q10.html")) 
+		// Model to model
+		
+		val playlist = PlaylistFactory.eINSTANCE.createPlaylist()
+		
+		
+       val outputFile = new File("outagain.txt"); 
+       
+       val out = new FileWriter(outputFile); 
+       out.write("<html><h3>liste de ")			
+		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
+		videoGen.videoseqs.forEach[videoseq | 
+			
+			if (videoseq instanceof MandatoryVideoSeq) {
+				val desc = (videoseq as MandatoryVideoSeq).description
+			
+				
+				val duration = computeDuration(desc.location)
+				generateVignettes( desc.location, desc.description)
+				out.write("<img src='"+desc.location+"''>")
+				desc.duration = duration as int
+				 				
+			}
+			else if (videoseq instanceof OptionalVideoSeq) {
+				val optional = new Random(1)
+				if(optional.nextInt()==1)
+				{
+					val desc = (videoseq as OptionalVideoSeq).description
+				val duration = computeDuration(desc.location)
+				generateVignettes( desc.location, desc.description)
+				out.write("<img src='"+desc.location+"''>")
+				desc.duration = duration as int
+				
+				}
+				
+			}
+			
+			else {
+				val altvid = videoseq as AlternativeVideoSeq
+				for (vdesc : altvid.videodescs){
+				val duration = computeDuration(vdesc.location)
+				generateVignettes( vdesc.location, vdesc.description)
+				out.write("<img src='"+vdesc.location+"''>")
+				vdesc.duration = duration as int
+				}
+				}
+				
+				 				
+			]
+			//out.close
+	
+			
+	}
+	
+	def static String convertStreamToString(InputStream is){
+		val scanner = new Scanner(is).useDelimiter("\\A");
+		if(scanner.hasNext()) {scanner.next;}
+		else "";	
+	}
+		
+			
 	
 
 	
