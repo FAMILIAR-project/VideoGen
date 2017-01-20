@@ -2,35 +2,45 @@ grammar org.xtext.example.mydsl.VideoGen with org.eclipse.xtext.common.Terminals
 
 generate videoGen "http://www.xtext.org/example/mydsl/VideoGen"
 
-VideoGeneratorModel: {VideoGeneratorModel}
+VideoGeneratorModel:
+	{VideoGeneratorModel}
 	(information=VideoGenInformation)?
 	'VideoGen' LEFT_BRACKET
 	videoseqs+=VideoSeq+
-	RIGHT_BRACKET
-	;
+	RIGHT_BRACKET;
 
-VideoGenInformation: {VideoGenInformation}
-('@author' authorName=STRING)
-('@version' version=STRING)?
-('@creation' creationDate=STRING)?	
-;
-	
-VideoSeq: MandatoryVideoSeq | OptionalVideoSeq | AlternativeVideoSeq ; 
-	
-MandatoryVideoSeq : 'mandatory' description=VideoDescription;
-OptionalVideoSeq : 'optional' description=VideoDescription;
-AlternativeVideoSeq : 'alternatives' (videoid=ID)? LEFT_BRACKET videodescs+=VideoDescription+ RIGHT_BRACKET;
+VideoGenInformation:
+	{VideoGenInformation}
+	('@author' authorName=STRING)
+	('@version' version=STRING)?
+	('@creation' creationDate=STRING)?;
 
-VideoDescription : 'videoseq' (videoid=ID)? location=STRING
+VideoSeq:
+	MandatoryVideoSeq | OptionalVideoSeq | AlternativeVideoSeq;
+
+MandatoryVideoSeq:
+	'mandatory' description=VideoDescription;
+
+OptionalVideoSeq:
+	'optional' description=VideoDescription;
+
+AlternativeVideoSeq:
+	'alternatives' (videoid=ID)? LEFT_BRACKET videodescs+=VideoDescription+ RIGHT_BRACKET;
+
+VideoDescription:
+	'videoseq' (videoid=ID)? location=STRING
 	(LEFT_BRACKET
-	 ('duration' duration=INT)?
-	 ('probability' probability=INT)?
-	 ('size' size=INT)?
-	 ('description' description=STRING)? 
-	RIGHT_BRACKET)?
-	
-;
+	('duration' duration=INT)?
+	('probability' probability=INT)?
+	('size' size=INT)?
+	('textIncrust' textIncrust=STRING)?
+	('filter' filter=STRING)?
+	('description' description=STRING)?
+	RIGHT_BRACKET)?;
 
-terminal LEFT_BRACKET: '{' ; 
-terminal RIGHT_BRACKET: '}';
+terminal LEFT_BRACKET:
+	'{';
+
+terminal RIGHT_BRACKET:
+	'}';
 

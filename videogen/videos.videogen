@@ -1,27 +1,46 @@
 VideoGen {
 	
-	mandatory videoseq v1 "resources/video-1.mp4" 
+	mandatory videoseq v1 "resources/video-1.mp4" {
+		    textIncrust "mondatory"
+	}
+	 
 	optional videoseq v2 "resources/video-5.mp4" {
 		probability 25
+		textIncrust "optional"
 	}
 	alternatives v3 {
 		videoseq v30 "resources/video-6.mp4" {
 			duration 12
 			probability 25
 			description "a"
+			textIncrust "alternative"
 		}
-		videoseq v31 "resources/video-3.mp4"
-		videoseq v32 "resources/video-7.mp4"
+		videoseq v31 "resources/video-3.mp4"{
+		    textIncrust "alternative"
+		}
+		videoseq v32 "resources/video-7.mp4"{
+		    textIncrust "alternative"
+		}
 	}
 	
 	alternatives v4 {
-		videoseq v41 "resources/video-8.mp4"
-		videoseq v42 "resources/video-10.mp4"
+		videoseq v41 "resources/video-8.mp4"{
+		    textIncrust "alternative"
+		}
+		videoseq v42 "resources/video-10.mp4"{
+		    textIncrust "alternative"
+		}
 	}
-	mandatory videoseq v5 "resources/video-2.mp4"
+	mandatory videoseq v5 "resources/video-2.mp4"{
+	        textIncrust "mandatory"
+	    }
 	
-	optional videoseq v8 "resources/video-4.mp4"
+	optional videoseq v8 "resources/video-4.mp4"{
+	        textIncrust "optional"
+	}
 	alternatives v9 {
-		videoseq 91 "resources/video-9.mp4"
+		videoseq 91 "resources/video-9.mp4"{
+		    textIncrust "alternative"
+		}
 	}
 }

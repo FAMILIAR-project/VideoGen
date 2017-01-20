@@ -560,15 +560,59 @@ ruleVideoDescription returns [EObject current=null]
 	    }
 
 )
-))?(	otherlv_10='description' 
+))?(	otherlv_10='textIncrust' 
     {
-    	newLeafNode(otherlv_10, grammarAccess.getVideoDescriptionAccess().getDescriptionKeyword_3_4_0());
+    	newLeafNode(otherlv_10, grammarAccess.getVideoDescriptionAccess().getTextIncrustKeyword_3_4_0());
     }
 (
 (
-		lv_description_11_0=RULE_STRING
+		lv_textIncrust_11_0=RULE_STRING
 		{
-			newLeafNode(lv_description_11_0, grammarAccess.getVideoDescriptionAccess().getDescriptionSTRINGTerminalRuleCall_3_4_1_0()); 
+			newLeafNode(lv_textIncrust_11_0, grammarAccess.getVideoDescriptionAccess().getTextIncrustSTRINGTerminalRuleCall_3_4_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getVideoDescriptionRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"textIncrust",
+        		lv_textIncrust_11_0, 
+        		"org.eclipse.xtext.common.Terminals.STRING");
+	    }
+
+)
+))?(	otherlv_12='filter' 
+    {
+    	newLeafNode(otherlv_12, grammarAccess.getVideoDescriptionAccess().getFilterKeyword_3_5_0());
+    }
+(
+(
+		lv_filter_13_0=RULE_STRING
+		{
+			newLeafNode(lv_filter_13_0, grammarAccess.getVideoDescriptionAccess().getFilterSTRINGTerminalRuleCall_3_5_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getVideoDescriptionRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"filter",
+        		lv_filter_13_0, 
+        		"org.eclipse.xtext.common.Terminals.STRING");
+	    }
+
+)
+))?(	otherlv_14='description' 
+    {
+    	newLeafNode(otherlv_14, grammarAccess.getVideoDescriptionAccess().getDescriptionKeyword_3_6_0());
+    }
+(
+(
+		lv_description_15_0=RULE_STRING
+		{
+			newLeafNode(lv_description_15_0, grammarAccess.getVideoDescriptionAccess().getDescriptionSTRINGTerminalRuleCall_3_6_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -577,14 +621,14 @@ ruleVideoDescription returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"description",
-        		lv_description_11_0, 
+        		lv_description_15_0, 
         		"org.eclipse.xtext.common.Terminals.STRING");
 	    }
 
 )
-))?this_RIGHT_BRACKET_12=RULE_RIGHT_BRACKET
+))?this_RIGHT_BRACKET_16=RULE_RIGHT_BRACKET
     { 
-    newLeafNode(this_RIGHT_BRACKET_12, grammarAccess.getVideoDescriptionAccess().getRIGHT_BRACKETTerminalRuleCall_3_5()); 
+    newLeafNode(this_RIGHT_BRACKET_16, grammarAccess.getVideoDescriptionAccess().getRIGHT_BRACKETTerminalRuleCall_3_7()); 
     }
 )?)
 ;

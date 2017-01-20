@@ -21,7 +21,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalVideoGenParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_LEFT_BRACKET", "RULE_RIGHT_BRACKET", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'VideoGen'", "'@author'", "'@version'", "'@creation'", "'mandatory'", "'optional'", "'alternatives'", "'videoseq'", "'duration'", "'probability'", "'size'", "'description'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_LEFT_BRACKET", "RULE_RIGHT_BRACKET", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'VideoGen'", "'@author'", "'@version'", "'@creation'", "'mandatory'", "'optional'", "'alternatives'", "'videoseq'", "'duration'", "'probability'", "'size'", "'textIncrust'", "'filter'", "'description'"
     };
     public static final int RULE_STRING=6;
     public static final int RULE_SL_COMMENT=10;
@@ -38,11 +38,13 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
     public static final int RULE_WS=11;
     public static final int RULE_LEFT_BRACKET=4;
     public static final int RULE_ANY_OTHER=12;
+    public static final int T__26=26;
     public static final int RULE_INT=8;
     public static final int T__22=22;
     public static final int RULE_ML_COMMENT=9;
     public static final int T__23=23;
     public static final int T__24=24;
+    public static final int T__25=25;
     public static final int T__20=20;
     public static final int T__21=21;
 
@@ -1088,7 +1090,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleVideoDescription"
-    // InternalVideoGen.g:449:1: ruleVideoDescription returns [EObject current=null] : (otherlv_0= 'videoseq' ( (lv_videoid_1_0= RULE_ID ) )? ( (lv_location_2_0= RULE_STRING ) ) (this_LEFT_BRACKET_3= RULE_LEFT_BRACKET (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? (otherlv_6= 'probability' ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )? this_RIGHT_BRACKET_12= RULE_RIGHT_BRACKET )? ) ;
+    // InternalVideoGen.g:449:1: ruleVideoDescription returns [EObject current=null] : (otherlv_0= 'videoseq' ( (lv_videoid_1_0= RULE_ID ) )? ( (lv_location_2_0= RULE_STRING ) ) (this_LEFT_BRACKET_3= RULE_LEFT_BRACKET (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? (otherlv_6= 'probability' ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'textIncrust' ( (lv_textIncrust_11_0= RULE_STRING ) ) )? (otherlv_12= 'filter' ( (lv_filter_13_0= RULE_STRING ) ) )? (otherlv_14= 'description' ( (lv_description_15_0= RULE_STRING ) ) )? this_RIGHT_BRACKET_16= RULE_RIGHT_BRACKET )? ) ;
     public final EObject ruleVideoDescription() throws RecognitionException {
         EObject current = null;
 
@@ -1103,17 +1105,21 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
         Token otherlv_8=null;
         Token lv_size_9_0=null;
         Token otherlv_10=null;
-        Token lv_description_11_0=null;
-        Token this_RIGHT_BRACKET_12=null;
+        Token lv_textIncrust_11_0=null;
+        Token otherlv_12=null;
+        Token lv_filter_13_0=null;
+        Token otherlv_14=null;
+        Token lv_description_15_0=null;
+        Token this_RIGHT_BRACKET_16=null;
 
          enterRule(); 
             
         try {
-            // InternalVideoGen.g:452:28: ( (otherlv_0= 'videoseq' ( (lv_videoid_1_0= RULE_ID ) )? ( (lv_location_2_0= RULE_STRING ) ) (this_LEFT_BRACKET_3= RULE_LEFT_BRACKET (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? (otherlv_6= 'probability' ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )? this_RIGHT_BRACKET_12= RULE_RIGHT_BRACKET )? ) )
-            // InternalVideoGen.g:453:1: (otherlv_0= 'videoseq' ( (lv_videoid_1_0= RULE_ID ) )? ( (lv_location_2_0= RULE_STRING ) ) (this_LEFT_BRACKET_3= RULE_LEFT_BRACKET (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? (otherlv_6= 'probability' ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )? this_RIGHT_BRACKET_12= RULE_RIGHT_BRACKET )? )
+            // InternalVideoGen.g:452:28: ( (otherlv_0= 'videoseq' ( (lv_videoid_1_0= RULE_ID ) )? ( (lv_location_2_0= RULE_STRING ) ) (this_LEFT_BRACKET_3= RULE_LEFT_BRACKET (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? (otherlv_6= 'probability' ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'textIncrust' ( (lv_textIncrust_11_0= RULE_STRING ) ) )? (otherlv_12= 'filter' ( (lv_filter_13_0= RULE_STRING ) ) )? (otherlv_14= 'description' ( (lv_description_15_0= RULE_STRING ) ) )? this_RIGHT_BRACKET_16= RULE_RIGHT_BRACKET )? ) )
+            // InternalVideoGen.g:453:1: (otherlv_0= 'videoseq' ( (lv_videoid_1_0= RULE_ID ) )? ( (lv_location_2_0= RULE_STRING ) ) (this_LEFT_BRACKET_3= RULE_LEFT_BRACKET (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? (otherlv_6= 'probability' ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'textIncrust' ( (lv_textIncrust_11_0= RULE_STRING ) ) )? (otherlv_12= 'filter' ( (lv_filter_13_0= RULE_STRING ) ) )? (otherlv_14= 'description' ( (lv_description_15_0= RULE_STRING ) ) )? this_RIGHT_BRACKET_16= RULE_RIGHT_BRACKET )? )
             {
-            // InternalVideoGen.g:453:1: (otherlv_0= 'videoseq' ( (lv_videoid_1_0= RULE_ID ) )? ( (lv_location_2_0= RULE_STRING ) ) (this_LEFT_BRACKET_3= RULE_LEFT_BRACKET (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? (otherlv_6= 'probability' ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )? this_RIGHT_BRACKET_12= RULE_RIGHT_BRACKET )? )
-            // InternalVideoGen.g:453:3: otherlv_0= 'videoseq' ( (lv_videoid_1_0= RULE_ID ) )? ( (lv_location_2_0= RULE_STRING ) ) (this_LEFT_BRACKET_3= RULE_LEFT_BRACKET (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? (otherlv_6= 'probability' ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )? this_RIGHT_BRACKET_12= RULE_RIGHT_BRACKET )?
+            // InternalVideoGen.g:453:1: (otherlv_0= 'videoseq' ( (lv_videoid_1_0= RULE_ID ) )? ( (lv_location_2_0= RULE_STRING ) ) (this_LEFT_BRACKET_3= RULE_LEFT_BRACKET (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? (otherlv_6= 'probability' ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'textIncrust' ( (lv_textIncrust_11_0= RULE_STRING ) ) )? (otherlv_12= 'filter' ( (lv_filter_13_0= RULE_STRING ) ) )? (otherlv_14= 'description' ( (lv_description_15_0= RULE_STRING ) ) )? this_RIGHT_BRACKET_16= RULE_RIGHT_BRACKET )? )
+            // InternalVideoGen.g:453:3: otherlv_0= 'videoseq' ( (lv_videoid_1_0= RULE_ID ) )? ( (lv_location_2_0= RULE_STRING ) ) (this_LEFT_BRACKET_3= RULE_LEFT_BRACKET (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? (otherlv_6= 'probability' ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'textIncrust' ( (lv_textIncrust_11_0= RULE_STRING ) ) )? (otherlv_12= 'filter' ( (lv_filter_13_0= RULE_STRING ) ) )? (otherlv_14= 'description' ( (lv_description_15_0= RULE_STRING ) ) )? this_RIGHT_BRACKET_16= RULE_RIGHT_BRACKET )?
             {
             otherlv_0=(Token)match(input,20,FOLLOW_13); 
 
@@ -1182,16 +1188,16 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalVideoGen.g:493:2: (this_LEFT_BRACKET_3= RULE_LEFT_BRACKET (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? (otherlv_6= 'probability' ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )? this_RIGHT_BRACKET_12= RULE_RIGHT_BRACKET )?
-            int alt13=2;
-            int LA13_0 = input.LA(1);
+            // InternalVideoGen.g:493:2: (this_LEFT_BRACKET_3= RULE_LEFT_BRACKET (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? (otherlv_6= 'probability' ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'textIncrust' ( (lv_textIncrust_11_0= RULE_STRING ) ) )? (otherlv_12= 'filter' ( (lv_filter_13_0= RULE_STRING ) ) )? (otherlv_14= 'description' ( (lv_description_15_0= RULE_STRING ) ) )? this_RIGHT_BRACKET_16= RULE_RIGHT_BRACKET )?
+            int alt15=2;
+            int LA15_0 = input.LA(1);
 
-            if ( (LA13_0==RULE_LEFT_BRACKET) ) {
-                alt13=1;
+            if ( (LA15_0==RULE_LEFT_BRACKET) ) {
+                alt15=1;
             }
-            switch (alt13) {
+            switch (alt15) {
                 case 1 :
-                    // InternalVideoGen.g:493:3: this_LEFT_BRACKET_3= RULE_LEFT_BRACKET (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? (otherlv_6= 'probability' ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )? this_RIGHT_BRACKET_12= RULE_RIGHT_BRACKET
+                    // InternalVideoGen.g:493:3: this_LEFT_BRACKET_3= RULE_LEFT_BRACKET (otherlv_4= 'duration' ( (lv_duration_5_0= RULE_INT ) ) )? (otherlv_6= 'probability' ( (lv_probability_7_0= RULE_INT ) ) )? (otherlv_8= 'size' ( (lv_size_9_0= RULE_INT ) ) )? (otherlv_10= 'textIncrust' ( (lv_textIncrust_11_0= RULE_STRING ) ) )? (otherlv_12= 'filter' ( (lv_filter_13_0= RULE_STRING ) ) )? (otherlv_14= 'description' ( (lv_description_15_0= RULE_STRING ) ) )? this_RIGHT_BRACKET_16= RULE_RIGHT_BRACKET
                     {
                     this_LEFT_BRACKET_3=(Token)match(input,RULE_LEFT_BRACKET,FOLLOW_15); 
                      
@@ -1338,7 +1344,7 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalVideoGen.g:563:4: (otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) ) )?
+                    // InternalVideoGen.g:563:4: (otherlv_10= 'textIncrust' ( (lv_textIncrust_11_0= RULE_STRING ) ) )?
                     int alt12=2;
                     int LA12_0 = input.LA(1);
 
@@ -1347,21 +1353,21 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
                     }
                     switch (alt12) {
                         case 1 :
-                            // InternalVideoGen.g:563:6: otherlv_10= 'description' ( (lv_description_11_0= RULE_STRING ) )
+                            // InternalVideoGen.g:563:6: otherlv_10= 'textIncrust' ( (lv_textIncrust_11_0= RULE_STRING ) )
                             {
                             otherlv_10=(Token)match(input,24,FOLLOW_7); 
 
-                                	newLeafNode(otherlv_10, grammarAccess.getVideoDescriptionAccess().getDescriptionKeyword_3_4_0());
+                                	newLeafNode(otherlv_10, grammarAccess.getVideoDescriptionAccess().getTextIncrustKeyword_3_4_0());
                                 
-                            // InternalVideoGen.g:567:1: ( (lv_description_11_0= RULE_STRING ) )
-                            // InternalVideoGen.g:568:1: (lv_description_11_0= RULE_STRING )
+                            // InternalVideoGen.g:567:1: ( (lv_textIncrust_11_0= RULE_STRING ) )
+                            // InternalVideoGen.g:568:1: (lv_textIncrust_11_0= RULE_STRING )
                             {
-                            // InternalVideoGen.g:568:1: (lv_description_11_0= RULE_STRING )
-                            // InternalVideoGen.g:569:3: lv_description_11_0= RULE_STRING
+                            // InternalVideoGen.g:568:1: (lv_textIncrust_11_0= RULE_STRING )
+                            // InternalVideoGen.g:569:3: lv_textIncrust_11_0= RULE_STRING
                             {
-                            lv_description_11_0=(Token)match(input,RULE_STRING,FOLLOW_20); 
+                            lv_textIncrust_11_0=(Token)match(input,RULE_STRING,FOLLOW_20); 
 
-                            			newLeafNode(lv_description_11_0, grammarAccess.getVideoDescriptionAccess().getDescriptionSTRINGTerminalRuleCall_3_4_1_0()); 
+                            			newLeafNode(lv_textIncrust_11_0, grammarAccess.getVideoDescriptionAccess().getTextIncrustSTRINGTerminalRuleCall_3_4_1_0()); 
                             		
 
                             	        if (current==null) {
@@ -1369,8 +1375,8 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
                             	        }
                                    		setWithLastConsumed(
                                    			current, 
-                                   			"description",
-                                    		lv_description_11_0, 
+                                   			"textIncrust",
+                                    		lv_textIncrust_11_0, 
                                     		"org.eclipse.xtext.common.Terminals.STRING");
                             	    
 
@@ -1385,9 +1391,103 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    this_RIGHT_BRACKET_12=(Token)match(input,RULE_RIGHT_BRACKET,FOLLOW_2); 
+                    // InternalVideoGen.g:585:4: (otherlv_12= 'filter' ( (lv_filter_13_0= RULE_STRING ) ) )?
+                    int alt13=2;
+                    int LA13_0 = input.LA(1);
+
+                    if ( (LA13_0==25) ) {
+                        alt13=1;
+                    }
+                    switch (alt13) {
+                        case 1 :
+                            // InternalVideoGen.g:585:6: otherlv_12= 'filter' ( (lv_filter_13_0= RULE_STRING ) )
+                            {
+                            otherlv_12=(Token)match(input,25,FOLLOW_7); 
+
+                                	newLeafNode(otherlv_12, grammarAccess.getVideoDescriptionAccess().getFilterKeyword_3_5_0());
+                                
+                            // InternalVideoGen.g:589:1: ( (lv_filter_13_0= RULE_STRING ) )
+                            // InternalVideoGen.g:590:1: (lv_filter_13_0= RULE_STRING )
+                            {
+                            // InternalVideoGen.g:590:1: (lv_filter_13_0= RULE_STRING )
+                            // InternalVideoGen.g:591:3: lv_filter_13_0= RULE_STRING
+                            {
+                            lv_filter_13_0=(Token)match(input,RULE_STRING,FOLLOW_21); 
+
+                            			newLeafNode(lv_filter_13_0, grammarAccess.getVideoDescriptionAccess().getFilterSTRINGTerminalRuleCall_3_5_1_0()); 
+                            		
+
+                            	        if (current==null) {
+                            	            current = createModelElement(grammarAccess.getVideoDescriptionRule());
+                            	        }
+                                   		setWithLastConsumed(
+                                   			current, 
+                                   			"filter",
+                                    		lv_filter_13_0, 
+                                    		"org.eclipse.xtext.common.Terminals.STRING");
+                            	    
+
+                            }
+
+
+                            }
+
+
+                            }
+                            break;
+
+                    }
+
+                    // InternalVideoGen.g:607:4: (otherlv_14= 'description' ( (lv_description_15_0= RULE_STRING ) ) )?
+                    int alt14=2;
+                    int LA14_0 = input.LA(1);
+
+                    if ( (LA14_0==26) ) {
+                        alt14=1;
+                    }
+                    switch (alt14) {
+                        case 1 :
+                            // InternalVideoGen.g:607:6: otherlv_14= 'description' ( (lv_description_15_0= RULE_STRING ) )
+                            {
+                            otherlv_14=(Token)match(input,26,FOLLOW_7); 
+
+                                	newLeafNode(otherlv_14, grammarAccess.getVideoDescriptionAccess().getDescriptionKeyword_3_6_0());
+                                
+                            // InternalVideoGen.g:611:1: ( (lv_description_15_0= RULE_STRING ) )
+                            // InternalVideoGen.g:612:1: (lv_description_15_0= RULE_STRING )
+                            {
+                            // InternalVideoGen.g:612:1: (lv_description_15_0= RULE_STRING )
+                            // InternalVideoGen.g:613:3: lv_description_15_0= RULE_STRING
+                            {
+                            lv_description_15_0=(Token)match(input,RULE_STRING,FOLLOW_22); 
+
+                            			newLeafNode(lv_description_15_0, grammarAccess.getVideoDescriptionAccess().getDescriptionSTRINGTerminalRuleCall_3_6_1_0()); 
+                            		
+
+                            	        if (current==null) {
+                            	            current = createModelElement(grammarAccess.getVideoDescriptionRule());
+                            	        }
+                                   		setWithLastConsumed(
+                                   			current, 
+                                   			"description",
+                                    		lv_description_15_0, 
+                                    		"org.eclipse.xtext.common.Terminals.STRING");
+                            	    
+
+                            }
+
+
+                            }
+
+
+                            }
+                            break;
+
+                    }
+
+                    this_RIGHT_BRACKET_16=(Token)match(input,RULE_RIGHT_BRACKET,FOLLOW_2); 
                      
-                        newLeafNode(this_RIGHT_BRACKET_12, grammarAccess.getVideoDescriptionAccess().getRIGHT_BRACKETTerminalRuleCall_3_5()); 
+                        newLeafNode(this_RIGHT_BRACKET_16, grammarAccess.getVideoDescriptionAccess().getRIGHT_BRACKETTerminalRuleCall_3_7()); 
                         
 
                     }
@@ -1433,11 +1533,13 @@ public class InternalVideoGenParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000000000100020L});
     public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x00000000000000C0L});
     public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000000000000012L});
-    public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000001E00020L});
+    public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000007E00020L});
     public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000000001C00020L});
-    public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0000000001800020L});
-    public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0000000001000020L});
-    public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000000007C00020L});
+    public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0000000007800020L});
+    public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0000000007000020L});
+    public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x0000000006000020L});
+    public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x0000000004000020L});
+    public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x0000000000000020L});
 
 }

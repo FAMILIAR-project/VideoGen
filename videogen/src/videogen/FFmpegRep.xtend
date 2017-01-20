@@ -11,7 +11,6 @@ import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated
 import org.eclipse.emf.common.util.URI
 import org.xtext.example.mydsl.playlist.Playlist
 import org.xtext.example.mydsl.playlist.PlaylistFactory
-import java.io.BufferedReader
 
 class FFmpegRep {
 
@@ -82,6 +81,7 @@ class FFmpegRep {
 
 	// qst 7
 	def static void generateDuration(VideoGeneratorModel videoGen) {
+		val content = new StringBuffer
 
 		for (videoseq : videoGen.videoseqs) {
 			if (videoseq instanceof MandatoryVideoSeq) {
@@ -89,19 +89,18 @@ class FFmpegRep {
 				// println(desc.location)
 				if (!desc.videoid.isNullOrEmpty) {
 					var i = Operations.commandFFmpegToGenerateDuration(desc.location)
-
-					var buffer = Operations.getOutput(i)
-					Operations.displayBuffer(buffer)
+					content.append(desc.location + "\t")
+					content.append(i)
+					content.append("\n")
 				}
 			} else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
 				// println(desc.location)
 				if (!desc.videoid.isNullOrEmpty) {
 					var i = Operations.commandFFmpegToGenerateDuration(desc.location)
-
-					var buffer = Operations.getOutput(i)
-					Operations.displayBuffer(buffer)
-
+					content.append(desc.location + "\t")
+					content.append(i)
+					content.append("\n")
 				}
 			} else {
 				val altvid = (videoseq as AlternativeVideoSeq)
@@ -110,13 +109,16 @@ class FFmpegRep {
 						if (!vdesc.videoid.isNullOrEmpty) {
 							// println(vdesc.location)
 							var i = Operations.commandFFmpegToGenerateDuration(vdesc.location)
- 							var buffer = Operations.getOutput(i)  
-							Operations.displayBuffer(buffer)
+							content.append(vdesc.location + "\t")
+							content.append(i)
+							content.append("\n")
+
 						}
 					}
 				}
 			}
 		}
+		Operations.writeToFile("videosDuration.txt", content.toString)
 	}
 
 	// qst 9
@@ -195,6 +197,60 @@ class FFmpegRep {
 		Operations.writeToFile("webPage.html", content)
 	}
 
+	// text incrust
+	def static void textIncrust(VideoGeneratorModel videoGen) {
+		for (videoseq : videoGen.videoseqs) {
+			if (videoseq instanceof MandatoryVideoSeq) {
+				val desc = (videoseq as MandatoryVideoSeq).description
+				if (!desc.videoid.isNullOrEmpty) {
+					Operations.commandIncrustText(desc.location, desc.textIncrust)
+				}
+			} else if (videoseq instanceof OptionalVideoSeq) {
+				val desc = (videoseq as OptionalVideoSeq).description
+				if (!desc.videoid.isNullOrEmpty) {
+					Operations.commandIncrustText(desc.location, desc.textIncrust)
+				}
+			} else {
+				val altvid = (videoseq as AlternativeVideoSeq)
+				if (!altvid.videoid.isNullOrEmpty) {
+					for (vdesc : altvid.videodescs) {
+						if (!vdesc.videoid.isNullOrEmpty) {
+							Operations.commandIncrustText(vdesc.location, vdesc.textIncrust)
+						}
+					}
+				}
+			}
+		}
+		println("sdsdsdsd")
+	}
+
+	// filter
+	def static void blackAndWhiteFilter(VideoGeneratorModel videoGen) {
+		for (videoseq : videoGen.videoseqs) {
+			if (videoseq instanceof MandatoryVideoSeq) {
+				val desc = (videoseq as MandatoryVideoSeq).description
+				if (!desc.videoid.isNullOrEmpty) {
+					Operations.commandFilterBlackAndWhite(desc.location)
+				}
+			} else if (videoseq instanceof OptionalVideoSeq) {
+				val desc = (videoseq as OptionalVideoSeq).description
+				if (!desc.videoid.isNullOrEmpty) {
+					Operations.commandFilterBlackAndWhite(desc.location)
+				}
+			} else {
+				val altvid = (videoseq as AlternativeVideoSeq)
+				if (!altvid.videoid.isNullOrEmpty) {
+					for (vdesc : altvid.videodescs) {
+						if (!vdesc.videoid.isNullOrEmpty) {
+							Operations.commandFilterBlackAndWhite(vdesc.location)
+						}
+					}
+				}
+			}
+		}
+		println("sdsdsdsd")
+	}
+
 	def static void main(String[] args) {
 		// var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen"))
 		var videoGen = loadVideoGenerator(URI.createURI("videos.videogen"))
@@ -202,6 +258,8 @@ class FFmpegRep {
 //		generateThumbnail(videoGen)
 //		generateWebPage(videoGen)
 		generateDuration(videoGen)
+//		blackAndWhiteFilter(videoGen)
+	// textIncrust(videoGen)
 	// printToHTML(videoGen)
 	}
 }

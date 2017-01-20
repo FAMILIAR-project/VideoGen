@@ -1,6 +1,5 @@
 package videogen;
 
-import java.io.BufferedReader;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.function.Consumer;
@@ -148,6 +147,7 @@ public class FFmpegRep {
   }
   
   public static void generateDuration(final VideoGeneratorModel videoGen) {
+    final StringBuffer content = new StringBuffer();
     EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
     for (final VideoSeq videoseq : _videoseqs) {
       if ((videoseq instanceof MandatoryVideoSeq)) {
@@ -157,9 +157,12 @@ public class FFmpegRep {
         boolean _not = (!_isNullOrEmpty);
         if (_not) {
           String _location = desc.getLocation();
-          Process i = Operations.commandFFmpegToGenerateDuration(_location);
-          BufferedReader buffer = Operations.getOutput(i);
-          Operations.displayBuffer(buffer);
+          String i = Operations.commandFFmpegToGenerateDuration(_location);
+          String _location_1 = desc.getLocation();
+          String _plus = (_location_1 + "\t");
+          content.append(_plus);
+          content.append(i);
+          content.append("\n");
         }
       } else {
         if ((videoseq instanceof OptionalVideoSeq)) {
@@ -168,10 +171,13 @@ public class FFmpegRep {
           boolean _isNullOrEmpty_1 = StringExtensions.isNullOrEmpty(_videoid_1);
           boolean _not_1 = (!_isNullOrEmpty_1);
           if (_not_1) {
-            String _location_1 = desc_1.getLocation();
-            Process i_1 = Operations.commandFFmpegToGenerateDuration(_location_1);
-            BufferedReader buffer_1 = Operations.getOutput(i_1);
-            Operations.displayBuffer(buffer_1);
+            String _location_2 = desc_1.getLocation();
+            String i_1 = Operations.commandFFmpegToGenerateDuration(_location_2);
+            String _location_3 = desc_1.getLocation();
+            String _plus_1 = (_location_3 + "\t");
+            content.append(_plus_1);
+            content.append(i_1);
+            content.append("\n");
           }
         } else {
           final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
@@ -185,16 +191,21 @@ public class FFmpegRep {
               boolean _isNullOrEmpty_3 = StringExtensions.isNullOrEmpty(_videoid_3);
               boolean _not_3 = (!_isNullOrEmpty_3);
               if (_not_3) {
-                String _location_2 = vdesc.getLocation();
-                Process i_2 = Operations.commandFFmpegToGenerateDuration(_location_2);
-                BufferedReader buffer_2 = Operations.getOutput(i_2);
-                Operations.displayBuffer(buffer_2);
+                String _location_4 = vdesc.getLocation();
+                String i_2 = Operations.commandFFmpegToGenerateDuration(_location_4);
+                String _location_5 = vdesc.getLocation();
+                String _plus_2 = (_location_5 + "\t");
+                content.append(_plus_2);
+                content.append(i_2);
+                content.append("\n");
               }
             }
           }
         }
       }
     }
+    String _string = content.toString();
+    Operations.writeToFile("videosDuration.txt", _string);
   }
   
   public static void generateThumbnail(final VideoGeneratorModel videoGen) {
@@ -318,6 +329,99 @@ public class FFmpegRep {
     String _string_2 = contentAlt.toString();
     String content = (_plus_12 + _string_2);
     Operations.writeToFile("webPage.html", content);
+  }
+  
+  public static void textIncrust(final VideoGeneratorModel videoGen) {
+    EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
+    for (final VideoSeq videoseq : _videoseqs) {
+      if ((videoseq instanceof MandatoryVideoSeq)) {
+        final VideoDescription desc = ((MandatoryVideoSeq) videoseq).getDescription();
+        String _videoid = desc.getVideoid();
+        boolean _isNullOrEmpty = StringExtensions.isNullOrEmpty(_videoid);
+        boolean _not = (!_isNullOrEmpty);
+        if (_not) {
+          String _location = desc.getLocation();
+          String _textIncrust = desc.getTextIncrust();
+          Operations.commandIncrustText(_location, _textIncrust);
+        }
+      } else {
+        if ((videoseq instanceof OptionalVideoSeq)) {
+          final VideoDescription desc_1 = ((OptionalVideoSeq) videoseq).getDescription();
+          String _videoid_1 = desc_1.getVideoid();
+          boolean _isNullOrEmpty_1 = StringExtensions.isNullOrEmpty(_videoid_1);
+          boolean _not_1 = (!_isNullOrEmpty_1);
+          if (_not_1) {
+            String _location_1 = desc_1.getLocation();
+            String _textIncrust_1 = desc_1.getTextIncrust();
+            Operations.commandIncrustText(_location_1, _textIncrust_1);
+          }
+        } else {
+          final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
+          String _videoid_2 = altvid.getVideoid();
+          boolean _isNullOrEmpty_2 = StringExtensions.isNullOrEmpty(_videoid_2);
+          boolean _not_2 = (!_isNullOrEmpty_2);
+          if (_not_2) {
+            EList<VideoDescription> _videodescs = altvid.getVideodescs();
+            for (final VideoDescription vdesc : _videodescs) {
+              String _videoid_3 = vdesc.getVideoid();
+              boolean _isNullOrEmpty_3 = StringExtensions.isNullOrEmpty(_videoid_3);
+              boolean _not_3 = (!_isNullOrEmpty_3);
+              if (_not_3) {
+                String _location_2 = vdesc.getLocation();
+                String _textIncrust_2 = vdesc.getTextIncrust();
+                Operations.commandIncrustText(_location_2, _textIncrust_2);
+              }
+            }
+          }
+        }
+      }
+    }
+    InputOutput.<String>println("sdsdsdsd");
+  }
+  
+  public static void blackAndWhiteFilter(final VideoGeneratorModel videoGen) {
+    EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
+    for (final VideoSeq videoseq : _videoseqs) {
+      if ((videoseq instanceof MandatoryVideoSeq)) {
+        final VideoDescription desc = ((MandatoryVideoSeq) videoseq).getDescription();
+        String _videoid = desc.getVideoid();
+        boolean _isNullOrEmpty = StringExtensions.isNullOrEmpty(_videoid);
+        boolean _not = (!_isNullOrEmpty);
+        if (_not) {
+          String _location = desc.getLocation();
+          Operations.commandFilterBlackAndWhite(_location);
+        }
+      } else {
+        if ((videoseq instanceof OptionalVideoSeq)) {
+          final VideoDescription desc_1 = ((OptionalVideoSeq) videoseq).getDescription();
+          String _videoid_1 = desc_1.getVideoid();
+          boolean _isNullOrEmpty_1 = StringExtensions.isNullOrEmpty(_videoid_1);
+          boolean _not_1 = (!_isNullOrEmpty_1);
+          if (_not_1) {
+            String _location_1 = desc_1.getLocation();
+            Operations.commandFilterBlackAndWhite(_location_1);
+          }
+        } else {
+          final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
+          String _videoid_2 = altvid.getVideoid();
+          boolean _isNullOrEmpty_2 = StringExtensions.isNullOrEmpty(_videoid_2);
+          boolean _not_2 = (!_isNullOrEmpty_2);
+          if (_not_2) {
+            EList<VideoDescription> _videodescs = altvid.getVideodescs();
+            for (final VideoDescription vdesc : _videodescs) {
+              String _videoid_3 = vdesc.getVideoid();
+              boolean _isNullOrEmpty_3 = StringExtensions.isNullOrEmpty(_videoid_3);
+              boolean _not_3 = (!_isNullOrEmpty_3);
+              if (_not_3) {
+                String _location_2 = vdesc.getLocation();
+                Operations.commandFilterBlackAndWhite(_location_2);
+              }
+            }
+          }
+        }
+      }
+    }
+    InputOutput.<String>println("sdsdsdsd");
   }
   
   public static void main(final String[] args) {
