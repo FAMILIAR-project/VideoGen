@@ -13,23 +13,20 @@ public class Q1ModelToTextSwitch extends VideoGenSwitch<Boolean> {
 
 	private StringBuffer textBuffer = null;
 
-
 	public StringBuffer getTextBuffer() {
 		return textBuffer;
 	}
-
 
 	public Q1ModelToTextSwitch() {
 		super();
 		textBuffer = new StringBuffer();
 	}
 
-
 	@Override
 	public Boolean caseVideoGeneratorModel(VideoGeneratorModel videoGenModel) {
 		textBuffer.append("#this is a comment\n");
 		EList<VideoSeq> videoseqs = videoGenModel.getVideoseqs();
-		for (VideoSeq videoseq : videoseqs){
+		for (VideoSeq videoseq : videoseqs) {
 			doSwitch(videoseq);
 		}
 		return super.caseVideoGeneratorModel(videoGenModel);
@@ -39,7 +36,7 @@ public class Q1ModelToTextSwitch extends VideoGenSwitch<Boolean> {
 	@Override
 	public Boolean caseVideoDescription(VideoDescription videoDesc) {
 		String location = videoDesc.getLocation();
-		textBuffer.append("file '" + location+"'\n");
+		textBuffer.append("file '" + location + "'\n");
 		return super.caseVideoDescription(videoDesc);
 	}
 
@@ -55,11 +52,11 @@ public class Q1ModelToTextSwitch extends VideoGenSwitch<Boolean> {
 	public Boolean caseOptionalVideoSeq(OptionalVideoSeq optionalVideoseq) {
 		VideoDescription description = optionalVideoseq.getDescription();
 		int probability = description.getProbability();
-		int nombreAleatoire = 1 + (int)(Math.random() * ((100 - 1) + 1));
-		if (probability == 0){
+		int nombreAleatoire = Utils.genRandomInt(100);
+		if (probability == 0) {
 			probability = 50;
 		}
-		if (nombreAleatoire < probability){
+		if (nombreAleatoire < probability) {
 			doSwitch(description);
 		}
 
@@ -70,9 +67,10 @@ public class Q1ModelToTextSwitch extends VideoGenSwitch<Boolean> {
 	public Boolean caseAlternativeVideoSeq(AlternativeVideoSeq alternativeVideoseq) {
 		EList<VideoDescription> videodescs = alternativeVideoseq.getVideodescs();
 		int nbAlternative = videodescs.size();
-		int nombreAleatoire = (int)(Math.random() * ((nbAlternative - 1) + 1));
+		int nombreAleatoire = Utils.genRandomInt(nbAlternative) - 1;
 		VideoDescription alternativeSelectionnee = videodescs.get(nombreAleatoire);
 		doSwitch(alternativeSelectionnee);
 		return super.caseAlternativeVideoSeq(alternativeVideoseq);
 	}
+
 }
