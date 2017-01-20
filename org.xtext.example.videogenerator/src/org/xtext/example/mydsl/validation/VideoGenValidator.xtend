@@ -32,9 +32,9 @@ class VideoGenValidator extends AbstractVideoGenValidator {
 //	}
 	@Check
 	def void checkVideoIdentifierIsUnique(VideoDescription desc) {
-		if (desc.videoid == null || desc.videoid.isEmpty) return ;
+		if(desc.videoid == null || desc.videoid.isEmpty) return;
 		var seq = desc.eContainer // video sequence
-		println ("checking " + desc.videoid + " with parent: " + seq)
+		println("checking " + desc.videoid + " with parent: " + seq)
 		var gen = if (seq instanceof MandatoryVideoSeq) {
 				(seq as MandatoryVideoSeq).eContainer as VideoGeneratorModel
 			} else if (seq instanceof OptionalVideoSeq) {
@@ -45,74 +45,145 @@ class VideoGenValidator extends AbstractVideoGenValidator {
 
 		for (seq2 : gen.videoseqs) {
 
-			//if (seq != seq2) {
-
-				if (seq2 instanceof MandatoryVideoSeq) {
-					var desc2 = (seq2 as MandatoryVideoSeq).getDescription()
-					if (desc2 != null && desc != desc2)
-						if (desc.videoid.equals(desc2.videoid)) {
-							error(
-								"Video sequence identifiers have to be unique (" + desc2.videoid + " is not)",
-								VideoGenPackage.Literals::VIDEO_DESCRIPTION__VIDEOID
-							);
-							return;
-						}
-				} else if (seq2 instanceof OptionalVideoSeq) {
-					var desc2 = (seq2 as OptionalVideoSeq).getDescription()
-					if (desc2 != null && desc != desc2)
-						if (desc.videoid.equals(desc2.videoid)) {
-							error(
-								"Video sequence identifiers have to be unique (" + desc2.videoid + " is not)",
-								VideoGenPackage.Literals::VIDEO_DESCRIPTION__VIDEOID
-							);
-							return;
-						}
-				} else {
-					var vid2 = (seq2 as AlternativeVideoSeq).videoid
-
-					if (seq != seq2 && desc.videoid.equals(vid2)) {
+			// if (seq != seq2) {
+			if (seq2 instanceof MandatoryVideoSeq) {
+				var desc2 = (seq2 as MandatoryVideoSeq).getDescription()
+				if (desc2 != null && desc != desc2)
+					if (desc.videoid.equals(desc2.videoid)) {
 						error(
-							"Video sequence identifiers have to be unique (" + vid2 + " is not)",
+							"Video sequence identifiers have to be unique (" + desc2.videoid + " is not)",
 							VideoGenPackage.Literals::VIDEO_DESCRIPTION__VIDEOID
 						);
 						return;
 					}
-
-					for (adesc : (seq2 as AlternativeVideoSeq).videodescs) {
-						if (adesc != null && adesc != desc)
-							if (desc.videoid.equals(adesc.videoid)) {
-								error(
-									"Video sequence identifiers have to be unique (" + adesc.videoid + " is not)",
-									VideoGenPackage.Literals::VIDEO_DESCRIPTION__VIDEOID
-								);
-								return;
-							}
+			} else if (seq2 instanceof OptionalVideoSeq) {
+				var desc2 = (seq2 as OptionalVideoSeq).getDescription()
+				if (desc2 != null && desc != desc2)
+					if (desc.videoid.equals(desc2.videoid)) {
+						error(
+							"Video sequence identifiers have to be unique (" + desc2.videoid + " is not)",
+							VideoGenPackage.Literals::VIDEO_DESCRIPTION__VIDEOID
+						);
+						return;
 					}
+			} else {
+				var vid2 = (seq2 as AlternativeVideoSeq).videoid
+
+				if (seq != seq2 && desc.videoid.equals(vid2)) {
+					error(
+						"Video sequence identifiers have to be unique (" + vid2 + " is not)",
+						VideoGenPackage.Literals::VIDEO_DESCRIPTION__VIDEOID
+					);
+					return;
 				}
 
-			//}
+				for (adesc : (seq2 as AlternativeVideoSeq).videodescs) {
+					if (adesc != null && adesc != desc)
+						if (desc.videoid.equals(adesc.videoid)) {
+							error(
+								"Video sequence identifiers have to be unique (" + adesc.videoid + " is not)",
+								VideoGenPackage.Literals::VIDEO_DESCRIPTION__VIDEOID
+							);
+							return;
+						}
+				}
+			}
 
+		// }
 		}
 
 	}
-	
+
 	@Check
 	def void checkVideoIdentifierIsUniqueForAlternative(AlternativeVideoSeq seq) {
-		println ("checking alternative " + seq.videoid)
-		if (seq.videoid == null) return;
+		println("checking alternative " + seq.videoid)
+		if(seq.videoid == null) return;
 		for (avid : seq.videodescs) {
 			if (seq.videoid.equals(avid.videoid)) {
 				error(
-							"Video sequence identifiers have to be unique (" + seq.videoid + " is not)",
-							VideoGenPackage.Literals::ALTERNATIVE_VIDEO_SEQ__VIDEOID
-						);
-						return;
+					"Video sequence identifiers have to be unique (" + seq.videoid + " is not)",
+					VideoGenPackage.Literals::ALTERNATIVE_VIDEO_SEQ__VIDEOID
+				);
+				return;
 			}
 		}
 
-		
 	}
 
-	
+	@Check
+	def void checkValidProbability(VideoDescription desc) {
+		if (desc.probability > 100)
+			error("Probality should be < 100", VideoGenPackage.Literals::VIDEO_DESCRIPTION__PROBABILITY)
+	}
+
+	@Check
+	def void checkAlternativesProbability(VideoDescription desc) {
+		var sum = 0
+		var seq = desc.eContainer // video sequence
+		if (seq instanceof AlternativeVideoSeq) {
+			var gen = (seq as AlternativeVideoSeq).eContainer as VideoGeneratorModel
+			for (vdesc : seq.videodescs) {
+				sum += vdesc.probability
+			}
+			if (sum > 100) {
+				error(
+					"Alternatives probability sum > 100",
+					VideoGenPackage.Literals::VIDEO_DESCRIPTION__PROBABILITY
+				);
+				return;
+			}
+
+		}
+	}
+
+	@Check
+	def void checkUniqueVideoPath(VideoDescription desc) {
+		var seq = desc.eContainer // video sequence
+		var gen = if (seq instanceof MandatoryVideoSeq) {
+				(seq as MandatoryVideoSeq).eContainer as VideoGeneratorModel
+			} else if (seq instanceof OptionalVideoSeq) {
+				(seq as OptionalVideoSeq).eContainer as VideoGeneratorModel
+			} else {
+				(seq as AlternativeVideoSeq).eContainer as VideoGeneratorModel
+			}
+
+		for (seq2 : gen.videoseqs) {
+			if (seq2 instanceof MandatoryVideoSeq) {
+				var desc2 = (seq2 as MandatoryVideoSeq).getDescription()
+				if (desc2 != null && desc != desc2)
+					if (desc.location.equals(desc2.location)) {
+						error(
+							"Video path already exists",
+							VideoGenPackage.Literals::VIDEO_DESCRIPTION__LOCATION
+						);
+						return;
+					}
+			} else if (seq2 instanceof OptionalVideoSeq) {
+				var desc2 = (seq2 as OptionalVideoSeq).getDescription()
+				if (desc2 != null && desc != desc2)
+					if (desc.location.equals(desc2.location)) {
+						error(
+							"Video path already exists",
+							VideoGenPackage.Literals::VIDEO_DESCRIPTION__LOCATION
+						);
+						return;
+					}
+			} else {
+				var vid2 = (seq2 as AlternativeVideoSeq).videoid
+				for (adesc : (seq2 as AlternativeVideoSeq).videodescs) {
+					if (adesc != null && adesc != desc)
+						if (desc.location.equals(adesc.location)) {
+							error(
+								"Video path already exists",
+								VideoGenPackage.Literals::VIDEO_DESCRIPTION__LOCATION
+							);
+							return;
+						}
+				}
+			}
+			
+			
+		}
+	}
 
 }

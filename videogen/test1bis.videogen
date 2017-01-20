@@ -1,21 +1,6 @@
-VideoGen {
-	
-	mandatory videoseq v0
-"data/videos/Great-Teacher-Onizuka-Episode-1.mp4" { duration 2904 probability
-100 } 
-	optional videoseq v1
-"data/videos/Great-Teacher-Onizuka-Episode-32.mp4" {
-		duration 1450
-probability 101
-	}
-	alternatives vid3 {
-		videoseq v2
-"data/videos/Great-Teacher-Onizuka-Episode-33.mp4" {
-		duration 1448
+VideoGen { mandatory videoseq v0 "data/videos/Great-Teacher-Onizuka-Episode-1.mp4" { probability 100 } optional
+videoseq v1 "data/videos/Great-Teacher-Onizuka-Episode-32.mp4" { probability 101
+	} alternatives vid3 { videoseq v2 "data/videos/SampleVideo.mp4" {
 probability 50
-	}
-		videoseq vid31 "data/videos/Great-Teacher-Onizuka-Episode-33.mp4"{
-		duration 1448 probability 50
-	}
-	}
-}
+	} videoseq vid31 "data/videos/Great-Teacher-Onizuka-Episode-33.mp4" { probability 50
+	} } }

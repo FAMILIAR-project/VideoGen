@@ -26,7 +26,8 @@ VideoDescription : 'videoseq' (videoid=ID)? location=STRING
 	 ('duration' duration=INT)?
 	 ('probability' probability=INT)?
 	 ('size' size=INT)?
-	 ('description' description=STRING)? 
+	 ('description' description=STRING)?
+	 ('text' text=STRING)?
 	RIGHT_BRACKET)?
 	
 ;

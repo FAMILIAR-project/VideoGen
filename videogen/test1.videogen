@@ -1,14 +1,14 @@
 VideoGen {
 	
-	mandatory videoseq "data/videos/Great-Teacher-Onizuka-Episode-1.mp4" 
-	optional videoseq "data/videos/Great-Teacher-Onizuka-Episode-32.mp4" {
+	mandatory videoseq "src/main/webapp/data/videos/Great-Teacher-Onizuka-Episode-1.mp4" 
+	optional videoseq "src/main/webapp/data/videos/Great-Teacher-Onizuka-Episode-32.mp4" {
 		probability 101
 	}
 	alternatives vid3 {
-		videoseq "data/videos/SampleVideo.mp4" {
+		videoseq "src/main/webapp/data/videos/SampleVideo.mp4" {
 		probability 50
 	}
-		videoseq vid31 "data/videos/Great-Teacher-Onizuka-Episode-33.mp4"{
+		videoseq vid31 "src/main/webapp/data/videos/Great-Teacher-Onizuka-Episode-33.mp4"{
 		probability 50
 	}
 	}

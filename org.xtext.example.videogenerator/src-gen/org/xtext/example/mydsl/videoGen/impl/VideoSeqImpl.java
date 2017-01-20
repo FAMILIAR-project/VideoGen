@@ -19,24 +19,24 @@ import org.xtext.example.mydsl.videoGen.VideoSeq;
 public class VideoSeqImpl extends MinimalEObjectImpl.Container implements VideoSeq
 {
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected VideoSeqImpl()
   {
-    super();
-  }
+		super();
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   protected EClass eStaticClass()
   {
-    return VideoGenPackage.Literals.VIDEO_SEQ;
-  }
+		return VideoGenPackage.Literals.VIDEO_SEQ;
+	}
 
 } //VideoSeqImpl
