@@ -158,7 +158,7 @@ class VideoDemonstrator {
 	
 	@Test
 	def testQ4() {
-		// loading
+		//loading
 		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
 		assertNotNull(videoGen)
 		assertEquals(7, videoGen.videoseqs.size)
