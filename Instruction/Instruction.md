@@ -42,11 +42,15 @@ The application is available at "http://localhost:8080/#/videogen"
 ### Random Mode
   A random playlist can be generated from the video list. Here, the basic rules are applied meaning mandatory videos are always picked and Optional and Alternative videos are picked base on their probabilities.
   The playlist is then rendered with flowplayer.
+  
+  Screencast: (https://www.youtube.com/watch?v=L4p5Ix8ibxo)
     
 ### Config Mode
   A custom playlist can be generated from the video list based on user choice.
   Here, mandatory videos are always picked. However, the user can select which optional and alternative videos are added to the playlist.
  The playlist is then rendered with flowplayer.
+ 
+  Screencast: (https://www.youtube.com/watch?v=-zuyEHikLY0)
 
 ### Thumbnails
   Thumbnails of videos are generated during the loading of the page.
@@ -56,7 +60,11 @@ The application is available at "http://localhost:8080/#/videogen"
   Gifs can be generated from the current playlist. All gifs will have a small part of each videos of the current playlist.
   All gifs are created in the folder https://github.com/RomainG93/VideoGen/tree/master/videogen/web/src/main/webapp/data/gifs
   
+  Screencast: (https://www.youtube.com/watch?v=Qyu-WK77J3I)
+  
 ### Add text
   It is possible to add a text on a video or a set of videos. The text as well as the position of the text inside the video (top, middle, bottom) is defined by the user.
   This feature was tested on local server only and it took a while to generate a new video with a text on it due to the fact that the server was always restarting in order to update the classpath.
+  
+  Screencast: (https://www.youtube.com/watch?v=OCohYmbqTik)
   
