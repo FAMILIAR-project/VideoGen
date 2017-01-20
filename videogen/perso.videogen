@@ -1,0 +1,12 @@
+VideoGen{
+	
+	mandatory videoseq "/home/nirina/Vidéos/10dec16/DSC_0247.MOV"
+	optional videoseq "/home/nirina/Vidéos/31dec16/DSC_0331.MOV"
+	alternatives {
+		videoseq "/home/nirina/Vidéos/30oct16/DSC_0088.MOV"
+		videoseq "/home/nirina/Vidéos/30oct16/DSC_0089.MOV"
+		videoseq "/home/nirina/Vidéos/30oct16/DSC_0090.MOV"
+		videoseq "/home/nirina/Vidéos/30oct16/DSC_0131.MOV"
+		videoseq "/home/nirina/Vidéos/30oct16/DSC_0171.MOV"
+	}
+}

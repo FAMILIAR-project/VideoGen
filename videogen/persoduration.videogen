@@ -1,0 +1,12 @@
+VideoGen{
+	
+	mandatory videoseq "/home/nirina/Vidéos/10dec16/DSC_0247.MOV" { duration 32 }
+	optional videoseq "/home/nirina/Vidéos/31dec16/DSC_0331.MOV" { duration 89 }
+	alternatives {
+		videoseq "/home/nirina/Vidéos/30oct16/DSC_0088.MOV" { duration 4 }
+		videoseq "/home/nirina/Vidéos/30oct16/DSC_0089.MOV" { duration 12 }
+		videoseq "/home/nirina/Vidéos/30oct16/DSC_0090.MOV" { duration 6 }
+		videoseq "/home/nirina/Vidéos/30oct16/DSC_0131.MOV" { duration 39 }
+		videoseq "/home/nirina/Vidéos/30oct16/DSC_0171.MOV"
+	{ duration 30 } }
+}
