@@ -7,21 +7,21 @@
     <description videoid="v1" location="v2folder/v2.mp4" probability="25"/>
   </videoseqs>
   <videoseqs xsi:type="videoGen:AlternativeVideoSeq" videoid="vid3">
-    <videodescs videoid="v2" location="v3/seq1.mp4"/>
-    <videodescs videoid="vid31" location="v3/seq2.mp4"/>
-    <videodescs videoid="vid32" location="v3/seq3.mp4"/>
+    <videodescs videoid="v2" location="v3/seq1.mp4" probability="50"/>
+    <videodescs videoid="vid31" location="v3/seq2.mp4" probability="20"/>
+    <videodescs videoid="vid32" location="v3/seq3.mp4" probability="30"/>
   </videoseqs>
   <videoseqs xsi:type="videoGen:AlternativeVideoSeq" videoid="vid4">
-    <videodescs videoid="vid41" location="v4/seq1.mp4"/>
-    <videodescs videoid="vid42" location="v4/seq2.mp4"/>
+    <videodescs videoid="vid41" location="v4/seq1.mp4" probability="15"/>
+    <videodescs videoid="vid42" location="v4/seq2.mp4" probability="85"/>
   </videoseqs>
   <videoseqs xsi:type="videoGen:MandatoryVideoSeq">
     <description videoid="vid5" location="v5.mp4"/>
   </videoseqs>
   <videoseqs xsi:type="videoGen:OptionalVideoSeq">
-    <description videoid="vid8" location="v8.avi"/>
+    <description videoid="vid8" location="v8.avi" probability="80"/>
   </videoseqs>
   <videoseqs xsi:type="videoGen:AlternativeVideoSeq" videoid="vid9">
-    <videodescs videoid="vid81" location="V81.avi"/>
+    <videodescs videoid="vid81" location="V81.avi" probability="100"/>
   </videoseqs>
 </videoGen:VideoGeneratorModel>

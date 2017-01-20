@@ -1,0 +1,117 @@
+<div ng-cloak>
+    <div class="row" ng-init="vm.getVideos()">
+        <div class="col-md-5">
+            <h1>Video Generator</h1>
+            <button ng-click="vm.generate()" type="button" class="btn btn-success">Generate</button>
+            <button ng-click="vm.generateGif()" type="button" class="btn btn-success">Random Gif</button>
+            <div  class="list-group">
+                <div class="list-group-item">
+                    <h4>Mode</h4>
+                    <span class="list-group-item">
+                    <label>
+                        <input type="radio" ng-model="vm.mode" value="random">
+                        Random
+                    </label>
+                    <label>
+                        <input type="radio" ng-model="vm.mode" value="config">
+                        Config
+                    </label>
+                    </span>
+                </div>
+                <div class="list-group-item">
+                    <h4>Text</h4>
+                    <span class="list-group-item">
+                        <label>
+                            Text to add:
+                            <input type="text" ng-model="vm.text" value=""><br>
+                            <h4>Text Position: </h4>
+                            <label>
+                                <input type="radio" ng-model="vm.textPosition" value="top">
+                                Top
+                            </label>
+                            <label>
+                                <input type="radio" ng-model="vm.textPosition" value="middle">
+                                Middle
+                            </label>
+                            <label>
+                                <input type="radio" ng-model="vm.textPosition" value="bottom">
+                                Bottom
+                            </label>
+                        </label>
+                    </span>
+                </div>
+            </div>
+            <div class="list-group" ng-repeat="(key, value) in vm.videos">
+                <span class="list-group-item" ng-if="vm.checkStart('mandatory', key)">
+                    <h4>Mandatory</h4>
+                    <span class="list-group-item" ng-repeat="(key2, value2) in value">
+                    <span>{{ key2 }}</span>
+                    <img src="data/thumbnails/{{ key2 }}.png" height="50" width="50"/>
+                    <span>
+                    <label>
+                        Add text
+                        <input type="checkbox" ng-click="vm.addText(key, key2)">
+                    </label>
+                    </span>
+                    </span>
+                </span>
+                <span class="list-group-item" ng-if="vm.checkStart('optional', key)">
+                    <h4>Optional</h4>
+                    <span class="list-group-item" ng-repeat="(key2, value2) in value"  ng-class="{'active': value2['selected']}">
+                    <span ng-click="vm.configVideoSelected(key, key2)">
+                    <span>{{ key2 }}</span>
+                    <img src="data/thumbnails/{{ key2 }}.png" height="50" width="50"/>
+                    </span>
+                    <span>
+                    <label>
+                        Add text
+                        <input type="checkbox" ng-click="vm.addText(key, key2)">
+                    </label>
+                    </span>
+                    </span>
+                </span>
+                <span class="list-group-item" ng-if="vm.checkStart('alternative', key)">
+                    <h4>Alternative</h4>
+                    <span class="list-group-item" ng-repeat="(key2, value2) in value" ng-class="{'active': value2['selected']}">
+                    <span ng-click="vm.configVideoSelected(key, key2)">
+                    <span>{{ key2 }}</span>
+                    <img src="data/thumbnails/{{ key2 }}.png" height="50" width="50"/>
+                    </span>
+                    <span>
+                    <label>
+                        Add text
+                        <input type="checkbox" ng-click="vm.addText(key, key2)">
+                    </label><br>
+                    </span>
+                    </span>
+                </span>
+            </div>
+            <div ng-switch="vm.isAuthenticated()">
+                <div class="alert alert-success" ng-switch-when="true" data-translate="home.logged.message"
+                     translate-values="{username: '{{vm.account.login}}'}">
+                    You are logged in as user "{{vm.account.login}}".
+                </div>
+                <div class="alert alert-warning" ng-switch-when="false"
+                     data-translate="global.messages.info.authenticated" translate-compile>
+                    If you want to <a class="alert-link" href="" ng-click="vm.login()">sign in</a>, you can try the
+                    default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user"
+                    and password="user").
+                </div>
+                <div class="alert alert-warning" ng-switch-when="false" data-translate="global.messages.info.register"
+                     translate-compile>
+                    You don't have an account yet? <a class="alert-link" ui-sref="register">Register a new account</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div id="jsplaylist" my-playlist="" videos="vm.playlist">
+                <!-- optional prev/next buttons -->
+                <a class="fp-prev"></a>
+                <a class="fp-next"></a>
+            </div>
+            <div ng-if="vm.gifPath != ''">
+                <img src="data/gifs/{{ vm.gifPath }}" width="300" height="300" />
+            </div>
+        </div>
+    </div>
+</div>

@@ -21,158 +21,154 @@ import org.xtext.example.mydsl.videoGen.*;
 public class VideoGenFactoryImpl extends EFactoryImpl implements VideoGenFactory
 {
   /**
-   * Creates the default factory implementation.
-   * <!-- begin-user-doc -->
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public static VideoGenFactory init()
   {
-    try
-    {
-      VideoGenFactory theVideoGenFactory = (VideoGenFactory)EPackage.Registry.INSTANCE.getEFactory(VideoGenPackage.eNS_URI);
-      if (theVideoGenFactory != null)
-      {
-        return theVideoGenFactory;
-      }
-    }
-    catch (Exception exception)
-    {
-      EcorePlugin.INSTANCE.log(exception);
-    }
-    return new VideoGenFactoryImpl();
-  }
+		try {
+			VideoGenFactory theVideoGenFactory = (VideoGenFactory)EPackage.Registry.INSTANCE.getEFactory(VideoGenPackage.eNS_URI);
+			if (theVideoGenFactory != null) {
+				return theVideoGenFactory;
+			}
+		}
+		catch (Exception exception) {
+			EcorePlugin.INSTANCE.log(exception);
+		}
+		return new VideoGenFactoryImpl();
+	}
 
   /**
-   * Creates an instance of the factory.
-   * <!-- begin-user-doc -->
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public VideoGenFactoryImpl()
   {
-    super();
-  }
+		super();
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public EObject create(EClass eClass)
   {
-    switch (eClass.getClassifierID())
-    {
-      case VideoGenPackage.VIDEO_GENERATOR_MODEL: return createVideoGeneratorModel();
-      case VideoGenPackage.VIDEO_GEN_INFORMATION: return createVideoGenInformation();
-      case VideoGenPackage.VIDEO_SEQ: return createVideoSeq();
-      case VideoGenPackage.MANDATORY_VIDEO_SEQ: return createMandatoryVideoSeq();
-      case VideoGenPackage.OPTIONAL_VIDEO_SEQ: return createOptionalVideoSeq();
-      case VideoGenPackage.ALTERNATIVE_VIDEO_SEQ: return createAlternativeVideoSeq();
-      case VideoGenPackage.VIDEO_DESCRIPTION: return createVideoDescription();
-      default:
-        throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-    }
-  }
+		switch (eClass.getClassifierID()) {
+			case VideoGenPackage.VIDEO_GENERATOR_MODEL: return createVideoGeneratorModel();
+			case VideoGenPackage.VIDEO_GEN_INFORMATION: return createVideoGenInformation();
+			case VideoGenPackage.VIDEO_SEQ: return createVideoSeq();
+			case VideoGenPackage.MANDATORY_VIDEO_SEQ: return createMandatoryVideoSeq();
+			case VideoGenPackage.OPTIONAL_VIDEO_SEQ: return createOptionalVideoSeq();
+			case VideoGenPackage.ALTERNATIVE_VIDEO_SEQ: return createAlternativeVideoSeq();
+			case VideoGenPackage.VIDEO_DESCRIPTION: return createVideoDescription();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		}
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public VideoGeneratorModel createVideoGeneratorModel()
   {
-    VideoGeneratorModelImpl videoGeneratorModel = new VideoGeneratorModelImpl();
-    return videoGeneratorModel;
-  }
+		VideoGeneratorModelImpl videoGeneratorModel = new VideoGeneratorModelImpl();
+		return videoGeneratorModel;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public VideoGenInformation createVideoGenInformation()
   {
-    VideoGenInformationImpl videoGenInformation = new VideoGenInformationImpl();
-    return videoGenInformation;
-  }
+		VideoGenInformationImpl videoGenInformation = new VideoGenInformationImpl();
+		return videoGenInformation;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public VideoSeq createVideoSeq()
   {
-    VideoSeqImpl videoSeq = new VideoSeqImpl();
-    return videoSeq;
-  }
+		VideoSeqImpl videoSeq = new VideoSeqImpl();
+		return videoSeq;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public MandatoryVideoSeq createMandatoryVideoSeq()
   {
-    MandatoryVideoSeqImpl mandatoryVideoSeq = new MandatoryVideoSeqImpl();
-    return mandatoryVideoSeq;
-  }
+		MandatoryVideoSeqImpl mandatoryVideoSeq = new MandatoryVideoSeqImpl();
+		return mandatoryVideoSeq;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public OptionalVideoSeq createOptionalVideoSeq()
   {
-    OptionalVideoSeqImpl optionalVideoSeq = new OptionalVideoSeqImpl();
-    return optionalVideoSeq;
-  }
+		OptionalVideoSeqImpl optionalVideoSeq = new OptionalVideoSeqImpl();
+		return optionalVideoSeq;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public AlternativeVideoSeq createAlternativeVideoSeq()
   {
-    AlternativeVideoSeqImpl alternativeVideoSeq = new AlternativeVideoSeqImpl();
-    return alternativeVideoSeq;
-  }
+		AlternativeVideoSeqImpl alternativeVideoSeq = new AlternativeVideoSeqImpl();
+		return alternativeVideoSeq;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public VideoDescription createVideoDescription()
   {
-    VideoDescriptionImpl videoDescription = new VideoDescriptionImpl();
-    return videoDescription;
-  }
+		VideoDescriptionImpl videoDescription = new VideoDescriptionImpl();
+		return videoDescription;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public VideoGenPackage getVideoGenPackage()
   {
-    return (VideoGenPackage)getEPackage();
-  }
+		return (VideoGenPackage)getEPackage();
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @deprecated
-   * @generated
-   */
+	 * @deprecated
+	 * @generated
+	 */
   @Deprecated
   public static VideoGenPackage getPackage()
   {
-    return VideoGenPackage.eINSTANCE;
-  }
+		return VideoGenPackage.eINSTANCE;
+	}
 
 } //VideoGenFactoryImpl

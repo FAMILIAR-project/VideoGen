@@ -4,7 +4,7 @@
     editorDirectory="/org.xtext.example.videogenerator.editor/src" modelPluginID="org.xtext.example.videogenerator"
     forceOverwrite="true" modelName="VideoGen" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="6.0" copyrightFields="false" editPluginID="org.xtext.example.videogenerator.edit"
-    editorPluginID="org.xtext.example.videogenerator.editor" runtimeVersion="2.12">
+    editorPluginID="org.xtext.example.videogenerator.editor" runtimeVersion="2.11">
   <genPackages prefix="VideoGen" basePackage="org.xtext.example.mydsl" disposableProviderFactory="true"
       fileExtensions="videogen" ecorePackage="VideoGen.ecore#/">
     <genClasses ecoreClass="VideoGen.ecore#//VideoGeneratorModel">

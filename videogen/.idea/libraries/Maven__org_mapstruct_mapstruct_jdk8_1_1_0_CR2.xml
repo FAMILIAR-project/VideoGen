@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.mapstruct:mapstruct-jdk8:1.1.0.CR2">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-jdk8/1.1.0.CR2/mapstruct-jdk8-1.1.0.CR2.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-jdk8/1.1.0.CR2/mapstruct-jdk8-1.1.0.CR2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-jdk8/1.1.0.CR2/mapstruct-jdk8-1.1.0.CR2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

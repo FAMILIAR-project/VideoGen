@@ -22,231 +22,219 @@ import org.xtext.example.mydsl.videoGen.*;
 public class VideoGenAdapterFactory extends AdapterFactoryImpl
 {
   /**
-   * The cached model package.
-   * <!-- begin-user-doc -->
+	 * The cached model package.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected static VideoGenPackage modelPackage;
 
   /**
-   * Creates an instance of the adapter factory.
-   * <!-- begin-user-doc -->
+	 * Creates an instance of the adapter factory.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public VideoGenAdapterFactory()
   {
-    if (modelPackage == null)
-    {
-      modelPackage = VideoGenPackage.eINSTANCE;
-    }
-  }
+		if (modelPackage == null) {
+			modelPackage = VideoGenPackage.eINSTANCE;
+		}
+	}
 
   /**
-   * Returns whether this factory is applicable for the type of the object.
-   * <!-- begin-user-doc -->
+	 * Returns whether this factory is applicable for the type of the object.
+	 * <!-- begin-user-doc -->
    * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model.
    * <!-- end-user-doc -->
-   * @return whether this factory is applicable for the type of the object.
-   * @generated
-   */
+	 * @return whether this factory is applicable for the type of the object.
+	 * @generated
+	 */
   @Override
   public boolean isFactoryForType(Object object)
   {
-    if (object == modelPackage)
-    {
-      return true;
-    }
-    if (object instanceof EObject)
-    {
-      return ((EObject)object).eClass().getEPackage() == modelPackage;
-    }
-    return false;
-  }
+		if (object == modelPackage) {
+			return true;
+		}
+		if (object instanceof EObject) {
+			return ((EObject)object).eClass().getEPackage() == modelPackage;
+		}
+		return false;
+	}
 
   /**
-   * The switch that delegates to the <code>createXXX</code> methods.
-   * <!-- begin-user-doc -->
+	 * The switch that delegates to the <code>createXXX</code> methods.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected VideoGenSwitch<Adapter> modelSwitch =
-    new VideoGenSwitch<Adapter>()
-    {
-      @Override
-      public Adapter caseVideoGeneratorModel(VideoGeneratorModel object)
-      {
-        return createVideoGeneratorModelAdapter();
-      }
-      @Override
-      public Adapter caseVideoGenInformation(VideoGenInformation object)
-      {
-        return createVideoGenInformationAdapter();
-      }
-      @Override
-      public Adapter caseVideoSeq(VideoSeq object)
-      {
-        return createVideoSeqAdapter();
-      }
-      @Override
-      public Adapter caseMandatoryVideoSeq(MandatoryVideoSeq object)
-      {
-        return createMandatoryVideoSeqAdapter();
-      }
-      @Override
-      public Adapter caseOptionalVideoSeq(OptionalVideoSeq object)
-      {
-        return createOptionalVideoSeqAdapter();
-      }
-      @Override
-      public Adapter caseAlternativeVideoSeq(AlternativeVideoSeq object)
-      {
-        return createAlternativeVideoSeqAdapter();
-      }
-      @Override
-      public Adapter caseVideoDescription(VideoDescription object)
-      {
-        return createVideoDescriptionAdapter();
-      }
-      @Override
-      public Adapter defaultCase(EObject object)
-      {
-        return createEObjectAdapter();
-      }
-    };
+    new VideoGenSwitch<Adapter>() {
+			@Override
+			public Adapter caseVideoGeneratorModel(VideoGeneratorModel object) {
+				return createVideoGeneratorModelAdapter();
+			}
+			@Override
+			public Adapter caseVideoGenInformation(VideoGenInformation object) {
+				return createVideoGenInformationAdapter();
+			}
+			@Override
+			public Adapter caseVideoSeq(VideoSeq object) {
+				return createVideoSeqAdapter();
+			}
+			@Override
+			public Adapter caseMandatoryVideoSeq(MandatoryVideoSeq object) {
+				return createMandatoryVideoSeqAdapter();
+			}
+			@Override
+			public Adapter caseOptionalVideoSeq(OptionalVideoSeq object) {
+				return createOptionalVideoSeqAdapter();
+			}
+			@Override
+			public Adapter caseAlternativeVideoSeq(AlternativeVideoSeq object) {
+				return createAlternativeVideoSeqAdapter();
+			}
+			@Override
+			public Adapter caseVideoDescription(VideoDescription object) {
+				return createVideoDescriptionAdapter();
+			}
+			@Override
+			public Adapter defaultCase(EObject object) {
+				return createEObjectAdapter();
+			}
+		};
 
   /**
-   * Creates an adapter for the <code>target</code>.
-   * <!-- begin-user-doc -->
+	 * Creates an adapter for the <code>target</code>.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param target the object to adapt.
-   * @return the adapter for the <code>target</code>.
-   * @generated
-   */
+	 * @param target the object to adapt.
+	 * @return the adapter for the <code>target</code>.
+	 * @generated
+	 */
   @Override
   public Adapter createAdapter(Notifier target)
   {
-    return modelSwitch.doSwitch((EObject)target);
-  }
+		return modelSwitch.doSwitch((EObject)target);
+	}
 
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.videoGen.VideoGeneratorModel <em>Video Generator Model</em>}'.
-   * <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.videoGen.VideoGeneratorModel <em>Video Generator Model</em>}'.
+	 * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.mydsl.videoGen.VideoGeneratorModel
-   * @generated
-   */
+	 * @return the new adapter.
+	 * @see org.xtext.example.mydsl.videoGen.VideoGeneratorModel
+	 * @generated
+	 */
   public Adapter createVideoGeneratorModelAdapter()
   {
-    return null;
-  }
+		return null;
+	}
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.videoGen.VideoGenInformation <em>Information</em>}'.
-   * <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.videoGen.VideoGenInformation <em>Information</em>}'.
+	 * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.mydsl.videoGen.VideoGenInformation
-   * @generated
-   */
+	 * @return the new adapter.
+	 * @see org.xtext.example.mydsl.videoGen.VideoGenInformation
+	 * @generated
+	 */
   public Adapter createVideoGenInformationAdapter()
   {
-    return null;
-  }
+		return null;
+	}
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.videoGen.VideoSeq <em>Video Seq</em>}'.
-   * <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.videoGen.VideoSeq <em>Video Seq</em>}'.
+	 * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.mydsl.videoGen.VideoSeq
-   * @generated
-   */
+	 * @return the new adapter.
+	 * @see org.xtext.example.mydsl.videoGen.VideoSeq
+	 * @generated
+	 */
   public Adapter createVideoSeqAdapter()
   {
-    return null;
-  }
+		return null;
+	}
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.videoGen.MandatoryVideoSeq <em>Mandatory Video Seq</em>}'.
-   * <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.videoGen.MandatoryVideoSeq <em>Mandatory Video Seq</em>}'.
+	 * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.mydsl.videoGen.MandatoryVideoSeq
-   * @generated
-   */
+	 * @return the new adapter.
+	 * @see org.xtext.example.mydsl.videoGen.MandatoryVideoSeq
+	 * @generated
+	 */
   public Adapter createMandatoryVideoSeqAdapter()
   {
-    return null;
-  }
+		return null;
+	}
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.videoGen.OptionalVideoSeq <em>Optional Video Seq</em>}'.
-   * <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.videoGen.OptionalVideoSeq <em>Optional Video Seq</em>}'.
+	 * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.mydsl.videoGen.OptionalVideoSeq
-   * @generated
-   */
+	 * @return the new adapter.
+	 * @see org.xtext.example.mydsl.videoGen.OptionalVideoSeq
+	 * @generated
+	 */
   public Adapter createOptionalVideoSeqAdapter()
   {
-    return null;
-  }
+		return null;
+	}
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.videoGen.AlternativeVideoSeq <em>Alternative Video Seq</em>}'.
-   * <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.videoGen.AlternativeVideoSeq <em>Alternative Video Seq</em>}'.
+	 * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.mydsl.videoGen.AlternativeVideoSeq
-   * @generated
-   */
+	 * @return the new adapter.
+	 * @see org.xtext.example.mydsl.videoGen.AlternativeVideoSeq
+	 * @generated
+	 */
   public Adapter createAlternativeVideoSeqAdapter()
   {
-    return null;
-  }
+		return null;
+	}
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.videoGen.VideoDescription <em>Video Description</em>}'.
-   * <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.videoGen.VideoDescription <em>Video Description</em>}'.
+	 * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.mydsl.videoGen.VideoDescription
-   * @generated
-   */
+	 * @return the new adapter.
+	 * @see org.xtext.example.mydsl.videoGen.VideoDescription
+	 * @generated
+	 */
   public Adapter createVideoDescriptionAdapter()
   {
-    return null;
-  }
+		return null;
+	}
 
   /**
-   * Creates a new adapter for the default case.
-   * <!-- begin-user-doc -->
+	 * Creates a new adapter for the default case.
+	 * <!-- begin-user-doc -->
    * This default implementation returns null.
    * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @generated
-   */
+	 * @return the new adapter.
+	 * @generated
+	 */
   public Adapter createEObjectAdapter()
   {
-    return null;
-  }
+		return null;
+	}
 
 } //VideoGenAdapterFactory

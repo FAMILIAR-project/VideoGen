@@ -38,202 +38,196 @@ import org.xtext.example.mydsl.videoGen.VideoGenPackage;
 public class AlternativeVideoSeqImpl extends VideoSeqImpl implements AlternativeVideoSeq
 {
   /**
-   * The default value of the '{@link #getVideoid() <em>Videoid</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getVideoid() <em>Videoid</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getVideoid()
-   * @generated
-   * @ordered
-   */
+	 * @see #getVideoid()
+	 * @generated
+	 * @ordered
+	 */
   protected static final String VIDEOID_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getVideoid() <em>Videoid</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getVideoid() <em>Videoid</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getVideoid()
-   * @generated
-   * @ordered
-   */
+	 * @see #getVideoid()
+	 * @generated
+	 * @ordered
+	 */
   protected String videoid = VIDEOID_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getVideodescs() <em>Videodescs</em>}' containment reference list.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getVideodescs() <em>Videodescs</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getVideodescs()
-   * @generated
-   * @ordered
-   */
+	 * @see #getVideodescs()
+	 * @generated
+	 * @ordered
+	 */
   protected EList<VideoDescription> videodescs;
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected AlternativeVideoSeqImpl()
   {
-    super();
-  }
+		super();
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   protected EClass eStaticClass()
   {
-    return VideoGenPackage.Literals.ALTERNATIVE_VIDEO_SEQ;
-  }
+		return VideoGenPackage.Literals.ALTERNATIVE_VIDEO_SEQ;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public String getVideoid()
   {
-    return videoid;
-  }
+		return videoid;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public void setVideoid(String newVideoid)
   {
-    String oldVideoid = videoid;
-    videoid = newVideoid;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, VideoGenPackage.ALTERNATIVE_VIDEO_SEQ__VIDEOID, oldVideoid, videoid));
-  }
+		String oldVideoid = videoid;
+		videoid = newVideoid;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VideoGenPackage.ALTERNATIVE_VIDEO_SEQ__VIDEOID, oldVideoid, videoid));
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public EList<VideoDescription> getVideodescs()
   {
-    if (videodescs == null)
-    {
-      videodescs = new EObjectContainmentEList<VideoDescription>(VideoDescription.class, this, VideoGenPackage.ALTERNATIVE_VIDEO_SEQ__VIDEODESCS);
-    }
-    return videodescs;
-  }
+		if (videodescs == null) {
+			videodescs = new EObjectContainmentEList<VideoDescription>(VideoDescription.class, this, VideoGenPackage.ALTERNATIVE_VIDEO_SEQ__VIDEODESCS);
+		}
+		return videodescs;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-    switch (featureID)
-    {
-      case VideoGenPackage.ALTERNATIVE_VIDEO_SEQ__VIDEODESCS:
-        return ((InternalEList<?>)getVideodescs()).basicRemove(otherEnd, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
+		switch (featureID) {
+			case VideoGenPackage.ALTERNATIVE_VIDEO_SEQ__VIDEODESCS:
+				return ((InternalEList<?>)getVideodescs()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
-    switch (featureID)
-    {
-      case VideoGenPackage.ALTERNATIVE_VIDEO_SEQ__VIDEOID:
-        return getVideoid();
-      case VideoGenPackage.ALTERNATIVE_VIDEO_SEQ__VIDEODESCS:
-        return getVideodescs();
-    }
-    return super.eGet(featureID, resolve, coreType);
-  }
+		switch (featureID) {
+			case VideoGenPackage.ALTERNATIVE_VIDEO_SEQ__VIDEOID:
+				return getVideoid();
+			case VideoGenPackage.ALTERNATIVE_VIDEO_SEQ__VIDEODESCS:
+				return getVideodescs();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
-    switch (featureID)
-    {
-      case VideoGenPackage.ALTERNATIVE_VIDEO_SEQ__VIDEOID:
-        setVideoid((String)newValue);
-        return;
-      case VideoGenPackage.ALTERNATIVE_VIDEO_SEQ__VIDEODESCS:
-        getVideodescs().clear();
-        getVideodescs().addAll((Collection<? extends VideoDescription>)newValue);
-        return;
-    }
-    super.eSet(featureID, newValue);
-  }
+		switch (featureID) {
+			case VideoGenPackage.ALTERNATIVE_VIDEO_SEQ__VIDEOID:
+				setVideoid((String)newValue);
+				return;
+			case VideoGenPackage.ALTERNATIVE_VIDEO_SEQ__VIDEODESCS:
+				getVideodescs().clear();
+				getVideodescs().addAll((Collection<? extends VideoDescription>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public void eUnset(int featureID)
   {
-    switch (featureID)
-    {
-      case VideoGenPackage.ALTERNATIVE_VIDEO_SEQ__VIDEOID:
-        setVideoid(VIDEOID_EDEFAULT);
-        return;
-      case VideoGenPackage.ALTERNATIVE_VIDEO_SEQ__VIDEODESCS:
-        getVideodescs().clear();
-        return;
-    }
-    super.eUnset(featureID);
-  }
+		switch (featureID) {
+			case VideoGenPackage.ALTERNATIVE_VIDEO_SEQ__VIDEOID:
+				setVideoid(VIDEOID_EDEFAULT);
+				return;
+			case VideoGenPackage.ALTERNATIVE_VIDEO_SEQ__VIDEODESCS:
+				getVideodescs().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public boolean eIsSet(int featureID)
   {
-    switch (featureID)
-    {
-      case VideoGenPackage.ALTERNATIVE_VIDEO_SEQ__VIDEOID:
-        return VIDEOID_EDEFAULT == null ? videoid != null : !VIDEOID_EDEFAULT.equals(videoid);
-      case VideoGenPackage.ALTERNATIVE_VIDEO_SEQ__VIDEODESCS:
-        return videodescs != null && !videodescs.isEmpty();
-    }
-    return super.eIsSet(featureID);
-  }
+		switch (featureID) {
+			case VideoGenPackage.ALTERNATIVE_VIDEO_SEQ__VIDEOID:
+				return VIDEOID_EDEFAULT == null ? videoid != null : !VIDEOID_EDEFAULT.equals(videoid);
+			case VideoGenPackage.ALTERNATIVE_VIDEO_SEQ__VIDEODESCS:
+				return videodescs != null && !videodescs.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public String toString()
   {
-    if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (videoid: ");
-    result.append(videoid);
-    result.append(')');
-    return result.toString();
-  }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (videoid: ");
+		result.append(videoid);
+		result.append(')');
+		return result.toString();
+	}
 
 } //AlternativeVideoSeqImpl

@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="videogen_jar">
+    <output-path>$PROJECT_DIR$/web</output-path>
+    <root id="archive" name="videogen_jar.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+        <element id="module-output" name="videogen" />
+      </element>
+    </root>
+  </artifact>
+</component>

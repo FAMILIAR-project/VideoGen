@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ASCII"?>
+<videoGen:VideoGeneratorModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:videoGen="http://www.xtext.org/example/mydsl/VideoGen">
+  <videoseqs xsi:type="videoGen:MandatoryVideoSeq">
+    <description videoid="v3" location="tmp-Great-Teacher-Onizuka-Episode-1-1484840171639.mp4" duration="2904" probability="100" text="kapow"/>
+  </videoseqs>
+  <videoseqs xsi:type="videoGen:OptionalVideoSeq">
+    <description videoid="v4" location="tmp-Great-Teacher-Onizuka-Episode-32-1484840171718.mp4" duration="1450" probability="101"/>
+  </videoseqs>
+  <videoseqs xsi:type="videoGen:AlternativeVideoSeq" videoid="vid3">
+    <videodescs videoid="v5" location="data/videos/SampleVideo.mp4" duration="5" probability="50" text="kapow"/>
+    <videodescs videoid="vid31" location="tmp-Great-Teacher-Onizuka-Episode-33-1484840171796.mp4" duration="1448" probability="50" text="kapow"/>
+  </videoseqs>
+</videoGen:VideoGeneratorModel>

@@ -1,0 +1,26 @@
+VideoGen {
+	
+	mandatory videoseq v18 "src/main/webapp/data/videos/kong.mp4" {
+duration 305 probability 100 } 
+	optional videoseq v19
+"src/main/webapp/data/videos/Blade-Runner.mp4" {
+		duration 98 probability 100
+	}
+	alternatives vid3 {
+		videoseq v20
+"src/main/webapp/data/videos/SampleVideo.mp4" {
+		duration 5 probability 50
+	}
+		videoseq v21 "src/main/webapp/data/videos/toystory.mp4"{
+		duration 149
+probability 20
+	}
+		videoseq v22 "src/main/webapp/data/videos/animals.mp4"{
+		duration 30 probability 30
+	}
+	}
+	optional videoseq v23
+"src/main/webapp/data/videos/Alien-Covenant.mp4" {
+		duration 122 probability 70
+	}
+}
