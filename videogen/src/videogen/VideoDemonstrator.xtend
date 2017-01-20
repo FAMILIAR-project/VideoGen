@@ -40,7 +40,10 @@ class VideoDemonstrator {
  		var m2t = new Q1ModelToTextSwitch();
  		m2t.doSwitch(videoGen);
 
- 		println(m2t.getTextBuffer.toString)
+ 		val text = m2t.getTextBuffer.toString
+		println(text)
+
+		Utils.fileWrite("testq1.ffmpeg", text)
  	}
 
 
