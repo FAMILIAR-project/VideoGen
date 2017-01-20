@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ASCII"?>
+<videoGen:VideoGeneratorModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:videoGen="http://www.xtext.org/example/mydsl/VideoGen">
+  <videoseqs xsi:type="videoGen:MandatoryVideoSeq">
+    <description videoid="v18" location="src/main/webapp/data/videos/kong.mp4" duration="305" probability="100"/>
+  </videoseqs>
+  <videoseqs xsi:type="videoGen:OptionalVideoSeq">
+    <description videoid="v19" location="src/main/webapp/data/videos/Blade-Runner.mp4" duration="98" probability="100"/>
+  </videoseqs>
+  <videoseqs xsi:type="videoGen:AlternativeVideoSeq" videoid="vid3">
+    <videodescs videoid="v20" location="src/main/webapp/data/videos/SampleVideo.mp4" duration="5" probability="50"/>
+    <videodescs videoid="v21" location="src/main/webapp/data/videos/toystory.mp4" duration="149" probability="20"/>
+    <videodescs videoid="v22" location="src/main/webapp/data/videos/animals.mp4" duration="30" probability="30"/>
+  </videoseqs>
+  <videoseqs xsi:type="videoGen:OptionalVideoSeq">
+    <description videoid="v23" location="src/main/webapp/data/videos/Alien-Covenant.mp4" duration="122" probability="70"/>
+  </videoseqs>
+</videoGen:VideoGeneratorModel>
