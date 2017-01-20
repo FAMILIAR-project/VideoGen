@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
 <videoGen:VideoGeneratorModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:videoGen="http://www.xtext.org/example/mydsl/VideoGen">
-  <information/>
   <videoseqs xsi:type="videoGen:MandatoryVideoSeq">
     <description videoid="v0" location="V1/v1.mp4"/>
   </videoseqs>
