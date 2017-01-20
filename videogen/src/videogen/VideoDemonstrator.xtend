@@ -291,14 +291,14 @@ class VideoDemonstrator {
 	def generateVignettes(String location, String name){
 		var cmd = "/usr/bin/ffmpeg -y -i " +location+ " -r 1 -t 00:00:01 -ss 00:00:$2 -f image2 images/" +name+".png"
 
-		var Process process = Runtime.getRuntime().exec(cmd)
+		var  process = Runtime.getRuntime().exec(cmd)
 		process.wait()
 	}
 		def computeDuration(String location){
-		var cmd = "/usr/bin/ffprobe ffprobe -i "+location+
+		var cmd = " ffprobe -i "+location+
 		 " -show_entries format=duration -v quiet -of csv=\"p=0\""
 
-		var Process process = Runtime.getRuntime().exec(cmd)
+		var  process = Runtime.getRuntime().exec(cmd)
 		process.wait()
 		val str = convertStreamToString(process.inputStream)
 		Double::parseDouble(str.trim())
@@ -413,6 +413,7 @@ class VideoDemonstrator {
 	
 			
 	}
+
 	
 	def static String convertStreamToString(InputStream is){
 		val scanner = new Scanner(is).useDelimiter("\\A");
@@ -420,9 +421,50 @@ class VideoDemonstrator {
 		else "";	
 	}
 		
+		@Test
+		def Qsuplement1() {
+		// loading
+		var videoGen = loadVideoGenerator(URI.createURI("qsub.videogen")) 
+		// Model to model
+		
+		val playlist = PlaylistFactory.eINSTANCE.createPlaylist()
+		
+		
+       //val outputFile = new File("outagain.txt"); 
+       
+       // val out = new FileWriter(outputFile); 			
+		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
+		videoGen.videoseqs.forEach[videoseq | 
 			
+			if (videoseq instanceof MandatoryVideoSeq) {
+				val desc = (videoseq as MandatoryVideoSeq).description
+			
+				
+				convertToBlackWhite(desc.location,"/black/"+desc.location)
+				 				
+			}
+			
+				
+				 				
+			]
+			//out.close
+	
+			
+	}
+				
 	
 
+	def static void convertToBlackWhite(String location , String output){
+		
+		var cmd = "ffmpeg -i "+location+
+		 " -vf hue=s=0 -c:a copy "+output
+
+		var  process = Runtime.getRuntime().exec(cmd)
+		process.waitFor
+		
+		
+		
+	}
 	
 	
 	def convertPlaylistIntoFormat(Playlist p, String format)
