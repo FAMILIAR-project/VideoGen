@@ -10,6 +10,10 @@ The questions about Familiar (Q14-15) have not been made.
 
 ## Location
 
+Ecore Meta-model: https://github.com/RomainG93/VideoGen/blob/master/org.xtext.example.videogenerator/model/generated/VideoGen.ecore
+
+Xtext grammar: https://github.com/RomainG93/VideoGen/blob/master/org.xtext.example.videogenerator/src/org/xtext/example/mydsl/VideoGen.xtext
+
 Xtend transformation: https://github.com/RomainG93/VideoGen/blob/master/videogen/src/videogen/VideoDemonstrator.xtend
 
 Playlist Project: The Playlist project was created in a different folder from this project so it has been added manually here:
@@ -35,7 +39,7 @@ VideoGen/tree/master/videogen/web/src/main/webapp/data/video1.mp4
 VideoGen/tree/master/videogen/web/src/main/webapp/data/video2.mp4
 etc
 
-You can now the command "mvn" (path: /VideoGen/tree/master/videogen/web) to start the web server.
+You can now run the command "mvn" (path: /VideoGen/tree/master/videogen/web) to start the web server.
 The application is available at "http://localhost:8080/#/videogen"
 
 ## Features / Screencast
