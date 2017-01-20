@@ -1,0 +1,117 @@
+/**
+ */
+package playlist.impl;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+
+import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import playlist.*;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model <b>Factory</b>.
+ * <!-- end-user-doc -->
+ * @generated
+ */
+public class PlaylistFactoryImpl extends EFactoryImpl implements PlaylistFactory {
+	/**
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static PlaylistFactory init() {
+		try {
+			PlaylistFactory thePlaylistFactory = (PlaylistFactory)EPackage.Registry.INSTANCE.getEFactory(PlaylistPackage.eNS_URI);
+			if (thePlaylistFactory != null) {
+				return thePlaylistFactory;
+			}
+		}
+		catch (Exception exception) {
+			EcorePlugin.INSTANCE.log(exception);
+		}
+		return new PlaylistFactoryImpl();
+	}
+
+	/**
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PlaylistFactoryImpl() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EObject create(EClass eClass) {
+		switch (eClass.getClassifierID()) {
+			case PlaylistPackage.PLAYLIST_MODEL: return createPlaylistModel();
+			case PlaylistPackage.MEDIA: return createMedia();
+			case PlaylistPackage.VIDEO_MEDIA: return createVideoMedia();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PlaylistModel createPlaylistModel() {
+		PlaylistModelImpl playlistModel = new PlaylistModelImpl();
+		return playlistModel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Media createMedia() {
+		MediaImpl media = new MediaImpl();
+		return media;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public VideoMedia createVideoMedia() {
+		VideoMediaImpl videoMedia = new VideoMediaImpl();
+		return videoMedia;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PlaylistPackage getPlaylistPackage() {
+		return (PlaylistPackage)getEPackage();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @deprecated
+	 * @generated
+	 */
+	@Deprecated
+	public static PlaylistPackage getPackage() {
+		return PlaylistPackage.eINSTANCE;
+	}
+
+} //PlaylistFactoryImpl
