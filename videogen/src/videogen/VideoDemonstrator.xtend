@@ -43,6 +43,32 @@ class VideoDemonstrator {
 		Utils.fileWrite("testq1.ffmpeg", text)
  	}
 
+	@Test
+	def void testQ3(){
+		// loading
+		val createURI = URI.createURI("foo2.videogen")
+		var videoGen = loadVideoGenerator(createURI)
+		assertNotNull(videoGen)
+		assertEquals(7, videoGen.videoseqs.size)
+
+		val playlist = Q3ModelToModelSwitch.convertVideogenToPlaylist(videoGen)
+		println(playlist)
+
+ 	}
+
+ 	@Test
+	def void testQ3bis(){
+		// loading
+		val createURI = URI.createURI("foo2.videogen")
+		var videoGen = loadVideoGenerator(createURI)
+		assertNotNull(videoGen)
+		assertEquals(7, videoGen.videoseqs.size)
+		val playlist = Q3ModelToModelSwitch.convertVideogenToPlaylist(videoGen)
+
+		val playlistText = Q3ModelPlaylistToM3USwitch.modelToText(playlist)
+		println(playlistText)
+
+	}
 
 	@Test
 	def void test1() {

@@ -36,12 +36,11 @@ public class Q1ModelToTextSwitch extends VideoGenSwitch<Boolean> {
 
 	@Override
 	public Boolean caseVideoGeneratorModel(VideoGeneratorModel videoGenModel) {
-		textBuffer.append("#this is a comment\n");
 		EList<VideoSeq> videoseqs = videoGenModel.getVideoseqs();
 		for (VideoSeq videoseq : videoseqs) {
 			doSwitch(videoseq);
 		}
-		return super.caseVideoGeneratorModel(videoGenModel);
+		return true;
 
 	}
 
@@ -49,14 +48,14 @@ public class Q1ModelToTextSwitch extends VideoGenSwitch<Boolean> {
 	public Boolean caseVideoDescription(VideoDescription videoDesc) {
 		String location = videoDesc.getLocation();
 		textBuffer.append("file '" + location + "'\n");
-		return super.caseVideoDescription(videoDesc);
+		return true;
 	}
 
 	@Override
 	public Boolean caseMandatoryVideoSeq(MandatoryVideoSeq mandatoryVideoseq) {
 		VideoDescription description = mandatoryVideoseq.getDescription();
 		doSwitch(description);
-		return super.caseMandatoryVideoSeq(mandatoryVideoseq);
+		return true;
 	}
 
 	@Override
@@ -71,8 +70,7 @@ public class Q1ModelToTextSwitch extends VideoGenSwitch<Boolean> {
 		if (nombreAleatoire < probability) {
 			doSwitch(description);
 		}
-
-		return super.caseOptionalVideoSeq(optionalVideoseq);
+		return true;
 	}
 
 	@Override
@@ -82,7 +80,7 @@ public class Q1ModelToTextSwitch extends VideoGenSwitch<Boolean> {
 		int nombreAleatoire = Utils.genRandomInt(nbAlternative) - 1;
 		VideoDescription alternativeSelectionnee = videodescs.get(nombreAleatoire);
 		doSwitch(alternativeSelectionnee);
-		return super.caseAlternativeVideoSeq(alternativeVideoseq);
+		return true;
 	}
 
 }

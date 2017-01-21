@@ -1,9 +1,12 @@
 package videogen;
 
+import org.xtext.example.mydsl.videoGen.VideoDescription;
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 
+import playlist.Media;
 import playlist.Playlist;
 import playlist.PlaylistFactory;
+import playlist.impl.PlaylistFactoryImpl;
 
 public class Q3ModelToModelSwitch extends Q1ModelToTextSwitch{
 
@@ -20,6 +23,15 @@ public class Q3ModelToModelSwitch extends Q1ModelToTextSwitch{
 		m2m.doSwitch(inputVideogenModel);
 		Playlist videoList = m2m.getVideoList();
 		return videoList;
+	}
+
+	@Override
+	public Boolean caseVideoDescription(VideoDescription videoDesc) {
+		String location = videoDesc.getLocation();
+		Media media = PlaylistFactoryImpl.eINSTANCE.createMedia();
+		media.setLocation(location);
+		videoList.getMedia().add(media);
+		return true;
 	}
 
 
