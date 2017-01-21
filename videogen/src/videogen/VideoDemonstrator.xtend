@@ -71,6 +71,20 @@ class VideoDemonstrator {
 	}
 
 	@Test
+	def void test4(){
+		// loading
+		val createURI = URI.createURI("foo2.videogen")
+		var videoGen = loadVideoGenerator(createURI)
+		assertNotNull(videoGen)
+		assertEquals(7, videoGen.videoseqs.size)
+		val playlist = Q3ModelToModelSwitch.convertVideogenToPlaylist(videoGen)
+
+		val playlistText = Q4ModelPlaylistToFFMPEG.modelToText(playlist)
+		println(playlistText)
+
+	}
+
+	@Test
 	def void test1() {
 		// loading
 		val createURI = URI.createURI("foo2.videogen")
