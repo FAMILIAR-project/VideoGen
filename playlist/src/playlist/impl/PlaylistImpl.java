@@ -131,4 +131,14 @@ public class PlaylistImpl extends MinimalEObjectImpl.Container implements Playli
 		return super.eIsSet(featureID);
 	}
 
+	@Override
+	public String toString() {
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("Playlist ("+ this.getMedia().size() +" Entries)\n");
+		for (Media media : this.getMedia()){
+			buffer.append(media.getLocation() + "\n");
+		}
+		return buffer.toString();
+	}
+
 } //PlaylistImpl
