@@ -37,10 +37,7 @@ class VideoDemonstrator {
 		assertNotNull(videoGen)
 		assertEquals(7, videoGen.videoseqs.size)
 
- 		var m2t = new Q1ModelToTextSwitch();
- 		m2t.doSwitch(videoGen);
-
- 		val text = m2t.getTextBuffer.toString
+		val text = Q1ModelToTextSwitch.modelToText(videoGen)
 		println(text)
 
 		Utils.fileWrite("testq1.ffmpeg", text)

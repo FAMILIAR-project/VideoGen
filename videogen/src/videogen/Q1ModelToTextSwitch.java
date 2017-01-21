@@ -22,6 +22,18 @@ public class Q1ModelToTextSwitch extends VideoGenSwitch<Boolean> {
 		textBuffer = new StringBuffer();
 	}
 
+	/**
+	 *
+	 * @param videoGenModel
+	 * @return
+	 */
+	public static String modelToText(VideoGeneratorModel videoGenModel){
+		Q1ModelToTextSwitch m2t = new Q1ModelToTextSwitch();
+ 		m2t.doSwitch(videoGenModel);
+ 		String text = m2t.getTextBuffer().toString();
+ 		return text;
+	}
+
 	@Override
 	public Boolean caseVideoGeneratorModel(VideoGeneratorModel videoGenModel) {
 		textBuffer.append("#this is a comment\n");
