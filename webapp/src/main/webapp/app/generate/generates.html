@@ -1,0 +1,19 @@
+<div>
+    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}}</alert>
+    <h1>Generate a Video</h1>
+    <div>
+        <tabset>
+            <tab heading="Random Generator">
+                <div style="width:100%;text-align:center;">
+                    <button style="margin:15px 0px 15px 0px;" ng-click="vm.generateRandom()">Generate a random video !</button>
+                </div>
+
+                <div  id="jsplaylist">
+                   <!-- optional prev/next buttons -->
+                   <a class="fp-prev"></a>
+                   <a class="fp-next"></a>
+                </div>
+            </tab>
+        </tabset>
+    </div>
+</div>
