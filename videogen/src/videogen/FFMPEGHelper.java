@@ -22,8 +22,8 @@ public class FFMPEGHelper {
 	}
 
 	public static final void randomGenerationVideo(String path, int duration) {
-		String[] cmd = new String[] { "ffmpeg", "-loglevel", "panic", "-f", "rawvideo", "-video_size", "500x400",
-				"-pixel_format", "yuv420p", "-framerate", "12", "-i", "/dev/urandom", "-ar", "9600", "-ac", "2", "-f",
+		String[] cmd = new String[] { "ffmpeg", "-y", "-loglevel", "panic", "-f", "rawvideo", "-video_size", "500x400",
+				"-pixel_format", "yuv420p", "-framerate", "24", "-i", "/dev/urandom", "-ar", "9600", "-ac", "2", "-f",
 				"s16le", "-i", "/dev/urandom", "-codec:a", "copy", "-t", new Integer(duration).toString(), path };
 		Utils.commandExec(cmd);
 	}
