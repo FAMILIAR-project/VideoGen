@@ -29,10 +29,35 @@ VideoDescription : 'videoseq' (videoid=ID)? location=STRING
 	 ('description' description=STRING)?
 	 ('text' text=STRING)?
 	 ('subtitle' subtitle=Subtitle)?
+	 ('filter' filter=Filter)?
+	 ('text' text=Text)?
 	RIGHT_BRACKET)?
 ;
 
+
 Subtitle: 'subtitle' text=STRING (LEFT_BRACKET('color' colorfont=STRING)? ('size' size=INT)? RIGHT_BRACKET)?;
+
+Filter : 
+	LEFT_BRACKET
+	filter=STRING
+	RIGHT_BRACKET
+;
+
+Text :
+	LEFT_BRACKET
+	'content' content=STRING
+	'position' position=Position
+	'color' color=STRING
+	'size' size=INT
+	RIGHT_BRACKET
+;
+
+Position :
+	'TOP' | 'BOTTOM' | 'CENTER'
+;
+
+
+
 terminal LEFT_BRACKET: '{' ; 
 terminal RIGHT_BRACKET: '}';
 

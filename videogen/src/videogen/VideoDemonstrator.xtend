@@ -10,6 +10,7 @@ import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq
 import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq
 import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
+import videogen.vignette.FFMPEGHelper
 
 import static org.junit.Assert.*
 
@@ -885,6 +886,95 @@ class VideoDemonstrator {
 	//printToHTML(videoGen)	
 	modelToText(videoGen)
 }
+	
+	@Test
+	def testFilters() {
+		// loading
+		var videoGen = loadVideoGenerator(URI.createURI("test.videogen"))			
+		for(video : videoGen.videoseqs) {
+			if(video instanceof MandatoryVideoSeq) {
+				var videoMandatory = (video as MandatoryVideoSeq)
+				var filter = videoMandatory.description.filter
+				var location = videoMandatory.description.location
+				var ffmpegHelper = new FFMPEGHelper
+				var f = filter.filter
+				ffmpegHelper.applyFilter(f, location, "filteredVideos/" + location)
+			}
+			else if (video instanceof OptionalVideoSeq) {
+				val random = (Math.random() * 2) as int
+				if(random == 1) {
+					var videoOptional = (video as OptionalVideoSeq)
+					var filter = videoOptional.description.filter
+					var location = videoOptional.description.location
+					var f = filter.filter
+					var ffmpegHelper = new FFMPEGHelper
+					ffmpegHelper.applyFilter(f, location, "filteredVideos/" + location)
+				}
+			}
+			else {
+				val alts = (video as AlternativeVideoSeq).videodescs
+				val random = (Math.random() * alts.size) as int
+				var videoAlt = alts.get(random)
+				var location = videoAlt.location;
+				var filter = videoAlt.filter
+				var f = filter.filter
+				var ffmpegHelper = new FFMPEGHelper
+				ffmpegHelper.applyFilter(f, location, "filteredVideos/" + location)
+			}
+		}
+	}
+	
+	@Test
+	def testIncrustTextToVideo() {
+		// loading
+		var videoGen = loadVideoGenerator(URI.createURI("test.videogen"))			
+		for(video : videoGen.videoseqs) {
+			if(video instanceof MandatoryVideoSeq) {
+				var videoMandatory = (video as MandatoryVideoSeq)
+				var text = videoMandatory.description.text
+				if(text != null) {
+					var location = videoMandatory.description.location
+					var content = text.content
+					var position = text.position
+					var color = text.color
+					var size = text.size
+					var ffmpegHelper = new FFMPEGHelper
+					ffmpegHelper.applyTextToVideo(content, color, position, size, location, "textIncrustedVideos/" + location)
+				}
+			}
+			else if (video instanceof OptionalVideoSeq) {
+				val random = (Math.random() * 2) as int
+				if(random == 1) {
+					var videoOptional = (video as OptionalVideoSeq)
+					var text = videoOptional.description.text
+					if(text != null) {
+						var location = videoOptional.description.location
+						var content = text.content
+						var position = text.position
+						var color = text.color
+						var size = text.size
+						var ffmpegHelper = new FFMPEGHelper
+						ffmpegHelper.applyTextToVideo(content, color, position, size, location, "textIncrustedVideos/" + location)
+					}
+				}
+			}
+			else {
+				val alts = (video as AlternativeVideoSeq).videodescs
+				val random = (Math.random() * alts.size) as int
+				var videoAlt = alts.get(random)
+				var text = videoAlt.text
+				if(text != null) {
+					var location = videoAlt.location
+					var content = text.content
+					var position = text.position
+					var color = text.color
+					var size = text.size
+					var ffmpegHelper = new FFMPEGHelper
+					ffmpegHelper.applyTextToVideo(content, color, position, size, location, "textIncrustedVideos/" + location)
+				}
+			}
+		}
+	}
 	
 	def void printToHTML(VideoGeneratorModel videoGen) {
 		//var numSeq = 1

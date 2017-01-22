@@ -3,7 +3,6 @@
  */
 package org.xtext.example.mydsl.validation
 
-import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.validation.Check
 import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq
 import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq
@@ -11,7 +10,6 @@ import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import org.xtext.example.mydsl.videoGen.VideoDescription
 import org.xtext.example.mydsl.videoGen.VideoGenPackage
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
-import org.xtext.example.mydsl.videoGen.VideoSeq
 
 /**
  * This class contains custom validation rules. 

@@ -1,0 +1,33 @@
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" ng-click="vm.toggleNavbar()">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand logo" href="#/" ng-click="vm.collapseNavbar()">
+                <span>VideoGen</span>
+            </a>
+        </div>
+        <div class="navbar-collapse" uib-collapse="vm.isNavbarCollapsed">
+            <ul class="nav navbar-nav navbar-right">
+                <li ui-sref-active="active">
+                    <a ui-sref="home" ng-click="vm.collapseNavbar()">
+                        <span class="glyphicon glyphicon-home"></span>
+                        <span class="hidden-sm" data-translate="global.menu.home">Home</span>
+                    </a>
+                </li>
+
+                <li ui-sref-active="active">
+                    <a ui-sref="generate" ng-click="vm.collapseNavbar()">
+                        <span class="glyphicon glyphicon-home"></span>
+                        <span class="hidden-sm">Generate</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
