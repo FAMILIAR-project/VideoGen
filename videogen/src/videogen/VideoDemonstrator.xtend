@@ -180,6 +180,30 @@ class VideoDemonstrator {
 	}
 
 	@Test
+	def void testQ11() {
+
+		// loading
+		val createURI = URI.createURI("foo2.videogen")
+		var videoGen = loadVideoGenerator(createURI)
+
+		Q11VideoGenCheckerSwitch.check(videoGen)
+	}
+
+	@Test
+	def void testQ11Fail() {
+
+		// loading
+		val createURI = URI.createURI("foo2_fail.videogen")
+		var videoGen = loadVideoGenerator(createURI)
+		try {
+			Q11VideoGenCheckerSwitch.check(videoGen)
+			fail("Expected VideoCheckException");
+		} catch (VideoCheckException e) {
+			//SUCCESS
+		}
+	}
+
+	@Test
 	def void test4() {
 		// loading
 		val createURI = URI.createURI("foo2.videogen")
