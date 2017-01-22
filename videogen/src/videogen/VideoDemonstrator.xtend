@@ -1,9 +1,11 @@
 package videogen
 
+import java.io.File
 import java.util.HashMap
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
+import org.junit.Assert
 import org.junit.Test
 import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated
 import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq
@@ -31,13 +33,53 @@ class VideoDemonstrator {
 	@Test
 	def void testCommandExec(){
 		val String[] command = #['ls']
-		println("starting process")
 		val commandExec = Utils.commandExec(command)
-		println("process done")
 		println("output : \n" + commandExec)
-
  	}
 
+	@Test
+	def void testRandomGenerationVideo(){
+		val fileName = FFMPEGHelper.randomGenerationVideo(5);
+		Assert.assertTrue(new File(fileName).exists)
+		val commandExec = Utils.commandExec(#['ls'])
+		Assert.assertTrue(commandExec.contains(fileName))
+
+		new File(fileName).delete
+ 	}
+
+ 	@Test
+	def void testComputeGif(){
+		val d = 2
+		val fileName = FFMPEGHelper.randomGenerationVideo(d);
+		Assert.assertTrue(new File(fileName).exists)
+		val gifPath = FFMPEGHelper.generateGif(fileName)
+		Assert.assertTrue(new File(gifPath).exists)
+
+		new File(fileName).delete
+		new File(gifPath).delete
+ 	}
+
+ 	@Test
+	def void testComputeDuration(){
+		val d = 5
+		val fileName = FFMPEGHelper.randomGenerationVideo(d);
+		Assert.assertTrue(new File(fileName).exists)
+		val duration = FFMPEGHelper.computeDuration(fileName);
+		Assert.assertEquals(d,duration);
+
+		new File(fileName).delete
+ 	}
+
+	@Test
+	def void testThumbnailGen() {
+		var path = FFMPEGHelper.randomGenerationVideo(5);
+		println(path);
+		val imgPath = FFMPEGHelper.generateThumbnail(path)
+		Assert.assertTrue(new File(imgPath).exists);
+
+		new File(path).delete
+		new File(imgPath).delete
+	}
 	@Test
 	def void testQ1(){
 		// loading
