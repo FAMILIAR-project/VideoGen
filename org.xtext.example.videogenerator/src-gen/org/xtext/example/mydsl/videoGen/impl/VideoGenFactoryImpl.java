@@ -59,6 +59,7 @@ public class VideoGenFactoryImpl extends EFactoryImpl implements VideoGenFactory
   @Override
   public EObject create(EClass eClass)
   {
+<<<<<<< HEAD
 		switch (eClass.getClassifierID()) {
 			case VideoGenPackage.VIDEO_GENERATOR_MODEL: return createVideoGeneratorModel();
 			case VideoGenPackage.VIDEO_GEN_INFORMATION: return createVideoGenInformation();
@@ -71,6 +72,22 @@ public class VideoGenFactoryImpl extends EFactoryImpl implements VideoGenFactory
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
+=======
+    switch (eClass.getClassifierID())
+    {
+      case VideoGenPackage.VIDEO_GENERATOR_MODEL: return createVideoGeneratorModel();
+      case VideoGenPackage.VIDEO_GEN_INFORMATION: return createVideoGenInformation();
+      case VideoGenPackage.VIDEO_SEQ: return createVideoSeq();
+      case VideoGenPackage.MANDATORY_VIDEO_SEQ: return createMandatoryVideoSeq();
+      case VideoGenPackage.OPTIONAL_VIDEO_SEQ: return createOptionalVideoSeq();
+      case VideoGenPackage.ALTERNATIVE_VIDEO_SEQ: return createAlternativeVideoSeq();
+      case VideoGenPackage.VIDEO_DESCRIPTION: return createVideoDescription();
+      case VideoGenPackage.SUBTITLE: return createSubtitle();
+      default:
+        throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+    }
+  }
+>>>>>>> a150e5426d31f2a499effc322af3d84e64af383f
 
   /**
 	 * <!-- begin-user-doc -->
@@ -152,8 +169,24 @@ public class VideoGenFactoryImpl extends EFactoryImpl implements VideoGenFactory
   /**
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+<<<<<<< HEAD
 	 * @generated
 	 */
+=======
+   * @generated
+   */
+  public Subtitle createSubtitle()
+  {
+    SubtitleImpl subtitle = new SubtitleImpl();
+    return subtitle;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+>>>>>>> a150e5426d31f2a499effc322af3d84e64af383f
   public VideoGenPackage getVideoGenPackage()
   {
 		return (VideoGenPackage)getEPackage();

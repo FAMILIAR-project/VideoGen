@@ -52,6 +52,11 @@ public class VideoGenParser extends AbstractContentAssistParser {
 					put(grammarAccess.getVideoDescriptionAccess().getGroup_3_2(), "rule__VideoDescription__Group_3_2__0");
 					put(grammarAccess.getVideoDescriptionAccess().getGroup_3_3(), "rule__VideoDescription__Group_3_3__0");
 					put(grammarAccess.getVideoDescriptionAccess().getGroup_3_4(), "rule__VideoDescription__Group_3_4__0");
+					put(grammarAccess.getVideoDescriptionAccess().getGroup_3_5(), "rule__VideoDescription__Group_3_5__0");
+					put(grammarAccess.getSubtitleAccess().getGroup(), "rule__Subtitle__Group__0");
+					put(grammarAccess.getSubtitleAccess().getGroup_2(), "rule__Subtitle__Group_2__0");
+					put(grammarAccess.getSubtitleAccess().getGroup_2_1(), "rule__Subtitle__Group_2_1__0");
+					put(grammarAccess.getSubtitleAccess().getGroup_2_2(), "rule__Subtitle__Group_2_2__0");
 					put(grammarAccess.getVideoGeneratorModelAccess().getInformationAssignment_1(), "rule__VideoGeneratorModel__InformationAssignment_1");
 					put(grammarAccess.getVideoGeneratorModelAccess().getVideoseqsAssignment_4(), "rule__VideoGeneratorModel__VideoseqsAssignment_4");
 					put(grammarAccess.getVideoGenInformationAccess().getAuthorNameAssignment_1_1(), "rule__VideoGenInformation__AuthorNameAssignment_1_1");
@@ -67,6 +72,10 @@ public class VideoGenParser extends AbstractContentAssistParser {
 					put(grammarAccess.getVideoDescriptionAccess().getProbabilityAssignment_3_2_1(), "rule__VideoDescription__ProbabilityAssignment_3_2_1");
 					put(grammarAccess.getVideoDescriptionAccess().getSizeAssignment_3_3_1(), "rule__VideoDescription__SizeAssignment_3_3_1");
 					put(grammarAccess.getVideoDescriptionAccess().getDescriptionAssignment_3_4_1(), "rule__VideoDescription__DescriptionAssignment_3_4_1");
+					put(grammarAccess.getVideoDescriptionAccess().getSubtitleAssignment_3_5_1(), "rule__VideoDescription__SubtitleAssignment_3_5_1");
+					put(grammarAccess.getSubtitleAccess().getTextAssignment_1(), "rule__Subtitle__TextAssignment_1");
+					put(grammarAccess.getSubtitleAccess().getColorfontAssignment_2_1_1(), "rule__Subtitle__ColorfontAssignment_2_1_1");
+					put(grammarAccess.getSubtitleAccess().getSizeAssignment_2_2_1(), "rule__Subtitle__SizeAssignment_2_2_1");
 				}
 			};
 		}

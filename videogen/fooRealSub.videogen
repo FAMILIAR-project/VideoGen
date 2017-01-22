@@ -1,0 +1,11 @@
+VideoGen {
+	mandatory videoseq v1 "Sample/V1.mp4" {subtitle "titre video" {color "white"}}
+	optional videoseq v2 "Sample/V2.mp4" {subtitle "sous titre 2" {color "black" size 24}}
+	alternatives v30 { 
+		videoseq v31 "Sample/V3.mp4" {subtitle "sous titre 3" {color "black" size 20}}
+		videoseq v32 "Sample/V4.mp4"
+		videoseq v33 "Sample/V5.mp4" {subtitle "sous titre 4" {size 12}}
+	}
+	
+
+}

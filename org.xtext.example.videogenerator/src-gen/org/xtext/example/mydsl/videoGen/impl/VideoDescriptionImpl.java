@@ -3,12 +3,15 @@
 package org.xtext.example.mydsl.videoGen.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.xtext.example.mydsl.videoGen.Subtitle;
 import org.xtext.example.mydsl.videoGen.VideoDescription;
 import org.xtext.example.mydsl.videoGen.VideoGenPackage;
 
@@ -26,7 +29,11 @@ import org.xtext.example.mydsl.videoGen.VideoGenPackage;
  *   <li>{@link org.xtext.example.mydsl.videoGen.impl.VideoDescriptionImpl#getProbability <em>Probability</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.videoGen.impl.VideoDescriptionImpl#getSize <em>Size</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.videoGen.impl.VideoDescriptionImpl#getDescription <em>Description</em>}</li>
+<<<<<<< HEAD
  *   <li>{@link org.xtext.example.mydsl.videoGen.impl.VideoDescriptionImpl#getText <em>Text</em>}</li>
+=======
+ *   <li>{@link org.xtext.example.mydsl.videoGen.impl.VideoDescriptionImpl#getSubtitle <em>Subtitle</em>}</li>
+>>>>>>> a150e5426d31f2a499effc322af3d84e64af383f
  * </ul>
  *
  * @generated
@@ -154,6 +161,7 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
   protected String description = DESCRIPTION_EDEFAULT;
 
   /**
+<<<<<<< HEAD
 	 * The default value of the '{@link #getText() <em>Text</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -175,6 +183,19 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
 
 		/**
 	 * <!-- begin-user-doc -->
+=======
+   * The cached value of the '{@link #getSubtitle() <em>Subtitle</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getSubtitle()
+   * @generated
+   * @ordered
+   */
+  protected Subtitle subtitle;
+
+  /**
+   * <!-- begin-user-doc -->
+>>>>>>> a150e5426d31f2a499effc322af3d84e64af383f
    * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -356,6 +377,7 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
 		/**
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+<<<<<<< HEAD
 	 * @generated
 	 */
   @Override
@@ -379,6 +401,96 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
+=======
+   * @generated
+   */
+  public Subtitle getSubtitle()
+  {
+    return subtitle;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetSubtitle(Subtitle newSubtitle, NotificationChain msgs)
+  {
+    Subtitle oldSubtitle = subtitle;
+    subtitle = newSubtitle;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VideoGenPackage.VIDEO_DESCRIPTION__SUBTITLE, oldSubtitle, newSubtitle);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setSubtitle(Subtitle newSubtitle)
+  {
+    if (newSubtitle != subtitle)
+    {
+      NotificationChain msgs = null;
+      if (subtitle != null)
+        msgs = ((InternalEObject)subtitle).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VideoGenPackage.VIDEO_DESCRIPTION__SUBTITLE, null, msgs);
+      if (newSubtitle != null)
+        msgs = ((InternalEObject)newSubtitle).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VideoGenPackage.VIDEO_DESCRIPTION__SUBTITLE, null, msgs);
+      msgs = basicSetSubtitle(newSubtitle, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, VideoGenPackage.VIDEO_DESCRIPTION__SUBTITLE, newSubtitle, newSubtitle));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case VideoGenPackage.VIDEO_DESCRIPTION__SUBTITLE:
+        return basicSetSubtitle(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType)
+  {
+    switch (featureID)
+    {
+      case VideoGenPackage.VIDEO_DESCRIPTION__VIDEOID:
+        return getVideoid();
+      case VideoGenPackage.VIDEO_DESCRIPTION__LOCATION:
+        return getLocation();
+      case VideoGenPackage.VIDEO_DESCRIPTION__DURATION:
+        return getDuration();
+      case VideoGenPackage.VIDEO_DESCRIPTION__PROBABILITY:
+        return getProbability();
+      case VideoGenPackage.VIDEO_DESCRIPTION__SIZE:
+        return getSize();
+      case VideoGenPackage.VIDEO_DESCRIPTION__DESCRIPTION:
+        return getDescription();
+      case VideoGenPackage.VIDEO_DESCRIPTION__SUBTITLE:
+        return getSubtitle();
+    }
+    return super.eGet(featureID, resolve, coreType);
+  }
+>>>>>>> a150e5426d31f2a499effc322af3d84e64af383f
 
   /**
 	 * <!-- begin-user-doc -->
@@ -388,6 +500,7 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
   @Override
   public void eSet(int featureID, Object newValue)
   {
+<<<<<<< HEAD
 		switch (featureID) {
 			case VideoGenPackage.VIDEO_DESCRIPTION__VIDEOID:
 				setVideoid((String)newValue);
@@ -413,6 +526,34 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
 		}
 		super.eSet(featureID, newValue);
 	}
+=======
+    switch (featureID)
+    {
+      case VideoGenPackage.VIDEO_DESCRIPTION__VIDEOID:
+        setVideoid((String)newValue);
+        return;
+      case VideoGenPackage.VIDEO_DESCRIPTION__LOCATION:
+        setLocation((String)newValue);
+        return;
+      case VideoGenPackage.VIDEO_DESCRIPTION__DURATION:
+        setDuration((Integer)newValue);
+        return;
+      case VideoGenPackage.VIDEO_DESCRIPTION__PROBABILITY:
+        setProbability((Integer)newValue);
+        return;
+      case VideoGenPackage.VIDEO_DESCRIPTION__SIZE:
+        setSize((Integer)newValue);
+        return;
+      case VideoGenPackage.VIDEO_DESCRIPTION__DESCRIPTION:
+        setDescription((String)newValue);
+        return;
+      case VideoGenPackage.VIDEO_DESCRIPTION__SUBTITLE:
+        setSubtitle((Subtitle)newValue);
+        return;
+    }
+    super.eSet(featureID, newValue);
+  }
+>>>>>>> a150e5426d31f2a499effc322af3d84e64af383f
 
   /**
 	 * <!-- begin-user-doc -->
@@ -422,6 +563,7 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
   @Override
   public void eUnset(int featureID)
   {
+<<<<<<< HEAD
 		switch (featureID) {
 			case VideoGenPackage.VIDEO_DESCRIPTION__VIDEOID:
 				setVideoid(VIDEOID_EDEFAULT);
@@ -447,6 +589,34 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
 		}
 		super.eUnset(featureID);
 	}
+=======
+    switch (featureID)
+    {
+      case VideoGenPackage.VIDEO_DESCRIPTION__VIDEOID:
+        setVideoid(VIDEOID_EDEFAULT);
+        return;
+      case VideoGenPackage.VIDEO_DESCRIPTION__LOCATION:
+        setLocation(LOCATION_EDEFAULT);
+        return;
+      case VideoGenPackage.VIDEO_DESCRIPTION__DURATION:
+        setDuration(DURATION_EDEFAULT);
+        return;
+      case VideoGenPackage.VIDEO_DESCRIPTION__PROBABILITY:
+        setProbability(PROBABILITY_EDEFAULT);
+        return;
+      case VideoGenPackage.VIDEO_DESCRIPTION__SIZE:
+        setSize(SIZE_EDEFAULT);
+        return;
+      case VideoGenPackage.VIDEO_DESCRIPTION__DESCRIPTION:
+        setDescription(DESCRIPTION_EDEFAULT);
+        return;
+      case VideoGenPackage.VIDEO_DESCRIPTION__SUBTITLE:
+        setSubtitle((Subtitle)null);
+        return;
+    }
+    super.eUnset(featureID);
+  }
+>>>>>>> a150e5426d31f2a499effc322af3d84e64af383f
 
   /**
 	 * <!-- begin-user-doc -->
@@ -456,6 +626,7 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
   @Override
   public boolean eIsSet(int featureID)
   {
+<<<<<<< HEAD
 		switch (featureID) {
 			case VideoGenPackage.VIDEO_DESCRIPTION__VIDEOID:
 				return VIDEOID_EDEFAULT == null ? videoid != null : !VIDEOID_EDEFAULT.equals(videoid);
@@ -474,6 +645,27 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
 		}
 		return super.eIsSet(featureID);
 	}
+=======
+    switch (featureID)
+    {
+      case VideoGenPackage.VIDEO_DESCRIPTION__VIDEOID:
+        return VIDEOID_EDEFAULT == null ? videoid != null : !VIDEOID_EDEFAULT.equals(videoid);
+      case VideoGenPackage.VIDEO_DESCRIPTION__LOCATION:
+        return LOCATION_EDEFAULT == null ? location != null : !LOCATION_EDEFAULT.equals(location);
+      case VideoGenPackage.VIDEO_DESCRIPTION__DURATION:
+        return duration != DURATION_EDEFAULT;
+      case VideoGenPackage.VIDEO_DESCRIPTION__PROBABILITY:
+        return probability != PROBABILITY_EDEFAULT;
+      case VideoGenPackage.VIDEO_DESCRIPTION__SIZE:
+        return size != SIZE_EDEFAULT;
+      case VideoGenPackage.VIDEO_DESCRIPTION__DESCRIPTION:
+        return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+      case VideoGenPackage.VIDEO_DESCRIPTION__SUBTITLE:
+        return subtitle != null;
+    }
+    return super.eIsSet(featureID);
+  }
+>>>>>>> a150e5426d31f2a499effc322af3d84e64af383f
 
   /**
 	 * <!-- begin-user-doc -->

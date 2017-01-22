@@ -28,10 +28,11 @@ VideoDescription : 'videoseq' (videoid=ID)? location=STRING
 	 ('size' size=INT)?
 	 ('description' description=STRING)?
 	 ('text' text=STRING)?
+	 ('subtitle' subtitle=Subtitle)?
 	RIGHT_BRACKET)?
-	
 ;
 
+Subtitle: 'subtitle' text=STRING (LEFT_BRACKET('color' colorfont=STRING)? ('size' size=INT)? RIGHT_BRACKET)?;
 terminal LEFT_BRACKET: '{' ; 
 terminal RIGHT_BRACKET: '}';
 

@@ -1,0 +1,78 @@
+=====Grammaire/projet xtext=====
+=>VideoGenForked\org.xtext.example.videogenerator\src\org\xtext\example\mydsl\VideoGen.xtext
+
+=====Question 1=====
+Fichier xtend de transformation:
+=>VideoGenForked\videogen\src\videogen\VideoDemonstratorFFmpeg.xtend
+
+=====Question 2=====
+Voir le projet PlayListMeta (contient le metamodel .ecore)
+
+=====Question 3,4 et 5=====
+Fichier xtend de transformation:
+=> VideoGenForked\videogen\src\videogen\VideoDemonstratorPlaylist.xtend
+
+=====Question 6=====
+Les bénéfices en utilisant un model intermédiaire (model-to-model) est le fait d'éviter de reparcourir le model autant de fois qu'on a de 
+format différent à produire: Comme tout ce qu'on a besoin est stocké dans un model intermédiaire on n'a plus qu'a relire ce model intermédiaire: 
+c'est donc un gain de performance, cela limite la complexité du code (duplication) et facilite l'ajout de nouveaux formats.
+La contrepartie est qu'il a une dépendance supplémentaire à un model externe ce qui peut-être gênant.
+
+La difficultés, à titre personnel,est de bien comprendre comment utiliser un model intermédiaire: comment importer un model d'un autre projet et 
+correctement le manipuler.
+Le métamodel intermédiaire pose une forte contrainte de dépendance supplémentaire ce qui peut rendre la récupération et l'utilisation du projet compliqué 
+mais il évite de dupliquer du code.
+Donc je recommande d'utiliser ce métamodel intermédiaire uniquement si on doit faire plusieurs "scripts", avec des méthodes de construction/syntaxes 
+différentes les unes des autres, à partir d’un même modele.
+
+=====Question 7=====
+Fichier xtend de transformation:
+=> VideoGenForked\videogen\src\videogen\VideoDemonstratorAddSize.xtend
+Fichier model de sortie:
+=> fooRealAug.videogen
+
+=====Question 8=====
+Fichier xtend de transformation:
+=> VideoGenForked\videogen\src\videogen\VideoDemonstratorM3UAug.xtend
+
+=====Question 9=====
+Fichier xtend de transformation:
+=> VideoGenForked\videogen\src\videogen\VideoDemonstratorAddVignette.xtend
+
+=====Question 10=====
+Fichier xtend de transformation:
+=> VideoGenForked\videogen\src\videogen\VideoDemonstratorHTMLVignette.xtend
+
+=====Question 11=====
+Fichier xtend de transformation (partiellement fait):
+=> VideoGenForked\videogen\src\videogen\VideoDemonstratorCheck.xtend
+
+=====Question 12=====
+Pas fait (manque de temps)
+
+=====Question 13=====
+Pas fait (manque de temps)
+
+=====Question 14=====
+Voir le script "Q14 - Feature model"
+
+=====Question 15=====
+Pour utiliser ce feature model il suffit de reprendre les xtend fait avant ou d'en rajouter de nouveaux:
+Par exemple pour le mode aléatoire on a un xtend qui existe déja: quand on affiche les mandatory, quand on fait un test pour savoir si on rajoute 
+une vidéo optionelle et quand  on choisit au hasard une video parmis N pour les alternatifs.
+Ici, donc, on peut déja déployer un site web pour un mode aléatoire du feature model.
+Pour les autres modes il suffit de réaliser les xtend de la même maniére.
+
+=====Projet1 : Calcul des métriques=====
+Fichier xtend de transformation:
+=> VideoGenForked\videogen\src\videogen\VideoDemonstratorCalculMetrique.xtend
+Fichier csv dans le dossier: 
+=> \VideoGenForked\videogen
+
+=====Projet2 : Incruster du texte dans une vidéo=====
+Fichier xtend de transformation: 
+=> VideoGenForked\videogen\src\videogen\VideoDemonstratorAddTexte.xtend
+Et mise à jour de la grammaire
+=>VideoGenForked\org.xtext.example.videogenerator\src\org\xtext\example\mydsl\VideoGen.xtext
+
+Note: La commande d'ajout de sous-titre ne marche pas mais le principe est là (récupération d'info issue d'un modele pour executer une commande)

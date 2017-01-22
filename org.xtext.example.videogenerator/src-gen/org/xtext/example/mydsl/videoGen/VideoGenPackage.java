@@ -316,6 +316,7 @@ public interface VideoGenPackage extends EPackage
   int VIDEO_DESCRIPTION__DESCRIPTION = 5;
 
   /**
+<<<<<<< HEAD
 	 * The feature id for the '<em><b>Text</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -332,6 +333,70 @@ public interface VideoGenPackage extends EPackage
 	 * @ordered
 	 */
   int VIDEO_DESCRIPTION_FEATURE_COUNT = 7;
+=======
+   * The feature id for the '<em><b>Subtitle</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VIDEO_DESCRIPTION__SUBTITLE = 6;
+
+  /**
+   * The number of structural features of the '<em>Video Description</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VIDEO_DESCRIPTION_FEATURE_COUNT = 7;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.videoGen.impl.SubtitleImpl <em>Subtitle</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.videoGen.impl.SubtitleImpl
+   * @see org.xtext.example.mydsl.videoGen.impl.VideoGenPackageImpl#getSubtitle()
+   * @generated
+   */
+  int SUBTITLE = 7;
+
+  /**
+   * The feature id for the '<em><b>Text</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUBTITLE__TEXT = 0;
+
+  /**
+   * The feature id for the '<em><b>Colorfont</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUBTITLE__COLORFONT = 1;
+
+  /**
+   * The feature id for the '<em><b>Size</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUBTITLE__SIZE = 2;
+
+  /**
+   * The number of structural features of the '<em>Subtitle</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUBTITLE_FEATURE_COUNT = 3;
+>>>>>>> a150e5426d31f2a499effc322af3d84e64af383f
 
 
   /**
@@ -570,6 +635,7 @@ public interface VideoGenPackage extends EPackage
   EAttribute getVideoDescription_Description();
 
   /**
+<<<<<<< HEAD
 	 * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.videoGen.VideoDescription#getText <em>Text</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -583,6 +649,64 @@ public interface VideoGenPackage extends EPackage
 		/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
+=======
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.videoGen.VideoDescription#getSubtitle <em>Subtitle</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Subtitle</em>'.
+   * @see org.xtext.example.mydsl.videoGen.VideoDescription#getSubtitle()
+   * @see #getVideoDescription()
+   * @generated
+   */
+  EReference getVideoDescription_Subtitle();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.videoGen.Subtitle <em>Subtitle</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Subtitle</em>'.
+   * @see org.xtext.example.mydsl.videoGen.Subtitle
+   * @generated
+   */
+  EClass getSubtitle();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.videoGen.Subtitle#getText <em>Text</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Text</em>'.
+   * @see org.xtext.example.mydsl.videoGen.Subtitle#getText()
+   * @see #getSubtitle()
+   * @generated
+   */
+  EAttribute getSubtitle_Text();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.videoGen.Subtitle#getColorfont <em>Colorfont</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Colorfont</em>'.
+   * @see org.xtext.example.mydsl.videoGen.Subtitle#getColorfont()
+   * @see #getSubtitle()
+   * @generated
+   */
+  EAttribute getSubtitle_Colorfont();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.videoGen.Subtitle#getSize <em>Size</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Size</em>'.
+   * @see org.xtext.example.mydsl.videoGen.Subtitle#getSize()
+   * @see #getSubtitle()
+   * @generated
+   */
+  EAttribute getSubtitle_Size();
+
+  /**
+   * Returns the factory that creates the instances of the model.
+   * <!-- begin-user-doc -->
+>>>>>>> a150e5426d31f2a499effc322af3d84e64af383f
    * <!-- end-user-doc -->
 	 * @return the factory that creates the instances of the model.
 	 * @generated
@@ -793,6 +917,7 @@ public interface VideoGenPackage extends EPackage
 		 */
     EAttribute VIDEO_DESCRIPTION__DESCRIPTION = eINSTANCE.getVideoDescription_Description();
 
+<<<<<<< HEAD
 				/**
 		 * The meta object literal for the '<em><b>Text</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -800,6 +925,49 @@ public interface VideoGenPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute VIDEO_DESCRIPTION__TEXT = eINSTANCE.getVideoDescription_Text();
+=======
+    /**
+     * The meta object literal for the '<em><b>Subtitle</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference VIDEO_DESCRIPTION__SUBTITLE = eINSTANCE.getVideoDescription_Subtitle();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.videoGen.impl.SubtitleImpl <em>Subtitle</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.videoGen.impl.SubtitleImpl
+     * @see org.xtext.example.mydsl.videoGen.impl.VideoGenPackageImpl#getSubtitle()
+     * @generated
+     */
+    EClass SUBTITLE = eINSTANCE.getSubtitle();
+
+    /**
+     * The meta object literal for the '<em><b>Text</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute SUBTITLE__TEXT = eINSTANCE.getSubtitle_Text();
+
+    /**
+     * The meta object literal for the '<em><b>Colorfont</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute SUBTITLE__COLORFONT = eINSTANCE.getSubtitle_Colorfont();
+
+    /**
+     * The meta object literal for the '<em><b>Size</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute SUBTITLE__SIZE = eINSTANCE.getSubtitle_Size();
+>>>>>>> a150e5426d31f2a499effc322af3d84e64af383f
 
   }
 

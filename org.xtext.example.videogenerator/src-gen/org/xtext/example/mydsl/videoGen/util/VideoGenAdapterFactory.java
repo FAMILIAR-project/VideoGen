@@ -69,6 +69,7 @@ public class VideoGenAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
   protected VideoGenSwitch<Adapter> modelSwitch =
+<<<<<<< HEAD
     new VideoGenSwitch<Adapter>() {
 			@Override
 			public Adapter caseVideoGeneratorModel(VideoGeneratorModel object) {
@@ -103,6 +104,56 @@ public class VideoGenAdapterFactory extends AdapterFactoryImpl
 				return createEObjectAdapter();
 			}
 		};
+=======
+    new VideoGenSwitch<Adapter>()
+    {
+      @Override
+      public Adapter caseVideoGeneratorModel(VideoGeneratorModel object)
+      {
+        return createVideoGeneratorModelAdapter();
+      }
+      @Override
+      public Adapter caseVideoGenInformation(VideoGenInformation object)
+      {
+        return createVideoGenInformationAdapter();
+      }
+      @Override
+      public Adapter caseVideoSeq(VideoSeq object)
+      {
+        return createVideoSeqAdapter();
+      }
+      @Override
+      public Adapter caseMandatoryVideoSeq(MandatoryVideoSeq object)
+      {
+        return createMandatoryVideoSeqAdapter();
+      }
+      @Override
+      public Adapter caseOptionalVideoSeq(OptionalVideoSeq object)
+      {
+        return createOptionalVideoSeqAdapter();
+      }
+      @Override
+      public Adapter caseAlternativeVideoSeq(AlternativeVideoSeq object)
+      {
+        return createAlternativeVideoSeqAdapter();
+      }
+      @Override
+      public Adapter caseVideoDescription(VideoDescription object)
+      {
+        return createVideoDescriptionAdapter();
+      }
+      @Override
+      public Adapter caseSubtitle(Subtitle object)
+      {
+        return createSubtitleAdapter();
+      }
+      @Override
+      public Adapter defaultCase(EObject object)
+      {
+        return createEObjectAdapter();
+      }
+    };
+>>>>>>> a150e5426d31f2a499effc322af3d84e64af383f
 
   /**
 	 * Creates an adapter for the <code>target</code>.
@@ -225,8 +276,28 @@ public class VideoGenAdapterFactory extends AdapterFactoryImpl
 	}
 
   /**
+<<<<<<< HEAD
 	 * Creates a new adapter for the default case.
 	 * <!-- begin-user-doc -->
+=======
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.videoGen.Subtitle <em>Subtitle</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.videoGen.Subtitle
+   * @generated
+   */
+  public Adapter createSubtitleAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for the default case.
+   * <!-- begin-user-doc -->
+>>>>>>> a150e5426d31f2a499effc322af3d84e64af383f
    * This default implementation returns null.
    * <!-- end-user-doc -->
 	 * @return the new adapter.

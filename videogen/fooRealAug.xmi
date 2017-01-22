@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ASCII"?>
+<videoGen:VideoGeneratorModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:videoGen="http://www.xtext.org/example/mydsl/VideoGen">
+  <videoseqs xsi:type="videoGen:MandatoryVideoSeq">
+    <description videoid="v1" location="Sample/V1.mp4" duration="38"/>
+  </videoseqs>
+  <videoseqs xsi:type="videoGen:OptionalVideoSeq">
+    <description videoid="v2" location="Sample/V2.mp4" duration="24"/>
+  </videoseqs>
+  <videoseqs xsi:type="videoGen:AlternativeVideoSeq" videoid="v30">
+    <videodescs videoid="v31" location="Sample/V3.mp4" duration="33"/>
+    <videodescs videoid="v32" location="Sample/V4.mp4" duration="22"/>
+    <videodescs videoid="v33" location="Sample/V5.mp4" duration="16"/>
+  </videoseqs>
+</videoGen:VideoGeneratorModel>

@@ -69,6 +69,7 @@ public class VideoGenSwitch<T> extends Switch<T>
   @Override
   protected T doSwitch(int classifierID, EObject theEObject)
   {
+<<<<<<< HEAD
 		switch (classifierID) {
 			case VideoGenPackage.VIDEO_GENERATOR_MODEL: {
 				VideoGeneratorModel videoGeneratorModel = (VideoGeneratorModel)theEObject;
@@ -118,6 +119,72 @@ public class VideoGenSwitch<T> extends Switch<T>
 			default: return defaultCase(theEObject);
 		}
 	}
+=======
+    switch (classifierID)
+    {
+      case VideoGenPackage.VIDEO_GENERATOR_MODEL:
+      {
+        VideoGeneratorModel videoGeneratorModel = (VideoGeneratorModel)theEObject;
+        T result = caseVideoGeneratorModel(videoGeneratorModel);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case VideoGenPackage.VIDEO_GEN_INFORMATION:
+      {
+        VideoGenInformation videoGenInformation = (VideoGenInformation)theEObject;
+        T result = caseVideoGenInformation(videoGenInformation);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case VideoGenPackage.VIDEO_SEQ:
+      {
+        VideoSeq videoSeq = (VideoSeq)theEObject;
+        T result = caseVideoSeq(videoSeq);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case VideoGenPackage.MANDATORY_VIDEO_SEQ:
+      {
+        MandatoryVideoSeq mandatoryVideoSeq = (MandatoryVideoSeq)theEObject;
+        T result = caseMandatoryVideoSeq(mandatoryVideoSeq);
+        if (result == null) result = caseVideoSeq(mandatoryVideoSeq);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case VideoGenPackage.OPTIONAL_VIDEO_SEQ:
+      {
+        OptionalVideoSeq optionalVideoSeq = (OptionalVideoSeq)theEObject;
+        T result = caseOptionalVideoSeq(optionalVideoSeq);
+        if (result == null) result = caseVideoSeq(optionalVideoSeq);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case VideoGenPackage.ALTERNATIVE_VIDEO_SEQ:
+      {
+        AlternativeVideoSeq alternativeVideoSeq = (AlternativeVideoSeq)theEObject;
+        T result = caseAlternativeVideoSeq(alternativeVideoSeq);
+        if (result == null) result = caseVideoSeq(alternativeVideoSeq);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case VideoGenPackage.VIDEO_DESCRIPTION:
+      {
+        VideoDescription videoDescription = (VideoDescription)theEObject;
+        T result = caseVideoDescription(videoDescription);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case VideoGenPackage.SUBTITLE:
+      {
+        Subtitle subtitle = (Subtitle)theEObject;
+        T result = caseSubtitle(subtitle);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      default: return defaultCase(theEObject);
+    }
+  }
+>>>>>>> a150e5426d31f2a499effc322af3d84e64af383f
 
   /**
 	 * Returns the result of interpreting the object as an instance of '<em>Video Generator Model</em>'.
@@ -232,8 +299,29 @@ public class VideoGenSwitch<T> extends Switch<T>
 	}
 
   /**
+<<<<<<< HEAD
 	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * <!-- begin-user-doc -->
+=======
+   * Returns the result of interpreting the object as an instance of '<em>Subtitle</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Subtitle</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSubtitle(Subtitle object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
+   * <!-- begin-user-doc -->
+>>>>>>> a150e5426d31f2a499effc322af3d84e64af383f
    * This implementation returns null;
    * returning a non-null result will terminate the switch, but this is the last case anyway.
    * <!-- end-user-doc -->

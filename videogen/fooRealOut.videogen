@@ -1,0 +1,9 @@
+VideoGen {
+	mandatory videoseq v1 "Sample/V1.mp4"
+	optional videoseq v2 "Sample/V2.mp4"
+	alternatives v30 { 
+		videoseq v31 "Sample/V3.mp4"
+		videoseq v32 "Sample/V4.mp4"
+		videoseq v33 "Sample/V5.mp4"
+	}
+}

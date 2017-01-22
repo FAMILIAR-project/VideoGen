@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq;
 import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq;
 import org.xtext.example.mydsl.videoGen.OptionalVideoSeq;
+import org.xtext.example.mydsl.videoGen.Subtitle;
 import org.xtext.example.mydsl.videoGen.VideoDescription;
 import org.xtext.example.mydsl.videoGen.VideoGenFactory;
 import org.xtext.example.mydsl.videoGen.VideoGenInformation;
@@ -77,6 +78,7 @@ public class VideoGenPackageImpl extends EPackageImpl implements VideoGenPackage
   private EClass videoDescriptionEClass = null;
 
   /**
+<<<<<<< HEAD
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -91,6 +93,29 @@ public class VideoGenPackageImpl extends EPackageImpl implements VideoGenPackage
 	 * @see #init()
 	 * @generated
 	 */
+=======
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass subtitleEClass = null;
+
+  /**
+   * Creates an instance of the model <b>Package</b>, registered with
+   * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+   * package URI value.
+   * <p>Note: the correct way to create the package is via the static
+   * factory method {@link #init init()}, which also performs
+   * initialization of the package, or returns the registered package,
+   * if one already exists.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.emf.ecore.EPackage.Registry
+   * @see org.xtext.example.mydsl.videoGen.VideoGenPackage#eNS_URI
+   * @see #init()
+   * @generated
+   */
+>>>>>>> a150e5426d31f2a499effc322af3d84e64af383f
   private VideoGenPackageImpl()
   {
 		super(eNS_URI, VideoGenFactory.eINSTANCE);
@@ -371,8 +396,63 @@ public class VideoGenPackageImpl extends EPackageImpl implements VideoGenPackage
 		/**
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+<<<<<<< HEAD
 	 * @generated
 	 */
+=======
+   * @generated
+   */
+  public EReference getVideoDescription_Subtitle()
+  {
+    return (EReference)videoDescriptionEClass.getEStructuralFeatures().get(6);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getSubtitle()
+  {
+    return subtitleEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getSubtitle_Text()
+  {
+    return (EAttribute)subtitleEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getSubtitle_Colorfont()
+  {
+    return (EAttribute)subtitleEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getSubtitle_Size()
+  {
+    return (EAttribute)subtitleEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+>>>>>>> a150e5426d31f2a499effc322af3d84e64af383f
   public VideoGenFactory getVideoGenFactory()
   {
 		return (VideoGenFactory)getEFactoryInstance();
@@ -419,6 +499,7 @@ public class VideoGenPackageImpl extends EPackageImpl implements VideoGenPackage
 		createEAttribute(alternativeVideoSeqEClass, ALTERNATIVE_VIDEO_SEQ__VIDEOID);
 		createEReference(alternativeVideoSeqEClass, ALTERNATIVE_VIDEO_SEQ__VIDEODESCS);
 
+<<<<<<< HEAD
 		videoDescriptionEClass = createEClass(VIDEO_DESCRIPTION);
 		createEAttribute(videoDescriptionEClass, VIDEO_DESCRIPTION__VIDEOID);
 		createEAttribute(videoDescriptionEClass, VIDEO_DESCRIPTION__LOCATION);
@@ -428,6 +509,22 @@ public class VideoGenPackageImpl extends EPackageImpl implements VideoGenPackage
 		createEAttribute(videoDescriptionEClass, VIDEO_DESCRIPTION__DESCRIPTION);
 		createEAttribute(videoDescriptionEClass, VIDEO_DESCRIPTION__TEXT);
 	}
+=======
+    videoDescriptionEClass = createEClass(VIDEO_DESCRIPTION);
+    createEAttribute(videoDescriptionEClass, VIDEO_DESCRIPTION__VIDEOID);
+    createEAttribute(videoDescriptionEClass, VIDEO_DESCRIPTION__LOCATION);
+    createEAttribute(videoDescriptionEClass, VIDEO_DESCRIPTION__DURATION);
+    createEAttribute(videoDescriptionEClass, VIDEO_DESCRIPTION__PROBABILITY);
+    createEAttribute(videoDescriptionEClass, VIDEO_DESCRIPTION__SIZE);
+    createEAttribute(videoDescriptionEClass, VIDEO_DESCRIPTION__DESCRIPTION);
+    createEReference(videoDescriptionEClass, VIDEO_DESCRIPTION__SUBTITLE);
+
+    subtitleEClass = createEClass(SUBTITLE);
+    createEAttribute(subtitleEClass, SUBTITLE__TEXT);
+    createEAttribute(subtitleEClass, SUBTITLE__COLORFONT);
+    createEAttribute(subtitleEClass, SUBTITLE__SIZE);
+  }
+>>>>>>> a150e5426d31f2a499effc322af3d84e64af383f
 
   /**
 	 * <!-- begin-user-doc -->
@@ -484,6 +581,7 @@ public class VideoGenPackageImpl extends EPackageImpl implements VideoGenPackage
 		initEAttribute(getAlternativeVideoSeq_Videoid(), ecorePackage.getEString(), "videoid", null, 0, 1, AlternativeVideoSeq.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAlternativeVideoSeq_Videodescs(), this.getVideoDescription(), null, "videodescs", null, 0, -1, AlternativeVideoSeq.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+<<<<<<< HEAD
 		initEClass(videoDescriptionEClass, VideoDescription.class, "VideoDescription", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getVideoDescription_Videoid(), ecorePackage.getEString(), "videoid", null, 0, 1, VideoDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getVideoDescription_Location(), ecorePackage.getEString(), "location", null, 0, 1, VideoDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -492,6 +590,21 @@ public class VideoGenPackageImpl extends EPackageImpl implements VideoGenPackage
 		initEAttribute(getVideoDescription_Size(), ecorePackage.getEInt(), "size", null, 0, 1, VideoDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getVideoDescription_Description(), ecorePackage.getEString(), "description", null, 0, 1, VideoDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getVideoDescription_Text(), ecorePackage.getEString(), "text", null, 0, 1, VideoDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+=======
+    initEClass(videoDescriptionEClass, VideoDescription.class, "VideoDescription", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getVideoDescription_Videoid(), ecorePackage.getEString(), "videoid", null, 0, 1, VideoDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getVideoDescription_Location(), ecorePackage.getEString(), "location", null, 0, 1, VideoDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getVideoDescription_Duration(), ecorePackage.getEInt(), "duration", null, 0, 1, VideoDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getVideoDescription_Probability(), ecorePackage.getEInt(), "probability", null, 0, 1, VideoDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getVideoDescription_Size(), ecorePackage.getEInt(), "size", null, 0, 1, VideoDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getVideoDescription_Description(), ecorePackage.getEString(), "description", null, 0, 1, VideoDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getVideoDescription_Subtitle(), this.getSubtitle(), null, "subtitle", null, 0, 1, VideoDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(subtitleEClass, Subtitle.class, "Subtitle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getSubtitle_Text(), ecorePackage.getEString(), "text", null, 0, 1, Subtitle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getSubtitle_Colorfont(), ecorePackage.getEString(), "colorfont", null, 0, 1, Subtitle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getSubtitle_Size(), ecorePackage.getEInt(), "size", null, 0, 1, Subtitle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+>>>>>>> a150e5426d31f2a499effc322af3d84e64af383f
 
 		// Create resource
 		createResource(eNS_URI);
