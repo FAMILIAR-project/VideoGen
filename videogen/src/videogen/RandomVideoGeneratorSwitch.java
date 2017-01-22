@@ -3,6 +3,11 @@ package videogen;
 import java.io.File;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated;
 import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq;
 import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq;
 import org.xtext.example.mydsl.videoGen.OptionalVideoSeq;
@@ -19,6 +24,22 @@ import org.xtext.example.mydsl.videoGen.util.VideoGenSwitch;
  */
 public class RandomVideoGeneratorSwitch extends VideoGenSwitch<Boolean> {
 
+	public static VideoGeneratorModel loadVideoGenerator(URI uri) {
+		VideoGenStandaloneSetupGenerated videoGenStandaloneSetupGenerated = new VideoGenStandaloneSetupGenerated();
+		videoGenStandaloneSetupGenerated.createInjectorAndDoEMFRegistration();
+		ResourceSetImpl resourceSetImpl = new ResourceSetImpl();
+		Resource resource = resourceSetImpl.getResource(uri, true);
+		EObject eObject = resource.getContents().get(0);
+		return (VideoGeneratorModel) eObject;
+	}
+
+	public static void main(String[] args) {
+
+		URI createURI = URI.createURI("foo2_avi_only.videogen");
+		VideoGeneratorModel videoGen = loadVideoGenerator(createURI);
+		new RandomVideoGeneratorSwitch().doSwitch(videoGen);
+
+	}
 	@Override
 	public Boolean caseVideoGeneratorModel(VideoGeneratorModel videoGenModel) {
 		EList<VideoSeq> videoseqs = videoGenModel.getVideoseqs();
