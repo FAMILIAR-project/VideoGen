@@ -151,6 +151,19 @@ class VideoDemonstrator {
 	}
 
 	@Test
+	def void testQ9 () {
+
+		RandomVideoGeneratorSwitch.main(#[]);
+
+		val createURI = URI.createURI("foo2_avi_only.videogen")
+		var videoGen = loadVideoGenerator(createURI)
+		assertNotNull(videoGen)
+		assertEquals(7, videoGen.videoseqs.size)
+
+		Q9GenerateTBSwitch.generateThumbnails(videoGen)
+	}
+
+	@Test
 	def void test4(){
 		// loading
 		val createURI = URI.createURI("foo2.videogen")
