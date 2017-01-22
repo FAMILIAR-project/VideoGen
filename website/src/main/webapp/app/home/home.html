@@ -1,0 +1,29 @@
+<div ng-cloak>
+	<div class="row">
+		<div>
+			<h1>Welcome to VideoGen !</h1>
+			<p class="lead">Generate your own video</p>
+			<button type="button" class="btn btn-default" data-dismiss="modal"
+				ng-click="vm.generate()">
+				&nbsp;<span>Generate</span>
+			</button>
+			<p class="lead">Playlist Content :</p>
+
+			<div ng-repeat="video in vm.playlist.videos">
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<a href="/{{video.url}}"> <img src="{{video.thumbnail}}"
+							alt="{{video.url}}" style="width: 100%">
+							<div class="caption"></div>
+						</a>
+					</div>
+				</div>
+			</div>
+		
+		<p class="lead">Configurateur (Work In Progress...)</p>
+		<p><div ng-bind-html="vm.configurateur"></div></p>
+	</div>
+		</div>
+				</div>
+
+</div>

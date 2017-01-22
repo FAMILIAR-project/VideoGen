@@ -1,0 +1,7 @@
+*.mp4
+*_trace
+videogen/params.txt
+videogen/play.m3u
+videogen/mastaconcat.videogen
+videogen/xtend-gen
+videogen/thumbnails

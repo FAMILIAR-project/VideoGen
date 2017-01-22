@@ -126,6 +126,42 @@ public interface VideoGenFactory extends EFactory
   Text createText();
 
   /**
+   * Returns a new object of class '<em>Filter</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Filter</em>'.
+   * @generated
+   */
+  Filter createFilter();
+
+  /**
+   * Returns a new object of class '<em>Black White Filter</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Black White Filter</em>'.
+   * @generated
+   */
+  BlackWhiteFilter createBlackWhiteFilter();
+
+  /**
+   * Returns a new object of class '<em>Negate Filter</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Negate Filter</em>'.
+   * @generated
+   */
+  NegateFilter createNegateFilter();
+
+  /**
+   * Returns a new object of class '<em>Flip Filter</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Flip Filter</em>'.
+   * @generated
+   */
+  FlipFilter createFlipFilter();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
 >>>>>>> a150e5426d31f2a499effc322af3d84e64af383f

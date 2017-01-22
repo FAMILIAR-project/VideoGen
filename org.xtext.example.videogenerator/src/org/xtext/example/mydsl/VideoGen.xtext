@@ -31,6 +31,8 @@ VideoDescription : 'videoseq' (videoid=ID)? location=STRING
 	 ('subtitle' subtitle=Subtitle)?
 	 ('filter' filter=Filter)?
 	 ('text' text=Text)?
+	 ('description' description=STRING)? 
+	 ('filter' filter=Filter)?
 	RIGHT_BRACKET)?
 ;
 
@@ -57,6 +59,20 @@ Position :
 ;
 
 
+
+Filter : FlipFilter | NegateFilter | BlackWhiteFilter;
+
+BlackWhiteFilter: {BlackWhiteFilter}
+	'b&w'
+;
+
+NegateFilter: {NegateFilter}
+	'negate'
+;
+
+FlipFilter:
+	'flip' orientation=('h' | 'horizontal' | 'v' | 'vertical')
+;
 
 terminal LEFT_BRACKET: '{' ; 
 terminal RIGHT_BRACKET: '}';

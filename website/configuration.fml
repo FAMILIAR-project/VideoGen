@@ -1,0 +1,7 @@
+fmGen = FM (
+	VideoGenerator: Mode [Save] [Vignette];
+
+	Mode: (Random|Probability|Configurator|Hybrid|Crazy);
+	
+	(Configurator -> !Vignette);
+)
