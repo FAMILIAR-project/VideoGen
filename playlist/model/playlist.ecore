@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< dd208ae18ad03eccf30f4fdb6d0b722a7f793ca6
 <<<<<<< b2b6328e8a2fa021ca30e5db43a8460da211daa8
+=======
+>>>>>>> jusqu'à Q7
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="playlist" nsURI="http://www.example.org/playlist" nsPrefix="playlist">
   <eClassifiers xsi:type="ecore:EClass" name="Playlist">
@@ -14,7 +17,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>
+<<<<<<< dd208ae18ad03eccf30f4fdb6d0b722a7f793ca6
 =======
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     name="playlist" nsURI="http://www.example.org/playlist" nsPrefix="playlist"/>
 >>>>>>> réponse question 1 et création modèle playlist
+=======
+>>>>>>> jusqu'à Q7

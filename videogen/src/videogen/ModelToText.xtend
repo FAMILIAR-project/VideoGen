@@ -25,11 +25,15 @@ class ModelToText{
 	def void modelToText(URI uri,FileWriter fout){
 		var videogen = loadVideoGenerator(uri)
 		val rnd = new Random()
+<<<<<<< dd208ae18ad03eccf30f4fdb6d0b722a7f793ca6
 <<<<<<< b2b6328e8a2fa021ca30e5db43a8460da211daa8
 		fout.write("# this is a comment\n")
 		videogen.videoseqs.forEach[vid|
 			if (vid instanceof MandatoryVideoSeq){
 =======
+=======
+		
+>>>>>>> jusqu'à Q7
 		//println("# this is a comment")
 		fout.write("# this is a comment\n")
 		videogen.videoseqs.forEach[vid|

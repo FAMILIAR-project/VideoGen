@@ -10,12 +10,20 @@ import java.util.HashMap
 import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq
 import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq
+<<<<<<< dd208ae18ad03eccf30f4fdb6d0b722a7f793ca6
 import java.util.Random
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
 class DurationComputation {
 	//Partie 3
+=======
+
+//import org.xtext.example.mydsl.videoGen.VideoGenFactory
+
+class DurationComputation {
+	
+>>>>>>> jusqu'à Q7
 	def loadVideoGenerator(URI uri) {
 		new VideoGenStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()
 		var res = new ResourceSetImpl().getResource(uri, true);
@@ -32,6 +40,10 @@ class DurationComputation {
 		var videogen = loadVideoGenerator(in)
 		videogen.videoseqs.forEach[vid|
 			if (vid instanceof MandatoryVideoSeq){
+<<<<<<< dd208ae18ad03eccf30f4fdb6d0b722a7f793ca6
+=======
+				//var cmd = "/usr/local/bin/ffprobe -v error -select_streams v:0 -show_entries stream=duration -of default=noprint_wrappers=1:nokey=1 -i " + videoLocation
+>>>>>>> jusqu'à Q7
 				val duration = computeDuration(vid.description.location) //<-- calculer la durée
 				vid.description.duration = duration
 			}
@@ -41,14 +53,22 @@ class DurationComputation {
 			}
 			if (vid instanceof AlternativeVideoSeq){
 				for (videodesc:vid.videodescs){
+<<<<<<< dd208ae18ad03eccf30f4fdb6d0b722a7f793ca6
 					val duration = computeDuration(videodesc.location)
 					videodesc.duration = duration
 				}
+=======
+					val duration = computeDuration(videodesc.description.)
+					videodesc.description.duration = duration as int
+				}
+
+>>>>>>> jusqu'à Q7
 			}
 		]
 		saveVideoGenerator(out,videogen)
 	}
 	
+<<<<<<< dd208ae18ad03eccf30f4fdb6d0b722a7f793ca6
 	def modelToM3UExtended(URI in,String out){
 		var mod = loadVideoGenerator(in)
 		val fout = new FileWriter(out)
@@ -102,5 +122,24 @@ class DurationComputation {
 		val m3uext = "perso.m3u"
 		dc.durationCompute(fin,fout)
 		dc.modelToM3UExtended(fout,m3uext)
+=======
+	def int computeDuration(String videoLocation){
+		var cmd = "/usr/local/bin/ffprobe -v error -select_streams v:0 -show_entries stream=duration -of default=noprint_wrappers=1:nokey=1 -i " + videoLocation
+		var Process process = Runtime.getRuntime().exec(cmd)
+		process.waitFor()
+		}
+		
+	def void generateThumbnail(String videoLocation, String name){
+		var cmd = "/usr/local/bin/ffmpeg -i " + videoLocation + " -ss 00:00:01.000 -vframes 1 " + "/thumb" + name + ".jpg -y"
+		var Process process = Runtime.getRuntime().exec(cmd)
+		process.waitFor()
+	}
+	
+	def static void main(String[] args) {
+		val dc = new DurationComputation
+		val fin = URI.createURI("foo2.videogen")
+		val fout = URI.createURI("foo2duration.videogen")
+		dc.durationCompute(fin,fout)
+>>>>>>> jusqu'à Q7
 	}
 }
