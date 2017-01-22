@@ -1,7 +1,0 @@
-#Sequence FFmpeg generate
-file 'Sample/V1.mp4'
-#TestRes:31
-file 'Sample/V2.mp4'
-#Choix:0
-file 'Sample/V5.mp4'
-#End of generation
