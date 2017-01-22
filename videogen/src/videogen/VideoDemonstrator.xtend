@@ -31,24 +31,24 @@ class VideoDemonstrator {
 	}
 
 	@Test
-	def void testCommandExec(){
+	def void testCommandExec() {
 		val String[] command = #['ls']
 		val commandExec = Utils.commandExec(command)
 		println("output : \n" + commandExec)
- 	}
+	}
 
 	@Test
-	def void testRandomGenerationVideo(){
+	def void testRandomGenerationVideo() {
 		val fileName = FFMPEGHelper.randomGenerationVideo(5);
 		Assert.assertTrue(new File(fileName).exists)
 		val commandExec = Utils.commandExec(#['ls'])
 		Assert.assertTrue(commandExec.contains(fileName))
 
 		new File(fileName).delete
- 	}
+	}
 
- 	@Test
-	def void testComputeGif(){
+	@Test
+	def void testComputeGif() {
 		val d = 2
 		val fileName = FFMPEGHelper.randomGenerationVideo(d);
 		Assert.assertTrue(new File(fileName).exists)
@@ -57,18 +57,18 @@ class VideoDemonstrator {
 
 		new File(fileName).delete
 		new File(gifPath).delete
- 	}
+	}
 
- 	@Test
-	def void testComputeDuration(){
+	@Test
+	def void testComputeDuration() {
 		val d = 5
 		val fileName = FFMPEGHelper.randomGenerationVideo(d);
 		Assert.assertTrue(new File(fileName).exists)
 		val duration = FFMPEGHelper.computeDuration(fileName);
-		Assert.assertEquals(d,duration);
+		Assert.assertEquals(d, duration);
 
 		new File(fileName).delete
- 	}
+	}
 
 	@Test
 	def void testThumbnailGen() {
@@ -80,8 +80,9 @@ class VideoDemonstrator {
 		new File(path).delete
 		new File(imgPath).delete
 	}
+
 	@Test
-	def void testQ1(){
+	def void testQ1() {
 		// loading
 		val createURI = URI.createURI("foo2.videogen")
 		var videoGen = loadVideoGenerator(createURI)
@@ -92,10 +93,10 @@ class VideoDemonstrator {
 		println(text)
 
 		Utils.fileWrite("testq1.ffmpeg", text)
- 	}
+	}
 
 	@Test
-	def void testQ3(){
+	def void testQ3() {
 		// loading
 		val createURI = URI.createURI("foo2.videogen")
 		var videoGen = loadVideoGenerator(createURI)
@@ -105,10 +106,10 @@ class VideoDemonstrator {
 		val playlist = Q3ModelToModelSwitch.convertVideogenToPlaylist(videoGen)
 		println(playlist)
 
- 	}
+	}
 
- 	@Test
-	def void testQ3bis(){
+	@Test
+	def void testQ3bis() {
 		// loading
 		val createURI = URI.createURI("foo2.videogen")
 		var videoGen = loadVideoGenerator(createURI)
@@ -151,7 +152,7 @@ class VideoDemonstrator {
 	}
 
 	@Test
-	def void testQ9 () {
+	def void testQ9() {
 
 		RandomVideoGeneratorSwitch.main(#[]);
 
@@ -164,7 +165,22 @@ class VideoDemonstrator {
 	}
 
 	@Test
-	def void test4(){
+	def void testQ10() {
+
+		RandomVideoGeneratorSwitch.main(#[]);
+
+		val createURI = URI.createURI("foo2_avi_only.videogen")
+		var videoGen = loadVideoGenerator(createURI)
+		assertNotNull(videoGen)
+		assertEquals(7, videoGen.videoseqs.size)
+
+		val htmlText = Q10GenerateHTMLPage.generateHTML(videoGen)
+		println(htmlText)
+		Utils.fileWrite("foo2.html",htmlText)
+	}
+
+	@Test
+	def void test4() {
 		// loading
 		val createURI = URI.createURI("foo2.videogen")
 		var videoGen = loadVideoGenerator(createURI)
@@ -185,16 +201,14 @@ class VideoDemonstrator {
 		assertNotNull(videoGen)
 		assertEquals(7, videoGen.videoseqs.size)
 		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
-		videoGen.videoseqs.forEach[videoseq |
+		videoGen.videoseqs.forEach [ videoseq |
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
-				if(desc.videoid.isNullOrEmpty)  desc.videoid = genID()
-			}
-			else if (videoseq instanceof OptionalVideoSeq) {
+				if(desc.videoid.isNullOrEmpty) desc.videoid = genID()
+			} else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
 				if(desc.videoid.isNullOrEmpty) desc.videoid = genID()
-			}
-			else {
+			} else {
 				val altvid = (videoseq as AlternativeVideoSeq)
 				if(altvid.videoid.isNullOrEmpty) altvid.videoid = genID()
 				for (vdesc : altvid.videodescs) {
@@ -208,41 +222,39 @@ class VideoDemonstrator {
 
 		printToHTML(videoGen)
 
-
 	}
 
 	def void printToHTML(VideoGeneratorModel videoGen) {
-		//var numSeq = 1
+		// var numSeq = 1
 		println("<ul>")
-		videoGen.videoseqs.forEach[videoseq |
+		videoGen.videoseqs.forEach [ videoseq |
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
-				if(!desc.videoid.isNullOrEmpty)
-					println ("<li>" + desc.videoid + "</li>")
-			}
-			else if (videoseq instanceof OptionalVideoSeq) {
+				if (!desc.videoid.isNullOrEmpty)
+					println("<li>" + desc.videoid + "</li>")
+			} else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
-				if(!desc.videoid.isNullOrEmpty)
-					println ("<li>" + desc.videoid + "</li>")
-			}
-			else {
+				if (!desc.videoid.isNullOrEmpty)
+					println("<li>" + desc.videoid + "</li>")
+			} else {
 				val altvid = (videoseq as AlternativeVideoSeq)
-				if(!altvid.videoid.isNullOrEmpty)
-					println ("<li>" + altvid.videoid + "</li>")
+				if (!altvid.videoid.isNullOrEmpty)
+					println("<li>" + altvid.videoid + "</li>")
 				if (altvid.videodescs.size > 0) // there are vid seq alternatives
-					println ("<ul>")
+					println("<ul>")
 				for (vdesc : altvid.videodescs) {
-					if(!vdesc.videoid.isNullOrEmpty)
-						println ("<li>" + vdesc.videoid + "</li>")
+					if (!vdesc.videoid.isNullOrEmpty)
+						println("<li>" + vdesc.videoid + "</li>")
 				}
 				if (altvid.videodescs.size > 0) // there are vid seq alternatives
-					println ("</ul>")
+					println("</ul>")
 			}
 		]
 		println("</ul>")
 	}
 
 	static var i = 0;
+
 	def genID() {
 		"v" + i++
 	}
