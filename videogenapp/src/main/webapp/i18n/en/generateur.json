@@ -1,0 +1,22 @@
+{
+    "videoGenApplicationApp": {
+        "generateur" : {
+            "home": {
+                "title": "Generateurs",
+                "createLabel": "Create a new Generateur",
+                "createOrEditLabel": "Create or edit a Generateur",
+                "search": "Search for Generateur"
+            },
+            "created": "A new Generateur is created with identifier {{ param }}",
+            "updated": "A Generateur is updated with identifier {{ param }}",
+            "deleted": "A Generateur is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Generateur {{ id }}?"
+            },
+            "detail": {
+                "title": "Generateur"
+            },
+            "test": "Test"
+        }
+    }
+}
