@@ -4,7 +4,7 @@ generate videoGen "http://www.xtext.org/example/mydsl/VideoGen"
 
 VideoGeneratorModel: {VideoGeneratorModel}
 	(information=VideoGenInformation)?
-	'VideoGen' LEFT_BRACKET
+	'VideoGen' LEFT_BRACKET 
 	videoseqs+=VideoSeq+
 	RIGHT_BRACKET
 	;
