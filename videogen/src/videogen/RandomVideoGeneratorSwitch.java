@@ -59,6 +59,8 @@ public class RandomVideoGeneratorSwitch extends VideoGenSwitch<Boolean> {
 
 	private void generateRandomVideo(String location) {
 		File file = new File(location);
+		if (file.exists())
+			return;
 
 		File parentFile = file.getParentFile();
 		String parentPath = ".";
