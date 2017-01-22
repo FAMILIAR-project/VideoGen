@@ -28,6 +28,15 @@ class VideoDemonstrator {
 		rs.save(new HashMap());
 	}
 
+	@Test
+	def void testCommandExec(){
+		val String[] command = #['ls']
+		println("starting process")
+		val commandExec = Utils.commandExec(command)
+		println("process done")
+		println("output : \n" + commandExec)
+
+ 	}
 
 	@Test
 	def void testQ1(){
