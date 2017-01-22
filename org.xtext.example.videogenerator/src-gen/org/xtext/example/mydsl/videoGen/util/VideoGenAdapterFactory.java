@@ -295,6 +295,21 @@ public class VideoGenAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.videoGen.Subtitle <em>Subtitle</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.videoGen.Subtitle
+   * @generated
+   */
+  public Adapter createSubtitleAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for the default case.
    * <!-- begin-user-doc -->
 >>>>>>> a150e5426d31f2a499effc322af3d84e64af383f
