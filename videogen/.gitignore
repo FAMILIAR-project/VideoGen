@@ -4,3 +4,4 @@ testq1.ffmpeg
 *.avi
 /foo2_avi_only_with_duration.videogen
 *_tb.png
+foo2.html
