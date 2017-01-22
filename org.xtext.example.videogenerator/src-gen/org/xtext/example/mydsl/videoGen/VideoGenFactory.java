@@ -99,6 +99,15 @@ public interface VideoGenFactory extends EFactory
   Subtitle createSubtitle();
 
   /**
+   * Returns a new object of class '<em>Subtitle</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Subtitle</em>'.
+   * @generated
+   */
+  Subtitle createSubtitle();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
 >>>>>>> a150e5426d31f2a499effc322af3d84e64af383f
