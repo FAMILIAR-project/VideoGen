@@ -15,6 +15,8 @@ import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 import videogen.vignette.FFMPEGHelper
 
 import static org.junit.Assert.*
+import java.util.ArrayList
+import java.util.List
 
 import java.util.ArrayList
 import java.util.List
@@ -482,7 +484,7 @@ class VideoDemonstrator {
 		// assertEquals(7, videoGen.videoseqs.size)			
 		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
 		videoGenTestModel(videoGen)
-=======
+
 	@Test
 	def void testCommandExec() {
 		val String[] command = #['ls']
@@ -1129,6 +1131,7 @@ class VideoDemonstrator {
 	@Test
 	def testIncrustTextToVideo() {
 		// loading
+
 		var videoGen = loadVideoGenerator(URI.createURI("test.videogen"))			
 		for(video : videoGen.videoseqs) {
 			if(video instanceof MandatoryVideoSeq) {
@@ -1192,6 +1195,12 @@ class VideoDemonstrator {
 		// var numSeq = 1
 		println("<ul>")
 
+
+		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
+		assertNotNull(videoGen)
+		//assertEquals(7, videoGen.videoseqs.size)			
+		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
+
 		videoGen.videoseqs.forEach[videoseq | 
 
 			if (videoseq instanceof MandatoryVideoSeq) {
@@ -1242,12 +1251,17 @@ class VideoDemonstrator {
 				ffmpegThumbail(desc.location)
 			} else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
+
 				ffmpegThumbail(desc.location)
 			} else {
 				val altvid = (videoseq as AlternativeVideoSeq)
 				for (vdesc : altvid.videodescs) {
 					ffmpegThumbail(vdesc.location)
 				}
+
+				if(desc.videoid.isNullOrEmpty) desc.videoid = genID()
+				if(desc.probability == 0) desc.probability = 50
+
 			}
 		]
 	}
@@ -1286,8 +1300,8 @@ class VideoDemonstrator {
 				val desc = (videoseq as MandatoryVideoSeq).description
 				desc.duration = ffmpegDuration(desc.location)
 			} else if (videoseq instanceof OptionalVideoSeq) {
-				val desc = (videoseq as OptionalVideoSeq).description
-=======
+				val desc = (videoseq as OptionalVideoSeq).descriptio
+
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
 				createWepPageVideo(desc)
@@ -1296,12 +1310,28 @@ class VideoDemonstrator {
 				createWepPageVideo(desc)
 			} else {
 				val altvid = (videoseq as AlternativeVideoSeq)
+
 				for (vdesc : altvid.videodescs) {
 					createWepPageVideo(vdesc)
+
+				if(altvid.videoid.isNullOrEmpty) altvid.videoid = genID()
+				var i = 0
+				var empty = 0
+				for (vdesc : altvid.videodescs) {
+					if(vdesc.videoid.isNullOrEmpty) vdesc.videoid = genID()
+					if(vdesc.probability == 0) empty++
+					i += vdesc.probability
+				}
+				var p = 0
+				if(i < 100) p = (100 - i) / empty
+				for (vdesc : altvid.videodescs) {
+					if(vdesc.probability == 0) vdesc.probability = p
+
 				}
 			}
 			content += "</li>"
 		]
+
 		page += content
 		page += '</ul>'
 		page += '</div>'
@@ -1312,6 +1342,15 @@ class VideoDemonstrator {
 		val writer = new FileWriter(htmlFile)
 		writer.write(page)
 		writer.close()
+
+
+	// serializing
+	saveVideoGenerator(URI.createURI("foo2bis.xmi"), videoGen)
+	saveVideoGenerator(URI.createURI("foo2bis.videogen"), videoGen)
+		
+	//printToHTML(videoGen)
+	printToFfmpeg(videoGen)
+	
 
 	}
 
@@ -1470,7 +1509,7 @@ class VideoDemonstrator {
 					println("<li>" + desc.videoid + "</li>")
 			} else {
 				val altvid = (videoseq as AlternativeVideoSeq)
-=======
+
 		videoGen.videoseqs.forEach [ videoseq |
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
@@ -1744,6 +1783,7 @@ class VideoDemonstrator {
 
 
 	
+
 	def void modelToText(VideoGeneratorModel videoGen){
 		videoGen.videoseqs.forEach[videoseq | 
 			if (videoseq instanceof MandatoryVideoSeq) {
@@ -1764,11 +1804,69 @@ class VideoDemonstrator {
 	}
 
 
+
+	def void printToFfmpeg(VideoGeneratorModel videoGen){
+		videoGen.videoseqs.forEach[videoseq | 
+			if (videoseq instanceof MandatoryVideoSeq) {
+				println ("Mandatory")
+				val desc = (videoseq as MandatoryVideoSeq).description
+				if(!desc.videoid.isNullOrEmpty)
+					outputPrint(desc.location)   				
+			}
+			else if (videoseq instanceof OptionalVideoSeq) {
+				println ("Optional")
+				val desc = (videoseq as OptionalVideoSeq).description
+				if(!desc.videoid.isNullOrEmpty){
+					if(randomNumber() <= desc.probability / 100 as double) outputPrint(desc.location)
+				}
+			}
+			else {
+				val altvid = (videoseq as AlternativeVideoSeq)
+				if(!altvid.videoid.isNullOrEmpty) 
+					println ("Alternative")
+				if (altvid.videodescs.size > 0){
+					// there are vid seq alternatives
+					var empty = 0
+					val double[] arr = newDoubleArrayOfSize(altvid.videodescs.size)
+					val alts = <String, Double>newLinkedHashMap()
+					for (vdesc : altvid.videodescs) {
+						if(!vdesc.videoid.isNullOrEmpty){
+							if(vdesc.probability != 0) alts.put(vdesc.location, vdesc.probability / 100 as double)
+						}
+					}
+					
+					var iterate = 0
+					var previous = 0.00
+					for(Double d : alts.values){
+						if(d != 0.00){
+							previous += d
+							arr.set(iterate, previous)
+						}
+						println("a: " + previous)
+						iterate++
+					}
+					
+					var x = randomNumber();
+					var index = -1
+					for (v : 0 ..< arr.size) {
+						println("b: " + v + " -- " + arr.get(v))
+        				if(index == -1 && x < arr.get(v)){
+        					outputPrint(alts.keySet().get(v))
+        					index = 0
+        				}
+    				}
+				} 
+			}
+		]
+	}
+	
+
 	static var i = 0;
 
 	def genID() {
 		"v" + i++
 	}
+
 
 
 	/***
@@ -1819,3 +1917,17 @@ class VideoDemonstrator {
 
 
 }
+
+
+	
+	def outputPrint(String s){
+		println ("file '" + s + "'") 
+	}
+	
+	def randomNumber(){
+		var d = Math.random()
+		println ("Random: " + d) 
+		return d
+	}
+}
+
