@@ -1,0 +1,11 @@
+VideoGen {
+
+	mandatory videoseq v1 /home/simon/git/VideoGen/videogen/./input/v1/v1.mp4
+
+	alternatives v3 {
+		videoseq /home/simon/git/VideoGen/videogen/./input/v3/v31.mp4
+		videoseq /home/simon/git/VideoGen/videogen/./input/v3/v32.mp4
+	}
+
+	mandatory videoseq v2 /home/simon/git/VideoGen/videogen/./input/v2/v2.mp4
+}
