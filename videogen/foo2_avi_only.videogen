@@ -1,0 +1,23 @@
+VideoGen {
+
+	mandatory videoseq "V1/v1.avi"
+	optional videoseq "v2folder/v2.avi" {
+		probability 25
+	}
+	alternatives vid3 {
+		videoseq "v3/seq1.avi"
+		videoseq vid31 "v3/seq2.avi"
+		videoseq vid32 "v3/seq3.avi"
+	}
+
+	alternatives vid4 {
+		videoseq vid41 "v4/seq1.avi"
+		videoseq vid42 "v4/seq2.avi"
+	}
+	mandatory videoseq vid5 "v5.avi"
+
+	optional videoseq vid8 "v8.avi"
+	alternatives vid9 {
+		videoseq vid81 "V81.avi"
+	}
+}
