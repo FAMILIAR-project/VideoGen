@@ -42,8 +42,8 @@ import java.util.Map
 
 
 import java.util.Random
-import org.tritcorp.com.Playlist.Playlist.*
-import org.tritcorp.com.Playlist.Playlist.impl.PlaylistFactoryImpl
+import org.tritcorp.playlist.model.Playlist.*
+import org.tritcorp.playlist.model.Playlist.impl.*
 
 
 class VideoDemonstrator {
@@ -1205,13 +1205,13 @@ class VideoDemonstrator {
 	
 	def  playlistToM3U(Playlist playlist){
 		playlist.getFiles().forEach[file |
-			println(file)
+			println(file.getPath())
 		]
 	}
 	
 	def  playlistToFFMPEG(Playlist playlist){
 		playlist.getFiles().forEach[file |
-			println("File '"+file+"'")
+			println("File '"+file.getPath()+"'")
 		]
 	}
 	 
@@ -1232,20 +1232,33 @@ class VideoDemonstrator {
 			val rand = new Random()
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
-				if(!desc.location.isNullOrEmpty)  
-					pl.getFiles.add(desc.location)  				
+				if(!desc.location.isNullOrEmpty){
+					var mf = plf.createMediaFile()
+					mf.setPath(desc.location)
+					pl.getFiles.add(mf)
+					}
+					  
+									
 			}
 			else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
 				val p = desc.probability
 				val res = rand.nextInt(100)
 				if(p > 0){
-					if(!desc.location.isNullOrEmpty && res <= p)
-						pl.getFiles.add(desc.location) 
+					if(!desc.location.isNullOrEmpty && res <= p){
+						var mf = plf.createMediaFile()
+						mf.setPath(desc.location)
+						pl.getFiles.add(mf)
+					}
+						 
 				}
 				else
-				if(!desc.location.isNullOrEmpty && res <= 50) 
-					pl.getFiles.add(desc.location)
+				if(!desc.location.isNullOrEmpty && res <= 50){
+					var mf = plf.createMediaFile()
+					mf.setPath(desc.location)
+					pl.getFiles.add(mf)
+				}
+					
 			}
 			else {
 				val altvid = (videoseq as AlternativeVideoSeq)	
@@ -1266,7 +1279,9 @@ class VideoDemonstrator {
 							if(!vdesc.location.isNullOrEmpty) {
 								val p = rand.nextInt(r)%r							
 								if(p==i && ! found){
-									pl.getFiles.add(vdesc.location)
+									var mf = plf.createMediaFile()
+									mf.setPath(vdesc.location)
+									pl.getFiles.add(mf)
 									found = true
 								}	
 							i++
@@ -1281,7 +1296,9 @@ class VideoDemonstrator {
 							if(!vdesc.location.isNullOrEmpty) {
 								val p = rand.nextInt(100)							
 								if(p<=pr && ! found){
-									pl.getFiles.add(vdesc.location)
+									var mf = plf.createMediaFile()
+									mf.setPath(vdesc.location)
+									pl.getFiles.add(mf)
 									found = true
 								}	
 							i++
