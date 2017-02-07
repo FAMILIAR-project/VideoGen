@@ -1,0 +1,100 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Home</title>
+  <meta name="description" content="">
+  <meta name="google" value="notranslate">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/home.css">
+
+</head>
+
+
+<div ng-cloak>
+
+
+  <div class="row"ng-hide="vm.isAuthenticated()">
+
+    <!-- Main component for a primary marketing message or call to action -->
+
+
+    <h1>Bienvenue sur notre site</h1>
+    <p></p>
+    <p>Attention vous pouvez pas continuer si vous êtes pas connecter!!</p>
+    <p>Si vous avez pas encore de compte utilisateur, veuillez vous inscrire pour profiter pleinement de notre site</p>
+  </div>
+
+  <div class="row " ng-show="vm.showGeneration()">
+    <h4>Playlist Generator</h4><br />
+    <form>
+      <div  ng-repeat="mand in vm.mandatory track by $index">
+        <div class="form-group">
+          <label for="email">Mandatory {{$index}}:</label>
+          <input type="text" class="form-control" ng-model="vm.mandatory[$index]">
+        </div>
+      </div>
+
+      <div ng-repeat="opt in vm.optional track by $index">
+        <div class="form-group">
+          <label for="email">Optional {{$index}}:</label>
+          <input type="text" class="form-control" ng-model="vm.optional[$index]">
+        </div>
+      </div>
+
+      <div class="panel"ng-repeat="opt in vm.multiple">
+        <div class="form-group">
+          <label for="email">Multiple :</label>
+          <input type="text" class="form-control" ng-model="opt.title">
+
+          <div ng-repeat="sub in opt.subTitles track by $index">
+            <div class="form-group">
+              <label for="email">Sub Element {{$index}}:</label>
+              <input type="text" class="form-control" ng-model="opt.subTitles[$index]">
+            </div>
+          </div>
+
+          <button type="button" class="btn btn-default" ng-click="vm.addSubElement(opt)">Add Sub Element</button>
+
+        </div>
+      </div>
+
+
+
+      <div class="btn-group btn-group-justified" role="group" aria-label="...">
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-default" ng-click="vm.addMandatory()">Add Mandatory</button>
+        </div>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-default" ng-click="vm.addOptional()">Add Optional</button>
+        </div>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-default" ng-click="vm.addMultiple()">Add Multiple</button>
+        </div>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-success" ng-click="vm.generate()">Generate</button>
+        </div>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-info" ng-click="vm.doRegeneration=true">Use Last Generated</button>
+        </div>
+      </div>
+    </form>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-12" ng-show="vm.showGenerated()">
+      <p>    <u>Playlist :</u><br />
+        <div class="panel panel-default">
+          <div class="panel-body">
+
+            <p ng-repeat="line in vm.playlist">{{line}}</p>
+          </div>
+        </div>
+
+      </p>
+      <p><button ng-click="vm.regenerate()">Regenerate</button><button ng-click="vm.doRegeneration=false">Change Model</button></p>
+    </div>
+  </div>
+</div>

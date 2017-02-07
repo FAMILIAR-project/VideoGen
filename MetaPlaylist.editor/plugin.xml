@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated playlist -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="M3UPlaylist.presentation.M3UPlaylistModelWizardID"
+            name="%_UI_M3UPlaylistModelWizard_label"
+            class="M3UPlaylist.presentation.M3UPlaylistModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/M3UPlaylistModelFile.gif">
+         <description>%_UI_M3UPlaylistModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated playlist -->
+      <editor
+            id="M3UPlaylist.presentation.M3UPlaylistEditorID"
+            name="%_UI_M3UPlaylistEditor_label"
+            icon="icons/full/obj16/M3UPlaylistModelFile.gif"
+            extensions="m3uplaylist"
+            class="M3UPlaylist.presentation.M3UPlaylistEditor"
+            contributorClass="M3UPlaylist.presentation.M3UPlaylistActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
