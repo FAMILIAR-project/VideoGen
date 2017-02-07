@@ -1,0 +1,23 @@
+VideoGen {
+	
+	mandatory videoseq "resources/v1.mp4" 
+	optional videoseq "resources/v2.mp4" {
+		probability 25
+	}
+	alternatives vid3 {
+		videoseq "resources/seq1.mp4" 
+		videoseq vid31 "resources/seq2.mp4"
+		videoseq vid32 "resources/seq3.mp4"
+	}
+	
+	alternatives vid4 {
+		videoseq vid41 "resources/seq1.mp4"
+		videoseq vid42 "resources/seq2.mp4"
+	}
+	mandatory videoseq vid5 "resources/v5.mp4"
+	
+	optional videoseq vid8 "resources/v8.mp4"
+	alternatives vid9 {
+		videoseq vid81 "resources/v8.mp4"
+	}
+}
