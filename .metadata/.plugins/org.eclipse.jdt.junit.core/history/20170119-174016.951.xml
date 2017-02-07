@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="VideoDemonstrator.test3" project="videogen" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testcase name="test3" classname="videogen.VideoDemonstrator" time="2.756"/>
+</testrun>
