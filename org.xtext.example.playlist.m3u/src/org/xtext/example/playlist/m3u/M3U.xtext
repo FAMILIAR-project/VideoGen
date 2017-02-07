@@ -1,0 +1,10 @@
+grammar org.xtext.example.playlist.m3u.M3U with org.eclipse.xtext.common.Terminals
+
+generate m3U "http://www.xtext.org/example/playlist/m3u/M3U"
+
+
+Model:
+	listVideo+=Video*;
+	
+Video:
+	location=STRING;
