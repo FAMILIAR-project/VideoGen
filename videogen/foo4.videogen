@@ -1,0 +1,19 @@
+VideoGen {
+	
+	mandatory videoseq v1 "v1.mp4" 
+	optional videoseq v2 "v2.mp4" {
+		probability 25
+	}
+	alternatives v3 {
+		videoseq v30 "v3.mp4" {
+			duration 12
+			probability 25
+			description "a"
+		}
+		videoseq v31 "v4.mp4"
+		
+	}
+	
+
+	
+}

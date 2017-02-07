@@ -79,6 +79,15 @@ import playlist.impl.PlaylistImpl
 import playlist.impl.PlaylistFactoryImpl
 import playlist.Comment
 import playlist.File
+import java.io.PrintWriter
+
+import playlist.model.playlist.playlist.PlaylistFactory
+import playlist.model.playlist.playlist.Playlist
+
+import java.util.Scanner
+import java.io.InputStream
+import java.io.FileWriter
+import java.io.File
 
 class VideoDemonstrator {
 
@@ -255,7 +264,14 @@ class VideoDemonstrator {
 				for (vdesc : altvid.videodescs) {
 					if(vdesc.probability == 0) vdesc.probability = p
 				}
+
+				var proba = new Random().nextInt(altvid.videodescs.size)
+				val vidChoisi = altvid.videodescs.get(proba)
+				var vid = PlaylistFactory.eINSTANCE.createVideoFile()
+				vid.location = vidChoisi.location
+				playlist.contains.add(vid)
 			}
+
 		]
 	}
 
@@ -3774,4 +3790,132 @@ def void printToDuration(VideoGeneratorModel videoGen) {
 		println ("Random: " + d)
 		return d
 	}
+
+	}
+
+	def calculDuration(
+		String videoLocation) {
+
+		var cmd = "/usr/local/bin/ffprobe -v error -select_streams v:0 -show_entries stream=duration -of default=noprint_wrappers=1:nokey=1 -i " +
+			videoLocation
+
+		var process = Runtime.getRuntime().exec(cmd)
+		process.waitFor()
+		val str = convertStreamToString(process.inputStream)
+		Double::parseDouble(str.trim())
+	}
+
+	def static String convertStreamToString(InputStream is) {
+		val scanner = new Scanner(is).useDelimiter("\\A")
+		if (scanner.hasNext())
+			scanner.next()
+		else
+			""
+	}
+
+	// Q9
+	def playlistVignette(Playlist playlist) {
+
+		for (video : playlist.contains) {
+
+			createVignette(video.location)
+
+		}
+
+	}
+
+	def createVignette(String location) {
+		var cmd = "ffmpeg -i " + location + " -f image2 -ss 5 -vframes 1 -s 160x120 " + location + ".jpg"
+		var process = Runtime.runtime.exec(cmd)
+
+	// process.waitFor()
+	// val str = convertStreamToString(process.inputStream)
+	// Double::parseDouble(str.trim())
+	}
+
+	// Q10
+	@Test
+	def void printToHTML() {
+		var videoGen = loadVideoGenerator(URI.createURI("foo4.videogen"))
+
+		println("<html>")
+
+		val writer = new PrintWriter("result.html")
+		writer.write("<html> <body bgcolor=black> <ul>")
+		writer.write("<font color=\"blue\" size=\"6\"><center>VideoGen</font>")
+		videoGen.videoseqs.forEach [ videoseq |
+			if (videoseq instanceof MandatoryVideoSeq) {
+				val desc = (videoseq as MandatoryVideoSeq).description
+
+				createVignette(desc.location)
+
+				println("<p>" + "<img src=\"" + desc.location + ".jpg\">" + "</p>")
+
+				writer.write("<p>" + "<img src=\"" + desc.location + ".jpg\">" + "</p>")
+
+			} else if (videoseq instanceof OptionalVideoSeq) {
+				val desc = (videoseq as OptionalVideoSeq).description
+				createVignette(desc.location)
+				println("<p>" + "<img src=\"" + desc.location + ".jpg\">" + "</p>")
+				writer.write("<p>" + "<img src=\"" + desc.location + ".jpg\">" + "</p>")
+			} else {
+				val altvid = (videoseq as AlternativeVideoSeq)
+
+				if (altvid.videodescs.size > 0)
+					println("<div>")
+					writer.write("<div>")
+				for (vdesc : altvid.videodescs) {
+
+					createVignette(vdesc.location)
+					println("<img src=\"" + vdesc.location + ".jpg\">" + "</li>")
+					writer.write("<img src=\"" + vdesc.location + ".jpg\">" + "</li>")
+				}
+				if (altvid.videodescs.size > 0)
+					println("</div>")
+				writer.write("</div>")
+			}
+		]
+		println("</body></html>")
+		writer.write("</body> </html>")
+		writer.close()
+
+	}
+
+	// sup1
+	def void automaticSpec(String script, String folder, String outputFile) {
+		var cmd = "bash " + script + " " + folder + " " + outputFile
+		println(cmd)
+		Runtime.getRuntime().exec(cmd)
+	}
+
+	@Test
+	def void testSup1(){
+		//automaticSpec("script.sh", "myPlaylist",
+		//	"outputScript.txt")
+		gification("script2.sh", URI.createURI("v1.mp4"), "video.gif" )
+		textOnVideo("v1")
+	}
+
+	//Gification
+	def gification(String script, URI video, String output ){
+		var cmd = "bash " + script + " " + video+ " " + output
+
+		println(cmd)
+		Runtime.getRuntime().exec(cmd)
+
+	}
+
+	def textOnVideo(String text){
+
+		var cmd= "ffmpeg -i v1.mp4 -vf drawtext=\"fontfile=/path/to/font.ttf: \\
+text="+text+": fontcolor=white: fontsize=24: box=1: boxcolor=black@0.5: \\
+boxborderw=5: x=(w-text_w)/2: y=(h-text_h)/2\" -codec:a copy output.mp4"
+println(cmd)
+Runtime.getRuntime().exec(cmd)
+	}
+
+//	static var i = 0;
+//	def genID() {
+//		"v" + i++
+//	]
 }

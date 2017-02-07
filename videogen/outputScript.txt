@@ -1,0 +1,7 @@
+videoGen
+mandatory videoseq v: 1 /myPlaylist/v1/v1.mp4
+alternative videos v2 {
+v21 : /myPlaylist/v2/v2.mp4
+v22 : /myPlaylist/v2/v3.mp4
+v23 : /myPlaylist/v2/v4.mp4
+}
