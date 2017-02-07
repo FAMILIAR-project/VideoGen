@@ -1,4 +1,5 @@
 VideoGen {
+<<<<<<< HEAD
 	mandatory videoseq v0 "Videos/V6.mp4" 
 	optional videoseq v1
 "Videos/old/sea/V5.mp4" {
@@ -19,5 +20,15 @@ VideoGen {
 	optional videoseq vid8 "Videos/old/sea/V7.mp4"
 	alternatives vid9 {
 		videoseq vid81 "Videos/random/V1.mp4"
+=======
+	mandatory videoseq v1 "C:/Users/kaoutar/git/VideoGen/videogen/videosTel/nancyagram.mp4"
+	optional videoseq v2 "C:/Users/kaoutar/git/VideoGen/videogen/videosTel/vdf.mp4"
+	optional videoseq v2 "C:/Users/kaoutar/git/VideoGen/videogen/videosTel/standbyme.mp4"
+	optional videoseq v2 "C:/Users/kaoutar/git/VideoGen/videogen/videosTel/videoplayback.mp4"
+	
+	alternatives v3 { 
+		videoseq v31 "C:/Users/kaoutar/git/VideoGen/videogen/videosTel/standbyme.mp4"
+		videoseq v32 "C:/Users/kaoutar/git/VideoGen/videogen/videosTel/videoplayback.mp4"
+>>>>>>> 2171cc3544ed31951a5d2e26773f12e0aafac23c
 	}
 }

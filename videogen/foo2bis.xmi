@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
 <videoGen:VideoGeneratorModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:videoGen="http://www.xtext.org/example/mydsl/VideoGen">
   <videoseqs xsi:type="videoGen:MandatoryVideoSeq">
+<<<<<<< HEAD
     <description videoid="v0" location="Videos/V6.mp4"/>
   </videoseqs>
   <videoseqs xsi:type="videoGen:OptionalVideoSeq">
@@ -23,5 +24,21 @@
   </videoseqs>
   <videoseqs xsi:type="videoGen:AlternativeVideoSeq" videoid="vid9">
     <videodescs videoid="vid81" location="Videos/random/V1.mp4"/>
+=======
+    <description videoid="v1" location="C:/Users/kaoutar/git/VideoGen/videogen/videosTel/nancyagram.mp4"/>
+  </videoseqs>
+  <videoseqs xsi:type="videoGen:OptionalVideoSeq">
+    <description videoid="v2" location="C:/Users/kaoutar/git/VideoGen/videogen/videosTel/vdf.mp4"/>
+  </videoseqs>
+  <videoseqs xsi:type="videoGen:OptionalVideoSeq">
+    <description videoid="v2" location="C:/Users/kaoutar/git/VideoGen/videogen/videosTel/standbyme.mp4"/>
+  </videoseqs>
+  <videoseqs xsi:type="videoGen:OptionalVideoSeq">
+    <description videoid="v2" location="C:/Users/kaoutar/git/VideoGen/videogen/videosTel/videoplayback.mp4"/>
+  </videoseqs>
+  <videoseqs xsi:type="videoGen:AlternativeVideoSeq" videoid="v3">
+    <videodescs videoid="v31" location="C:/Users/kaoutar/git/VideoGen/videogen/videosTel/standbyme.mp4"/>
+    <videodescs videoid="v32" location="C:/Users/kaoutar/git/VideoGen/videogen/videosTel/videoplayback.mp4"/>
+>>>>>>> 2171cc3544ed31951a5d2e26773f12e0aafac23c
   </videoseqs>
 </videoGen:VideoGeneratorModel>

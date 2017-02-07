@@ -1,3 +1,11 @@
+<<<<<<< HEAD
 videos/v1.mp4
 videos/v2.mp4
 videos/v3.mp4
+=======
+#EXTM3U
+#EXTINF:-1, Example Artist - Example title
+C:/Users/kaoutar/git/VideoGen/videogen/videosTel/nancyagram.mp4
+#EXTINF:-1, Example Artist - Example title
+C:/Users/kaoutar/git/VideoGen/videogen/videosTel/videoplayback.mp4
+>>>>>>> 2171cc3544ed31951a5d2e26773f12e0aafac23c

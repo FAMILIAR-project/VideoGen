@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 file 'resources/video-1.mp4'
 file 'resources/video-5.mp4'
 file 'resources/video-7.mp4'
 file 'resources/video-10.mp4'
 file 'resources/video-2.mp4'
 file 'resources/video-9.mp4'
+=======
+file 'C:/Users/kaoutar/git/VideoGen/videogen/videosTel/nancyagram.mp4'
+file 'C:/Users/kaoutar/git/VideoGen/videogen/videosTel/standbyme.mp4'
+file 'C:/Users/kaoutar/git/VideoGen/videogen/videosTel/standbyme.mp4'
+file 'C:/Users/kaoutar/git/VideoGen/videogen/videosTel/standbyme.mp4'
+>>>>>>> 2171cc3544ed31951a5d2e26773f12e0aafac23c

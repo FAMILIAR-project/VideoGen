@@ -2,8 +2,21 @@
 /.VideoDemonstrator.xtendbin
 /VideoDemonstrator.java
 /.HWDemo.java._trace
+<<<<<<< HEAD
 /.ConcatenateVideoSeq.java._trace
 /.ConcatenateVideoSeq.xtendbin
 /.HWDemo.xtendbin
 /ConcatenateVideoSeq.java
 /HWDemo.java
+=======
+/.HWDemo.xtendbin
+/HWDemo.java
+/.VideoDemonstratorQ2.java._trace
+/.VideoDemonstratorQ3.java._trace
+/.VideoDemonstratorQ4.java._trace
+/.VideoDemonstratorP5.java._trace
+/.VideoDemonstratorP6.java._trace
+/.VideoDemonstratorQ7.java._trace
+/.VideoDemonstratorGification.java._trace
+/.VideoDemonstratorInsertText.java._trace
+>>>>>>> 2171cc3544ed31951a5d2e26773f12e0aafac23c
