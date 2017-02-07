@@ -1,0 +1,7 @@
+#EXTM3U
+#EXTINF:24.0, Sample artist - Sample title
+C:/Users/Sandra/git/VideoGen/videogen/videos/v1/v1.mp4
+#EXTINF:29.0, Sample artist - Sample title
+C:/Users/Sandra/git/VideoGen/videogen/videos/v2/v2.mp4
+#EXTINF:39.0, Sample artist - Sample title
+C:/Users/Sandra/git/VideoGen/videogen/videos/v3/seq1.mp4

@@ -1,0 +1,13 @@
+VideoGen {
+	
+	mandatory videoseq v0 "C:/Users/Sandra/git/VideoGen/videogen/videos/v1/v1.mp4" 
+	optional videoseq v1 "C:/Users/Sandra/git/VideoGen/videogen/videos/v2/v2.mp4" {
+		probability 0
+	}
+	alternatives vid3 {
+		videoseq v2 "C:/Users/Sandra/git/VideoGen/videogen/videos/v3/seq1.mp4" 
+		videoseq vid31 "C:/Users/Sandra/git/VideoGen/videogen/videos/v3/seq2.mp4"
+		videoseq vid32 "C:/Users/Sandra/git/VideoGen/videogen/videos/v3/seq3.mp4"
+	}
+	
+}
