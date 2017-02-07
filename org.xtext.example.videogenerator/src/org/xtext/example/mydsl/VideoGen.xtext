@@ -2,26 +2,33 @@ grammar org.xtext.example.mydsl.VideoGen with org.eclipse.xtext.common.Terminals
 
 generate videoGen "http://www.xtext.org/example/mydsl/VideoGen"
 
-VideoGeneratorModel: {VideoGeneratorModel}
+VideoGeneratorModel:
+	{VideoGeneratorModel}
 	(information=VideoGenInformation)?
-	'VideoGen' LEFT_BRACKET 
+	'VideoGen' LEFT_BRACKET
 	videoseqs+=VideoSeq+
-	RIGHT_BRACKET
-	;
+	RIGHT_BRACKET;
 
-VideoGenInformation: {VideoGenInformation}
-('@author' authorName=STRING)
-('@version' version=STRING)?
-('@creation' creationDate=STRING)?	
-;
-	
-VideoSeq: MandatoryVideoSeq | OptionalVideoSeq | AlternativeVideoSeq ; 
-	
-MandatoryVideoSeq : 'mandatory' description=VideoDescription;
-OptionalVideoSeq : 'optional' description=VideoDescription;
-AlternativeVideoSeq : 'alternatives' (videoid=ID)? LEFT_BRACKET videodescs+=VideoDescription+ RIGHT_BRACKET;
+VideoGenInformation:
+	{VideoGenInformation}
+	('@author' authorName=STRING)
+	('@version' version=STRING)?
+	('@creation' creationDate=STRING)?;
 
-VideoDescription : 'videoseq' (videoid=ID)? location=STRING
+VideoSeq:
+	MandatoryVideoSeq | OptionalVideoSeq | AlternativeVideoSeq;
+
+MandatoryVideoSeq:
+	'mandatory' description=VideoDescription;
+
+OptionalVideoSeq:
+	'optional' description=VideoDescription;
+
+AlternativeVideoSeq:
+	'alternatives' (videoid=ID)? LEFT_BRACKET videodescs+=VideoDescription+ RIGHT_BRACKET;
+
+VideoDescription:
+	'videoseq' (videoid=ID)? location=STRING
 	(LEFT_BRACKET
 	 ('duration' duration=INT)?
 	 ('probability' probability=INT)?
@@ -31,7 +38,7 @@ VideoDescription : 'videoseq' (videoid=ID)? location=STRING
 	 ('subtitle' subtitle=Subtitle)?
 	 ('filter' filter=Filter)?
 	 ('text' text=Text)?
-	 ('description' description=STRING)? 
+	 ('description' description=STRING)?
 	 ('filter' filter=Filter)?
 	RIGHT_BRACKET)?
 ;
@@ -39,7 +46,7 @@ VideoDescription : 'videoseq' (videoid=ID)? location=STRING
 
 Subtitle: 'subtitle' text=STRING (LEFT_BRACKET('color' colorfont=STRING)? ('size' size=INT)? RIGHT_BRACKET)?;
 
-Filter : 
+Filter :
 	LEFT_BRACKET
 	filter=STRING
 	RIGHT_BRACKET
@@ -74,6 +81,5 @@ FlipFilter:
 	'flip' orientation=('h' | 'horizontal' | 'v' | 'vertical')
 ;
 
-terminal LEFT_BRACKET: '{' ; 
+terminal LEFT_BRACKET: '{' ;
 terminal RIGHT_BRACKET: '}';
-
