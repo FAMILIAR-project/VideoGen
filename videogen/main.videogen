@@ -1,0 +1,6 @@
+VideoGen {
+	mandatory videoseq v1 "/home/dania/Documents/IDM/Videos/video1.mp4"
+	
+	mandatory videoseq v2"/home/dania/Documents/IDM/Videos/video2.mp4"
+	
+}
