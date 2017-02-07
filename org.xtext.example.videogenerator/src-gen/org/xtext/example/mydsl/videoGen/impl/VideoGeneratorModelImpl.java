@@ -40,194 +40,202 @@ import org.xtext.example.mydsl.videoGen.VideoSeq;
 public class VideoGeneratorModelImpl extends MinimalEObjectImpl.Container implements VideoGeneratorModel
 {
   /**
-	 * The cached value of the '{@link #getInformation() <em>Information</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getInformation() <em>Information</em>}' containment reference.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getInformation()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getInformation()
+   * @generated
+   * @ordered
+   */
   protected VideoGenInformation information;
 
   /**
-	 * The cached value of the '{@link #getVideoseqs() <em>Videoseqs</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getVideoseqs() <em>Videoseqs</em>}' containment reference list.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getVideoseqs()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getVideoseqs()
+   * @generated
+   * @ordered
+   */
   protected EList<VideoSeq> videoseqs;
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   protected VideoGeneratorModelImpl()
   {
-		super();
-	}
+    super();
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   protected EClass eStaticClass()
   {
-		return VideoGenPackage.Literals.VIDEO_GENERATOR_MODEL;
-	}
+    return VideoGenPackage.Literals.VIDEO_GENERATOR_MODEL;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public VideoGenInformation getInformation()
   {
-		return information;
-	}
+    return information;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public NotificationChain basicSetInformation(VideoGenInformation newInformation, NotificationChain msgs)
   {
-		VideoGenInformation oldInformation = information;
-		information = newInformation;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VideoGenPackage.VIDEO_GENERATOR_MODEL__INFORMATION, oldInformation, newInformation);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+    VideoGenInformation oldInformation = information;
+    information = newInformation;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VideoGenPackage.VIDEO_GENERATOR_MODEL__INFORMATION, oldInformation, newInformation);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setInformation(VideoGenInformation newInformation)
   {
-		if (newInformation != information) {
-			NotificationChain msgs = null;
-			if (information != null)
-				msgs = ((InternalEObject)information).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VideoGenPackage.VIDEO_GENERATOR_MODEL__INFORMATION, null, msgs);
-			if (newInformation != null)
-				msgs = ((InternalEObject)newInformation).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VideoGenPackage.VIDEO_GENERATOR_MODEL__INFORMATION, null, msgs);
-			msgs = basicSetInformation(newInformation, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VideoGenPackage.VIDEO_GENERATOR_MODEL__INFORMATION, newInformation, newInformation));
-	}
+    if (newInformation != information)
+    {
+      NotificationChain msgs = null;
+      if (information != null)
+        msgs = ((InternalEObject)information).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VideoGenPackage.VIDEO_GENERATOR_MODEL__INFORMATION, null, msgs);
+      if (newInformation != null)
+        msgs = ((InternalEObject)newInformation).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VideoGenPackage.VIDEO_GENERATOR_MODEL__INFORMATION, null, msgs);
+      msgs = basicSetInformation(newInformation, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, VideoGenPackage.VIDEO_GENERATOR_MODEL__INFORMATION, newInformation, newInformation));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public EList<VideoSeq> getVideoseqs()
   {
-		if (videoseqs == null) {
-			videoseqs = new EObjectContainmentEList<VideoSeq>(VideoSeq.class, this, VideoGenPackage.VIDEO_GENERATOR_MODEL__VIDEOSEQS);
-		}
-		return videoseqs;
-	}
+    if (videoseqs == null)
+    {
+      videoseqs = new EObjectContainmentEList<VideoSeq>(VideoSeq.class, this, VideoGenPackage.VIDEO_GENERATOR_MODEL__VIDEOSEQS);
+    }
+    return videoseqs;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-		switch (featureID) {
-			case VideoGenPackage.VIDEO_GENERATOR_MODEL__INFORMATION:
-				return basicSetInformation(null, msgs);
-			case VideoGenPackage.VIDEO_GENERATOR_MODEL__VIDEOSEQS:
-				return ((InternalEList<?>)getVideoseqs()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+    switch (featureID)
+    {
+      case VideoGenPackage.VIDEO_GENERATOR_MODEL__INFORMATION:
+        return basicSetInformation(null, msgs);
+      case VideoGenPackage.VIDEO_GENERATOR_MODEL__VIDEOSEQS:
+        return ((InternalEList<?>)getVideoseqs()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
-		switch (featureID) {
-			case VideoGenPackage.VIDEO_GENERATOR_MODEL__INFORMATION:
-				return getInformation();
-			case VideoGenPackage.VIDEO_GENERATOR_MODEL__VIDEOSEQS:
-				return getVideoseqs();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+    switch (featureID)
+    {
+      case VideoGenPackage.VIDEO_GENERATOR_MODEL__INFORMATION:
+        return getInformation();
+      case VideoGenPackage.VIDEO_GENERATOR_MODEL__VIDEOSEQS:
+        return getVideoseqs();
+    }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
-		switch (featureID) {
-			case VideoGenPackage.VIDEO_GENERATOR_MODEL__INFORMATION:
-				setInformation((VideoGenInformation)newValue);
-				return;
-			case VideoGenPackage.VIDEO_GENERATOR_MODEL__VIDEOSEQS:
-				getVideoseqs().clear();
-				getVideoseqs().addAll((Collection<? extends VideoSeq>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+    switch (featureID)
+    {
+      case VideoGenPackage.VIDEO_GENERATOR_MODEL__INFORMATION:
+        setInformation((VideoGenInformation)newValue);
+        return;
+      case VideoGenPackage.VIDEO_GENERATOR_MODEL__VIDEOSEQS:
+        getVideoseqs().clear();
+        getVideoseqs().addAll((Collection<? extends VideoSeq>)newValue);
+        return;
+    }
+    super.eSet(featureID, newValue);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public void eUnset(int featureID)
   {
-		switch (featureID) {
-			case VideoGenPackage.VIDEO_GENERATOR_MODEL__INFORMATION:
-				setInformation((VideoGenInformation)null);
-				return;
-			case VideoGenPackage.VIDEO_GENERATOR_MODEL__VIDEOSEQS:
-				getVideoseqs().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+    switch (featureID)
+    {
+      case VideoGenPackage.VIDEO_GENERATOR_MODEL__INFORMATION:
+        setInformation((VideoGenInformation)null);
+        return;
+      case VideoGenPackage.VIDEO_GENERATOR_MODEL__VIDEOSEQS:
+        getVideoseqs().clear();
+        return;
+    }
+    super.eUnset(featureID);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public boolean eIsSet(int featureID)
   {
-		switch (featureID) {
-			case VideoGenPackage.VIDEO_GENERATOR_MODEL__INFORMATION:
-				return information != null;
-			case VideoGenPackage.VIDEO_GENERATOR_MODEL__VIDEOSEQS:
-				return videoseqs != null && !videoseqs.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+    switch (featureID)
+    {
+      case VideoGenPackage.VIDEO_GENERATOR_MODEL__INFORMATION:
+        return information != null;
+      case VideoGenPackage.VIDEO_GENERATOR_MODEL__VIDEOSEQS:
+        return videoseqs != null && !videoseqs.isEmpty();
+    }
+    return super.eIsSet(featureID);
+  }
 
 } //VideoGeneratorModelImpl

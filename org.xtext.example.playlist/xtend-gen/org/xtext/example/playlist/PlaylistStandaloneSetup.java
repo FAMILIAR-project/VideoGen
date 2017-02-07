@@ -3,7 +3,7 @@
  */
 package org.xtext.example.playlist;
 
-import org.xtext.example.playlist.PlaylistStandaloneSetupGenerated;
+import org.xtext.example.mydsl.PlaylistStandaloneSetupGenerated;
 
 /**
  * Initialization support for running Xtext languages without Equinox extension registry.

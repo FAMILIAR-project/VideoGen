@@ -20,9 +20,8 @@ import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 
 
 import static org.junit.Assert.*
-import videogenPlayList.impl.VideogenPlayListFactoryImpl
-import videogenPlayList.MediaFile
 import java.util.concurrent.TimeUnit
+
 
 class VideoDemostratorInsererText {
 
@@ -59,7 +58,7 @@ class VideoDemostratorInsererText {
 	 * Inserer du text dans la video
 	 * videoLocation = hubication de la video
 	 * text = texte a inserer dans la video
-	 * position = position du texte inseré
+	 * position = position du texte inserï¿½
 	 */
 	def static String insertText(String videoLocation, String text, String positionX, String positionY){
 		
@@ -89,8 +88,8 @@ class VideoDemostratorInsererText {
 	@Test
 	def test() {
 		var videoGen = loadVideoGenerator(URI.createURI("fooQ1.videogen")) 
-		var fact = new VideogenPlayListFactoryImpl()
-		var playlist= fact.createPlayList()	
+//		var fact = new VideogenPlayListFactoryImpl()
+//		var playlist= fact.createPlayList()	
 		assertNotNull(videoGen)
 				
 		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
@@ -100,17 +99,15 @@ class VideoDemostratorInsererText {
 				println("Mandatory")
 				val fileLocation = (videoseq as MandatoryVideoSeq).description.location;
 		
-				var mediafile = fact.createMediaFile()
-				mediafile.location = fileLocation 
-				mediafile.duration =  getDuration(fileLocation)
-				mediafile.text = "VideoObligatoire"
-				mediafile.positionX = "(w-text_w)/2" //le texte sera dans le centre de la video
-				mediafile.positionY = "(h-text_h)/2"
+				// var mediafile = fact.createMediaFile()
+				val location = fileLocation 
+				val duration =  getDuration(fileLocation)
+				val text = "VideoObligatoire"
+				val positionX = "(w-text_w)/2" //le texte sera dans le centre de la video
+				val positionY = "(h-text_h)/2"
 				
-				var locatTemp = insertText(mediafile.location, mediafile.text, mediafile.positionX, mediafile.positionY)
-				mediafile.location = locatTemp
-				System.out.println(mediafile.location)
-				playlist.mediaFile.add(mediafile)
+				var locatTemp = insertText(location, text, positionX, positionY)
+					
 				
 				
 			} else if (videoseq instanceof OptionalVideoSeq) {
@@ -120,17 +117,15 @@ class VideoDemostratorInsererText {
 				if (rand == 0) {
 					val fileLocation = (videoseq as OptionalVideoSeq).description.location;
 					
-					var mediafile = fact.createMediaFile()
-					mediafile.location = fileLocation
-					mediafile.duration =  getDuration(fileLocation)
-					mediafile.text = "VideoOptional"
-					mediafile.positionX = "(w-text_w)/3"
-					mediafile.positionY = "(h-text_h)/3"
 					
-					var locatTemp = insertText(mediafile.location, mediafile.text, mediafile.positionX, mediafile.positionY)
-					mediafile.location =locatTemp
+					val location = fileLocation
+					val duration =  getDuration(fileLocation)
+					val text = "VideoOptional"
+					val positionX = "(w-text_w)/3"
+					val positionY = "(h-text_h)/3"
 					
-					playlist.mediaFile.add(mediafile)
+					var locatTemp = insertText(location, text, positionX, positionY)
+					
 				} 
 			}
 			else {
@@ -138,39 +133,19 @@ class VideoDemostratorInsererText {
 				val size = (videoseq as AlternativeVideoSeq).videodescs.size;		
 				var fileLocation = (videoseq as AlternativeVideoSeq).videodescs.get(new Random().nextInt(size)).location;
 
-				var mediafile = fact.createMediaFile()
-				mediafile.location = fileLocation 
-				mediafile.duration =  getDuration(fileLocation)
-				mediafile.text = "VideoAlternative"
-				mediafile.positionX = "(w-text_w)/4"
-				mediafile.positionY = "(h-text_h)/4"
 				
-				var locatTemp = insertText(mediafile.location, mediafile.text, mediafile.positionX, mediafile.positionY)
+				val location = fileLocation 
+				val duration =  getDuration(fileLocation)
+				val text = "VideoAlternative"
+				val positionX = "(w-text_w)/4"
+				val positionY = "(h-text_h)/4"
 				
-				mediafile.location =locatTemp
+				var locatTemp = insertText(location, text, positionX, positionY)
 				
-				playlist.mediaFile.add(mediafile)
 			}
 		}
 				
-		// New file 
-		try {
-			val pl = new File("generatedPlayList/playlist-m3u-projet.m3u");
-			if (!pl.exists()) {
-				pl.createNewFile();
-			}
-			val fw = new FileWriter(pl.getAbsoluteFile());
-			val bw = new BufferedWriter(fw);
-			bw.write("#EXTM3U" +System.lineSeparator) 	
-			for( MediaFile mediafile : playlist.mediaFile){
-				bw.write("#EXTINF:" + mediafile.duration+ " ,Example Artist - Example title " + System.lineSeparator + mediafile.location + System.lineSeparator);
-			}
-			
-			bw.close();
-			
-		} catch (IOException e) {
-			e.printStackTrace
-		}
+		
 		
 	}
 	

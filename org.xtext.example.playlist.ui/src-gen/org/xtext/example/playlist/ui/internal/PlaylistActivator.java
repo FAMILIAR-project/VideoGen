@@ -14,8 +14,8 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ui.shared.SharedStateModule;
 import org.eclipse.xtext.util.Modules2;
 import org.osgi.framework.BundleContext;
-import org.xtext.example.playlist.PlaylistRuntimeModule;
-import org.xtext.example.playlist.ui.PlaylistUiModule;
+import org.xtext.example.mydsl.PlaylistRuntimeModule;
+import org.xtext.example.mydsl.ui.PlaylistUiModule;
 
 /**
  * This class was generated. Customizations should only happen in a newly
@@ -23,7 +23,7 @@ import org.xtext.example.playlist.ui.PlaylistUiModule;
  */
 public class PlaylistActivator extends AbstractUIPlugin {
 
-	public static final String ORG_XTEXT_EXAMPLE_PLAYLIST_PLAYLIST = "org.xtext.example.playlist.Playlist";
+	public static final String ORG_XTEXT_EXAMPLE_MYDSL_PLAYLIST = "org.xtext.example.mydsl.Playlist";
 	
 	private static final Logger logger = Logger.getLogger(PlaylistActivator.class);
 	
@@ -73,14 +73,14 @@ public class PlaylistActivator extends AbstractUIPlugin {
 	}
 	
 	protected Module getRuntimeModule(String grammar) {
-		if (ORG_XTEXT_EXAMPLE_PLAYLIST_PLAYLIST.equals(grammar)) {
+		if (ORG_XTEXT_EXAMPLE_MYDSL_PLAYLIST.equals(grammar)) {
 			return new PlaylistRuntimeModule();
 		}
 		throw new IllegalArgumentException(grammar);
 	}
 	
 	protected Module getUiModule(String grammar) {
-		if (ORG_XTEXT_EXAMPLE_PLAYLIST_PLAYLIST.equals(grammar)) {
+		if (ORG_XTEXT_EXAMPLE_MYDSL_PLAYLIST.equals(grammar)) {
 			return new PlaylistUiModule(this);
 		}
 		throw new IllegalArgumentException(grammar);

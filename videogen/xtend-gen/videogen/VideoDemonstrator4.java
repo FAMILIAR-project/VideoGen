@@ -2,36 +2,18 @@ package videogen;
 
 import com.google.common.base.Objects;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
-import java.util.Random;
-import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.xtext.xbase.lib.Exceptions;
-import org.eclipse.xtext.xbase.lib.InputOutput;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
-import org.eclipse.xtext.xbase.lib.StringExtensions;
-import org.junit.Assert;
 import org.junit.Test;
 import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated;
-import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq;
-import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq;
-import org.xtext.example.mydsl.videoGen.OptionalVideoSeq;
-import org.xtext.example.mydsl.videoGen.VideoDescription;
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
-import org.xtext.example.mydsl.videoGen.VideoSeq;
-import videoGenQ2.MediaFile;
-import videoGenQ2.Playlist;
-import videoGenQ2.impl.VideoGenQ2FactoryImpl;
 
 @SuppressWarnings("all")
 public class VideoDemonstrator4 {
@@ -99,108 +81,24 @@ public class VideoDemonstrator4 {
   
   @Test
   public void tp3_q9() {
-    URI _createURI = URI.createURI("main.videogen");
-    VideoGeneratorModel videoGen = this.loadVideoGenerator(_createURI);
-    VideoGenQ2FactoryImpl fact = new VideoGenQ2FactoryImpl();
-    Playlist playlist = fact.createPlaylist();
-    Assert.assertNotNull(videoGen);
-    EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
-    Set<VideoSeq> _set = IterableExtensions.<VideoSeq>toSet(_videoseqs);
-    for (final VideoSeq videoseq : _set) {
-      if ((videoseq instanceof MandatoryVideoSeq)) {
-        InputOutput.<String>println("Mandatory");
-        VideoDescription _description = ((MandatoryVideoSeq) videoseq).getDescription();
-        final String fileLocation = _description.getLocation();
-        VideoDescription _description_1 = ((MandatoryVideoSeq) videoseq).getDescription();
-        String fileId = _description_1.getVideoid();
-        boolean _isNullOrEmpty = StringExtensions.isNullOrEmpty(fileId);
-        if (_isNullOrEmpty) {
-          String _genID = this.genID();
-          fileId = _genID;
-        }
-        MediaFile mediafile = fact.createMediaFile();
-        mediafile.setLocation(fileLocation);
-        double _duration = VideoDemonstrator4.getDuration(fileLocation);
-        mediafile.setDuration(_duration);
-        String _vignette = this.vignette;
-        String _createVignette = VideoDemonstrator4.createVignette(fileLocation, fileId);
-        String _plus = ("<img src = " + _createVignette);
-        String _plus_1 = (_plus + " width=\'130px\' height=auto/><br/>");
-        this.vignette = (_vignette + _plus_1);
-        EList<MediaFile> _mediafile = playlist.getMediafile();
-        _mediafile.add(mediafile);
-      } else {
-        if ((videoseq instanceof OptionalVideoSeq)) {
-          InputOutput.<String>println("Optional");
-          Random _random = new Random();
-          final int rand = _random.nextInt(2);
-          if ((rand == 0)) {
-            VideoDescription _description_2 = ((OptionalVideoSeq) videoseq).getDescription();
-            final String fileLocation_1 = _description_2.getLocation();
-            VideoDescription _description_3 = ((OptionalVideoSeq) videoseq).getDescription();
-            String fileId_1 = _description_3.getVideoid();
-            boolean _isNullOrEmpty_1 = StringExtensions.isNullOrEmpty(fileId_1);
-            if (_isNullOrEmpty_1) {
-              String _genID_1 = this.genID();
-              fileId_1 = _genID_1;
-            }
-            MediaFile mediafile_1 = fact.createMediaFile();
-            mediafile_1.setLocation(fileLocation_1);
-            double _duration_1 = VideoDemonstrator4.getDuration(fileLocation_1);
-            mediafile_1.setDuration(_duration_1);
-            String _vignette_1 = this.vignette;
-            String _createVignette_1 = VideoDemonstrator4.createVignette(fileLocation_1, fileId_1);
-            String _plus_2 = ("<img src=" + _createVignette_1);
-            String _plus_3 = (_plus_2 + " width=\'130px\' height=auto/><br/>");
-            this.vignette = (_vignette_1 + _plus_3);
-            EList<MediaFile> _mediafile_1 = playlist.getMediafile();
-            _mediafile_1.add(mediafile_1);
-          }
-        } else {
-          InputOutput.<String>println("else alternative");
-          EList<VideoDescription> _videodescs = ((AlternativeVideoSeq) videoseq).getVideodescs();
-          final int size = _videodescs.size();
-          EList<VideoDescription> _videodescs_1 = ((AlternativeVideoSeq) videoseq).getVideodescs();
-          Random _random_1 = new Random();
-          int _nextInt = _random_1.nextInt(size);
-          VideoDescription _get = _videodescs_1.get(_nextInt);
-          String fileLocation_2 = _get.getLocation();
-          MediaFile mediafile_2 = fact.createMediaFile();
-          mediafile_2.setLocation(fileLocation_2);
-          double _duration_2 = VideoDemonstrator4.getDuration(fileLocation_2);
-          mediafile_2.setDuration(_duration_2);
-          String _vignette_2 = this.vignette;
-          String _createVignette_2 = VideoDemonstrator4.createVignette(fileLocation_2, "alternative");
-          String _plus_4 = ("<img src=" + _createVignette_2);
-          String _plus_5 = (_plus_4 + " width=\'130px\' height=auto/><br/>");
-          this.vignette = (_vignette_2 + _plus_5);
-          EList<MediaFile> _mediafile_2 = playlist.getMediafile();
-          _mediafile_2.add(mediafile_2);
-        }
-      }
-    }
-    try {
-      final File ffmpeg = new File("/home/dania/Documents/IDM/vignettes.html");
-      boolean _exists = ffmpeg.exists();
-      boolean _not = (!_exists);
-      if (_not) {
-        ffmpeg.createNewFile();
-      }
-      File _absoluteFile = ffmpeg.getAbsoluteFile();
-      final FileWriter fw = new FileWriter(_absoluteFile);
-      final BufferedWriter bw = new BufferedWriter(fw);
-      bw.write("<!DOCTYPE html><html><body>");
-      bw.write(this.vignette);
-      bw.write("</html></body>");
-      bw.close();
-    } catch (final Throwable _t) {
-      if (_t instanceof IOException) {
-        final IOException e = (IOException)_t;
-        e.printStackTrace();
-      } else {
-        throw Exceptions.sneakyThrow(_t);
-      }
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nVideoGenQ2FactoryImpl cannot be resolved."
+      + "\ncreatePlaylist cannot be resolved"
+      + "\ncreateMediaFile cannot be resolved"
+      + "\nlocation cannot be resolved"
+      + "\nduration cannot be resolved"
+      + "\nmediafile cannot be resolved"
+      + "\nadd cannot be resolved"
+      + "\ncreateMediaFile cannot be resolved"
+      + "\nlocation cannot be resolved"
+      + "\nduration cannot be resolved"
+      + "\nmediafile cannot be resolved"
+      + "\nadd cannot be resolved"
+      + "\ncreateMediaFile cannot be resolved"
+      + "\nlocation cannot be resolved"
+      + "\nduration cannot be resolved"
+      + "\nmediafile cannot be resolved"
+      + "\nadd cannot be resolved");
   }
   
   private static int i = 0;

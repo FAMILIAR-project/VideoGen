@@ -9,7 +9,7 @@ import org.eclipse.xtext.junit4.XtextRunner;
 import org.eclipse.xtext.junit4.util.ParseHelper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.xtext.example.playlist.tests.PlaylistInjectorProvider;
+import org.xtext.example.mydsl.tests.PlaylistInjectorProvider;
 
 @RunWith(XtextRunner.class)
 @InjectWith(PlaylistInjectorProvider.class)

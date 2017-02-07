@@ -17,7 +17,7 @@ import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 
 
 import static org.junit.Assert.*
-import videogenPlayList.impl.VideogenPlayListFactoryImpl
+
 import java.util.concurrent.TimeUnit
 
 class VideoDemostratorConvertToGif {
@@ -52,7 +52,7 @@ class VideoDemostratorConvertToGif {
 	}
 	
 	/**
-	 *transforme une partie de la video en fichier gif de base qualité
+	 *transforme une partie de la video en fichier gif de base qualitï¿½
 	 * videoLocation = path de la video a utiliser
 	 * tailleW = weight de l'image .gif
 	 * tailleH = height de l'image .gif
@@ -73,7 +73,7 @@ class VideoDemostratorConvertToGif {
 	}
 	
 	/**
-	 *transforme une partie de la video en fichier gif de haute qualité
+	 *transforme une partie de la video en fichier gif de haute qualitï¿½
 	 * videoLocation = path de la video a utiliser
 	 * taille = taille de l'image gif de sortie
 	 */
@@ -81,7 +81,7 @@ class VideoDemostratorConvertToGif {
 		
 		var String[] name = videoLocation.split("/");
 		
-		//cree une image .pg qui servira pour la creation du .gif d'haute qualité
+		//cree une image .pg qui servira pour la creation du .gif d'haute qualitï¿½
 		var cmdPalette = "C:\\Users\\Sandra\\Desktop\\ffmpeg-20161127-801b5c1-win64-static\\bin\\ffmpeg -y -ss 0 -t 3 -i "+videoLocation+" -vf fps=10,scale="+taille+":-1:flags=lanczos,palettegen gif/"+name.get(name.length-1)+".png"
 	 	 
 	 	println("Commande palette: " + cmdPalette);
@@ -90,7 +90,7 @@ class VideoDemostratorConvertToGif {
 		
 		processPalette.waitFor(2000, TimeUnit.MILLISECONDS);
 		
-		// commande pour la creation du .gif en utilisant la palette crée avant
+		// commande pour la creation du .gif en utilisant la palette crï¿½e avant
 		var cmdGif = "C:\\Users\\Sandra\\Desktop\\ffmpeg-20161127-801b5c1-win64-static\\bin\\ffmpeg -ss 0 -t 3 -i "+videoLocation+" -i gif/"+name.get(name.length-1)+".png -filter_complex \"fps=10,scale="+taille+":-1:flags=lanczos[x];[x][1:v]paletteuse\" gif/"+name.get(name.length-1)+".gif"
 	    
 	    println("Commande gif: " + cmdGif);
@@ -105,7 +105,7 @@ class VideoDemostratorConvertToGif {
 	@Test
 	def test() {
 		var videoGen = loadVideoGenerator(URI.createURI("fooQ1.videogen")) 
-		var fact = new VideogenPlayListFactoryImpl()
+		
 		assertNotNull(videoGen)
 				
 		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
@@ -114,9 +114,7 @@ class VideoDemostratorConvertToGif {
 				
 				println("Mandatory")
 				val fileLocation = (videoseq as MandatoryVideoSeq).description.location;
-		
-				var mediafile = fact.createMediaFile()
-				mediafile.location = fileLocation 
+				
 					
 				convertToGifHD(fileLocation, 500)
 				
@@ -126,9 +124,7 @@ class VideoDemostratorConvertToGif {
 				// Random between 0-1
 				if (rand == 0) {
 					val fileLocation = (videoseq as OptionalVideoSeq).description.location;
-					
-					var mediafile = fact.createMediaFile()
-					mediafile.location = fileLocation
+										
 					
 					convertToGif(fileLocation, 200, 100)
 					
@@ -139,9 +135,7 @@ class VideoDemostratorConvertToGif {
 				println("else")
 				val size = (videoseq as AlternativeVideoSeq).videodescs.size;		
 				var fileLocation = (videoseq as AlternativeVideoSeq).videodescs.get(new Random().nextInt(size)).location;
-
-				var mediafile = fact.createMediaFile()
-				mediafile.location = fileLocation 
+			
 				
 				convertToGif(fileLocation, 250, 300)
 				

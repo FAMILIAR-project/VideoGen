@@ -11,7 +11,8 @@ Require-Bundle: org.xtext.example.playlist,
  org.eclipse.xtext.xbase.junit,
  org.eclipse.xtext.xbase.lib
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: org.xtext.example.playlist.tests
+Export-Package: org.xtext.example.playlist.tests,
+ org.xtext.example.mydsl.tests
 Import-Package: org.hamcrest.core,
  org.junit;version="4.5.0",
  org.junit.runners.model;version="4.5.0",

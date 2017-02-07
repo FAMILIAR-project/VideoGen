@@ -22,7 +22,7 @@ import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 import org.xtext.example.mydsl.videoGen.VideoSeq;
 
 /**
- * Transformation xtend pour rajouter du texte dans chaque vidéo
+ * Transformation xtend pour rajouter du texte dans chaque vidï¿½o
  */
 @SuppressWarnings("all")
 public class VideoDemonstratorAddTexte {
@@ -243,13 +243,13 @@ public class VideoDemonstratorAddTexte {
   }
   
   /**
-   * Paramêtre:
+   * Paramï¿½tre:
    * path: chemin de la video
    * name: nom de la video
    * texte: le texte de la video
    * color: couleur du texte
    * size: taille du texte
-   * (Note: on peut jouer sur d'autres paramêtres pour cela completer la grammaire xtext puis les paramêtres de cette fonction)
+   * (Note: on peut jouer sur d'autres paramï¿½tres pour cela completer la grammaire xtext puis les paramï¿½tres de cette fonction)
    */
   public static void addSubtitle(final String path, final String name, final String texte, final String color, final Integer size) {
     System.out.println((((((((((((((((VideoDemonstratorAddTexte.pathFFmpeg + "ffmpeg -i ") + path) + " -vf drawtext=\"fontfile=") + VideoDemonstratorAddTexte.pathFontSubtitle) + ": text=\'") + texte) + "\': fontcolor=") + color) + ": fontsize=") + size) + ": box=1: boxcolor=black@0.5: boxborderw=5: x=(w-text_w)/2: y=(h-text_h)/2\" -codec:a copy ") + VideoDemonstratorAddTexte.pathVideoSubtitle) + "/") + name) + ".mp4"));

@@ -16,7 +16,6 @@ import java.io.File
 import java.io.FileWriter
 import java.io.IOException
 import java.io.BufferedWriter
-import videogenPlayList.impl.VideogenPlayListFactoryImpl
 import java.util.concurrent.TimeUnit
 
 /**
@@ -52,8 +51,7 @@ class VideoDemonstratorQ9Q10 {
 	@Test
 	def test() {
 		var videoGen = loadVideoGenerator(URI.createURI("fooQ1.videogen"))
-		var fact = new VideogenPlayListFactoryImpl()
-		var playlist= fact.createPlayList()
+	
 		assertNotNull(videoGen)
 
 		for (videoseq : videoGen.videoseqs.toSet) {
@@ -64,12 +62,11 @@ class VideoDemonstratorQ9Q10 {
 				var fileId = (videoseq as MandatoryVideoSeq).description.videoid;
 				if(fileId.isNullOrEmpty) fileId = genID()
 
-				var mediafile = fact.createMediaFile()
-				mediafile.location = fileLocation
+				
+				
 
 				vignette += "<img src = " + createVignette(fileLocation, fileId) + " width='400px' height=auto/><br/>"
 
-				playlist.mediaFile.add(mediafile)
 
 			} else if (videoseq instanceof OptionalVideoSeq) {
 				println("Optional")
@@ -79,12 +76,9 @@ class VideoDemonstratorQ9Q10 {
 					val fileLocation = (videoseq as OptionalVideoSeq).description.location;
 					var fileId = (videoseq as OptionalVideoSeq).description.videoid;
 					if(fileId.isNullOrEmpty) fileId = genID()
-
-					var mediafile = fact.createMediaFile()
-					mediafile.location = fileLocation
 					
 					vignette += "<img src= " + createVignette(fileLocation, fileId) + " width='400px' height=auto/><br/>"
-					playlist.mediaFile.add(mediafile)
+					
 				}
 			} else {
 				println("else alternative")
@@ -92,10 +86,10 @@ class VideoDemonstratorQ9Q10 {
 				var fileLocation = (videoseq as AlternativeVideoSeq).videodescs.get(new Random().nextInt(size)).
 					location;
 
-				var mediafile = fact.createMediaFile()
-				mediafile.location = fileLocation
+				
+				
 				vignette += "<img src=" + createVignette(fileLocation,"alternative") + " width='400px' height=auto/><br/>"
-				playlist.mediaFile.add(mediafile)
+				
 			}
 		}
 		// New file 

@@ -24,7 +24,7 @@ import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 import org.xtext.example.mydsl.videoGen.VideoSeq;
 
 /**
- * Transformation xtend pour rajouter un durée dans le fichier du model
+ * Transformation xtend pour rajouter un durï¿½e dans le fichier du model
  */
 @SuppressWarnings("all")
 public class VideoDemonstratorAddSize {

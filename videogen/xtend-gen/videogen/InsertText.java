@@ -1,13 +1,7 @@
 package videogen;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.xtext.xbase.lib.Exceptions;
-import org.junit.Assert;
 import org.junit.Test;
-import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
-import playlist.MediaFile;
-import playlist.Playlist;
 import videogen.IdmUtil;
 
 @SuppressWarnings("all")
@@ -26,38 +20,17 @@ public class InsertText {
   
   @Test
   public void testInsertText() {
-    URI _createURI = URI.createURI("videos.videogen");
-    VideoGeneratorModel videoGen = IdmUtil.loadVideoGenerator(_createURI);
-    Assert.assertNotNull(videoGen);
-    Playlist playlist = IdmUtil.generatePlaylist(videoGen);
-    String m3uString = "";
-    EList<MediaFile> _mediaFile = playlist.getMediaFile();
-    for (final MediaFile mediaFile : _mediaFile) {
-      {
-        String _location = mediaFile.getLocation();
-        String _filenameWithExtension = IdmUtil.getFilenameWithExtension(_location);
-        mediaFile.setText(_filenameWithExtension);
-        String _location_1 = mediaFile.getLocation();
-        String _text = mediaFile.getText();
-        String _createVideoWithText = this.createVideoWithText(_location_1, _text, InsertText.BOTTOM_LEFT);
-        mediaFile.setLocation(_createVideoWithText);
-        String _m3uString = m3uString;
-        m3uString = (_m3uString + "#EXT-X-DISCONTINUITY\n");
-        String _m3uString_1 = m3uString;
-        double _duration = mediaFile.getDuration();
-        String _plus = ("#EXTINF:" + Double.valueOf(_duration));
-        String _plus_1 = (_plus + ", ");
-        String _videoid = mediaFile.getVideoid();
-        String _plus_2 = (_plus_1 + _videoid);
-        String _plus_3 = (_plus_2 + "\n");
-        m3uString = (_m3uString_1 + _plus_3);
-        String _m3uString_2 = m3uString;
-        String _location_2 = mediaFile.getLocation();
-        String _plus_4 = (_location_2 + "\n\n");
-        m3uString = (_m3uString_2 + _plus_4);
-      }
-    }
-    IdmUtil.createFile("playlist-files-gen/inserted_text.m3u", m3uString);
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field mediaFile is undefined for the type Playlist"
+      + "\ntext cannot be resolved"
+      + "\nlocation cannot be resolved"
+      + "\nlocation cannot be resolved"
+      + "\nlocation cannot be resolved"
+      + "\ntext cannot be resolved"
+      + "\nduration cannot be resolved"
+      + "\nvideoid cannot be resolved"
+      + "\nlocation cannot be resolved"
+      + "\n+ cannot be resolved");
   }
   
   /**

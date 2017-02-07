@@ -4,48 +4,48 @@
 	<extension
 		point="org.eclipse.ui.editors">
 		<editor
-			class="org.xtext.example.playlist.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
+			class="org.xtext.example.mydsl.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
 			contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
 			default="true"
 			extensions="playlist"
-			id="org.xtext.example.playlist.Playlist"
+			id="org.xtext.example.mydsl.Playlist"
 			name="Playlist Editor">
 		</editor>
 	</extension>
 	<extension
 		point="org.eclipse.ui.handlers">
 		<handler
-			class="org.xtext.example.playlist.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
+			class="org.xtext.example.mydsl.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
 			commandId="org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclaration">
 			<activeWhen>
 				<reference
-					definitionId="org.xtext.example.playlist.Playlist.Editor.opened">
+					definitionId="org.xtext.example.mydsl.Playlist.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
 		<handler
-			class="org.xtext.example.playlist.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
-			commandId="org.xtext.example.playlist.Playlist.validate">
+			class="org.xtext.example.mydsl.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
+			commandId="org.xtext.example.mydsl.Playlist.validate">
 		<activeWhen>
 			<reference
-					definitionId="org.xtext.example.playlist.Playlist.Editor.opened">
+					definitionId="org.xtext.example.mydsl.Playlist.Editor.opened">
 			</reference>
 		</activeWhen>
 		</handler>
 		<!-- copy qualified name -->
 		<handler
-			class="org.xtext.example.playlist.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedNameHandler"
+			class="org.xtext.example.mydsl.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedNameHandler"
 			commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName">
 			<activeWhen>
-				<reference definitionId="org.xtext.example.playlist.Playlist.Editor.opened" />
+				<reference definitionId="org.xtext.example.mydsl.Playlist.Editor.opened" />
 			</activeWhen>
 		</handler>
 		<handler
-			class="org.xtext.example.playlist.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedNameHandler"
+			class="org.xtext.example.mydsl.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedNameHandler"
 			commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedName">
 			<activeWhen>
 				<and>
-					<reference definitionId="org.xtext.example.playlist.Playlist.XtextEditor.opened" />
+					<reference definitionId="org.xtext.example.mydsl.Playlist.XtextEditor.opened" />
 					<iterate>
 						<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
 					</iterate>
@@ -54,22 +54,22 @@
 		</handler>
 	</extension>
 	<extension point="org.eclipse.core.expressions.definitions">
-		<definition id="org.xtext.example.playlist.Playlist.Editor.opened">
+		<definition id="org.xtext.example.mydsl.Playlist.Editor.opened">
 			<and>
 				<reference definitionId="isActiveEditorAnInstanceOfXtextEditor"/>
 				<with variable="activeEditor">
 					<test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName" 
-						value="org.xtext.example.playlist.Playlist" 
+						value="org.xtext.example.mydsl.Playlist" 
 						forcePluginActivation="true"/>
 				</with>		
 			</and>
 		</definition>
-		<definition id="org.xtext.example.playlist.Playlist.XtextEditor.opened">
+		<definition id="org.xtext.example.mydsl.Playlist.XtextEditor.opened">
 			<and>
 				<reference definitionId="isXtextEditorActive"/>
 				<with variable="activeEditor">
 					<test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName" 
-						value="org.xtext.example.playlist.Playlist" 
+						value="org.xtext.example.mydsl.Playlist" 
 						forcePluginActivation="true"/>
 				</with>		
 			</and>
@@ -78,33 +78,33 @@
 	<extension
 			point="org.eclipse.ui.preferencePages">
 		<page
-			class="org.xtext.example.playlist.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-			id="org.xtext.example.playlist.Playlist"
+			class="org.xtext.example.mydsl.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+			id="org.xtext.example.mydsl.Playlist"
 			name="Playlist">
-			<keywordReference id="org.xtext.example.playlist.ui.keyword_Playlist"/>
+			<keywordReference id="org.xtext.example.mydsl.ui.keyword_Playlist"/>
 		</page>
 		<page
-			category="org.xtext.example.playlist.Playlist"
-			class="org.xtext.example.playlist.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
-			id="org.xtext.example.playlist.Playlist.coloring"
+			category="org.xtext.example.mydsl.Playlist"
+			class="org.xtext.example.mydsl.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
+			id="org.xtext.example.mydsl.Playlist.coloring"
 			name="Syntax Coloring">
-			<keywordReference id="org.xtext.example.playlist.ui.keyword_Playlist"/>
+			<keywordReference id="org.xtext.example.mydsl.ui.keyword_Playlist"/>
 		</page>
 		<page
-			category="org.xtext.example.playlist.Playlist"
-			class="org.xtext.example.playlist.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
-			id="org.xtext.example.playlist.Playlist.templates"
+			category="org.xtext.example.mydsl.Playlist"
+			class="org.xtext.example.mydsl.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
+			id="org.xtext.example.mydsl.Playlist.templates"
 			name="Templates">
-			<keywordReference id="org.xtext.example.playlist.ui.keyword_Playlist"/>
+			<keywordReference id="org.xtext.example.mydsl.ui.keyword_Playlist"/>
 		</page>
 	</extension>
 	<extension
 			point="org.eclipse.ui.propertyPages">
 		<page
-			class="org.xtext.example.playlist.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-			id="org.xtext.example.playlist.Playlist"
+			class="org.xtext.example.mydsl.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+			id="org.xtext.example.mydsl.Playlist"
 			name="Playlist">
-			<keywordReference id="org.xtext.example.playlist.ui.keyword_Playlist"/>
+			<keywordReference id="org.xtext.example.mydsl.ui.keyword_Playlist"/>
 			<enabledWhen>
 				<adapt type="org.eclipse.core.resources.IProject"/>
 			</enabledWhen>
@@ -114,14 +114,14 @@
 	<extension
 		point="org.eclipse.ui.keywords">
 		<keyword
-			id="org.xtext.example.playlist.ui.keyword_Playlist"
+			id="org.xtext.example.mydsl.ui.keyword_Playlist"
 			label="Playlist"/>
 	</extension>
 	<extension
 		point="org.eclipse.ui.commands">
 	<command
 			description="Trigger expensive validation"
-			id="org.xtext.example.playlist.Playlist.validate"
+			id="org.xtext.example.mydsl.Playlist.validate"
 			name="Validate">
 	</command>
 	<!-- copy qualified name -->
@@ -142,12 +142,12 @@
 		<menuContribution
 			locationURI="popup:#TextEditorContext?after=group.edit">
 			 <command
-				 commandId="org.xtext.example.playlist.Playlist.validate"
+				 commandId="org.xtext.example.mydsl.Playlist.validate"
 				 style="push"
 				 tooltip="Trigger expensive validation">
 			<visibleWhen checkEnabled="false">
 				<reference
-					definitionId="org.xtext.example.playlist.Playlist.Editor.opened">
+					definitionId="org.xtext.example.mydsl.Playlist.Editor.opened">
 				</reference>
 			</visibleWhen>
 		</command>
@@ -157,7 +157,7 @@
 			<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName" 
 				style="push" tooltip="Copy Qualified Name">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.xtext.example.playlist.Playlist.Editor.opened" />
+					<reference definitionId="org.xtext.example.mydsl.Playlist.Editor.opened" />
 				</visibleWhen>
 			</command>
 		</menuContribution>
@@ -165,7 +165,7 @@
 			<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName"
 				style="push" tooltip="Copy Qualified Name">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.xtext.example.playlist.Playlist.Editor.opened" />
+					<reference definitionId="org.xtext.example.mydsl.Playlist.Editor.opened" />
 				</visibleWhen>
 			</command>
 		</menuContribution>
@@ -174,7 +174,7 @@
 				style="push" tooltip="Copy Qualified Name">
 				<visibleWhen checkEnabled="false">
 					<and>
-						<reference definitionId="org.xtext.example.playlist.Playlist.XtextEditor.opened" />
+						<reference definitionId="org.xtext.example.mydsl.Playlist.XtextEditor.opened" />
 						<iterate>
 							<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
 						</iterate>
@@ -187,7 +187,7 @@
 		<menuContribution locationURI="popup:#TextEditorContext?endof=group.find">
 			<command commandId="org.eclipse.xtext.ui.editor.FindReferences">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.xtext.example.playlist.Playlist.Editor.opened">
+					<reference definitionId="org.xtext.example.mydsl.Playlist.Editor.opened">
 					</reference>
 				</visibleWhen>
 			</command>
@@ -195,11 +195,11 @@
 	</extension>
 	<extension point="org.eclipse.ui.handlers">
 		<handler
-			class="org.xtext.example.playlist.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
+			class="org.xtext.example.mydsl.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
 			commandId="org.eclipse.xtext.ui.editor.FindReferences">
 			<activeWhen>
 				<reference
-					definitionId="org.xtext.example.playlist.Playlist.Editor.opened">
+					definitionId="org.xtext.example.mydsl.Playlist.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -208,17 +208,17 @@
 	<extension
 		point="org.eclipse.emf.ecore.extension_parser">
 		<parser
-			class="org.xtext.example.playlist.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
+			class="org.xtext.example.mydsl.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
 			type="playlist">
 		</parser>
 	</extension>
 	<extension point="org.eclipse.xtext.extension_resourceServiceProvider">
 		<resourceServiceProvider
-			class="org.xtext.example.playlist.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
+			class="org.xtext.example.mydsl.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
 			uriExtension="playlist">
 		</resourceServiceProvider>
 	</extension>
-	<!-- marker definitions for org.xtext.example.playlist.Playlist -->
+	<!-- marker definitions for org.xtext.example.mydsl.Playlist -->
 	<extension
 			id="playlist.check.fast"
 			name="Playlist Problem"
@@ -242,25 +242,25 @@
 	</extension>
 	<extension point="org.eclipse.xtext.builder.participant">
 		<participant
-			class="org.xtext.example.playlist.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
+			class="org.xtext.example.mydsl.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
 			fileExtensions="playlist"/>
 	</extension>
 	<extension point="org.eclipse.ui.preferencePages">
 		<page
-			category="org.xtext.example.playlist.Playlist"
-			class="org.xtext.example.playlist.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
-			id="org.xtext.example.playlist.Playlist.compiler.preferencePage"
+			category="org.xtext.example.mydsl.Playlist"
+			class="org.xtext.example.mydsl.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+			id="org.xtext.example.mydsl.Playlist.compiler.preferencePage"
 			name="Compiler">
-			<keywordReference id="org.xtext.example.playlist.ui.keyword_Playlist"/>
+			<keywordReference id="org.xtext.example.mydsl.ui.keyword_Playlist"/>
 		</page>
 	</extension>
 	<extension point="org.eclipse.ui.propertyPages">
 		<page
-			category="org.xtext.example.playlist.Playlist"
-			class="org.xtext.example.playlist.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
-			id="org.xtext.example.playlist.Playlist.compiler.propertyPage"
+			category="org.xtext.example.mydsl.Playlist"
+			class="org.xtext.example.mydsl.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+			id="org.xtext.example.mydsl.Playlist.compiler.propertyPage"
 			name="Compiler">
-			<keywordReference id="org.xtext.example.playlist.ui.keyword_Playlist"/>
+			<keywordReference id="org.xtext.example.mydsl.ui.keyword_Playlist"/>
 			<enabledWhen>
 				<adapt type="org.eclipse.core.resources.IProject"/>
 			</enabledWhen>
@@ -271,20 +271,20 @@
 		<menuContribution locationURI="popup:#TextEditorContext?after=xtext.ui.openDeclaration">
 			<command
 				commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand"
-				id="org.xtext.example.playlist.Playlist.OpenGeneratedCode"
+				id="org.xtext.example.mydsl.Playlist.OpenGeneratedCode"
 				style="push">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.xtext.example.playlist.Playlist.Editor.opened" />
+					<reference definitionId="org.xtext.example.mydsl.Playlist.Editor.opened" />
 				</visibleWhen>
 			</command>
 		</menuContribution>
 	</extension>
 	<extension point="org.eclipse.ui.handlers">
 		<handler
-			class="org.xtext.example.playlist.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.generator.trace.OpenGeneratedFileHandler"
+			class="org.xtext.example.mydsl.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.generator.trace.OpenGeneratedFileHandler"
 			commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand">
 			<activeWhen>
-				<reference definitionId="org.xtext.example.playlist.Playlist.Editor.opened" />
+				<reference definitionId="org.xtext.example.mydsl.Playlist.Editor.opened" />
 			</activeWhen>
 		</handler>
 	</extension>
@@ -292,11 +292,11 @@
 	<extension
 		point="org.eclipse.ui.handlers">
 		<handler 
-			class="org.xtext.example.playlist.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
+			class="org.xtext.example.mydsl.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
 			commandId="org.eclipse.xtext.ui.editor.outline.QuickOutline">
 			<activeWhen>
 				<reference
-					definitionId="org.xtext.example.playlist.Playlist.Editor.opened">
+					definitionId="org.xtext.example.mydsl.Playlist.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -316,16 +316,16 @@
 				style="push"
 				tooltip="Open Quick Outline">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.xtext.example.playlist.Playlist.Editor.opened"/>
+					<reference definitionId="org.xtext.example.mydsl.Playlist.Editor.opened"/>
 				</visibleWhen>
 			</command>
 		</menuContribution>
 	</extension>
-	<!-- quickfix marker resolution generator for org.xtext.example.playlist.Playlist -->
+	<!-- quickfix marker resolution generator for org.xtext.example.mydsl.Playlist -->
 	<extension
 			point="org.eclipse.ui.ide.markerResolution">
 		<markerResolutionGenerator
-			class="org.xtext.example.playlist.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			class="org.xtext.example.mydsl.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
 			markerType="org.xtext.example.playlist.ui.playlist.check.fast">
 			<attribute
 				name="FIXABLE_KEY"
@@ -333,7 +333,7 @@
 			</attribute>
 		</markerResolutionGenerator>
 		<markerResolutionGenerator
-			class="org.xtext.example.playlist.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			class="org.xtext.example.mydsl.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
 			markerType="org.xtext.example.playlist.ui.playlist.check.normal">
 			<attribute
 				name="FIXABLE_KEY"
@@ -341,7 +341,7 @@
 			</attribute>
 		</markerResolutionGenerator>
 		<markerResolutionGenerator
-			class="org.xtext.example.playlist.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			class="org.xtext.example.mydsl.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
 			markerType="org.xtext.example.playlist.ui.playlist.check.expensive">
 			<attribute
 				name="FIXABLE_KEY"
@@ -352,11 +352,11 @@
 	<!-- Rename Refactoring -->
 	<extension point="org.eclipse.ui.handlers">
 		<handler 
-			class="org.xtext.example.playlist.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
+			class="org.xtext.example.mydsl.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
 			commandId="org.eclipse.xtext.ui.refactoring.RenameElement">
 			<activeWhen>
 				<reference
-					definitionId="org.xtext.example.playlist.Playlist.Editor.opened">
+					definitionId="org.xtext.example.mydsl.Playlist.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -368,7 +368,7 @@
 				style="push">
 				<visibleWhen checkEnabled="false">
 					<reference
-						definitionId="org.xtext.example.playlist.Playlist.Editor.opened">
+						definitionId="org.xtext.example.mydsl.Playlist.Editor.opened">
 					</reference>
 				</visibleWhen>
 			</command>
@@ -376,28 +376,28 @@
 	</extension>
 	<extension point="org.eclipse.ui.preferencePages">
 		<page
-			category="org.xtext.example.playlist.Playlist"
-			class="org.xtext.example.playlist.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
-			id="org.xtext.example.playlist.Playlist.refactoring"
+			category="org.xtext.example.mydsl.Playlist"
+			class="org.xtext.example.mydsl.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
+			id="org.xtext.example.mydsl.Playlist.refactoring"
 			name="Refactoring">
-			<keywordReference id="org.xtext.example.playlist.ui.keyword_Playlist"/>
+			<keywordReference id="org.xtext.example.mydsl.ui.keyword_Playlist"/>
 		</page>
 	</extension>
 	<extension point="org.eclipse.compare.contentViewers">
-		<viewer id="org.xtext.example.playlist.Playlist.compare.contentViewers"
-			class="org.xtext.example.playlist.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+		<viewer id="org.xtext.example.mydsl.Playlist.compare.contentViewers"
+			class="org.xtext.example.mydsl.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
 			extensions="playlist">
 		</viewer>
 	</extension>
 	<extension point="org.eclipse.compare.contentMergeViewers">
-		<viewer id="org.xtext.example.playlist.Playlist.compare.contentMergeViewers"
-			class="org.xtext.example.playlist.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+		<viewer id="org.xtext.example.mydsl.Playlist.compare.contentMergeViewers"
+			class="org.xtext.example.mydsl.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
 			extensions="playlist" label="Playlist Compare">
 		</viewer>
 	</extension>
 	<extension point="org.eclipse.ui.editors.documentProviders">
-		<provider id="org.xtext.example.playlist.Playlist.editors.documentProviders"
-			class="org.xtext.example.playlist.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
+		<provider id="org.xtext.example.mydsl.Playlist.editors.documentProviders"
+			class="org.xtext.example.mydsl.ui.PlaylistExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
 			extensions="playlist">
 		</provider>
 	</extension>

@@ -22,13 +22,13 @@ public class VideoGenSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected VideoGenGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_Subtitle___LEFT_BRACKETTerminalRuleCall_2_0_RIGHT_BRACKETTerminalRuleCall_2_3__q;
-	protected AbstractElementAlias match_VideoDescription___LEFT_BRACKETTerminalRuleCall_3_0_RIGHT_BRACKETTerminalRuleCall_3_6__q;
+	protected AbstractElementAlias match_VideoDescription___LEFT_BRACKETTerminalRuleCall_3_0_RIGHT_BRACKETTerminalRuleCall_3_9__q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (VideoGenGrammarAccess) access;
 		match_Subtitle___LEFT_BRACKETTerminalRuleCall_2_0_RIGHT_BRACKETTerminalRuleCall_2_3__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getSubtitleAccess().getLEFT_BRACKETTerminalRuleCall_2_0()), new TokenAlias(false, false, grammarAccess.getSubtitleAccess().getRIGHT_BRACKETTerminalRuleCall_2_3()));
-		match_VideoDescription___LEFT_BRACKETTerminalRuleCall_3_0_RIGHT_BRACKETTerminalRuleCall_3_6__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getVideoDescriptionAccess().getLEFT_BRACKETTerminalRuleCall_3_0()), new TokenAlias(false, false, grammarAccess.getVideoDescriptionAccess().getRIGHT_BRACKETTerminalRuleCall_3_6()));
+		match_VideoDescription___LEFT_BRACKETTerminalRuleCall_3_0_RIGHT_BRACKETTerminalRuleCall_3_9__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getVideoDescriptionAccess().getLEFT_BRACKETTerminalRuleCall_3_0()), new TokenAlias(false, false, grammarAccess.getVideoDescriptionAccess().getRIGHT_BRACKETTerminalRuleCall_3_9()));
 	}
 	
 	@Override
@@ -66,8 +66,8 @@ public class VideoGenSyntacticSequencer extends AbstractSyntacticSequencer {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
 			if (match_Subtitle___LEFT_BRACKETTerminalRuleCall_2_0_RIGHT_BRACKETTerminalRuleCall_2_3__q.equals(syntax))
 				emit_Subtitle___LEFT_BRACKETTerminalRuleCall_2_0_RIGHT_BRACKETTerminalRuleCall_2_3__q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_VideoDescription___LEFT_BRACKETTerminalRuleCall_3_0_RIGHT_BRACKETTerminalRuleCall_3_6__q.equals(syntax))
-				emit_VideoDescription___LEFT_BRACKETTerminalRuleCall_3_0_RIGHT_BRACKETTerminalRuleCall_3_6__q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_VideoDescription___LEFT_BRACKETTerminalRuleCall_3_0_RIGHT_BRACKETTerminalRuleCall_3_9__q.equals(syntax))
+				emit_VideoDescription___LEFT_BRACKETTerminalRuleCall_3_0_RIGHT_BRACKETTerminalRuleCall_3_9__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
@@ -90,7 +90,7 @@ public class VideoGenSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     location=STRING (ambiguity) (rule end)
 	 */
-	protected void emit_VideoDescription___LEFT_BRACKETTerminalRuleCall_3_0_RIGHT_BRACKETTerminalRuleCall_3_6__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_VideoDescription___LEFT_BRACKETTerminalRuleCall_3_0_RIGHT_BRACKETTerminalRuleCall_3_9__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

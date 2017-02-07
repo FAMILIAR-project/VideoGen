@@ -12,7 +12,8 @@ Require-Bundle: org.xtext.example.playlist.ui,
  org.eclipse.core.runtime,
  org.eclipse.ui.workbench;resolution:=optional
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: org.xtext.example.playlist.ui.tests
+Export-Package: org.xtext.example.playlist.ui.tests,
+ org.xtext.example.mydsl.ui.tests
 Import-Package: org.hamcrest.core,
  org.junit;version="4.5.0",
  org.junit.runners.model;version="4.5.0",

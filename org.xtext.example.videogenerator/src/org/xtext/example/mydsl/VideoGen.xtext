@@ -33,14 +33,14 @@ VideoDescription:
 	 ('duration' duration=INT)?
 	 ('probability' probability=INT)?
 	 ('textIncrust' textIncrust=STRING)?
-	  ('filter' filter=STRING)?
+	 // ('filter' filter=STRING)?
 	 ('size' size=INT)?
 	 ('description' description=STRING)?
-	 ('text' text=STRING)?
+	 //('text' text=STRING)?
 	 ('subtitle' subtitle=Subtitle)?
-	 ('filter' filter=Filter)?
+	 //('filter' filter=Filter)?
 	 ('text' text=Text)?
-	 ('description' description=STRING)?
+	 //('description' description=STRING)?
 	 ('filter' filter=Filter)?
 	RIGHT_BRACKET)?
 ;
@@ -48,11 +48,12 @@ VideoDescription:
 
 Subtitle: 'subtitle' text=STRING (LEFT_BRACKET('color' colorfont=STRING)? ('size' size=INT)? RIGHT_BRACKET)?;
 
+/*
 Filter :
 	LEFT_BRACKET
 	filter=STRING
 	RIGHT_BRACKET
-;
+;*/
 
 Text :
 	LEFT_BRACKET

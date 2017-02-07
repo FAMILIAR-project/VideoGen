@@ -4,6 +4,6 @@ generate playlist "http://www.xtext.org/example/playlist/Playlist"
 
 Playlist:
 	videos+=Video*;
-
+	
 Video:
 	"file" location=STRING;

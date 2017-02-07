@@ -3,17 +3,12 @@
  */
 package org.xtext.example.playlist.ui;
 
-import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor;
-import org.xtext.example.playlist.ui.AbstractPlaylistUiModule;
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
  */
 @FinalFieldsConstructor
 @SuppressWarnings("all")
-public class PlaylistUiModule extends AbstractPlaylistUiModule {
-  public PlaylistUiModule(final AbstractUIPlugin plugin) {
-    super(plugin);
-  }
+public class PlaylistUiModule /* implements AbstractPlaylistUiModule  */{
 }

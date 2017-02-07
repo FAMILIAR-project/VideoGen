@@ -5,8 +5,7 @@ Bundle-Vendor: My Company
 Bundle-Version: 1.0.0.qualifier
 Bundle-SymbolicName: org.xtext.example.playlist.m3u.ui.tests; singleton:=true
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.xtext.example.playlist.m3u.ui,
- org.junit;bundle-version="4.7.0",
+Require-Bundle: org.junit;bundle-version="4.7.0",
  org.eclipse.xtext.junit4,
  org.eclipse.xtext.xbase.junit,
  org.eclipse.core.runtime,

@@ -4,13 +4,14 @@
     modelPluginID="org.xtext.example.playlist" forceOverwrite="true" modelName="Playlist"
     updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="6.0" copyrightFields="false" runtimeVersion="2.12">
-  <genPackages prefix="Playlist" basePackage="org.xtext.example.playlist" disposableProviderFactory="true"
+  <genPackages prefix="Playlist" basePackage="org.xtext.example.mydsl" disposableProviderFactory="true"
       fileExtensions="playlist" ecorePackage="Playlist.ecore#/">
     <genClasses ecoreClass="Playlist.ecore#//Playlist">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Playlist.ecore#//Playlist/videos"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Playlist.ecore#//Playlist/vids"/>
     </genClasses>
-    <genClasses ecoreClass="Playlist.ecore#//Video">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Playlist.ecore#//Video/location"/>
+    <genClasses ecoreClass="Playlist.ecore#//MediaFile">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Playlist.ecore#//MediaFile/location"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Playlist.ecore#//MediaFile/duration"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

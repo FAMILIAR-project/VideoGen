@@ -1,8 +1,6 @@
 package videogen;
 
 import java.util.HashMap;
-import java.util.Random;
-import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -13,8 +11,6 @@ import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated;
 import org.xtext.example.mydsl.playlist.Playlist;
-import org.xtext.example.mydsl.playlist.PlaylistFactory;
-import org.xtext.example.mydsl.playlist.video;
 import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq;
 import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq;
 import org.xtext.example.mydsl.videoGen.OptionalVideoSeq;
@@ -53,97 +49,33 @@ public class FFmpegRep {
   }
   
   public static Playlist videoToPlaylist(final VideoGeneratorModel videoGen) {
-    Playlist _xblockexpression = null;
-    {
-      String data = "";
-      String _data = data;
-      data = (_data + "#this is a comment\n");
-      Playlist playList = PlaylistFactory.eINSTANCE.createPlaylist();
-      EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
-      for (final VideoSeq videoseq : _videoseqs) {
-        if ((videoseq instanceof MandatoryVideoSeq)) {
-          video vid = PlaylistFactory.eINSTANCE.createvideo();
-          VideoDescription _description = ((MandatoryVideoSeq) videoseq).getDescription();
-          String _location = _description.getLocation();
-          vid.setPath(_location);
-          VideoDescription _description_1 = ((MandatoryVideoSeq) videoseq).getDescription();
-          int _duration = _description_1.getDuration();
-          vid.setDuration(_duration);
-          VideoDescription _description_2 = ((MandatoryVideoSeq) videoseq).getDescription();
-          String _description_3 = _description_2.getDescription();
-          vid.setDescription(_description_3);
-          EList<video> _videos = playList.getVideos();
-          _videos.add(vid);
-        } else {
-          if ((videoseq instanceof OptionalVideoSeq)) {
-            final VideoDescription desc = ((OptionalVideoSeq) videoseq).getDescription();
-            String _location_1 = desc.getLocation();
-            boolean _isNullOrEmpty = StringExtensions.isNullOrEmpty(_location_1);
-            boolean _not = (!_isNullOrEmpty);
-            if (_not) {
-              Random _random = new Random();
-              int _nextInt = _random.nextInt(2);
-              boolean _equals = (_nextInt == 1);
-              if (_equals) {
-                video vid_1 = PlaylistFactory.eINSTANCE.createvideo();
-                String _location_2 = desc.getLocation();
-                vid_1.setPath(_location_2);
-                int _duration_1 = desc.getDuration();
-                vid_1.setDuration(_duration_1);
-                String _description_4 = desc.getDescription();
-                vid_1.setDescription(_description_4);
-                EList<video> _videos_1 = playList.getVideos();
-                _videos_1.add(vid_1);
-              }
-            }
-          } else {
-            final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
-            String _videoid = altvid.getVideoid();
-            boolean _isNullOrEmpty_1 = StringExtensions.isNullOrEmpty(_videoid);
-            boolean _not_1 = (!_isNullOrEmpty_1);
-            if (_not_1) {
-              EList<VideoDescription> _videodescs = altvid.getVideodescs();
-              Random _random_1 = new Random();
-              EList<VideoDescription> _videodescs_1 = altvid.getVideodescs();
-              int _size = _videodescs_1.size();
-              int _nextInt_1 = _random_1.nextInt(_size);
-              VideoDescription seq = _videodescs.get(_nextInt_1);
-              video vid_2 = PlaylistFactory.eINSTANCE.createvideo();
-              String _location_3 = seq.getLocation();
-              vid_2.setPath(_location_3);
-              String _description_5 = seq.getDescription();
-              vid_2.setDescription(_description_5);
-              int _duration_2 = seq.getDuration();
-              vid_2.setDuration(_duration_2);
-              EList<video> _videos_2 = playList.getVideos();
-              _videos_2.add(vid_2);
-            }
-          }
-        }
-      }
-      _xblockexpression = playList;
-    }
-    return _xblockexpression;
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field createvideo is undefined for the type PlaylistFactory"
+      + "\nThe method or field videos is undefined for the type Playlist"
+      + "\nThe method or field createvideo is undefined for the type PlaylistFactory"
+      + "\nThe method or field videos is undefined for the type Playlist"
+      + "\nThe method or field createvideo is undefined for the type PlaylistFactory"
+      + "\nThe method or field videos is undefined for the type Playlist"
+      + "\npath cannot be resolved"
+      + "\nduration cannot be resolved"
+      + "\ndescription cannot be resolved"
+      + "\nadd cannot be resolved"
+      + "\npath cannot be resolved"
+      + "\nduration cannot be resolved"
+      + "\ndescription cannot be resolved"
+      + "\nadd cannot be resolved"
+      + "\npath cannot be resolved"
+      + "\ndescription cannot be resolved"
+      + "\nduration cannot be resolved"
+      + "\nadd cannot be resolved");
   }
   
   public static String playlistToFFMPEG(final Playlist playlist) {
-    String _xblockexpression = null;
-    {
-      final StringBuffer content = new StringBuffer();
-      EList<video> _videos = playlist.getVideos();
-      final Consumer<video> _function = (video video) -> {
-        String _path = video.getPath();
-        String _plus = ("file \'" + _path);
-        String _plus_1 = (_plus + "\'\n");
-        content.append(_plus_1);
-      };
-      _videos.forEach(_function);
-      String _string = content.toString();
-      Operations.writeToFile("ffmpeg.txt", _string);
-      InputOutput.<StringBuffer>println(content);
-      _xblockexpression = content.toString();
-    }
-    return _xblockexpression;
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field videos is undefined for the type Playlist"
+      + "\nThe method or field path is undefined for the type Object"
+      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context."
+      + "\nforEach cannot be resolved");
   }
   
   public static void generateDuration(final VideoGeneratorModel videoGen) {

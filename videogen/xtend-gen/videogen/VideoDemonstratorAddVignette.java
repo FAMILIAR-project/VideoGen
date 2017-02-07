@@ -25,7 +25,7 @@ import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 import org.xtext.example.mydsl.videoGen.VideoSeq;
 
 /**
- * Transformation xtend pour generer une vignette des vidéos
+ * Transformation xtend pour generer une vignette des vidï¿½os
  */
 @SuppressWarnings("all")
 public class VideoDemonstratorAddVignette {

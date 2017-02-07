@@ -1,9 +1,0 @@
-VideoGen {
-
-	mandatory videoseq w1 "videos/wow.mp4" { duration 7 }
-	optional videoseq w2 "videos/TOASTY!.mp4" { duration 1 }
-	alternatives w3 { 
-		videoseq w31 "videos/white_male.mp4" { duration 3 }
-		videoseq w32 "videos/mlg-oh.mp4"
-	{ duration 2 } }
-}

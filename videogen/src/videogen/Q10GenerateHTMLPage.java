@@ -6,6 +6,8 @@ import org.xtext.example.mydsl.videoGen.OptionalVideoSeq;
 import org.xtext.example.mydsl.videoGen.VideoDescription;
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 
+import videogen.vignette.FFMPEGHelper;
+
 public class Q10GenerateHTMLPage extends Q7VideoDurationSetterSwitch {
 
 	public Q10GenerateHTMLPage() {

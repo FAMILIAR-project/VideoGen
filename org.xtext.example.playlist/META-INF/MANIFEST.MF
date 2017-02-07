@@ -15,15 +15,19 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtend.lib,
  org.eclipse.emf.common
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: org.xtext.example.playlist.serializer,
- org.xtext.example.playlist.playlist.impl,
- org.xtext.example.playlist.playlist.util,
- org.xtext.example.playlist.playlist,
- org.xtext.example.playlist.parser.antlr.internal,
- org.xtext.example.playlist.generator,
+Export-Package: org.xtext.example.playlist.generator,
  org.xtext.example.playlist.validation,
  org.xtext.example.playlist.scoping,
  org.xtext.example.playlist,
- org.xtext.example.playlist.services,
- org.xtext.example.playlist.parser.antlr
+ org.xtext.example.mydsl.playlist,
+ org.xtext.example.mydsl.playlist.impl,
+ org.xtext.example.mydsl.parser.antlr.internal,
+ org.xtext.example.mydsl.scoping,
+ org.xtext.example.mydsl.services,
+ org.xtext.example.mydsl.generator,
+ org.xtext.example.mydsl.validation,
+ org.xtext.example.mydsl,
+ org.xtext.example.mydsl.playlist.util,
+ org.xtext.example.mydsl.serializer,
+ org.xtext.example.mydsl.parser.antlr
 Import-Package: org.apache.log4j

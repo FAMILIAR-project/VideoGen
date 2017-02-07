@@ -22,9 +22,7 @@ import org.xtext.example.mydsl.videoGen.OptionalVideoSeq;
 import org.xtext.example.mydsl.videoGen.VideoDescription;
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 import org.xtext.example.mydsl.videoGen.VideoSeq;
-import playlist.Mediafile;
 import playlist.Playlist;
-import playlist.PlaylistFactory;
 
 @SuppressWarnings("all")
 public class Demonstration {
@@ -167,86 +165,34 @@ public class Demonstration {
   }
   
   @Test
-  public void test4() {
-    try {
-      URI _createURI = URI.createURI("foo2.videogen");
-      VideoGeneratorModel videoGen = this.loadVideoGenerator(_createURI);
-      final Playlist playlist = PlaylistFactory.eINSTANCE.createPlaylist();
-      final File outputFile = new File("outagain.txt");
-      final FileWriter out = new FileWriter(outputFile);
-      EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
-      final Consumer<VideoSeq> _function = (VideoSeq videoseq) -> {
-        try {
-          if ((videoseq instanceof MandatoryVideoSeq)) {
-            VideoDescription _description = ((MandatoryVideoSeq) videoseq).getDescription();
-            final String chem = _description.getLocation();
-            out.write(chem);
-            out.write("\n");
-            final Mediafile mediafile = PlaylistFactory.eINSTANCE.createMediafile();
-            mediafile.setLocation(chem);
-            EList<Mediafile> _videos = playlist.getVideos();
-            _videos.add(mediafile);
-          } else {
-            if ((videoseq instanceof OptionalVideoSeq)) {
-              final Random optional = new Random(1);
-              int _nextInt = optional.nextInt();
-              boolean _equals = (_nextInt == 1);
-              if (_equals) {
-                VideoDescription _description_1 = ((OptionalVideoSeq) videoseq).getDescription();
-                final String chem_1 = _description_1.getLocation();
-                out.write(chem_1);
-                out.write("\n");
-                final Mediafile mediafile_1 = PlaylistFactory.eINSTANCE.createMediafile();
-                mediafile_1.setLocation(chem_1);
-                EList<Mediafile> _videos_1 = playlist.getVideos();
-                _videos_1.add(mediafile_1);
-              }
-            } else {
-              final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
-              EList<VideoDescription> _videodescs = altvid.getVideodescs();
-              final int size = _videodescs.size();
-              Random _random = new Random();
-              EList<VideoDescription> _videodescs_1 = altvid.getVideodescs();
-              int _size = _videodescs_1.size();
-              final int optional_1 = _random.nextInt(_size);
-              EList<VideoDescription> _videodescs_2 = altvid.getVideodescs();
-              VideoDescription _get = _videodescs_2.get(optional_1);
-              String _location = _get.getLocation();
-              String _plus = (_location + "\n");
-              out.write(_plus);
-              final Mediafile mediafile_2 = PlaylistFactory.eINSTANCE.createMediafile();
-              EList<VideoDescription> _videodescs_3 = altvid.getVideodescs();
-              VideoDescription _get_1 = _videodescs_3.get(optional_1);
-              String _location_1 = _get_1.getLocation();
-              mediafile_2.setLocation(_location_1);
-              EList<Mediafile> _videos_2 = playlist.getVideos();
-              _videos_2.add(mediafile_2);
-            }
-          }
-        } catch (Throwable _e) {
-          throw Exceptions.sneakyThrow(_e);
-        }
-      };
-      _videoseqs.forEach(_function);
-      out.close();
-      this.convertPlaylistIntoFormat(playlist, "m3u");
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
+  public Object test4() {
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method createMediafile() is undefined for the type PlaylistFactory"
+      + "\nThe method or field videos is undefined for the type Playlist"
+      + "\nThe method createMediafile() is undefined for the type PlaylistFactory"
+      + "\nThe method or field videos is undefined for the type Playlist"
+      + "\nThe method createMediafile() is undefined for the type PlaylistFactory"
+      + "\nThe method or field videos is undefined for the type Playlist"
+      + "\nThe method convertPlaylistIntoFormat(Playlist, String) from the type Demonstration refers to the missing type Object"
+      + "\nlocation cannot be resolved"
+      + "\nadd cannot be resolved"
+      + "\nlocation cannot be resolved"
+      + "\nadd cannot be resolved"
+      + "\nlocation cannot be resolved"
+      + "\nadd cannot be resolved");
   }
   
-  public void convertPlaylistIntoFormat(final Playlist p, final String format) {
-    EList<Mediafile> _videos = p.getVideos();
-    final Consumer<Mediafile> _function = (Mediafile video) -> {
-      String _location = video.getLocation();
-      String _plus = (_location + ".");
-      final String str = (_plus + format);
-      video.setLocation(str);
-      String _location_1 = video.getLocation();
-      String _plus_1 = (_location_1 + "\n");
-      System.out.println(_plus_1);
-    };
-    _videos.forEach(_function);
+  public Object convertPlaylistIntoFormat(final Playlist p, final String format) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field videos is undefined for the type Playlist"
+      + "\nThe method or field location is undefined for the type Object"
+      + "\nThe method location(Object) is undefined for the type Object"
+      + "\nThe method or field location is undefined for the type Object"
+      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context."
+      + "\nforEach cannot be resolved"
+      + "\n+ cannot be resolved"
+      + "\n+ cannot be resolved"
+      + "\n+ cannot be resolved");
   }
   
   public void printToHTML(final VideoGeneratorModel videoGen) {

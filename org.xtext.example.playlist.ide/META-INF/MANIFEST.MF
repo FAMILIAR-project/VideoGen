@@ -9,6 +9,6 @@ Require-Bundle: org.xtext.example.playlist,
  org.eclipse.xtext.ide,
  org.eclipse.xtext.xbase.ide
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: org.xtext.example.playlist.ide.contentassist.antlr.internal,
- org.xtext.example.playlist.ide.contentassist.antlr
+Export-Package: org.xtext.example.mydsl.ide.contentassist.antlr.internal,
+ org.xtext.example.mydsl.ide.contentassist.antlr
 

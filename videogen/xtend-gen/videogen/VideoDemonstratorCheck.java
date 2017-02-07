@@ -23,7 +23,7 @@ import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 import org.xtext.example.mydsl.videoGen.VideoSeq;
 
 /**
- * Class pour vérifier la validitée d'un model en le parcourant
+ * Class pour vï¿½rifier la validitï¿½e d'un model en le parcourant
  */
 @SuppressWarnings("all")
 public class VideoDemonstratorCheck {
@@ -128,7 +128,7 @@ public class VideoDemonstratorCheck {
             Random _random = new Random();
             final int test = _random.nextInt(100);
             if (((test > 100) || (test < 0))) {
-              InputOutput.<String>println("WARNING: le resultat de test est incohérent: vidéo ignorée");
+              InputOutput.<String>println("WARNING: le resultat de test est incohï¿½rent: vidï¿½o ignorï¿½e");
             } else {
               InputOutput.<String>println(("#TestRes:" + Integer.valueOf(test)));
               if ((test <= 50)) {
@@ -149,7 +149,7 @@ public class VideoDemonstratorCheck {
           final int choix = _random_1.nextInt(_size);
           InputOutput.<String>println(("#Choix:" + Integer.valueOf(choix)));
           if (((choix > altvid.getVideodescs().size()) || (choix < 0))) {
-            System.out.println("WARNING: le resultat de test est incohérent: vidéo ignorée");
+            System.out.println("WARNING: le resultat de test est incohï¿½rent: vidï¿½o ignorï¿½e");
           } else {
             EList<VideoDescription> _videodescs_1 = altvid.getVideodescs();
             final VideoDescription vdesc = _videodescs_1.get(choix);

@@ -22,7 +22,7 @@ import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 import org.xtext.example.mydsl.videoGen.VideoSeq;
 
 /**
- * Transformation xtend pour generer un script M3U à partir d'un model auquel on a rajouté la taille de la vidéo
+ * Transformation xtend pour generer un script M3U ï¿½ partir d'un model auquel on a rajoutï¿½ la taille de la vidï¿½o
  */
 @SuppressWarnings("all")
 public class VideoDemonstratorM3UAug {

@@ -21,5 +21,7 @@ Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.xtext.example.playlist.ui.quickfix,
  org.xtext.example.playlist.ui.contentassist,
- org.xtext.example.playlist.ui.internal
+ org.xtext.example.playlist.ui.internal,
+ org.xtext.example.mydsl.ui.quickfix,
+ org.xtext.example.mydsl.ui.contentassist
 Bundle-Activator: org.xtext.example.playlist.ui.internal.PlaylistActivator

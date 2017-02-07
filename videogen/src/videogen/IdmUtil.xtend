@@ -7,7 +7,7 @@ import java.io.IOException
 import java.io.Writer
 import playlist.Playlist
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
-import playlist.impl.PlaylistFactoryImpl
+
 import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq
 import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import java.util.Random

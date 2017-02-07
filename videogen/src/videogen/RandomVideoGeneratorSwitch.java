@@ -16,6 +16,8 @@ import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 import org.xtext.example.mydsl.videoGen.VideoSeq;
 import org.xtext.example.mydsl.videoGen.util.VideoGenSwitch;
 
+import videogen.vignette.FFMPEGHelper;
+
 /**
  * Warning : as of now, this generator only works for AVI specified video files
  *

@@ -2,10 +2,7 @@ package videogen;
 
 import com.google.common.base.Objects;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
@@ -29,9 +26,6 @@ import org.xtext.example.mydsl.videoGen.OptionalVideoSeq;
 import org.xtext.example.mydsl.videoGen.VideoDescription;
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 import org.xtext.example.mydsl.videoGen.VideoSeq;
-import videogenPlayList.MediaFile;
-import videogenPlayList.PlayList;
-import videogenPlayList.impl.VideogenPlayListFactoryImpl;
 
 @SuppressWarnings("all")
 public class VideoDemostratorInsererText {
@@ -87,7 +81,7 @@ public class VideoDemostratorInsererText {
    * Inserer du text dans la video
    * videoLocation = hubication de la video
    * text = texte a inserer dans la video
-   * position = position du texte inseré
+   * position = position du texte inserï¿½
    */
   public static String insertText(final String videoLocation, final String text, final String positionX, final String positionY) {
     try {
@@ -111,8 +105,6 @@ public class VideoDemostratorInsererText {
   public void test() {
     URI _createURI = URI.createURI("fooQ1.videogen");
     VideoGeneratorModel videoGen = this.loadVideoGenerator(_createURI);
-    VideogenPlayListFactoryImpl fact = new VideogenPlayListFactoryImpl();
-    PlayList playlist = fact.createPlayList();
     Assert.assertNotNull(videoGen);
     EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
     Set<VideoSeq> _set = IterableExtensions.<VideoSeq>toSet(_videoseqs);
@@ -121,23 +113,12 @@ public class VideoDemostratorInsererText {
         InputOutput.<String>println("Mandatory");
         VideoDescription _description = ((MandatoryVideoSeq) videoseq).getDescription();
         final String fileLocation = _description.getLocation();
-        MediaFile mediafile = fact.createMediaFile();
-        mediafile.setLocation(fileLocation);
-        double _duration = VideoDemostratorInsererText.getDuration(fileLocation);
-        mediafile.setDuration(_duration);
-        mediafile.setText("VideoObligatoire");
-        mediafile.setPositionX("(w-text_w)/2");
-        mediafile.setPositionY("(h-text_h)/2");
-        String _location = mediafile.getLocation();
-        String _text = mediafile.getText();
-        String _positionX = mediafile.getPositionX();
-        String _positionY = mediafile.getPositionY();
-        String locatTemp = VideoDemostratorInsererText.insertText(_location, _text, _positionX, _positionY);
-        mediafile.setLocation(locatTemp);
-        String _location_1 = mediafile.getLocation();
-        System.out.println(_location_1);
-        EList<MediaFile> _mediaFile = playlist.getMediaFile();
-        _mediaFile.add(mediafile);
+        final String location = fileLocation;
+        final double duration = VideoDemostratorInsererText.getDuration(fileLocation);
+        final String text = "VideoObligatoire";
+        final String positionX = "(w-text_w)/2";
+        final String positionY = "(h-text_h)/2";
+        String locatTemp = VideoDemostratorInsererText.insertText(location, text, positionX, positionY);
       } else {
         if ((videoseq instanceof OptionalVideoSeq)) {
           InputOutput.<String>println("Optional");
@@ -146,21 +127,12 @@ public class VideoDemostratorInsererText {
           if ((rand == 0)) {
             VideoDescription _description_1 = ((OptionalVideoSeq) videoseq).getDescription();
             final String fileLocation_1 = _description_1.getLocation();
-            MediaFile mediafile_1 = fact.createMediaFile();
-            mediafile_1.setLocation(fileLocation_1);
-            double _duration_1 = VideoDemostratorInsererText.getDuration(fileLocation_1);
-            mediafile_1.setDuration(_duration_1);
-            mediafile_1.setText("VideoOptional");
-            mediafile_1.setPositionX("(w-text_w)/3");
-            mediafile_1.setPositionY("(h-text_h)/3");
-            String _location_2 = mediafile_1.getLocation();
-            String _text_1 = mediafile_1.getText();
-            String _positionX_1 = mediafile_1.getPositionX();
-            String _positionY_1 = mediafile_1.getPositionY();
-            String locatTemp_1 = VideoDemostratorInsererText.insertText(_location_2, _text_1, _positionX_1, _positionY_1);
-            mediafile_1.setLocation(locatTemp_1);
-            EList<MediaFile> _mediaFile_1 = playlist.getMediaFile();
-            _mediaFile_1.add(mediafile_1);
+            final String location_1 = fileLocation_1;
+            final double duration_1 = VideoDemostratorInsererText.getDuration(fileLocation_1);
+            final String text_1 = "VideoOptional";
+            final String positionX_1 = "(w-text_w)/3";
+            final String positionY_1 = "(h-text_h)/3";
+            String locatTemp_1 = VideoDemostratorInsererText.insertText(location_1, text_1, positionX_1, positionY_1);
           }
         } else {
           InputOutput.<String>println("else");
@@ -171,57 +143,13 @@ public class VideoDemostratorInsererText {
           int _nextInt = _random_1.nextInt(size);
           VideoDescription _get = _videodescs_1.get(_nextInt);
           String fileLocation_2 = _get.getLocation();
-          MediaFile mediafile_2 = fact.createMediaFile();
-          mediafile_2.setLocation(fileLocation_2);
-          double _duration_2 = VideoDemostratorInsererText.getDuration(fileLocation_2);
-          mediafile_2.setDuration(_duration_2);
-          mediafile_2.setText("VideoAlternative");
-          mediafile_2.setPositionX("(w-text_w)/4");
-          mediafile_2.setPositionY("(h-text_h)/4");
-          String _location_3 = mediafile_2.getLocation();
-          String _text_2 = mediafile_2.getText();
-          String _positionX_2 = mediafile_2.getPositionX();
-          String _positionY_2 = mediafile_2.getPositionY();
-          String locatTemp_2 = VideoDemostratorInsererText.insertText(_location_3, _text_2, _positionX_2, _positionY_2);
-          mediafile_2.setLocation(locatTemp_2);
-          EList<MediaFile> _mediaFile_2 = playlist.getMediaFile();
-          _mediaFile_2.add(mediafile_2);
+          final String location_2 = fileLocation_2;
+          final double duration_2 = VideoDemostratorInsererText.getDuration(fileLocation_2);
+          final String text_2 = "VideoAlternative";
+          final String positionX_2 = "(w-text_w)/4";
+          final String positionY_2 = "(h-text_h)/4";
+          String locatTemp_2 = VideoDemostratorInsererText.insertText(location_2, text_2, positionX_2, positionY_2);
         }
-      }
-    }
-    try {
-      final File pl = new File("generatedPlayList/playlist-m3u-projet.m3u");
-      boolean _exists = pl.exists();
-      boolean _not = (!_exists);
-      if (_not) {
-        pl.createNewFile();
-      }
-      File _absoluteFile = pl.getAbsoluteFile();
-      final FileWriter fw = new FileWriter(_absoluteFile);
-      final BufferedWriter bw = new BufferedWriter(fw);
-      String _lineSeparator = System.lineSeparator();
-      String _plus = ("#EXTM3U" + _lineSeparator);
-      bw.write(_plus);
-      EList<MediaFile> _mediaFile_3 = playlist.getMediaFile();
-      for (final MediaFile mediafile_3 : _mediaFile_3) {
-        double _duration_3 = mediafile_3.getDuration();
-        String _plus_1 = ("#EXTINF:" + Double.valueOf(_duration_3));
-        String _plus_2 = (_plus_1 + " ,Example Artist - Example title ");
-        String _lineSeparator_1 = System.lineSeparator();
-        String _plus_3 = (_plus_2 + _lineSeparator_1);
-        String _location_4 = mediafile_3.getLocation();
-        String _plus_4 = (_plus_3 + _location_4);
-        String _lineSeparator_2 = System.lineSeparator();
-        String _plus_5 = (_plus_4 + _lineSeparator_2);
-        bw.write(_plus_5);
-      }
-      bw.close();
-    } catch (final Throwable _t) {
-      if (_t instanceof IOException) {
-        final IOException e = (IOException)_t;
-        e.printStackTrace();
-      } else {
-        throw Exceptions.sneakyThrow(_t);
       }
     }
   }

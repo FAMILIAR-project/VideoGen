@@ -31,7 +31,10 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRIGHT_BRACKETTerminalRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
 		
 		//VideoGeneratorModel:
-		//	{VideoGeneratorModel} information=VideoGenInformation? 'VideoGen' LEFT_BRACKET videoseqs+=VideoSeq+ RIGHT_BRACKET;
+		//	{VideoGeneratorModel} information=VideoGenInformation?
+		//	'VideoGen' LEFT_BRACKET
+		//	videoseqs+=VideoSeq+
+		//	RIGHT_BRACKET;
 		@Override public ParserRule getRule() { return rule; }
 
 		//{VideoGeneratorModel} information=VideoGenInformation? 'VideoGen' LEFT_BRACKET videoseqs+=VideoSeq+ RIGHT_BRACKET
@@ -257,26 +260,41 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cProbabilityAssignment_3_2_1 = (Assignment)cGroup_3_2.eContents().get(1);
 		private final RuleCall cProbabilityINTTerminalRuleCall_3_2_1_0 = (RuleCall)cProbabilityAssignment_3_2_1.eContents().get(0);
 		private final Group cGroup_3_3 = (Group)cGroup_3.eContents().get(3);
-		private final Keyword cSizeKeyword_3_3_0 = (Keyword)cGroup_3_3.eContents().get(0);
-		private final Assignment cSizeAssignment_3_3_1 = (Assignment)cGroup_3_3.eContents().get(1);
-		private final RuleCall cSizeINTTerminalRuleCall_3_3_1_0 = (RuleCall)cSizeAssignment_3_3_1.eContents().get(0);
+		private final Keyword cTextIncrustKeyword_3_3_0 = (Keyword)cGroup_3_3.eContents().get(0);
+		private final Assignment cTextIncrustAssignment_3_3_1 = (Assignment)cGroup_3_3.eContents().get(1);
+		private final RuleCall cTextIncrustSTRINGTerminalRuleCall_3_3_1_0 = (RuleCall)cTextIncrustAssignment_3_3_1.eContents().get(0);
 		private final Group cGroup_3_4 = (Group)cGroup_3.eContents().get(4);
-		private final Keyword cDescriptionKeyword_3_4_0 = (Keyword)cGroup_3_4.eContents().get(0);
-		private final Assignment cDescriptionAssignment_3_4_1 = (Assignment)cGroup_3_4.eContents().get(1);
-		private final RuleCall cDescriptionSTRINGTerminalRuleCall_3_4_1_0 = (RuleCall)cDescriptionAssignment_3_4_1.eContents().get(0);
+		private final Keyword cSizeKeyword_3_4_0 = (Keyword)cGroup_3_4.eContents().get(0);
+		private final Assignment cSizeAssignment_3_4_1 = (Assignment)cGroup_3_4.eContents().get(1);
+		private final RuleCall cSizeINTTerminalRuleCall_3_4_1_0 = (RuleCall)cSizeAssignment_3_4_1.eContents().get(0);
 		private final Group cGroup_3_5 = (Group)cGroup_3.eContents().get(5);
-		private final Keyword cSubtitleKeyword_3_5_0 = (Keyword)cGroup_3_5.eContents().get(0);
-		private final Assignment cSubtitleAssignment_3_5_1 = (Assignment)cGroup_3_5.eContents().get(1);
-		private final RuleCall cSubtitleSubtitleParserRuleCall_3_5_1_0 = (RuleCall)cSubtitleAssignment_3_5_1.eContents().get(0);
-		private final RuleCall cRIGHT_BRACKETTerminalRuleCall_3_6 = (RuleCall)cGroup_3.eContents().get(6);
+		private final Keyword cDescriptionKeyword_3_5_0 = (Keyword)cGroup_3_5.eContents().get(0);
+		private final Assignment cDescriptionAssignment_3_5_1 = (Assignment)cGroup_3_5.eContents().get(1);
+		private final RuleCall cDescriptionSTRINGTerminalRuleCall_3_5_1_0 = (RuleCall)cDescriptionAssignment_3_5_1.eContents().get(0);
+		private final Group cGroup_3_6 = (Group)cGroup_3.eContents().get(6);
+		private final Keyword cSubtitleKeyword_3_6_0 = (Keyword)cGroup_3_6.eContents().get(0);
+		private final Assignment cSubtitleAssignment_3_6_1 = (Assignment)cGroup_3_6.eContents().get(1);
+		private final RuleCall cSubtitleSubtitleParserRuleCall_3_6_1_0 = (RuleCall)cSubtitleAssignment_3_6_1.eContents().get(0);
+		private final Group cGroup_3_7 = (Group)cGroup_3.eContents().get(7);
+		private final Keyword cTextKeyword_3_7_0 = (Keyword)cGroup_3_7.eContents().get(0);
+		private final Assignment cTextAssignment_3_7_1 = (Assignment)cGroup_3_7.eContents().get(1);
+		private final RuleCall cTextTextParserRuleCall_3_7_1_0 = (RuleCall)cTextAssignment_3_7_1.eContents().get(0);
+		private final Group cGroup_3_8 = (Group)cGroup_3.eContents().get(8);
+		private final Keyword cFilterKeyword_3_8_0 = (Keyword)cGroup_3_8.eContents().get(0);
+		private final Assignment cFilterAssignment_3_8_1 = (Assignment)cGroup_3_8.eContents().get(1);
+		private final RuleCall cFilterFilterParserRuleCall_3_8_1_0 = (RuleCall)cFilterAssignment_3_8_1.eContents().get(0);
+		private final RuleCall cRIGHT_BRACKETTerminalRuleCall_3_9 = (RuleCall)cGroup_3.eContents().get(9);
 		
 		//VideoDescription:
 		//	'videoseq' videoid=ID? location=STRING (LEFT_BRACKET ('duration' duration=INT)? ('probability' probability=INT)?
-		//	('size' size=INT)? ('description' description=STRING)? ('subtitle' subtitle=Subtitle)? RIGHT_BRACKET)?;
+		//	('textIncrust' textIncrust=STRING)? ('size' size=INT)? ('description' description=STRING)? ('subtitle'
+		//	subtitle=Subtitle)? ('text' text=Text)? ('filter' filter=Filter)?
+		//	RIGHT_BRACKET)?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//'videoseq' videoid=ID? location=STRING (LEFT_BRACKET ('duration' duration=INT)? ('probability' probability=INT)? ('size'
-		//size=INT)? ('description' description=STRING)? ('subtitle' subtitle=Subtitle)? RIGHT_BRACKET)?
+		//'videoseq' videoid=ID? location=STRING (LEFT_BRACKET ('duration' duration=INT)? ('probability' probability=INT)?
+		//('textIncrust' textIncrust=STRING)? ('size' size=INT)? ('description' description=STRING)? ('subtitle'
+		//subtitle=Subtitle)? ('text' text=Text)? ('filter' filter=Filter)? RIGHT_BRACKET)?
 		public Group getGroup() { return cGroup; }
 
 		//'videoseq'
@@ -294,8 +312,9 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 		//STRING
 		public RuleCall getLocationSTRINGTerminalRuleCall_2_0() { return cLocationSTRINGTerminalRuleCall_2_0; }
 
-		//(LEFT_BRACKET ('duration' duration=INT)? ('probability' probability=INT)? ('size' size=INT)? ('description'
-		//description=STRING)? ('subtitle' subtitle=Subtitle)? RIGHT_BRACKET)?
+		//(LEFT_BRACKET ('duration' duration=INT)? ('probability' probability=INT)? ('textIncrust' textIncrust=STRING)? ('size'
+		//size=INT)? ('description' description=STRING)? ('subtitle' subtitle=Subtitle)? ('text' text=Text)? ('filter'
+		//filter=Filter)? RIGHT_BRACKET)?
 		public Group getGroup_3() { return cGroup_3; }
 
 		//LEFT_BRACKET
@@ -325,44 +344,80 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 		//INT
 		public RuleCall getProbabilityINTTerminalRuleCall_3_2_1_0() { return cProbabilityINTTerminalRuleCall_3_2_1_0; }
 
-		//('size' size=INT)?
+		//('textIncrust' textIncrust=STRING)?
 		public Group getGroup_3_3() { return cGroup_3_3; }
 
-		//'size'
-		public Keyword getSizeKeyword_3_3_0() { return cSizeKeyword_3_3_0; }
+		//'textIncrust'
+		public Keyword getTextIncrustKeyword_3_3_0() { return cTextIncrustKeyword_3_3_0; }
 
-		//size=INT
-		public Assignment getSizeAssignment_3_3_1() { return cSizeAssignment_3_3_1; }
-
-		//INT
-		public RuleCall getSizeINTTerminalRuleCall_3_3_1_0() { return cSizeINTTerminalRuleCall_3_3_1_0; }
-
-		//('description' description=STRING)?
-		public Group getGroup_3_4() { return cGroup_3_4; }
-
-		//'description'
-		public Keyword getDescriptionKeyword_3_4_0() { return cDescriptionKeyword_3_4_0; }
-
-		//description=STRING
-		public Assignment getDescriptionAssignment_3_4_1() { return cDescriptionAssignment_3_4_1; }
+		//textIncrust=STRING
+		public Assignment getTextIncrustAssignment_3_3_1() { return cTextIncrustAssignment_3_3_1; }
 
 		//STRING
-		public RuleCall getDescriptionSTRINGTerminalRuleCall_3_4_1_0() { return cDescriptionSTRINGTerminalRuleCall_3_4_1_0; }
+		public RuleCall getTextIncrustSTRINGTerminalRuleCall_3_3_1_0() { return cTextIncrustSTRINGTerminalRuleCall_3_3_1_0; }
 
-		//('subtitle' subtitle=Subtitle)?
+		//('size' size=INT)?
+		public Group getGroup_3_4() { return cGroup_3_4; }
+
+		//'size'
+		public Keyword getSizeKeyword_3_4_0() { return cSizeKeyword_3_4_0; }
+
+		//size=INT
+		public Assignment getSizeAssignment_3_4_1() { return cSizeAssignment_3_4_1; }
+
+		//INT
+		public RuleCall getSizeINTTerminalRuleCall_3_4_1_0() { return cSizeINTTerminalRuleCall_3_4_1_0; }
+
+		//('description' description=STRING)?
 		public Group getGroup_3_5() { return cGroup_3_5; }
 
+		//'description'
+		public Keyword getDescriptionKeyword_3_5_0() { return cDescriptionKeyword_3_5_0; }
+
+		//description=STRING
+		public Assignment getDescriptionAssignment_3_5_1() { return cDescriptionAssignment_3_5_1; }
+
+		//STRING
+		public RuleCall getDescriptionSTRINGTerminalRuleCall_3_5_1_0() { return cDescriptionSTRINGTerminalRuleCall_3_5_1_0; }
+
+		//('subtitle' subtitle=Subtitle)?
+		public Group getGroup_3_6() { return cGroup_3_6; }
+
 		//'subtitle'
-		public Keyword getSubtitleKeyword_3_5_0() { return cSubtitleKeyword_3_5_0; }
+		public Keyword getSubtitleKeyword_3_6_0() { return cSubtitleKeyword_3_6_0; }
 
 		//subtitle=Subtitle
-		public Assignment getSubtitleAssignment_3_5_1() { return cSubtitleAssignment_3_5_1; }
+		public Assignment getSubtitleAssignment_3_6_1() { return cSubtitleAssignment_3_6_1; }
 
 		//Subtitle
-		public RuleCall getSubtitleSubtitleParserRuleCall_3_5_1_0() { return cSubtitleSubtitleParserRuleCall_3_5_1_0; }
+		public RuleCall getSubtitleSubtitleParserRuleCall_3_6_1_0() { return cSubtitleSubtitleParserRuleCall_3_6_1_0; }
+
+		//('text' text=Text)?
+		public Group getGroup_3_7() { return cGroup_3_7; }
+
+		//'text'
+		public Keyword getTextKeyword_3_7_0() { return cTextKeyword_3_7_0; }
+
+		//text=Text
+		public Assignment getTextAssignment_3_7_1() { return cTextAssignment_3_7_1; }
+
+		//Text
+		public RuleCall getTextTextParserRuleCall_3_7_1_0() { return cTextTextParserRuleCall_3_7_1_0; }
+
+		//('filter' filter=Filter)?
+		public Group getGroup_3_8() { return cGroup_3_8; }
+
+		//'filter'
+		public Keyword getFilterKeyword_3_8_0() { return cFilterKeyword_3_8_0; }
+
+		//filter=Filter
+		public Assignment getFilterAssignment_3_8_1() { return cFilterAssignment_3_8_1; }
+
+		//Filter
+		public RuleCall getFilterFilterParserRuleCall_3_8_1_0() { return cFilterFilterParserRuleCall_3_8_1_0; }
 
 		//RIGHT_BRACKET
-		public RuleCall getRIGHT_BRACKETTerminalRuleCall_3_6() { return cRIGHT_BRACKETTerminalRuleCall_3_6; }
+		public RuleCall getRIGHT_BRACKETTerminalRuleCall_3_9() { return cRIGHT_BRACKETTerminalRuleCall_3_9; }
 	}
 
 	public class SubtitleElements extends AbstractParserRuleElementFinder {
@@ -432,6 +487,214 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 		//RIGHT_BRACKET
 		public RuleCall getRIGHT_BRACKETTerminalRuleCall_2_3() { return cRIGHT_BRACKETTerminalRuleCall_2_3; }
 	}
+
+	public class TextElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.VideoGen.Text");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cLEFT_BRACKETTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Keyword cContentKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cContentAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cContentSTRINGTerminalRuleCall_2_0 = (RuleCall)cContentAssignment_2.eContents().get(0);
+		private final Keyword cPositionKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cPositionAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cPositionPositionParserRuleCall_4_0 = (RuleCall)cPositionAssignment_4.eContents().get(0);
+		private final Keyword cColorKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cColorAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cColorSTRINGTerminalRuleCall_6_0 = (RuleCall)cColorAssignment_6.eContents().get(0);
+		private final Keyword cSizeKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Assignment cSizeAssignment_8 = (Assignment)cGroup.eContents().get(8);
+		private final RuleCall cSizeINTTerminalRuleCall_8_0 = (RuleCall)cSizeAssignment_8.eContents().get(0);
+		private final RuleCall cRIGHT_BRACKETTerminalRuleCall_9 = (RuleCall)cGroup.eContents().get(9);
+		
+		/// *
+		//Filter :
+		//	LEFT_BRACKET
+		//	filter=STRING
+		//	RIGHT_BRACKET
+		//;* / Text:
+		//	LEFT_BRACKET
+		//	'content' content=STRING
+		//	'position' position=Position
+		//	'color' color=STRING
+		//	'size' size=INT
+		//	RIGHT_BRACKET;
+		@Override public ParserRule getRule() { return rule; }
+
+		//LEFT_BRACKET 'content' content=STRING 'position' position=Position 'color' color=STRING 'size' size=INT RIGHT_BRACKET
+		public Group getGroup() { return cGroup; }
+
+		//LEFT_BRACKET
+		public RuleCall getLEFT_BRACKETTerminalRuleCall_0() { return cLEFT_BRACKETTerminalRuleCall_0; }
+
+		//'content'
+		public Keyword getContentKeyword_1() { return cContentKeyword_1; }
+
+		//content=STRING
+		public Assignment getContentAssignment_2() { return cContentAssignment_2; }
+
+		//STRING
+		public RuleCall getContentSTRINGTerminalRuleCall_2_0() { return cContentSTRINGTerminalRuleCall_2_0; }
+
+		//'position'
+		public Keyword getPositionKeyword_3() { return cPositionKeyword_3; }
+
+		//position=Position
+		public Assignment getPositionAssignment_4() { return cPositionAssignment_4; }
+
+		//Position
+		public RuleCall getPositionPositionParserRuleCall_4_0() { return cPositionPositionParserRuleCall_4_0; }
+
+		//'color'
+		public Keyword getColorKeyword_5() { return cColorKeyword_5; }
+
+		//color=STRING
+		public Assignment getColorAssignment_6() { return cColorAssignment_6; }
+
+		//STRING
+		public RuleCall getColorSTRINGTerminalRuleCall_6_0() { return cColorSTRINGTerminalRuleCall_6_0; }
+
+		//'size'
+		public Keyword getSizeKeyword_7() { return cSizeKeyword_7; }
+
+		//size=INT
+		public Assignment getSizeAssignment_8() { return cSizeAssignment_8; }
+
+		//INT
+		public RuleCall getSizeINTTerminalRuleCall_8_0() { return cSizeINTTerminalRuleCall_8_0; }
+
+		//RIGHT_BRACKET
+		public RuleCall getRIGHT_BRACKETTerminalRuleCall_9() { return cRIGHT_BRACKETTerminalRuleCall_9; }
+	}
+
+	public class PositionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.VideoGen.Position");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Keyword cTOPKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
+		private final Keyword cBOTTOMKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final Keyword cCENTERKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
+		
+		//Position:
+		//	'TOP' | 'BOTTOM' | 'CENTER';
+		@Override public ParserRule getRule() { return rule; }
+
+		//'TOP' | 'BOTTOM' | 'CENTER'
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//'TOP'
+		public Keyword getTOPKeyword_0() { return cTOPKeyword_0; }
+
+		//'BOTTOM'
+		public Keyword getBOTTOMKeyword_1() { return cBOTTOMKeyword_1; }
+
+		//'CENTER'
+		public Keyword getCENTERKeyword_2() { return cCENTERKeyword_2; }
+	}
+
+	public class FilterElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.VideoGen.Filter");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cFlipFilterParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cNegateFilterParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cBlackWhiteFilterParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		
+		//Filter:
+		//	FlipFilter | NegateFilter | BlackWhiteFilter;
+		@Override public ParserRule getRule() { return rule; }
+
+		//FlipFilter | NegateFilter | BlackWhiteFilter
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//FlipFilter
+		public RuleCall getFlipFilterParserRuleCall_0() { return cFlipFilterParserRuleCall_0; }
+
+		//NegateFilter
+		public RuleCall getNegateFilterParserRuleCall_1() { return cNegateFilterParserRuleCall_1; }
+
+		//BlackWhiteFilter
+		public RuleCall getBlackWhiteFilterParserRuleCall_2() { return cBlackWhiteFilterParserRuleCall_2; }
+	}
+
+	public class BlackWhiteFilterElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.VideoGen.BlackWhiteFilter");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cBlackWhiteFilterAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cBWKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		
+		//BlackWhiteFilter:
+		//	{BlackWhiteFilter}
+		//	'b&w';
+		@Override public ParserRule getRule() { return rule; }
+
+		//{BlackWhiteFilter} 'b&w'
+		public Group getGroup() { return cGroup; }
+
+		//{BlackWhiteFilter}
+		public Action getBlackWhiteFilterAction_0() { return cBlackWhiteFilterAction_0; }
+
+		//'b&w'
+		public Keyword getBWKeyword_1() { return cBWKeyword_1; }
+	}
+
+	public class NegateFilterElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.VideoGen.NegateFilter");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cNegateFilterAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cNegateKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		
+		//NegateFilter:
+		//	{NegateFilter}
+		//	'negate';
+		@Override public ParserRule getRule() { return rule; }
+
+		//{NegateFilter} 'negate'
+		public Group getGroup() { return cGroup; }
+
+		//{NegateFilter}
+		public Action getNegateFilterAction_0() { return cNegateFilterAction_0; }
+
+		//'negate'
+		public Keyword getNegateKeyword_1() { return cNegateKeyword_1; }
+	}
+
+	public class FlipFilterElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.VideoGen.FlipFilter");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cFlipKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cOrientationAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final Alternatives cOrientationAlternatives_1_0 = (Alternatives)cOrientationAssignment_1.eContents().get(0);
+		private final Keyword cOrientationHKeyword_1_0_0 = (Keyword)cOrientationAlternatives_1_0.eContents().get(0);
+		private final Keyword cOrientationHorizontalKeyword_1_0_1 = (Keyword)cOrientationAlternatives_1_0.eContents().get(1);
+		private final Keyword cOrientationVKeyword_1_0_2 = (Keyword)cOrientationAlternatives_1_0.eContents().get(2);
+		private final Keyword cOrientationVerticalKeyword_1_0_3 = (Keyword)cOrientationAlternatives_1_0.eContents().get(3);
+		
+		//FlipFilter:
+		//	'flip' orientation=('h' | 'horizontal' | 'v' | 'vertical');
+		@Override public ParserRule getRule() { return rule; }
+
+		//'flip' orientation=('h' | 'horizontal' | 'v' | 'vertical')
+		public Group getGroup() { return cGroup; }
+
+		//'flip'
+		public Keyword getFlipKeyword_0() { return cFlipKeyword_0; }
+
+		//orientation=('h' | 'horizontal' | 'v' | 'vertical')
+		public Assignment getOrientationAssignment_1() { return cOrientationAssignment_1; }
+
+		//('h' | 'horizontal' | 'v' | 'vertical')
+		public Alternatives getOrientationAlternatives_1_0() { return cOrientationAlternatives_1_0; }
+
+		//'h'
+		public Keyword getOrientationHKeyword_1_0_0() { return cOrientationHKeyword_1_0_0; }
+
+		//'horizontal'
+		public Keyword getOrientationHorizontalKeyword_1_0_1() { return cOrientationHorizontalKeyword_1_0_1; }
+
+		//'v'
+		public Keyword getOrientationVKeyword_1_0_2() { return cOrientationVKeyword_1_0_2; }
+
+		//'vertical'
+		public Keyword getOrientationVerticalKeyword_1_0_3() { return cOrientationVerticalKeyword_1_0_3; }
+	}
 	
 	
 	private final VideoGeneratorModelElements pVideoGeneratorModel;
@@ -442,6 +705,12 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 	private final AlternativeVideoSeqElements pAlternativeVideoSeq;
 	private final VideoDescriptionElements pVideoDescription;
 	private final SubtitleElements pSubtitle;
+	private final TextElements pText;
+	private final PositionElements pPosition;
+	private final FilterElements pFilter;
+	private final BlackWhiteFilterElements pBlackWhiteFilter;
+	private final NegateFilterElements pNegateFilter;
+	private final FlipFilterElements pFlipFilter;
 	private final TerminalRule tLEFT_BRACKET;
 	private final TerminalRule tRIGHT_BRACKET;
 	
@@ -462,6 +731,12 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 		this.pAlternativeVideoSeq = new AlternativeVideoSeqElements();
 		this.pVideoDescription = new VideoDescriptionElements();
 		this.pSubtitle = new SubtitleElements();
+		this.pText = new TextElements();
+		this.pPosition = new PositionElements();
+		this.pFilter = new FilterElements();
+		this.pBlackWhiteFilter = new BlackWhiteFilterElements();
+		this.pNegateFilter = new NegateFilterElements();
+		this.pFlipFilter = new FlipFilterElements();
 		this.tLEFT_BRACKET = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.VideoGen.LEFT_BRACKET");
 		this.tRIGHT_BRACKET = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.VideoGen.RIGHT_BRACKET");
 	}
@@ -494,7 +769,10 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//VideoGeneratorModel:
-	//	{VideoGeneratorModel} information=VideoGenInformation? 'VideoGen' LEFT_BRACKET videoseqs+=VideoSeq+ RIGHT_BRACKET;
+	//	{VideoGeneratorModel} information=VideoGenInformation?
+	//	'VideoGen' LEFT_BRACKET
+	//	videoseqs+=VideoSeq+
+	//	RIGHT_BRACKET;
 	public VideoGeneratorModelElements getVideoGeneratorModelAccess() {
 		return pVideoGeneratorModel;
 	}
@@ -555,7 +833,9 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 
 	//VideoDescription:
 	//	'videoseq' videoid=ID? location=STRING (LEFT_BRACKET ('duration' duration=INT)? ('probability' probability=INT)?
-	//	('size' size=INT)? ('description' description=STRING)? ('subtitle' subtitle=Subtitle)? RIGHT_BRACKET)?;
+	//	('textIncrust' textIncrust=STRING)? ('size' size=INT)? ('description' description=STRING)? ('subtitle'
+	//	subtitle=Subtitle)? ('text' text=Text)? ('filter' filter=Filter)?
+	//	RIGHT_BRACKET)?;
 	public VideoDescriptionElements getVideoDescriptionAccess() {
 		return pVideoDescription;
 	}
@@ -572,6 +852,78 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getSubtitleRule() {
 		return getSubtitleAccess().getRule();
+	}
+
+	/// *
+	//Filter :
+	//	LEFT_BRACKET
+	//	filter=STRING
+	//	RIGHT_BRACKET
+	//;* / Text:
+	//	LEFT_BRACKET
+	//	'content' content=STRING
+	//	'position' position=Position
+	//	'color' color=STRING
+	//	'size' size=INT
+	//	RIGHT_BRACKET;
+	public TextElements getTextAccess() {
+		return pText;
+	}
+	
+	public ParserRule getTextRule() {
+		return getTextAccess().getRule();
+	}
+
+	//Position:
+	//	'TOP' | 'BOTTOM' | 'CENTER';
+	public PositionElements getPositionAccess() {
+		return pPosition;
+	}
+	
+	public ParserRule getPositionRule() {
+		return getPositionAccess().getRule();
+	}
+
+	//Filter:
+	//	FlipFilter | NegateFilter | BlackWhiteFilter;
+	public FilterElements getFilterAccess() {
+		return pFilter;
+	}
+	
+	public ParserRule getFilterRule() {
+		return getFilterAccess().getRule();
+	}
+
+	//BlackWhiteFilter:
+	//	{BlackWhiteFilter}
+	//	'b&w';
+	public BlackWhiteFilterElements getBlackWhiteFilterAccess() {
+		return pBlackWhiteFilter;
+	}
+	
+	public ParserRule getBlackWhiteFilterRule() {
+		return getBlackWhiteFilterAccess().getRule();
+	}
+
+	//NegateFilter:
+	//	{NegateFilter}
+	//	'negate';
+	public NegateFilterElements getNegateFilterAccess() {
+		return pNegateFilter;
+	}
+	
+	public ParserRule getNegateFilterRule() {
+		return getNegateFilterAccess().getRule();
+	}
+
+	//FlipFilter:
+	//	'flip' orientation=('h' | 'horizontal' | 'v' | 'vertical');
+	public FlipFilterElements getFlipFilterAccess() {
+		return pFlipFilter;
+	}
+	
+	public ParserRule getFlipFilterRule() {
+		return getFlipFilterAccess().getRule();
 	}
 
 	//terminal LEFT_BRACKET:
@@ -599,7 +951,8 @@ public class VideoGenGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//terminal STRING:
-	//	'"' ('\\' . | !('\\' | '"'))* '"' | "'" ('\\' . | !('\\' | "'"))* "'";
+	//	'"' ('\\' . | !('\\' | '"'))* '"' |
+	//	"'" ('\\' . | !('\\' | "'"))* "'";
 	public TerminalRule getSTRINGRule() {
 		return gaTerminals.getSTRINGRule();
 	} 

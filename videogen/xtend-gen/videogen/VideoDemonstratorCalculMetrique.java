@@ -29,7 +29,7 @@ import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 import org.xtext.example.mydsl.videoGen.VideoSeq;
 
 /**
- * Transformation xtend pour faire des calculs métriques (projet 1)
+ * Transformation xtend pour faire des calculs mï¿½triques (projet 1)
  */
 @SuppressWarnings("all")
 public class VideoDemonstratorCalculMetrique {
@@ -405,7 +405,7 @@ public class VideoDemonstratorCalculMetrique {
     tailleMoy = (tailleMoy / nbsequence);
     System.out.println(((((("Taille max: " + Integer.valueOf(tailleMax)) + " Taille min: ") + Integer.valueOf(tailleMin)) + " Taille moy: ") + Integer.valueOf(tailleMoy)));
     System.out.println(((((("Duree max: " + Integer.valueOf(dureeMax)) + " Duree min: ") + Integer.valueOf(dureeMin)) + " Duree moy: ") + Integer.valueOf(dureeMoy)));
-    System.out.println(("Nb Séquence: " + Integer.valueOf(nbsequence)));
+    System.out.println(("Nb Sï¿½quence: " + Integer.valueOf(nbsequence)));
     try {
       PrintWriter writer = new PrintWriter("exportCsv.csv", "UTF-8");
       writer.println(contentsCSV);

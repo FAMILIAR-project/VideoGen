@@ -41,10 +41,6 @@ class ModelToText {
 		fout.write("# this is a comment\n")
 		videogen.videoseqs.forEach[vid|
 			if (vid instanceof MandatoryVideoSeq){
-		//println("# this is a comment")
-		fout.write("# this is a comment\n")
-		videogen.videoseqs.forEach[vid|
-			if (vid instanceof MandatoryVideoSeq){
 				//println("file '"+vid.description.location+"'")
 				fout.write("file '"+vid.description.location+"'\n")
 			}
@@ -61,13 +57,8 @@ class ModelToText {
 		fout.close()
 	}
 
-	def static void main(String[] args) {
-		//var in = args.get(1)
-		val mtt = new ModelToText
-		val fout = new FileWriter("foo2.ffm")
-		mtt.modelToText(URI.createURI("foo2.videogen"),fout)
-	}
-}
+
+
 
 	def saveVideoGenerator(URI uri, VideoGeneratorModel pollS) {
 		var Resource rs = new ResourceSetImpl().createResource(uri);
@@ -115,17 +106,9 @@ class ModelToText {
 
 	}
 
-	def static void main(String[] args) {
-		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen"))
-		printToHTML(videoGen)
-	}
-}
+	
 
-	def saveVideoGenerator(URI uri, VideoGeneratorModel pollS) {
-		var Resource rs = new ResourceSetImpl().createResource(uri);
-		rs.getContents.add(pollS);
-		rs.save(new HashMap());
-	}
+	
 
 	def transform(VideoGeneratorModel videoGen){
 

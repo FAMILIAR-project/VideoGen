@@ -26,8 +26,6 @@ import org.xtext.example.mydsl.videoGen.OptionalVideoSeq;
 import org.xtext.example.mydsl.videoGen.VideoDescription;
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 import org.xtext.example.mydsl.videoGen.VideoSeq;
-import videogenPlayList.MediaFile;
-import videogenPlayList.impl.VideogenPlayListFactoryImpl;
 
 @SuppressWarnings("all")
 public class VideoDemostratorConvertToGif {
@@ -80,7 +78,7 @@ public class VideoDemostratorConvertToGif {
   }
   
   /**
-   * transforme une partie de la video en fichier gif de base qualité
+   * transforme une partie de la video en fichier gif de base qualitï¿½
    * videoLocation = path de la video a utiliser
    * tailleW = weight de l'image .gif
    * tailleH = height de l'image .gif
@@ -107,7 +105,7 @@ public class VideoDemostratorConvertToGif {
   }
   
   /**
-   * transforme une partie de la video en fichier gif de haute qualité
+   * transforme une partie de la video en fichier gif de haute qualitï¿½
    * videoLocation = path de la video a utiliser
    * taille = taille de l'image gif de sortie
    */
@@ -152,7 +150,6 @@ public class VideoDemostratorConvertToGif {
   public void test() {
     URI _createURI = URI.createURI("fooQ1.videogen");
     VideoGeneratorModel videoGen = this.loadVideoGenerator(_createURI);
-    VideogenPlayListFactoryImpl fact = new VideogenPlayListFactoryImpl();
     Assert.assertNotNull(videoGen);
     EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
     Set<VideoSeq> _set = IterableExtensions.<VideoSeq>toSet(_videoseqs);
@@ -161,8 +158,6 @@ public class VideoDemostratorConvertToGif {
         InputOutput.<String>println("Mandatory");
         VideoDescription _description = ((MandatoryVideoSeq) videoseq).getDescription();
         final String fileLocation = _description.getLocation();
-        MediaFile mediafile = fact.createMediaFile();
-        mediafile.setLocation(fileLocation);
         VideoDemostratorConvertToGif.convertToGifHD(fileLocation, Integer.valueOf(500));
       } else {
         if ((videoseq instanceof OptionalVideoSeq)) {
@@ -172,8 +167,6 @@ public class VideoDemostratorConvertToGif {
           if ((rand == 0)) {
             VideoDescription _description_1 = ((OptionalVideoSeq) videoseq).getDescription();
             final String fileLocation_1 = _description_1.getLocation();
-            MediaFile mediafile_1 = fact.createMediaFile();
-            mediafile_1.setLocation(fileLocation_1);
             VideoDemostratorConvertToGif.convertToGif(fileLocation_1, Integer.valueOf(200), Integer.valueOf(100));
           }
         } else {
@@ -185,8 +178,6 @@ public class VideoDemostratorConvertToGif {
           int _nextInt = _random_1.nextInt(size);
           VideoDescription _get = _videodescs_1.get(_nextInt);
           String fileLocation_2 = _get.getLocation();
-          MediaFile mediafile_2 = fact.createMediaFile();
-          mediafile_2.setLocation(fileLocation_2);
           VideoDemostratorConvertToGif.convertToGif(fileLocation_2, Integer.valueOf(250), Integer.valueOf(300));
         }
       }

@@ -33,17 +33,28 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VideoGen.ecore#//VideoDescription/duration"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VideoGen.ecore#//VideoDescription/probability"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VideoGen.ecore#//VideoDescription/textIncrust"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VideoGen.ecore#//VideoDescription/filter"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VideoGen.ecore#//VideoDescription/size"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VideoGen.ecore#//VideoDescription/textIncrust"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VideoGen.ecore#//VideoDescription/filter"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VideoGen.ecore#//VideoDescription/description"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VideoGen.ecore#//VideoDescription/subtitle"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VideoGen.ecore#//VideoDescription/text"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VideoGen.ecore#//VideoDescription/filter"/>
     </genClasses>
     <genClasses ecoreClass="VideoGen.ecore#//Subtitle">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VideoGen.ecore#//Subtitle/text"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VideoGen.ecore#//Subtitle/colorfont"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VideoGen.ecore#//Subtitle/size"/>
+    </genClasses>
+    <genClasses ecoreClass="VideoGen.ecore#//Text">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VideoGen.ecore#//Text/content"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VideoGen.ecore#//Text/position"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VideoGen.ecore#//Text/color"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VideoGen.ecore#//Text/size"/>
+    </genClasses>
+    <genClasses ecoreClass="VideoGen.ecore#//Filter"/>
+    <genClasses ecoreClass="VideoGen.ecore#//BlackWhiteFilter"/>
+    <genClasses ecoreClass="VideoGen.ecore#//NegateFilter"/>
+    <genClasses ecoreClass="VideoGen.ecore#//FlipFilter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VideoGen.ecore#//FlipFilter/orientation"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

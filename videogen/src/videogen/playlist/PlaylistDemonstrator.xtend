@@ -4,16 +4,15 @@ import java.io.PrintWriter
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.junit.Test
-import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated
-import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq
-import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq
-import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
-import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
-import org.xtext.example.playlist.PlaylistStandaloneSetupGenerated
-import org.xtext.example.playlist.playlist.Playlist
-import org.xtext.example.playlist.playlist.impl.PlaylistFactoryImpl
+
 
 import static org.junit.Assert.*
+import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated
+import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
+import org.xtext.example.mydsl.PlaylistStandaloneSetupGenerated
+import org.xtext.example.mydsl.playlist.Playlist
+import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq
+import playlist.impl.PlaylistFactoryImpl
 
 class PlaylistDemonstrator {
 	def loadVideoGenerator(URI uri) {

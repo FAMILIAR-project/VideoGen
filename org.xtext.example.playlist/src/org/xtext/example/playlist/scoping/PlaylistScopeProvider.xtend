@@ -3,6 +3,7 @@
  */
 package org.xtext.example.playlist.scoping
 
+import org.xtext.example.mydsl.scoping.AbstractPlaylistScopeProvider
 
 /**
  * This class contains custom scoping description.

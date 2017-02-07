@@ -6,25 +6,16 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: videogen.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.xtext.example.videogenerator;bundle-version="1.0.0",
- org.xtext.example.videogenerator.ui;bundle-version="1.0.0",
  com.google.guava,
  org.eclipse.xtext.xbase.lib,
  org.eclipse.xtend.lib,
  org.eclipse.xtend.lib.macro,
-<<<<<<< HEAD
-<<<<<<< dd208ae18ad03eccf30f4fdb6d0b722a7f793ca6
-<<<<<<< ad9be0a8f8b2ee54a1567ea371eba1bbdbd121a4
+ org.xtext.example.videogenerator,
+ org.xtext.example.playlist;bundle-version="1.0.0",
+ org.xtext.example.playlist.ide;bundle-version="1.0.0",
+ MetaPlaylist;bundle-version="0.1.0",
+ videogenPlaylist;bundle-version="1.0.0",
  playlist;bundle-version="0.1.0"
-=======
- playlistModel;bundle-version="1.0.0"
->>>>>>> q11
-=======
- playlist;bundle-version="0.1.0"
->>>>>>> jusqu'à Q7
-=======
- videogenPlayList;bundle-version="0.1.0"
->>>>>>> 2171cc3544ed31951a5d2e26773f12e0aafac23c
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 

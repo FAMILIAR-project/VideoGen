@@ -12,14 +12,12 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.xtext.xbase.lib.Exceptions;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.junit.Assert;
 import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated;
 import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq;
@@ -28,9 +26,7 @@ import org.xtext.example.mydsl.videoGen.OptionalVideoSeq;
 import org.xtext.example.mydsl.videoGen.VideoDescription;
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 import org.xtext.example.mydsl.videoGen.VideoSeq;
-import playlist.MediaFile;
 import playlist.Playlist;
-import playlist.impl.PlaylistFactoryImpl;
 
 @SuppressWarnings("all")
 public class IdmUtil {
@@ -98,77 +94,30 @@ public class IdmUtil {
    * Generate playlist from a videogen model
    */
   public static Playlist generatePlaylist(final VideoGeneratorModel videoGen) {
-    IdmUtil.checkVideoGen(videoGen);
-    PlaylistFactoryImpl fact = new PlaylistFactoryImpl();
-    Playlist playlist = fact.createPlaylist();
-    EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
-    for (final VideoSeq videoseq : _videoseqs) {
-      {
-        if ((videoseq instanceof MandatoryVideoSeq)) {
-          MediaFile mediaFile = fact.createMediaFile();
-          VideoDescription _description = ((MandatoryVideoSeq) videoseq).getDescription();
-          String _location = _description.getLocation();
-          mediaFile.setLocation(_location);
-          VideoDescription _description_1 = ((MandatoryVideoSeq) videoseq).getDescription();
-          String _videoid = _description_1.getVideoid();
-          mediaFile.setVideoid(_videoid);
-          String _location_1 = mediaFile.getLocation();
-          double _duration = IdmUtil.getDuration(_location_1);
-          mediaFile.setDuration(_duration);
-          EList<MediaFile> _mediaFile = playlist.getMediaFile();
-          _mediaFile.add(mediaFile);
-        }
-        if ((videoseq instanceof OptionalVideoSeq)) {
-          VideoDescription _description_2 = ((OptionalVideoSeq)videoseq).getDescription();
-          int probability = _description_2.getProbability();
-          boolean i = true;
-          if ((probability == 0)) {
-            i = false;
-          } else {
-            Random _random = new Random();
-            int _nextInt = _random.nextInt((100 / probability));
-            boolean _equals = (_nextInt == 0);
-            i = _equals;
-          }
-          if (i) {
-            MediaFile mediaFile_1 = fact.createMediaFile();
-            VideoDescription _description_3 = ((OptionalVideoSeq) videoseq).getDescription();
-            String _location_2 = _description_3.getLocation();
-            mediaFile_1.setLocation(_location_2);
-            VideoDescription _description_4 = ((OptionalVideoSeq) videoseq).getDescription();
-            String _videoid_1 = _description_4.getVideoid();
-            mediaFile_1.setVideoid(_videoid_1);
-            String _location_3 = mediaFile_1.getLocation();
-            double _duration_1 = IdmUtil.getDuration(_location_3);
-            mediaFile_1.setDuration(_duration_1);
-            EList<MediaFile> _mediaFile_1 = playlist.getMediaFile();
-            _mediaFile_1.add(mediaFile_1);
-          }
-        }
-        if ((videoseq instanceof AlternativeVideoSeq)) {
-          final AlternativeVideoSeq atlVideoSeq = ((AlternativeVideoSeq) videoseq);
-          EList<VideoDescription> _videodescs = atlVideoSeq.getVideodescs();
-          final int size = _videodescs.size();
-          Random _random_1 = new Random();
-          int index = _random_1.nextInt(size);
-          MediaFile mediaFile_2 = fact.createMediaFile();
-          EList<VideoDescription> _videodescs_1 = ((AlternativeVideoSeq) videoseq).getVideodescs();
-          VideoDescription _get = _videodescs_1.get(index);
-          String _location_4 = _get.getLocation();
-          mediaFile_2.setLocation(_location_4);
-          EList<VideoDescription> _videodescs_2 = ((AlternativeVideoSeq) videoseq).getVideodescs();
-          VideoDescription _get_1 = _videodescs_2.get(index);
-          String _videoid_2 = _get_1.getVideoid();
-          mediaFile_2.setVideoid(_videoid_2);
-          String _location_5 = mediaFile_2.getLocation();
-          double _duration_2 = IdmUtil.getDuration(_location_5);
-          mediaFile_2.setDuration(_duration_2);
-          EList<MediaFile> _mediaFile_2 = playlist.getMediaFile();
-          _mediaFile_2.add(mediaFile_2);
-        }
-      }
-    }
-    return playlist;
+    throw new Error("Unresolved compilation problems:"
+      + "\nPlaylistFactoryImpl cannot be resolved."
+      + "\ncreatePlaylist cannot be resolved"
+      + "\ncreateMediaFile cannot be resolved"
+      + "\nlocation cannot be resolved"
+      + "\nvideoid cannot be resolved"
+      + "\nduration cannot be resolved"
+      + "\nlocation cannot be resolved"
+      + "\nmediaFile cannot be resolved"
+      + "\nadd cannot be resolved"
+      + "\ncreateMediaFile cannot be resolved"
+      + "\nlocation cannot be resolved"
+      + "\nvideoid cannot be resolved"
+      + "\nduration cannot be resolved"
+      + "\nlocation cannot be resolved"
+      + "\nmediaFile cannot be resolved"
+      + "\nadd cannot be resolved"
+      + "\ncreateMediaFile cannot be resolved"
+      + "\nlocation cannot be resolved"
+      + "\nvideoid cannot be resolved"
+      + "\nduration cannot be resolved"
+      + "\nlocation cannot be resolved"
+      + "\nmediaFile cannot be resolved"
+      + "\nadd cannot be resolved");
   }
   
   /**
@@ -191,7 +140,9 @@ public class IdmUtil {
         if ((videoseq instanceof OptionalVideoSeq)) {
           VideoDescription _description_1 = ((OptionalVideoSeq)videoseq).getDescription();
           int probability = _description_1.getProbability();
-          Assert.assertFalse((((probability < 0) && (probability > 100)) && ((probability + probabilitiesSum) > 100)));
+          Assert.assertFalse((probability < 0));
+          Assert.assertFalse((probability > 100));
+          Assert.assertFalse(((probability + probabilitiesSum) > 100));
           int _probabilitiesSum = probabilitiesSum;
           probabilitiesSum = (_probabilitiesSum + probability);
           VideoDescription _description_2 = ((OptionalVideoSeq)videoseq).getDescription();
@@ -233,7 +184,6 @@ public class IdmUtil {
         stringBuilder.append(line);
       }
       String resultString = stringBuilder.toString();
-      InputOutput.<String>println(resultString);
       return Double.parseDouble(resultString);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);

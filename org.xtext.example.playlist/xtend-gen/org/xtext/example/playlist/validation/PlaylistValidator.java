@@ -3,7 +3,7 @@
  */
 package org.xtext.example.playlist.validation;
 
-import org.xtext.example.playlist.validation.AbstractPlaylistValidator;
+import org.xtext.example.mydsl.validation.AbstractPlaylistValidator;
 
 /**
  * This class contains custom validation rules.

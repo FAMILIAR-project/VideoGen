@@ -1,6 +1,5 @@
 package videogen
 
-import playlist.Playlist
 
 class PlaylistToText {
 	

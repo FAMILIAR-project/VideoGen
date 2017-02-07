@@ -3,8 +3,6 @@ package videogen;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.HashMap;
-import java.util.Random;
-import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -20,9 +18,6 @@ import org.xtext.example.mydsl.videoGen.OptionalVideoSeq;
 import org.xtext.example.mydsl.videoGen.VideoDescription;
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 import org.xtext.example.mydsl.videoGen.VideoSeq;
-import playList.MediaFile;
-import playList.PlayList;
-import playList.PlayListFactory;
 import videogen.FFMPEGHelpere;
 
 @SuppressWarnings("all")
@@ -55,152 +50,66 @@ public class ModelToModel {
   }
   
   public static void modelToPlayList() {
-    try {
-      URI _createURI = URI.createURI("foo2.videogen");
-      VideoGeneratorModel videoGen = ModelToModel.loadVideoGenerator(_createURI);
-      final PlayList playlist = PlayListFactory.eINSTANCE.createPlayList();
-      EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
-      final Consumer<VideoSeq> _function = (VideoSeq videoseq) -> {
-        if ((videoseq instanceof MandatoryVideoSeq)) {
-          final VideoDescription desc = ((MandatoryVideoSeq) videoseq).getDescription();
-          final MediaFile mediaFile = PlayListFactory.eINSTANCE.createMediaFile();
-          String _location = desc.getLocation();
-          mediaFile.setLocation(_location);
-          EList<MediaFile> _vids = playlist.getVids();
-          _vids.add(mediaFile);
-        } else {
-          if ((videoseq instanceof OptionalVideoSeq)) {
-            final VideoDescription desc_1 = ((OptionalVideoSeq) videoseq).getDescription();
-            Random _random = new Random();
-            final int i = _random.nextInt(2);
-            if ((i == 0)) {
-              final MediaFile mediaFile_1 = PlayListFactory.eINSTANCE.createMediaFile();
-              String _location_1 = desc_1.getLocation();
-              mediaFile_1.setLocation(_location_1);
-              EList<MediaFile> _vids_1 = playlist.getVids();
-              _vids_1.add(mediaFile_1);
-            }
-          } else {
-            final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
-            Random _random_1 = new Random();
-            EList<VideoDescription> _videodescs = altvid.getVideodescs();
-            int _size = _videodescs.size();
-            final int j = _random_1.nextInt(_size);
-            EList<VideoDescription> _videodescs_1 = altvid.getVideodescs();
-            final VideoDescription vid = _videodescs_1.get(j);
-            final MediaFile mediaFile_2 = PlayListFactory.eINSTANCE.createMediaFile();
-            String _location_2 = vid.getLocation();
-            mediaFile_2.setLocation(_location_2);
-            EList<MediaFile> _vids_2 = playlist.getVids();
-            _vids_2.add(mediaFile_2);
-          }
-        }
-      };
-      _videoseqs.forEach(_function);
-      final String playlistOnString = ModelToModel.convertPlaylistIntoFormat(playlist, "txt");
-      File file = new File("ffmpeg.txt");
-      FileWriter filewriter = new FileWriter(file);
-      filewriter.write(playlistOnString);
-      filewriter.flush();
-      filewriter.close();
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field PlayListFactory is undefined"
+      + "\nThe method or field PlayListFactory is undefined"
+      + "\nThe method or field PlayListFactory is undefined"
+      + "\nThe method or field PlayListFactory is undefined"
+      + "\nThe method convertPlaylistIntoFormat(PlayList, String) from the type ModelToModel refers to the missing type PlayList"
+      + "\neINSTANCE cannot be resolved"
+      + "\ncreatePlayList cannot be resolved"
+      + "\neINSTANCE cannot be resolved"
+      + "\ncreateMediaFile cannot be resolved"
+      + "\nlocation cannot be resolved"
+      + "\nvids cannot be resolved"
+      + "\nadd cannot be resolved"
+      + "\neINSTANCE cannot be resolved"
+      + "\ncreateMediaFile cannot be resolved"
+      + "\nlocation cannot be resolved"
+      + "\nvids cannot be resolved"
+      + "\nadd cannot be resolved"
+      + "\neINSTANCE cannot be resolved"
+      + "\ncreateMediaFile cannot be resolved"
+      + "\nlocation cannot be resolved"
+      + "\nvids cannot be resolved"
+      + "\nadd cannot be resolved");
   }
   
-  public static String convertPlaylistIntoFormat(final PlayList playlist, final String ext) {
-    String _xblockexpression = null;
-    {
-      FFMPEGHelpere ffmpeg = new FFMPEGHelpere();
-      String data = "";
-      boolean _equals = "M3U".equals(ext);
-      if (_equals) {
-        final EList<MediaFile> vids = playlist.getVids();
-        for (final MediaFile f : vids) {
-          String _data = data;
-          String _location = f.getLocation();
-          String _plus = (_location + "\n");
-          data = (_data + _plus);
-        }
-      }
-      boolean _equals_1 = "txt".equals(ext);
-      if (_equals_1) {
-        final EList<MediaFile> vids_1 = playlist.getVids();
-        for (final MediaFile f_1 : vids_1) {
-          String _data_1 = data;
-          String _location_1 = f_1.getLocation();
-          String _plus_1 = ("file \'" + _location_1);
-          String _plus_2 = (_plus_1 + "\'");
-          String _plus_3 = (_plus_2 + "\n");
-          data = (_data_1 + _plus_3);
-        }
-      }
-      _xblockexpression = data;
-    }
-    return _xblockexpression;
+  public static String convertPlaylistIntoFormat(final /* PlayList */Object playlist, final String ext) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nMediaFile cannot be resolved to a type."
+      + "\nMediaFile cannot be resolved to a type."
+      + "\nvids cannot be resolved"
+      + "\nlocation cannot be resolved"
+      + "\n+ cannot be resolved"
+      + "\nvids cannot be resolved"
+      + "\nlocation cannot be resolved");
   }
   
   public static void modelToPlayListWithScreenShot() {
-    try {
-      FFMPEGHelpere ffmpeg = new FFMPEGHelpere();
-      URI _createURI = URI.createURI("foo2.videogen");
-      VideoGeneratorModel videoGen = ModelToModel.loadVideoGenerator(_createURI);
-      final PlayList playlist = PlayListFactory.eINSTANCE.createPlayList();
-      EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
-      for (final VideoSeq videoseq : _videoseqs) {
-        if ((videoseq instanceof MandatoryVideoSeq)) {
-          final VideoDescription desc = ((MandatoryVideoSeq) videoseq).getDescription();
-          final MediaFile mediaFile = PlayListFactory.eINSTANCE.createMediaFile();
-          String _location = desc.getLocation();
-          mediaFile.setLocation(_location);
-          String _location_1 = desc.getLocation();
-          String _string = _location_1.toString();
-          ffmpeg.executeCmd(_string, "v1");
-          EList<MediaFile> _vids = playlist.getVids();
-          _vids.add(mediaFile);
-        } else {
-          if ((videoseq instanceof OptionalVideoSeq)) {
-            final VideoDescription desc_1 = ((OptionalVideoSeq) videoseq).getDescription();
-            Random _random = new Random();
-            final int i = _random.nextInt(2);
-            if ((i == 0)) {
-              final MediaFile mediaFile_1 = PlayListFactory.eINSTANCE.createMediaFile();
-              String _location_2 = desc_1.getLocation();
-              mediaFile_1.setLocation(_location_2);
-              String _location_3 = desc_1.getLocation();
-              String _string_1 = _location_3.toString();
-              ffmpeg.executeCmd(_string_1, "v2");
-              EList<MediaFile> _vids_1 = playlist.getVids();
-              _vids_1.add(mediaFile_1);
-            }
-          } else {
-            final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
-            Random _random_1 = new Random();
-            EList<VideoDescription> _videodescs = altvid.getVideodescs();
-            int _size = _videodescs.size();
-            final int j = _random_1.nextInt(_size);
-            EList<VideoDescription> _videodescs_1 = altvid.getVideodescs();
-            final VideoDescription vid = _videodescs_1.get(j);
-            final MediaFile mediaFile_2 = PlayListFactory.eINSTANCE.createMediaFile();
-            String _location_4 = vid.getLocation();
-            mediaFile_2.setLocation(_location_4);
-            String _location_5 = vid.getLocation();
-            String _string_2 = _location_5.toString();
-            ffmpeg.executeCmd(_string_2, "v3");
-            EList<MediaFile> _vids_2 = playlist.getVids();
-            _vids_2.add(mediaFile_2);
-          }
-        }
-      }
-      final String playlistOnString = ModelToModel.convertPlaylistIntoFormat(playlist, "txt");
-      File file = new File("ffmpeg.txt");
-      FileWriter filewriter = new FileWriter(file);
-      filewriter.write(playlistOnString);
-      filewriter.flush();
-      filewriter.close();
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field PlayListFactory is undefined"
+      + "\nThe method or field PlayListFactory is undefined"
+      + "\nThe method or field PlayListFactory is undefined"
+      + "\nThe method or field PlayListFactory is undefined"
+      + "\nThe method convertPlaylistIntoFormat(PlayList, String) from the type ModelToModel refers to the missing type PlayList"
+      + "\neINSTANCE cannot be resolved"
+      + "\ncreatePlayList cannot be resolved"
+      + "\neINSTANCE cannot be resolved"
+      + "\ncreateMediaFile cannot be resolved"
+      + "\nlocation cannot be resolved"
+      + "\nvids cannot be resolved"
+      + "\nadd cannot be resolved"
+      + "\neINSTANCE cannot be resolved"
+      + "\ncreateMediaFile cannot be resolved"
+      + "\nlocation cannot be resolved"
+      + "\nvids cannot be resolved"
+      + "\nadd cannot be resolved"
+      + "\neINSTANCE cannot be resolved"
+      + "\ncreateMediaFile cannot be resolved"
+      + "\nlocation cannot be resolved"
+      + "\nvids cannot be resolved"
+      + "\nadd cannot be resolved");
   }
   
   public static void printDurationOfVideos() {
@@ -387,56 +296,25 @@ public class ModelToModel {
   }
   
   public static void filters() {
-    FFMPEGHelpere ffmpeg = new FFMPEGHelpere();
-    URI _createURI = URI.createURI("foo2.videogen");
-    VideoGeneratorModel videoGen = ModelToModel.loadVideoGenerator(_createURI);
-    EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
-    for (final VideoSeq videoseq : _videoseqs) {
-      if ((videoseq instanceof MandatoryVideoSeq)) {
-        final VideoDescription desc = ((MandatoryVideoSeq) videoseq).getDescription();
-        if (((!StringExtensions.isNullOrEmpty(desc.getFilter())) && "blackandwhite".equals(desc.getFilter()))) {
-          String _location = desc.getLocation();
-          String _string = _location.toString();
-          ffmpeg.executeCmdFilterBlackAndWhite(_string, "blkw1");
-        }
-        if (((!StringExtensions.isNullOrEmpty(desc.getFilter())) && "lighter".equals(desc.getFilter()))) {
-          String _location_1 = desc.getLocation();
-          String _string_1 = _location_1.toString();
-          ffmpeg.executeCmdFilterLighter(_string_1, "lgtr1");
-        }
-      } else {
-        if ((videoseq instanceof OptionalVideoSeq)) {
-          final VideoDescription desc_1 = ((OptionalVideoSeq) videoseq).getDescription();
-          if (((!StringExtensions.isNullOrEmpty(desc_1.getFilter())) && "blackandwhite".equals(desc_1.getFilter()))) {
-            String _location_2 = desc_1.getLocation();
-            String _string_2 = _location_2.toString();
-            ffmpeg.executeCmdFilterBlackAndWhite(_string_2, "blkw1");
-          }
-          if (((!StringExtensions.isNullOrEmpty(desc_1.getFilter())) && "lighter".equals(desc_1.getFilter()))) {
-            String _location_3 = desc_1.getLocation();
-            String _string_3 = _location_3.toString();
-            ffmpeg.executeCmdFilterLighter(_string_3, "lgtr1");
-          }
-        } else {
-          final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
-          EList<VideoDescription> _videodescs = altvid.getVideodescs();
-          for (final VideoDescription vdesc : _videodescs) {
-            {
-              if (((!StringExtensions.isNullOrEmpty(vdesc.getFilter())) && "blackandwhite".equals(vdesc.getFilter()))) {
-                String _location_4 = vdesc.getLocation();
-                String _string_4 = _location_4.toString();
-                ffmpeg.executeCmdFilterBlackAndWhite(_string_4, "blkw1");
-              }
-              if (((!StringExtensions.isNullOrEmpty(vdesc.getFilter())) && "lighter".equals(vdesc.getFilter()))) {
-                String _location_5 = vdesc.getLocation();
-                String _string_5 = _location_5.toString();
-                ffmpeg.executeCmdFilterLighter(_string_5, "lgtr1");
-              }
-            }
-          }
-        }
-      }
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field isNullOrEmpty is undefined for the type Filter"
+      + "\nThe method or field isNullOrEmpty is undefined for the type Filter"
+      + "\nThe method or field isNullOrEmpty is undefined for the type Filter"
+      + "\nThe method or field isNullOrEmpty is undefined for the type Filter"
+      + "\nThe method or field isNullOrEmpty is undefined for the type Filter"
+      + "\nThe method or field isNullOrEmpty is undefined for the type Filter"
+      + "\n! cannot be resolved"
+      + "\n&& cannot be resolved"
+      + "\n! cannot be resolved"
+      + "\n&& cannot be resolved"
+      + "\n! cannot be resolved"
+      + "\n&& cannot be resolved"
+      + "\n! cannot be resolved"
+      + "\n&& cannot be resolved"
+      + "\n! cannot be resolved"
+      + "\n&& cannot be resolved"
+      + "\n! cannot be resolved"
+      + "\n&& cannot be resolved");
   }
   
   public static void main(final String[] args) {
