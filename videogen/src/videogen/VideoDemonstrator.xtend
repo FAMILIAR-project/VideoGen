@@ -23,6 +23,7 @@ import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 import videogen.vignette.FFMPEGHelper
 
+import org.junit.Test
 import static org.junit.Assert.*
 import java.util.Random
 import java.io.File
@@ -2660,6 +2661,15 @@ class VideoDemonstrator {
 				val desc = (videoseq as OptionalVideoSeq).description
 				if ((new Random()).nextDouble() < (desc.probability / 100 as double))
 					file.println("file '" + desc.location + "'")
+
+		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
+		videoGen.videoseqs.forEach [ videoseq |
+			if (videoseq instanceof MandatoryVideoSeq) {
+				val desc = (videoseq as MandatoryVideoSeq).description
+				if(desc.videoid.isNullOrEmpty) desc.videoid = genID()
+			} else if (videoseq instanceof OptionalVideoSeq) {
+				val desc = (videoseq as OptionalVideoSeq).description
+				if(desc.videoid.isNullOrEmpty) desc.videoid = genID()
 			} else {
 				val altvid = (videoseq as AlternativeVideoSeq)
 				var res = ""
@@ -2787,8 +2797,12 @@ class VideoDemonstrator {
 				file.println((entry as File).path)
 			}
 		]
-	// serializing
-	file.close()
+		// serializing
+		saveVideoGenerator(URI.createURI("foo2bis.xmi"), videoGen)
+		saveVideoGenerator(URI.createURI("foo2bis.videogen"), videoGen)
+
+		printToHTML(videoGen)
+
 	}
 
 	def void printToHTML(VideoGeneratorModel videoGen) {
