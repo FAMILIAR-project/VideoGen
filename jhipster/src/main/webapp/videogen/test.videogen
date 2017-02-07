@@ -1,0 +1,2 @@
+VideoGen { mandatory videoseq "New mandatory" alternatives { videoseq "2"
+videoseq "3" } }
