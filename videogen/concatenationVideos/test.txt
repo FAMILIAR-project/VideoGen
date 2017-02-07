@@ -1,0 +1,4 @@
+# this is a comment test 1
+file 'videos/v1/v1.mp4'
+file 'videos/v2/v2.mp4'
+file 'videos/v3/seq1.mp4'

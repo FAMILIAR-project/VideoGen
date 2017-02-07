@@ -1,0 +1,3 @@
+# this is a comment test 1
+file 'C:/Users/Sandra/git/VideoGen/videogen/videos/v1/v1.mp4'
+file 'C:/Users/Sandra/git/VideoGen/videogen/videos/v3/seq1.mp4'
