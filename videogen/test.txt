@@ -1,0 +1,6 @@
+	Question 5
+	Rajouter des attributs aux éléments du model pour que cela soit conforme a la sortie souhaitée
+	Question 6 
+	pas toujours pratique 
+	On est obligé de modifier notre métamodel
+	Application sur des solutions stables, pas sujet à évolution
