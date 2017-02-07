@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ASCII"?>
+<videoGen:VideoGeneratorModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:videoGen="http://www.xtext.org/example/mydsl/VideoGen">
+  <videoseqs xsi:type="videoGen:MandatoryVideoSeq">
+    <description videoid="v1" location="videos/adam.webm"/>
+  </videoseqs>
+  <videoseqs xsi:type="videoGen:MandatoryVideoSeq">
+    <description videoid="v2" location="videos/bear.webm"/>
+  </videoseqs>
+  <videoseqs xsi:type="videoGen:OptionalVideoSeq">
+    <description videoid="v3" location="videos/jerry.webm"/>
+  </videoseqs>
+  <videoseqs xsi:type="videoGen:OptionalVideoSeq">
+    <description videoid="v4" location="videos/miamiDog.webm" probability="25"/>
+  </videoseqs>
+  <videoseqs xsi:type="videoGen:AlternativeVideoSeq" videoid="v5">
+    <videodescs videoid="v51" location="videos/papapap.webm" duration="12" probability="25" description="a"/>
+    <videodescs videoid="v52" location="videos/code.webm"/>
+    <videodescs videoid="v53" location="videos/rockMiaou.webm"/>
+  </videoseqs>
+</videoGen:VideoGeneratorModel>

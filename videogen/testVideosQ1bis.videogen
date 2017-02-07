@@ -1,0 +1,19 @@
+VideoGen {
+	mandatory videoseq v1 "videos/adam.webm" 
+	mandatory videoseq v2 "videos/bear.webm" 
+
+	optional videoseq v3 "videos/jerry.webm"
+	optional videoseq v4 "videos/miamiDog.webm"{
+		probability 25
+	}
+
+	alternatives v5 {
+		videoseq v51 "videos/papapap.webm" {
+			duration 12
+			probability 25
+			description "a"
+		}
+		videoseq v52 "videos/code.webm"
+		videoseq v53 "videos/rockMiaou.webm"
+	}
+}
