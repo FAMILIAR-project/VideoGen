@@ -23,6 +23,15 @@ import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 import videogen.vignette.FFMPEGHelper
 
 import static org.junit.Assert.*
+import java.util.Random
+import java.io.File
+import java.io.FileWriter
+import java.io.BufferedWriter
+import java.io.IOException
+import videoGenQ2.Playlist
+import videoGenQ2.VideoGenQ2Factory
+import videoGenQ2.impl.VideoGenQ2FactoryImpl
+import videoGenQ2.MediaFile
 
 import java.util.ArrayList
 import java.util.List
@@ -467,7 +476,7 @@ class VideoDemonstrator {
 		]
 		return playlist
 	}
-	
+
 	/***
 	 * Add text to a video with FFMPEG
 	 * @param String location : video location
@@ -503,7 +512,7 @@ class VideoDemonstrator {
 		// loading
 		var videoGen = loadVideoGenerator(URI.createURI("test1.videogen"))
 		assertNotNull(videoGen)
-		// assertEquals(7, videoGen.videoseqs.size)			
+		// assertEquals(7, videoGen.videoseqs.size)
 		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
 		videoGenTestModel(videoGen)
 
@@ -1108,15 +1117,15 @@ class VideoDemonstrator {
 	// serializing
 	saveVideoGenerator(URI.createURI("foo2bis.xmi"), videoGen)
 	saveVideoGenerator(URI.createURI("foo2bis.videogen"), videoGen)
-		
-	//printToHTML(videoGen)	
+
+	//printToHTML(videoGen)
 	modelToText(videoGen)
 }
-	
+
 	@Test
 	def testFilters() {
 		// loading
-		var videoGen = loadVideoGenerator(URI.createURI("test.videogen"))			
+		var videoGen = loadVideoGenerator(URI.createURI("test.videogen"))
 		for(video : videoGen.videoseqs) {
 			if(video instanceof MandatoryVideoSeq) {
 				var videoMandatory = (video as MandatoryVideoSeq)
@@ -1149,12 +1158,12 @@ class VideoDemonstrator {
 			}
 		}
 	}
-	
+
 	@Test
 	def testIncrustTextToVideo() {
 		// loading
 
-		var videoGen = loadVideoGenerator(URI.createURI("test.videogen"))			
+		var videoGen = loadVideoGenerator(URI.createURI("test.videogen"))
 		for(video : videoGen.videoseqs) {
 			if(video instanceof MandatoryVideoSeq) {
 				var videoMandatory = (video as MandatoryVideoSeq)
@@ -1202,7 +1211,7 @@ class VideoDemonstrator {
 			}
 		}
 	}
-	
+
 
 		// serializing
 		saveVideoGenerator(URI.createURI("foo2bis.xmi"), videoGen)
@@ -1220,33 +1229,33 @@ class VideoDemonstrator {
 
 
 
-	
+
 	def  playlistToM3U(Playlist playlist){
 		playlist.getFiles().forEach[file |
 			println(file.getPath())
 		]
 	}
-	
+
 	def  playlistToFFMPEG(Playlist playlist){
 		playlist.getFiles().forEach[file |
 			println("File '"+file.getPath()+"'")
 		]
 	}
-	 
+
 	def Playlist testM2M() {
-		
+
 		// load model (videogen)
 		// loading
-		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
-		assertNotNull(videoGen)		
+		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen"))
+		assertNotNull(videoGen)
 		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
 		// model2model
 		val plf = PlaylistFactoryImpl.init()
 		val pl = plf.createPlaylist()
 		//Instancier modele PLaylist
 		// iterate over videogen model
-		
-		videoGen.videoseqs.forEach[videoseq | 
+
+		videoGen.videoseqs.forEach[videoseq |
 			val rand = new Random()
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
@@ -1255,8 +1264,8 @@ class VideoDemonstrator {
 					mf.setPath(desc.location)
 					pl.getFiles.add(mf)
 					}
-					  
-									
+
+
 			}
 			else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
@@ -1268,7 +1277,7 @@ class VideoDemonstrator {
 						mf.setPath(desc.location)
 						pl.getFiles.add(mf)
 					}
-						 
+
 				}
 				else
 				if(!desc.location.isNullOrEmpty && res <= 50){
@@ -1276,13 +1285,13 @@ class VideoDemonstrator {
 					mf.setPath(desc.location)
 					pl.getFiles.add(mf)
 				}
-					
+
 			}
 			else {
-				val altvid = (videoseq as AlternativeVideoSeq)	
+				val altvid = (videoseq as AlternativeVideoSeq)
 				val l = altvid.getVideodescs()
 				val r = l.length
-				
+
 				var boolean found = false
 				var pr = 0
 				for(vdesc: altvid.videodescs){
@@ -1293,15 +1302,15 @@ class VideoDemonstrator {
 				if(pr==0){
 					do{
 						i = 0
-						for (vdesc : altvid.videodescs) {					
+						for (vdesc : altvid.videodescs) {
 							if(!vdesc.location.isNullOrEmpty) {
-								val p = rand.nextInt(r)%r							
+								val p = rand.nextInt(r)%r
 								if(p==i && ! found){
 									var mf = plf.createMediaFile()
 									mf.setPath(vdesc.location)
 									pl.getFiles.add(mf)
 									found = true
-								}	
+								}
 							i++
 							}
 						}
@@ -1310,15 +1319,15 @@ class VideoDemonstrator {
 				else{
 					do{
 						i = 0
-						for (vdesc : altvid.videodescs) {					
+						for (vdesc : altvid.videodescs) {
 							if(!vdesc.location.isNullOrEmpty) {
-								val p = rand.nextInt(100)							
+								val p = rand.nextInt(100)
 								if(p<=pr && ! found){
 									var mf = plf.createMediaFile()
 									mf.setPath(vdesc.location)
 									pl.getFiles.add(mf)
 									found = true
-								}	
+								}
 							i++
 							}
 						}
@@ -1326,19 +1335,19 @@ class VideoDemonstrator {
 				}
 			}
 		]
-		
+
 		return pl
 	}
-	
+
 	@Test
 	def test1() {
 		// loading
-		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
+		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen"))
 		assertNotNull(videoGen)
-		//assertEquals(7, videoGen.videoseqs.size)			
+		//assertEquals(7, videoGen.videoseqs.size)
 		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
 
-		videoGen.videoseqs.forEach[videoseq | 
+		videoGen.videoseqs.forEach[videoseq |
 
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
@@ -1484,11 +1493,11 @@ class VideoDemonstrator {
 	// serializing
 	saveVideoGenerator(URI.createURI("foo2bis.xmi"), videoGen)
 	saveVideoGenerator(URI.createURI("foo2bis.videogen"), videoGen)
-		
+
 	//printToHTML(videoGen)
 
 	printToFfmpeg(videoGen)
-	
+
 
 	}
 
@@ -1505,17 +1514,17 @@ class VideoDemonstrator {
 	val videoGen1 = loadVideoGenerator(URI.createURI("foo2bis.videogen"))
 	//printVideoList(videoGen1)
 	val playlist=testM2M()
-	
+
 	println("M3U")
 	playlistToM3U(playlist)
 	println("\nFFMPEG")
 	playlistToFFMPEG(playlist)
 	}
-	
 
-	
+
+
 	def void printVideoList(VideoGeneratorModel videoGen){
-		videoGen.videoseqs.forEach[videoseq | 
+		videoGen.videoseqs.forEach[videoseq |
 			val rand = new Random()
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
@@ -1531,14 +1540,14 @@ class VideoDemonstrator {
 	@Test
 	def testQ1() {
 		// loading
-		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
+		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen"))
 		assertNotNull(videoGen)
 		assertEquals(7, videoGen.videoseqs.size)
 		val pw = new PrintWriter(new File("foo1.txt"))
 		pw.println("#Ceci est un commentaire")
-					
+
 		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
-		videoGen.videoseqs.forEach[videoseq | 
+		videoGen.videoseqs.forEach[videoseq |
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
 				pw.println("file " + desc.location);
@@ -1557,14 +1566,14 @@ class VideoDemonstrator {
 		]
 		pw.close();
 	}
-	
+
 	@Test
 	def testQ3() {
 		// loading
-		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
+		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen"))
 		assertNotNull(videoGen)
 		assertEquals(7, videoGen.videoseqs.size)
-					
+
 		//Creation d une instance de Playlist
 		val playlist = videogen2playlist(videoGen)
 		val strPlaylist = playlist2text(playlist)
@@ -1585,7 +1594,7 @@ class VideoDemonstrator {
 		val playList = PlaylistRootFactory.eINSTANCE.createPlaylist
 		val listVideos = playList.videos
 		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
-		videoGen.videoseqs.forEach[videoseq | 
+		videoGen.videoseqs.forEach[videoseq |
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val video = (videoseq as MandatoryVideoSeq)
 				val mediaFile = PlaylistRootFactory.eINSTANCE.createMediaFile
@@ -1615,17 +1624,17 @@ class VideoDemonstrator {
 		]
 		playList
 	}
-	
+
 	@Test
 	def testQ4() {
 		//loading
-		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
+		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen"))
 		assertNotNull(videoGen)
 		assertEquals(7, videoGen.videoseqs.size)
 		val pw = new PrintWriter(new File("question3.txt"))
 		pw.println("#Ceci est un commentaire")
-					
-		videoGen.videoseqs.forEach[videoseq | 
+
+		videoGen.videoseqs.forEach[videoseq |
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
 				pw.println("file '" + desc.location + "'");
@@ -1645,21 +1654,21 @@ class VideoDemonstrator {
 		pw.close();
 
 	}
-	
+
 	@Test
 	def testQ7() {
 		// loading
-		var videoGen = loadVideoGenerator(URI.createURI("test.videogen")) 
+		var videoGen = loadVideoGenerator(URI.createURI("test.videogen"))
 		assertNotNull(videoGen)
 		assertEquals(2, videoGen.videoseqs.size)
 		val pw = new PrintWriter(new File("question7.txt"))
 		pw.println("#Ceci est un commentaire")
-					
-		videoGen.videoseqs.forEach[videoseq | 
+
+		videoGen.videoseqs.forEach[videoseq |
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
 				val duration = computeDuration(desc.location)
-				desc.duration = duration as int				
+				desc.duration = duration as int
 			}
 			else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
@@ -1709,7 +1718,7 @@ class VideoDemonstrator {
 				for (vdesc : altvid.videodescs) {
 					vdesc.duration = ffmpegDuration(vdesc.location)
 
-		
+
 	//Question 7-1
 	def computeDuration(String location){
 		var cmd = "/usr/bin/ffprobe ffprobe -i "+location+
@@ -1720,29 +1729,29 @@ class VideoDemonstrator {
 		val str = convertStreamToString(process.inputStream)
 		Double::parseDouble(str.trim())
 	}
-	
+
 	//Question 7-2
 	def static String convertStreamToString(InputStream is){
 		val scanner = new Scanner(is).useDelimiter("\\A");
 		if(scanner.hasNext()) {scanner.next;}
-		else "";	
+		else "";
 	}
-	
-	
+
+
 	@Test
 
 	def testQ8() {
 
 	def test1() {
-		
+
 		// loading
-		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
+		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen"))
 		assertNotNull(videoGen)
 		assertEquals(7, videoGen.videoseqs.size)
 		val pw = new PrintWriter(new File("question8.m3u"))
 		pw.println("#EXTM3U")
-					
-		videoGen.videoseqs.forEach[videoseq | 
+
+		videoGen.videoseqs.forEach[videoseq |
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
 				pw.println("#EXT-X-DISCONTINUITY")
@@ -1760,8 +1769,8 @@ class VideoDemonstrator {
 					pw.println("#EXTINF:" + desc.duration)
 					pw.println(desc.location)
 				}
-				
-				if(desc.videoid.isNullOrEmpty) desc.videoid = genID() 
+
+				if(desc.videoid.isNullOrEmpty) desc.videoid = genID()
 			}
 			else {
 				val altvid = (videoseq as AlternativeVideoSeq)
@@ -1777,14 +1786,14 @@ class VideoDemonstrator {
 		pw.close();
 
 	}
-	
+
 	@Test
 	def testQ9() {
 		// loading
-		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
+		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen"))
 		assertNotNull(videoGen)
-		assertEquals(7, videoGen.videoseqs.size)					
-		videoGen.videoseqs.forEach[videoseq | 
+		assertEquals(7, videoGen.videoseqs.size)
+		videoGen.videoseqs.forEach[videoseq |
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
 				generateVignettes(desc.location, desc.videoid)
@@ -1890,37 +1899,37 @@ class VideoDemonstrator {
 		var Process process = Runtime.getRuntime().exec(cmd)
 		process.wait()
 	}
-	
-	
+
+
 	@Test
 	def testQ10() {
 		//loading
-		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
+		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen"))
 		assertNotNull(videoGen)
 		assertEquals(7, videoGen.videoseqs.size)
 		val pw = new PrintWriter(new File("question10.html"))
 		pw.println("<html>Question 10</html>")
 		pw.println("<h1>Question 10</h1>")
-					
+
 	@Test
 	def test3() {
-		
+
 		// loading
-		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
+		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen"))
 		assertNotNull(videoGen)
 		assertEquals(7, videoGen.videoseqs.size)
-		        
-       val outputFile = new File("outagain.txt"); 
-       
-        val out = new FileWriter(outputFile); 			
+
+       val outputFile = new File("outagain.txt");
+
+        val out = new FileWriter(outputFile);
 		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
-		videoGen.videoseqs.forEach[videoseq | 
-			
+		videoGen.videoseqs.forEach[videoseq |
+
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val chem = (videoseq as MandatoryVideoSeq).description.location
 				out.write(chem)
 				out.write("\n")
-				 				
+
 			}
 			else if (videoseq instanceof OptionalVideoSeq) {
 				val optional = new Random(2)
@@ -1929,51 +1938,51 @@ class VideoDemonstrator {
 					val chem = (videoseq as OptionalVideoSeq).description.location
 				out.write(chem)
 				out.write("\n")
-				
+
 				}
-				
+
 			}
-			
+
 			else {
 				val altvid = (videoseq as AlternativeVideoSeq)
 				val size = altvid.videodescs.size()
-				
+
 				val optional = new Random().nextInt(altvid.videodescs.size())
 				out.write(altvid.videodescs.get(optional).location+"\n")
-				 				
+
 		}
 			]
 			out.close
 	// serializing
-		 
-			
+
+
 	}
-	
+
 	@Test
 	def test4() {
-		
+
 		// loading
-		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
+		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen"))
 		// Model to model
-		
+
 		val playlist = PlaylistFactory.eINSTANCE.createPlaylist()
-		
-		
-       val outputFile = new File("outagain.txt"); 
-       
-        val out = new FileWriter(outputFile); 			
+
+
+       val outputFile = new File("outagain.txt");
+
+        val out = new FileWriter(outputFile);
 		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
-		videoGen.videoseqs.forEach[videoseq | 
-			
+		videoGen.videoseqs.forEach[videoseq |
+
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val chem = (videoseq as MandatoryVideoSeq).description.location
 				out.write(chem)
 				out.write("\n")
-				
+
 				val mediafile = PlaylistFactory.eINSTANCE.createMediafile()
 				mediafile.location = chem
 				playlist.videos.add(mediafile)
-				 				
+
 			}
 			else if (videoseq instanceof OptionalVideoSeq) {
 				val optional = new Random(1)
@@ -1982,58 +1991,58 @@ class VideoDemonstrator {
 					val chem = (videoseq as OptionalVideoSeq).description.location
 				out.write(chem)
 				out.write("\n")
-				
+
 				val mediafile = PlaylistFactory.eINSTANCE.createMediafile()
 				mediafile.location = chem
 				playlist.videos.add(mediafile)
-				
+
 				}
-				
+
 			}
-			
+
 			else {
 				val altvid = (videoseq as AlternativeVideoSeq)
 				val size = altvid.videodescs.size()
-				
+
 				val optional = new Random().nextInt(altvid.videodescs.size())
 				out.write(altvid.videodescs.get(optional).location+"\n")
-				
+
 				val mediafile = PlaylistFactory.eINSTANCE.createMediafile()
 				mediafile.location = altvid.videodescs.get(optional).location
 				playlist.videos.add(mediafile)
-				 				
+
 		}
 			]
 			out.close
 	// serializing
-	
+
 		 convertPlaylistIntoFormat(playlist, "m3u")
-			
+
 	}
-	
-	
+
+
 		@Test
 		def test7() {
 		// loading
-		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
+		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen"))
 		// Model to model
-		
+
 		val playlist = PlaylistFactory.eINSTANCE.createPlaylist()
-		
-		
-       //val outputFile = new File("outagain.txt"); 
-       
-       // val out = new FileWriter(outputFile); 			
+
+
+       //val outputFile = new File("outagain.txt");
+
+       // val out = new FileWriter(outputFile);
 		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
-		videoGen.videoseqs.forEach[videoseq | 
-			
+		videoGen.videoseqs.forEach[videoseq |
+
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
-			
-				
+
+
 				val duration = computeDuration(desc.location)
 				desc.duration = duration as int
-				 				
+
 			}
 			else if (videoseq instanceof OptionalVideoSeq) {
 				val optional = new Random(1)
@@ -2042,11 +2051,11 @@ class VideoDemonstrator {
 					val desc = (videoseq as OptionalVideoSeq).description
 				val duration = computeDuration(desc.location)
 				desc.duration = duration as int
-				
+
 				}
-				
+
 			}
-			
+
 			else {
 				val altvid = videoseq as AlternativeVideoSeq
 				for (vdesc : altvid.videodescs){
@@ -2054,38 +2063,38 @@ class VideoDemonstrator {
 				vdesc.duration = duration as int
 				}
 				}
-				
-				 				
+
+
 			]
 			//out.close
-	
-			
+
+
 	}
-	
+
 	@Test
 		def test8() {
 		// loading
-		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
+		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen"))
 		// Model to model
-		
+
 		val playlist = PlaylistFactory.eINSTANCE.createPlaylist()
-		
-		
-       val outputFile = new File("outagain8.txt"); 
-       
+
+
+       val outputFile = new File("outagain8.txt");
+
         val out = new FileWriter(outputFile);
-        out.write("#EXTM3U") 			
+        out.write("#EXTM3U")
 		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
-		videoGen.videoseqs.forEach[videoseq | 
-			
+		videoGen.videoseqs.forEach[videoseq |
+
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
-			
-				
+
+
 				val duration = computeDuration(desc.location)
 				out.write("#EXT-X-DISCONTINUITY \n #EXTINF:"+duration+"\n"+desc.location)
 				desc.duration = duration as int
-				 				
+
 			}
 			else if (videoseq instanceof OptionalVideoSeq) {
 				val optional = new Random(1)
@@ -2095,11 +2104,11 @@ class VideoDemonstrator {
 				val duration = computeDuration(desc.location)
 				out.write("#EXT-X-DISCONTINUITY \n #EXTINF:"+duration+"\n"+desc.location)
 				desc.duration = duration as int
-				
+
 				}
-				
+
 			}
-			
+
 			else {
 				val altvid = videoseq as AlternativeVideoSeq
 				for (vdesc : altvid.videodescs){
@@ -2108,18 +2117,18 @@ class VideoDemonstrator {
 				vdesc.duration = duration as int
 				}
 				}
-				
-				
-				
-				 				
+
+
+
+
 			]
 			out.write("#EXT-X-ENDLIST")
 			out.close
-	
-			
+
+
 	}
-	
-	
+
+
 	def generateVignettes(String location, String name){
 		var cmd = "/usr/bin/ffmpeg -y -i " +location+ " -r 1 -t 00:00:01 -ss 00:00:$2 -f image2 images/" +name+".png"
 
@@ -2135,30 +2144,84 @@ class VideoDemonstrator {
 		val str = convertStreamToString(process.inputStream)
 		Double::parseDouble(str.trim())
 	}
-	
+
 	@Test
 		def test9() {
-		// loading
-		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
-		// Model to model
-		
-		val playlist = PlaylistFactory.eINSTANCE.createPlaylist()
-		
-		
-       //val outputFile = new File("outagain.txt"); 
-       
-       // val out = new FileWriter(outputFile); 			
+	def tp3_q1() {
+		var videoGen = loadVideoGenerator(URI.createURI("main.videogen"))
+
+		var strPlaylist = ""
+
 		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
-		videoGen.videoseqs.forEach[videoseq | 
-			
+		for(videoseq : videoGen.videoseqs.toSet) {
+			if (videoseq instanceof MandatoryVideoSeq) {
+
+				println("Mandatory")
+				val fileLocation = (videoseq as MandatoryVideoSeq).description.location;
+				strPlaylist += 'file \'' + fileLocation + '\'' + System.lineSeparator();
+
+
+			} else if (videoseq instanceof OptionalVideoSeq) {
+				println("Optional")
+				val rand = new Random().nextInt(2);
+				// Random between 0-1
+				if (rand == 0) {
+					val fileLocation = (videoseq as OptionalVideoSeq).description.location;
+					strPlaylist += 'file \'' + fileLocation + '\'' + System.lineSeparator();
+				}
+			}
+			else {
+				println("else")
+				val size = (videoseq as AlternativeVideoSeq).videodescs.size;
+
+				var fileLocation = (videoseq as AlternativeVideoSeq).videodescs.get(new Random().nextInt(size)).location;
+				strPlaylist += 'file \'' + fileLocation + '\'' + System.lineSeparator();
+			}
+		}
+
+		println("Playlist : " + strPlaylist)
+
+		// New file
+		try {
+			val ffmpeg = new File("/home/dania/Documents/IDM/ffmpeg.txt");
+			if (!ffmpeg.exists()) {
+				ffmpeg.createNewFile();
+			}
+			val fw = new FileWriter(ffmpeg.getAbsoluteFile());
+			val bw = new BufferedWriter(fw);
+			bw.write(strPlaylist);
+			bw.close();
+
+		} catch (IOException e) {
+			e.printStackTrace
+		}
+
+	}
+
+
+	@Test
+	def test1() {
+		// loading
+		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen"))
+		// Model to model
+
+		val playlist = PlaylistFactory.eINSTANCE.createPlaylist()
+
+
+       //val outputFile = new File("outagain.txt");
+
+       // val out = new FileWriter(outputFile);
+		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
+		videoGen.videoseqs.forEach[videoseq |
+
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
-			
-				
+
+
 				val duration = computeDuration(desc.location)
 				generateVignettes( desc.location, desc.description)
 				desc.duration = duration as int
-				 				
+
 			}
 			else if (videoseq instanceof OptionalVideoSeq) {
 				val optional = new Random(1)
@@ -2168,11 +2231,11 @@ class VideoDemonstrator {
 				val duration = computeDuration(desc.location)
 				generateVignettes( desc.location, desc.description)
 				desc.duration = duration as int
-				
+
 				}
-				
+
 			}
-			
+
 			else {
 				val altvid = videoseq as AlternativeVideoSeq
 				for (vdesc : altvid.videodescs){
@@ -2181,39 +2244,39 @@ class VideoDemonstrator {
 				vdesc.duration = duration as int
 				}
 				}
-				
-				 				
+
+
 			]
 			//out.close
-	
-			
+
+
 	}
-	
+
 	@Test
 		def test10() {
 		// loading
-		var videoGen = loadVideoGenerator(URI.createURI("q10.html")) 
+		var videoGen = loadVideoGenerator(URI.createURI("q10.html"))
 		// Model to model
-		
+
 		val playlist = PlaylistFactory.eINSTANCE.createPlaylist()
-		
-		
-       val outputFile = new File("outagain.txt"); 
-       
-       val out = new FileWriter(outputFile); 
-       out.write("<html><h3>liste de ")			
+
+
+       val outputFile = new File("outagain.txt");
+
+       val out = new FileWriter(outputFile);
+       out.write("<html><h3>liste de ")
 		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
-		videoGen.videoseqs.forEach[videoseq | 
-			
+		videoGen.videoseqs.forEach[videoseq |
+
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
-			
-				
+
+
 				val duration = computeDuration(desc.location)
 				generateVignettes( desc.location, desc.description)
 				out.write("<img src='"+desc.location+"''>")
 				desc.duration = duration as int
-				 				
+
 			}
 			else if (videoseq instanceof OptionalVideoSeq) {
 				val optional = new Random(1)
@@ -2224,11 +2287,11 @@ class VideoDemonstrator {
 				generateVignettes( desc.location, desc.description)
 				out.write("<img src='"+desc.location+"''>")
 				desc.duration = duration as int
-				
+
 				}
-				
+
 			}
-			
+
 			else {
 				val altvid = videoseq as AlternativeVideoSeq
 				for (vdesc : altvid.videodescs){
@@ -2238,89 +2301,89 @@ class VideoDemonstrator {
 				vdesc.duration = duration as int
 				}
 				}
-				
-				 				
+
+
 			]
 			//out.close
-	
-			
+
+
 	}
 
-	
+
 	def static String convertStreamToString(InputStream is){
 		val scanner = new Scanner(is).useDelimiter("\\A");
 		if(scanner.hasNext()) {scanner.next;}
-		else "";	
+		else "";
 	}
-		
+
 		@Test
 		def Qsuplement1() {
 		// loading
-		var videoGen = loadVideoGenerator(URI.createURI("qsub.videogen")) 
+		var videoGen = loadVideoGenerator(URI.createURI("qsub.videogen"))
 		// Model to model
-		
+
 		val playlist = PlaylistFactory.eINSTANCE.createPlaylist()
-		
-		
-       //val outputFile = new File("outagain.txt"); 
-       
-       // val out = new FileWriter(outputFile); 			
+
+
+       //val outputFile = new File("outagain.txt");
+
+       // val out = new FileWriter(outputFile);
 		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
-		videoGen.videoseqs.forEach[videoseq | 
-			
+		videoGen.videoseqs.forEach[videoseq |
+
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
-			
-				
+
+
 				convertToBlackWhite(desc.location,"/black/"+desc.location)
-				 				
+
 			}
-			
-				
-				 				
+
+
+
 			]
 			//out.close
-	
-			
+
+
 	}
-				
-	
+
+
 
 	def static void convertToBlackWhite(String location , String output){
-		
+
 		var cmd = "ffmpeg -i "+location+
 		 " -vf hue=s=0 -c:a copy "+output
 
 		var  process = Runtime.getRuntime().exec(cmd)
 		process.waitFor
-		
-		
-		
+
+
+
 	}
-	
-	
+
+
 	def convertPlaylistIntoFormat(Playlist p, String format)
 	{
-		 
+
 		p.videos.forEach[ video|
 			val str = video.location+"."+format
 			video.location=str
-			
+
         System.out.println(video.location+"\n")
-        
-        
-			
-			
+
+
+
+
 		]
-		
-		
+
+
 	}
-	
+
 	def void printToHTML(VideoGeneratorModel videoGen) {
 		//var numSeq = 1
 		println("<ul>")
 
-		videoGen.videoseqs.forEach[videoseq | 
+		videoGen.videoseqs.forEach[videoseq |
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
 				generateVignettes(desc.location, desc.videoid)
@@ -2342,7 +2405,7 @@ class VideoDemonstrator {
 		pw.println("</html>")
 		pw.close();
 	}
-	
+
 
 	def void printToHTML(VideoGeneratorModel videoGen) {
 		// var numSeq = 1
@@ -2631,17 +2694,17 @@ class VideoDemonstrator {
 	}
 
 
-	
+
 
 	def void modelToText(VideoGeneratorModel videoGen){
-		videoGen.videoseqs.forEach[videoseq | 
+		videoGen.videoseqs.forEach[videoseq |
 			if (videoseq instanceof MandatoryVideoSeq) {
 				val desc = (videoseq as MandatoryVideoSeq).description
 				println("file '"+desc.location+"'")
 			}
 			else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description
-				if(Math.random()*1>0.5) 
+				if(Math.random()*1>0.5)
 					println("file '"+desc.location+"'")
 			}
 			else{
@@ -2649,18 +2712,18 @@ class VideoDemonstrator {
 				if (altvid.videodescs.size > 0) // there are vid seq alternatives
 					println("file '"+altvid.videodescs.get((Math.random()*altvid.videodescs.size) as int).location+"'")
 			}
-		]		
+		]
 	}
 
 
 
 	def void printToFfmpeg(VideoGeneratorModel videoGen){
-		videoGen.videoseqs.forEach[videoseq | 
+		videoGen.videoseqs.forEach[videoseq |
 			if (videoseq instanceof MandatoryVideoSeq) {
 				println ("Mandatory")
 				val desc = (videoseq as MandatoryVideoSeq).description
 				if(!desc.videoid.isNullOrEmpty)
-					outputPrint(desc.location)   				
+					outputPrint(desc.location)
 			}
 			else if (videoseq instanceof OptionalVideoSeq) {
 				println ("Optional")
@@ -2671,7 +2734,7 @@ class VideoDemonstrator {
 			}
 			else {
 				val altvid = (videoseq as AlternativeVideoSeq)
-				if(!altvid.videoid.isNullOrEmpty) 
+				if(!altvid.videoid.isNullOrEmpty)
 					println ("Alternative")
 				if (altvid.videodescs.size > 0){
 					// there are vid seq alternatives
@@ -2683,7 +2746,7 @@ class VideoDemonstrator {
 							if(vdesc.probability != 0) alts.put(vdesc.location, vdesc.probability / 100 as double)
 						}
 					}
-					
+
 					var iterate = 0
 					var previous = 0.00
 					for(Double d : alts.values){
@@ -2694,7 +2757,7 @@ class VideoDemonstrator {
 						println("a: " + previous)
 						iterate++
 					}
-					
+
 					var x = randomNumber();
 					var index = -1
 					for (v : 0 ..< arr.size) {
@@ -2704,11 +2767,11 @@ class VideoDemonstrator {
         					index = 0
         				}
     				}
-				} 
+				}
 			}
 		]
 	}
-	
+
 
 	static var i = 0;
 
@@ -2768,15 +2831,14 @@ class VideoDemonstrator {
 }
 
 
-	
+
 	def outputPrint(String s){
-		println ("file '" + s + "'") 
+		println ("file '" + s + "'")
 	}
-	
+
 	def randomNumber(){
 		var d = Math.random()
-		println ("Random: " + d) 
+		println ("Random: " + d)
 		return d
 	}
 }
-
