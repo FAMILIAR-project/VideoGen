@@ -8,10 +8,10 @@ import org.eclipse.xtext.junit4.IInjectorProvider;
 import com.google.inject.Injector;
 
 public class VideoGenUiInjectorProvider implements IInjectorProvider {
-	
+
 	@Override
 	public Injector getInjector() {
 		return org.xtext.example.mydsl.ui.internal.VideoGenActivator.getInstance().getInjector("org.xtext.example.mydsl.VideoGen");
 	}
-	
+
 }

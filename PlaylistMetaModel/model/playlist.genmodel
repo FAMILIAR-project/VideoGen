@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/PlaylistMetaModel/src" modelPluginID="PlaylistMetaModel"
+    modelName="Playlist" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>playlist.ecore</foreignModel>
+  <genPackages prefix="Playlist" disposableProviderFactory="true" ecorePackage="playlist.ecore#/">
+    <genClasses ecoreClass="playlist.ecore#//Playlist">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference playlist.ecore#//Playlist/content"/>
+    </genClasses>
+    <genClasses ecoreClass="playlist.ecore#//Entry"/>
+    <genClasses ecoreClass="playlist.ecore#//Comment">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute playlist.ecore#//Comment/content"/>
+    </genClasses>
+    <genClasses ecoreClass="playlist.ecore#//File">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference playlist.ecore#//File/metadata"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute playlist.ecore#//File/path"/>
+    </genClasses>
+    <genClasses ecoreClass="playlist.ecore#//MetaData">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute playlist.ecore#//MetaData/duree"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute playlist.ecore#//MetaData/details"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
