@@ -22,7 +22,7 @@ public class Q9GenerateTBSwitch extends Q7VideoDurationSetterSwitch {
 	@Override
 	public Boolean caseVideoDescription(VideoDescription videoDesc) {
 		String location = videoDesc.getLocation();
-		FFMPEGHelper.generateThumbnail(location);
+		FFMPEGHelper2.generateThumbnail(location);
 		return true;
 	}
 

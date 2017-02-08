@@ -66,7 +66,7 @@ public class Q10GenerateHTMLPage extends Q7VideoDurationSetterSwitch {
 	@Override
 	public Boolean caseVideoDescription(VideoDescription videoDesc) {
 		String location = videoDesc.getLocation();
-		String thumbnailPath = FFMPEGHelper.generateThumbnail(location);
+		String thumbnailPath = FFMPEGHelper2.generateThumbnail(location);
 		htmlBuffer.append("<img src=\"" + thumbnailPath + "\"  style=\"width:120px;height:80px;\"  >\n");
 		return true;
 	}

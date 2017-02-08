@@ -1,25 +1,16 @@
 package videogen
 
-import org.junit.Test
-import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 import java.io.BufferedReader
-import org.eclipse.emf.ecore.resource.Resource
+import java.io.File
+import java.io.IOException
+import java.io.InputStreamReader
 import java.util.HashMap
 import org.eclipse.emf.common.util.URI
-import java.io.InputStreamReader
-import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq
-import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
-import java.io.IOException
-import java.io.BufferedWriter
-import java.io.FileWriter
-import java.io.File
-import java.util.Random
-import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq
-
-import videoGenQ2.impl.VideoGenQ2FactoryImpl
-import videoGenQ2.MediaFile
+import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
+import org.junit.Test
+import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated
+import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 
 class VideoDemonstratorGification {
 
@@ -98,25 +89,28 @@ class VideoDemonstratorGification {
 		var Process process = Runtime.getRuntime().exec(cmdConcat);
 		process.waitFor();
 	}
+	
+	/*def static void concat(String playlist) {
+		var String cmdConcatener = "ffmpeg -f concat -safe 0 -i " + playlist + " -c copy /videoconcat.m3u"
+
+		var Process process = Runtime.getRuntime().exec(cmdConcatener);
+		process.waitFor();
+	}*/
 
 	@Test
 	def tp6_gif() {
 		var videoGen = loadVideoGenerator(URI.createURI("main.videogen"))
-		var fact = new VideoGenQ2FactoryImpl()
-		var playlist= fact.createPlaylist()
+		
 
 		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
+		/*
 		for(videoseq : videoGen.videoseqs.toSet) {
 			if (videoseq instanceof MandatoryVideoSeq) {
 
 				println("Mandatory")
 				val fileLocation = (videoseq as MandatoryVideoSeq).description.location;
 
-				var mediafile = fact.createMediaFile()
-				mediafile.location = fileLocation
-				mediafile.duration =  getDuration(fileLocation)
-
-				playlist.mediafile.add(mediafile)
+				
 
 
 			} else if (videoseq instanceof OptionalVideoSeq) {
@@ -142,7 +136,7 @@ class VideoDemonstratorGification {
 				mediafile.duration =  getDuration(fileLocation)
 				playlist.mediafile.add(mediafile)
 			}
-		}
+		}*/
 
 		// New file
 		try {
@@ -152,6 +146,7 @@ class VideoDemonstratorGification {
 				pl.createNewFile();
 			}
 
+/*
 			// Ecrit le fichier
 			val fw = new FileWriter(pl.getAbsoluteFile());
 			val bw = new BufferedWriter(fw);
@@ -169,7 +164,7 @@ class VideoDemonstratorGification {
 
 			// Créer le gif
 			val myGif = createGif(totalDuration.toString, null, "500", path + "concat.mp4", "myGif")
-			deleteFile(path + "concat.mp4")
+			deleteFile(path + "concat.mp4")*/
 
 		} catch (IOException e) {
 			e.printStackTrace
@@ -203,18 +198,8 @@ class VideoDemonstratorGification {
 		return filename + ".gif"
 	}
 
-	def static void deleteFile(String path) {
-		var String cmdDelete = "rm " + path
+	
 
-		var Process process = Runtime.getRuntime().exec(cmdDelete);
-		process.waitFor();
-	}
 
-	def static void concat(String playlist) {
-		var String cmdConcatener = "ffmpeg -f concat -safe 0 -i " + playlist + " -c copy /videoconcat.m3u"
-
-		var Process process = Runtime.getRuntime().exec(cmdConcatener);
-		process.waitFor();
-	}
 
 }

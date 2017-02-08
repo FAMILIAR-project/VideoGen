@@ -37,7 +37,7 @@ public class Q7VideoDurationSetterSwitch extends VideoGenSwitch<Boolean> {
 		if (duration == 0) {
 			// only cmopute duration if not present (that is == 0)
 			String location = videoDesc.getLocation();
-			int computeDuration = FFMPEGHelper.computeDuration(location);
+			int computeDuration = FFMPEGHelper2.computeDuration(location);
 			videoDesc.setDuration(computeDuration);
 		}
 		return true;

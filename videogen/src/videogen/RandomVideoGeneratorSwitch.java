@@ -81,7 +81,7 @@ public class RandomVideoGeneratorSwitch extends VideoGenSwitch<Boolean> {
 		new File(parentPath).mkdirs();
 		int duration = Utils.genRandomInt(10);
 		System.out.println(String.format("Generating [%s] with duration = %d", location, duration));
-		FFMPEGHelper.randomGenerationVideo(location, duration);
+		FFMPEGHelper2.randomGenerationVideo(location, duration);
 		System.out.println(" --> done");
 	}
 

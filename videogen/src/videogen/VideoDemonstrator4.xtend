@@ -1,6 +1,10 @@
 package videogen
 
 import java.io.BufferedReader
+import java.io.BufferedWriter
+import java.io.File
+import java.io.FileWriter
+import java.io.IOException
 import java.io.InputStreamReader
 import java.util.HashMap
 import java.util.Random
@@ -13,13 +17,8 @@ import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq
 import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq
 import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
-import videoGenQ2.impl.VideoGenQ2FactoryImpl
 
 import static org.junit.Assert.*
-import java.io.File
-import java.io.FileWriter
-import java.io.BufferedWriter
-import java.io.IOException
 
 class VideoDemonstrator4 {
 
@@ -63,8 +62,7 @@ class VideoDemonstrator4 {
 	@Test
 	def tp3_q9() {
 		var videoGen = loadVideoGenerator(URI.createURI("main.videogen"))
-		var fact = new VideoGenQ2FactoryImpl()
-		var playlist = fact.createPlaylist()
+		
 		assertNotNull(videoGen)
 
 		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
@@ -76,13 +74,11 @@ class VideoDemonstrator4 {
 				var fileId = (videoseq as MandatoryVideoSeq).description.videoid;
 				if(fileId.isNullOrEmpty) fileId = genID()
 
-				var mediafile = fact.createMediaFile()
-				mediafile.location = fileLocation
-				mediafile.duration = getDuration(fileLocation)
+			
 
 				vignette += "<img src = " + createVignette(fileLocation, fileId) + " width='130px' height=auto/><br/>"
 
-				playlist.mediafile.add(mediafile)
+				
 
 			} else if (videoseq instanceof OptionalVideoSeq) {
 				println("Optional")
@@ -93,12 +89,10 @@ class VideoDemonstrator4 {
 					var fileId = (videoseq as OptionalVideoSeq).description.videoid;
 					if(fileId.isNullOrEmpty) fileId = genID()
 
-					var mediafile = fact.createMediaFile()
-					mediafile.location = fileLocation
-					mediafile.duration = getDuration(fileLocation)
+					
 					
 					vignette += "<img src=" + createVignette(fileLocation, fileId) + " width='130px' height=auto/><br/>"
-					playlist.mediafile.add(mediafile)
+					
 				}
 			} else {
 				println("else alternative")
@@ -106,11 +100,9 @@ class VideoDemonstrator4 {
 				var fileLocation = (videoseq as AlternativeVideoSeq).videodescs.get(new Random().nextInt(size)).
 					location;
 
-				var mediafile = fact.createMediaFile()
-				mediafile.location = fileLocation
-				mediafile.duration = getDuration(fileLocation)
+				
 				vignette += "<img src=" + createVignette(fileLocation,"alternative") + " width='130px' height=auto/><br/>"
-				playlist.mediafile.add(mediafile)
+				
 			}
 		}
 		// New file 

@@ -2,6 +2,8 @@ package videogen;
 
 import com.google.common.base.Objects;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
@@ -127,38 +129,46 @@ public class VideoDemonstratorGification {
     }
   }
   
+  /**
+   * def static void concat(String playlist) {
+   * var String cmdConcatener = "ffmpeg -f concat -safe 0 -i " + playlist + " -c copy /videoconcat.m3u"
+   * 
+   * var Process process = Runtime.getRuntime().exec(cmdConcatener);
+   * process.waitFor();
+   * }
+   */
   @Test
-  public void tp6_gif() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nMediaFile cannot be resolved to a type."
-      + "\nVideoGenQ2FactoryImpl cannot be resolved."
-      + "\nAmbiguous feature call.\nThe methods\n\tconcat(String) in VideoDemonstratorGification and\n\tconcat(String) in VideoDemonstratorGification\nboth match."
-      + "\nAmbiguous feature call.\nThe methods\n\tdeleteFile(String) in VideoDemonstratorGification and\n\tdeleteFile(String) in VideoDemonstratorGification\nboth match."
-      + "\nAmbiguous feature call.\nThe methods\n\tdeleteFile(String) in VideoDemonstratorGification and\n\tdeleteFile(String) in VideoDemonstratorGification\nboth match."
-      + "\ncreatePlaylist cannot be resolved"
-      + "\ncreateMediaFile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nduration cannot be resolved"
-      + "\nmediafile cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\ncreateMediaFile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nduration cannot be resolved"
-      + "\nmediafile cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\ncreateMediaFile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nduration cannot be resolved"
-      + "\nmediafile cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\nmediafile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nduration cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\n+ cannot be resolved"
-      + "\n+ cannot be resolved"
-      + "\nduration cannot be resolved"
-      + "\n+ cannot be resolved");
+  public Boolean tp6_gif() {
+    boolean _xblockexpression = false;
+    {
+      URI _createURI = URI.createURI("main.videogen");
+      VideoGeneratorModel videoGen = this.loadVideoGenerator(_createURI);
+      boolean _xtrycatchfinallyexpression = false;
+      try {
+        boolean _xblockexpression_1 = false;
+        {
+          final String path = "./";
+          final File pl = new File((path + "playlist.txt"));
+          boolean _xifexpression = false;
+          boolean _exists = pl.exists();
+          boolean _not = (!_exists);
+          if (_not) {
+            _xifexpression = pl.createNewFile();
+          }
+          _xblockexpression_1 = _xifexpression;
+        }
+        _xtrycatchfinallyexpression = _xblockexpression_1;
+      } catch (final Throwable _t) {
+        if (_t instanceof IOException) {
+          final IOException e = (IOException)_t;
+          e.printStackTrace();
+        } else {
+          throw Exceptions.sneakyThrow(_t);
+        }
+      }
+      _xblockexpression = _xtrycatchfinallyexpression;
+    }
+    return Boolean.valueOf(_xblockexpression);
   }
   
   public static String creerGif(final String duration, final String start, final String size, final String path, final String filename) {
@@ -190,28 +200,6 @@ public class VideoDemonstratorGification {
       Process process = _runtime.exec(cmdGif);
       process.waitFor();
       return (filename + ".gif");
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
-  }
-  
-  public static void deleteFile(final String path) {
-    try {
-      String cmdDelete = ("rm " + path);
-      Runtime _runtime = Runtime.getRuntime();
-      Process process = _runtime.exec(cmdDelete);
-      process.waitFor();
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
-  }
-  
-  public static void concat(final String playlist) {
-    try {
-      String cmdConcatener = (("ffmpeg -f concat -safe 0 -i " + playlist) + " -c copy /videoconcat.m3u");
-      Runtime _runtime = Runtime.getRuntime();
-      Process process = _runtime.exec(cmdConcatener);
-      process.waitFor();
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
