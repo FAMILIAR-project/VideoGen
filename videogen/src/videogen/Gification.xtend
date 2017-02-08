@@ -14,6 +14,7 @@ class Gification {
 		IdmUtil.checkVideoGen(videoGen)
 
 		// generate playlist
+		/*
 		var playlist = IdmUtil.generatePlaylist(videoGen)
 		var ffmpegStr = ""
 		
@@ -30,7 +31,7 @@ class Gification {
 		// concat videos
 		var concatVideosLocation = concatVideos("/home/paul/Vidéos/idm/gification/ffmpeg_playlist.txt")
 		// create gif from concat videos
-		createGifFromVideo(concatVideosLocation, 3, 1, 300, "concat")
+		createGifFromVideo(concatVideosLocation, 3, 1, 300, "concat")*/
 	}
 	
 	def String concatVideos(String ffmegPlaylist) {

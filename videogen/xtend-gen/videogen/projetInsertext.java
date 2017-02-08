@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.xtext.xbase.lib.Exceptions;
-import org.junit.Test;
 import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated;
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 
@@ -92,45 +91,6 @@ public class projetInsertext {
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
-  }
-  
-  @Test
-  public void tp3_q7() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nMediaFile cannot be resolved to a type."
-      + "\nVideoGenQ2FactoryImpl cannot be resolved."
-      + "\ncreatePlaylist cannot be resolved"
-      + "\ncreateMediaFile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nduration cannot be resolved"
-      + "\ninsertedText cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\ninsertedText cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nmediafile cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\ncreateMediaFile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nduration cannot be resolved"
-      + "\ninsertedText cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\ninsertedText cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nmediafile cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\ncreateMediaFile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nduration cannot be resolved"
-      + "\ninsertedText cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\ninsertedText cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nmediafile cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\nmediafile cannot be resolved"
-      + "\nduration cannot be resolved"
-      + "\nlocation cannot be resolved");
   }
   
   private static int i = 0;

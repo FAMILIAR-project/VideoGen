@@ -10,7 +10,6 @@ import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated;
-import org.xtext.example.mydsl.playlist.Playlist;
 import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq;
 import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq;
 import org.xtext.example.mydsl.videoGen.OptionalVideoSeq;
@@ -46,36 +45,6 @@ public class FFmpegRep {
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
-  }
-  
-  public static Playlist videoToPlaylist(final VideoGeneratorModel videoGen) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field createvideo is undefined for the type PlaylistFactory"
-      + "\nThe method or field videos is undefined for the type Playlist"
-      + "\nThe method or field createvideo is undefined for the type PlaylistFactory"
-      + "\nThe method or field videos is undefined for the type Playlist"
-      + "\nThe method or field createvideo is undefined for the type PlaylistFactory"
-      + "\nThe method or field videos is undefined for the type Playlist"
-      + "\npath cannot be resolved"
-      + "\nduration cannot be resolved"
-      + "\ndescription cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\npath cannot be resolved"
-      + "\nduration cannot be resolved"
-      + "\ndescription cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\npath cannot be resolved"
-      + "\ndescription cannot be resolved"
-      + "\nduration cannot be resolved"
-      + "\nadd cannot be resolved");
-  }
-  
-  public static String playlistToFFMPEG(final Playlist playlist) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field videos is undefined for the type Playlist"
-      + "\nThe method or field path is undefined for the type Object"
-      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context."
-      + "\nforEach cannot be resolved");
   }
   
   public static void generateDuration(final VideoGeneratorModel videoGen) {

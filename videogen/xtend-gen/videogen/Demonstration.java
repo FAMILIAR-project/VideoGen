@@ -22,7 +22,6 @@ import org.xtext.example.mydsl.videoGen.OptionalVideoSeq;
 import org.xtext.example.mydsl.videoGen.VideoDescription;
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 import org.xtext.example.mydsl.videoGen.VideoSeq;
-import playlist.Playlist;
 
 @SuppressWarnings("all")
 public class Demonstration {
@@ -162,37 +161,6 @@ public class Demonstration {
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
-  }
-  
-  @Test
-  public Object test4() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method createMediafile() is undefined for the type PlaylistFactory"
-      + "\nThe method or field videos is undefined for the type Playlist"
-      + "\nThe method createMediafile() is undefined for the type PlaylistFactory"
-      + "\nThe method or field videos is undefined for the type Playlist"
-      + "\nThe method createMediafile() is undefined for the type PlaylistFactory"
-      + "\nThe method or field videos is undefined for the type Playlist"
-      + "\nThe method convertPlaylistIntoFormat(Playlist, String) from the type Demonstration refers to the missing type Object"
-      + "\nlocation cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nadd cannot be resolved");
-  }
-  
-  public Object convertPlaylistIntoFormat(final Playlist p, final String format) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field videos is undefined for the type Playlist"
-      + "\nThe method or field location is undefined for the type Object"
-      + "\nThe method location(Object) is undefined for the type Object"
-      + "\nThe method or field location is undefined for the type Object"
-      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context."
-      + "\nforEach cannot be resolved"
-      + "\n+ cannot be resolved"
-      + "\n+ cannot be resolved"
-      + "\n+ cannot be resolved");
   }
   
   public void printToHTML(final VideoGeneratorModel videoGen) {

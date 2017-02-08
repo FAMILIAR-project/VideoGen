@@ -1,18 +1,19 @@
 package videogen;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.junit.Test;
+import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
+import videogen.IdmUtil;
 
 @SuppressWarnings("all")
 public class Gification {
   @Test
   public void gification() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field mediaFile is undefined for the type Playlist"
-      + "\nlocation cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nlocation cannot be resolved");
+    URI _createURI = URI.createURI("videos.videogen");
+    VideoGeneratorModel videoGen = IdmUtil.loadVideoGenerator(_createURI);
+    IdmUtil.checkVideoGen(videoGen);
   }
   
   public String concatVideos(final String ffmegPlaylist) {

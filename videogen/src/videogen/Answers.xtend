@@ -85,71 +85,10 @@ class Answers {
 		IdmUtil.createFile("quest_files_gen/quest2Ffmpeg.txt", ffmpegStr)
 	}
 	
-	@Test
-	def quest3() {
-		// loading
-		var videoGen = IdmUtil.loadVideoGenerator(URI.createURI("videos.videogen"))
-		// check videogen
-		IdmUtil.checkVideoGen(videoGen)
-
-		// generate playlist
-		var playlist = IdmUtil.generatePlaylist(videoGen)
-		var m3uString = ""
-		
-		// loop over playlist
-		for(mediaFile: playlist.mediaFile) {
-			// write to file
-			m3uString += "#EXTINF:-1, " + mediaFile.videoid + "\n"
-			m3uString += mediaFile.location + "\n\n"
-		}
-		
-		// create file
-		IdmUtil.createFile("quest_files_gen/quest3.m3u", m3uString)
-	}
 	
-	@Test
-	def quest4() {
-		// loading
-		var videoGen = IdmUtil.loadVideoGenerator(URI.createURI("videos.videogen"))
-		// check videogen
-		IdmUtil.checkVideoGen(videoGen)
-
-		// generate playlist
-		var playlist = IdmUtil.generatePlaylist(videoGen)
-		var ffmpegStr = ""
-		
-		// loop over playlist
-		for(mediaFile: playlist.mediaFile) {		
-			// write to file
-			ffmpegStr += "file '" + mediaFile.location + "'\n"
-		}
-		
-		// create file
-		IdmUtil.createFile("quest_files_gen/quest4Ffmpeg.txt", ffmpegStr)
-	}
 	
-	@Test
-	def quest8() {
-		// loading
-		var videoGen = IdmUtil.loadVideoGenerator(URI.createURI("videos.videogen"))
-		// check videogen
-		IdmUtil.checkVideoGen(videoGen)
-
-		// generate playlist
-		var playlist = IdmUtil.generatePlaylist(videoGen)
-		var m3uString = "#EXTM3U\n"
-		
-		// loop over playlist
-		for(mediaFile: playlist.mediaFile) {
-			// write to file
-			m3uString += "#EXT-X-DISCONTINUITY\n"
-			m3uString += "#EXTINF:" + mediaFile.duration + ", " + mediaFile.videoid + "\n"
-			m3uString += mediaFile.location + "\n\n"
-		}
-		
-		// create file
-		IdmUtil.createFile("quest_files_gen/quest8.m3u", m3uString)
-	}
+	
+	
 	
 	@Test
 	def quest9_10() {

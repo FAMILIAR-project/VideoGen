@@ -26,7 +26,6 @@ import org.xtext.example.mydsl.videoGen.OptionalVideoSeq;
 import org.xtext.example.mydsl.videoGen.VideoDescription;
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 import org.xtext.example.mydsl.videoGen.VideoSeq;
-import playlist.Playlist;
 
 @SuppressWarnings("all")
 public class IdmUtil {
@@ -88,36 +87,6 @@ public class IdmUtil {
         }
       }
     }
-  }
-  
-  /**
-   * Generate playlist from a videogen model
-   */
-  public static Playlist generatePlaylist(final VideoGeneratorModel videoGen) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nPlaylistFactoryImpl cannot be resolved."
-      + "\ncreatePlaylist cannot be resolved"
-      + "\ncreateMediaFile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nvideoid cannot be resolved"
-      + "\nduration cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nmediaFile cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\ncreateMediaFile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nvideoid cannot be resolved"
-      + "\nduration cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nmediaFile cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\ncreateMediaFile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nvideoid cannot be resolved"
-      + "\nduration cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nmediaFile cannot be resolved"
-      + "\nadd cannot be resolved");
   }
   
   /**

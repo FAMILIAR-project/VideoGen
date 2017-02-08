@@ -49,69 +49,6 @@ public class ModelToModel {
     }
   }
   
-  public static void modelToPlayList() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field PlayListFactory is undefined"
-      + "\nThe method or field PlayListFactory is undefined"
-      + "\nThe method or field PlayListFactory is undefined"
-      + "\nThe method or field PlayListFactory is undefined"
-      + "\nThe method convertPlaylistIntoFormat(PlayList, String) from the type ModelToModel refers to the missing type PlayList"
-      + "\neINSTANCE cannot be resolved"
-      + "\ncreatePlayList cannot be resolved"
-      + "\neINSTANCE cannot be resolved"
-      + "\ncreateMediaFile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nvids cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\neINSTANCE cannot be resolved"
-      + "\ncreateMediaFile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nvids cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\neINSTANCE cannot be resolved"
-      + "\ncreateMediaFile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nvids cannot be resolved"
-      + "\nadd cannot be resolved");
-  }
-  
-  public static String convertPlaylistIntoFormat(final /* PlayList */Object playlist, final String ext) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nMediaFile cannot be resolved to a type."
-      + "\nMediaFile cannot be resolved to a type."
-      + "\nvids cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\n+ cannot be resolved"
-      + "\nvids cannot be resolved"
-      + "\nlocation cannot be resolved");
-  }
-  
-  public static void modelToPlayListWithScreenShot() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field PlayListFactory is undefined"
-      + "\nThe method or field PlayListFactory is undefined"
-      + "\nThe method or field PlayListFactory is undefined"
-      + "\nThe method or field PlayListFactory is undefined"
-      + "\nThe method convertPlaylistIntoFormat(PlayList, String) from the type ModelToModel refers to the missing type PlayList"
-      + "\neINSTANCE cannot be resolved"
-      + "\ncreatePlayList cannot be resolved"
-      + "\neINSTANCE cannot be resolved"
-      + "\ncreateMediaFile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nvids cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\neINSTANCE cannot be resolved"
-      + "\ncreateMediaFile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nvids cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\neINSTANCE cannot be resolved"
-      + "\ncreateMediaFile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nvids cannot be resolved"
-      + "\nadd cannot be resolved");
-  }
-  
   public static void printDurationOfVideos() {
     FFMPEGHelpere ffmpeg = new FFMPEGHelpere();
     URI _createURI = URI.createURI("foo2.videogen");
@@ -295,28 +232,71 @@ public class ModelToModel {
     }
   }
   
-  public static void filters() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field isNullOrEmpty is undefined for the type Filter"
-      + "\nThe method or field isNullOrEmpty is undefined for the type Filter"
-      + "\nThe method or field isNullOrEmpty is undefined for the type Filter"
-      + "\nThe method or field isNullOrEmpty is undefined for the type Filter"
-      + "\nThe method or field isNullOrEmpty is undefined for the type Filter"
-      + "\nThe method or field isNullOrEmpty is undefined for the type Filter"
-      + "\n! cannot be resolved"
-      + "\n&& cannot be resolved"
-      + "\n! cannot be resolved"
-      + "\n&& cannot be resolved"
-      + "\n! cannot be resolved"
-      + "\n&& cannot be resolved"
-      + "\n! cannot be resolved"
-      + "\n&& cannot be resolved"
-      + "\n! cannot be resolved"
-      + "\n&& cannot be resolved"
-      + "\n! cannot be resolved"
-      + "\n&& cannot be resolved");
-  }
-  
+  /**
+   * def static void filters(){
+   * 
+   * 
+   * var ffmpeg = new FFMPEGHelpere()
+   * 
+   * // loading
+   * var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen"))
+   * 
+   * for(videoseq : videoGen.videoseqs){
+   * if (videoseq instanceof MandatoryVideoSeq) {
+   * val desc = (videoseq as MandatoryVideoSeq).description
+   * if((!desc.filter.isNullOrEmpty) &&("blackandwhite".equals(desc.filter)) )
+   * {
+   * ffmpeg.executeCmdFilterBlackAndWhite(desc.location.toString,"blkw1")
+   * 
+   * }
+   * 
+   * if((!desc.filter.isNullOrEmpty) &&("lighter".equals(desc.filter)) )
+   * {
+   * 
+   * ffmpeg.executeCmdFilterLighter(desc.location.toString,"lgtr1")}
+   * 
+   * }
+   * 
+   * else if (videoseq instanceof OptionalVideoSeq) {
+   * val desc = (videoseq as OptionalVideoSeq).description
+   * 
+   * if((!desc.filter.isNullOrEmpty) &&("blackandwhite".equals(desc.filter)) )
+   * {
+   * ffmpeg.executeCmdFilterBlackAndWhite(desc.location.toString,"blkw1")
+   * 
+   * }
+   * 
+   * if((!desc.filter.isNullOrEmpty) &&("lighter".equals(desc.filter)) )
+   * {
+   * 
+   * ffmpeg.executeCmdFilterLighter(desc.location.toString,"lgtr1")}
+   * 
+   * 
+   * }
+   * else {
+   * val altvid = (videoseq as AlternativeVideoSeq)
+   * 
+   * for (vdesc : altvid.videodescs) {
+   * 
+   * if((!vdesc.filter.isNullOrEmpty) &&("blackandwhite".equals(vdesc.filter)) )
+   * {
+   * ffmpeg.executeCmdFilterBlackAndWhite(vdesc.location.toString,"blkw1")
+   * 
+   * }
+   * 
+   * if((!vdesc.filter.isNullOrEmpty) &&("lighter".equals(vdesc.filter)) )
+   * {
+   * 
+   * ffmpeg.executeCmdFilterLighter(vdesc.location.toString,"lgtr1")}
+   * 
+   * }
+   * 
+   * 
+   * }
+   * }
+   * 
+   * }
+   */
   public static void main(final String[] args) {
     ModelToModel.printDurationOfVideos();
   }

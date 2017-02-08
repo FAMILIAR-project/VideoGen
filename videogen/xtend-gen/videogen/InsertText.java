@@ -1,7 +1,6 @@
 package videogen;
 
 import org.eclipse.xtext.xbase.lib.Exceptions;
-import org.junit.Test;
 import videogen.IdmUtil;
 
 @SuppressWarnings("all")
@@ -17,21 +16,6 @@ public class InsertText {
   private final static int TOP_RIGHT = 4;
   
   private final static int CENTER = 5;
-  
-  @Test
-  public void testInsertText() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field mediaFile is undefined for the type Playlist"
-      + "\ntext cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\ntext cannot be resolved"
-      + "\nduration cannot be resolved"
-      + "\nvideoid cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\n+ cannot be resolved");
-  }
   
   /**
    * Create a video with a text

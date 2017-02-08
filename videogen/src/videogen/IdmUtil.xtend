@@ -55,75 +55,7 @@ class IdmUtil {
 		}
 	}
 	
-	/**
-	 * Generate playlist from a videogen model
-	 */
-	def static Playlist generatePlaylist(VideoGeneratorModel videoGen) {
-		// check videogen
-		checkVideoGen(videoGen)
-		
-		var fact = new PlaylistFactoryImpl()
-		var playlist = fact.createPlaylist()
-		
-		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
-		for (videoseq : videoGen.videoseqs) {
-			// mandatory
-			if (videoseq instanceof MandatoryVideoSeq) {
-				// create mediaFile with location, videoid and duration
-				var mediaFile = fact.createMediaFile()
-				mediaFile.location = (videoseq as MandatoryVideoSeq).description.location
-				mediaFile.videoid = (videoseq as MandatoryVideoSeq).description.videoid
-				// quest 7
-				mediaFile.duration = getDuration(mediaFile.location)
 
-				// add mediaFile to playlist
-				playlist.mediaFile.add(mediaFile)
-			}
-
-			// optional
-			if (videoseq instanceof OptionalVideoSeq) {
-				// test probability
-				var probability = videoseq.description.probability		
-				// proba
-				var i = true
-				if(probability == 0)
-					i = false
-				else
-					i = new Random().nextInt(100/probability) == 0
-				
-				if (i) {
-					// create mediaFile with location, videoid and duration
-					var mediaFile = fact.createMediaFile()
-					mediaFile.location = (videoseq as OptionalVideoSeq).description.location
-					mediaFile.videoid = (videoseq as OptionalVideoSeq).description.videoid
-					// quest 7
-					mediaFile.duration = getDuration(mediaFile.location)
-
-					// add mediaFile to playlist
-					playlist.mediaFile.add(mediaFile)
-				}
-			}
-
-			// alternatives
-			if (videoseq instanceof AlternativeVideoSeq) {
-				val atlVideoSeq = (videoseq as AlternativeVideoSeq)
-				val size = atlVideoSeq.videodescs.size
-				var index = new Random().nextInt(size)
-				// create mediaFile with location, videoid and duration
-				var mediaFile = fact.createMediaFile()
-				mediaFile.location = (videoseq as AlternativeVideoSeq).videodescs.get(index).location
-				mediaFile.videoid = (videoseq as AlternativeVideoSeq).videodescs.get(index).videoid
-				// quest 7
-				mediaFile.duration = getDuration(mediaFile.location)
-
-				// add mediaFile to playlist
-				playlist.mediaFile.add(mediaFile)
-			}
-		}
-		
-		return playlist
-	}
-	
 	/**
 	 * Generate playlist from a videogen model
 	 */

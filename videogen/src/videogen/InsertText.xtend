@@ -13,35 +13,7 @@ class InsertText {
 	static final int TOP_LEFT = 3
 	static final int TOP_RIGHT = 4
 	static final int CENTER = 5
-	
-	@Test
-	def testInsertText() {
-		// loading
-		var videoGen = IdmUtil.loadVideoGenerator(URI.createURI("videos.videogen"))
-		assertNotNull(videoGen)
-
-		// generate playlist
-		var playlist = IdmUtil.generatePlaylist(videoGen)
-		var m3uString = ""
-		
-		// loop over playlist
-		for(mediaFile: playlist.mediaFile) {
-			// create text
-			mediaFile.text = IdmUtil.getFilenameWithExtension(mediaFile.location)
-			// remplace video with video with text
-			mediaFile.location = createVideoWithText(mediaFile.location, mediaFile.text, BOTTOM_LEFT)
 			
-			// write to file
-			// write to file
-			m3uString += "#EXT-X-DISCONTINUITY\n"
-			m3uString += "#EXTINF:" + mediaFile.duration + ", " + mediaFile.videoid + "\n"
-			m3uString += mediaFile.location + "\n\n"
-		}
-		
-		// create file
-		IdmUtil.createFile("playlist-files-gen/inserted_text.m3u", m3uString)
-	}
-	
 	/**
 	 * Create a video with a text
 	 */

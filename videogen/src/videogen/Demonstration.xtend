@@ -117,87 +117,12 @@ class Demonstration {
 			
 	}
 	
-	@Test
-	def test4() {
-		
-		// loading
-		var videoGen = loadVideoGenerator(URI.createURI("foo2.videogen")) 
-		// Model to model
-		
-		val playlist = PlaylistFactory.eINSTANCE.createPlaylist()
-		
-		
-       val outputFile = new File("outagain.txt"); 
-       
-        val out = new FileWriter(outputFile); 			
-		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
-		videoGen.videoseqs.forEach[videoseq | 
-			
-			if (videoseq instanceof MandatoryVideoSeq) {
-				val chem = (videoseq as MandatoryVideoSeq).description.location
-				out.write(chem)
-				out.write("\n")
-				
-				val mediafile = PlaylistFactory.eINSTANCE.createMediafile()
-				mediafile.location = chem
-				playlist.videos.add(mediafile)
-				 				
-			}
-			else if (videoseq instanceof OptionalVideoSeq) {
-				val optional = new Random(1)
-				if(optional.nextInt()==1)
-				{
-					val chem = (videoseq as OptionalVideoSeq).description.location
-				out.write(chem)
-				out.write("\n")
-				
-				val mediafile = PlaylistFactory.eINSTANCE.createMediafile()
-				mediafile.location = chem
-				playlist.videos.add(mediafile)
-				
-				}
-				
-			}
-			
-			else {
-				val altvid = (videoseq as AlternativeVideoSeq)
-				val size = altvid.videodescs.size()
-				
-				val optional = new Random().nextInt(altvid.videodescs.size())
-				out.write(altvid.videodescs.get(optional).location+"\n")
-				
-				val mediafile = PlaylistFactory.eINSTANCE.createMediafile()
-				mediafile.location = altvid.videodescs.get(optional).location
-				playlist.videos.add(mediafile)
-				 				
-		}
-			]
-			out.close
-	// serializing
 	
-		 convertPlaylistIntoFormat(playlist, "m3u")
-			
-	}
 	
 
 	
 	
-	def convertPlaylistIntoFormat(Playlist p, String format)
-	{
-		 
-		p.videos.forEach[ video|
-			val str = video.location+"."+format
-			video.location=str
-			
-        System.out.println(video.location+"\n")
-        
-        
-			
-			
-		]
-		
-		
-	}
+	
 	
 	
 	def void printToHTML(VideoGeneratorModel videoGen) {
