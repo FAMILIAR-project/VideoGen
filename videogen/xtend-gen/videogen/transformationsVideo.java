@@ -23,7 +23,6 @@ import org.xtext.example.mydsl.videoGen.OptionalVideoSeq;
 import org.xtext.example.mydsl.videoGen.VideoDescription;
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 import org.xtext.example.mydsl.videoGen.VideoSeq;
-import playlist.Playlist;
 
 @SuppressWarnings("all")
 public class transformationsVideo {
@@ -93,81 +92,9 @@ public class transformationsVideo {
   }
   
   /**
-   * Question3:transformation model-to-model qui prend en entrée une spécification
-   * VideoGen et qui produit en sortie une instance de playlist
+   * Question 2 : Voir le nouveau projet qu'on a crée pour définir la playlist,
+   * nommé : projet idm Q2
    */
-  public Playlist playlist() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method createMediaFile() is undefined for the type PlaylistFactory"
-      + "\nThe method or field videos is undefined for the type Playlist"
-      + "\nThe method createMediaFile() is undefined for the type PlaylistFactory"
-      + "\nThe method or field videos is undefined for the type Playlist"
-      + "\nThe method createMediaFile() is undefined for the type PlaylistFactory"
-      + "\nThe method or field videos is undefined for the type Playlist"
-      + "\nlocation cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nadd cannot be resolved");
-  }
-  
-  /**
-   * Question 3:transformation model-to-text qui prend en entrée un modèle de playlist et
-   * qui produit en sortie un fichier texte .m3u compréhensible par VLC
-   */
-  public void transformationPlaylistToFileM3U(final Playlist playlist) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field videos is undefined for the type Playlist"
-      + "\nlocation cannot be resolved"
-      + "\n+ cannot be resolved");
-  }
-  
-  /**
-   * Question 4:transformation model-to-text qui prend en entrée un modèle de playlist et
-   * qui produit en sortie une liste compréhensible par ffmpeg
-   */
-  public void transformationPlaylistToFileffmpeg(final Playlist playlist) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field videos is undefined for the type Playlist"
-      + "\nlocation cannot be resolved");
-  }
-  
-  /**
-   * Question 5-Q8:transformation model-to-text qui prend en entrée un modèle conforme au
-   *  métamodèle de playlist et qui produit en sortie un fichier texte au format
-   * “M3U étendu”
-   */
-  public void transformationPlaylistToFileM3UEtendu(final Playlist playlist) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field videos is undefined for the type Playlist"
-      + "\nduration cannot be resolved"
-      + "\nlocation cannot be resolved");
-  }
-  
-  /**
-   * Question 7:transformation qui prend en entrée une spécification VideoGen et qui
-   * assigne une valeur « durée » pour chaque séquence vidéo
-   */
-  public Playlist playlistWithDuration() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method createMediaFile() is undefined for the type PlaylistFactory"
-      + "\nThe method or field videos is undefined for the type Playlist"
-      + "\nThe method createMediaFile() is undefined for the type PlaylistFactory"
-      + "\nThe method or field videos is undefined for the type Playlist"
-      + "\nThe method createMediaFile() is undefined for the type PlaylistFactory"
-      + "\nThe method or field videos is undefined for the type Playlist"
-      + "\nlocation cannot be resolved"
-      + "\nduration cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nduration cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nduration cannot be resolved"
-      + "\nadd cannot be resolved");
-  }
-  
   public double calculDuree(final String videoLocation) {
     try {
       double _xblockexpression = (double) 0;
@@ -224,18 +151,6 @@ public class transformationsVideo {
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
-  }
-  
-  /**
-   * Question 9:transformation qui prend en entrée une spécification VideoGen et qui
-   * génère en sortie un ensemble de vignettes pour toutes les séquences vidéos
-   */
-  public void playlistVignette(final Playlist playlist) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field videos is undefined for the type Playlist"
-      + "\nlocation cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\n+ cannot be resolved");
   }
   
   /**
@@ -538,16 +453,90 @@ public class transformationsVideo {
   }
   
   public void filters(final VideoGeneratorModel playlist) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field isNullOrEmpty is undefined for the type Filter"
-      + "\nThe method or field isNullOrEmpty is undefined for the type Filter"
-      + "\nThe method or field isNullOrEmpty is undefined for the type Filter"
-      + "\nType mismatch: cannot convert from Filter to String"
-      + "\nType mismatch: cannot convert from Filter to String"
-      + "\nType mismatch: cannot convert from Filter to String"
-      + "\n! cannot be resolved"
-      + "\n! cannot be resolved"
-      + "\n! cannot be resolved");
+    try {
+      final PrintWriter writer = new PrintWriter("PageHTMLvideogen2.html");
+      final PrintWriter writer2 = new PrintWriter("ffmpegConcatFile");
+      final Random random = new Random();
+      InputOutput.<String>println("<ul>");
+      writer.write("<ul>\n");
+      EList<VideoSeq> _videoseqs = playlist.getVideoseqs();
+      final Consumer<VideoSeq> _function = (VideoSeq videoseq) -> {
+        if ((videoseq instanceof MandatoryVideoSeq)) {
+          VideoDescription _description = ((MandatoryVideoSeq) videoseq).getDescription();
+          final String desc = _description.getLocation();
+          double _calculDuree = this.calculDuree(desc);
+          int _intValue = Double.valueOf(_calculDuree).intValue();
+          int _divide = (_intValue / 2);
+          this.creationVignette(desc, _divide, (desc + ".png"));
+          InputOutput.<String>println(((("<li>" + "<img src=") + desc) + ".png/></li>"));
+          writer.write(((("<li>" + "Mandatory<img src=") + desc) + ".png/></li>\n"));
+        } else {
+          if ((videoseq instanceof OptionalVideoSeq)) {
+            VideoDescription _description_1 = ((OptionalVideoSeq) videoseq).getDescription();
+            final String desc_1 = _description_1.getLocation();
+            int proba = random.nextInt(2);
+            InputOutput.<String>println(("proba :" + Integer.valueOf(proba)));
+            if ((proba == 1)) {
+              double _calculDuree_1 = this.calculDuree(desc_1);
+              int _intValue_1 = Double.valueOf(_calculDuree_1).intValue();
+              int _divide_1 = (_intValue_1 / 2);
+              this.creationVignette(desc_1, _divide_1, (desc_1 + ".png"));
+              InputOutput.<String>println(((("<li>" + "<img src=") + desc_1) + ".png/></li>"));
+              writer.write(((("<li>" + "Optional<img src=") + desc_1) + ".png/></li>\n"));
+            }
+          } else {
+            final AlternativeVideoSeq altvid = ((AlternativeVideoSeq) videoseq);
+            EList<VideoDescription> _videodescs = altvid.getVideodescs();
+            int _size = _videodescs.size();
+            boolean _greaterThan = (_size > 0);
+            if (_greaterThan) {
+              InputOutput.<String>println("<ul>");
+            }
+            writer.write("<ul>\n");
+            EList<VideoDescription> _videodescs_1 = altvid.getVideodescs();
+            int _size_1 = _videodescs_1.size();
+            int proba_1 = random.nextInt(_size_1);
+            EList<VideoDescription> _videodescs_2 = altvid.getVideodescs();
+            final VideoDescription vaa = _videodescs_2.get(proba_1);
+            String _location = vaa.getLocation();
+            String _location_1 = vaa.getLocation();
+            double _calculDuree_2 = this.calculDuree(_location_1);
+            int _intValue_2 = Double.valueOf(_calculDuree_2).intValue();
+            int _divide_2 = (_intValue_2 / 2);
+            String _location_2 = vaa.getLocation();
+            String _plus = (_location_2 + ".png");
+            this.creationVignette(_location, _divide_2, _plus);
+            String _location_3 = vaa.getLocation();
+            String _plus_1 = (("<li>" + "<img src=") + _location_3);
+            String _plus_2 = (_plus_1 + ".png/></li>");
+            InputOutput.<String>println(_plus_2);
+            String _location_4 = vaa.getLocation();
+            String _plus_3 = (("<li>" + "Alternative<img src=") + _location_4);
+            String _plus_4 = (_plus_3 + ".png/></li>\n");
+            writer.write(_plus_4);
+          }
+        }
+        InputOutput.<String>println("</ul>");
+        writer.write("</ul>\n");
+      };
+      _videoseqs.forEach(_function);
+      InputOutput.<String>println("</ul>");
+      writer.write("<ul>\n");
+      writer.close();
+      writer2.close();
+      String cmd = "ffmpeg -f concat -i ffmpegConcatFile -c copy output.mp4";
+      Runtime _runtime = Runtime.getRuntime();
+      Process p = _runtime.exec(cmd);
+      while (p.isAlive()) {
+        boolean _isAlive = p.isAlive();
+        boolean _not = (!_isAlive);
+        if (_not) {
+          return;
+        }
+      }
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
   
   public void createFeatureModel() {

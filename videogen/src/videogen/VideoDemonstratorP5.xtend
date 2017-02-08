@@ -48,8 +48,7 @@ class VideoDemonstratorP5 {
 	@Test
 	def TP4() {
 		var videoGen = loadVideoGenerator(URI.createURI("fooVideos.videogen"))
-		var fact = new VideogenPlayListFactoryImpl()
-		var playlist = fact.createPlayList()
+	
 		assertNotNull(videoGen)
 
 		// MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
@@ -62,15 +61,14 @@ class VideoDemonstratorP5 {
 				if(fileId.isNullOrEmpty) fileId = genID()
 				
 				if (!vignettes.contains(fileLocation)) {
-					var mediaFile = fact.createMediaFile()
-					mediaFile.location = fileLocation 
-					mediaFile.duration =  getDuration(fileLocation)
+					
+					getDuration(fileLocation)
 
 					vignette +=
 						"<p>"+ fileLocation +"</p><br/> 
 						<img src = " + createVignette(fileLocation, fileId) + " width='130px' height=auto/><br/>"
 
-					playlist.mediaFile.add(mediaFile)
+					
 					vignettes.add(fileLocation);
 				} else {
 					System.out.println("Mandatory: la vignette est deja presente  !! " + fileLocation );
@@ -88,12 +86,10 @@ class VideoDemonstratorP5 {
 					if(fileId.isNullOrEmpty) fileId = genID()
 
 					if (!vignettes.contains(fileLocation)) {
-						var mediaFile = fact.createMediaFile()
-						mediaFile.location = fileLocation 
-						mediaFile.duration =  getDuration(fileLocation)
+						
 						vignette +=
 							"<p>"+ fileLocation +"</p><br/><img src=" + createVignette(fileLocation, fileId) + " width='130px' height=auto/><br/>"
-							playlist.mediaFile.add(mediaFile)
+							
 							vignettes.add(fileLocation)
 					} else {
 						vignette += "<p>Optionals: la vignette est deja presente " + fileLocation + " !!</p> <br/>"
@@ -111,12 +107,10 @@ class VideoDemonstratorP5 {
 				if(fileId.isNullOrEmpty) fileId = genID()
 				
 				if (!vignettes.contains(fileLocation)) {
-					var mediaFile = fact.createMediaFile()
-						mediaFile.location = fileLocation 
-						mediaFile.duration =  getDuration(fileLocation)
+					
 					vignette +=
 						"<p>"+ fileLocation +"</p><br/><img src=" + createVignette(fileLocation, "alternative") + " width='130px' height=auto/><br/>"
-					playlist.mediaFile.add(mediaFile)
+					
 					vignettes.add(fileLocation)
 
 				} else {

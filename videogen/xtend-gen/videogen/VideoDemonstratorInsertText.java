@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.util.Random;
+import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -13,9 +15,16 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.InputOutput;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.junit.Assert;
 import org.junit.Test;
 import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated;
+import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq;
+import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq;
+import org.xtext.example.mydsl.videoGen.OptionalVideoSeq;
+import org.xtext.example.mydsl.videoGen.VideoDescription;
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
+import org.xtext.example.mydsl.videoGen.VideoSeq;
 
 @SuppressWarnings("all")
 public class VideoDemonstratorInsertText {
@@ -79,41 +88,43 @@ public class VideoDemonstratorInsertText {
   
   @Test
   public void testInsertText() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nMediaFile cannot be resolved to a type."
-      + "\nVideogenPlayListFactoryImpl cannot be resolved."
-      + "\ncreatePlayList cannot be resolved"
-      + "\ncreateMediaFile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nduration cannot be resolved"
-      + "\ntext cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\ntext cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nmediaFile cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\ncreateMediaFile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nduration cannot be resolved"
-      + "\ntext cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\ntext cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nmediaFile cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\ncreateMediaFile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nduration cannot be resolved"
-      + "\ntext cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\ntext cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nmediaFile cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\nmediaFile cannot be resolved"
-      + "\nduration cannot be resolved"
-      + "\nlocation cannot be resolved");
+    URI _createURI = URI.createURI("fooVideos.videogen");
+    VideoGeneratorModel videoGen = this.loadVideoGenerator(_createURI);
+    Assert.assertNotNull(videoGen);
+    EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();
+    Set<VideoSeq> _set = IterableExtensions.<VideoSeq>toSet(_videoseqs);
+    for (final VideoSeq videoseq : _set) {
+      if ((videoseq instanceof MandatoryVideoSeq)) {
+        InputOutput.<String>println("Mandatory");
+        VideoDescription _description = ((MandatoryVideoSeq) videoseq).getDescription();
+        final String fileLocation = _description.getLocation();
+        final String text = "Mandatory";
+        String locatTemp = VideoDemonstratorInsertText.insererTextToVideo(fileLocation, text);
+      } else {
+        if ((videoseq instanceof OptionalVideoSeq)) {
+          InputOutput.<String>println("Optional");
+          Random _random = new Random();
+          final int rand = _random.nextInt(2);
+          if ((rand == 0)) {
+            VideoDescription _description_1 = ((OptionalVideoSeq) videoseq).getDescription();
+            final String fileLocation_1 = _description_1.getLocation();
+            final String text_1 = "Optional";
+            String locatTemp_1 = VideoDemonstratorInsertText.insererTextToVideo(fileLocation_1, text_1);
+          }
+        } else {
+          InputOutput.<String>println("Alternatives");
+          EList<VideoDescription> _videodescs = ((AlternativeVideoSeq) videoseq).getVideodescs();
+          final int size = _videodescs.size();
+          EList<VideoDescription> _videodescs_1 = ((AlternativeVideoSeq) videoseq).getVideodescs();
+          Random _random_1 = new Random();
+          int _nextInt = _random_1.nextInt(size);
+          VideoDescription _get = _videodescs_1.get(_nextInt);
+          String fileLocation_2 = _get.getLocation();
+          final String text_2 = "Alternative";
+          String locatTemp_2 = VideoDemonstratorInsertText.insererTextToVideo(fileLocation_2, text_2);
+        }
+      }
+    }
   }
   
   public static String insererTextToVideo(final String videoLocation, final String text) {

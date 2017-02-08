@@ -7,17 +7,6 @@ class Main {
 		val vv=new transformationsVideo()
 //		Test Question 1:
 		vv.transform()
-//		Test Question 3:
-		var playlist = vv.playlist()
-		vv.transformationPlaylistToFileM3U(playlist)
-//		Test Question 4:
-		vv.transformationPlaylistToFileffmpeg(playlist)
-//		Test Question 5:
-        vv.transformationPlaylistToFileM3UEtendu(playlist)
-//		Test Question 7:      
-        vv.playlistWithDuration()
-//		Test Question 9:
-	    vv.playlistVignette(playlist);
  //		Test Question 10:
 	    var videoGen = vv.loadVideoGenerator(URI.createURI("foo1.videogen"))
 	    //vv.printToHTML(videoGen);

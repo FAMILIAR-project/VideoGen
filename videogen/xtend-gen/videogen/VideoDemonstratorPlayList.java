@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.xtext.xbase.lib.Exceptions;
-import org.junit.Test;
 import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated;
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 
@@ -52,54 +51,11 @@ public class VideoDemonstratorPlayList {
     }
   }
   
-  @Test
-  public void test1() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field M3uFactory is undefined"
-      + "\nThe method registerPlayList(VideoGeneratorModel, Playlist) from the type VideoDemonstratorPlayList refers to the missing type Playlist"
-      + "\neINSTANCE cannot be resolved"
-      + "\ncreatePlaylist cannot be resolved");
-  }
-  
-  public void registerPlayList(final VideoGeneratorModel videoGen, final /* Playlist */Object play) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field M3uFactory is undefined"
-      + "\nThe method or field M3uFactory is undefined"
-      + "\nThe method or field M3uFactory is undefined"
-      + "\nThe method createScripts(Playlist) from the type VideoDemonstratorPlayList refers to the missing type Playlist"
-      + "\neINSTANCE cannot be resolved"
-      + "\ncreateMediaFile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nmediafile cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\neINSTANCE cannot be resolved"
-      + "\ncreateMediaFile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nmediafile cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\neINSTANCE cannot be resolved"
-      + "\ncreateMediaFile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nmediafile cannot be resolved"
-      + "\nadd cannot be resolved");
-  }
-  
   private static int i = 0;
   
   public String genID() {
     int _plusPlus = VideoDemonstratorPlayList.i++;
     return ("v" + Integer.valueOf(_plusPlus));
-  }
-  
-  public void createScripts(final /* Playlist */Object play) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nMediaFile cannot be resolved to a type."
-      + "\nMediaFile cannot be resolved to a type."
-      + "\nmediafile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nmediafile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nlocation cannot be resolved");
   }
   
   public static int getDuration(final String path) {

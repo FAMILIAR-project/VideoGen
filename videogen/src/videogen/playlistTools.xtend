@@ -83,7 +83,7 @@ import java.util.List
 		try {
 			var Runtime runtime = Runtime::getRuntime()
 			val Process res = runtime.exec(
-				'''ffprobe -v error -select_streams v:0 -show_entries stream=duration -of default=noprint_wrappers=1:nokey=1 -i «file»'''.
+				'''ffprobe -v error -select_streams v:0 -show_entries stream=duration -of default=noprint_wrappers=1:nokey=1 -i ï¿½fileï¿½'''.
 					toString)
 					var InputStream lsOut = res.getInputStream()
 					var InputStreamReader isr = new InputStreamReader(lsOut)
@@ -100,7 +100,7 @@ import java.util.List
 			}
 
 			def void genVignette(String file) {
-				var String cmd = '''ffmpeg -i «file» -ss 00:00:01.000 -vframes 1 «file».jpg -y'''.toString
+				var String cmd = '''ffmpeg -i ï¿½fileï¿½ -ss 00:00:01.000 -vframes 1 ï¿½fileï¿½.jpg -y'''.toString
 				var Process process
 				try {
 					process = Runtime::getRuntime().exec(cmd)
@@ -128,7 +128,7 @@ import java.util.List
 								var String _path = file.getPath()
 								var File f = new File(_path)
 								_path = f.getAbsolutePath()
-								var String _plus = ('''«_path»
+								var String _plus = ('''ï¿½_pathï¿½
 '''.toString)
 								fw.write(_plus)
 								fw.flush()
@@ -159,10 +159,10 @@ import java.util.List
 								var int d = genDuration(_path)
 								var File f = new File(_path)
 								_path = f.getAbsolutePath()
-								fw.write('''#EXTINF:«d», no-info
+								fw.write('''#EXTINF:ï¿½dï¿½, no-info
 '''.toString)
 								fw.flush()
-								var String _plus = ('''«_path»
+								var String _plus = ('''ï¿½_pathï¿½
 '''.toString)
 								fw.write(_plus)
 								fw.flush()
@@ -188,8 +188,8 @@ import java.util.List
 						{
 							try {
 								var String _path = file.getPath()
-								var String _plus = ('''file '«»«_path»'''.toString)
-								var String _plus_1 = ('''«_plus»'
+								var String _plus = ('''file 'ï¿½ï¿½ï¿½_pathï¿½'''.toString)
+								var String _plus_1 = ('''ï¿½_plusï¿½'
 '''.toString)
 								fw.write(_plus_1)
 							} catch (Throwable _e) {
@@ -687,8 +687,8 @@ import java.util.List
 							var boolean _not = (!_isNullOrEmpty)
 							if (_not) {
 								var String _location_1 = desc.getLocation()
-								var String _plus = ('''file '«»«_location_1»'''.toString)
-								var String _plus_1 = ('''«_plus»'«»'''.toString)
+								var String _plus = ('''file 'ï¿½ï¿½ï¿½_location_1ï¿½'''.toString)
+								var String _plus_1 = ('''ï¿½_plusï¿½'ï¿½ï¿½'''.toString)
 								InputOutput::<String>println(_plus_1)
 							}
 						} else {
@@ -699,15 +699,15 @@ import java.util.List
 								if ((p > 0)) {
 									if (((!StringExtensions::isNullOrEmpty(desc_1.getLocation())) && (res <= p))) {
 										var String _location_2 = desc_1.getLocation()
-										var String _plus_2 = ('''file '«»«_location_2»'''.toString)
-										var String _plus_3 = ('''«_plus_2»'«»'''.toString)
+										var String _plus_2 = ('''file 'ï¿½ï¿½ï¿½_location_2ï¿½'''.toString)
+										var String _plus_3 = ('''ï¿½_plus_2ï¿½'ï¿½ï¿½'''.toString)
 										InputOutput::<String>println(_plus_3)
 									}
 								} else {
 									if (((!StringExtensions::isNullOrEmpty(desc_1.getLocation())) && (res <= 50))) {
 										var String _location_3 = desc_1.getLocation()
-										var String _plus_4 = ('''file '«»«_location_3»'''.toString)
-										var String _plus_5 = ('''«_plus_4»'«»'''.toString)
+										var String _plus_4 = ('''file 'ï¿½ï¿½ï¿½_location_3ï¿½'''.toString)
+										var String _plus_5 = ('''ï¿½_plus_4ï¿½'ï¿½ï¿½'''.toString)
 										InputOutput::<String>println(_plus_5)
 									}
 								}
@@ -742,8 +742,8 @@ import java.util.List
 													val int p_1 = (_nextInt % r)
 													if (((p_1 === i) && (!found))) {
 														var String _location_5 = vdesc_1.getLocation()
-														var String _plus_6 = ('''file '«»«_location_5»'''.toString)
-														var String _plus_7 = ('''«_plus_6»'«»'''.toString)
+														var String _plus_6 = ('''file 'ï¿½ï¿½ï¿½_location_5ï¿½'''.toString)
+														var String _plus_7 = ('''ï¿½_plus_6ï¿½'ï¿½ï¿½'''.toString)
 														InputOutput::<String>println(_plus_7)
 														found = true
 													}
@@ -766,8 +766,8 @@ import java.util.List
 													val int p_1 = rand.nextInt(100)
 													if (((p_1 <= pr) && (!found))) {
 														var String _location_5 = vdesc_1.getLocation()
-														var String _plus_6 = ('''file '«»«_location_5»'''.toString)
-														var String _plus_7 = ('''«_plus_6»'«»'''.toString)
+														var String _plus_6 = ('''file 'ï¿½ï¿½ï¿½_location_5ï¿½'''.toString)
+														var String _plus_7 = ('''ï¿½_plus_6ï¿½'ï¿½ï¿½'''.toString)
 														InputOutput::<String>println(_plus_7)
 														found = true
 													}
@@ -790,6 +790,7 @@ import java.util.List
 				s.append("<h1>Liste des videos disponibles </h1>")
 				s.append("<ul>")
 				var EList<VideoSeq> _videoseqs = videoGen.getVideoseqs()
+				/*
 				val Consumer<VideoSeq> _function = [VideoSeq videoseq |
 					{
 						if ((videoseq instanceof MandatoryVideoSeq)) {
@@ -801,9 +802,9 @@ import java.util.List
 								s.append("<h2>Video obligatoire</h2>")
 							}
 							var String _location = desc.getLocation()
-							var String _plus = ('''<li><img height="200" width="160" src="«_location»'''.toString)
-							var String _plus_1 = ('''«_plus».jpg'''.toString)
-							var String _plus_2 = ('''«_plus_1»"/></li>'''.toString)
+							var String _plus = ('''<li><img height="200" width="160" src="ï¿½_locationï¿½'''.toString)
+							var String _plus_1 = ('''ï¿½_plusï¿½.jpg'''.toString)
+							var String _plus_2 = ('''ï¿½_plus_1ï¿½"/></li>'''.toString)
 							s.append(_plus_2)
 						} else {
 							if ((videoseq instanceof OptionalVideoSeq)) {
@@ -814,10 +815,10 @@ import java.util.List
 								var boolean _not_1 = (!_isNullOrEmpty_1)
 								if (_not_1) {
 									var String _location_1 = desc_1.getLocation()
-									var String _plus_3 = ('''<li><img height="200" width="160" src="«_location_1»'''.
+									var String _plus_3 = ('''<li><img height="200" width="160" src="ï¿½_location_1ï¿½'''.
 										toString)
-									var String _plus_4 = ('''«_plus_3».jpg'''.toString)
-									var String _plus_5 = ('''«_plus_4»"/></li>'''.toString)
+									var String _plus_4 = ('''ï¿½_plus_3ï¿½.jpg'''.toString)
+									var String _plus_5 = ('''ï¿½_plus_4ï¿½"/></li>'''.toString)
 									s.append(_plus_5)
 								}
 							} else {
@@ -826,7 +827,7 @@ import java.util.List
 								var boolean _isNullOrEmpty_2 = StringExtensions::isNullOrEmpty(_videoid_2)
 								var boolean _not_2 = (!_isNullOrEmpty_2)
 								if (_not_2) {
-									s.append(('''«('''<li><h2>Videos alternatives</h2>'''.toString)»</li>'''.toString))
+									s.append(('''ï¿½('''<li><h2>Videos alternatives</h2>'''.toString)ï¿½</li>'''.toString))
 								}
 								var EList<VideoDescription> _videodescs = altvid.getVideodescs()
 								var int _size = _videodescs.size()
@@ -842,10 +843,10 @@ import java.util.List
 									if (_not_3) {
 										var String _location_2 = vdesc.
 											getLocation()
-										var String _plus_6 = ('''<li><img height="200" width="160" src="«_location_2»'''.
+										var String _plus_6 = ('''<li><img height="200" width="160" src="ï¿½_location_2ï¿½'''.
 											toString)
-										var String _plus_7 = ('''«_plus_6».jpg'''.toString)
-										var String _plus_8 = ('''«_plus_7»"/></li>'''.toString)
+										var String _plus_7 = ('''ï¿½_plus_6ï¿½.jpg'''.toString)
+										var String _plus_8 = ('''ï¿½_plus_7ï¿½"/></li>'''.toString)
 										s.append(_plus_8)
 									}
 								}
@@ -858,8 +859,8 @@ import java.util.List
 							}
 						}
 					}
-				]
-				_videoseqs.forEach(_function)
+				]*/
+				//_videoseqs.forEach(_function)
 				s.append("</ul>")
 				s.append("</html>")
 				return s.toString()
@@ -965,7 +966,7 @@ import java.util.List
 
 			def String genID() {
 				var int _plusPlus = playlistTools::i++
-				return ('''v«Integer::valueOf(_plusPlus)»'''.toString)
+				return ('''vï¿½Integer::valueOf(_plusPlus)ï¿½'''.toString)
 			}
 		}
 		

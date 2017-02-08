@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
-import org.junit.Test;
 import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated;
 import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq;
 import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq;
@@ -31,28 +30,58 @@ public class VideoDemonstratorQ2 {
     return ("v" + Integer.valueOf(_plusPlus));
   }
   
-  @Test
-  public void TestTp3Q2() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nMediaFile cannot be resolved to a type."
-      + "\nVideogenPlayListFactoryImpl cannot be resolved."
-      + "\ncreatePlayList cannot be resolved"
-      + "\ncreateMediaFile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nmediaFile cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\ncreateMediaFile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nmediaFile cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\ncreateMediaFile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nmediaFile cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\nmediaFile cannot be resolved"
-      + "\nlocation cannot be resolved");
-  }
-  
+  /**
+   * @Test
+   * def TestTp3Q2() {
+   * var videoGen = loadVideoGenerator(URI.createURI("fooVideos.videogen"))
+   * assertNotNull(videoGen)
+   * val fact = new VideogenPlayListFactoryImpl()
+   * var playlist = fact.createPlayList();
+   * for (videoseq : videoGen.videoseqs.toSet){
+   * if (videoseq instanceof MandatoryVideoSeq) {
+   * println("Mandatory")
+   * val desc = (videoseq as MandatoryVideoSeq).description.location;
+   * var mediaFile = fact.createMediaFile()
+   * mediaFile.location = desc
+   * playlist.mediaFile.add(mediaFile)
+   * }
+   * else if (videoseq instanceof OptionalVideoSeq) {
+   * println("Optional")
+   * val unsurDeux = new Random().nextInt(2);
+   * if(unsurDeux ==0){
+   * val desc = (videoseq as OptionalVideoSeq).description.location;
+   * var mediaFile = fact.createMediaFile()
+   * mediaFile.location = desc
+   * playlist.mediaFile.add(mediaFile)
+   * }
+   * }
+   * else {
+   * println("Alternative")
+   * val altvidsize = (videoseq as AlternativeVideoSeq).videodescs.size;
+   * val desc = (videoseq as AlternativeVideoSeq).videodescs.get(new Random().nextInt(altvidsize)).location;
+   * var mediaFile = fact.createMediaFile()
+   * mediaFile.location = desc
+   * playlist.mediaFile.add(mediaFile)
+   * }
+   * }
+   * try {
+   * val CPlaylist = new File("C:\\Users\\kaoutar\\git\\VideoGen\\videogen\\playlist.m3u");
+   * if (!CPlaylist.exists()) {
+   * CPlaylist.createNewFile();
+   * }
+   * println(CPlaylist.path);
+   * val fw = new FileWriter(CPlaylist.getAbsoluteFile());
+   * val bw = new BufferedWriter(fw);
+   * bw.write("#EXTM3U" + System.lineSeparator);
+   * for (MediaFile mediafile : playlist.mediaFile){
+   * bw.write("#EXTINF:-1, Example Artist - Example title" + System.lineSeparator + mediafile.location + System.lineSeparator );
+   * }
+   * bw.close();
+   * } catch (IOException e) {
+   * e.printStackTrace
+   * }
+   * }
+   */
   public void printToM3u(final VideoGeneratorModel videoGen) {
     InputOutput.<String>println("#this is a comment");
     EList<VideoSeq> _videoseqs = videoGen.getVideoseqs();

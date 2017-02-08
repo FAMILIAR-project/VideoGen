@@ -10,10 +10,10 @@ import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 import java.util.ArrayList
 import java.io.PrintWriter
 import java.util.Random
-import playlist.PlaylistFactory
-import playlist.Playlist
+
 import java.io.BufferedReader
 import java.io.InputStreamReader
+import org.xtext.example.mydsl.playlist.PlaylistFactory
 
 class transformationsVideo {
 	def loadVideoGenerator(URI uri) {
@@ -57,133 +57,9 @@ class transformationsVideo {
 /*Question 2 : Voir le nouveau projet qu'on a crée pour définir la playlist,
  nommé : projet idm Q2*/
 
-/* 	Question3:transformation model-to-model qui prend en entrée une spécification
-VideoGen et qui produit en sortie une instance de playlist*/
-	def playlist() {
-		val playlist = PlaylistFactory.eINSTANCE.createPlaylist;
 
-		var videoGen = loadVideoGenerator(URI.createURI("foo1.videogen"))
-		val random = new Random()
 
-		videoGen.videoseqs.forEach [ videoseq |
-			if (videoseq instanceof MandatoryVideoSeq) {
-				val desc = (videoseq as MandatoryVideoSeq).description.location
-				var MF = PlaylistFactory.eINSTANCE.createMediaFile()
-				MF.location = desc
-				playlist.videos.add(MF)
-			} else if (videoseq instanceof OptionalVideoSeq) {
-				val desc = (videoseq as OptionalVideoSeq).description.location
-				var proba = random.nextInt(1)
-				if (proba == 1) {
-					var MF = PlaylistFactory.eINSTANCE.createMediaFile()
-					MF.location = desc
-					playlist.videos.add(MF)
-				}
-			} else {
-				val altvid = (videoseq as AlternativeVideoSeq)
-				var l = new ArrayList()
-				var proba = random.nextInt(altvid.videodescs.size)
-				val vaa = altvid.videodescs.get(proba)
-				var MF = PlaylistFactory.eINSTANCE.createMediaFile()
-				MF.location = vaa.location
-				playlist.videos.add(MF)
-			}
-
-		]
-		playlist
-
-	}
-
-	/*  Question 3:transformation model-to-text qui prend en entrée un modèle de playlist et 
-	  qui produit en sortie un fichier texte .m3u compréhensible par VLC*/
-	def transformationPlaylistToFileM3U(Playlist playlist) {
-		// ecrire dans un fichier
-		val writer = new PrintWriter("result.m3u")
-		for (element : playlist.videos)
-			writer.write(element.location + "\n")
-		writer.close()
-	}
-
-	/*  Question 4:transformation model-to-text qui prend en entrée un modèle de playlist et
-qui produit en sortie une liste compréhensible par ffmpeg
-	 * 
-	 * */
-	 
-	def transformationPlaylistToFileffmpeg(Playlist playlist) {
-		// ecrire dans un fichier
-		val writer = new PrintWriter("result.ffmpeg")
-		for (element : playlist.videos)
-			writer.write("file " + element.location + "\n")
-          //fermeture fichier
-		writer.close()
-	}
-
-	/*  Question 5-Q8:transformation model-to-text qui prend en entrée un modèle conforme au
-	 *  métamodèle de playlist et qui produit en sortie un fichier texte au format
-        “M3U étendu”  
-	 */
-	def transformationPlaylistToFileM3UEtendu(Playlist playlist) {
-		// ecrire dans un fichier
-		val writer = new PrintWriter("resultEtendu.m3u")
-		writer.write("#EXTM3U \n")
-
-		for (element : playlist.videos)
-			writer.write(
-				"#EXT-X-DISCONTINUITY" + " \n" + " #EXTINF :" + element.duration + "\n" + element.location + "\n")
-		writer.write("#EXT-X-ENDLIST")
-		 //fermeture fichier
-		writer.close()
-	}
-	//Question 6 : voir README.txt
-
-	/* Question 7:transformation qui prend en entrée une spécification VideoGen et qui
-        assigne une valeur « durée » pour chaque séquence vidéo*/ 
-
-	def playlistWithDuration() {
-		val playlist = PlaylistFactory.eINSTANCE.createPlaylist;
-
-		var videoGen = loadVideoGenerator(URI.createURI("foo1.videogen"))
-		val random = new Random()
-
-		videoGen.videoseqs.forEach [ videoseq |
-			if (videoseq instanceof MandatoryVideoSeq) {
-				val desc = (videoseq as MandatoryVideoSeq).description.location
-				var duree = (videoseq as MandatoryVideoSeq).description.duration
-				duree = calculDuree(desc).intValue()
-				var MF = PlaylistFactory.eINSTANCE.createMediaFile()
-				MF.location = desc
-				MF.duration = duree
-				playlist.videos.add(MF)
-			} else if (videoseq instanceof OptionalVideoSeq) {
-				val desc = (videoseq as OptionalVideoSeq).description.location
-				var duree = (videoseq as OptionalVideoSeq).description.duration
-				duree = calculDuree(desc).intValue()
-				var proba = random.nextInt(1)
-				if (proba == 1) {
-					var MF = PlaylistFactory.eINSTANCE.createMediaFile()
-					MF.location = desc
-					MF.duration = duree
-					playlist.videos.add(MF)
-				}
-			} else {
-				val altvid = (videoseq as AlternativeVideoSeq)
-				var l = new ArrayList()
-				var proba = random.nextInt(altvid.videodescs.size)
-				val vaa = altvid.videodescs.get(proba)
-				var duree = (videoseq as MandatoryVideoSeq).description.duration
-
-				var MF = PlaylistFactory.eINSTANCE.createMediaFile()
-				duree = calculDuree(vaa.location).intValue()
-				MF.location = vaa.location
-				MF.duration = duree
-				playlist.videos.add(MF)
-			}
-
-		]
-		playlist
-
-	}
-
+	
 	// Question 7: Fonction de calcul de la durée
 	def calculDuree(
 		String videoLocation) {
@@ -216,14 +92,7 @@ qui produit en sortie une liste compréhensible par ffmpeg
 				return
 	}
 
-	/*  Question 9:transformation qui prend en entrée une spécification VideoGen et qui
-    génère en sortie un ensemble de vignettes pour toutes les séquences vidéos*/
-
-	def playlistVignette(Playlist playlist) {
-		// ecrire dans un fichier
-		for (element : playlist.videos)
-			creationVignette(element.location, 1, element.location + ".png")
-	}
+	
 
 	/*  Question 10:transformation qui prend en entrée une spécification VideoGen et qui
 génère en sortie une page Web affichant les vignettes*/
@@ -419,12 +288,12 @@ génère en sortie une page Web affichant les vignettes*/
 				val desc = (videoseq as MandatoryVideoSeq).description.location
 				creationVignette(desc, calculDuree(desc).intValue / 2, desc + ".png")
 				println("<li>" + "<img src=" + desc + ".png/></li>")
-				if (!(videoseq as MandatoryVideoSeq).description.filter.isNullOrEmpty) {
+				/*if (!(videoseq as MandatoryVideoSeq).description.filter.isNullOrEmpty) {
 					applyFilter((videoseq as MandatoryVideoSeq).description.filter, desc)
 					writer2.write("file \'" + desc + ".avecfilter.mp4\'\n")
 				} else {
 					writer2.write("file \'" + desc + "\'\n")
-				}
+				}*/
 				writer.write("<li>" + "Mandatory<img src=" + desc + ".png/></li>\n")
 			} else if (videoseq instanceof OptionalVideoSeq) {
 				val desc = (videoseq as OptionalVideoSeq).description.location
@@ -433,12 +302,12 @@ génère en sortie une page Web affichant les vignettes*/
 				if (proba == 1) {
 					creationVignette(desc, calculDuree(desc).intValue / 2, desc + ".png")
 					println("<li>" + "<img src=" + desc + ".png/></li>")
-					if (!(videoseq as OptionalVideoSeq).description.filter.isNullOrEmpty) {
+					/*if (!(videoseq as OptionalVideoSeq).description.filter.isNullOrEmpty) {
 						applyFilter((videoseq as MandatoryVideoSeq).description.filter, desc)
 						writer2.write("file \'" + desc + ".avecfilter.mp4\'\n")
 					} else {
 						writer2.write("file \'" + desc + "\'\n")
-					}
+					}*/
 					writer.write("<li>" + "Optional<img src=" + desc + ".png/></li>\n")
 				}
 			} else {
@@ -452,12 +321,12 @@ génère en sortie une page Web affichant les vignettes*/
 				creationVignette(vaa.location, calculDuree(vaa.location).intValue / 2, vaa.location + ".png")
 				println("<li>" + "<img src=" + vaa.location + ".png/></li>")
 				writer.write("<li>" + "Alternative<img src=" + vaa.location + ".png/></li>\n")
-				if (!vaa.filter.isNullOrEmpty) {
+				/*if (!vaa.filter.isNullOrEmpty) {
 					applyFilter((videoseq as MandatoryVideoSeq).description.filter, vaa.location)
 					writer2.write("file \'" + vaa.location + ".avecfilter.mp4\'\n")
 				} else {
 					writer2.write("file \'" + vaa.location + "\'\n")
-				}
+				}*/
 			}
 			println("</ul>")
 			writer.write("</ul>\n")

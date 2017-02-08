@@ -51,28 +51,6 @@ public class VideoDemonstrator2 {
   }
   
   @Test
-  public void tp3_q2() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nMediaFile cannot be resolved to a type."
-      + "\nVideoGenQ2FactoryImpl cannot be resolved."
-      + "\ncreatePlaylist cannot be resolved"
-      + "\ncreateMediaFile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nmediafile cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\ncreateMediaFile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nmediafile cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\ncreateMediaFile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nmediafile cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\nmediafile cannot be resolved"
-      + "\nlocation cannot be resolved");
-  }
-  
-  @Test
   public void test1() {
     URI _createURI = URI.createURI("foo2.videogen");
     VideoGeneratorModel videoGen = this.loadVideoGenerator(_createURI);

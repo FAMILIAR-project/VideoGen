@@ -15,7 +15,8 @@ Require-Bundle: org.eclipse.ui,
  org.xtext.example.playlist.ide;bundle-version="1.0.0",
  MetaPlaylist;bundle-version="0.1.0",
  videogenPlaylist;bundle-version="1.0.0",
- playlist;bundle-version="0.1.0"
+ playlist;bundle-version="0.1.0",
+ org.apache.commons.io
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 

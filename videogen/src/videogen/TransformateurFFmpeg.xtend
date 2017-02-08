@@ -168,10 +168,11 @@ class TransformateurFFmpeg {
 		{ 
 			res += altvid
 			res += ": ("
+			/*
 			for (vdesc : alts.get(altvid)) {
 				res += vdesc.videoid
 				res += "|"
-			}
+			}*/
 			res += "); "
 		}
 		

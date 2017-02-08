@@ -39,6 +39,7 @@ class ConcatM3U {
 		val rand = new Random()
 		val playlist = PlaylistFactory.eINSTANCE.createPlaylist
 		val cmd = "vlc play.m3u"
+		/*
 		videoGen.videoseqs.forEach[videoseq|
 			if(videoseq instanceof MandatoryVideoSeq)
 			{
@@ -66,7 +67,7 @@ class ConcatM3U {
 		]
 		Files.write(Paths.get("play.m3u"), 
 			Collections.singletonList(PlaylistToText.playlistToText(playlist,"m3u"))
-		)
+		)*/
 		Runtime.runtime.exec(cmd)
 		return
 	}

@@ -1,5 +1,15 @@
 package videogen
+
+import java.io.BufferedReader
+import java.io.BufferedWriter
+import java.io.File
+import java.io.FileWriter
+import java.io.IOException
+import java.io.InputStreamReader
+import java.util.ArrayList
 import java.util.HashMap
+import java.util.List
+import java.util.Random
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
@@ -11,17 +21,6 @@ import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 
 import static org.junit.Assert.*
-import java.util.Random
-import java.io.File
-import java.io.BufferedWriter
-import java.io.FileWriter
-import java.io.IOException
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import videogenPlayList.impl.VideogenPlayListFactoryImpl
-import videogenPlayList.MediaFile
-import java.util.List
-import java.util.ArrayList
 
 class VideoDemonstratorP6 {
 	
@@ -97,8 +96,7 @@ class VideoDemonstratorP6 {
 	@Test
 	def partie6() {
 		var videoGen = loadVideoGenerator(URI.createURI("fooVideos.videogen"))
-		var fact = new VideogenPlayListFactoryImpl()
-		var playlist = fact.createPlayList()
+		
 		assertNotNull(videoGen)
 		for (videoseq : videoGen.videoseqs.toSet) {
 			if (videoseq instanceof MandatoryVideoSeq) {
@@ -113,15 +111,14 @@ class VideoDemonstratorP6 {
 				}
 				
 				if (!vignettes.contains(fileLocation)) {
-					var mediaFile = fact.createMediaFile()
-					mediaFile.location = fileLocation 
-					mediaFile.duration =  getDuration(fileLocation)
+					
+					
 
 					vignette +=
 						"<p>"+ fileLocation +"</p><br/> 
 						<img src = " + createVignette(fileLocation, fileId) + " width='130px' height=auto/><br/>"
 
-					playlist.mediaFile.add(mediaFile)
+					
 					vignettes.add(fileLocation);
 				} else {
 					System.out.println("Mandatory: la vignette est deja presente  !! " + fileLocation );
@@ -141,12 +138,10 @@ class VideoDemonstratorP6 {
 					vignettes2.add(fileId)
 						}
 					if (!vignettes.contains(fileLocation)) {
-						var mediaFile = fact.createMediaFile()
-						mediaFile.location = fileLocation 
-						mediaFile.duration =  getDuration(fileLocation)
+						
 						vignette +=
 							"<p>"+ fileLocation +"</p><br/><img src=" + createVignette(fileLocation, fileId) + " width='130px' height=auto/><br/>"
-							playlist.mediaFile.add(mediaFile)
+							
 							vignettes.add(fileLocation)
 					} else {
 						vignette += "<p>Optionals: la vignette est deja presente " + fileLocation + " !!</p> <br/>"
@@ -167,12 +162,10 @@ class VideoDemonstratorP6 {
 					vignettes2.add(fileId)
 				}				
 				if (!vignettes.contains(fileLocation)) {
-					var mediaFile = fact.createMediaFile()
-						mediaFile.location = fileLocation 
-						mediaFile.duration =  getDuration(fileLocation)
+					
 					vignette +=
 						"<p>"+ fileLocation +"</p><br/><img src=" + createVignette(fileLocation, "alternative") + " width='130px' height=auto/><br/>"
-					playlist.mediaFile.add(mediaFile)
+					
 					vignettes.add(fileLocation)
 
 				} else {

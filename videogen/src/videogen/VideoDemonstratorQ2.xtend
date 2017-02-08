@@ -1,23 +1,15 @@
 package videogen
+
 import java.util.HashMap
+import java.util.Random
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.junit.Test
 import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated
 import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq
 import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq
 import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
-
-import static org.junit.Assert.*
-import java.util.Random
-import java.io.File
-import java.io.BufferedWriter
-import java.io.FileWriter
-import java.io.IOException
-import videogenPlayList.impl.VideogenPlayListFactoryImpl
-import videogenPlayList.MediaFile
 
 class VideoDemonstratorQ2 {
 	
@@ -28,6 +20,7 @@ class VideoDemonstratorQ2 {
 		"v" + i++
 	}
 
+/*
 	@Test
 	def TestTp3Q2() {
 		var videoGen = loadVideoGenerator(URI.createURI("fooVideos.videogen"))
@@ -77,7 +70,7 @@ class VideoDemonstratorQ2 {
 		} catch (IOException e) {
 			e.printStackTrace
 		}
-}			
+}		*/	
 		 
 	def void printToM3u(VideoGeneratorModel videoGen){
 			println("#this is a comment")

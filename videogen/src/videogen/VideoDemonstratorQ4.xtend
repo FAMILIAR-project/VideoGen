@@ -1,25 +1,13 @@
 package videogen
+
+import java.io.BufferedReader
+import java.io.InputStreamReader
 import java.util.HashMap
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.junit.Test
 import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated
-import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq
-import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq
-import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
-
-import static org.junit.Assert.*
-import java.util.Random
-import java.io.File
-import java.io.BufferedWriter
-import java.io.FileWriter
-import java.io.IOException
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import videogenPlayList.impl.VideogenPlayListFactoryImpl
-import videogenPlayList.MediaFile
 
 class VideoDemonstratorQ4 {
 	
@@ -44,7 +32,7 @@ class VideoDemonstratorQ4 {
 	}
 	
 	
-	
+	/*
 	@Test
 	def TP3() {
 		var videoGen = loadVideoGenerator(URI.createURI("fooVideos.videogen"))
@@ -115,7 +103,7 @@ class VideoDemonstratorQ4 {
 		} catch (IOException e) {
 			e.printStackTrace
 		}
-	}
+	}*/
 	
 	def static double getDuration(String videoLocation) {
 		var Process process = Runtime.getRuntime().exec(

@@ -1,6 +1,14 @@
 package videogen
 
+import java.io.BufferedWriter
+import java.io.File
+import java.io.FileWriter
+import java.io.IOException
+import java.util.ArrayList
 import java.util.HashMap
+import java.util.List
+import java.util.Random
+import java.util.concurrent.TimeUnit
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
@@ -10,24 +18,16 @@ import org.xtext.example.mydsl.videoGen.AlternativeVideoSeq
 import org.xtext.example.mydsl.videoGen.MandatoryVideoSeq
 import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
+
 import static org.junit.Assert.*
-import java.util.Random
-import java.io.File
-import java.io.FileWriter
-import java.io.IOException
-import java.io.BufferedWriter
-import videogenPlayList.impl.VideogenPlayListFactoryImpl
-import java.util.ArrayList
-import java.util.List
-import java.util.concurrent.TimeUnit
 
 /**
  * Question 11 :
  * On utilise la localisation entiere du video d'origine comme ID d'une vignette.
- * On cree un arraylist qui contient les locations des videos qui sont deja ajoutés a notres vignettes et 
- * si on retrouve que l'application essaie de faire une nouvelle vignette a partir d'une video deja utilisé
+ * On cree un arraylist qui contient les locations des videos qui sont deja ajoutï¿½s a notres vignettes et 
+ * si on retrouve que l'application essaie de faire une nouvelle vignette a partir d'une video deja utilisï¿½
  * on l'ajoute pas et a la place on montre le message suivant
- * "Cette video est déjà presente !!!" + (la location de la video)
+ * "Cette video est dï¿½jï¿½ presente !!!" + (la location de la video)
  */
 class VideoDemonstratorQ11 {
 	
@@ -59,8 +59,7 @@ class VideoDemonstratorQ11 {
 	@Test
 	def test() {
 		var videoGen = loadVideoGenerator(URI.createURI("fooQ1.videogen"))
-		var fact = new VideogenPlayListFactoryImpl()
-		var playlist= fact.createPlayList()
+		
 		assertNotNull(videoGen)
 
 		for (videoseq : videoGen.videoseqs.toSet) {
@@ -71,18 +70,17 @@ class VideoDemonstratorQ11 {
 				var fileId = (videoseq as MandatoryVideoSeq).description.videoid;
 				if(fileId.isNullOrEmpty) fileId = genID()
 
-				var mediafile = fact.createMediaFile()
-				mediafile.location = fileLocation
+				
 
 				vignette += "<img src = " + createVignette(fileLocation, fileId) + " width='400px' height=auto/><br/>"
 				
-				vignettesID.add(mediafile.location) // cette ligne est pour avoir l'erreur d'inserer 2 fois la meme vignette
+				vignettesID.add(fileLocation) // cette ligne est pour avoir l'erreur d'inserer 2 fois la meme vignette
 				
-				if (!vignettesID.contains(mediafile.location)) {
-					vignettesID.add(mediafile.location)
-					playlist.mediaFile.add(mediafile)
+				if (!vignettesID.contains(fileLocation)) {
+					vignettesID.add(fileLocation)
+					
 				}else{
-					vignette += "<p>Cette video mandatory est déjà presente !!!   " + "<b>"+mediafile.location+"</b>" +"</p>"
+					vignette += "<p>Cette video mandatory est dï¿½jï¿½ presente !!!   " + "<b>"+ fileLocation+"</b>" +"</p>"
 				}
 
 			println(vignettesID.toString)	
@@ -96,16 +94,13 @@ class VideoDemonstratorQ11 {
 					var fileId = (videoseq as OptionalVideoSeq).description.videoid;
 					if(fileId.isNullOrEmpty) fileId = genID()
 
-					var mediafile = fact.createMediaFile()
-					mediafile.location = fileLocation
 					
 					vignette += "<img src= " + createVignette(fileLocation, fileId) + " width='400px' height=auto/><br/>"
 					
-					if (!vignettesID.contains(mediafile.location)) {
-						vignettesID.add(mediafile.location)
-						playlist.mediaFile.add(mediafile)
+					if (!vignettesID.contains(fileLocation)) {
+						vignettesID.add(fileLocation)
 					}else{
-						vignette += "<p>Cette video optional  est déjà presente !!!</p>"
+						vignette += "<p>Cette video optional  est dï¿½jï¿½ presente !!!</p>"
 					}
 				
 					println(vignettesID.toString)
@@ -116,16 +111,15 @@ class VideoDemonstratorQ11 {
 				var fileLocation = (videoseq as AlternativeVideoSeq).videodescs.get(new Random().nextInt(size)).
 					location;
 
-				var mediafile = fact.createMediaFile()
-				mediafile.location = fileLocation
+				
 				vignette += "<img src=" + createVignette(fileLocation,"alternative") + " width='400px' height=auto/><br/>"
 				
 				
-				if (!vignettesID.contains(mediafile.location)) {
-					vignettesID.add(mediafile.location)
-					playlist.mediaFile.add(mediafile)
+				if (!vignettesID.contains(fileLocation)) {
+					vignettesID.add(fileLocation)
+					
 				}else{
-					vignette += "<p>Cette video alternative est déjà presente !!!</p>"
+					vignette += "<p>Cette video alternative est dï¿½jï¿½ presente !!!</p>"
 				}
 				
 				println(vignettesID.toString)

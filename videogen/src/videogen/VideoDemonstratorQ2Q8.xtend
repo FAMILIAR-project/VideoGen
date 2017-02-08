@@ -1,6 +1,9 @@
 package videogen
 
+import java.io.BufferedReader
+import java.io.InputStreamReader
 import java.util.HashMap
+import java.util.concurrent.TimeUnit
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
@@ -12,14 +15,6 @@ import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 
 import static org.junit.Assert.*
-import java.util.Random
-import java.io.File
-import java.io.FileWriter
-import videogenPlayList.impl.VideogenPlayListFactoryImpl
-import videogenPlayList.MediaFile
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.util.concurrent.TimeUnit
 
 /*
  * Questions 2 - 8
@@ -79,10 +74,11 @@ class VideoDemonstratorQ2Q8 {
 		saveVideoGenerator(URI.createURI("fooQ1bis.xmi"), videoGen)
 		saveVideoGenerator(URI.createURI("fooQ1bis.videogen"), videoGen)
 
-		printToM3u(videoGen)
+		//printToM3u(videoGen)
 
 	}
 
+/*
 	def void printToM3u(VideoGeneratorModel videoGen) {
 			
 		var fact = new VideogenPlayListFactoryImpl()
@@ -147,7 +143,7 @@ class VideoDemonstratorQ2Q8 {
 			fw.write(md.location + System.lineSeparator())
 		}
 		fw.close();
-	}
+	}*/
 
 	static var i = 0;
 

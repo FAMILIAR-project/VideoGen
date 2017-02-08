@@ -32,32 +32,72 @@ public class VideoDemonstratorQ3 {
     return ("v" + Integer.valueOf(_plusPlus));
   }
   
-  @Test
-  public void TpQ3() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nMediaFile cannot be resolved to a type."
-      + "\nVideogenPlayListFactoryImpl cannot be resolved."
-      + "\ncreatePlayList cannot be resolved"
-      + "\ncreateMediaFile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nduration cannot be resolved"
-      + "\nmediaFile cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\ncreateMediaFile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nduration cannot be resolved"
-      + "\nmediaFile cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\ncreateMediaFile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nduration cannot be resolved"
-      + "\nmediaFile cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\nmediaFile cannot be resolved"
-      + "\nduration cannot be resolved"
-      + "\nlocation cannot be resolved");
-  }
-  
+  /**
+   * @Test
+   * def TpQ3() {
+   * var videoGen = loadVideoGenerator(URI.createURI("fooVideos.videogen"))
+   * var fact = new VideogenPlayListFactoryImpl()
+   * var playlist= fact.createPlayList()
+   * assertNotNull(videoGen)
+   * 
+   * // MODEL MANAGEMENT (ANALYSIS, TRANSFORMATION)
+   * for(videoseq : videoGen.videoseqs.toSet) {
+   * if (videoseq instanceof MandatoryVideoSeq) {
+   * 
+   * println("Mandatory")
+   * val fileLocation = (videoseq as MandatoryVideoSeq).description.location;
+   * 
+   * var mediaFile = fact.createMediaFile()
+   * mediaFile.location = fileLocation
+   * mediaFile.duration =  getDuration(fileLocation)
+   * 
+   * playlist.mediaFile.add(mediaFile)
+   * 
+   * } else if (videoseq instanceof OptionalVideoSeq) {
+   * println("Optional")
+   * val rand = new Random().nextInt(2);
+   * // Random between 0-1
+   * if (rand == 0) {
+   * val fileLocation = (videoseq as OptionalVideoSeq).description.location;
+   * 
+   * var mediaFile = fact.createMediaFile()
+   * mediaFile.location = fileLocation
+   * mediaFile.duration =  getDuration(fileLocation)
+   * playlist.mediaFile.add(mediaFile)
+   * }
+   * }
+   * else {
+   * println("Alternatives")
+   * val size = (videoseq as AlternativeVideoSeq).videodescs.size;
+   * var fileLocation = (videoseq as AlternativeVideoSeq).videodescs.get(new Random().nextInt(size)).location;
+   * 
+   * var mediaFile = fact.createMediaFile()
+   * mediaFile.location = fileLocation
+   * mediaFile.duration =  getDuration(fileLocation)
+   * playlist.mediaFile.add(mediaFile)
+   * }
+   * }
+   * 
+   * try {
+   * val pl = new File("C:\\Users\\kaoutar\\git\\VideoGen\\videogen\\playlistq3.m3u");
+   * if (!pl.exists()) {
+   * pl.createNewFile();
+   * }
+   * val fw = new FileWriter(pl.getAbsoluteFile());
+   * val bw = new BufferedWriter(fw);
+   * bw.write("#EXTM3U" +System.lineSeparator)
+   * for( MediaFile mediafile : playlist.mediaFile){
+   * bw.write("#EXTINF:" + mediafile.duration+ " ,Example Artist - Example title " + System.lineSeparator + mediafile.location + System.lineSeparator);
+   * }
+   * 
+   * bw.close();
+   * 
+   * } catch (IOException e) {
+   * e.printStackTrace
+   * }
+   * 
+   * }
+   */
   @Test
   public void test1() {
     URI _createURI = URI.createURI("fooVideos.videogen");
@@ -109,27 +149,62 @@ public class VideoDemonstratorQ3 {
     this.saveVideoGenerator(_createURI_2, videoGen);
   }
   
-  public void printToM3u(final VideoGeneratorModel videoGen) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nMediaFile cannot be resolved to a type."
-      + "\nVideogenPlayListFactoryImpl cannot be resolved."
-      + "\ncreatePlayList cannot be resolved"
-      + "\ncreateMediaFile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nmediaFile cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\ncreateMediaFile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nmediaFile cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\ncreateMediaFile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nmediaFile cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\nmediaFile cannot be resolved"
-      + "\nlocation cannot be resolved");
-  }
-  
+  /**
+   * def void printToM3u(VideoGeneratorModel videoGen) {
+   * 
+   * val fact = new VideogenPlayListFactoryImpl()
+   * var playlist= fact.createPlayList()
+   * 
+   * for (videoseq : videoGen.videoseqs.toSet) {
+   * if (videoseq instanceof MandatoryVideoSeq) {
+   * println("Mandatory")
+   * 
+   * val desc = (videoseq as MandatoryVideoSeq).description.location;
+   * var mediaFile = fact.createMediaFile()
+   * mediaFile.location = desc
+   * playlist.mediaFile.add(mediaFile)
+   * 
+   * } else if (videoseq instanceof OptionalVideoSeq) {
+   * println("Optional")
+   * val unsurDeux = new Random().nextInt(2);
+   * 
+   * if(unsurDeux ==0){
+   * val desc = (videoseq as OptionalVideoSeq).description.location;
+   * var mediaFile = fact.createMediaFile()
+   * mediaFile.location = desc
+   * playlist.mediaFile.add(mediaFile)
+   * }
+   * } else {
+   * println("Alternative")
+   * val altvidsize = (videoseq as AlternativeVideoSeq).videodescs.size;
+   * val desc = (videoseq as AlternativeVideoSeq).videodescs.get(new Random().nextInt(altvidsize)).location;
+   * var mediaFile = fact.createMediaFile()
+   * mediaFile.location = desc
+   * playlist.mediaFile.add(mediaFile)
+   * }
+   * }
+   * try {
+   * val CPlaylist = new File("C:\\Users\\kaoutar\\git\\VideoGen\\videogen\\playlistq3.m3u");
+   * if (!CPlaylist.exists()) {
+   * CPlaylist.createNewFile();
+   * }
+   * println(CPlaylist.path);
+   * 
+   * val fw = new FileWriter(CPlaylist.getAbsoluteFile());
+   * val bw = new BufferedWriter(fw);
+   * bw.write("#EXTM3U" + System.lineSeparator);
+   * for (MediaFile mediafile : playlist.mediaFile){
+   * bw.write("#EXTINF:-1, Example Artist - Example title" + System.lineSeparator + mediafile.location + System.lineSeparator );
+   * }
+   * bw.close();
+   * 
+   * } catch (IOException e) {
+   * e.printStackTrace
+   * }
+   * 
+   * 
+   * }
+   */
   public VideoGeneratorModel loadVideoGenerator(final URI uri) {
     VideoGeneratorModel _xblockexpression = null;
     {

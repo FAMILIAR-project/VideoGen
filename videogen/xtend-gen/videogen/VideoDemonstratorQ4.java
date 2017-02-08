@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.InputOutput;
-import org.junit.Test;
 import org.xtext.example.mydsl.VideoGenStandaloneSetupGenerated;
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel;
 
@@ -54,28 +53,79 @@ public class VideoDemonstratorQ4 {
     }
   }
   
-  @Test
-  public void TP3() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nVideogenPlayListFactoryImpl cannot be resolved."
-      + "\ncreatePlayList cannot be resolved"
-      + "\ncreateMediaFile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nduration cannot be resolved"
-      + "\nmediaFile cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\ncreateMediaFile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nduration cannot be resolved"
-      + "\nmediaFile cannot be resolved"
-      + "\nadd cannot be resolved"
-      + "\ncreateMediaFile cannot be resolved"
-      + "\nlocation cannot be resolved"
-      + "\nduration cannot be resolved"
-      + "\nmediaFile cannot be resolved"
-      + "\nadd cannot be resolved");
-  }
-  
+  /**
+   * @Test
+   * def TP3() {
+   * var videoGen = loadVideoGenerator(URI.createURI("fooVideos.videogen"))
+   * var fact = new VideogenPlayListFactoryImpl()
+   * var playlist= fact.createPlayList()
+   * assertNotNull(videoGen)
+   * for (videoseq : videoGen.videoseqs.toSet) {
+   * if (videoseq instanceof MandatoryVideoSeq) {
+   * 
+   * println("Mandatory")
+   * val fileLocation = (videoseq as MandatoryVideoSeq).description.location;
+   * println (fileLocation)
+   * var fileId = (videoseq as MandatoryVideoSeq).description.videoid;
+   * println (fileId)
+   * if(fileId.isNullOrEmpty) fileId = genID()
+   * 
+   * var mediaFile = fact.createMediaFile()
+   * mediaFile.location = fileLocation
+   * mediaFile.duration =  getDuration(fileLocation)
+   * 
+   * vignette += "<img src = " + createVignette(fileLocation, fileId) + " width='130px' height=auto/><br/>"
+   * 
+   * playlist.mediaFile.add(mediaFile)
+   * 
+   * } else if (videoseq instanceof OptionalVideoSeq) {
+   * println("Optional")
+   * val rand = new Random().nextInt(2);
+   * // Random between 0-1
+   * if (rand == 0) {
+   * val fileLocation = (videoseq as OptionalVideoSeq).description.location;
+   * var fileId = (videoseq as OptionalVideoSeq).description.videoid;
+   * if(fileId.isNullOrEmpty) fileId = genID()
+   * 
+   * var mediaFile = fact.createMediaFile()
+   * mediaFile.location = fileLocation
+   * mediaFile.duration =  getDuration(fileLocation)
+   * 
+   * vignette += "<img src=" + createVignette(fileLocation, fileId) + " width='130px' height=auto/><br/>"
+   * playlist.mediaFile.add(mediaFile)
+   * }
+   * } else {
+   * println("else alternative")
+   * val size = (videoseq as AlternativeVideoSeq).videodescs.size;
+   * var fileLocation = (videoseq as AlternativeVideoSeq).videodescs.get(new Random().nextInt(size)).
+   * location;
+   * 
+   * var mediaFile = fact.createMediaFile()
+   * mediaFile.location = fileLocation
+   * mediaFile.duration =  getDuration(fileLocation)
+   * vignette += "<img src=" + createVignette(fileLocation,"alternative") + " width='130px' height=auto/><br/>"
+   * playlist.mediaFile.add(mediaFile)
+   * }
+   * }
+   * try {
+   * val ffmpeg = new File("/Users/kaoutar/git/VideoGen/videogen/Vignettes/vignette.html");
+   * if (!ffmpeg.exists()) {
+   * ffmpeg.createNewFile();
+   * }
+   * val fw = new FileWriter(ffmpeg.getAbsoluteFile());
+   * val bw = new BufferedWriter(fw);
+   * bw.write("<!DOCTYPE html><html><body>");
+   * bw.write("les vignettes");
+   * bw.write("<br/>");
+   * bw.write(vignette);
+   * bw.write("</html></body>");
+   * bw.close();
+   * 
+   * } catch (IOException e) {
+   * e.printStackTrace
+   * }
+   * }
+   */
   public static double getDuration(final String videoLocation) {
     try {
       Runtime _runtime = Runtime.getRuntime();

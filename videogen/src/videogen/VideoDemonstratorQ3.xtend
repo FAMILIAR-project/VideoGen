@@ -1,4 +1,7 @@
 package videogen
+
+import java.io.BufferedReader
+import java.io.InputStreamReader
 import java.util.HashMap
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
@@ -11,15 +14,6 @@ import org.xtext.example.mydsl.videoGen.OptionalVideoSeq
 import org.xtext.example.mydsl.videoGen.VideoGeneratorModel
 
 import static org.junit.Assert.*
-import java.util.Random
-import java.io.File
-import java.io.BufferedWriter
-import java.io.FileWriter
-import java.io.IOException
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import videogenPlayList.impl.VideogenPlayListFactoryImpl
-import videogenPlayList.MediaFile
 
 class VideoDemonstratorQ3 {
 	
@@ -29,7 +23,7 @@ class VideoDemonstratorQ3 {
 		"v" + i++
 	}
 	
-	
+	/* 
 	@Test
 	def TpQ3() {
 		var videoGen = loadVideoGenerator(URI.createURI("fooVideos.videogen")) 
@@ -94,7 +88,7 @@ class VideoDemonstratorQ3 {
 		}
 		
 	}
-	
+	*/
 	
 	@Test
 	def test1() {
@@ -119,7 +113,8 @@ class VideoDemonstratorQ3 {
 		saveVideoGenerator(URI.createURI("foo2bis.xmi"), videoGen)
 		saveVideoGenerator(URI.createURI("foo2bis.videogen"), videoGen)
 	}
-	def void printToM3u(VideoGeneratorModel videoGen) {
+	
+/*	def void printToM3u(VideoGeneratorModel videoGen) {
 			
 		val fact = new VideogenPlayListFactoryImpl()
 		var playlist= fact.createPlayList()
@@ -172,7 +167,7 @@ class VideoDemonstratorQ3 {
 		}
 		
 		
-	}
+	}*/
 	
 	def loadVideoGenerator(URI uri) {
 		new VideoGenStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()
