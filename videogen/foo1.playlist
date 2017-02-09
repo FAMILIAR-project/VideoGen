@@ -1,0 +1,8 @@
+Playlist {
+	mediafile "vid1.mp4"
+	mediafile "vid2.mp4"
+	mediafile "vid3.mp4"
+	mediafile "vid4.mp4"
+	mediafile "vid5.mp4"
+	mediafile "vid6.mp4"
+}

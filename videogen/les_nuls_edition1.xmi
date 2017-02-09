@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ASCII"?>
+<playlist:PlaylistGeneratorModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:playlist="http://www.xtext.org/example/mydsl/Playlist">
+  <mediafiles id="v164" location="/mnt/data/home/Lab/dev/workspace/VideoGen/videogen/ressources/videos/alternative/start/les_nuls_edition_3_start.mp4" duration="48.047"/>
+  <mediafiles id="v167" location="/mnt/data/home/Lab/dev/workspace/VideoGen/videogen/ressources/videos/alternative/dimanche/les_nuls_edition_2_dimanche.mp4" duration="35.747"/>
+  <mediafiles id="v170" location="/mnt/data/home/Lab/dev/workspace/VideoGen/videogen/ressources/videos/mandatory/jingle_pub.mp4" duration="3.147"/>
+  <mediafiles id="v174" location="/mnt/data/home/Lab/dev/workspace/VideoGen/videogen/ressources/videos/alternative/pub/pub1/les_nuls_les_boules_de_petanque.mp4" duration="23.938334"/>
+  <mediafiles id="v175" location="/mnt/data/home/Lab/dev/workspace/VideoGen/videogen/ressources/videos/optional/les_nuls_barbara_gourde.mp4" duration="19.526667"/>
+  <mediafiles id="v179" location="/mnt/data/home/Lab/dev/workspace/VideoGen/videogen/ressources/videos/alternative/pub/pub2/les_nuls_ultra_mou_de_garnier.mp4" duration="83.96333"/>
+  <mediafiles id="v182" location="/mnt/data/home/Lab/dev/workspace/VideoGen/videogen/ressources/videos/mandatory/jingle_pub.mp4" duration="3.147"/>
+  <mediafiles id="v183" location="/mnt/data/home/Lab/dev/workspace/VideoGen/videogen/ressources/videos/alternative/lundi/les_nuls_edition_1_lundi.mp4" duration="52.147"/>
+  <mediafiles id="v187" location="/mnt/data/home/Lab/dev/workspace/VideoGen/videogen/ressources/videos/alternative/mardi/les_nuls_edition_1_mardi.mp4" duration="48.047"/>
+  <mediafiles id="v191" location="/mnt/data/home/Lab/dev/workspace/VideoGen/videogen/ressources/videos/mandatory/jingle_pub.mp4" duration="3.147"/>
+  <mediafiles id="v193" location="/mnt/data/home/Lab/dev/workspace/VideoGen/videogen/ressources/videos/alternative/pub/pub1/les_nuls_professeur_thibault_crotte_de_nez.mp4" duration="39.234"/>
+  <mediafiles id="v196" location="/mnt/data/home/Lab/dev/workspace/VideoGen/videogen/ressources/videos/optional/les_nuls_bouteille_de_lait.mp4" duration="34.806667"/>
+  <mediafiles id="v199" location="/mnt/data/home/Lab/dev/workspace/VideoGen/videogen/ressources/videos/alternative/pub/pub2/les_nuls_tu_tes_vu_quand_tas_bu.mp4" duration="55.286667"/>
+  <mediafiles id="v201" location="/mnt/data/home/Lab/dev/workspace/VideoGen/videogen/ressources/videos/mandatory/jingle_pub.mp4" duration="3.147"/>
+  <mediafiles id="v205" location="/mnt/data/home/Lab/dev/workspace/VideoGen/videogen/ressources/videos/alternative/mercredi/les_nuls_edition_4_mercredi.mp4" duration="51.847"/>
+  <mediafiles id="v209" location="/mnt/data/home/Lab/dev/workspace/VideoGen/videogen/ressources/videos/alternative/jeudi/les_nuls_edition_4_jeudi.mp4" duration="20.647"/>
+  <mediafiles id="v210" location="/mnt/data/home/Lab/dev/workspace/VideoGen/videogen/ressources/videos/mandatory/jingle_pub.mp4" duration="3.147"/>
+  <mediafiles id="v211" location="/mnt/data/home/Lab/dev/workspace/VideoGen/videogen/ressources/videos/alternative/pub/pub1/les_nuls_contresque.mp4" duration="18.97"/>
+  <mediafiles id="v217" location="/mnt/data/home/Lab/dev/workspace/VideoGen/videogen/ressources/videos/alternative/pub/pub2/les_nuls_pire_express.mp4" duration="39.93667"/>
+  <mediafiles id="v222" location="/mnt/data/home/Lab/dev/workspace/VideoGen/videogen/ressources/videos/mandatory/jingle_pub.mp4" duration="3.147"/>
+  <mediafiles id="v223" location="/mnt/data/home/Lab/dev/workspace/VideoGen/videogen/ressources/videos/alternative/vendredi/les_nuls_edition_1_vendredi.mp4" duration="57.847"/>
+  <mediafiles id="v227" location="/mnt/data/home/Lab/dev/workspace/VideoGen/videogen/ressources/videos/alternative/samedi/les_nuls_edition_1_samedi.mp4" duration="57.847"/>
+  <mediafiles id="v231" location="/mnt/data/home/Lab/dev/workspace/VideoGen/videogen/ressources/videos/mandatory/jingle_pub.mp4" duration="3.147"/>
+  <mediafiles id="v232" location="/mnt/data/home/Lab/dev/workspace/VideoGen/videogen/ressources/videos/alternative/pub/pub1/les_nuls_contresque.mp4" duration="18.97"/>
+  <mediafiles id="v238" location="/mnt/data/home/Lab/dev/workspace/VideoGen/videogen/ressources/videos/alternative/pub/pub2/les_nuls_tu_tes_vu_quand_tas_bu.mp4" duration="55.286667"/>
+</playlist:PlaylistGeneratorModel>

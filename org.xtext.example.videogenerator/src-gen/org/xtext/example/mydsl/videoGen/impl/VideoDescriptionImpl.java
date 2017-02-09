@@ -80,7 +80,7 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
    * @generated
    * @ordered
    */
-  protected static final int DURATION_EDEFAULT = 0;
+  protected static final float DURATION_EDEFAULT = 0.0F;
 
   /**
    * The cached value of the '{@link #getDuration() <em>Duration</em>}' attribute.
@@ -90,7 +90,7 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
    * @generated
    * @ordered
    */
-  protected int duration = DURATION_EDEFAULT;
+  protected float duration = DURATION_EDEFAULT;
 
   /**
    * The default value of the '{@link #getProbability() <em>Probability</em>}' attribute.
@@ -224,7 +224,7 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public int getDuration()
+  public float getDuration()
   {
     return duration;
   }
@@ -234,9 +234,9 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDuration(int newDuration)
+  public void setDuration(float newDuration)
   {
-    int oldDuration = duration;
+    float oldDuration = duration;
     duration = newDuration;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, VideoGenPackage.VIDEO_DESCRIPTION__DURATION, oldDuration, duration));
@@ -354,7 +354,7 @@ public class VideoDescriptionImpl extends MinimalEObjectImpl.Container implement
         setLocation((String)newValue);
         return;
       case VideoGenPackage.VIDEO_DESCRIPTION__DURATION:
-        setDuration((Integer)newValue);
+        setDuration((Float)newValue);
         return;
       case VideoGenPackage.VIDEO_DESCRIPTION__PROBABILITY:
         setProbability((Integer)newValue);

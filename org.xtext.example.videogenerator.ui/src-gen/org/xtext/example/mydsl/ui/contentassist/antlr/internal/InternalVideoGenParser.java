@@ -22,28 +22,30 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalVideoGenParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_LEFT_BRACKET", "RULE_RIGHT_BRACKET", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'VideoGen'", "'@author'", "'@version'", "'@creation'", "'mandatory'", "'optional'", "'alternatives'", "'videoseq'", "'duration'", "'probability'", "'size'", "'description'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_LEFT_BRACKET", "RULE_RIGHT_BRACKET", "RULE_STRING", "RULE_ID", "RULE_FLOAT", "RULE_PERCENTAGE", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'VideoGen'", "'@author'", "'@version'", "'@creation'", "'mandatory'", "'optional'", "'alternatives'", "'videoseq'", "'duration'", "'probability'", "'size'", "'description'"
     };
     public static final int RULE_STRING=6;
-    public static final int RULE_SL_COMMENT=10;
+    public static final int RULE_SL_COMMENT=12;
     public static final int T__19=19;
     public static final int T__15=15;
     public static final int RULE_RIGHT_BRACKET=5;
     public static final int T__16=16;
     public static final int T__17=17;
     public static final int T__18=18;
-    public static final int T__13=13;
-    public static final int T__14=14;
     public static final int EOF=-1;
     public static final int RULE_ID=7;
-    public static final int RULE_WS=11;
+    public static final int RULE_WS=13;
     public static final int RULE_LEFT_BRACKET=4;
-    public static final int RULE_ANY_OTHER=12;
-    public static final int RULE_INT=8;
+    public static final int RULE_ANY_OTHER=14;
+    public static final int T__26=26;
+    public static final int RULE_PERCENTAGE=9;
+    public static final int RULE_INT=10;
     public static final int T__22=22;
-    public static final int RULE_ML_COMMENT=9;
+    public static final int RULE_ML_COMMENT=11;
     public static final int T__23=23;
+    public static final int RULE_FLOAT=8;
     public static final int T__24=24;
+    public static final int T__25=25;
     public static final int T__20=20;
     public static final int T__21=21;
 
@@ -633,17 +635,17 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:260:1: ( ( ruleMandatoryVideoSeq ) | ( ruleOptionalVideoSeq ) | ( ruleAlternativeVideoSeq ) )
             int alt1=3;
             switch ( input.LA(1) ) {
-            case 17:
+            case 19:
                 {
                 alt1=1;
                 }
                 break;
-            case 18:
+            case 20:
                 {
                 alt1=2;
                 }
                 break;
-            case 19:
+            case 21:
                 {
                 alt1=3;
                 }
@@ -861,7 +863,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             int alt2=2;
             int LA2_0 = input.LA(1);
 
-            if ( (LA2_0==14) ) {
+            if ( (LA2_0==16) ) {
                 alt2=1;
             }
             switch (alt2) {
@@ -953,7 +955,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:364:1: 'VideoGen'
             {
              before(grammarAccess.getVideoGeneratorModelAccess().getVideoGenKeyword_2()); 
-            match(input,13,FOLLOW_2); 
+            match(input,15,FOLLOW_2); 
              after(grammarAccess.getVideoGeneratorModelAccess().getVideoGenKeyword_2()); 
 
             }
@@ -1131,7 +1133,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
                 int alt3=2;
                 int LA3_0 = input.LA(1);
 
-                if ( ((LA3_0>=17 && LA3_0<=19)) ) {
+                if ( ((LA3_0>=19 && LA3_0<=21)) ) {
                     alt3=1;
                 }
 
@@ -1465,7 +1467,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             int alt4=2;
             int LA4_0 = input.LA(1);
 
-            if ( (LA4_0==15) ) {
+            if ( (LA4_0==17) ) {
                 alt4=1;
             }
             switch (alt4) {
@@ -1556,7 +1558,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             int alt5=2;
             int LA5_0 = input.LA(1);
 
-            if ( (LA5_0==16) ) {
+            if ( (LA5_0==18) ) {
                 alt5=1;
             }
             switch (alt5) {
@@ -1648,7 +1650,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:625:1: '@author'
             {
              before(grammarAccess.getVideoGenInformationAccess().getAuthorKeyword_1_0()); 
-            match(input,14,FOLLOW_2); 
+            match(input,16,FOLLOW_2); 
              after(grammarAccess.getVideoGenInformationAccess().getAuthorKeyword_1_0()); 
 
             }
@@ -1803,7 +1805,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:688:1: '@version'
             {
              before(grammarAccess.getVideoGenInformationAccess().getVersionKeyword_2_0()); 
-            match(input,15,FOLLOW_2); 
+            match(input,17,FOLLOW_2); 
              after(grammarAccess.getVideoGenInformationAccess().getVersionKeyword_2_0()); 
 
             }
@@ -1958,7 +1960,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:751:1: '@creation'
             {
              before(grammarAccess.getVideoGenInformationAccess().getCreationKeyword_3_0()); 
-            match(input,16,FOLLOW_2); 
+            match(input,18,FOLLOW_2); 
              after(grammarAccess.getVideoGenInformationAccess().getCreationKeyword_3_0()); 
 
             }
@@ -2113,7 +2115,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:814:1: 'mandatory'
             {
              before(grammarAccess.getMandatoryVideoSeqAccess().getMandatoryKeyword_0()); 
-            match(input,17,FOLLOW_2); 
+            match(input,19,FOLLOW_2); 
              after(grammarAccess.getMandatoryVideoSeqAccess().getMandatoryKeyword_0()); 
 
             }
@@ -2268,7 +2270,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:877:1: 'optional'
             {
              before(grammarAccess.getOptionalVideoSeqAccess().getOptionalKeyword_0()); 
-            match(input,18,FOLLOW_2); 
+            match(input,20,FOLLOW_2); 
              after(grammarAccess.getOptionalVideoSeqAccess().getOptionalKeyword_0()); 
 
             }
@@ -2423,7 +2425,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:940:1: 'alternatives'
             {
              before(grammarAccess.getAlternativeVideoSeqAccess().getAlternativesKeyword_0()); 
-            match(input,19,FOLLOW_2); 
+            match(input,21,FOLLOW_2); 
              after(grammarAccess.getAlternativeVideoSeqAccess().getAlternativesKeyword_0()); 
 
             }
@@ -2697,7 +2699,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
                 int alt7=2;
                 int LA7_0 = input.LA(1);
 
-                if ( (LA7_0==20) ) {
+                if ( (LA7_0==22) ) {
                     alt7=1;
                 }
 
@@ -2867,7 +2869,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:1103:1: 'videoseq'
             {
              before(grammarAccess.getVideoDescriptionAccess().getVideoseqKeyword_0()); 
-            match(input,20,FOLLOW_2); 
+            match(input,22,FOLLOW_2); 
              after(grammarAccess.getVideoDescriptionAccess().getVideoseqKeyword_0()); 
 
             }
@@ -3293,7 +3295,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             int alt10=2;
             int LA10_0 = input.LA(1);
 
-            if ( (LA10_0==21) ) {
+            if ( (LA10_0==23) ) {
                 alt10=1;
             }
             switch (alt10) {
@@ -3389,7 +3391,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             int alt11=2;
             int LA11_0 = input.LA(1);
 
-            if ( (LA11_0==22) ) {
+            if ( (LA11_0==24) ) {
                 alt11=1;
             }
             switch (alt11) {
@@ -3485,7 +3487,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             int alt12=2;
             int LA12_0 = input.LA(1);
 
-            if ( (LA12_0==23) ) {
+            if ( (LA12_0==25) ) {
                 alt12=1;
             }
             switch (alt12) {
@@ -3581,7 +3583,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             int alt13=2;
             int LA13_0 = input.LA(1);
 
-            if ( (LA13_0==24) ) {
+            if ( (LA13_0==26) ) {
                 alt13=1;
             }
             switch (alt13) {
@@ -3743,7 +3745,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:1413:1: 'duration'
             {
              before(grammarAccess.getVideoDescriptionAccess().getDurationKeyword_3_1_0()); 
-            match(input,21,FOLLOW_2); 
+            match(input,23,FOLLOW_2); 
              after(grammarAccess.getVideoDescriptionAccess().getDurationKeyword_3_1_0()); 
 
             }
@@ -3856,7 +3858,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:1462:1: ( rule__VideoDescription__Group_3_2__0__Impl rule__VideoDescription__Group_3_2__1 )
             // InternalVideoGen.g:1463:2: rule__VideoDescription__Group_3_2__0__Impl rule__VideoDescription__Group_3_2__1
             {
-            pushFollow(FOLLOW_16);
+            pushFollow(FOLLOW_17);
             rule__VideoDescription__Group_3_2__0__Impl();
 
             state._fsp--;
@@ -3898,7 +3900,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:1476:1: 'probability'
             {
              before(grammarAccess.getVideoDescriptionAccess().getProbabilityKeyword_3_2_0()); 
-            match(input,22,FOLLOW_2); 
+            match(input,24,FOLLOW_2); 
              after(grammarAccess.getVideoDescriptionAccess().getProbabilityKeyword_3_2_0()); 
 
             }
@@ -4011,7 +4013,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:1525:1: ( rule__VideoDescription__Group_3_3__0__Impl rule__VideoDescription__Group_3_3__1 )
             // InternalVideoGen.g:1526:2: rule__VideoDescription__Group_3_3__0__Impl rule__VideoDescription__Group_3_3__1
             {
-            pushFollow(FOLLOW_16);
+            pushFollow(FOLLOW_18);
             rule__VideoDescription__Group_3_3__0__Impl();
 
             state._fsp--;
@@ -4053,7 +4055,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:1539:1: 'size'
             {
              before(grammarAccess.getVideoDescriptionAccess().getSizeKeyword_3_3_0()); 
-            match(input,23,FOLLOW_2); 
+            match(input,25,FOLLOW_2); 
              after(grammarAccess.getVideoDescriptionAccess().getSizeKeyword_3_3_0()); 
 
             }
@@ -4208,7 +4210,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:1602:1: 'description'
             {
              before(grammarAccess.getVideoDescriptionAccess().getDescriptionKeyword_3_4_0()); 
-            match(input,24,FOLLOW_2); 
+            match(input,26,FOLLOW_2); 
              after(grammarAccess.getVideoDescriptionAccess().getDescriptionKeyword_3_4_0()); 
 
             }
@@ -4739,21 +4741,21 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VideoDescription__DurationAssignment_3_1_1"
-    // InternalVideoGen.g:1813:1: rule__VideoDescription__DurationAssignment_3_1_1 : ( RULE_INT ) ;
+    // InternalVideoGen.g:1813:1: rule__VideoDescription__DurationAssignment_3_1_1 : ( RULE_FLOAT ) ;
     public final void rule__VideoDescription__DurationAssignment_3_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalVideoGen.g:1817:1: ( ( RULE_INT ) )
-            // InternalVideoGen.g:1818:1: ( RULE_INT )
+            // InternalVideoGen.g:1817:1: ( ( RULE_FLOAT ) )
+            // InternalVideoGen.g:1818:1: ( RULE_FLOAT )
             {
-            // InternalVideoGen.g:1818:1: ( RULE_INT )
-            // InternalVideoGen.g:1819:1: RULE_INT
+            // InternalVideoGen.g:1818:1: ( RULE_FLOAT )
+            // InternalVideoGen.g:1819:1: RULE_FLOAT
             {
-             before(grammarAccess.getVideoDescriptionAccess().getDurationINTTerminalRuleCall_3_1_1_0()); 
-            match(input,RULE_INT,FOLLOW_2); 
-             after(grammarAccess.getVideoDescriptionAccess().getDurationINTTerminalRuleCall_3_1_1_0()); 
+             before(grammarAccess.getVideoDescriptionAccess().getDurationFLOATTerminalRuleCall_3_1_1_0()); 
+            match(input,RULE_FLOAT,FOLLOW_2); 
+             after(grammarAccess.getVideoDescriptionAccess().getDurationFLOATTerminalRuleCall_3_1_1_0()); 
 
             }
 
@@ -4776,21 +4778,21 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__VideoDescription__ProbabilityAssignment_3_2_1"
-    // InternalVideoGen.g:1828:1: rule__VideoDescription__ProbabilityAssignment_3_2_1 : ( RULE_INT ) ;
+    // InternalVideoGen.g:1828:1: rule__VideoDescription__ProbabilityAssignment_3_2_1 : ( RULE_PERCENTAGE ) ;
     public final void rule__VideoDescription__ProbabilityAssignment_3_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalVideoGen.g:1832:1: ( ( RULE_INT ) )
-            // InternalVideoGen.g:1833:1: ( RULE_INT )
+            // InternalVideoGen.g:1832:1: ( ( RULE_PERCENTAGE ) )
+            // InternalVideoGen.g:1833:1: ( RULE_PERCENTAGE )
             {
-            // InternalVideoGen.g:1833:1: ( RULE_INT )
-            // InternalVideoGen.g:1834:1: RULE_INT
+            // InternalVideoGen.g:1833:1: ( RULE_PERCENTAGE )
+            // InternalVideoGen.g:1834:1: RULE_PERCENTAGE
             {
-             before(grammarAccess.getVideoDescriptionAccess().getProbabilityINTTerminalRuleCall_3_2_1_0()); 
-            match(input,RULE_INT,FOLLOW_2); 
-             after(grammarAccess.getVideoDescriptionAccess().getProbabilityINTTerminalRuleCall_3_2_1_0()); 
+             before(grammarAccess.getVideoDescriptionAccess().getProbabilityPERCENTAGETerminalRuleCall_3_2_1_0()); 
+            match(input,RULE_PERCENTAGE,FOLLOW_2); 
+             after(grammarAccess.getVideoDescriptionAccess().getProbabilityPERCENTAGETerminalRuleCall_3_2_1_0()); 
 
             }
 
@@ -4892,19 +4894,21 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
     public static final BitSet FOLLOW_1 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_2 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x0000000000006000L});
+    public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x0000000000018000L});
     public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x00000000000E0000L});
+    public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000000000380000L});
     public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x00000000000E0002L});
-    public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000000000018000L});
+    public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000000000380002L});
+    public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000000000060000L});
     public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000000000400000L});
     public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000000000000090L});
-    public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000000000100002L});
+    public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000000000400002L});
     public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x00000000000000C0L});
-    public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000001E00020L});
+    public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000007800020L});
     public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0000000000000400L});
 
 }

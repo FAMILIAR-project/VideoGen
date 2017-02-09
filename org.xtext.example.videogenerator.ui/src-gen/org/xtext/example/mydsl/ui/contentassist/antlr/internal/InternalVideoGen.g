@@ -1816,8 +1816,8 @@ rule__VideoDescription__DurationAssignment_3_1_1
     }
 :
 (
-{ before(grammarAccess.getVideoDescriptionAccess().getDurationINTTerminalRuleCall_3_1_1_0()); }
-	RULE_INT{ after(grammarAccess.getVideoDescriptionAccess().getDurationINTTerminalRuleCall_3_1_1_0()); }
+{ before(grammarAccess.getVideoDescriptionAccess().getDurationFLOATTerminalRuleCall_3_1_1_0()); }
+	RULE_FLOAT{ after(grammarAccess.getVideoDescriptionAccess().getDurationFLOATTerminalRuleCall_3_1_1_0()); }
 )
 
 ;
@@ -1831,8 +1831,8 @@ rule__VideoDescription__ProbabilityAssignment_3_2_1
     }
 :
 (
-{ before(grammarAccess.getVideoDescriptionAccess().getProbabilityINTTerminalRuleCall_3_2_1_0()); }
-	RULE_INT{ after(grammarAccess.getVideoDescriptionAccess().getProbabilityINTTerminalRuleCall_3_2_1_0()); }
+{ before(grammarAccess.getVideoDescriptionAccess().getProbabilityPERCENTAGETerminalRuleCall_3_2_1_0()); }
+	RULE_PERCENTAGE{ after(grammarAccess.getVideoDescriptionAccess().getProbabilityPERCENTAGETerminalRuleCall_3_2_1_0()); }
 )
 
 ;
@@ -1870,6 +1870,10 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+
+RULE_PERCENTAGE : ('1'..'9' ('0'..'9')?|'100');
+
+RULE_FLOAT : RULE_INT '.' RULE_INT;
 
 RULE_LEFT_BRACKET : '{';
 

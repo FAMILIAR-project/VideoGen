@@ -1,5 +1,7 @@
 grammar org.xtext.example.mydsl.VideoGen with org.eclipse.xtext.common.Terminals
 
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
 generate videoGen "http://www.xtext.org/example/mydsl/VideoGen"
 
 VideoGeneratorModel: {VideoGeneratorModel}
@@ -23,14 +25,14 @@ AlternativeVideoSeq : 'alternatives' (videoid=ID)? LEFT_BRACKET videodescs+=Vide
 
 VideoDescription : 'videoseq' (videoid=ID)? location=STRING
 	(LEFT_BRACKET
-	 ('duration' duration=INT)?
-	 ('probability' probability=INT)?
+	 ('duration' duration=FLOAT)?
+	 ('probability' probability=PERCENTAGE)?
 	 ('size' size=INT)?
 	 ('description' description=STRING)? 
 	RIGHT_BRACKET)?
-	
 ;
 
+terminal PERCENTAGE returns ecore::EInt: ('1'..'9')('0'..'9')? | '100';
+terminal FLOAT returns ecore::EFloat: INT'.'INT;
 terminal LEFT_BRACKET: '{' ; 
 terminal RIGHT_BRACKET: '}';
-

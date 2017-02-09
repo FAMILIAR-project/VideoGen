@@ -119,8 +119,8 @@ public class VideoGenSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     (
 	 *         videoid=ID? 
 	 *         location=STRING 
-	 *         duration=INT? 
-	 *         probability=INT? 
+	 *         duration=FLOAT? 
+	 *         probability=PERCENTAGE? 
 	 *         size=INT? 
 	 *         description=STRING?
 	 *     )
