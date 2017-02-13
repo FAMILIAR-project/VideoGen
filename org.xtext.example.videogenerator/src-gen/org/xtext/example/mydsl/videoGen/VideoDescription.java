@@ -92,12 +92,12 @@ public interface VideoDescription extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Duration</em>' attribute.
-   * @see #setDuration(int)
+   * @see #setDuration(float)
    * @see org.xtext.example.mydsl.videoGen.VideoGenPackage#getVideoDescription_Duration()
    * @model
    * @generated
    */
-  int getDuration();
+  float getDuration();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.videoGen.VideoDescription#getDuration <em>Duration</em>}' attribute.
@@ -107,7 +107,7 @@ public interface VideoDescription extends EObject
    * @see #getDuration()
    * @generated
    */
-  void setDuration(int value);
+  void setDuration(float value);
 
   /**
    * Returns the value of the '<em><b>Probability</b></em>' attribute.

@@ -122,6 +122,7 @@ public class AbstractVideoGenProposalProvider extends org.eclipse.xtext.common.u
 	public void complete_VideoDescription(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}
+<<<<<<< HEAD
 	public void complete_Subtitle(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}
@@ -141,6 +142,12 @@ public class AbstractVideoGenProposalProvider extends org.eclipse.xtext.common.u
 		// subclasses may override
 	}
 	public void complete_FlipFilter(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+=======
+	public void complete_PERCENTAGE(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		// subclasses may override
+	}
+	public void complete_FLOAT(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
 		// subclasses may override
 	}
 	public void complete_LEFT_BRACKET(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
