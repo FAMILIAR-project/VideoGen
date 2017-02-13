@@ -10,6 +10,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.xtext.xbase.lib,
  org.eclipse.xtend.lib,
  org.eclipse.xtend.lib.macro,
+<<<<<<< HEAD
  org.xtext.example.videogenerator,
  org.xtext.example.playlist;bundle-version="1.0.0",
  org.xtext.example.playlist.ide;bundle-version="1.0.0",
@@ -18,6 +19,10 @@ Require-Bundle: org.eclipse.ui,
  playlist;bundle-version="0.1.0",
  org.apache.commons.io,
  playlistModel;bundle-version="1.0.0"
+=======
+ org.xtext.example.mydsl.playlist;bundle-version="1.0.0",
+ org.xtext.example.mydsl.playlist.ui;bundle-version="1.0.0"
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 

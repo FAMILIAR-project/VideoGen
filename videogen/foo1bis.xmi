@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ASCII"?>
+<playlist:PlaylistGeneratorModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:playlist="http://www.xtext.org/example/mydsl/Playlist">
+  <mediafiles location="V1/v1.mp4"/>
+  <mediafiles location="v2folder/v2.mp4"/>
+  <mediafiles location="v3/seq1.mp4"/>
+  <mediafiles location="v4/seq1.mp4"/>
+  <mediafiles location="v5.mp4"/>
+  <mediafiles location="V81.avi"/>
+</playlist:PlaylistGeneratorModel>

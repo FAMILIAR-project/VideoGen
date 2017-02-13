@@ -1,0 +1,354 @@
+VideoGen {
+	
+	alternatives start {
+		videoseq v0
+"/ressources/videos/alternative/start/les_nuls_edition_1_start.mp4.webm" {
+			duration 75.147 probability 25
+		}
+		videoseq v1
+"/ressources/videos/alternative/start/les_nuls_edition_2_start.mp4.webm" {
+			duration 48.347 probability 25
+		}
+		videoseq v2
+"/ressources/videos/alternative/start/les_nuls_edition_3_start.mp4.webm" {
+			duration 48.047 probability 25
+		}
+		videoseq v3
+"/ressources/videos/alternative/start/les_nuls_edition_4_start.mp4.webm" {
+			duration 79.947 probability 25
+		}
+	}
+	
+	alternatives dimanche {
+		videoseq v4
+"/ressources/videos/alternative/dimanche/les_nuls_edition_1_dimanche.mp4.webm" {
+			duration 28.647 probability 25
+		}
+		videoseq v5
+"/ressources/videos/alternative/dimanche/les_nuls_edition_2_dimanche.mp4.webm" {
+			duration 35.747 probability 25
+		}
+		videoseq v6
+"/ressources/videos/alternative/dimanche/les_nuls_edition_3_dimanche.mp4.webm" {
+			duration 42.747 probability 25
+		}
+		videoseq v7
+"/ressources/videos/alternative/dimanche/les_nuls_edition_4_dimanche.mp4.webm" {
+			duration 21.147 probability 25
+		}
+	}
+	
+	mandatory videoseq v8 "/ressources/videos/mandatory/jingle_pub.mp4.webm" { duration
+3.147 }
+	
+	alternatives part1_pub1 {
+		videoseq v9 "/ressources/videos/alternative/pub/pub1/les_nuls_contresque.mp4.webm"  {
+			duration 18.97 probability 25
+		}
+		videoseq v10
+"/ressources/videos/alternative/pub/pub1/les_nuls_professeur_thibault_crotte_de_nez.mp4.webm"  {
+			duration 39.234 probability 25
+		}
+		videoseq v11
+"/ressources/videos/alternative/pub/pub1/les_nuls_le_yogourt_rien_a_branler.mp4.webm"  {
+			duration 36.501667 probability 25
+		}
+		videoseq v12
+"/ressources/videos/alternative/pub/pub1/les_nuls_les_boules_de_petanque.mp4.webm"  {
+			duration 23.938334 probability 25
+		}
+	}
+	
+	optional videoseq v13 "/ressources/videos/optional/les_nuls_barbara_gourde.mp4.webm" {
+		duration 19.526667 probability 50
+	}
+	
+	alternatives part1_pub2 {
+		videoseq v14
+"/ressources/videos/alternative/pub/pub2/les_nuls_lessive_arielle.mp4.webm"  {
+			duration 32.90167 probability 25
+		}
+		videoseq v15
+"/ressources/videos/alternative/pub/pub2/les_nuls_pire_express.mp4.webm"  {
+			duration 39.93667 probability 25
+		}
+		videoseq v16
+"/ressources/videos/alternative/pub/pub2/les_nuls_tu_tes_vu_quand_tas_bu.mp4.webm"  {
+			duration 55.286667 probability 25
+		}
+		videoseq v17
+"/ressources/videos/alternative/pub/pub2/les_nuls_ultra_mou_de_garnier.mp4.webm"  {
+			duration 83.96333 probability 25
+		}
+	}
+	
+	optional videoseq v18
+"/ressources/videos/optional/les_nuls_la_mouche_qui_pete.mp4.webm" {
+		duration 31.021667 probability 50
+	}
+	
+	optional videoseq v19 "/ressources/videos/optional/prof_sioux.mp4.webm" {
+		duration 6.947 probability 25
+	}
+	
+	mandatory videoseq v20 "/ressources/videos/mandatory/jingle_pub.mp4.webm" { duration
+3.147 }
+	
+	alternatives lundi {
+		videoseq v21
+"/ressources/videos/alternative/lundi/les_nuls_edition_1_lundi.mp4.webm" {
+			duration 52.147 probability 25
+		}
+		videoseq v22
+"/ressources/videos/alternative/lundi/les_nuls_edition_2_lundi.mp4.webm" {
+			duration 40.147 probability 25
+		}
+		videoseq v23
+"/ressources/videos/alternative/lundi/les_nuls_edition_3_lundi.mp4.webm" {
+			duration 42.947 probability 25
+		}
+		videoseq v24
+"/ressources/videos/alternative/lundi/les_nuls_edition_4_lundi.mp4.webm" {
+			duration 29.047 probability 25
+		}
+	}
+
+	alternatives mardi {
+		videoseq v25
+"/ressources/videos/alternative/mardi/les_nuls_edition_1_mardi.mp4.webm" {
+			duration 48.047 probability 25
+		}
+		videoseq v26
+"/ressources/videos/alternative/mardi/les_nuls_edition_2_mardi.mp4.webm" {
+			duration 45.447 probability 25
+		}
+		videoseq v27
+"/ressources/videos/alternative/mardi/les_nuls_edition_3_mardi.mp4.webm" {
+			duration 53.147 probability 25
+		}
+		videoseq v28
+"/ressources/videos/alternative/mardi/les_nuls_edition_4_mardi.mp4.webm" {
+			duration 66.447 probability 25
+		}
+	}
+	
+	mandatory videoseq v29 "/ressources/videos/mandatory/jingle_pub.mp4.webm" { duration
+3.147 }
+	
+	alternatives part2_pub1 {
+		videoseq v30 "/ressources/videos/alternative/pub/pub1/les_nuls_contresque.mp4.webm" {
+			duration 18.97 probability 25
+		}
+		videoseq v31
+"/ressources/videos/alternative/pub/pub1/les_nuls_professeur_thibault_crotte_de_nez.mp4.webm" {
+			duration 39.234 probability 25
+		}
+		videoseq v32
+"/ressources/videos/alternative/pub/pub1/les_nuls_le_yogourt_rien_a_branler.mp4.webm" {
+			duration 36.501667 probability 25
+		}
+		videoseq v33
+"/ressources/videos/alternative/pub/pub1/les_nuls_les_boules_de_petanque.mp4.webm" {
+			duration 23.938334 probability 25
+		}
+	}
+	
+	optional videoseq v34
+"/ressources/videos/optional/les_nuls_bouteille_de_lait.mp4.webm" {
+		duration 34.806667 probability 75
+	}
+	
+	alternatives part2_pub2 {
+		videoseq v35
+"/ressources/videos/alternative/pub/pub2/les_nuls_lessive_arielle.mp4.webm" {
+			duration 32.90167 probability 25
+		}
+		videoseq v36
+"/ressources/videos/alternative/pub/pub2/les_nuls_pire_express.mp4.webm" {
+			duration 39.93667 probability 25
+		}
+		videoseq v37
+"/ressources/videos/alternative/pub/pub2/les_nuls_tu_tes_vu_quand_tas_bu.mp4.webm" {
+			duration 55.286667 probability 25
+		}
+		videoseq v38
+"/ressources/videos/alternative/pub/pub2/les_nuls_ultra_mou_de_garnier.mp4.webm" {
+			duration 83.96333 probability 25
+		}
+	}
+	
+	mandatory videoseq v39 "/ressources/videos/mandatory/jingle_pub.mp4.webm" { duration
+3.147 }
+	
+	alternatives mercredi {
+		videoseq v40
+"/ressources/videos/alternative/mercredi/les_nuls_edition_1_mercredi.mp4.webm" {
+			duration 65.047 probability 25
+		}
+		videoseq v41
+"/ressources/videos/alternative/mercredi/les_nuls_edition_2_mercredi.mp4.webm" {
+			duration 39.947 probability 25
+		}
+		videoseq v42
+"/ressources/videos/alternative/mercredi/les_nuls_edition_3_mercredi.mp4.webm" {
+			duration 57.147 probability 25
+		}
+		videoseq v43
+"/ressources/videos/alternative/mercredi/les_nuls_edition_4_mercredi.mp4.webm" {
+			duration 51.847 probability 25
+		}
+	}
+	
+	alternatives jeudi {
+		videoseq v44
+"/ressources/videos/alternative/jeudi/les_nuls_edition_1_jeudi.mp4.webm" {
+			duration 43.747 probability 25
+		}
+		videoseq v45
+"/ressources/videos/alternative/jeudi/les_nuls_edition_2_jeudi.mp4.webm" {
+			duration 64.547 probability 25
+		}
+		videoseq v46
+"/ressources/videos/alternative/jeudi/les_nuls_edition_3_jeudi.mp4.webm" {
+			duration 46.647 probability 25
+		}
+		videoseq v47
+"/ressources/videos/alternative/jeudi/les_nuls_edition_4_jeudi.mp4.webm" {
+			duration 20.647 probability 25
+		}
+	}
+	
+	mandatory videoseq v48 "/ressources/videos/mandatory/jingle_pub.mp4.webm" { duration
+3.147 }
+	
+	alternatives part3_pub1 {
+		videoseq v49 "/ressources/videos/alternative/pub/pub1/les_nuls_contresque.mp4.webm" {
+			duration 18.97 probability 25
+		}
+		videoseq v50
+"/ressources/videos/alternative/pub/pub1/les_nuls_professeur_thibault_crotte_de_nez.mp4.webm" {
+			duration 39.234 probability 25
+		}
+		videoseq v51
+"/ressources/videos/alternative/pub/pub1/les_nuls_le_yogourt_rien_a_branler.mp4.webm" {
+			duration 36.501667 probability 25
+		}
+		videoseq v52
+"/ressources/videos/alternative/pub/pub1/les_nuls_les_boules_de_petanque.mp4.webm" {
+			duration 23.938334 probability 25
+		}
+	}
+	
+	optional videoseq v53 "/ressources/videos/optional/les_nuls_connasse.mp4.webm" {
+		duration 26.283333 probability 25
+	}
+	
+	alternatives part3_pub2 {
+		videoseq v54
+"/ressources/videos/alternative/pub/pub2/les_nuls_lessive_arielle.mp4.webm" {
+			duration 32.90167 probability 25
+		}
+		videoseq v55
+"/ressources/videos/alternative/pub/pub2/les_nuls_pire_express.mp4.webm" {
+			duration 39.93667 probability 25
+		}
+		videoseq v56
+"/ressources/videos/alternative/pub/pub2/les_nuls_tu_tes_vu_quand_tas_bu.mp4.webm" {
+			duration 55.286667 probability 25
+		}
+		videoseq v57
+"/ressources/videos/alternative/pub/pub2/les_nuls_ultra_mou_de_garnier.mp4.webm" {
+			duration 83.96333 probability 25
+		}
+	}
+	
+	optional videoseq v58
+"/ressources/videos/optional/les_nuls_le_coup_de_pied_au_cul.mp4.webm" {
+		duration 15.045 probability 75
+	}
+	
+	optional videoseq v59 "/ressources/videos/optional/les_nuls_ne_chiez_plus.mp4.webm" {
+		duration 36.408333 probability 50
+	}
+	
+	mandatory videoseq v60 "/ressources/videos/mandatory/jingle_pub.mp4.webm" { duration
+3.147 }
+	
+	alternatives vendredi {
+		videoseq v61
+"/ressources/videos/alternative/vendredi/les_nuls_edition_1_vendredi.mp4.webm" {
+			duration 57.847 probability 25
+		}
+		videoseq v62
+"/ressources/videos/alternative/vendredi/les_nuls_edition_2_vendredi.mp4.webm" {
+			duration 105.247 probability 25
+		}
+		videoseq v63
+"/ressources/videos/alternative/vendredi/les_nuls_edition_3_vendredi.mp4.webm" {
+			duration 29.347 probability 25
+		}
+		videoseq v64
+"/ressources/videos/alternative/vendredi/les_nuls_edition_4_vendredi.mp4.webm" {
+			duration 21.047 probability 25
+		}
+	}
+	
+	alternatives samedi {
+		videoseq v65
+"/ressources/videos/alternative/samedi/les_nuls_edition_1_samedi.mp4.webm" {
+			duration 57.847 probability 25
+		}
+		videoseq v66
+"/ressources/videos/alternative/samedi/les_nuls_edition_2_samedi.mp4.webm" {
+			duration 69.747 probability 25
+		}
+		videoseq v67
+"/ressources/videos/alternative/samedi/les_nuls_edition_3_samedi.mp4.webm" {
+			duration 36.147 probability 25
+		}
+		videoseq v68
+"/ressources/videos/alternative/samedi/les_nuls_edition_4_samedi.mp4.webm" {
+			duration 57.847 probability 25
+		}
+	}
+	
+	mandatory videoseq v69 "/ressources/videos/mandatory/jingle_pub.mp4.webm" { duration
+3.147 }
+	
+	alternatives part4_pub1 {
+		videoseq v70 "/ressources/videos/alternative/pub/pub1/les_nuls_contresque.mp4.webm" {
+			duration 18.97 probability 25
+		}
+		videoseq v71
+"/ressources/videos/alternative/pub/pub1/les_nuls_professeur_thibault_crotte_de_nez.mp4.webm" {
+			duration 39.234 probability 25
+		}
+		videoseq v72
+"/ressources/videos/alternative/pub/pub1/les_nuls_le_yogourt_rien_a_branler.mp4.webm" {
+			duration 36.501667 probability 25
+		}
+		videoseq v73
+"/ressources/videos/alternative/pub/pub1/les_nuls_les_boules_de_petanque.mp4.webm" {
+			duration 23.938334 probability 25
+		}
+	}
+	
+	alternatives part4_pub2 {
+		videoseq v74
+"/ressources/videos/alternative/pub/pub2/les_nuls_lessive_arielle.mp4.webm" {
+			duration 32.90167 probability 25
+		}
+		videoseq v75
+"/ressources/videos/alternative/pub/pub2/les_nuls_pire_express.mp4.webm" {
+			duration 39.93667 probability 25
+		}
+		videoseq v76
+"/ressources/videos/alternative/pub/pub2/les_nuls_tu_tes_vu_quand_tas_bu.mp4.webm" {
+			duration 55.286667 probability 25
+		}
+		videoseq v77
+"/ressources/videos/alternative/pub/pub2/les_nuls_ultra_mou_de_garnier.mp4.webm" {
+			duration 83.96333 probability 25
+		}
+	}
+}

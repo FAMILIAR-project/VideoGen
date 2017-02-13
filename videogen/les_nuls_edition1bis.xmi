@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="ASCII"?>
+<videoGen:VideoGeneratorModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:videoGen="http://www.xtext.org/example/mydsl/VideoGen">
+  <videoseqs xsi:type="videoGen:AlternativeVideoSeq" videoid="start">
+    <videodescs videoid="v0" location="/ressources/videos/alternative/start/les_nuls_edition_1_start.mp4" duration="75" probability="25"/>
+  </videoseqs>
+</videoGen:VideoGeneratorModel>

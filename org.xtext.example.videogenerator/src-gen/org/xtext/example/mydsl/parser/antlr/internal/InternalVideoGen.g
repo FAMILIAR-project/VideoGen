@@ -500,9 +500,9 @@ ruleVideoDescription returns [EObject current=null]
     }
 (
 (
-		lv_duration_5_0=RULE_INT
+		lv_duration_5_0=RULE_FLOAT
 		{
-			newLeafNode(lv_duration_5_0, grammarAccess.getVideoDescriptionAccess().getDurationINTTerminalRuleCall_3_1_1_0()); 
+			newLeafNode(lv_duration_5_0, grammarAccess.getVideoDescriptionAccess().getDurationFLOATTerminalRuleCall_3_1_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -512,7 +512,7 @@ ruleVideoDescription returns [EObject current=null]
        			$current, 
        			"duration",
         		lv_duration_5_0, 
-        		"org.eclipse.xtext.common.Terminals.INT");
+        		"org.xtext.example.mydsl.VideoGen.FLOAT");
 	    }
 
 )
@@ -522,9 +522,9 @@ ruleVideoDescription returns [EObject current=null]
     }
 (
 (
-		lv_probability_7_0=RULE_INT
+		lv_probability_7_0=RULE_PERCENTAGE
 		{
-			newLeafNode(lv_probability_7_0, grammarAccess.getVideoDescriptionAccess().getProbabilityINTTerminalRuleCall_3_2_1_0()); 
+			newLeafNode(lv_probability_7_0, grammarAccess.getVideoDescriptionAccess().getProbabilityPERCENTAGETerminalRuleCall_3_2_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -534,7 +534,7 @@ ruleVideoDescription returns [EObject current=null]
        			$current, 
        			"probability",
         		lv_probability_7_0, 
-        		"org.eclipse.xtext.common.Terminals.INT");
+        		"org.xtext.example.mydsl.VideoGen.PERCENTAGE");
 	    }
 
 )
@@ -681,6 +681,7 @@ ruleVideoDescription returns [EObject current=null]
 
 
 
+<<<<<<< HEAD
 // Entry rule entryRuleSubtitle
 entryRuleSubtitle returns [EObject current=null] 
 	:
@@ -1124,6 +1125,11 @@ ruleFlipFilter returns [EObject current=null]
 
 
 
+=======
+RULE_PERCENTAGE : ('1'..'9' ('0'..'9')?|'100');
+
+RULE_FLOAT : RULE_INT '.' RULE_INT;
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
 
 RULE_LEFT_BRACKET : '{';
 

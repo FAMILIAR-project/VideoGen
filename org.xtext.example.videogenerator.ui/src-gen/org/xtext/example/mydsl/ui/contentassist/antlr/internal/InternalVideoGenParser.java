@@ -22,10 +22,14 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalVideoGenParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
+<<<<<<< HEAD
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_LEFT_BRACKET", "RULE_RIGHT_BRACKET", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'TOP'", "'BOTTOM'", "'CENTER'", "'h'", "'horizontal'", "'v'", "'vertical'", "'VideoGen'", "'@author'", "'@version'", "'@creation'", "'mandatory'", "'optional'", "'alternatives'", "'videoseq'", "'duration'", "'probability'", "'textIncrust'", "'size'", "'description'", "'subtitle'", "'text'", "'filter'", "'color'", "'content'", "'position'", "'b&w'", "'negate'", "'flip'"
+=======
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_LEFT_BRACKET", "RULE_RIGHT_BRACKET", "RULE_STRING", "RULE_ID", "RULE_FLOAT", "RULE_PERCENTAGE", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'VideoGen'", "'@author'", "'@version'", "'@creation'", "'mandatory'", "'optional'", "'alternatives'", "'videoseq'", "'duration'", "'probability'", "'size'", "'description'"
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
     };
     public static final int RULE_STRING=6;
-    public static final int RULE_SL_COMMENT=10;
+    public static final int RULE_SL_COMMENT=12;
     public static final int T__19=19;
     public static final int T__15=15;
     public static final int T__37=37;
@@ -35,32 +39,46 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
     public static final int T__17=17;
     public static final int T__39=39;
     public static final int T__18=18;
+<<<<<<< HEAD
     public static final int T__33=33;
     public static final int T__34=34;
     public static final int T__13=13;
     public static final int T__35=35;
     public static final int T__14=14;
     public static final int T__36=36;
+=======
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
     public static final int EOF=-1;
     public static final int T__30=30;
     public static final int T__31=31;
     public static final int T__32=32;
     public static final int RULE_ID=7;
-    public static final int RULE_WS=11;
+    public static final int RULE_WS=13;
     public static final int RULE_LEFT_BRACKET=4;
+<<<<<<< HEAD
     public static final int RULE_ANY_OTHER=12;
     public static final int T__26=26;
     public static final int T__27=27;
     public static final int T__28=28;
     public static final int RULE_INT=8;
     public static final int T__29=29;
+=======
+    public static final int RULE_ANY_OTHER=14;
+    public static final int T__26=26;
+    public static final int RULE_PERCENTAGE=9;
+    public static final int RULE_INT=10;
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
     public static final int T__22=22;
-    public static final int RULE_ML_COMMENT=9;
+    public static final int RULE_ML_COMMENT=11;
     public static final int T__23=23;
+    public static final int RULE_FLOAT=8;
     public static final int T__24=24;
     public static final int T__25=25;
+<<<<<<< HEAD
     public static final int T__40=40;
     public static final int T__41=41;
+=======
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
     public static final int T__20=20;
     public static final int T__21=21;
 
@@ -1186,20 +1204,35 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
         		int stackSize = keepStackSize();
             
         try {
+<<<<<<< HEAD
             // InternalVideoGen.g:456:1: ( ( ruleMandatoryVideoSeq ) | ( ruleOptionalVideoSeq ) | ( ruleAlternativeVideoSeq ) )
             int alt1=3;
             switch ( input.LA(1) ) {
             case 24:
+=======
+            // InternalVideoGen.g:260:1: ( ( ruleMandatoryVideoSeq ) | ( ruleOptionalVideoSeq ) | ( ruleAlternativeVideoSeq ) )
+            int alt1=3;
+            switch ( input.LA(1) ) {
+            case 19:
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
                 {
                 alt1=1;
                 }
                 break;
+<<<<<<< HEAD
             case 25:
+=======
+            case 20:
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
                 {
                 alt1=2;
                 }
                 break;
+<<<<<<< HEAD
             case 26:
+=======
+            case 21:
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
                 {
                 alt1=3;
                 }
@@ -1207,6 +1240,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             default:
                 NoViableAltException nvae =
                     new NoViableAltException("", 1, 0, input);
+<<<<<<< HEAD
 
                 throw nvae;
             }
@@ -4927,6 +4961,8 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
              before(grammarAccess.getVideoDescriptionAccess().getRIGHT_BRACKETTerminalRuleCall_3_9()); 
             match(input,RULE_RIGHT_BRACKET,FOLLOW_2); 
              after(grammarAccess.getVideoDescriptionAccess().getRIGHT_BRACKETTerminalRuleCall_3_9()); 
+=======
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
 
             }
 
@@ -5379,12 +5415,31 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:1992:1: ( ( rule__VideoDescription__TextIncrustAssignment_3_3_1 ) )
             // InternalVideoGen.g:1993:1: ( rule__VideoDescription__TextIncrustAssignment_3_3_1 )
             {
+<<<<<<< HEAD
              before(grammarAccess.getVideoDescriptionAccess().getTextIncrustAssignment_3_3_1()); 
             // InternalVideoGen.g:1994:1: ( rule__VideoDescription__TextIncrustAssignment_3_3_1 )
             // InternalVideoGen.g:1994:2: rule__VideoDescription__TextIncrustAssignment_3_3_1
             {
             pushFollow(FOLLOW_2);
             rule__VideoDescription__TextIncrustAssignment_3_3_1();
+=======
+             before(grammarAccess.getVideoGeneratorModelAccess().getInformationAssignment_1()); 
+            // InternalVideoGen.g:336:1: ( rule__VideoGeneratorModel__InformationAssignment_1 )?
+            int alt2=2;
+            int LA2_0 = input.LA(1);
+
+            if ( (LA2_0==16) ) {
+                alt2=1;
+            }
+            switch (alt2) {
+                case 1 :
+                    // InternalVideoGen.g:336:2: rule__VideoGeneratorModel__InformationAssignment_1
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__VideoGeneratorModel__InformationAssignment_1();
+
+                    state._fsp--;
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
 
             state._fsp--;
 
@@ -5464,9 +5519,15 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:2025:1: ( 'size' )
             // InternalVideoGen.g:2026:1: 'size'
             {
+<<<<<<< HEAD
              before(grammarAccess.getVideoDescriptionAccess().getSizeKeyword_3_4_0()); 
             match(input,31,FOLLOW_2); 
              after(grammarAccess.getVideoDescriptionAccess().getSizeKeyword_3_4_0()); 
+=======
+             before(grammarAccess.getVideoGeneratorModelAccess().getVideoGenKeyword_2()); 
+            match(input,15,FOLLOW_2); 
+             after(grammarAccess.getVideoGeneratorModelAccess().getVideoGenKeyword_2()); 
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
 
             }
 
@@ -5656,7 +5717,13 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             pushFollow(FOLLOW_2);
             rule__VideoDescription__Group_3_5__1__Impl();
 
+<<<<<<< HEAD
             state._fsp--;
+=======
+                if ( ((LA3_0>=19 && LA3_0<=21)) ) {
+                    alt3=1;
+                }
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
 
 
             }
@@ -5999,12 +6066,31 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:2244:1: ( ( rule__VideoDescription__TextAssignment_3_7_1 ) )
             // InternalVideoGen.g:2245:1: ( rule__VideoDescription__TextAssignment_3_7_1 )
             {
+<<<<<<< HEAD
              before(grammarAccess.getVideoDescriptionAccess().getTextAssignment_3_7_1()); 
             // InternalVideoGen.g:2246:1: ( rule__VideoDescription__TextAssignment_3_7_1 )
             // InternalVideoGen.g:2246:2: rule__VideoDescription__TextAssignment_3_7_1
             {
             pushFollow(FOLLOW_2);
             rule__VideoDescription__TextAssignment_3_7_1();
+=======
+             before(grammarAccess.getVideoGenInformationAccess().getGroup_2()); 
+            // InternalVideoGen.g:561:1: ( rule__VideoGenInformation__Group_2__0 )?
+            int alt4=2;
+            int LA4_0 = input.LA(1);
+
+            if ( (LA4_0==17) ) {
+                alt4=1;
+            }
+            switch (alt4) {
+                case 1 :
+                    // InternalVideoGen.g:561:2: rule__VideoGenInformation__Group_2__0
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__VideoGenInformation__Group_2__0();
+
+                    state._fsp--;
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
 
             state._fsp--;
 
@@ -6084,9 +6170,36 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:2277:1: ( 'filter' )
             // InternalVideoGen.g:2278:1: 'filter'
             {
+<<<<<<< HEAD
              before(grammarAccess.getVideoDescriptionAccess().getFilterKeyword_3_8_0()); 
             match(input,35,FOLLOW_2); 
              after(grammarAccess.getVideoDescriptionAccess().getFilterKeyword_3_8_0()); 
+=======
+             before(grammarAccess.getVideoGenInformationAccess().getGroup_3()); 
+            // InternalVideoGen.g:589:1: ( rule__VideoGenInformation__Group_3__0 )?
+            int alt5=2;
+            int LA5_0 = input.LA(1);
+
+            if ( (LA5_0==18) ) {
+                alt5=1;
+            }
+            switch (alt5) {
+                case 1 :
+                    // InternalVideoGen.g:589:2: rule__VideoGenInformation__Group_3__0
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__VideoGenInformation__Group_3__0();
+
+                    state._fsp--;
+
+
+                    }
+                    break;
+
+            }
+
+             after(grammarAccess.getVideoGenInformationAccess().getGroup_3()); 
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
 
             }
 
@@ -6154,6 +6267,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:2307:1: ( ( rule__VideoDescription__FilterAssignment_3_8_1 ) )
             // InternalVideoGen.g:2308:1: ( rule__VideoDescription__FilterAssignment_3_8_1 )
             {
+<<<<<<< HEAD
              before(grammarAccess.getVideoDescriptionAccess().getFilterAssignment_3_8_1()); 
             // InternalVideoGen.g:2309:1: ( rule__VideoDescription__FilterAssignment_3_8_1 )
             // InternalVideoGen.g:2309:2: rule__VideoDescription__FilterAssignment_3_8_1
@@ -6167,6 +6281,11 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             }
 
              after(grammarAccess.getVideoDescriptionAccess().getFilterAssignment_3_8_1()); 
+=======
+             before(grammarAccess.getVideoGenInformationAccess().getAuthorKeyword_1_0()); 
+            match(input,16,FOLLOW_2); 
+             after(grammarAccess.getVideoGenInformationAccess().getAuthorKeyword_1_0()); 
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
 
             }
 
@@ -6314,6 +6433,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:2371:1: ( ( rule__Subtitle__TextAssignment_1 ) )
             // InternalVideoGen.g:2372:1: ( rule__Subtitle__TextAssignment_1 )
             {
+<<<<<<< HEAD
              before(grammarAccess.getSubtitleAccess().getTextAssignment_1()); 
             // InternalVideoGen.g:2373:1: ( rule__Subtitle__TextAssignment_1 )
             // InternalVideoGen.g:2373:2: rule__Subtitle__TextAssignment_1
@@ -6327,6 +6447,11 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             }
 
              after(grammarAccess.getSubtitleAccess().getTextAssignment_1()); 
+=======
+             before(grammarAccess.getVideoGenInformationAccess().getVersionKeyword_2_0()); 
+            match(input,17,FOLLOW_2); 
+             after(grammarAccess.getVideoGenInformationAccess().getVersionKeyword_2_0()); 
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
 
             }
 
@@ -6490,9 +6615,15 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:2434:1: ( RULE_LEFT_BRACKET )
             // InternalVideoGen.g:2435:1: RULE_LEFT_BRACKET
             {
+<<<<<<< HEAD
              before(grammarAccess.getSubtitleAccess().getLEFT_BRACKETTerminalRuleCall_2_0()); 
             match(input,RULE_LEFT_BRACKET,FOLLOW_2); 
              after(grammarAccess.getSubtitleAccess().getLEFT_BRACKETTerminalRuleCall_2_0()); 
+=======
+             before(grammarAccess.getVideoGenInformationAccess().getCreationKeyword_3_0()); 
+            match(input,18,FOLLOW_2); 
+             after(grammarAccess.getVideoGenInformationAccess().getCreationKeyword_3_0()); 
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
 
             }
 
@@ -6661,6 +6792,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:2492:1: ( ( rule__Subtitle__Group_2_2__0 )? )
             // InternalVideoGen.g:2493:1: ( rule__Subtitle__Group_2_2__0 )?
             {
+<<<<<<< HEAD
              before(grammarAccess.getSubtitleAccess().getGroup_2_2()); 
             // InternalVideoGen.g:2494:1: ( rule__Subtitle__Group_2_2__0 )?
             int alt23=2;
@@ -6685,6 +6817,11 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             }
 
              after(grammarAccess.getSubtitleAccess().getGroup_2_2()); 
+=======
+             before(grammarAccess.getMandatoryVideoSeqAccess().getMandatoryKeyword_0()); 
+            match(input,19,FOLLOW_2); 
+             after(grammarAccess.getMandatoryVideoSeqAccess().getMandatoryKeyword_0()); 
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
 
             }
 
@@ -6827,9 +6964,15 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:2557:1: ( 'color' )
             // InternalVideoGen.g:2558:1: 'color'
             {
+<<<<<<< HEAD
              before(grammarAccess.getSubtitleAccess().getColorKeyword_2_1_0()); 
             match(input,36,FOLLOW_2); 
              after(grammarAccess.getSubtitleAccess().getColorKeyword_2_1_0()); 
+=======
+             before(grammarAccess.getOptionalVideoSeqAccess().getOptionalKeyword_0()); 
+            match(input,20,FOLLOW_2); 
+             after(grammarAccess.getOptionalVideoSeqAccess().getOptionalKeyword_0()); 
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
 
             }
 
@@ -6982,9 +7125,15 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:2620:1: ( 'size' )
             // InternalVideoGen.g:2621:1: 'size'
             {
+<<<<<<< HEAD
              before(grammarAccess.getSubtitleAccess().getSizeKeyword_2_2_0()); 
             match(input,31,FOLLOW_2); 
              after(grammarAccess.getSubtitleAccess().getSizeKeyword_2_2_0()); 
+=======
+             before(grammarAccess.getAlternativeVideoSeqAccess().getAlternativesKeyword_0()); 
+            match(input,21,FOLLOW_2); 
+             after(grammarAccess.getAlternativeVideoSeqAccess().getAlternativesKeyword_0()); 
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
 
             }
 
@@ -7249,7 +7398,13 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             pushFollow(FOLLOW_21);
             rule__Text__Group__2__Impl();
 
+<<<<<<< HEAD
             state._fsp--;
+=======
+                if ( (LA7_0==22) ) {
+                    alt7=1;
+                }
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
 
             pushFollow(FOLLOW_2);
             rule__Text__Group__3();
@@ -7447,6 +7602,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:2803:1: ( ( rule__Text__PositionAssignment_4 ) )
             // InternalVideoGen.g:2804:1: ( rule__Text__PositionAssignment_4 )
             {
+<<<<<<< HEAD
              before(grammarAccess.getTextAccess().getPositionAssignment_4()); 
             // InternalVideoGen.g:2805:1: ( rule__Text__PositionAssignment_4 )
             // InternalVideoGen.g:2805:2: rule__Text__PositionAssignment_4
@@ -7460,6 +7616,11 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             }
 
              after(grammarAccess.getTextAccess().getPositionAssignment_4()); 
+=======
+             before(grammarAccess.getVideoDescriptionAccess().getVideoseqKeyword_0()); 
+            match(input,22,FOLLOW_2); 
+             after(grammarAccess.getVideoDescriptionAccess().getVideoseqKeyword_0()); 
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
 
             }
 
@@ -7847,9 +8008,36 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:2951:1: ( RULE_RIGHT_BRACKET )
             // InternalVideoGen.g:2952:1: RULE_RIGHT_BRACKET
             {
+<<<<<<< HEAD
              before(grammarAccess.getTextAccess().getRIGHT_BRACKETTerminalRuleCall_9()); 
             match(input,RULE_RIGHT_BRACKET,FOLLOW_2); 
              after(grammarAccess.getTextAccess().getRIGHT_BRACKETTerminalRuleCall_9()); 
+=======
+             before(grammarAccess.getVideoDescriptionAccess().getGroup_3_1()); 
+            // InternalVideoGen.g:1258:1: ( rule__VideoDescription__Group_3_1__0 )?
+            int alt10=2;
+            int LA10_0 = input.LA(1);
+
+            if ( (LA10_0==23) ) {
+                alt10=1;
+            }
+            switch (alt10) {
+                case 1 :
+                    // InternalVideoGen.g:1258:2: rule__VideoDescription__Group_3_1__0
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__VideoDescription__Group_3_1__0();
+
+                    state._fsp--;
+
+
+                    }
+                    break;
+
+            }
+
+             after(grammarAccess.getVideoDescriptionAccess().getGroup_3_1()); 
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
 
             }
 
@@ -7926,6 +8114,30 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:3002:1: ()
             // InternalVideoGen.g:3004:1: 
             {
+<<<<<<< HEAD
+=======
+             before(grammarAccess.getVideoDescriptionAccess().getGroup_3_2()); 
+            // InternalVideoGen.g:1287:1: ( rule__VideoDescription__Group_3_2__0 )?
+            int alt11=2;
+            int LA11_0 = input.LA(1);
+
+            if ( (LA11_0==24) ) {
+                alt11=1;
+            }
+            switch (alt11) {
+                case 1 :
+                    // InternalVideoGen.g:1287:2: rule__VideoDescription__Group_3_2__0
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__VideoDescription__Group_3_2__0();
+
+                    state._fsp--;
+
+
+                    }
+                    break;
+
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
             }
 
              after(grammarAccess.getBlackWhiteFilterAccess().getBlackWhiteFilterAction_0()); 
@@ -7992,9 +8204,36 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:3030:1: ( 'b&w' )
             // InternalVideoGen.g:3031:1: 'b&w'
             {
+<<<<<<< HEAD
              before(grammarAccess.getBlackWhiteFilterAccess().getBWKeyword_1()); 
             match(input,39,FOLLOW_2); 
              after(grammarAccess.getBlackWhiteFilterAccess().getBWKeyword_1()); 
+=======
+             before(grammarAccess.getVideoDescriptionAccess().getGroup_3_3()); 
+            // InternalVideoGen.g:1316:1: ( rule__VideoDescription__Group_3_3__0 )?
+            int alt12=2;
+            int LA12_0 = input.LA(1);
+
+            if ( (LA12_0==25) ) {
+                alt12=1;
+            }
+            switch (alt12) {
+                case 1 :
+                    // InternalVideoGen.g:1316:2: rule__VideoDescription__Group_3_3__0
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__VideoDescription__Group_3_3__0();
+
+                    state._fsp--;
+
+
+                    }
+                    break;
+
+            }
+
+             after(grammarAccess.getVideoDescriptionAccess().getGroup_3_3()); 
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
 
             }
 
@@ -8071,6 +8310,30 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:3067:1: ()
             // InternalVideoGen.g:3069:1: 
             {
+<<<<<<< HEAD
+=======
+             before(grammarAccess.getVideoDescriptionAccess().getGroup_3_4()); 
+            // InternalVideoGen.g:1345:1: ( rule__VideoDescription__Group_3_4__0 )?
+            int alt13=2;
+            int LA13_0 = input.LA(1);
+
+            if ( (LA13_0==26) ) {
+                alt13=1;
+            }
+            switch (alt13) {
+                case 1 :
+                    // InternalVideoGen.g:1345:2: rule__VideoDescription__Group_3_4__0
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__VideoDescription__Group_3_4__0();
+
+                    state._fsp--;
+
+
+                    }
+                    break;
+
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
             }
 
              after(grammarAccess.getNegateFilterAccess().getNegateFilterAction_0()); 
@@ -8212,9 +8475,15 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:3130:1: ( 'flip' )
             // InternalVideoGen.g:3131:1: 'flip'
             {
+<<<<<<< HEAD
              before(grammarAccess.getFlipFilterAccess().getFlipKeyword_0()); 
             match(input,41,FOLLOW_2); 
              after(grammarAccess.getFlipFilterAccess().getFlipKeyword_0()); 
+=======
+             before(grammarAccess.getVideoDescriptionAccess().getDurationKeyword_3_1_0()); 
+            match(input,23,FOLLOW_2); 
+             after(grammarAccess.getVideoDescriptionAccess().getDurationKeyword_3_1_0()); 
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
 
             }
 
@@ -8326,12 +8595,17 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:3181:1: ( ( ruleVideoGenInformation ) )
             // InternalVideoGen.g:3182:1: ( ruleVideoGenInformation )
             {
+<<<<<<< HEAD
             // InternalVideoGen.g:3182:1: ( ruleVideoGenInformation )
             // InternalVideoGen.g:3183:1: ruleVideoGenInformation
             {
              before(grammarAccess.getVideoGeneratorModelAccess().getInformationVideoGenInformationParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
             ruleVideoGenInformation();
+=======
+            pushFollow(FOLLOW_17);
+            rule__VideoDescription__Group_3_2__0__Impl();
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
 
             state._fsp--;
 
@@ -8370,6 +8644,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:3197:1: ( ruleVideoSeq )
             // InternalVideoGen.g:3198:1: ruleVideoSeq
             {
+<<<<<<< HEAD
              before(grammarAccess.getVideoGeneratorModelAccess().getVideoseqsVideoSeqParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
             ruleVideoSeq();
@@ -8377,6 +8652,11 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             state._fsp--;
 
              after(grammarAccess.getVideoGeneratorModelAccess().getVideoseqsVideoSeqParserRuleCall_4_0()); 
+=======
+             before(grammarAccess.getVideoDescriptionAccess().getProbabilityKeyword_3_2_0()); 
+            match(input,24,FOLLOW_2); 
+             after(grammarAccess.getVideoDescriptionAccess().getProbabilityKeyword_3_2_0()); 
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
 
             }
 
@@ -8482,12 +8762,22 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:3241:1: ( ( RULE_STRING ) )
             // InternalVideoGen.g:3242:1: ( RULE_STRING )
             {
+<<<<<<< HEAD
             // InternalVideoGen.g:3242:1: ( RULE_STRING )
             // InternalVideoGen.g:3243:1: RULE_STRING
             {
              before(grammarAccess.getVideoGenInformationAccess().getCreationDateSTRINGTerminalRuleCall_3_1_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
              after(grammarAccess.getVideoGenInformationAccess().getCreationDateSTRINGTerminalRuleCall_3_1_0()); 
+=======
+            pushFollow(FOLLOW_18);
+            rule__VideoDescription__Group_3_3__0__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__VideoDescription__Group_3_3__1();
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
 
             }
 
@@ -8522,6 +8812,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:3257:1: ( ruleVideoDescription )
             // InternalVideoGen.g:3258:1: ruleVideoDescription
             {
+<<<<<<< HEAD
              before(grammarAccess.getMandatoryVideoSeqAccess().getDescriptionVideoDescriptionParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
             ruleVideoDescription();
@@ -8529,6 +8820,11 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             state._fsp--;
 
              after(grammarAccess.getMandatoryVideoSeqAccess().getDescriptionVideoDescriptionParserRuleCall_1_0()); 
+=======
+             before(grammarAccess.getVideoDescriptionAccess().getSizeKeyword_3_3_0()); 
+            match(input,25,FOLLOW_2); 
+             after(grammarAccess.getVideoDescriptionAccess().getSizeKeyword_3_3_0()); 
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
 
             }
 
@@ -8682,9 +8978,15 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             // InternalVideoGen.g:3317:1: ( RULE_ID )
             // InternalVideoGen.g:3318:1: RULE_ID
             {
+<<<<<<< HEAD
              before(grammarAccess.getVideoDescriptionAccess().getVideoidIDTerminalRuleCall_1_0()); 
             match(input,RULE_ID,FOLLOW_2); 
              after(grammarAccess.getVideoDescriptionAccess().getVideoidIDTerminalRuleCall_1_0()); 
+=======
+             before(grammarAccess.getVideoDescriptionAccess().getDescriptionKeyword_3_4_0()); 
+            match(input,26,FOLLOW_2); 
+             after(grammarAccess.getVideoDescriptionAccess().getDescriptionKeyword_3_4_0()); 
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
 
             }
 
@@ -9199,13 +9501,20 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
     // $ANTLR end "rule__Text__ContentAssignment_2"
 
 
+<<<<<<< HEAD
     // $ANTLR start "rule__Text__PositionAssignment_4"
     // InternalVideoGen.g:3522:1: rule__Text__PositionAssignment_4 : ( rulePosition ) ;
     public final void rule__Text__PositionAssignment_4() throws RecognitionException {
+=======
+    // $ANTLR start "rule__VideoDescription__DurationAssignment_3_1_1"
+    // InternalVideoGen.g:1813:1: rule__VideoDescription__DurationAssignment_3_1_1 : ( RULE_FLOAT ) ;
+    public final void rule__VideoDescription__DurationAssignment_3_1_1() throws RecognitionException {
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
 
         		int stackSize = keepStackSize();
             
         try {
+<<<<<<< HEAD
             // InternalVideoGen.g:3526:1: ( ( rulePosition ) )
             // InternalVideoGen.g:3527:1: ( rulePosition )
             {
@@ -9219,6 +9528,17 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
             state._fsp--;
 
              after(grammarAccess.getTextAccess().getPositionPositionParserRuleCall_4_0()); 
+=======
+            // InternalVideoGen.g:1817:1: ( ( RULE_FLOAT ) )
+            // InternalVideoGen.g:1818:1: ( RULE_FLOAT )
+            {
+            // InternalVideoGen.g:1818:1: ( RULE_FLOAT )
+            // InternalVideoGen.g:1819:1: RULE_FLOAT
+            {
+             before(grammarAccess.getVideoDescriptionAccess().getDurationFLOATTerminalRuleCall_3_1_1_0()); 
+            match(input,RULE_FLOAT,FOLLOW_2); 
+             after(grammarAccess.getVideoDescriptionAccess().getDurationFLOATTerminalRuleCall_3_1_1_0()); 
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
 
             }
 
@@ -9240,13 +9560,20 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
     // $ANTLR end "rule__Text__PositionAssignment_4"
 
 
+<<<<<<< HEAD
     // $ANTLR start "rule__Text__ColorAssignment_6"
     // InternalVideoGen.g:3537:1: rule__Text__ColorAssignment_6 : ( RULE_STRING ) ;
     public final void rule__Text__ColorAssignment_6() throws RecognitionException {
+=======
+    // $ANTLR start "rule__VideoDescription__ProbabilityAssignment_3_2_1"
+    // InternalVideoGen.g:1828:1: rule__VideoDescription__ProbabilityAssignment_3_2_1 : ( RULE_PERCENTAGE ) ;
+    public final void rule__VideoDescription__ProbabilityAssignment_3_2_1() throws RecognitionException {
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
 
         		int stackSize = keepStackSize();
             
         try {
+<<<<<<< HEAD
             // InternalVideoGen.g:3541:1: ( ( RULE_STRING ) )
             // InternalVideoGen.g:3542:1: ( RULE_STRING )
             {
@@ -9256,6 +9583,17 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
              before(grammarAccess.getTextAccess().getColorSTRINGTerminalRuleCall_6_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
              after(grammarAccess.getTextAccess().getColorSTRINGTerminalRuleCall_6_0()); 
+=======
+            // InternalVideoGen.g:1832:1: ( ( RULE_PERCENTAGE ) )
+            // InternalVideoGen.g:1833:1: ( RULE_PERCENTAGE )
+            {
+            // InternalVideoGen.g:1833:1: ( RULE_PERCENTAGE )
+            // InternalVideoGen.g:1834:1: RULE_PERCENTAGE
+            {
+             before(grammarAccess.getVideoDescriptionAccess().getProbabilityPERCENTAGETerminalRuleCall_3_2_1_0()); 
+            match(input,RULE_PERCENTAGE,FOLLOW_2); 
+             after(grammarAccess.getVideoDescriptionAccess().getProbabilityPERCENTAGETerminalRuleCall_3_2_1_0()); 
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
 
             }
 
@@ -9367,6 +9705,7 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
 
     public static final BitSet FOLLOW_1 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_2 = new BitSet(new long[]{0x0000000000000002L});
+<<<<<<< HEAD
     public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x0000000000300000L});
     public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000000007000000L});
@@ -9391,5 +9730,23 @@ public class InternalVideoGenParser extends AbstractInternalContentAssistParser 
     public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0000000080000000L});
     public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000010000000000L});
     public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x00000000000F0000L});
+=======
+    public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x0000000000018000L});
+    public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000000000380000L});
+    public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000000000380002L});
+    public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000000000060000L});
+    public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000000000000090L});
+    public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000000000400002L});
+    public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x00000000000000C0L});
+    public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000007800020L});
+    public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0000000000000400L});
+>>>>>>> e529713dc2ce4273a0bbf2a0634beb68235d51ef
 
 }
